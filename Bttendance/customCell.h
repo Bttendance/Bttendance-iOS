@@ -1,0 +1,17 @@
+//
+//  customCell.h
+//  Bttendance
+//
+//  Created by HAJE on 2013. 11. 27..
+//  Copyright (c) 2013년 Utopia. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface customCell : UITableViewCell{
+    UITextField *textfield;
+}
+
+@property (retain, nonatomic) UITextField *textfield;
+
+@end
