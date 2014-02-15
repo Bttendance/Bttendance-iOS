@@ -115,7 +115,7 @@ NSString *signupRequest;
     
     switch(indexPath.row){
         case 0:{
-            [[cell textLabel] setText:@"Fullname"];
+            [[cell textLabel] setText:@"Full Name"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
@@ -183,22 +183,28 @@ NSString *signupRequest;
             }
             
             [cell_new.button setTitle:@"Sign Up" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
             
             return cell_new;
         }
         case 5:{
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            [cell contentView].backgroundColor = [BTColor BT_white:1];
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell textLabel].numberOfLines = 0;
-            [[cell textLabel] setText:@"By tapping \"Sign up\" above, you are\nagreeing to the terms and conditions."];
-            [[cell textLabel] setTextColor:[UIColor grayColor]];
-            [[cell textLabel]setTextAlignment:NSTextAlignmentCenter];
-            [[cell textLabel] setFont:[UIFont systemFontOfSize:10]];
+            NIAttributedLabel *label = [[NIAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
+            label.backgroundColor = [UIColor clearColor];
+            label.text = @"By tapping \"Sign up\" above, you are agreeing to the Terms of Service and Privacy Policy.";
+            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
+                     range:[label.text rangeOfString:@"Terms of Service"]];
+            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/policy"]
+                     range:[label.text rangeOfString:@"Privacy Policy"]];
+            label.textAlignment = NSTextAlignmentRight;
+            label.linkColor = [BTColor BT_navy:1];
+            label.linksHaveUnderlines = YES;
+            label.textColor = [BTColor BT_silver:1];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+            label.numberOfLines = 0;
+            label.delegate = self;
+            [cell addSubview:label];
+            [cell contentView].backgroundColor = [BTColor BT_grey:1];
             break;
         }
         default:
@@ -217,6 +223,11 @@ NSString *signupRequest;
         default:
             return 44;
     }
+}
+
+-(void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
+    WebViewController *webView = [[WebViewController alloc]initWithURLString:[NSString stringWithFormat:@"%@",result.URL]];
+    [self.navigationController pushViewController:webView animated:YES];
 }
 
 -(IBAction)SignUnButton:(id)sender{

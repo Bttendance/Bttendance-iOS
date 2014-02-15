@@ -16,9 +16,10 @@
 #import "BTColor.h"
 #import "BTAPIs.h"
 #import "NIAttributedLabel.h"
+#import "WebViewController.h"
 
 
-@interface SignUpController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface SignUpController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate, NIAttributedLabelDelegate>{
     NSIndexPath *fullname_index, *email_index, *username_index, *password_index;
     NSDictionary *user_info;
 }
