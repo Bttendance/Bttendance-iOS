@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BttendanceColor.h"
+#import "BTColor.h"
 
 @interface ButtonCell :UITableViewCell {
 }

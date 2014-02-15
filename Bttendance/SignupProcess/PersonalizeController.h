@@ -11,7 +11,7 @@
 #import "SignInController.h"
 #import "SerialViewController.h"
 #import "StudentConfirm.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 
 @interface PersonalizeController : UIViewController{
     NSArray *myBGImages;

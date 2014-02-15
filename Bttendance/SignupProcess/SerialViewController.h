@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "customCell.h"
+#import "CustomCell.h"
 #import <AFNetworking.h>
 #import "SignUpController.h"
 #import "BTAPIs.h"
 #import "BVUnderlineButton.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 
 @interface SerialViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
     NSString *type;

@@ -32,8 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [BttendanceColor BT_grey:1];
-    [self tableview].backgroundColor = [BttendanceColor BT_grey:1];
+    self.view.backgroundColor = [BTColor BT_grey:1];
+    [self tableview].backgroundColor = [BTColor BT_grey:1];
 
 }
 
@@ -138,7 +138,7 @@
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [BttendanceColor BT_grey:1];
+                cell.backgroundColor = [BTColor BT_grey:1];
                 [cell.button addTarget:self action:@selector(move_to_school:) forControlEvents:UIControlEventTouchUpInside];
                 
                 return cell;
@@ -158,8 +158,8 @@
                 cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
                 cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
                 cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                cell.backgroundColor = [BttendanceColor BT_grey:1];
-                cell.cellbackground.backgroundColor = [BttendanceColor BT_white:1];
+                cell.backgroundColor = [BTColor BT_grey:1];
+                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                 cell.cellbackground.layer.cornerRadius = 2;
                 
                 return cell;
@@ -177,7 +177,7 @@
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [BttendanceColor BT_grey:1];
+                cell.backgroundColor = [BTColor BT_grey:1];
                 [cell.button addTarget:self action:@selector(move_to_school:) forControlEvents:UIControlEventTouchUpInside];
                 
                 return cell;
@@ -197,8 +197,8 @@
                 cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
                 cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
                 cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                cell.backgroundColor = [BttendanceColor BT_grey:1];
-                cell.cellbackground.backgroundColor = [BttendanceColor BT_white:1];
+                cell.backgroundColor = [BTColor BT_grey:1];
+                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                 cell.cellbackground.layer.cornerRadius = 2;
                 
 //                [cell.button addTarget:self action:@selector(move_to_course:) forControlEvents:UIControlEventTouchUpInside];

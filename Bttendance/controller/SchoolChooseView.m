@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view from its nib.
     
     //set tableview background color
-    [self tableview].backgroundColor = [BttendanceColor BT_grey:1];
+    [self tableview].backgroundColor = [BTColor BT_grey:1];
     
     //navigation title
     //set title
@@ -145,7 +145,7 @@
         cell.Info_SchoolName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_SchoolID_int = [[[data0 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
         cell.Info_SchoolID.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"website"];
-        cell.backgroundColor = [BttendanceColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -154,7 +154,7 @@
         cell.Info_SchoolName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_SchoolID_int = [[[data1 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
         cell.Info_SchoolID.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"website"];
-        cell.backgroundColor = [BttendanceColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

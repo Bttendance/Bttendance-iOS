@@ -40,7 +40,7 @@
     
     CAGradientLayer *layerR = [CAGradientLayer layer];
     layerR.frame = _gradientR.bounds;
-    layerR.colors = [NSArray arrayWithObjects:(id)[[BttendanceColor BT_Red:1] CGColor],(id)[[BttendanceColor BT_Red:0] CGColor], nil];
+    layerR.colors = [NSArray arrayWithObjects:(id)[[BTColor BT_Red:1] CGColor],(id)[[BTColor BT_Red:0] CGColor], nil];
 //    [UIColor colorWithRed:0.757 green:0.153 blue:0.176 alpha:1];
     [layerR setStartPoint:CGPointMake(0.0, 0.5)];
     [layerR setEndPoint:CGPointMake(1.0, 0.5)];

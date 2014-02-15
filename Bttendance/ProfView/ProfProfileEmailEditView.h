@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "ProfProfileView.h"
 
 @interface ProfProfileEmailEditView : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{

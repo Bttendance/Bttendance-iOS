@@ -1,14 +1,14 @@
 //
-//  BttendanceColor.m
+//  BTColor.m
 //  Bttendance
 //
 //  Created by HAJE on 2013. 12. 7..
 //  Copyright (c) 2013년 Utopia. All rights reserved.
 //
 
-#import "BttendanceColor.h"
+#import "BTColor.h"
 
-@implementation BttendanceColor
+@implementation BTColor
 
 +(UIColor *)BT_navy:(CGFloat) _alpha{
     return [UIColor colorWithRed:0 green:0.447 blue:0.69 alpha:_alpha];

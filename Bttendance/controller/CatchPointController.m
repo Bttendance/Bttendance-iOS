@@ -41,7 +41,8 @@
     self.navigationController.navigationBarHidden = YES;
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if(version >= 7){
-        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.0 green:0.287 blue:0.59 alpha:1.0];
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
     //button round
     _Signin.layer.cornerRadius = 3;

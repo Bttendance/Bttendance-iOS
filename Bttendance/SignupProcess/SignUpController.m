@@ -80,7 +80,7 @@ NSString *signupRequest;
 
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"set autofocus");
-    customCell *cell1 = (customCell *)[self.tableView cellForRowAtIndexPath:fullname_index];
+    CustomCell *cell1 = (CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index];
     [cell1.textfield becomeFirstResponder];
 
 }
@@ -108,69 +108,69 @@ NSString *signupRequest;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
-        cell = [[customCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
+        [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
     
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"Fullname"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"John Smith";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            [(CustomCell *)cell textfield].placeholder = @"John Smith";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 1:{
             [[cell textLabel] setText:@"Email"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"example@example.com";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(customCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [(CustomCell *)cell textfield].placeholder = @"example@example.com";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 2:{
             [[cell textLabel] setText:@"Username"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"@ID";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].placeholder = @"@ID";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 3:{
             [[cell textLabel] setText:@"Password"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"Required";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].secureTextEntry = YES;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyDone;
+            [(CustomCell *)cell textfield].placeholder = @"Required";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].secureTextEntry = YES;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 4:{
@@ -183,7 +183,7 @@ NSString *signupRequest;
             }
             
             [cell_new.button setTitle:@"Sign Up" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BttendanceColor BT_navy:1];
+            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -191,7 +191,7 @@ NSString *signupRequest;
         }
         case 5:{
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
+            [cell contentView].backgroundColor = [BTColor BT_white:1];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell textLabel].numberOfLines = 0;
@@ -208,11 +208,22 @@ NSString *signupRequest;
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 4:
+            return 78;
+        case 5:
+            return 60;
+        default:
+            return 44;
+    }
+}
+
 -(IBAction)SignUnButton:(id)sender{
-    NSString *fullname = [((customCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
-    NSString *email = [((customCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield text];
-    NSString *username = [((customCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield text];
-    NSString *password = [((customCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *fullname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
+    NSString *email = [((CustomCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield text];
+    NSString *username = [((CustomCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield text];
+    NSString *password = [((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield text];
     
     if(username.length < 5 || username.length > 20){
         //alert showing
@@ -255,27 +266,27 @@ NSString *signupRequest;
     
     NSLog(@"return call!");
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield]){
         
-        [((customCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
         return YES;
     }
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield]){
         
-        [((customCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield becomeFirstResponder];
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield becomeFirstResponder];
         return YES;
     }
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield]){
         
-        [((customCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield]){
 
-        [((customCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
     }
     
     return NO;

@@ -10,7 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CourseInfoCell.h"
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "BTAPIs.h"
 
 @interface CourseAttendView : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{

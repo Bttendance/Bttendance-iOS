@@ -84,7 +84,7 @@ NSString *signinRequest;
 
 -(void) viewDidAppear:(BOOL)animated{
     //set autofocus on Usernamefield
-    customCell *cell1 = (customCell *)[self.tableview cellForRowAtIndexPath:username_index];
+    CustomCell *cell1 = (CustomCell *)[self.tableview cellForRowAtIndexPath:username_index];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -111,39 +111,39 @@ NSString *signinRequest;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
-        cell = [[customCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
+        [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
     
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"Username"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"or Email";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(customCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
+            [(CustomCell *)cell textfield].placeholder = @"or Email";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 1:{
             [[cell textLabel] setText:@"Password"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].secureTextEntry = YES;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyDone;
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].secureTextEntry = YES;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 2:{
@@ -156,7 +156,6 @@ NSString *signinRequest;
             }
             
             [cell_new.button setTitle:@"Log In" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BttendanceColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -164,17 +163,15 @@ NSString *signinRequest;
             
         }
         case 3:{
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell textLabel].numberOfLines = 0;
-            NSString *forgot =@"Forgot password?";
-            [[cell textLabel] setText:forgot];
-            [[cell textLabel] attributedText];
-            [[cell textLabel] setTextColor:[UIColor grayColor]];
-            [[cell textLabel] setTextAlignment:NSTextAlignmentCenter];
-            [[cell textLabel] setFont:[UIFont systemFontOfSize:12]];
+            BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
+            partnership.frame = CGRectMake(0.0f, 5.0f, 320.0f, 60.0f);
+            partnership.backgroundColor = [UIColor clearColor];
+            [partnership setTitle:@"Forgot Password?" forState:UIControlStateNormal];
+            [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
+            partnership.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+            [partnership addTarget:self action:@selector(forgot:) forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:partnership];
+            [cell contentView].backgroundColor = [BTColor BT_grey:1];
             break;
         }
         default:
@@ -184,9 +181,25 @@ NSString *signinRequest;
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 2:
+            return 78;
+        case 3:
+            return 60;
+        default:
+            return 44;
+    }
+}
+
+-(void)forgot:(id)sender{
+    ForgotViewController *forgotView = [[ForgotViewController alloc] initWithNibName:@"ForgotViewController" bundle:nil];
+    [self.navigationController pushViewController:forgotView animated:YES];
+}
+
 -(IBAction)signinButton:(id)sender{
-    NSString *username = [((customCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield text];
-    NSString *password = [((customCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *username = [((CustomCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield text];
+    NSString *password = [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield text];
     
     [self JSONSigninRequest:username :password];
     
@@ -201,15 +214,15 @@ NSString *signinRequest;
     //    if([textField isEqual:passwordField]){
     //        [[self passwordField] resignFirstResponder];
     //    }
-    if([textField isEqual:((customCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield]){
         
-        [((customCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+        [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
     
-    if([textField isEqual:((customCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield]){
+    if([textField isEqual:((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield]){
         
-        [((customCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+        [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
     }
     
     return NO;

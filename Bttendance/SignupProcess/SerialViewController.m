@@ -71,7 +71,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    customCell *cell1 = (customCell *)[self.tableView cellForRowAtIndexPath:serialcode];
+    CustomCell *cell1 = (CustomCell *)[self.tableView cellForRowAtIndexPath:serialcode];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -105,25 +105,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
-        cell = [[customCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
+        [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
     
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"  Serial"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].placeholder = @"Enter Serial Code";
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyDone;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(customCell *)cell textfield].secureTextEntry = YES;
+            [(CustomCell *)cell textfield].placeholder = @"Enter Serial Code";
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].secureTextEntry = YES;
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 1:{
@@ -136,7 +136,7 @@
             }
             
             [cell_new.button setTitle:@"Enter" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BttendanceColor BT_navy:1];
+            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -147,7 +147,7 @@
             request.frame = CGRectMake(0.0f, 5.0f, 320.0f, 20.0f);
             request.backgroundColor = [UIColor clearColor];
             [request setTitle:@"Request Serial" forState:UIControlStateNormal];
-            [request setTitleColor:[BttendanceColor BT_silver:1.0f] forState:UIControlStateNormal];
+            [request setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
             request.titleLabel.font = [UIFont systemFontOfSize:14.0f];
             [cell addSubview:request];
             break;
@@ -157,7 +157,7 @@
             partnership.frame = CGRectMake(0.0f, 5.0f, 320.0f, 20.0f);
             partnership.backgroundColor = [UIColor clearColor];
             [partnership setTitle:@"Join Partnership" forState:UIControlStateNormal];
-            [partnership setTitleColor:[BttendanceColor BT_silver:1.0f] forState:UIControlStateNormal];
+            [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
             partnership.titleLabel.font = [UIFont systemFontOfSize:14.0f];
             [cell addSubview:partnership];
             break;
@@ -172,7 +172,7 @@
 -(IBAction)enter:(id)sender{
     
     enterBt.enabled = NO;
-    NSString *serial = [((customCell *)[self.tableView cellForRowAtIndexPath:serialcode]).textfield text];
+    NSString *serial = [((CustomCell *)[self.tableView cellForRowAtIndexPath:serialcode]).textfield text];
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     

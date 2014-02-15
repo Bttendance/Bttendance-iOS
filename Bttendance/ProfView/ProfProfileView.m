@@ -73,9 +73,9 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfProfileHeaderView" owner:self options:nil];
     profileheaderview = [topLevelObjects objectAtIndex:0];
     
-    profileheaderview.edit_button.titleLabel.textColor = [BttendanceColor BT_white:0.7];
-    profileheaderview.edit_button.backgroundColor = [BttendanceColor BT_black:0.5];
-    profileheaderview.Profile_image.backgroundColor = [BttendanceColor BT_navy:1];
+    profileheaderview.edit_button.titleLabel.textColor = [BTColor BT_white:0.7];
+    profileheaderview.edit_button.backgroundColor = [BTColor BT_black:0.5];
+    profileheaderview.Profile_image.backgroundColor = [BTColor BT_navy:1];
     
     profileheaderview.accountType.text = @"Professor";
     profileheaderview.userName.text = username;

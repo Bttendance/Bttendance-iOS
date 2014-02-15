@@ -106,7 +106,7 @@
 //    name_field.text = fullname;
     ProfProfileView *parentView = (ProfProfileView *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2];
     name_field.text = parentView.fullname;
-    name_field.textColor = [BttendanceColor BT_black:1];
+    name_field.textColor = [BTColor BT_black:1];
     [cell.contentView addSubview:name_field];
     name_field.autocorrectionType = UITextAutocorrectionTypeNo;
     name_field.keyboardType = UIKeyboardTypeDefault;

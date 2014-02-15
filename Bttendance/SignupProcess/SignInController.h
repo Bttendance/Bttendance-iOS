@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AFNetworking.h>
-#import "customCell.h"
+#import "CustomCell.h"
 #import "MainViewController.h"
 #import "ProfMainView.h"
 #import "SignButtonCell.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "ForgotViewController.h"
 
 @interface SignInController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
 //    IBOutlet UITextField *usernameField;

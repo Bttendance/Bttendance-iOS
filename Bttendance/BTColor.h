@@ -1,5 +1,5 @@
 //
-//  BttendanceColor.h
+//  BTColor.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2013. 12. 7..
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BttendanceColor : UIColor
+@interface BTColor : UIColor
 
 +(UIColor *)BT_navy:(CGFloat)_alpha;
 +(UIColor *)BT_cyan:(CGFloat)_alpha;

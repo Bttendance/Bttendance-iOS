@@ -10,7 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "SchoolInfoCell.h"
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "BTAPIs.h"
 #import "CourseAttendView.h"
 #import "CourseCreateController.h"

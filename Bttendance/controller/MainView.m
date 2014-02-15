@@ -42,18 +42,21 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     //set background color
-    self.view.backgroundColor = [BttendanceColor BT_grey:1];
+    self.view.backgroundColor = [BTColor BT_grey:1];
     
     
     //set table background color
-    [self tableview].backgroundColor = [BttendanceColor BT_grey:1];
+    [self tableview].backgroundColor = [BTColor BT_grey:1];
     
     //set tabbar color
-    _tab_bar.backgroundColor = [BttendanceColor BT_black:1];
+    _tab_bar.backgroundColor = [BTColor BT_black:1];
     
     self.navigationController.navigationBarHidden = NO;
-//    self.navigationController.navigationBar.backgroundColor = [BttendanceColor BT_navy:1];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.0 green:0.287 blue:0.59 alpha:1.0];
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if(version >= 7){
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
+    }
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
@@ -198,7 +201,7 @@
 
             }
             
-            cell.backgroundColor = [BttendanceColor BT_grey:1];
+            cell.backgroundColor = [BTColor BT_grey:1];
             
             [cell.button addTarget:self action:@selector(move_to_create:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -223,8 +226,8 @@
             cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
             cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
             cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-            cell.backgroundColor = [BttendanceColor BT_grey:1];
-            cell.cellbackground.backgroundColor = [BttendanceColor BT_white:1];
+            cell.backgroundColor = [BTColor BT_grey:1];
+            cell.cellbackground.backgroundColor = [BTColor BT_white:1];
             cell.cellbackground.layer.cornerRadius = 2;
             
             [cell.check_button addTarget:self action:@selector(send_push:) forControlEvents:UIControlEventTouchUpInside];
@@ -317,8 +320,8 @@
         cell.gap = secs;
         
 
-        cell.backgroundColor = [BttendanceColor BT_grey:1];
-        cell.cellbackground.backgroundColor = [BttendanceColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_grey:1];
+        cell.cellbackground.backgroundColor = [BTColor BT_white:1];
         cell.cellbackground.layer.cornerRadius = 2;
         
         

@@ -102,7 +102,7 @@
     
     UITextField *email_field = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, 300, 44)];
     email_field.text = email;
-    email_field.textColor = [BttendanceColor BT_black:1];
+    email_field.textColor = [BTColor BT_black:1];
     [cell.contentView addSubview:email_field];
     email_field.autocorrectionType = UITextAutocorrectionTypeNo;
     email_field.keyboardType = UIKeyboardTypeEmailAddress;

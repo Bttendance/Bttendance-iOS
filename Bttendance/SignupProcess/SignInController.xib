@@ -19,10 +19,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="M3A-IC-pK0">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="deviceRGB"/>
                     <color key="sectionIndexColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="sectionIndexTrackingBackgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexTrackingBackgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="gRW-NB-ZVv"/>
                         <outlet property="delegate" destination="-1" id="5PC-IE-K1L"/>

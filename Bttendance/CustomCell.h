@@ -1,5 +1,5 @@
 //
-//  customCell.h
+//  CustomCell.h
 //  Bttendance
 //
 //  Created by HAJE on 2013. 11. 27..
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTColor.h"
 
-@interface customCell : UITableViewCell{
+@interface CustomCell : UITableViewCell{
     UITextField *textfield;
 }
 

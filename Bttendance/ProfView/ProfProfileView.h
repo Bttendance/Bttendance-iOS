@@ -10,7 +10,7 @@
 #import "ProfProfileHeaderView.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "ProfProfileNameEditView.h"
 #import "ProfProfileEmailEditView.h"
 #import "ProfileCell.h"

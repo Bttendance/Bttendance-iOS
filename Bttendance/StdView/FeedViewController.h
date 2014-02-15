@@ -14,7 +14,7 @@
 #import "BTUserDefault.h"
 #import "CourseAttendView.h"
 #import "CourseInfoCell.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "PostCell.h"
 #import "ButtonCell.h"
 #import "AppDelegate.h"

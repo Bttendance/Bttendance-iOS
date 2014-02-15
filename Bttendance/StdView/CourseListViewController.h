@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "ButtonCell.h"
 #import "CourseCell.h"
 #import "CourseAttendView.h"

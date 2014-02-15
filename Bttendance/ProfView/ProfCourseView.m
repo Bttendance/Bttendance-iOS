@@ -50,10 +50,10 @@
     [super viewDidLoad];
     
     //set background color
-    self.view.backgroundColor = [BttendanceColor BT_grey:1];
+    self.view.backgroundColor = [BTColor BT_grey:1];
     
     //set tableview background color
-    [self tableview].backgroundColor = [BttendanceColor BT_grey:1];
+    [self tableview].backgroundColor = [BTColor BT_grey:1];
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
@@ -126,7 +126,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.backgroundColor = [BttendanceColor BT_grey:1];
+        cell.backgroundColor = [BTColor BT_grey:1];
         
         [cell.button addTarget:self action:@selector(move_to_addpcv:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -148,8 +148,8 @@
         cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
         cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
         cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.backgroundColor = [BttendanceColor BT_grey:1];
-        cell.cellbackground.backgroundColor = [BttendanceColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_grey:1];
+        cell.cellbackground.backgroundColor = [BTColor BT_white:1];
         cell.cellbackground.layer.cornerRadius = 2;
         
         [cell.check_button addTarget:self action:@selector(send_push1:) forControlEvents:UIControlEventTouchUpInside];

@@ -11,7 +11,7 @@
 #import "PostCell.h"
 #import "CourseCell.h"
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{

@@ -43,7 +43,7 @@
 		214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FA102184CC2EE006DCD44 /* 33b5e5.png */; };
 		21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21532F2918773B140065EB3C /* SignButtonCell.m */; };
 		21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21532F2A18773B140065EB3C /* SignButtonCell.xib */; };
-		215D4A5318461B30004C1947 /* customCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* customCell.m */; };
+		215D4A5318461B30004C1947 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* CustomCell.m */; };
 		217971D8189695C500CEB8A3 /* ProfCourseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C0189695C500CEB8A3 /* ProfCourseDetailView.m */; };
 		217971D9189695C500CEB8A3 /* ProfFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C1189695C500CEB8A3 /* ProfFeedView.m */; };
 		217971DA189695C500CEB8A3 /* ProfCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C3189695C500CEB8A3 /* ProfCourseView.m */; };
@@ -69,7 +69,7 @@
 		217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 217D75BF1850FD3700AA0D95 /* Personalize_bg1@2x.jpg */; };
 		217D75C51852157400AA0D95 /* StudentConfirm.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C31852157400AA0D95 /* StudentConfirm.m */; };
 		217D75C61852157400AA0D95 /* StudentConfirm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75C41852157400AA0D95 /* StudentConfirm.xib */; };
-		217D75C91853208400AA0D95 /* BttendanceColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C81853208400AA0D95 /* BttendanceColor.m */; };
+		217D75C91853208400AA0D95 /* BTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C81853208400AA0D95 /* BTColor.m */; };
 		2182679618A87B1900F71819 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679518A87B1900F71819 /* CFNetwork.framework */; };
 		2182679B18A8803000F71819 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679A18A8803000F71819 /* libsqlite3.0.dylib */; };
 		2182679D18A8810800F71819 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679C18A8810800F71819 /* AdSupport.framework */; };
@@ -134,6 +134,9 @@
 		D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62D118731C33005A4CF9 /* iostabbari2@2x.png */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
+		D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotViewController.m */; };
+		D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotViewController.xib */; };
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D485A0A21878347500F9561B /* CourseCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateController.m */; };
@@ -227,8 +230,8 @@
 		21532F2818773B140065EB3C /* SignButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignButtonCell.h; path = controller/SignButtonCell.h; sourceTree = "<group>"; };
 		21532F2918773B140065EB3C /* SignButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignButtonCell.m; path = controller/SignButtonCell.m; sourceTree = "<group>"; };
 		21532F2A18773B140065EB3C /* SignButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignButtonCell.xib; path = controller/SignButtonCell.xib; sourceTree = "<group>"; };
-		215D4A5118461B30004C1947 /* customCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customCell.h; sourceTree = "<group>"; };
-		215D4A5218461B30004C1947 /* customCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customCell.m; sourceTree = "<group>"; };
+		215D4A5118461B30004C1947 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		215D4A5218461B30004C1947 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		217971C0189695C500CEB8A3 /* ProfCourseDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfCourseDetailView.m; path = ProfView/ProfCourseDetailView.m; sourceTree = "<group>"; };
 		217971C1189695C500CEB8A3 /* ProfFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfFeedView.m; path = ProfView/ProfFeedView.m; sourceTree = "<group>"; };
 		217971C2189695C500CEB8A3 /* ProfCourseDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfCourseDetailView.h; path = ProfView/ProfCourseDetailView.h; sourceTree = "<group>"; };
@@ -266,8 +269,8 @@
 		217D75C21852157400AA0D95 /* StudentConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentConfirm.h; path = SignupProcess/StudentConfirm.h; sourceTree = "<group>"; };
 		217D75C31852157400AA0D95 /* StudentConfirm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentConfirm.m; path = SignupProcess/StudentConfirm.m; sourceTree = "<group>"; };
 		217D75C41852157400AA0D95 /* StudentConfirm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentConfirm.xib; path = SignupProcess/StudentConfirm.xib; sourceTree = "<group>"; };
-		217D75C71853208400AA0D95 /* BttendanceColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BttendanceColor.h; sourceTree = "<group>"; };
-		217D75C81853208400AA0D95 /* BttendanceColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BttendanceColor.m; sourceTree = "<group>"; };
+		217D75C71853208400AA0D95 /* BTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTColor.h; sourceTree = "<group>"; };
+		217D75C81853208400AA0D95 /* BTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTColor.m; sourceTree = "<group>"; };
 		2182679518A87B1900F71819 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2182679A18A8803000F71819 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		2182679C18A8810800F71819 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -354,6 +357,11 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D46D892D18AFE88B0051F291 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		D46D892E18AFE88B0051F291 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		D46D893018AFED7C0051F291 /* ForgotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
+		D46D893118AFED7C0051F291 /* ForgotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotViewController.m; sourceTree = "<group>"; };
+		D46D893218AFED7C0051F291 /* ForgotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotViewController.xib; sourceTree = "<group>"; };
 		D478DF021873ADFE00BA9BE7 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostCell.xib; path = controller/PostCell.xib; sourceTree = "<group>"; };
 		D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVUnderlineButton.h; sourceTree = "<group>"; };
 		D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
@@ -478,6 +486,9 @@
 				217D75C21852157400AA0D95 /* StudentConfirm.h */,
 				217D75C31852157400AA0D95 /* StudentConfirm.m */,
 				217D75C41852157400AA0D95 /* StudentConfirm.xib */,
+				D46D893018AFED7C0051F291 /* ForgotViewController.h */,
+				D46D893118AFED7C0051F291 /* ForgotViewController.m */,
+				D46D893218AFED7C0051F291 /* ForgotViewController.xib */,
 			);
 			name = SignUpProcess;
 			sourceTree = "<group>";
@@ -580,8 +591,6 @@
 				2137BBBF182D482200B59E15 /* BTUserDefault.m */,
 				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
 				21FCDB3B182F341D00F3A759 /* KeychainItemWrapper.h */,
-				215D4A5118461B30004C1947 /* customCell.h */,
-				215D4A5218461B30004C1947 /* customCell.m */,
 				21917905186C3E1800799CC0 /* JSONController.h */,
 				21917906186C3E1800799CC0 /* JSONController.m */,
 				D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */,
@@ -593,9 +602,11 @@
 		217D75B11850D77300AA0D95 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				D485A0A818784C9C00F9561B /* UserInfoCell.xib */,
+				215D4A5118461B30004C1947 /* CustomCell.h */,
+				215D4A5218461B30004C1947 /* CustomCell.m */,
 				D485A0A918784C9C00F9561B /* UserInfoCell.m */,
 				D485A0AA18784C9C00F9561B /* UserInfoCell.h */,
+				D485A0A818784C9C00F9561B /* UserInfoCell.xib */,
 				21532F2818773B140065EB3C /* SignButtonCell.h */,
 				21532F2918773B140065EB3C /* SignButtonCell.m */,
 				21532F2A18773B140065EB3C /* SignButtonCell.xib */,
@@ -702,8 +713,8 @@
 				2190C4971850C35100626628 /* bgmainlossy@2x.jpg */,
 				214FA100184CC2E6006DCD44 /* 0072b0.png */,
 				214FA102184CC2EE006DCD44 /* 33b5e5.png */,
-				217D75C71853208400AA0D95 /* BttendanceColor.h */,
-				217D75C81853208400AA0D95 /* BttendanceColor.m */,
+				217D75C71853208400AA0D95 /* BTColor.h */,
+				217D75C81853208400AA0D95 /* BTColor.m */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -834,6 +845,8 @@
 		D47DB52418AF85AC007C23A3 /* CustomUIView */ = {
 			isa = PBXGroup;
 			children = (
+				D46D892D18AFE88B0051F291 /* WebViewController.h */,
+				D46D892E18AFE88B0051F291 /* WebViewController.m */,
 				D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */,
 				D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */,
 			);
@@ -944,7 +957,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -970,6 +983,7 @@
 				D407B26F18AD803E009BCF8C /* CourseCreateController.xib in Resources */,
 				217971E7189695C500CEB8A3 /* ProfFeedView.xib in Resources */,
 				214FA101184CC2E6006DCD44 /* 0072b0.png in Resources */,
+				D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */,
 				2191793518724EC600799CC0 /* attendancering@2x.png in Resources */,
 				217971DD189695C500CEB8A3 /* ProfProfileHeaderView.xib in Resources */,
 				D485A0A618783F2600F9561B /* AttdStatView.xib in Resources */,
@@ -1102,7 +1116,7 @@
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				D49F587C18AFE263006ADB89 /* NIDebuggingTools.m in Sources */,
 				218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */,
-				217D75C91853208400AA0D95 /* BttendanceColor.m in Sources */,
+				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
 				D49F588118AFE263006ADB89 /* NIInMemoryCache.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D49F588818AFE263006ADB89 /* NIRuntimeClassModifications.m in Sources */,
@@ -1143,6 +1157,7 @@
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				21C48E33183F63C200C8D772 /* PersonalizeController.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
+				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
 				21CF9354184B398D00A81590 /* SerialViewController.m in Sources */,
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
 				2190C4941850715100626628 /* MainView.m in Sources */,
@@ -1153,7 +1168,8 @@
 				D49F588C18AFE263006ADB89 /* NIViewRecycler.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,
 				2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */,
-				215D4A5318461B30004C1947 /* customCell.m in Sources */,
+				D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */,
+				215D4A5318461B30004C1947 /* CustomCell.m in Sources */,
 				21917907186C3E1800799CC0 /* JSONController.m in Sources */,
 				D49F587E18AFE263006ADB89 /* NIError.m in Sources */,
 				D49F588018AFE263006ADB89 /* NIImageUtilities.m in Sources */,
@@ -1385,7 +1401,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

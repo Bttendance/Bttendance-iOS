@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
     //set tableview background color
-    [self tableview].backgroundColor = [BttendanceColor BT_grey:1];
+    [self tableview].backgroundColor = [BTColor BT_grey:1];
     
     //Navigation title
     //set title
@@ -168,7 +168,7 @@
         cell.Info_ProfName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
         cell.Info_CourseName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data0 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.backgroundColor  = [BttendanceColor BT_white:1];
+        cell.backgroundColor  = [BTColor BT_white:1];
         [cell.Info_Check addTarget:self action:@selector(check_button_action1:) forControlEvents:UIControlEventTouchUpInside];
         [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrolladd@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -179,7 +179,7 @@
         cell.Info_ProfName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
         cell.Info_CourseName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data1 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.backgroundColor  = [BttendanceColor BT_white:1];
+        cell.backgroundColor  = [BTColor BT_white:1];
         [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName = [[data1 objectAtIndex:indexPath.row] objectForKey:@"school_name"];

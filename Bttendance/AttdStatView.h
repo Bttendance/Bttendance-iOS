@@ -10,7 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "UserInfoCell.h"
 #import "BTUserDefault.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "BTAPIs.h"
 
 @interface AttdStatView : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{

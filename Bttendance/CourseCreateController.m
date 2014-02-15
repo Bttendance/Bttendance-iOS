@@ -60,7 +60,7 @@ NSString *createCourseRequest;
 
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"set autofocus");
-    customCell *cell1 = (customCell *)[self.tableView cellForRowAtIndexPath:name_index];
+    CustomCell *cell1 = (CustomCell *)[self.tableView cellForRowAtIndexPath:name_index];
     [cell1.textfield becomeFirstResponder];
     
 }
@@ -96,54 +96,54 @@ NSString *createCourseRequest;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
-        cell = [[customCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BttendanceColor BT_white:1];
+        [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
     
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"Name"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 1:{
             [[cell textLabel] setText:@"Number"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_black:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 2:{
             [[cell textLabel] setText:@"School"];
-            [[cell textLabel] setTextColor:[BttendanceColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(customCell *)cell textfield].enabled = NO;
-            [(customCell *)cell textfield].text = self.schoolName;
-            [(customCell *)cell textfield].delegate = self;
-            [(customCell *)cell textfield].returnKeyType = UIReturnKeyNext;
-            [(customCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(customCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *)cell textfield].enabled = NO;
+            [(CustomCell *)cell textfield].text = self.schoolName;
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             
-            [[(customCell *)cell textfield] setTextColor:[BttendanceColor BT_silver:1]];
-            [[(customCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_silver:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 3:{
@@ -156,7 +156,7 @@ NSString *createCourseRequest;
             }
             
             [cell_new.button setTitle:@"Create Course" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BttendanceColor BT_navy:1];
+            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(CreateButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -173,9 +173,9 @@ NSString *createCourseRequest;
     NSDictionary *userinfo = [BTUserDefault getUserInfo];
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *name = [((customCell *)[self.tableView cellForRowAtIndexPath:name_index]).textfield text];
-    NSString *number = [((customCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield text];
-    NSString *school = [((customCell *)[self.tableView cellForRowAtIndexPath:school_index]).textfield text];
+    NSString *name = [((CustomCell *)[self.tableView cellForRowAtIndexPath:name_index]).textfield text];
+    NSString *number = [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield text];
+    NSString *school = [((CustomCell *)[self.tableView cellForRowAtIndexPath:school_index]).textfield text];
     
     [self JSONCreateCourseRequest:username :password :name :number :@"1"];
     
@@ -188,13 +188,13 @@ NSString *createCourseRequest;
     
     NSLog(@"return call!");
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:name_index]).textfield]){
-        [((customCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield becomeFirstResponder];
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:name_index]).textfield]){
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield becomeFirstResponder];
         return YES;
     }
     
-    if([textField isEqual:((customCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
-        [((customCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield resignFirstResponder];
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield resignFirstResponder];
     }
     
     return NO;

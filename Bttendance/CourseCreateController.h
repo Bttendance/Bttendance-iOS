@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <AFNetworking.h>
 #import "AppDelegate.h"
-#import "customCell.h"
+#import "CustomCell.h"
 #import "SignButtonCell.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "BTAPIs.h"
 
 @interface CourseCreateController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{

@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <AFNetworking.h>
 #import "AppDelegate.h"
-#import "customCell.h"
+#import "CustomCell.h"
 #import "MainViewController.h"
 #import "ProfMainView.h"
 #import "SignButtonCell.h"
-#import "BttendanceColor.h"
+#import "BTColor.h"
 #import "BTAPIs.h"
+#import "NIAttributedLabel.h"
 
 
 @interface SignUpController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
