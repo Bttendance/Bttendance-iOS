@@ -25,21 +25,40 @@
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <tabBar key="tabBar" contentMode="scaleToFill" id="Z4V-mn-693">
+            <tabBar key="tabBar" contentMode="scaleToFill" selectedItem="yYC-ng-k6C" id="Z4V-mn-693">
                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <color key="barTintColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
             </tabBar>
             <viewControllers>
-                <viewController title="Feed" nibName="StdFeedView" id="74k-Tg-HdC" customClass="FeedViewController">
-                    <tabBarItem key="tabBarItem" title="Feed" image="iostabbara0.png" id="SVe-cW-m61"/>
-                    <nil key="simulatedStatusBarMetrics"/>
+                <navigationController definesPresentationContext="YES" id="bJY-8w-cNG">
+                    <tabBarItem key="tabBarItem" title="Feed" image="iostabbara0.png" id="yYC-ng-k6C"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
-                </viewController>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mwo-BH-vqW">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.28627450980392155" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <viewControllers>
+                        <viewController title="Feed" nibName="FeedViewController" id="3pX-qf-teQ" customClass="FeedViewController">
+                            <navigationItem key="navigationItem" title="Feed" id="wtQ-dJ-maO"/>
+                            <nil key="simulatedStatusBarMetrics"/>
+                            <nil key="simulatedTopBarMetrics"/>
+                            <nil key="simulatedBottomBarMetrics"/>
+                            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                            <nil key="simulatedDestinationMetrics"/>
+                        </viewController>
+                    </viewControllers>
+                </navigationController>
                 <navigationController definesPresentationContext="YES" id="8Qw-TM-d4G">
                     <tabBarItem key="tabBarItem" tag="1" title="Course" image="iostabbara1.png" id="LZe-mE-Shk"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
