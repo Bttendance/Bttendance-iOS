@@ -39,10 +39,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mwo-BH-vqW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Mwo-BH-vqW">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.28627450980392155" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.44705882352941173" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,10 +66,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <nil key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ffc-fj-duz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ffc-fj-duz">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.28627450980392155" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,7 +100,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xoq-Hy-XVU">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.28627450980392155" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>

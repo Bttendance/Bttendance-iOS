@@ -34,12 +34,6 @@
         self.navigationController.navigationBar.translucent = NO;
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
-    
-    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
-    [navigationArray removeAllObjects];    // This is just for remove all view controller from navigation stack.
-//    [navigationArray removeObjectAtIndex: 2];  // You can pass your index here
-//    self.navigationController.viewControllers = navigationArray;
-//    [navigationArray release];
 }
 
 - (void)didReceiveMemoryWarning
