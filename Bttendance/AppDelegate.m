@@ -34,20 +34,6 @@
     
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
-    
-//    [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"btd_isSignup"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-
-//    NSLog(@"signup? : %hhd",[[NSUserDefaults standardUserDefaults] boolForKey:@"btd_isSignup"]);
-//    NSLog(@"first? %hhd", [BTUserDefault isFirstLaunch]);
-
-//    NSLog(@"test data %@",[BTUserDefault getUserInfo]);
-    
-    
-//    //Tabbar
-//    UITabBarController *tbc = [[UITabBarController alloc] init];
-//    
-//    NSArray* controllers;
 
     
     if([BTUserDefault isFirstLaunch]){
@@ -71,7 +57,6 @@
     self.window.rootViewController = navigationController;
 
     [self.window addSubview:navigationController.view];
-    
     [self.window makeKeyAndVisible];
     
     //    [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
@@ -86,8 +71,6 @@
         
         application.applicationIconBadgeNumber = 0;
     }
-    
-//    [Crashlytics startWithAPIKey:@"7c8656abbc9fa06be15fddbe39131db175264b4c"];
     
     return YES;
 }

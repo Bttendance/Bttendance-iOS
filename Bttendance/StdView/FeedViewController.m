@@ -76,12 +76,11 @@
     //set table background color
     [self tableview].backgroundColor = [BTColor BT_grey:1];
     
-//    self.navigationController.navigationBarHidden = NO;
-    
-    _navigationbar.barTintColor = [UIColor colorWithRed:0.0 green:0.287 blue:0.59 alpha:1];
-    
-    _navigationbar.tintColor = [UIColor whiteColor];
-    
+//    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//    if(version >= 7){
+//        self.navigationController.navigationBar.translucent = NO;
+//        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
+//    }
     
     self.tableview.dataSource = self;
     self.tableview.delegate = self;

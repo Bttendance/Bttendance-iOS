@@ -206,14 +206,6 @@ NSString *signinRequest;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    //    if([textField isEqual:usernameField]){
-    //        [[self passwordField] becomeFirstResponder];
-    //        return YES;
-    //    }
-    //
-    //    if([textField isEqual:passwordField]){
-    //        [[self passwordField] resignFirstResponder];
-    //    }
     if([textField isEqual:((CustomCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield]){
         
         [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];

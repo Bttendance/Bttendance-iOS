@@ -51,7 +51,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UINavigationBar *navigationbar;
 
 -(void)showing_timer_post:(PostCell *) cell;
 -(void)change_check_post1:(NSTimer *)timer;

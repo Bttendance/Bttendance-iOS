@@ -47,8 +47,6 @@
 {
     [super viewDidLoad];
     
-    _navigationbar.barTintColor = [UIColor colorWithRed:0.0 green:0.287 blue:0.59 alpha:1];
-    
     _navigationbar.tintColor = [UIColor whiteColor];
     
     
