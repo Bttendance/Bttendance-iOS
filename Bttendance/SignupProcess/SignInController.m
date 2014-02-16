@@ -237,7 +237,8 @@ NSString *signinRequest;
         NSLog(@"signup data %@",[BTUserDefault getUserInfo]);
         
         MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-        [self.navigationController pushViewController:stdMainView animated:YES];
+//        [self.navigationController pushViewController:stdMainView animated:YES];
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"SignIn fail %@", error);

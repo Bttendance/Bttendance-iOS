@@ -328,8 +328,8 @@ NSString *signupRequest;
         [BTUserDefault setUserInfo:responseObject];
         
         MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-        [self.navigationController pushViewController:stdMainView animated:YES];
-        
+//        [self.navigationController pushViewController:stdMainView animated:YES];
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"SignUp fail %@", error);

@@ -154,13 +154,20 @@
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if(data.count != 0){
-                    cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
-                    cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
-                    cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
-                    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                    cell.backgroundColor = [BTColor BT_grey:1];
-                    cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                    cell.cellbackground.layer.cornerRadius = 2;
+                    for (int i = 0 ; i< data.count; i++){
+                        for(int j = 0; j < supervisingCourses.count; j++){
+                            if([[supervisingCourses objectAtIndex:j] intValue] == [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                                cell.backgroundColor = [BTColor BT_grey:1];
+                                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                                cell.cellbackground.layer.cornerRadius = 2;
+                                break;
+                            }
+                        }
+                    }
                 }
                 
                 return cell;
@@ -194,16 +201,21 @@
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if(data.count != 0){
-                    cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
-                    cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
-                    cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
-                    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                    cell.backgroundColor = [BTColor BT_grey:1];
-                    cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                    cell.cellbackground.layer.cornerRadius = 2;
+                    for(int i = 0; i< data.count; i++){
+                        for(int j = 0; j < attendingCourses.count; j++){
+                            if([[attendingCourses objectAtIndex:j] intValue] == [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                                cell.backgroundColor = [BTColor BT_grey:1];
+                                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                                cell.cellbackground.layer.cornerRadius = 2;
+                                break;
+                            }
+                        }
+                    }
                 }
-//                [cell.button addTarget:self action:@selector(move_to_course:) forControlEvents:UIControlEventTouchUpInside];
-                
                 return cell;
             }
     }
