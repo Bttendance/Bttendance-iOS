@@ -35,6 +35,18 @@
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UITabBarItem *item0 = [tbc.tabBar.items objectAtIndex:0];
+    item0.image = [UIImage imageNamed:@"iostabbari0"];
+    item0.selectedImage = [UIImage imageNamed:@"iostabbara0"];
+    
+    UITabBarItem *item1 = [tbc.tabBar.items objectAtIndex:1];
+    item1.image = [UIImage imageNamed:@"iostabbari1"];
+    item1.selectedImage = [UIImage imageNamed:@"iostabbara1"];
+    
+    UITabBarItem *item2 = [tbc.tabBar.items objectAtIndex:2];
+    item2.image = [UIImage imageNamed:@"iostabbari2"];
+    item2.selectedImage = [UIImage imageNamed:@"iostabbara2"];
 }
 
 - (void)didReceiveMemoryWarning
