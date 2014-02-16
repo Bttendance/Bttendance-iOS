@@ -13,6 +13,7 @@
 #import "BTAPIs.h"
 #import "BVUnderlineButton.h"
 #import "BTColor.h"
+#import "SerialRequestViewController.h"
 
 @interface SerialViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
     NSString *type;

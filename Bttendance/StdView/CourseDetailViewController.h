@@ -13,6 +13,7 @@
 #import "BTUserDefault.h"
 #import "BTColor.h"
 #import <AFNetworking/AFNetworking.h>
+#import "BTAPIs.h"
 
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     __weak CourseCell *currentcell;

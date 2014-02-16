@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
-@interface SerialRequestViewController : UIViewController {
+@interface SerialRequestViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     UIButton *enterBt;
 }
 

@@ -186,6 +186,8 @@
 }
 
 -(void)request:(id)sender{
+    SerialRequestViewController *serialRequestViewController = [[SerialRequestViewController alloc] initWithNibName:@"SerialRequestViewController" bundle:nil];
+    [self.navigationController pushViewController:serialRequestViewController animated:YES];
     
 }
 

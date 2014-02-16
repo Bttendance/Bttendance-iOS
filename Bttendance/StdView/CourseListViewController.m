@@ -256,6 +256,15 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(data.count != 0){
+        CourseCell *cell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];
+        CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
+        courseDetailViewController.currentcell = cell;
+        [self.navigationController pushViewController:courseDetailViewController animated:YES];
+    }
+}
+
 -(void)move_to_course:(id)sender{
 //    StdCourseDetailView *stdCourseDetailView = [[StdCourseDetailView alloc] init];
 //    stdCourseDetailView.currentcell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];

@@ -55,7 +55,7 @@
     //set header view
     CourseDetailHeaderView *coursedetailheaderview = [[CourseDetailHeaderView alloc] init];
     
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"StdCourseDetailHeaderView" owner:self options:nil];
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
     coursedetailheaderview = [topLevelObjects objectAtIndex:0];
     
     coursedetailheaderview.profname.text = currentcell.Professor.text;
@@ -76,7 +76,7 @@
                              @"course_id":cid};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:@"http://www.bttendance.com/api/course/feed" parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
+    [AFmanager GET:[BTURL stringByAppendingString:@"/course/feed"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
         
         data = responsObject;
         NSLog(@"data , %@", data);
