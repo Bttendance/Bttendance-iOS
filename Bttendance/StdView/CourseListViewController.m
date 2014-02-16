@@ -155,17 +155,15 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if(data.count != 0){
                     for (int i = 0 ; i< data.count; i++){
-                        for(int j = 0; j < supervisingCourses.count; j++){
-                            if([[supervisingCourses objectAtIndex:j] intValue] == [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
-                                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                                cell.backgroundColor = [BTColor BT_grey:1];
-                                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                                cell.cellbackground.layer.cornerRadius = 2;
-                                break;
-                            }
+                        if( [[supervisingCourses objectAtIndex:indexPath.row] intValue] ==
+                           [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                            cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
+                            cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
+                            cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
+                            cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                            cell.backgroundColor = [BTColor BT_grey:1];
+                            cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                            cell.cellbackground.layer.cornerRadius = 2;
                         }
                     }
                 }

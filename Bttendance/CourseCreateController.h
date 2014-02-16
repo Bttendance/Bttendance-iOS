@@ -15,10 +15,11 @@
 #import "BTAPIs.h"
 
 @interface CourseCreateController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
-    NSIndexPath *name_index, *number_index, *school_index;
+    NSIndexPath *name_index, *number_index, *school_index, *profname_index;
     NSDictionary *user_info;
     NSInteger schoolId;
     __weak NSString *schoolName;
+    __weak NSString *prfName;
 }
 
 
@@ -28,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSInteger schoolId;
 @property (weak, nonatomic) NSString *schoolName;
+@property (weak, nonatomic) NSString *prfName;
 
 -(IBAction)CreateButton:(id)sender;
 

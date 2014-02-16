@@ -50,6 +50,15 @@
     titlelabel.text = NSLocalizedString(@"Choose School", @"");
     [titlelabel sizeToFit];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    data0 = [[NSMutableArray alloc] init];
+    data1 = [[NSMutableArray alloc] init];
+
+    
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     
@@ -100,12 +109,6 @@
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         
     }];
-    
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.tableview reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -166,6 +169,7 @@
     if(auth){
         NSInteger scid = ((SchoolInfoCell *)[self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolID_int;
         NSString *scname = ((SchoolInfoCell *)[self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolName.text;
+        NSString *prfname = [userinfo objectForKey:FullNameKey];
         if(indexPath.section == 0){
             NSArray *school_list = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
             for(int i = 0; i < school_list.count; i++){
@@ -177,6 +181,7 @@
                             CourseCreateController *courseCreateController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
                             courseCreateController.schoolId = scid;
                             courseCreateController.schoolName = scname;
+                            courseCreateController.prfName = prfname;
                             [self.navigationController pushViewController:courseCreateController animated:YES];
                         } else {
                             [self showSerialView:scid];

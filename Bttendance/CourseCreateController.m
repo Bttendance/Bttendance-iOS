@@ -15,7 +15,7 @@ NSString *createCourseRequest;
 @end
 
 @implementation CourseCreateController
-@synthesize schoolId, schoolName;
+@synthesize schoolId, schoolName, prfName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +25,8 @@ NSString *createCourseRequest;
         // Custom initialization
         name_index = [NSIndexPath indexPathForRow:0 inSection:0];
         number_index= [NSIndexPath indexPathForRow:1 inSection:0];
-        school_index = [NSIndexPath indexPathForRow:2 inSection:0];
+        school_index = [NSIndexPath indexPathForRow:3 inSection:0];
+        profname_index = [NSIndexPath indexPathForRow:2 inSection:0];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonSystemItemCancel target:self action:@selector(backbuttonpressed:)];
         self.navigationItem.leftItemsSupplementBackButton = NO;
     }
@@ -86,7 +87,7 @@ NSString *createCourseRequest;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 5;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -130,7 +131,25 @@ NSString *createCourseRequest;
             [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
+            
         case 2:{
+            [[cell textLabel] setText:@"Professor"];
+            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            
+            [(CustomCell *)cell textfield].enabled = YES;
+            [(CustomCell *)cell textfield].text = self.prfName;
+            [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
+            [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            
+            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            break;
+        }
+            
+        case 3:{
             [[cell textLabel] setText:@"School"];
             [[cell textLabel] setTextColor:[BTColor BT_black:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
@@ -146,7 +165,8 @@ NSString *createCourseRequest;
             [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
-        case 3:{
+        
+        case 4:{
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
             
@@ -156,7 +176,6 @@ NSString *createCourseRequest;
             }
             
             [cell_new.button setTitle:@"Create Course" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(CreateButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -169,6 +188,15 @@ NSString *createCourseRequest;
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 4:
+            return 78;
+        default:
+            return 44;
+    }
+}
+
 -(IBAction)CreateButton:(id)sender{
     NSDictionary *userinfo = [BTUserDefault getUserInfo];
     NSString *username = [userinfo objectForKey:UsernameKey];
@@ -176,8 +204,10 @@ NSString *createCourseRequest;
     NSString *name = [((CustomCell *)[self.tableView cellForRowAtIndexPath:name_index]).textfield text];
     NSString *number = [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield text];
     NSString *school = [((CustomCell *)[self.tableView cellForRowAtIndexPath:school_index]).textfield text];
+    NSString *prfname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
+    NSString *sid = [NSString stringWithFormat:@"%d", self.schoolId];
     
-    [self JSONCreateCourseRequest:username :password :name :number :@"1"];
+    [self JSONCreateCourseRequest:username :password :name :number :sid :prfname];
     
     NSLog(@"name : %@",name);
     NSLog(@"number : %@",number);
@@ -194,20 +224,24 @@ NSString *createCourseRequest;
     }
     
     if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
-        [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield resignFirstResponder];
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield becomeFirstResponder];
     }
     
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield resignFirstResponder];
+    }
     return NO;
 
 }
 
--(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id{
+-(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname{
     
     NSDictionary *params = @{@"username":username,
                              @"password":password,
                              @"name":name,
                              @"number":number,
-                             @"school_id":school_id};
+                             @"school_id":school_id,
+                             @"professor_name":prfname};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager POST:createCourseRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
