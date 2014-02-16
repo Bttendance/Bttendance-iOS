@@ -33,6 +33,6 @@
 
 -(IBAction)CreateButton:(id)sender;
 
--(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id;
+-(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname;
 
 @end

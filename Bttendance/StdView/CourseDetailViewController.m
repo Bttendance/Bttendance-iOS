@@ -13,7 +13,7 @@
 @end
 
 @implementation CourseDetailViewController
-@synthesize currentcell;
+@synthesize currentcell, auth;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +63,16 @@
     coursedetailheaderview.lectureattr.text = @"Mandatory Lecture";
     coursedetailheaderview.data_time.text = @"내마음대로 수업시간 결정하기";
     coursedetailheaderview.classplace.text = @"나의 마음속";
+    coursedetailheaderview.background.layer.cornerRadius = 52.5f;
+    coursedetailheaderview.background.layer.masksToBounds = YES;
+    
+    
+    
+    if(auth)
+        [coursedetailheaderview.BTicon addTarget:self action:@selector(BTiconAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    set grade viewing
+//    [self showgrade:0.3 :coursedetailheaderview];
     
     self.tableview.tableHeaderView = coursedetailheaderview;
     
@@ -92,6 +102,7 @@
     
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -259,6 +270,18 @@
     }
     
 }
+
+-(void)showgrade:(CGFloat)grade :(CourseDetailHeaderView *)view{
+    CGRect frame = view.grade.frame;
+    frame.size.height = 105.0f * (1-grade);
+    [view.grade setFrame:frame];
+    NSLog(@"set grade showing");
+}
+
+-(void)BTiconAction:(id)sender{
+    NSLog(@"BTicon pressed");
+}
+
 
 
 @end

@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lectureattr;
 @property (weak, nonatomic) IBOutlet UILabel *data_time;
 @property (weak, nonatomic) IBOutlet UILabel *classplace;
-
+@property (weak, nonatomic) IBOutlet UIImageView *background;
+@property (weak, nonatomic) IBOutlet UIImageView *grade;
+@property (weak, nonatomic) IBOutlet UIButton *BTicon;
 @end

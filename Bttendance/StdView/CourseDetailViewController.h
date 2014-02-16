@@ -15,6 +15,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 
+
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     __weak CourseCell *currentcell;
     
@@ -26,6 +27,8 @@
     
     NSString *my_id;
     
+    Boolean auth;
+    
     int time;
     
 }
@@ -33,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property (weak, nonatomic) CourseCell *currentcell;
+@property (nonatomic) Boolean auth;
 
 -(void)showing_timer_post:(PostCell *) cell;
 -(void)change_check_post2:(NSTimer *)timer;

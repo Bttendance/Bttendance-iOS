@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2127B27218B10D19000B2E8D /* f1f1ff.png in Resources */ = {isa = PBXBuildFile; fileRef = 2127B27118B10D19000B2E8D /* f1f1ff.png */; };
 		212C05AE183B726D00AD6654 /* CatchPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C05AC183B726D00AD6654 /* CatchPointController.m */; };
 		212C05AF183B726D00AD6654 /* CatchPointController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212C05AD183B726D00AD6654 /* CatchPointController.xib */; };
 		212C05B9183B73E000AD6654 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C05B7183B73E000AD6654 /* SignUpController.m */; };
@@ -180,6 +181,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2127B27118B10D19000B2E8D /* f1f1ff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f1f1ff.png; path = Image/f1f1ff.png; sourceTree = "<group>"; };
 		212C05AB183B726D00AD6654 /* CatchPointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatchPointController.h; path = controller/CatchPointController.h; sourceTree = "<group>"; };
 		212C05AC183B726D00AD6654 /* CatchPointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatchPointController.m; path = controller/CatchPointController.m; sourceTree = "<group>"; };
 		212C05AD183B726D00AD6654 /* CatchPointController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointController.xib; path = controller/CatchPointController.xib; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				2190C4971850C35100626628 /* bgmainlossy@2x.jpg */,
 				214FA100184CC2E6006DCD44 /* 0072b0.png */,
 				214FA102184CC2EE006DCD44 /* 33b5e5.png */,
+				2127B27118B10D19000B2E8D /* f1f1ff.png */,
 				217D75C71853208400AA0D95 /* BTColor.h */,
 				217D75C81853208400AA0D95 /* BTColor.m */,
 			);
@@ -1033,6 +1036,7 @@
 				214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D41C62D618731C33005A4CF9 /* iostabbari1@2x.png in Resources */,
+				2127B27218B10D19000B2E8D /* f1f1ff.png in Resources */,
 				217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */,
 				217971DC189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib in Resources */,
 				D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */,

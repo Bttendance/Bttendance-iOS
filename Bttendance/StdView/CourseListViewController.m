@@ -52,6 +52,8 @@
     NSDictionary *params_ = @{@"username":username,
                               @"password":password};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/auto/signin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         [BTUserDefault setUserInfo:responseObject];
@@ -62,10 +64,14 @@
         
         [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
             
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
             data = responseObject;
             [self.tableview reloadData];
             
         }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
             NSLog(@"Get User Courses Fail : %@", error);
         }];
         
@@ -80,6 +86,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -116,10 +123,16 @@
     
     switch (section) {
         case 0:
-            return [supervisingCourses count] + 1;
+            if(data.count !=0)
+                return [supervisingCourses count] + 1;
+            else
+                return 0;
         case 1:
         default:
-            return [attendingCourses count] + 1;
+            if(data.count !=0)
+                return [attendingCourses count] + 1;
+            else
+                return 0;
     }
 }
 
@@ -259,6 +272,16 @@
         CourseCell *cell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];
         CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
         courseDetailViewController.currentcell = cell;
+        
+        if(indexPath.section == 0){
+            //section 0
+            courseDetailViewController.auth = YES;
+        }
+        else{
+            //section 1
+            courseDetailViewController.auth = NO;
+        }
+        
         [self.navigationController pushViewController:courseDetailViewController animated:YES];
     }
 }
