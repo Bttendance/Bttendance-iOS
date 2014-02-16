@@ -80,9 +80,11 @@
     NSString *fullname = [[NSUserDefaults standardUserDefaults] stringForKey:FullNameKey];
     NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey:EmailKey];
     NSArray *attendingCourses = [[NSUserDefaults standardUserDefaults] arrayForKey:AttendingCoursesKey];
-    NSArray *supervisingCourses = [[NSUserDefaults standardUserDefaults] arrayForKey:AttendingCoursesKey];
+    NSArray *supervisingCourses = [[NSUserDefaults standardUserDefaults] arrayForKey:SupervisingCoursesKey];
     NSArray *employedSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EmployedSchoolsKey];
     NSArray *enrolledSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EnrolledSchoolsKey];
+    
+
     
     NSDictionary *user_info = @{UsernameKey:username, PasswordKey:password, UUIDKey:uuid, UseridKey:userid,
                                 FullNameKey:fullname, EmailKey:email, AttendingCoursesKey:attendingCourses,
@@ -103,13 +105,7 @@
     
 //    NSArray *temp = [[NSArray alloc] initWithArray:[responseObject objectForKey:@"supervising_courses"]];
     
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    
-    for(int i = 0; i < supervisingCourses.count; i++){
-        [temp addObject:supervisingCourses[i]];
-    }
-    
-    NSArray *tempp = [NSArray arrayWithArray:temp];
+    NSData *temp = [NSKeyedArchiver archivedDataWithRootObject:[responseObject objectForKey:@"supervising_courses"]];
     
     NSArray *employedSchools = [responseObject objectForKey:@"employed_schools"];
     NSArray *enrolledSchools = [responseObject objectForKey:@"enrolled_schools"];
@@ -121,8 +117,8 @@
     [defaults setObject:[NSString stringWithString:fullname] forKey:FullNameKey];
     [defaults setObject:[NSString stringWithString:email] forKey:EmailKey];
     [defaults setObject:[NSArray arrayWithArray:attendingCourses] forKey:AttendingCoursesKey];
-//    [defaults setObject:[NSArray arrayWithArray:supervisingCourses] forKey:SupervisingCoursesKey];
-    [defaults setObject:[NSArray arrayWithArray:tempp] forKey:SupervisingCoursesKey];
+    [defaults setObject:[NSArray arrayWithArray:supervisingCourses] forKey:SupervisingCoursesKey];
+//    [defaults setObject:temp forKey:SupervisingCoursesKey];
     [defaults setObject:[NSArray arrayWithArray:employedSchools] forKey:EmployedSchoolsKey];
     [defaults setObject:[NSArray arrayWithArray:enrolledSchools] forKey:EnrolledSchoolsKey];
     [[NSUserDefaults standardUserDefaults] synchronize];

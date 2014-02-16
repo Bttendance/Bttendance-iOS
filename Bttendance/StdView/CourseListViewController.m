@@ -60,15 +60,15 @@
         supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
         attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
         
-//        [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
-//            
-//            data = responseObject;
-//            [self.tableview reloadData];
-//            
-//        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//            NSLog(@"Get User Courses Fail : %@", error);
-//        }];
-//        
+        [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
+            
+            data = responseObject;
+            [self.tableview reloadData];
+            
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            NSLog(@"Get User Courses Fail : %@", error);
+        }];
+        
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         
     }];
@@ -153,14 +153,15 @@
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
-                cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
-                cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
-                cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                cell.backgroundColor = [BTColor BT_grey:1];
-                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                cell.cellbackground.layer.cornerRadius = 2;
+                if(data.count != 0){
+                    cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
+                    cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
+                    cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
+                    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                    cell.backgroundColor = [BTColor BT_grey:1];
+                    cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                    cell.cellbackground.layer.cornerRadius = 2;
+                }
                 
                 return cell;
             }
@@ -192,15 +193,15 @@
                 }
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
-                cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
-                cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
-                cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-                cell.backgroundColor = [BTColor BT_grey:1];
-                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                cell.cellbackground.layer.cornerRadius = 2;
-                
+                if(data.count != 0){
+                    cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
+                    cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
+                    cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
+                    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                    cell.backgroundColor = [BTColor BT_grey:1];
+                    cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                    cell.cellbackground.layer.cornerRadius = 2;
+                }
 //                [cell.button addTarget:self action:@selector(move_to_course:) forControlEvents:UIControlEventTouchUpInside];
                 
                 return cell;
