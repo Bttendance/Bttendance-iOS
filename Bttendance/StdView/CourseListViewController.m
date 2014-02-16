@@ -177,6 +177,7 @@
                             cell.backgroundColor = [BTColor BT_grey:1];
                             cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                             cell.cellbackground.layer.cornerRadius = 2;
+                            [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                         }
                     }
                 }
@@ -290,6 +291,11 @@
 //    StdCourseDetailView *stdCourseDetailView = [[StdCourseDetailView alloc] init];
 //    stdCourseDetailView.currentcell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];
 //    [self.navigationController pushViewController:stdCourseDetailView animated:YES];
+}
+
+-(void)attdStart:(id)sender{
+    NSLog(@"attendance check start");
+    
 }
 
 

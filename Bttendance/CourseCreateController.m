@@ -225,10 +225,12 @@ NSString *createCourseRequest;
     
     if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
         [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield becomeFirstResponder];
+        return YES;
     }
     
-    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield]){
-        [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield resignFirstResponder];
+    if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield]){
+        [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield resignFirstResponder];
+        return NO;
     }
     return NO;
 
