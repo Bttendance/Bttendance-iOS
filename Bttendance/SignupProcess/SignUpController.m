@@ -329,6 +329,7 @@ NSString *signupRequest;
         
         MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
 //        [self.navigationController pushViewController:stdMainView animated:YES];
+        self.navigationController.navigationBarHidden = YES;
         [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
