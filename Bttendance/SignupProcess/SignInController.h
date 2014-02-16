@@ -17,8 +17,6 @@
 #import "ForgotViewController.h"
 
 @interface SignInController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
-//    IBOutlet UITextField *usernameField;
-//    IBOutlet UITextField *passwordField;
     
     NSIndexPath *username_index, *password_index;
 }
@@ -30,8 +28,6 @@
 @property (weak, nonatomic) NSDictionary *user_info;
 
 -(IBAction)signinButton:(id)sender;
-
 -(void)JSONSigninRequest:(NSString *) username :(NSString *) password;
-
 
 @end

@@ -24,15 +24,10 @@
     NSDictionary *user_info;
 }
 
-
-//@property (retain, nonatomic) IBOutlet UINavigationItem *navigation;
-
 @property (strong, nonatomic) IBOutlet UIButton *SignUp;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 -(IBAction)SignUnButton:(id)sender;
-
 -(void)JSONSignupRequest:(NSString *)username :(NSString *)email :(NSString *)fullname :(NSString *)password;
 
 @end
