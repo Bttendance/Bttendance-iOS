@@ -116,6 +116,7 @@
     _prof.layer.masksToBounds = YES;
     
     _back.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Already have an account?" attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle)}];
+    _back.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
     
     [self.view bringSubviewToFront:_back];
     isfirst = false;

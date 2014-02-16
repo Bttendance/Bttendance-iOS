@@ -17,9 +17,15 @@
         // Initialization code
         textfield = [[UITextField alloc] initWithFrame:CGRectMake(98, 1, 222, 40)];
         UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+        UIView *left = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
+        UIView *right = [[UIView alloc] initWithFrame:CGRectMake(319, 0, 1, 44)];
         underline.backgroundColor = [BTColor BT_grey:1];
+        left.backgroundColor = [BTColor BT_grey:1];
+        right.backgroundColor = [BTColor BT_grey:1];
         [self addSubview:textfield];
         [self addSubview:underline];
+        [self addSubview:left];
+        [self addSubview:right];
         
     }
     return self;

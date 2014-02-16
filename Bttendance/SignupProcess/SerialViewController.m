@@ -136,7 +136,6 @@
             }
             
             [cell_new.button setTitle:@"Enter" forState:UIControlStateNormal];
-            cell_new.button.titleLabel.textColor = [BTColor BT_navy:1];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -144,21 +143,25 @@
         }
         case 2: {
             BVUnderlineButton *request = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
-            request.frame = CGRectMake(0.0f, 5.0f, 320.0f, 20.0f);
+            request.frame = CGRectMake(0.0f, 20.0f, 320.0f, 20.0f);
             request.backgroundColor = [UIColor clearColor];
             [request setTitle:@"Request Serial" forState:UIControlStateNormal];
             [request setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
-            request.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+            request.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+            [request addTarget:self action:@selector(request:) forControlEvents:UIControlEventTouchUpInside];
+            cell.contentView.backgroundColor = [BTColor BT_grey:1];
             [cell addSubview:request];
             break;
         }
         case 3: {
             BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
-            partnership.frame = CGRectMake(0.0f, 5.0f, 320.0f, 20.0f);
+            partnership.frame = CGRectMake(0.0f, 10.0f, 320.0f, 20.0f);
             partnership.backgroundColor = [UIColor clearColor];
             [partnership setTitle:@"Join Partnership" forState:UIControlStateNormal];
             [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
-            partnership.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+            partnership.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+            [partnership addTarget:self action:@selector(partnership:) forControlEvents:UIControlEventTouchUpInside];
+            cell.contentView.backgroundColor = [BTColor BT_grey:1];
             [cell addSubview:partnership];
             break;
         }
@@ -167,6 +170,28 @@
     }
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 1:
+            return 78;
+        case 2:
+            return 40;
+        case 3:
+            return 30;
+        default:
+            return 44;
+    }
+}
+
+-(void)request:(id)sender{
+    
+}
+
+-(void)partnership:(id)sender{
+    WebViewController *webView = [[WebViewController alloc]initWithURLString:@"http://www.bttendance.com/contact"];
+    [self.navigationController pushViewController:webView animated:YES];
 }
 
 -(IBAction)enter:(id)sender{

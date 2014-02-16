@@ -124,8 +124,6 @@
 		D407B26F18AD803E009BCF8C /* CourseCreateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A09E1878347500F9561B /* CourseCreateController.xib */; };
 		D407B27318AF5E30009BCF8C /* SerialRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */; };
 		D407B27418AF5E30009BCF8C /* SerialRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */; };
-		D407B27818AF6071009BCF8C /* PartnershipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B27618AF6071009BCF8C /* PartnershipViewController.m */; };
-		D407B27918AF6071009BCF8C /* PartnershipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D407B27718AF6071009BCF8C /* PartnershipViewController.xib */; };
 		D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CC18731C33005A4CF9 /* iostabbara0@2x.png */; };
 		D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CD18731C33005A4CF9 /* iostabbara1@2x.png */; };
 		D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CE18731C33005A4CF9 /* iostabbara2@2x.png */; };
@@ -345,9 +343,6 @@
 		D407B27018AF5E30009BCF8C /* SerialRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialRequestViewController.h; sourceTree = "<group>"; };
 		D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialRequestViewController.m; sourceTree = "<group>"; };
 		D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerialRequestViewController.xib; sourceTree = "<group>"; };
-		D407B27518AF6071009BCF8C /* PartnershipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartnershipViewController.h; sourceTree = "<group>"; };
-		D407B27618AF6071009BCF8C /* PartnershipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartnershipViewController.m; sourceTree = "<group>"; };
-		D407B27718AF6071009BCF8C /* PartnershipViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartnershipViewController.xib; sourceTree = "<group>"; };
 		D41C62CC18731C33005A4CF9 /* iostabbara0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara0@2x.png"; sourceTree = "<group>"; };
 		D41C62CD18731C33005A4CF9 /* iostabbara1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara1@2x.png"; sourceTree = "<group>"; };
 		D41C62CE18731C33005A4CF9 /* iostabbara2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara2@2x.png"; sourceTree = "<group>"; };
@@ -884,9 +879,6 @@
 				D407B27018AF5E30009BCF8C /* SerialRequestViewController.h */,
 				D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */,
 				D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */,
-				D407B27518AF6071009BCF8C /* PartnershipViewController.h */,
-				D407B27618AF6071009BCF8C /* PartnershipViewController.m */,
-				D407B27718AF6071009BCF8C /* PartnershipViewController.xib */,
 			);
 			name = SerialViewController;
 			sourceTree = "<group>";
@@ -1038,7 +1030,6 @@
 				2191793418724EC600799CC0 /* attendanceinactive@2x.png in Resources */,
 				2131F50E189781650096404D /* NoticeView.xib in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
-				D407B27918AF6071009BCF8C /* PartnershipViewController.xib in Resources */,
 				214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D41C62D618731C33005A4CF9 /* iostabbari1@2x.png in Resources */,
@@ -1164,7 +1155,6 @@
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
 				217971E0189695C500CEB8A3 /* ProfProfileEmailEditView.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpController.m in Sources */,
-				D407B27818AF6071009BCF8C /* PartnershipViewController.m in Sources */,
 				D49F588C18AFE263006ADB89 /* NIViewRecycler.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,
 				2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */,

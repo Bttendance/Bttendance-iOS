@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
@@ -18,10 +19,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fpu-bN-JCc">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="deviceRGB"/>
                     <color key="sectionIndexColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="sectionIndexTrackingBackgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexTrackingBackgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Fqa-SE-CAU"/>
                         <outlet property="delegate" destination="-1" id="llP-XY-tBC"/>

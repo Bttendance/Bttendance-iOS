@@ -56,11 +56,11 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [activityIndicator startAnimating];
-    titlelabel.text = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [activityIndicator stopAnimating];
+    titlelabel.text = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 @end
