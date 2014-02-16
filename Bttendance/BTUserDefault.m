@@ -84,8 +84,6 @@
     NSArray *employedSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EmployedSchoolsKey];
     NSArray *enrolledSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EnrolledSchoolsKey];
     
-
-    
     NSDictionary *user_info = @{UsernameKey:username, PasswordKey:password, UUIDKey:uuid, UseridKey:userid,
                                 FullNameKey:fullname, EmailKey:email, AttendingCoursesKey:attendingCourses,
                                 SupervisingCoursesKey:supervisingCourses, EmployedSchoolsKey:employedSchools,
@@ -102,11 +100,6 @@
     NSString *email = [responseObject objectForKey:@"email"];
     NSArray *attendingCourses = [responseObject objectForKey:@"attending_courses"];
     NSArray *supervisingCourses = [responseObject objectForKey:@"supervising_courses"];
-    
-//    NSArray *temp = [[NSArray alloc] initWithArray:[responseObject objectForKey:@"supervising_courses"]];
-    
-    NSData *temp = [NSKeyedArchiver archivedDataWithRootObject:[responseObject objectForKey:@"supervising_courses"]];
-    
     NSArray *employedSchools = [responseObject objectForKey:@"employed_schools"];
     NSArray *enrolledSchools = [responseObject objectForKey:@"enrolled_schools"];
     
@@ -118,13 +111,9 @@
     [defaults setObject:[NSString stringWithString:email] forKey:EmailKey];
     [defaults setObject:[NSArray arrayWithArray:attendingCourses] forKey:AttendingCoursesKey];
     [defaults setObject:[NSArray arrayWithArray:supervisingCourses] forKey:SupervisingCoursesKey];
-//    [defaults setObject:temp forKey:SupervisingCoursesKey];
     [defaults setObject:[NSArray arrayWithArray:employedSchools] forKey:EmployedSchoolsKey];
     [defaults setObject:[NSArray arrayWithArray:enrolledSchools] forKey:EnrolledSchoolsKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSDictionary *userinfo = [BTUserDefault getUserInfo];
-    NSLog(@"userinfo : %@",userinfo);
-
 }
 
 +(BOOL)isFirstLaunch{
