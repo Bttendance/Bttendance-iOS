@@ -126,6 +126,8 @@ NSString *serialRequest;
         case 1:{
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             if(cell_new == nil){
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
@@ -174,9 +176,11 @@ NSString *serialRequest;
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager PUT:serialRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        NSLog(@"SUCCESS");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Serial request has been succeeded.\nPlease check your email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        NSLog(@"FAIL");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Serial request is unavailable.\nPlease check your email again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }];
     
 }
