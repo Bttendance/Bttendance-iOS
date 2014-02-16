@@ -34,6 +34,7 @@
         self.navigationController.navigationBar.translucent = NO;
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
