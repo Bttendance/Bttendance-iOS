@@ -126,7 +126,7 @@ NSString *signupRequest;
             [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1:{
@@ -134,14 +134,14 @@ NSString *signupRequest;
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
-            [(CustomCell *)cell textfield].placeholder = @"example@example.com";
+            [(CustomCell *)cell textfield].placeholder = @"john@bttendance.com";
             [(CustomCell *)cell textfield].delegate = self;
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
             [(CustomCell *)cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
             [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             [(CustomCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 2:{
@@ -156,7 +156,7 @@ NSString *signupRequest;
             [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 3:{
@@ -170,7 +170,7 @@ NSString *signupRequest;
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
             
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 4:{

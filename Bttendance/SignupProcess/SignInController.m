@@ -130,7 +130,7 @@ NSString *signinRequest;
             [(CustomCell *)cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1:{
@@ -143,7 +143,7 @@ NSString *signinRequest;
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
             
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 2:{

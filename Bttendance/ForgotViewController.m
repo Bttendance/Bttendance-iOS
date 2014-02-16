@@ -18,7 +18,7 @@ NSString *forgotRequest;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    forgotRequest = [BTURL stringByAppendingString:@"/serial/request"];
+    forgotRequest = [BTURL stringByAppendingString:@"/user/forgot/password"];
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         email_index = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -108,10 +108,11 @@ NSString *forgotRequest;
     
     switch(indexPath.row){
         case 0:{
-            [[cell textLabel] setText:@"Email"];
+            [[cell textLabel] setText:@" Email"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
+            [(CustomCell *)cell textfield].placeholder = @"john@bttendance.com";
             [(CustomCell *)cell textfield].delegate = self;
             [(CustomCell *)cell textfield].frame = CGRectMake(78, 1, 222, 40);
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;
@@ -119,7 +120,7 @@ NSString *forgotRequest;
             [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
             [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1:{
@@ -172,7 +173,7 @@ NSString *forgotRequest;
     NSDictionary *params = @{@"email":email};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager POST:forgotRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [AFmanager PUT:forgotRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"SUCCESS");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"FAIL");

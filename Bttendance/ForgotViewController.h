@@ -20,7 +20,4 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
--(IBAction)submit:(id)sender;
--(void)JSONForgotRequest:(NSString *) email;
-
 @end

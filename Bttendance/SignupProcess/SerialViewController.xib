@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SerialViewController">
             <connections>
-                <outlet property="tableView" destination="fpu-bN-JCc" id="P8C-EU-qCM"/>
+                <outlet property="tableView" destination="fpu-bN-JCc" id="G5U-zN-LJN"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -24,8 +24,8 @@
                     <color key="sectionIndexColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="sectionIndexTrackingBackgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="Fqa-SE-CAU"/>
-                        <outlet property="delegate" destination="-1" id="llP-XY-tBC"/>
+                        <outlet property="dataSource" destination="-1" id="4eK-q6-QRJ"/>
+                        <outlet property="delegate" destination="-1" id="fZt-sU-iyU"/>
                     </connections>
                 </tableView>
             </subviews>
