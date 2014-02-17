@@ -109,11 +109,9 @@
     myLabel.frame = CGRectMake(18, 8, 284, 30);
     myLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
     myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    myLabel.backgroundColor = [UIColor brownColor];
     
     UIView *headerView = [[UIView alloc] init];
     headerView.frame = CGRectMake(0, 0, 320, 40);
-    headerView.backgroundColor = [UIColor yellowColor];
     [headerView addSubview:myLabel];
     
     return headerView;
