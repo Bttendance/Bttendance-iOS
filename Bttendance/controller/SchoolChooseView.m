@@ -165,6 +165,10 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 35;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(auth){
         NSInteger scid = ((SchoolInfoCell *)[self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolID_int;
@@ -184,16 +188,16 @@
                             courseCreateController.prfName = prfname;
                             [self.navigationController pushViewController:courseCreateController animated:YES];
                         } else {
-                            [self showSerialView:scid];
+                            [self showSerialView:scid name:scname];
                         }
                     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-                        [self showSerialView:scid];
+                        [self showSerialView:scid name:scname];
                     }];
                     break;
                 }
             }
         } else{
-            [self showSerialView:scid];
+            [self showSerialView:scid name:scname];
         }
     } else{
         CourseAttendView *courseAttendView = [[CourseAttendView alloc] initWithNibName:@"CourseAttendView" bundle:nil];
@@ -202,10 +206,11 @@
     }
 }
 
--(void)showSerialView:(NSInteger) schoolId {
+-(void)showSerialView:(NSInteger) schoolId name:(NSString*) schoolName {
     SerialViewController *serialViewController = [[SerialViewController alloc] initWithNibName:@"SerialViewController" bundle:nil];
     serialViewController.isSignUp = false;
     serialViewController.schoolId = schoolId;
+    serialViewController.schoolName = schoolName;
     [self.navigationController pushViewController:serialViewController animated:YES];
 }
 

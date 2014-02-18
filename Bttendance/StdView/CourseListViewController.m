@@ -34,7 +34,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
+    
+    rowcount1 = 1;
+    rowcount2 = 1;
+}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -65,7 +71,8 @@
         [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            
+            rowcount1 = [supervisingCourses count] + 1;
+            rowcount2 = [attendingCourses count] + 1;
             data = responseObject;
             [self.tableview reloadData];
             
@@ -107,10 +114,10 @@
     
     switch (section) {
         case 0:
-            return [supervisingCourses count] + 1;
+            return rowcount1;
         case 1:
         default:
-            return [attendingCourses count] + 1;
+            return rowcount2;
     }
 }
 
@@ -118,7 +125,7 @@
     
     switch (indexPath.section) {
         case 0:
-            if (indexPath.row == [supervisingCourses count]) {
+            if (rowcount1 == 1 || indexPath.row == [supervisingCourses count]) {
                 
                 static NSString *CellIdentifier1 = @"ButtonCell";
                 ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
@@ -164,7 +171,7 @@
             }
         case 1:
         default:
-            if (indexPath.row == [attendingCourses count]) {
+            if (rowcount2 == 1 || indexPath.row == [attendingCourses count]) {
                 
                 static NSString *CellIdentifier1 = @"ButtonCell";
                 ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
@@ -192,17 +199,16 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 if(data.count != 0){
                     for(int i = 0; i< data.count; i++){
-                        for(int j = 0; j < attendingCourses.count; j++){
-                            if([[attendingCourses objectAtIndex:j] intValue] == [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
-                                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                                cell.backgroundColor = [BTColor BT_grey:1];
-                                cell.cellbackground.backgroundColor = [BTColor BT_white:1];
-                                cell.cellbackground.layer.cornerRadius = 2;
-                                break;
-                            }
+                        if( [[attendingCourses objectAtIndex:indexPath.row] intValue] ==
+                           [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                            cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                            cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                            cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                            cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                            cell.backgroundColor = [BTColor BT_grey:1];
+                            cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+                            cell.cellbackground.layer.cornerRadius = 2;
+                            break;
                         }
                     }
                 }

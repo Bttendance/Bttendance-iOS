@@ -308,12 +308,6 @@
     //move to course detail view
     //send course cell
     
-    ProfCourseDetailView *profCourseDetailView = [[ProfCourseDetailView alloc] init];
-    
-    profCourseDetailView.currentcell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];
-    
-    [self.navigationController pushViewController:profCourseDetailView animated:YES];
-    
     
 }
 

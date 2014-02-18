@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GradeView.h"
+#import "GradeViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
 #import "CourseCell.h"
 #import "GradeCell.h"
 #import "BTAPIs.h"
 
-@interface GradeView : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface GradeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     NSDictionary *userinfo;
     
     __weak NSString *cid;

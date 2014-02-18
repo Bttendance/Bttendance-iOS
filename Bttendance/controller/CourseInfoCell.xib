@@ -36,11 +36,20 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHW-cZ-f60">
+                        <rect key="frame" x="261" y="0.0" width="53" height="53"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="Info_Button" destination="dHW-cZ-f60" id="fpd-UJ-Zzr"/>
                 <outlet property="Info_Check" destination="23z-Od-HhL" id="jus-Fv-ea2"/>
                 <outlet property="Info_CourseName" destination="L1l-pJ-OP6" id="iLA-ML-yEw"/>
                 <outlet property="Info_ProfName" destination="923-fO-adL" id="n5t-PG-9jP"/>

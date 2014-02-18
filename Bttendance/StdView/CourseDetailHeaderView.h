@@ -20,4 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 @property (weak, nonatomic) IBOutlet UIImageView *grade;
 @property (weak, nonatomic) IBOutlet UIButton *BTicon;
+
+@property (weak, nonatomic) IBOutlet UIButton *gradeBt;
+@property (weak, nonatomic) IBOutlet UIButton *noticeBt;
+@property (weak, nonatomic) IBOutlet UIButton *taBt;
 @end

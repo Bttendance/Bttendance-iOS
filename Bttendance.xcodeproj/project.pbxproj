@@ -13,10 +13,10 @@
 		212C05B9183B73E000AD6654 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C05B7183B73E000AD6654 /* SignUpController.m */; };
 		212C05BA183B73E000AD6654 /* SignUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212C05B8183B73E000AD6654 /* SignUpController.xib */; };
 		2131F5091896DE5B0096404D /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5081896DE5B0096404D /* notice@2x.png */; };
-		2131F50D189781650096404D /* NoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F50B189781650096404D /* NoticeView.m */; };
-		2131F50E189781650096404D /* NoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F50C189781650096404D /* NoticeView.xib */; };
-		2131F5121897817F0096404D /* GradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F5101897817F0096404D /* GradeView.m */; };
-		2131F5131897817F0096404D /* GradeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5111897817F0096404D /* GradeView.xib */; };
+		2131F50D189781650096404D /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F50B189781650096404D /* NoticeViewController.m */; };
+		2131F50E189781650096404D /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F50C189781650096404D /* NoticeViewController.xib */; };
+		2131F5121897817F0096404D /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F5101897817F0096404D /* GradeViewController.m */; };
+		2131F5131897817F0096404D /* GradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5111897817F0096404D /* GradeViewController.xib */; };
 		2131F5171897D6E00096404D /* GradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F5151897D6E00096404D /* GradeCell.m */; };
 		2131F5181897D6E00096404D /* GradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5161897D6E00096404D /* GradeCell.xib */; };
 		2135C39A182BDD4E002C45DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135C399182BDD4E002C45DB /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -45,24 +45,10 @@
 		21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21532F2918773B140065EB3C /* SignButtonCell.m */; };
 		21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21532F2A18773B140065EB3C /* SignButtonCell.xib */; };
 		215D4A5318461B30004C1947 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* CustomCell.m */; };
-		217971D8189695C500CEB8A3 /* ProfCourseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C0189695C500CEB8A3 /* ProfCourseDetailView.m */; };
 		217971D9189695C500CEB8A3 /* ProfFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C1189695C500CEB8A3 /* ProfFeedView.m */; };
 		217971DA189695C500CEB8A3 /* ProfCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C3189695C500CEB8A3 /* ProfCourseView.m */; };
-		217971DB189695C500CEB8A3 /* ProfCourseDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971C4189695C500CEB8A3 /* ProfCourseDetailView.xib */; };
-		217971DC189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971C6189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib */; };
-		217971DD189695C500CEB8A3 /* ProfProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971C7189695C500CEB8A3 /* ProfProfileHeaderView.xib */; };
-		217971DE189695C500CEB8A3 /* ProfCourseDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C9189695C500CEB8A3 /* ProfCourseDetailHeaderView.m */; };
-		217971DF189695C500CEB8A3 /* ProfProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971CA189695C500CEB8A3 /* ProfProfileView.m */; };
-		217971E0189695C500CEB8A3 /* ProfProfileEmailEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971CB189695C500CEB8A3 /* ProfProfileEmailEditView.m */; };
-		217971E1189695C500CEB8A3 /* ProfProfileNameEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971CC189695C500CEB8A3 /* ProfProfileNameEditView.m */; };
-		217971E2189695C500CEB8A3 /* ProfProfileEmailEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D0189695C500CEB8A3 /* ProfProfileEmailEditView.xib */; };
-		217971E3189695C500CEB8A3 /* ProfProfileNameEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D1189695C500CEB8A3 /* ProfProfileNameEditView.xib */; };
-		217971E4189695C500CEB8A3 /* ProfProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D2189695C500CEB8A3 /* ProfProfileView.xib */; };
-		217971E5189695C500CEB8A3 /* ProfProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971D4189695C500CEB8A3 /* ProfProfileHeaderView.m */; };
 		217971E6189695C500CEB8A3 /* ProfCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D5189695C500CEB8A3 /* ProfCourseView.xib */; };
 		217971E7189695C500CEB8A3 /* ProfFeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D6189695C500CEB8A3 /* ProfFeedView.xib */; };
-		217971F0189696F700CEB8A3 /* ProfMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971EE189696F700CEB8A3 /* ProfMainView.m */; };
-		217971F1189696F700CEB8A3 /* ProfMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971EF189696F700CEB8A3 /* ProfMainView.xib */; };
 		217AB56718368FAE00A8F9C1 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */; };
 		217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75B41850D7C100AA0D95 /* CourseCell.xib */; };
 		217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75B81850FA8C00AA0D95 /* CourseCell.m */; };
@@ -100,7 +86,6 @@
 		2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */; };
 		2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792D18724EC600799CC0 /* attendancecheckcyan@2x.png */; };
 		2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792E18724EC600799CC0 /* attendancecheckgray@2x.png */; };
-		2191793418724EC600799CC0 /* attendanceinactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792F18724EC600799CC0 /* attendanceinactive@2x.png */; };
 		2191793518724EC600799CC0 /* attendancering@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191793018724EC600799CC0 /* attendancering@2x.png */; };
 		2191793618724EC600799CC0 /* attendfail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191793118724EC600799CC0 /* attendfail@2x.png */; };
 		21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21917937187250D600799CC0 /* attendanceringnonalpha@2x.png */; };
@@ -139,8 +124,8 @@
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D485A0A21878347500F9561B /* CourseCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateController.m */; };
-		D485A0A618783F2600F9561B /* AttdStatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A318783F2600F9561B /* AttdStatView.xib */; };
-		D485A0A718783F2600F9561B /* AttdStatView.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatView.m */; };
+		D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A318783F2600F9561B /* AttdStatViewController.xib */; };
+		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
 		D49F587818AFE263006ADB89 /* NIActions.m in Sources */ = {isa = PBXBuildFile; fileRef = D49F584818AFE263006ADB89 /* NIActions.m */; };
@@ -189,12 +174,12 @@
 		212C05B7183B73E000AD6654 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpController.m; path = SignupProcess/SignUpController.m; sourceTree = "<group>"; };
 		212C05B8183B73E000AD6654 /* SignUpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpController.xib; path = SignupProcess/SignUpController.xib; sourceTree = "<group>"; };
 		2131F5081896DE5B0096404D /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notice@2x.png"; path = "Image/notice@2x.png"; sourceTree = "<group>"; };
-		2131F50A189781650096404D /* NoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeView.h; path = controller/NoticeView.h; sourceTree = "<group>"; };
-		2131F50B189781650096404D /* NoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeView.m; path = controller/NoticeView.m; sourceTree = "<group>"; };
-		2131F50C189781650096404D /* NoticeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeView.xib; path = controller/NoticeView.xib; sourceTree = "<group>"; };
-		2131F50F1897817F0096404D /* GradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeView.h; path = controller/GradeView.h; sourceTree = "<group>"; };
-		2131F5101897817F0096404D /* GradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradeView.m; path = controller/GradeView.m; sourceTree = "<group>"; };
-		2131F5111897817F0096404D /* GradeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GradeView.xib; path = controller/GradeView.xib; sourceTree = "<group>"; };
+		2131F50A189781650096404D /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeViewController.h; path = controller/NoticeViewController.h; sourceTree = "<group>"; };
+		2131F50B189781650096404D /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeViewController.m; path = controller/NoticeViewController.m; sourceTree = "<group>"; };
+		2131F50C189781650096404D /* NoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeViewController.xib; path = controller/NoticeViewController.xib; sourceTree = "<group>"; };
+		2131F50F1897817F0096404D /* GradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeViewController.h; path = controller/GradeViewController.h; sourceTree = "<group>"; };
+		2131F5101897817F0096404D /* GradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradeViewController.m; path = controller/GradeViewController.m; sourceTree = "<group>"; };
+		2131F5111897817F0096404D /* GradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GradeViewController.xib; path = controller/GradeViewController.xib; sourceTree = "<group>"; };
 		2131F5141897D6E00096404D /* GradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeCell.h; path = "controller/untitled folder/GradeCell.h"; sourceTree = "<group>"; };
 		2131F5151897D6E00096404D /* GradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradeCell.m; path = "controller/untitled folder/GradeCell.m"; sourceTree = "<group>"; };
 		2131F5161897D6E00096404D /* GradeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GradeCell.xib; path = "controller/untitled folder/GradeCell.xib"; sourceTree = "<group>"; };
@@ -232,33 +217,12 @@
 		21532F2A18773B140065EB3C /* SignButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignButtonCell.xib; path = controller/SignButtonCell.xib; sourceTree = "<group>"; };
 		215D4A5118461B30004C1947 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		215D4A5218461B30004C1947 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
-		217971C0189695C500CEB8A3 /* ProfCourseDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfCourseDetailView.m; path = ProfView/ProfCourseDetailView.m; sourceTree = "<group>"; };
 		217971C1189695C500CEB8A3 /* ProfFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfFeedView.m; path = ProfView/ProfFeedView.m; sourceTree = "<group>"; };
-		217971C2189695C500CEB8A3 /* ProfCourseDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfCourseDetailView.h; path = ProfView/ProfCourseDetailView.h; sourceTree = "<group>"; };
 		217971C3189695C500CEB8A3 /* ProfCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfCourseView.m; path = ProfView/ProfCourseView.m; sourceTree = "<group>"; };
-		217971C4189695C500CEB8A3 /* ProfCourseDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfCourseDetailView.xib; path = ProfView/ProfCourseDetailView.xib; sourceTree = "<group>"; };
 		217971C5189695C500CEB8A3 /* ProfCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfCourseView.h; path = ProfView/ProfCourseView.h; sourceTree = "<group>"; };
-		217971C6189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfCourseDetailHeaderView.xib; path = ProfView/ProfCourseDetailHeaderView.xib; sourceTree = "<group>"; };
-		217971C7189695C500CEB8A3 /* ProfProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfProfileHeaderView.xib; path = ProfView/ProfProfileHeaderView.xib; sourceTree = "<group>"; };
-		217971C8189695C500CEB8A3 /* ProfCourseDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfCourseDetailHeaderView.h; path = ProfView/ProfCourseDetailHeaderView.h; sourceTree = "<group>"; };
-		217971C9189695C500CEB8A3 /* ProfCourseDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfCourseDetailHeaderView.m; path = ProfView/ProfCourseDetailHeaderView.m; sourceTree = "<group>"; };
-		217971CA189695C500CEB8A3 /* ProfProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfProfileView.m; path = ProfView/ProfProfileView.m; sourceTree = "<group>"; };
-		217971CB189695C500CEB8A3 /* ProfProfileEmailEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfProfileEmailEditView.m; path = ProfView/ProfProfileEmailEditView.m; sourceTree = "<group>"; };
-		217971CC189695C500CEB8A3 /* ProfProfileNameEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfProfileNameEditView.m; path = ProfView/ProfProfileNameEditView.m; sourceTree = "<group>"; };
-		217971CD189695C500CEB8A3 /* ProfProfileEmailEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfProfileEmailEditView.h; path = ProfView/ProfProfileEmailEditView.h; sourceTree = "<group>"; };
-		217971CE189695C500CEB8A3 /* ProfProfileNameEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfProfileNameEditView.h; path = ProfView/ProfProfileNameEditView.h; sourceTree = "<group>"; };
-		217971CF189695C500CEB8A3 /* ProfProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfProfileView.h; path = ProfView/ProfProfileView.h; sourceTree = "<group>"; };
-		217971D0189695C500CEB8A3 /* ProfProfileEmailEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfProfileEmailEditView.xib; path = ProfView/ProfProfileEmailEditView.xib; sourceTree = "<group>"; };
-		217971D1189695C500CEB8A3 /* ProfProfileNameEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfProfileNameEditView.xib; path = ProfView/ProfProfileNameEditView.xib; sourceTree = "<group>"; };
-		217971D2189695C500CEB8A3 /* ProfProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfProfileView.xib; path = ProfView/ProfProfileView.xib; sourceTree = "<group>"; };
-		217971D3189695C500CEB8A3 /* ProfProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfProfileHeaderView.h; path = ProfView/ProfProfileHeaderView.h; sourceTree = "<group>"; };
-		217971D4189695C500CEB8A3 /* ProfProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfProfileHeaderView.m; path = ProfView/ProfProfileHeaderView.m; sourceTree = "<group>"; };
 		217971D5189695C500CEB8A3 /* ProfCourseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfCourseView.xib; path = ProfView/ProfCourseView.xib; sourceTree = "<group>"; };
 		217971D6189695C500CEB8A3 /* ProfFeedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfFeedView.xib; path = ProfView/ProfFeedView.xib; sourceTree = "<group>"; };
 		217971D7189695C500CEB8A3 /* ProfFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfFeedView.h; path = ProfView/ProfFeedView.h; sourceTree = "<group>"; };
-		217971ED189696F700CEB8A3 /* ProfMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfMainView.h; path = controller/ProfMainView.h; sourceTree = "<group>"; };
-		217971EE189696F700CEB8A3 /* ProfMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfMainView.m; path = controller/ProfMainView.m; sourceTree = "<group>"; };
-		217971EF189696F700CEB8A3 /* ProfMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfMainView.xib; path = controller/ProfMainView.xib; sourceTree = "<group>"; };
 		217AB5641836073800A8F9C1 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
 		217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		217D75B41850D7C100AA0D95 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseCell.xib; path = "controller/untitled folder/CourseCell.xib"; sourceTree = "<group>"; };
@@ -312,7 +276,6 @@
 		2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enrollconfirm@2x.png"; path = "Image/enrollconfirm@2x.png"; sourceTree = "<group>"; };
 		2191792D18724EC600799CC0 /* attendancecheckcyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendancecheckcyan@2x.png"; path = "Image/attendancecheckcyan@2x.png"; sourceTree = "<group>"; };
 		2191792E18724EC600799CC0 /* attendancecheckgray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendancecheckgray@2x.png"; path = "Image/attendancecheckgray@2x.png"; sourceTree = "<group>"; };
-		2191792F18724EC600799CC0 /* attendanceinactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendanceinactive@2x.png"; path = "Image/attendanceinactive@2x.png"; sourceTree = "<group>"; };
 		2191793018724EC600799CC0 /* attendancering@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendancering@2x.png"; path = "Image/attendancering@2x.png"; sourceTree = "<group>"; };
 		2191793118724EC600799CC0 /* attendfail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendfail@2x.png"; path = "Image/attendfail@2x.png"; sourceTree = "<group>"; };
 		21917937187250D600799CC0 /* attendanceringnonalpha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendanceringnonalpha@2x.png"; path = "Image/attendanceringnonalpha@2x.png"; sourceTree = "<group>"; };
@@ -365,9 +328,9 @@
 		D485A09E1878347500F9561B /* CourseCreateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCreateController.xib; sourceTree = "<group>"; };
 		D485A09F1878347500F9561B /* CourseCreateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCreateController.m; sourceTree = "<group>"; };
 		D485A0A01878347500F9561B /* CourseCreateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCreateController.h; sourceTree = "<group>"; };
-		D485A0A318783F2600F9561B /* AttdStatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttdStatView.xib; sourceTree = "<group>"; };
-		D485A0A418783F2600F9561B /* AttdStatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttdStatView.m; sourceTree = "<group>"; };
-		D485A0A518783F2600F9561B /* AttdStatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttdStatView.h; sourceTree = "<group>"; };
+		D485A0A318783F2600F9561B /* AttdStatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttdStatViewController.xib; sourceTree = "<group>"; };
+		D485A0A418783F2600F9561B /* AttdStatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttdStatViewController.m; sourceTree = "<group>"; };
+		D485A0A518783F2600F9561B /* AttdStatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttdStatViewController.h; sourceTree = "<group>"; };
 		D485A0A818784C9C00F9561B /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		D485A0A918784C9C00F9561B /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
@@ -635,33 +598,12 @@
 		218D9AD91886AA3F00E8BAD0 /* ProfView */ = {
 			isa = PBXGroup;
 			children = (
-				217971ED189696F700CEB8A3 /* ProfMainView.h */,
-				217971EE189696F700CEB8A3 /* ProfMainView.m */,
-				217971EF189696F700CEB8A3 /* ProfMainView.xib */,
 				217971D7189695C500CEB8A3 /* ProfFeedView.h */,
 				217971C1189695C500CEB8A3 /* ProfFeedView.m */,
 				217971D6189695C500CEB8A3 /* ProfFeedView.xib */,
 				217971C5189695C500CEB8A3 /* ProfCourseView.h */,
 				217971C3189695C500CEB8A3 /* ProfCourseView.m */,
 				217971D5189695C500CEB8A3 /* ProfCourseView.xib */,
-				217971C2189695C500CEB8A3 /* ProfCourseDetailView.h */,
-				217971C0189695C500CEB8A3 /* ProfCourseDetailView.m */,
-				217971C4189695C500CEB8A3 /* ProfCourseDetailView.xib */,
-				217971C8189695C500CEB8A3 /* ProfCourseDetailHeaderView.h */,
-				217971C9189695C500CEB8A3 /* ProfCourseDetailHeaderView.m */,
-				217971C6189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib */,
-				217971CF189695C500CEB8A3 /* ProfProfileView.h */,
-				217971CA189695C500CEB8A3 /* ProfProfileView.m */,
-				217971D2189695C500CEB8A3 /* ProfProfileView.xib */,
-				217971CD189695C500CEB8A3 /* ProfProfileEmailEditView.h */,
-				217971CB189695C500CEB8A3 /* ProfProfileEmailEditView.m */,
-				217971D0189695C500CEB8A3 /* ProfProfileEmailEditView.xib */,
-				217971CE189695C500CEB8A3 /* ProfProfileNameEditView.h */,
-				217971CC189695C500CEB8A3 /* ProfProfileNameEditView.m */,
-				217971D1189695C500CEB8A3 /* ProfProfileNameEditView.xib */,
-				217971D3189695C500CEB8A3 /* ProfProfileHeaderView.h */,
-				217971D4189695C500CEB8A3 /* ProfProfileHeaderView.m */,
-				217971C7189695C500CEB8A3 /* ProfProfileHeaderView.xib */,
 			);
 			name = ProfView;
 			sourceTree = "<group>";
@@ -691,7 +633,6 @@
 				2191792D18724EC600799CC0 /* attendancecheckcyan@2x.png */,
 				21917937187250D600799CC0 /* attendanceringnonalpha@2x.png */,
 				2191792E18724EC600799CC0 /* attendancecheckgray@2x.png */,
-				2191792F18724EC600799CC0 /* attendanceinactive@2x.png */,
 				2191793018724EC600799CC0 /* attendancering@2x.png */,
 				2191793118724EC600799CC0 /* attendfail@2x.png */,
 				2191792918724AEA00799CC0 /* enrolladd@2x.png */,
@@ -860,15 +801,15 @@
 				218D9B0F188ED28C00E8BAD0 /* ProfileNameEditViewController.h */,
 				218D9B10188ED28C00E8BAD0 /* ProfileNameEditViewController.m */,
 				218D9B11188ED28C00E8BAD0 /* ProfileNameEditViewController.xib */,
-				D485A0A518783F2600F9561B /* AttdStatView.h */,
-				D485A0A418783F2600F9561B /* AttdStatView.m */,
-				D485A0A318783F2600F9561B /* AttdStatView.xib */,
-				2131F50A189781650096404D /* NoticeView.h */,
-				2131F50B189781650096404D /* NoticeView.m */,
-				2131F50C189781650096404D /* NoticeView.xib */,
-				2131F50F1897817F0096404D /* GradeView.h */,
-				2131F5101897817F0096404D /* GradeView.m */,
-				2131F5111897817F0096404D /* GradeView.xib */,
+				D485A0A518783F2600F9561B /* AttdStatViewController.h */,
+				D485A0A418783F2600F9561B /* AttdStatViewController.m */,
+				D485A0A318783F2600F9561B /* AttdStatViewController.xib */,
+				2131F50A189781650096404D /* NoticeViewController.h */,
+				2131F50B189781650096404D /* NoticeViewController.m */,
+				2131F50C189781650096404D /* NoticeViewController.xib */,
+				2131F50F1897817F0096404D /* GradeViewController.h */,
+				2131F5101897817F0096404D /* GradeViewController.m */,
+				2131F5111897817F0096404D /* GradeViewController.xib */,
 			);
 			name = SubViewController;
 			sourceTree = "<group>";
@@ -952,7 +893,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -980,19 +921,16 @@
 				214FA101184CC2E6006DCD44 /* 0072b0.png in Resources */,
 				D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */,
 				2191793518724EC600799CC0 /* attendancering@2x.png in Resources */,
-				217971DD189695C500CEB8A3 /* ProfProfileHeaderView.xib in Resources */,
-				D485A0A618783F2600F9561B /* AttdStatView.xib in Resources */,
+				D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */,
 				2131F5091896DE5B0096404D /* notice@2x.png in Resources */,
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
 				21917904186C38DD00799CC0 /* MainViewController.xib in Resources */,
-				217971E3189695C500CEB8A3 /* ProfProfileNameEditView.xib in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
 				D407B27418AF5E30009BCF8C /* SerialRequestViewController.xib in Resources */,
 				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
-				217971E4189695C500CEB8A3 /* ProfProfileView.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */,
 				217971E6189695C500CEB8A3 /* ProfCourseView.xib in Resources */,
 				21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */,
@@ -1005,8 +943,7 @@
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
-				217971F1189696F700CEB8A3 /* ProfMainView.xib in Resources */,
-				2131F5131897817F0096404D /* GradeView.xib in Resources */,
+				2131F5131897817F0096404D /* GradeViewController.xib in Resources */,
 				D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */,
 				218D9AF81886AE2700E8BAD0 /* ProfileViewController.xib in Resources */,
 				21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */,
@@ -1020,7 +957,6 @@
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				21C48E34183F63C200C8D772 /* PersonalizeController.xib in Resources */,
 				217D75C01850FD3700AA0D95 /* Personalize_bg2@2x.jpg in Resources */,
-				217971E2189695C500CEB8A3 /* ProfProfileEmailEditView.xib in Resources */,
 				2191790C186D951000799CC0 /* CourseAttendView.xib in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
@@ -1030,17 +966,14 @@
 				D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */,
 				218D9AEE1886AE0000E8BAD0 /* FeedViewController.xib in Resources */,
 				212C05BA183B73E000AD6654 /* SignUpController.xib in Resources */,
-				2191793418724EC600799CC0 /* attendanceinactive@2x.png in Resources */,
-				2131F50E189781650096404D /* NoticeView.xib in Resources */,
+				2131F50E189781650096404D /* NoticeViewController.xib in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
 				214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D41C62D618731C33005A4CF9 /* iostabbari1@2x.png in Resources */,
 				2127B27218B10D19000B2E8D /* f1f1ff.png in Resources */,
 				217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */,
-				217971DC189695C500CEB8A3 /* ProfCourseDetailHeaderView.xib in Resources */,
 				D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */,
-				217971DB189695C500CEB8A3 /* ProfCourseDetailView.xib in Resources */,
 				21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1106,7 +1039,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				217D75C51852157400AA0D95 /* StudentConfirm.m in Sources */,
-				217971F0189696F700CEB8A3 /* ProfMainView.m in Sources */,
 				217971DA189695C500CEB8A3 /* ProfCourseView.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				D49F587C18AFE263006ADB89 /* NIDebuggingTools.m in Sources */,
@@ -1117,7 +1049,6 @@
 				D49F588818AFE263006ADB89 /* NIRuntimeClassModifications.m in Sources */,
 				D49F588418AFE263006ADB89 /* NINonEmptyCollectionTesting.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
-				217971DE189695C500CEB8A3 /* ProfCourseDetailHeaderView.m in Sources */,
 				D49F588D18AFE263006ADB89 /* UIResponder+NimbusCore.m in Sources */,
 				2135C3AF182BDD4E002C45DB /* Bttendance.xcdatamodeld in Sources */,
 				21469A4A18929ED7005D4FF2 /* CourseDetailHeaderView.m in Sources */,
@@ -1127,16 +1058,16 @@
 				D49F588A18AFE263006ADB89 /* NISnapshotRotation.m in Sources */,
 				D49F588918AFE263006ADB89 /* NISDKAvailability.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateController.m in Sources */,
-				2131F50D189781650096404D /* NoticeView.m in Sources */,
+				2131F50D189781650096404D /* NoticeViewController.m in Sources */,
 				D407B27318AF5E30009BCF8C /* SerialRequestViewController.m in Sources */,
 				218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */,
 				D49F587D18AFE263006ADB89 /* NIDeviceOrientation.m in Sources */,
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
 				D49F588B18AFE263006ADB89 /* NIState.m in Sources */,
-				D485A0A718783F2600F9561B /* AttdStatView.m in Sources */,
+				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
 				D49F588518AFE263006ADB89 /* NINonRetainingCollections.m in Sources */,
 				D49F588618AFE263006ADB89 /* NIOperations.m in Sources */,
-				2131F5121897817F0096404D /* GradeView.m in Sources */,
+				2131F5121897817F0096404D /* GradeViewController.m in Sources */,
 				D49F589418AFE2E3006ADB89 /* NIAttributedLabel.m in Sources */,
 				D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */,
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
@@ -1147,7 +1078,6 @@
 				21C48E2E183D08E800C8D772 /* SignInController.m in Sources */,
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
 				2191790B186D951000799CC0 /* CourseAttendView.m in Sources */,
-				217971DF189695C500CEB8A3 /* ProfProfileView.m in Sources */,
 				D49F587918AFE263006ADB89 /* NIButtonUtilities.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				21C48E33183F63C200C8D772 /* PersonalizeController.m in Sources */,
@@ -1157,7 +1087,6 @@
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
 				2190C4941850715100626628 /* MainView.m in Sources */,
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
-				217971E0189695C500CEB8A3 /* ProfProfileEmailEditView.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpController.m in Sources */,
 				D49F588C18AFE263006ADB89 /* NIViewRecycler.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,
@@ -1167,10 +1096,7 @@
 				21917907186C3E1800799CC0 /* JSONController.m in Sources */,
 				D49F587E18AFE263006ADB89 /* NIError.m in Sources */,
 				D49F588018AFE263006ADB89 /* NIImageUtilities.m in Sources */,
-				217971D8189695C500CEB8A3 /* ProfCourseDetailView.m in Sources */,
-				217971E1189695C500CEB8A3 /* ProfProfileNameEditView.m in Sources */,
 				D49F587A18AFE263006ADB89 /* NICommonMetrics.m in Sources */,
-				217971E5189695C500CEB8A3 /* ProfProfileHeaderView.m in Sources */,
 				D49F587818AFE263006ADB89 /* NIActions.m in Sources */,
 				D49F587B18AFE263006ADB89 /* NIDataStructures.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
@@ -1395,7 +1321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

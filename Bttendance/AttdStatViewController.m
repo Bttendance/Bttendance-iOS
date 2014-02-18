@@ -6,13 +6,13 @@
 //  Copyright (c) 2013년 Utopia. All rights reserved.
 //
 
-#import "AttdStatView.h"
+#import "AttdStatViewController.h"
 
-@interface AttdStatView ()
+@interface AttdStatViewController ()
 
 @end
 
-@implementation AttdStatView
+@implementation AttdStatViewController
 
 @synthesize courseId, courseName, postId;
 

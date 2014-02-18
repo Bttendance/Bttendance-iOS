@@ -19,7 +19,7 @@
 #import "ButtonCell.h"
 #import "AppDelegate.h"
 #import "CourseCreateController.h"
-#import "AttdStatView.h"
+#import "AttdStatViewController.h"
 
 @interface MainViewController : UIViewController{
     IBOutlet UITabBarController *tbc;

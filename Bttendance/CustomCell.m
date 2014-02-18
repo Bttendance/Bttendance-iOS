@@ -16,6 +16,7 @@
     if (self) {
         // Initialization code
         textfield = [[UITextField alloc] initWithFrame:CGRectMake(98, 1, 222, 40)];
+        textfield.tintColor = [BTColor BT_silver:1];
         UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
         UIView *left = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
         UIView *right = [[UIView alloc] initWithFrame:CGRectMake(319, 0, 1, 44)];

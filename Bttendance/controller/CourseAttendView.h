@@ -31,6 +31,6 @@
 
 @property (nonatomic) int sid;
 
--(IBAction)check_button_action1:(id)sender;
+-(IBAction)check_button_action:(id)sender;
 
 @end

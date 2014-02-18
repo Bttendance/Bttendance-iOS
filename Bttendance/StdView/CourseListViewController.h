@@ -21,6 +21,9 @@
 
 @interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     
+    NSInteger rowcount1;
+    NSInteger rowcount2;
+    
     NSMutableArray *data;
     NSDictionary *userinfo;
     NSArray *supervisingCourses;

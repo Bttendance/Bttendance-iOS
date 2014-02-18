@@ -6,13 +6,13 @@
 //  Copyright (c) 2014년 Utopia. All rights reserved.
 //
 
-#import "GradeView.h"
+#import "GradeViewController.h"
 
-@interface GradeView ()
+@interface GradeViewController ()
 
 @end
 
-@implementation GradeView
+@implementation GradeViewController
 @synthesize currentcell, cid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

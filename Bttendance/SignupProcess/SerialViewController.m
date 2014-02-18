@@ -12,9 +12,9 @@
 @end
 
 @implementation SerialViewController
-@synthesize type;
 @synthesize isSignUp;
 @synthesize schoolId;
+@synthesize schoolName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -113,11 +113,12 @@
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"  Serial"];
-            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].placeholder = @"Enter Serial Code";
             [(CustomCell *)cell textfield].delegate = self;
+            [(CustomCell *)cell textfield].frame = CGRectMake(78, 1, 222, 40);
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
             [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             [(CustomCell *)cell textfield].secureTextEntry = YES;
@@ -232,6 +233,8 @@
             [BTUserDefault setUserInfo:responseObject];
             CourseCreateController *createCourseController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
             createCourseController.schoolId = schoolId;
+            createCourseController.schoolName = schoolName;
+            createCourseController.prfName = [userinfo objectForKey:FullNameKey];
             [self.navigationController pushViewController:createCourseController animated:YES];
         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             enterBt.enabled = YES;

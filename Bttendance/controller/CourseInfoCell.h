@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *Info_ProfName;
 @property (weak, nonatomic) IBOutlet UILabel *Info_CourseName;
 @property (weak, nonatomic) IBOutlet UIButton *Info_Check;
+@property (weak, nonatomic) IBOutlet UIButton *Info_Button;
 @property (assign, nonatomic) NSInteger Info_CourseID;
 
 @property (weak, nonatomic) NSString *Info_SchoolName;

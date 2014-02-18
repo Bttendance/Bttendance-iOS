@@ -14,6 +14,8 @@
 #import "BTColor.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
+#import "GradeViewController.h"
+#import "NoticeViewController.h"
 
 
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{

@@ -25,9 +25,9 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (readwrite, retain) NSString *type;
 @property (nonatomic) Boolean isSignUp;
 @property (nonatomic) NSInteger schoolId;
+@property (nonatomic) NSString *schoolName;
 
 -(IBAction)enter:(id)sender;
 

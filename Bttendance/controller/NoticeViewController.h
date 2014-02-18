@@ -12,7 +12,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 
-@interface NoticeView : UIViewController<UITextViewDelegate>{
+@interface NoticeViewController : UIViewController<UITextViewDelegate>{
     NSDictionary *userinfo;
     __weak NSString *cid;
     __weak CourseCell *currentcell;

@@ -419,7 +419,7 @@
         NSInteger selected_cid = selected_cell.CourseID;
         NSInteger selected_lastpid = selected_cell.lastpid;
         
-        AttdStatView *attdStatView = [[AttdStatView alloc] initWithNibName:@"AttdStatView" bundle:nil];
+        AttdStatViewController *attdStatView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
         
         attdStatView.courseName = selected_coursename;
         attdStatView.courseId = selected_cid;

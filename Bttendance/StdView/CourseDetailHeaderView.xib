@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseDetailHeaderView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="ySZ-p3-d9r" customClass="CourseDetailHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="212"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="009-5s-lOE">
@@ -32,68 +32,71 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prof name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0k-yD-43t">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prof. Kim Dong Jun" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0k-yD-43t">
                             <rect key="frame" x="140" y="27" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="deP-rv-nkL">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KAIST" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="deP-rv-nkL">
                             <rect key="frame" x="140" y="42" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lecture attribute" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejm-Ab-gSJ">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lecture Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejm-Ab-gSJ">
                             <rect key="frame" x="140" y="72" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tE8-4P-izT">
                             <rect key="frame" x="140" y="87" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Place" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wKz-Zo-ZCt">
                             <rect key="frame" x="140" y="102" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                            <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3YF-Rl-4ec">
-                    <rect key="frame" x="11" y="170" width="98" height="66"/>
+                    <rect key="frame" x="11" y="170" width="98" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Notice">
-                        <color key="titleColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mhq-0X-eG1">
-                    <rect key="frame" x="111" y="170" width="98" height="66"/>
+                    <rect key="frame" x="111" y="170" width="98" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Grade">
-                        <color key="titleColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zFY-zW-PEd">
-                    <rect key="frame" x="211" y="170" width="98" height="66"/>
+                    <rect key="frame" x="211" y="170" width="98" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="TA">
-                        <color key="titleColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -101,24 +104,19 @@
             <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="BTicon" destination="mqc-vJ-u8y" id="WQ4-Q8-c1d"/>
+                <outlet property="BTicon" destination="mqc-vJ-u8y" id="xPD-cC-CuE"/>
                 <outlet property="background" destination="0v3-gm-oIE" id="iv6-jf-AcK"/>
                 <outlet property="classplace" destination="wKz-Zo-ZCt" id="MHT-Mn-KnM"/>
                 <outlet property="data_time" destination="tE8-4P-izT" id="nPB-XB-gLc"/>
                 <outlet property="grade" destination="VXj-5r-Xec" id="YvL-YX-yR4"/>
+                <outlet property="gradeBt" destination="Mhq-0X-eG1" id="mhF-Rq-ImX"/>
                 <outlet property="lectureattr" destination="ejm-Ab-gSJ" id="wC0-Mq-pQJ"/>
+                <outlet property="noticeBt" destination="3YF-Rl-4ec" id="C6f-Hc-Qgr"/>
                 <outlet property="profname" destination="g0k-yD-43t" id="Gfh-If-aE0"/>
                 <outlet property="schoolname" destination="deP-rv-nkL" id="1gl-c5-xPf"/>
+                <outlet property="taBt" destination="zFY-zW-PEd" id="EmT-hB-It4"/>
             </connections>
         </view>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kRy-8V-kZa">
-            <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-            <state key="normal" title="Button">
-                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-            </state>
-        </button>
     </objects>
     <resources>
         <image name="33b5e5.png" width="150" height="200"/>

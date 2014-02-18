@@ -13,7 +13,6 @@
 #import "ButtonCell.h"
 #import "CourseCell.h"
 #import "CourseAttendView.h"
-#import "ProfCourseDetailView.h"
 #import "CourseCreateController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 

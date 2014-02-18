@@ -60,13 +60,11 @@
     
     coursedetailheaderview.profname.text = currentcell.Professor.text;
     coursedetailheaderview.schoolname.text = currentcell.School.text;
-    coursedetailheaderview.lectureattr.text = @"Mandatory Lecture";
-    coursedetailheaderview.data_time.text = @"내마음대로 수업시간 결정하기";
-    coursedetailheaderview.classplace.text = @"나의 마음속";
     coursedetailheaderview.background.layer.cornerRadius = 52.5f;
     coursedetailheaderview.background.layer.masksToBounds = YES;
     
-    
+    [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.gradeBt addTarget:self action:@selector(show_grade) forControlEvents:UIControlEventTouchUpInside];
     
     if(auth)
         [coursedetailheaderview.BTicon addTarget:self action:@selector(BTiconAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -280,6 +278,22 @@
 
 -(void)BTiconAction:(id)sender{
     NSLog(@"BTicon pressed");
+}
+
+-(void)show_grade{
+    GradeViewController *gradeView = [[GradeViewController alloc] init];
+    gradeView.cid = [NSString stringWithFormat:@"%ld", currentcell.CourseID];
+    gradeView.currentcell = currentcell;
+    [self.navigationController pushViewController:gradeView animated:YES];
+}
+
+-(void)create_notice{
+    NoticeViewController *noticeView = [[NoticeViewController alloc] init];
+    
+    noticeView.cid = [NSString stringWithFormat:@"%ld", currentcell.CourseID];
+    noticeView.currentcell = currentcell;
+    
+    [self.navigationController pushViewController:noticeView animated:YES];
 }
 
 

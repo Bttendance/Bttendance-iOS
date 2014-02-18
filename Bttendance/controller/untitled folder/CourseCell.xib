@@ -17,6 +17,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1aE-NP-43m">
                         <rect key="frame" x="11" y="7" width="298" height="88"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hbQ-y0-XWg">
                         <rect key="frame" x="26" y="22" width="205" height="21"/>
@@ -56,6 +57,7 @@
                         </state>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="CourseName" destination="hbQ-y0-XWg" id="HbV-Rj-yB5"/>
@@ -69,7 +71,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="attendancecheckcyan.png" width="104" height="104"/>
-        <image name="attendanceringnonalpha.png" width="104" height="104"/>
+        <image name="attendancecheckcyan.png" width="52" height="52"/>
+        <image name="attendanceringnonalpha.png" width="52" height="52"/>
     </resources>
 </document>

@@ -19,7 +19,7 @@
 #import "ButtonCell.h"
 #import "AppDelegate.h"
 #import "CourseCreateController.h"
-#import "AttdStatView.h"
+#import "AttdStatViewController.h"
 #import "BTAPIs.h"
 
 @interface FeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, UIAlertViewDelegate>{

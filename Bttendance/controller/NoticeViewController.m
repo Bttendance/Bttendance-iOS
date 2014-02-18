@@ -6,13 +6,13 @@
 //  Copyright (c) 2014년 Utopia. All rights reserved.
 //
 
-#import "NoticeView.h"
+#import "NoticeViewController.h"
 
-@interface NoticeView ()
+@interface NoticeViewController ()
 
 @end
 
-@implementation NoticeView
+@implementation NoticeViewController
 @synthesize cid, currentcell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,9 +70,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         
-    }];
-
-    
+    }];    
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

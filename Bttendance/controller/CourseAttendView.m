@@ -52,68 +52,72 @@
     
     
     // Do any additional setup after loading the view from its nib.
-        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
-        NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
-        NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-        NSString *school_id = [NSString stringWithFormat:@"%ld", (long)sid];
-    
-        NSDictionary *params = @{@"username":username,
-                                 @"password":password,
-                                 @"school_id":school_id};
-    
-        NSArray *attdcourse = [[NSUserDefaults standardUserDefaults] objectForKey:AttendingCoursesKey];
-    
-        NSLog(@"user info : %@",params);
-        [AFmanager GET:[BTURL stringByAppendingString:@"/school/courses"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-            NSLog(@"Get Joinable Courses List success : %@", responseObject);
-            NSDictionary *courselist = responseObject;
-            NSLog(@"course count : %lu", (unsigned long)courselist.count);
-            
-            if(attdcourse.count != 0){
-                for(int i = 0 ; i < courselist.count; i++){
-                    Boolean joined = false;
-                    for(int j = 0; j < attdcourse.count; j++){
-                        int attd_int = [attdcourse[j] intValue];
-                        int course_int = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                        
-                        if(attd_int == course_int){
-                            joined = true;
-                            break;
-                        }
-                    }
-                    if(joined)
-                        [data0 addObject:[responseObject objectAtIndex:i]];
-                    else
-                        [data1 addObject:[responseObject objectAtIndex:i]];
-                }
-                rowcount0 = data0.count;
-                rowcount1 = data1.count;
-                [self.tableview reloadData];
-            } else{
-                data0 = nil;
-                rowcount0 = 0;
-                data1 = responseObject;
-                rowcount1 = data1.count;
-                [self.tableview reloadData];
-            }
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            NSLog(@"Get Joinable Courses List fail %@", error);
-        }];
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
 
+    NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
+    NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
+    NSString *school_id = [NSString stringWithFormat:@"%ld", (long)sid];
+
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"school_id":school_id};
     
+    NSArray *attdcourse = [[NSUserDefaults standardUserDefaults] objectForKey:AttendingCoursesKey];
+    NSArray *supvcourse = [[NSUserDefaults standardUserDefaults] objectForKey:SupervisingCoursesKey];
+
+    NSLog(@"user info : %@",params);
+    [AFmanager GET:[BTURL stringByAppendingString:@"/school/courses"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"Get Joinable Courses List success : %@", responseObject);
+        NSDictionary *courselist = responseObject;
+        NSLog(@"course count : %lu", (unsigned long)courselist.count);
+        
+        if(attdcourse.count != 0){
+            for(int i = 0 ; i < courselist.count; i++){
+                Boolean joined = false;
+                for(int j = 0; j < attdcourse.count; j++){
+                    int attd_int = [attdcourse[j] intValue];
+                    int course_int = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
+                    
+                    if(attd_int == course_int){
+                        joined = true;
+                        break;
+                    }
+                }
+                Boolean supved = false;
+                for(int j = 0; j < supvcourse.count; j++){
+                    int attd_int = [supvcourse[j] intValue];
+                    int course_int = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
+                    
+                    if(attd_int == course_int){
+                        supved = true;
+                        break;
+                    }
+                }
+                if(joined)
+                    [data0 addObject:[responseObject objectAtIndex:i]];
+                else if (!supved)
+                    [data1 addObject:[responseObject objectAtIndex:i]];
+            }
+            rowcount0 = data0.count;
+            rowcount1 = data1.count;
+            [self.tableview reloadData];
+        } else{
+            data0 = nil;
+            rowcount0 = 0;
+            data1 = responseObject;
+            rowcount1 = data1.count;
+            [self.tableview reloadData];
+        }
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"Get Joinable Courses List fail %@", error);
+    }];
 }
 
--(IBAction)check_button_action1:(id)sender{
-    
-    //course join
+-(IBAction)check_button_action:(id)sender{
     
     UIButton *comingbutton = (UIButton *)sender;
-    
     CourseInfoCell *comingcell = (CourseInfoCell *)comingbutton.superview.superview.superview;
-    
     currentcell = comingcell;
-    
     
     //alert showing
     NSString *string = [NSString stringWithFormat:@"%@ %@\n%@\n%@ ", comingcell.Info_CourseNumber, comingcell.Info_CourseName.text, comingcell.Info_ProfName.text, comingcell.Info_SchoolName ] ;
@@ -125,34 +129,29 @@
     NSLog(@"button's coursename : %@", comingcell.Info_CourseName.text);
     NSLog(@"button's profname : %@",comingcell.Info_ProfName.text);
     NSLog(@"button's courseid : %ld",(long)comingcell.Info_CourseID);
-    
-    
-    //disable button
-    [comingbutton removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
-
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section ==0)
-        return rowcount0;
-    
-    else if(section == 1)
-        return rowcount1;
-    else
-        return 0;
-//    return 1;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return rowcount0;
+        case 1:
+        default:
+            return rowcount1;
+    }
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section ==0){
-        return @"Attending Courses";
-    }
-    else {
-        return @"Joinable Courses";
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @"Attending Courses";
+        case 1:
+        default:
+            return @"Joinable Courses";
     }
 }
 
@@ -169,8 +168,7 @@
         cell.Info_CourseName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data0 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
         cell.backgroundColor  = [BTColor BT_white:1];
-        [cell.Info_Check addTarget:self action:@selector(check_button_action1:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrolladd@2x.png"] forState:UIControlStateNormal];
+        [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName = [[data0 objectAtIndex:indexPath.row] objectForKey:@"school_name"];
         cell.Info_CourseNumber = [[data0 objectAtIndex:indexPath.row] objectForKey:@"number"];
@@ -180,23 +178,25 @@
         cell.Info_CourseName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data1 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
         cell.backgroundColor  = [BTColor BT_white:1];
-        [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
+        [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrolladd@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName = [[data1 objectAtIndex:indexPath.row] objectForKey:@"school_name"];
         cell.Info_CourseNumber = [[data1 objectAtIndex:indexPath.row] objectForKey:@"number"];
+        [cell.Info_Button addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
-    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 35;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){//confirm
         AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
         
-        
         NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
         NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-        
         NSString *cid = [NSString stringWithFormat:@"%ld",(long)currentcell.Info_CourseID];
         
         NSDictionary *params = @{@"username":username,
@@ -206,15 +206,16 @@
         [AFmanager PUT:[BTURL stringByAppendingString:@"/user/attend/course"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
             NSLog(@"join course success : %@", responsObject);
             //join!!
+            [BTUserDefault setUserInfo:responsObject];
             
             //change icon
             [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
             //move to section 1
-            rowcount1++;
+            rowcount1--;
             [[self tableview] beginUpdates];
             NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
-            [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-            rowcount0--;
+            [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            rowcount0++;
             [[self tableview] endUpdates];
             
         }failure:^(AFHTTPRequestOperation *opration, NSError *error){
@@ -227,12 +228,12 @@
             [alert show];
             
             //restore button event
-            [currentcell.Info_Check addTarget:self action:@selector(check_button_action1:) forControlEvents:UIControlEventTouchUpInside];
+            [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
         }];
     }
     if(buttonIndex == 0){//cancel
         //restore button event
-        [currentcell.Info_Check addTarget:self action:@selector(check_button_action1:) forControlEvents:UIControlEventTouchUpInside];
+        [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
     }
 
 }

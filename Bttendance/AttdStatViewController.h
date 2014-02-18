@@ -13,7 +13,7 @@
 #import "BTColor.h"
 #import "BTAPIs.h"
 
-@interface AttdStatView : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
+@interface AttdStatViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     NSUInteger rowcount0;//for section 0
     NSUInteger rowcount1;//for section 1
     

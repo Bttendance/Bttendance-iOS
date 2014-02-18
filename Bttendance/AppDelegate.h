@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "ProfProfileView.h"
 #import "ProfCourseView.h"
 #import "ProfFeedView.h"
-#import "ProfMainView.h"
 #import "FeedViewController.h"
 #import "CourseListViewController.h"
 #import "ProfileViewController.h"

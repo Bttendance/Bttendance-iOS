@@ -112,6 +112,7 @@
     ProfileViewController *parentView = (ProfileViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2];
     _name_field.text = parentView.fullname;
     _name_field.textColor = [BTColor BT_black:1];
+    _name_field.tintColor = [BTColor BT_silver:1];
     _name_field.backgroundColor = [BTColor BT_white:1];
     _name_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _name_field.keyboardType = UIKeyboardTypeDefault;

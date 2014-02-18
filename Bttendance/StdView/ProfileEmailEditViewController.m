@@ -108,6 +108,7 @@
     _email_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _email_field.text = email;
     _email_field.textColor = [BTColor BT_black:1];
+    _email_field.tintColor = [BTColor BT_silver:1];
     _email_field.backgroundColor = [BTColor BT_white:1];
     _email_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _email_field.keyboardType = UIKeyboardTypeEmailAddress;

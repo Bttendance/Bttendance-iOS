@@ -20,7 +20,7 @@
 #import "ButtonCell.h"
 #import "AppDelegate.h"
 #import "CourseCreateController.h"
-#import "AttdStatView.h"
+#import "AttdStatViewController.h"
 
 @interface ProfFeedView : UIViewController<UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate, UIAlertViewDelegate>{
     CBMutableService *myservice;
