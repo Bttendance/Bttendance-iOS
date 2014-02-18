@@ -107,19 +107,21 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    _name_field = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, 300, 44)];
+    _name_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
 //    name_field.text = fullname;
     ProfileViewController *parentView = (ProfileViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2];
     _name_field.text = parentView.fullname;
     _name_field.textColor = [BTColor BT_black:1];
-    [cell.contentView addSubview:_name_field];
+    _name_field.backgroundColor = [BTColor BT_white:1];
     _name_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _name_field.keyboardType = UIKeyboardTypeDefault;
     _name_field.clearButtonMode = UITextFieldViewModeAlways;
     _name_field.returnKeyType = UIReturnKeyDone;
     _name_field.delegate = self;
     
+    cell.contentView.backgroundColor = [BTColor BT_white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.contentView addSubview:_name_field];
     
     return cell;
 }

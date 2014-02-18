@@ -209,8 +209,9 @@
         NSDictionary *params = @{@"serial":serial};
         [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
             NSLog(@"Getting success : %@",responseObject);
-            NSLog(@"validate : %@",[responseObject objectForKey:@"validate"]);
             SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
+            signUpController.schoolId = [[responseObject objectForKey:@"id"] integerValue];
+            signUpController.serial = serial;
             [self.navigationController pushViewController:signUpController animated:YES];
         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             enterBt.enabled = YES;

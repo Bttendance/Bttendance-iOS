@@ -105,10 +105,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    _email_field = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, 300, 44)];
+    _email_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _email_field.text = email;
     _email_field.textColor = [BTColor BT_black:1];
-    [cell.contentView addSubview:_email_field];
+    _email_field.backgroundColor = [BTColor BT_white:1];
     _email_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _email_field.keyboardType = UIKeyboardTypeEmailAddress;
     _email_field.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -116,7 +116,9 @@
     _email_field.returnKeyType = UIReturnKeyDone;
     _email_field.delegate = self;
 
+    cell.contentView.backgroundColor = [BTColor BT_white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.contentView addSubview:_email_field];
     
     return cell;
 }

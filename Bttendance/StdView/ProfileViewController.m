@@ -30,15 +30,11 @@
     self = [super initWithCoder:aDecoder];
     
     if(self) {
-        rowcount = 3;
         userinfo = [BTUserDefault getUserInfo];
-
         fullname = [userinfo objectForKey:FullNameKey];
         email = [userinfo objectForKey:EmailKey];
         employedschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
         enrolledschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
-        rowcount1 = employedschoollist.count;
-        rowcount2 = enrolledschoollist.count;
     }
     
     return self;
@@ -71,16 +67,11 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:self options:nil];
     profileheaderview = [topLevelObjects objectAtIndex:0];
     
-    profileheaderview.edit_button.titleLabel.textColor = [BTColor BT_white:0.7];
-    profileheaderview.edit_button.backgroundColor = [BTColor BT_black:0.5];
-    profileheaderview.Profile_image.backgroundColor = [BTColor BT_navy:1];
-    
     profileheaderview.accountType.text = @"Student";
     profileheaderview.userName.text = username;
     
     self.tableview.tableHeaderView = profileheaderview;
-    
-    // Do any additional setup after loading the view from its nib.
+    rowcount = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -92,13 +83,11 @@
                              @"password":password};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         alluserschools = responseObject;
-//        rowcount = 3 + data.count;
+        rowcount = [employedschoollist count] + [enrolledschoollist count];
         [self.tableview reloadData];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
     }];
 }
 
@@ -106,44 +95,18 @@
     [super viewDidAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 1){
-        return @"Employed schools";
-    }
-    else if(section ==2){
-        return @"Enrolled schools";
-    }
-    else{
-        return nil;
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section ==0){
-        return 0.0f;
-    }
-    else{
-        return 30.0f;
-    }
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section == 0)
-        return rowcount;
-    else if (section == 1)
-        return rowcount1;
-    else
-        return rowcount2;
+    switch (section) {
+        case 0:
+            return 3;
+        case 1:
+        default:
+            return rowcount;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -192,62 +155,53 @@
         NSArray *topLevelObejcts = [[NSBundle mainBundle] loadNibNamed:@"SchoolInfoCell" owner:self options:nil];
         cell = [topLevelObejcts objectAtIndex:0];
         
-        for(int i = 0; i< alluserschools.count ; i++){
-            if([[[alluserschools objectAtIndex:i] objectForKey:@"id"] intValue] == [[[employedschoollist objectAtIndex:indexPath.row] objectAtIndex:0] intValue]){
+        for(int i = 0; i < [alluserschools count]; i++) {
+            int school_id = [[[alluserschools objectAtIndex:i] objectForKey:@"id"] intValue];
+            if (indexPath.row < [employedschoollist count]
+                && [[employedschoollist[indexPath.row] objectForKey:@"id"] integerValue] == school_id) {
                 ((SchoolInfoCell *)cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
-                ((SchoolInfoCell *)cell).Info_SchoolID.text = [[alluserschools objectAtIndex:i] objectForKey:@"website"];
+                ((SchoolInfoCell *)cell).Info_SchoolID.text = @"Professor";
+                break;
+            }
+            if (indexPath.row >= [employedschoollist count]
+                && [[enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"id"] integerValue] == school_id) {
+                ((SchoolInfoCell *)cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
+                ((SchoolInfoCell *)cell).Info_SchoolID.text = [enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"key"];
                 break;
             }
         }
-        ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[employedschoollist objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
-        ((SchoolInfoCell *)cell).Info_SchoolID.textColor = [UIColor grayColor];
-        
-    }
-    else{
-        NSArray *topLevelObejcts = [[NSBundle mainBundle] loadNibNamed:@"SchoolInfoCell" owner:self options:nil];
-        cell = [topLevelObejcts objectAtIndex:0];
-        for(int i = 0; i< alluserschools.count ; i++){
-            if([[[alluserschools objectAtIndex:i] objectForKey:@"id"] intValue] == [[[enrolledschoollist objectAtIndex:indexPath.row] objectAtIndex:0] intValue]){
-                ((SchoolInfoCell *)cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
-                ((SchoolInfoCell *)cell).Info_SchoolID.text = [[alluserschools objectAtIndex:i] objectForKey:@"website"];
-                break;
-            }
-        }
-        ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[enrolledschoollist objectAtIndex:indexPath.row] objectAtIndex:0] intValue];
-        ((SchoolInfoCell *)cell).Info_SchoolID.textColor = [UIColor grayColor];
+        ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[employedschoollist objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-        return 44.0f;
+    switch (indexPath.section) {
+        case 0:
+            return 44;
+        default:
+            return 53;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1)
+        return;
+    
     if(indexPath.row == 0){
         //for edit name
         ProfileNameEditViewController *stdProfileNameEditView = [[ProfileNameEditViewController alloc] init];
-        
         stdProfileNameEditView.fullname = fullname;
-        
         [self.navigationController pushViewController:stdProfileNameEditView animated:YES];
     }
     if(indexPath.row == 1){
         //for edit email
         ProfileEmailEditViewController *stdProfileEmailEditView = [[ProfileEmailEditViewController alloc] init];
-        
         stdProfileEmailEditView.email = email;
-        
         [self.navigationController pushViewController:stdProfileEmailEditView animated:YES];
     }
-}
-
--(void)move_to_add{
-    SchoolChooseView *schoolView = [[SchoolChooseView alloc] init];
-    [self.navigationController pushViewController:schoolView animated:YES];
 }
 
 @end

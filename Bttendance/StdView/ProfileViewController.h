@@ -21,8 +21,6 @@
 
 @interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     NSUInteger rowcount;
-    NSUInteger rowcount1;
-    NSUInteger rowcount2;
     
     NSDictionary *userinfo;
     
@@ -42,7 +40,5 @@
 
 @property (strong, nonatomic) NSString *fullname;
 @property (strong, nonatomic) NSString *email;
-
--(void)move_to_add;
 
 @end

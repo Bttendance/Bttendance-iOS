@@ -103,34 +103,14 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.frame = CGRectMake(18, 8, 284, 30);
-    myLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0f];
-    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    UIView *headerView = [[UIView alloc] init];
-    headerView.frame = CGRectMake(0, 0, 320, 40);
-    [headerView addSubview:myLabel];
-    
-    return headerView;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     switch (section) {
         case 0:
-            if(data.count !=0)
-                return [supervisingCourses count] + 1;
-            else
-                return 0;
+            return [supervisingCourses count] + 1;
         case 1:
         default:
-            if(data.count !=0)
-                return [attendingCourses count] + 1;
-            else
-                return 0;
+            return [attendingCourses count] + 1;
     }
 }
 

@@ -118,7 +118,7 @@ NSString *signinRequest;
     
     switch(indexPath.row){
         case 0:{
-            [[cell textLabel] setText:@"Username"];
+            [[cell textLabel] setText:@"User ID"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             

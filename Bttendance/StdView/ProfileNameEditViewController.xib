@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="UQD-0K-EZ7">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="533"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="UQD-0K-EZ7">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ddO-mJ-Bao"/>
                         <outlet property="delegate" destination="-1" id="7I6-N6-A8u"/>
@@ -29,7 +29,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UQD-0K-EZ7" firstAttribute="top" secondItem="1" secondAttribute="top" id="CKD-ti-GRP"/>
-                <constraint firstAttribute="bottom" secondItem="UQD-0K-EZ7" secondAttribute="bottom" constant="35" id="LT3-R1-GNQ"/>
+                <constraint firstAttribute="bottom" secondItem="UQD-0K-EZ7" secondAttribute="bottom" id="LT3-R1-GNQ"/>
                 <constraint firstAttribute="trailing" secondItem="UQD-0K-EZ7" secondAttribute="trailing" id="SPs-73-0nq"/>
                 <constraint firstItem="UQD-0K-EZ7" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="qqP-2G-oY3"/>
             </constraints>

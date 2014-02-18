@@ -105,7 +105,7 @@ NSString *createCourseRequest;
     switch(indexPath.row){
         case 0:{
             [[cell textLabel] setText:@"Name"];
-            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].delegate = self;
@@ -119,7 +119,7 @@ NSString *createCourseRequest;
         }
         case 1:{
             [[cell textLabel] setText:@"Number"];
-            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].delegate = self;
@@ -134,7 +134,7 @@ NSString *createCourseRequest;
             
         case 2:{
             [[cell textLabel] setText:@"Professor"];
-            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].enabled = YES;
@@ -151,7 +151,7 @@ NSString *createCourseRequest;
             
         case 3:{
             [[cell textLabel] setText:@"School"];
-            [[cell textLabel] setTextColor:[BTColor BT_black:1]];
+            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].enabled = NO;
@@ -205,7 +205,7 @@ NSString *createCourseRequest;
     NSString *number = [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield text];
     NSString *school = [((CustomCell *)[self.tableView cellForRowAtIndexPath:school_index]).textfield text];
     NSString *prfname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
-    NSString *sid = [NSString stringWithFormat:@"%d", self.schoolId];
+    NSString *sid = [NSString stringWithFormat:@"%ld", self.schoolId];
     
     [self JSONCreateCourseRequest:username :password :name :number :sid :prfname];
     

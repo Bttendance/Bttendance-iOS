@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="cnm-i5-Pka">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="533"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="cnm-i5-Pka">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Ezf-1c-gnF"/>
                         <outlet property="delegate" destination="-1" id="Tf6-EB-KWx"/>
@@ -29,7 +29,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cnm-i5-Pka" firstAttribute="top" secondItem="1" secondAttribute="top" id="Y7d-KF-uta"/>
-                <constraint firstAttribute="bottom" secondItem="cnm-i5-Pka" secondAttribute="bottom" constant="35" id="glK-g3-bBi"/>
+                <constraint firstAttribute="bottom" secondItem="cnm-i5-Pka" secondAttribute="bottom" id="glK-g3-bBi"/>
                 <constraint firstItem="cnm-i5-Pka" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="nLY-Hc-9cQ"/>
                 <constraint firstAttribute="trailing" secondItem="cnm-i5-Pka" secondAttribute="trailing" id="p9I-B4-N6Z"/>
             </constraints>

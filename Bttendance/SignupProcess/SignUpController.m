@@ -15,6 +15,8 @@ NSString *signupRequest;
 @end
 
 @implementation SignUpController
+@synthesize schoolId;
+@synthesize serial;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -145,7 +147,7 @@ NSString *signupRequest;
             break;
         }
         case 2:{
-            [[cell textLabel] setText:@"Username"];
+            [[cell textLabel] setText:@"User ID"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
@@ -329,20 +331,34 @@ NSString *signupRequest;
         [defaults setBool:TRUE forKey:@"btd_isSignup"];
         [BTUserDefault setUserInfo:responseObject];
         
-        MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-//        [self.navigationController pushViewController:stdMainView animated:YES];
-        self.navigationController.navigationBarHidden = YES;
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+        if (serial != nil) {
+            NSDictionary *userinfo = [BTUserDefault getUserInfo];
+            NSString *username = [userinfo objectForKey:UsernameKey];
+            NSString *password = [userinfo objectForKey:PasswordKey];
+            
+            NSDictionary *params = @{@"username":username,
+                                     @"password":password,
+                                     @"school_id":[NSString stringWithFormat:@"%ld",(long)schoolId],
+                                     @"serial":serial};
+            [AFmanager PUT:[BTURL stringByAppendingString:@"/user/employ/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+                NSLog(@"Getting success : %@",responseObject);
+                [BTUserDefault setUserInfo:responseObject];
+                MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+                self.navigationController.navigationBarHidden = YES;
+                [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+            }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+                self.navigationController.navigationBarHidden = YES;
+                [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+            }];
+        } else {
+            MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        NSLog(@"SignUp fail %@", error);
-        
-        NSLog(@"Status Code : %ld",(long)[operation.response statusCode]);
-        
-        NSLog(@"error object : %@", [operation responseObject]);
-        
         NSString *rawstring = [[[operation responseObject] objectForKey:@"message"] objectAtIndex:0];
-        
         NSLog(@"error json : %@", rawstring);
         
         NSRange user_email = [rawstring rangeOfString:@"\"user_email_key\"" options:NSCaseInsensitiveSearch];

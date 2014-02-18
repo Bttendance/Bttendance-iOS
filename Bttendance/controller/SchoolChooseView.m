@@ -81,7 +81,7 @@
                 Boolean joined = false;
                 for(int j =0; j < userschoollist.count; j++){
                     int school_id = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                    int userschool_id = [userschoollist[j][0] intValue];
+                    int userschool_id = [[userschoollist[j] objectForKey:@"id"] intValue];
                     if(school_id == userschool_id){
                         joined = true;
                         break;
@@ -173,9 +173,9 @@
         if(indexPath.section == 0){
             NSArray *school_list = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
             for(int i = 0; i < school_list.count; i++){
-                if([school_list[i][0] intValue] == scid){
+                if([[school_list[i] objectForKey:@"id"] intValue] == scid){
                     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-                    NSDictionary *params = @{@"serial":school_list[i][1]};
+                    NSDictionary *params = @{@"serial":[school_list[i] objectForKey:@"key"]};
                     [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
                         if([[responseObject objectForKey:@"id"] integerValue] == scid){
                             CourseCreateController *courseCreateController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
