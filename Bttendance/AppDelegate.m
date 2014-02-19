@@ -21,7 +21,6 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-@synthesize device_token = _device_token;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -65,9 +64,22 @@
     for(int i =0; i < 32; i++){
         [deviceId appendFormat:@"%02x", ptr[i]];
     }
-    device_token = [NSString stringWithString:deviceId];
-    _device_token = device_token;
-    NSLog(@"APNS Device Token : %@", device_token);
+    NSString *device_token = [NSString stringWithString:deviceId];
+    
+    NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
+    NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
+    NSString *uuid = [[BTUserDefault getUserInfo] objectForKey:UUIDKey];
+    
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"device_uuid":uuid,
+                             @"notification_key":device_token};
+    
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+    [AFmanager GET:[BTURL stringByAppendingString:@"/user/update/notification_key"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        [BTUserDefault setUserInfo:responseObject];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+    }];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{

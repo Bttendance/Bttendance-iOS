@@ -17,11 +17,9 @@
 #import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSString *device_token;
+
     __block UIBackgroundTaskIdentifier background_task;
-    
     NSTimer *app_timer;
-    
     UIViewController *firstview;
     
 }
@@ -34,8 +32,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-@property (nonatomic, assign) NSString *device_token;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

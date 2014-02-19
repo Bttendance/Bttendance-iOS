@@ -40,8 +40,6 @@ NSString *signupRequest;
 
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-
     
     //Navigation title
     //set title
@@ -313,10 +311,6 @@ NSString *signupRequest;
 
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     NSString *uuid = [BTUserDefault representativeString:[BTUserDefault getUserService].UUID];
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *token;
-    token = app.device_token;
-    NSLog(@"token %@", token);
     NSDictionary *params = @{@"username":username,
                              @"email":email,
                              @"full_name":fullname,
