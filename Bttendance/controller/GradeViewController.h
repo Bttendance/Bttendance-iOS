@@ -13,6 +13,7 @@
 #import "CourseCell.h"
 #import "GradeCell.h"
 #import "BTAPIs.h"
+#import "BTColor.h"
 
 @interface GradeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     NSDictionary *userinfo;

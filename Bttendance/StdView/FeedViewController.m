@@ -14,30 +14,6 @@
 
 @implementation FeedViewController
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//        rowcount = 0;
-//        userinfo = [BTUserDefault getUserInfo];
-//        my_id = [userinfo objectForKey:UseridKey];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessage:) name:@"NEWMESSAGE" object:nil];
-//        
-//        time = 180; //set time
-//        
-//        myservice = [BTUserDefault getUserService];
-//        myCmanager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
-//        myPmanager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:nil];
-//        locationmanager = [[CLLocationManager alloc] init];
-//        
-//        [myPmanager addService:myservice];
-//        
-//        locationcheck = true;
-//    }
-//    return self;
-//}
-
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if(self){
@@ -65,22 +41,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    //status bar
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    
     //set background color
     self.view.backgroundColor = [BTColor BT_grey:1];
     
     //set table background color
     [self tableview].backgroundColor = [BTColor BT_grey:1];
-    
-//    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-//    if(version >= 7){
-//        self.navigationController.navigationBar.translucent = NO;
-//        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
-//    }
     
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
@@ -129,25 +95,6 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]){
-        //notice cell
-        
-        UIFont *cellfont = [UIFont systemFontOfSize:12];
-        NSString *rawmessage = [[data objectAtIndex:indexPath.row] objectForKey:@"message"];
-        NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
-        
-        CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-        
-        
-        return 102 + MessageLabelSize.size.height - 15;
-    }
-    else{
-        //not notice cell
-        return 102.0;
-    }
-    
-    
-    
     return 102.0;
 }
 
@@ -189,12 +136,9 @@
     
     cell.gap = secs;
     
-    
     cell.backgroundColor = [BTColor BT_grey:1];
     cell.cellbackground.backgroundColor = [BTColor BT_white:1];
     cell.cellbackground.layer.cornerRadius = 2;
-    
-    
     
     cell.timer = 0;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -204,24 +148,6 @@
         [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
         cell.isNotice = true;
         [cell.check_button setBackgroundImage:nil forState:UIControlStateNormal];
-        
-        UIFont *cellfont = cell.Message.font;
-        NSAttributedString *message = [[NSAttributedString alloc] initWithString:cell.Message.text attributes:@{NSFontAttributeName:cellfont}];
-        
-        CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-        
-        CGRect frame = cell.Message.frame;
-        frame.size.height = MessageLabelSize.size.height;
-        cell.Message.frame = frame;
-        cell.Message.numberOfLines = 0;
-        
-        frame = cell.Date.frame;
-        frame.origin.y = frame.origin.y + MessageLabelSize.size.height - 15;
-        cell.Date.frame = frame;
-        
-        frame = cell.cellbackground.frame;
-        frame.size.height = frame.size.height + MessageLabelSize.size.height;
-        cell.cellbackground.frame = frame;
     } else {
         cell.isNotice = false;
     

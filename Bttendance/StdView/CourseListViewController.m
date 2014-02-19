@@ -164,6 +164,7 @@
                             cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
                             cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
                             cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                            cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
                             cell.backgroundColor = [BTColor BT_grey:1];
                             cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                             cell.cellbackground.layer.cornerRadius = 2;
@@ -210,6 +211,7 @@
                             cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
                             cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
                             cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                            cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
                             cell.backgroundColor = [BTColor BT_grey:1];
                             cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                             cell.cellbackground.layer.cornerRadius = 2;

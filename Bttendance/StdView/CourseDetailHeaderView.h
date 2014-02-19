@@ -12,13 +12,15 @@
 
 +(CourseDetailHeaderView *)viewFromNibNamed:(NSString *)nibName;
 
+@property (weak, nonatomic) IBOutlet UIView *bg;
+
 @property (weak, nonatomic) IBOutlet UILabel *profname;
 @property (weak, nonatomic) IBOutlet UILabel *schoolname;
 @property (weak, nonatomic) IBOutlet UILabel *lectureattr;
 @property (weak, nonatomic) IBOutlet UILabel *data_time;
 @property (weak, nonatomic) IBOutlet UILabel *classplace;
-@property (weak, nonatomic) IBOutlet UIImageView *background;
-@property (weak, nonatomic) IBOutlet UIImageView *grade;
+@property (weak, nonatomic) IBOutlet UIView *background;
+@property (weak, nonatomic) IBOutlet UIView *grade;
 @property (weak, nonatomic) IBOutlet UIButton *BTicon;
 
 @property (weak, nonatomic) IBOutlet UIButton *gradeBt;

@@ -17,13 +17,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" allowsMultipleSelection="YES" rowHeight="53" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="sPk-Zp-4lK">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="519" id="e7U-Pr-wjj"/>
-                        <constraint firstAttribute="width" constant="320" id="hui-Ye-vHC"/>
-                    </constraints>
                     <color key="separatorColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="jnR-IT-R3x"/>
@@ -33,8 +29,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="sPk-Zp-4lK" firstAttribute="leading" secondItem="Zw3-3J-HVB" secondAttribute="leading" id="8PD-Nf-I1R"/>
-                <constraint firstItem="sPk-Zp-4lK" firstAttribute="top" secondItem="Zw3-3J-HVB" secondAttribute="top" id="ZXM-lG-QGQ"/>
+                <constraint firstAttribute="trailing" secondItem="sPk-Zp-4lK" secondAttribute="trailing" id="SzD-cZ-g8n"/>
+                <constraint firstItem="sPk-Zp-4lK" firstAttribute="leading" secondItem="Zw3-3J-HVB" secondAttribute="leading" id="lcy-m0-Vsp"/>
+                <constraint firstAttribute="bottom" secondItem="sPk-Zp-4lK" secondAttribute="bottom" id="nJu-aw-vAF"/>
+                <constraint firstItem="sPk-Zp-4lK" firstAttribute="top" secondItem="Zw3-3J-HVB" secondAttribute="top" id="wlg-4z-rc0"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

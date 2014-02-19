@@ -12,23 +12,28 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="009-5s-lOE">
-                    <rect key="frame" x="11" y="10" width="298" height="157"/>
+                    <rect key="frame" x="10" y="10" width="300" height="156"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="33b5e5.png" id="0v3-gm-oIE">
-                            <rect key="frame" x="14" y="24" width="105" height="105"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="f1f1ff.png" id="VXj-5r-Xec">
-                            <rect key="frame" x="14" y="23" width="105" height="1"/>
+                        <view contentMode="scaleToFill" id="xzu-cK-emS">
+                            <rect key="frame" x="14" y="23" width="104" height="104"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="Z4Q-r1-4yD">
+                            <rect key="frame" x="14" y="28" width="104" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendancecheckcyanbig.png" id="fos-8S-EoU">
+                            <rect key="frame" x="14" y="23" width="104" height="104"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="mqc-vJ-u8y">
-                            <rect key="frame" x="14" y="23" width="105" height="105"/>
+                            <rect key="frame" x="14" y="23" width="104" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" backgroundImage="enrollconfirm.png">
+                            <state key="normal" backgroundImage="attendanceringnonalphabig.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -71,7 +76,7 @@
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3YF-Rl-4ec">
-                    <rect key="frame" x="11" y="170" width="98" height="36"/>
+                    <rect key="frame" x="10" y="170" width="98" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -91,7 +96,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zFY-zW-PEd">
-                    <rect key="frame" x="211" y="170" width="98" height="36"/>
+                    <rect key="frame" x="212" y="170" width="98" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -105,10 +110,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="BTicon" destination="mqc-vJ-u8y" id="xPD-cC-CuE"/>
-                <outlet property="background" destination="0v3-gm-oIE" id="iv6-jf-AcK"/>
+                <outlet property="background" destination="xzu-cK-emS" id="f7g-FA-N2R"/>
+                <outlet property="bg" destination="009-5s-lOE" id="W1g-D7-rNW"/>
                 <outlet property="classplace" destination="wKz-Zo-ZCt" id="MHT-Mn-KnM"/>
                 <outlet property="data_time" destination="tE8-4P-izT" id="nPB-XB-gLc"/>
-                <outlet property="grade" destination="VXj-5r-Xec" id="YvL-YX-yR4"/>
+                <outlet property="grade" destination="Z4Q-r1-4yD" id="07z-yV-Ahn"/>
                 <outlet property="gradeBt" destination="Mhq-0X-eG1" id="mhF-Rq-ImX"/>
                 <outlet property="lectureattr" destination="ejm-Ab-gSJ" id="wC0-Mq-pQJ"/>
                 <outlet property="managerBt" destination="zFY-zW-PEd" id="hrC-bR-hAj"/>
@@ -119,8 +125,7 @@
         </view>
     </objects>
     <resources>
-        <image name="33b5e5.png" width="150" height="200"/>
-        <image name="enrollconfirm.png" width="60" height="60"/>
-        <image name="f1f1ff.png" width="150" height="200"/>
+        <image name="attendancecheckcyanbig.png" width="104" height="104"/>
+        <image name="attendanceringnonalphabig.png" width="104" height="104"/>
     </resources>
 </document>

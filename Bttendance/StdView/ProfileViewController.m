@@ -61,7 +61,13 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:self options:nil];
     profileheaderview = [topLevelObjects objectAtIndex:0];
     
-    profileheaderview.accountType.text = @"Student";
+    if ([employedschoollist count] > 0 && [enrolledschoollist count] > 0)
+        profileheaderview.accountType.text = @"Professor & Student";
+    else if ([employedschoollist count] > 0)
+        profileheaderview.accountType.text = @"Professor";
+    else
+        profileheaderview.accountType.text = @"Student";
+    
     profileheaderview.userName.text = username;
     
     self.tableview.tableHeaderView = profileheaderview;

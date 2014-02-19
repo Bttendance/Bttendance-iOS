@@ -43,12 +43,15 @@
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
-    titlelabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Choose School", @"");
     [titlelabel sizeToFit];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.tableview reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

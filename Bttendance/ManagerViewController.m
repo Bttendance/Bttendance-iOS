@@ -142,7 +142,6 @@
     }];
 }
 
-
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex ==1){
         //start attendance
@@ -159,7 +158,7 @@
         [AFmanager PUT:[BTURL stringByAppendingString:@"/course/add/manager"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:[NSString stringWithFormat:@"\"%@\" is now a manager of course %@.", managerFullName, courseName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Fail to add a user %@ as a manager.\nPlease check User Id of Email again.", managerFullName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }];

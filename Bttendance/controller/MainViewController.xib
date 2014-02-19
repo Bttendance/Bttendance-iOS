@@ -60,7 +60,7 @@
                     </viewControllers>
                 </navigationController>
                 <navigationController definesPresentationContext="YES" id="8Qw-TM-d4G">
-                    <tabBarItem key="tabBarItem" tag="1" title="Course" image="iostabbara1.png" id="LZe-mE-Shk"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Courses" image="iostabbara1.png" id="LZe-mE-Shk"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -76,8 +76,8 @@
                         </textAttributes>
                     </navigationBar>
                     <viewControllers>
-                        <viewController title="Course" nibName="CourseListViewController" id="0oT-Hq-a81" customClass="CourseListViewController">
-                            <navigationItem key="navigationItem" title="Course" id="OYy-fW-VHM">
+                        <viewController title="Courses" nibName="CourseListViewController" id="0oT-Hq-a81" customClass="CourseListViewController">
+                            <navigationItem key="navigationItem" title="Courses" id="OYy-fW-VHM">
                                 <barButtonItem key="backBarButtonItem" title="Back" id="4xq-Bu-9Rg">
                                     <color key="tintColor" red="0.94509803921568625" green="0.94509803921568625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </barButtonItem>

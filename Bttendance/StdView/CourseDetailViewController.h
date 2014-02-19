@@ -30,7 +30,6 @@
     Boolean auth;
     
     int time;
-    
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;

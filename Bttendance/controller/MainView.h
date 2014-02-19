@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "CourseCell.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
@@ -23,12 +22,10 @@
 #import "AttdStatViewController.h"
 
 
-@interface MainView : UIViewController<UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate, UITabBarDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>{
+@interface MainView : UIViewController<UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, UITabBarDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>{
     CBMutableService *myservice;
     CBPeripheralManager *myPmanager;
     CBCentralManager *myCmanager;
-    CLLocationManager *locationmanager;
-    Boolean locationcheck;
     
     NSDictionary *userinfo;
     
@@ -39,7 +36,6 @@
     NSString *cid;
     
     NSString *my_id;
-    
     
     
     PostCell *currentpostcell;
@@ -65,8 +61,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *ScanButton;
 @property (weak, nonatomic) IBOutlet UIButton *StopButton;
-@property (weak, nonatomic) IBOutlet UIButton *LocationButton;
-@property (weak, nonatomic) IBOutlet UIButton *StopGps;
 @property (weak, nonatomic) IBOutlet UIButton *AddRow;
 @property (weak, nonatomic) IBOutlet UIButton *CourseCheck;
 

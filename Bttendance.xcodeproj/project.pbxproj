@@ -16,7 +16,6 @@
 		2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F50B189781650096404D /* CreateNoticeViewController.m */; };
 		2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F50C189781650096404D /* CreateNoticeViewController.xib */; };
 		2131F5121897817F0096404D /* GradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F5101897817F0096404D /* GradeViewController.m */; };
-		2131F5131897817F0096404D /* GradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5111897817F0096404D /* GradeViewController.xib */; };
 		2131F5171897D6E00096404D /* GradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131F5151897D6E00096404D /* GradeCell.m */; };
 		2131F5181897D6E00096404D /* GradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5161897D6E00096404D /* GradeCell.xib */; };
 		2135C39A182BDD4E002C45DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135C399182BDD4E002C45DB /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -35,7 +34,6 @@
 		2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 2137BBBF182D482200B59E15 /* BTUserDefault.m */; };
 		213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B6C0F188FE62F00B3DF7B /* ProfileCell.m */; };
 		213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213B6C10188FE62F00B3DF7B /* ProfileCell.xib */; };
-		21443C601897E5AF00D5868F /* grade@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21443C5F1897E5AF00D5868F /* grade@2x.png */; };
 		21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21469A4318929E3C005D4FF2 /* CourseDetailViewController.m */; };
 		21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21469A4418929E3C005D4FF2 /* CourseDetailViewController.xib */; };
 		21469A4A18929ED7005D4FF2 /* CourseDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21469A4818929ED7005D4FF2 /* CourseDetailHeaderView.m */; };
@@ -128,6 +126,10 @@
 		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
+		D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */; };
+		D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */; };
+		D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */; };
+		D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5111897817F0096404D /* GradeViewController.xib */; };
 		D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
@@ -181,7 +183,6 @@
 		213B6C0E188FE62F00B3DF7B /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileCell.h; path = controller/ProfileCell.h; sourceTree = "<group>"; };
 		213B6C0F188FE62F00B3DF7B /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileCell.m; path = controller/ProfileCell.m; sourceTree = "<group>"; };
 		213B6C10188FE62F00B3DF7B /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileCell.xib; path = controller/ProfileCell.xib; sourceTree = "<group>"; };
-		21443C5F1897E5AF00D5868F /* grade@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grade@2x.png"; path = "Image/grade@2x.png"; sourceTree = "<group>"; };
 		21469A4218929E3C005D4FF2 /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseDetailViewController.h; path = StdView/CourseDetailViewController.h; sourceTree = "<group>"; };
 		21469A4318929E3C005D4FF2 /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseDetailViewController.m; path = StdView/CourseDetailViewController.m; sourceTree = "<group>"; };
 		21469A4418929E3C005D4FF2 /* CourseDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseDetailViewController.xib; path = StdView/CourseDetailViewController.xib; sourceTree = "<group>"; };
@@ -312,6 +313,10 @@
 		D485A0A818784C9C00F9561B /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		D485A0A918784C9C00F9561B /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendanceringnonalphabig@2x.png"; sourceTree = "<group>"; };
+		D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendancecheckcyanbig@2x.png"; sourceTree = "<group>"; };
+		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grade_bg@2x.png"; sourceTree = "<group>"; };
 		D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAPIs.h; sourceTree = "<group>"; };
 		D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIs.m; sourceTree = "<group>"; };
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
@@ -401,6 +406,7 @@
 		2135C398182BDD4E002C45DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */,
 				D41D684F18AA11520058E356 /* Crashlytics.framework */,
 				2182679C18A8810800F71819 /* AdSupport.framework */,
 				2182679A18A8803000F71819 /* libsqlite3.0.dylib */,
@@ -552,7 +558,9 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				21443C5F1897E5AF00D5868F /* grade@2x.png */,
+				D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */,
+				D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */,
+				D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */,
 				21B599E71876AE990063D7C4 /* addcoursebutton@2x.png */,
 				2131F5081896DE5B0096404D /* notice@2x.png */,
 				2191792D18724EC600799CC0 /* attendancecheckcyan@2x.png */,
@@ -743,7 +751,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -766,6 +774,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
 				D407B26F18AD803E009BCF8C /* CourseCreateController.xib in Resources */,
 				217971E7189695C500CEB8A3 /* ProfFeedView.xib in Resources */,
 				214FA101184CC2E6006DCD44 /* 0072b0.png in Resources */,
@@ -774,6 +783,7 @@
 				D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */,
 				2131F5091896DE5B0096404D /* notice@2x.png in Resources */,
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
+				D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */,
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
 				21917904186C38DD00799CC0 /* MainViewController.xib in Resources */,
@@ -788,12 +798,10 @@
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
 				2190C4951850715100626628 /* MainView.xib in Resources */,
-				21443C601897E5AF00D5868F /* grade@2x.png in Resources */,
 				2191793618724EC600799CC0 /* attendfail@2x.png in Resources */,
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
-				2131F5131897817F0096404D /* GradeViewController.xib in Resources */,
 				D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */,
 				218D9AF81886AE2700E8BAD0 /* ProfileViewController.xib in Resources */,
 				21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */,
@@ -811,6 +819,7 @@
 				21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
+				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
 				2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */,
 				212C05AF183B726D00AD6654 /* CatchPointController.xib in Resources */,
 				D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */,
@@ -818,6 +827,7 @@
 				218D9AEE1886AE0000E8BAD0 /* FeedViewController.xib in Resources */,
 				212C05BA183B73E000AD6654 /* SignUpController.xib in Resources */,
 				2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */,
+				D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
 				214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
@@ -1149,7 +1159,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

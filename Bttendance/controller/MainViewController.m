@@ -29,6 +29,9 @@
 {
     [super viewDidLoad];
     
+    //status bar
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if(version >= 7){
         self.navigationController.navigationBar.translucent = NO;
@@ -47,6 +50,8 @@
     UITabBarItem *item2 = [tbc.tabBar.items objectAtIndex:2];
     item2.image = [UIImage imageNamed:@"iostabbari2"];
     item2.selectedImage = [UIImage imageNamed:@"iostabbara2"];
+    
+    tbc.selectedIndex = 1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +59,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

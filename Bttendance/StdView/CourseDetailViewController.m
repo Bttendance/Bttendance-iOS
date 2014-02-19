@@ -22,9 +22,7 @@
         // Custom initialization
         userinfo = [BTUserDefault getUserInfo];
         my_id = [userinfo objectForKey:UseridKey];
-        
         time = 180;
-        
     }
     return self;
 }
@@ -33,15 +31,11 @@
 {
     [super viewDidLoad];
     
-    //Navigation title
-    //set title
-    
     NSString *title = currentcell.CourseName.text;
     
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
-    titlelabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -50,7 +44,6 @@
     
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
-
     
     //set header view
     CourseDetailHeaderView *coursedetailheaderview = [[CourseDetailHeaderView alloc] init];
@@ -67,16 +60,21 @@
     [coursedetailheaderview.gradeBt addTarget:self action:@selector(show_grade) forControlEvents:UIControlEventTouchUpInside];
     [coursedetailheaderview.managerBt addTarget:self action:@selector(show_manager) forControlEvents:UIControlEventTouchUpInside];
     
-    if(auth)
+    if(auth) {
         [coursedetailheaderview.BTicon addTarget:self action:@selector(BTiconAction:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 170)];
+        [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 156)];
+        coursedetailheaderview.gradeBt.hidden = YES;
+        coursedetailheaderview.noticeBt.hidden = YES;
+        coursedetailheaderview.managerBt.hidden = YES;
+    }
     
-//    set grade viewing
-//    [self showgrade:0.3 :coursedetailheaderview];
-    
+    [self showgrade:currentcell.grade :coursedetailheaderview];
     self.tableview.tableHeaderView = coursedetailheaderview;
-    
-    //get posts
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *cid = [NSString stringWithFormat:@"%ld", (long)currentcell.CourseID];
@@ -96,17 +94,6 @@
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"get course's feeds fail : %@", error);
     }];
-
-
-    
-    // Do any additional setup after loading the view from its nib.
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -272,7 +259,7 @@
 
 -(void)showgrade:(CGFloat)grade :(CourseDetailHeaderView *)view{
     CGRect frame = view.grade.frame;
-    frame.size.height = 105.0f * (1-grade);
+    frame.size.height = 94.0f * (100.0f-grade) / 100.0f;
     [view.grade setFrame:frame];
     NSLog(@"set grade showing");
 }
@@ -282,18 +269,16 @@
 }
 
 -(void)show_grade{
-    GradeViewController *gradeView = [[GradeViewController alloc] init];
-    gradeView.cid = [NSString stringWithFormat:@"%ld", currentcell.CourseID];
+    GradeViewController *gradeView = [[GradeViewController alloc] initWithNibName:@"GradeViewController" bundle:nil];
+    gradeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.CourseID];
     gradeView.currentcell = currentcell;
     [self.navigationController pushViewController:gradeView animated:YES];
 }
 
 -(void)create_notice{
-    CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] init];
-    
-    noticeView.cid = [NSString stringWithFormat:@"%ld", currentcell.CourseID];
+    CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
+    noticeView.cid = [NSString stringWithFormat:@"%ld",(long) currentcell.CourseID];
     noticeView.currentcell = currentcell;
-    
     [self.navigationController pushViewController:noticeView animated:YES];
 }
 

@@ -19,7 +19,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         userinfo = [BTUserDefault getUserInfo];
         rowcount = 0;
     }
@@ -29,6 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.textColor = [UIColor whiteColor];
+    self.navigationItem.titleView = titlelabel;
+    titlelabel.text = @"Grade";
+    [titlelabel sizeToFit];
+    
     // Do any additional setup after loading the view from its nib.
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
@@ -58,18 +67,16 @@
     
 };
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return rowcount;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 53;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

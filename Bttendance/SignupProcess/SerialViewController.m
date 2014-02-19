@@ -145,6 +145,7 @@
             return cell_new;
         }
         case 2: {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             BVUnderlineButton *request = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
             request.frame = CGRectMake(0.0f, 20.0f, 320.0f, 20.0f);
             request.backgroundColor = [UIColor clearColor];
@@ -157,6 +158,7 @@
             break;
         }
         case 3: {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
             partnership.frame = CGRectMake(0.0f, 10.0f, 320.0f, 20.0f);
             partnership.backgroundColor = [UIColor clearColor];

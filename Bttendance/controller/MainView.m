@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        locationcheck = true;
         rowcount = 0;
         userinfo = [BTUserDefault getUserInfo];
         my_id = [userinfo objectForKey:UseridKey];
@@ -60,9 +59,6 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
-//    self.navigationController.title = @"Bttendance";
-    //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
@@ -76,7 +72,6 @@
     myservice = [BTUserDefault getUserService];
     myCmanager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
     myPmanager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:nil];
-    locationmanager = [[CLLocationManager alloc] init];
     
     [myPmanager addService:myservice];
     
@@ -444,18 +439,6 @@
     NSLog(@"stop scan and advertise");
     [myPmanager stopAdvertising];
     [myCmanager stopScan];
-}
-
-- (IBAction)LocationButton:(id)sender {
-    locationmanager.delegate = self;
-    locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationmanager startUpdatingLocation];
-}
-
-- (IBAction)StopGps:(id)sender {
-    locationmanager.delegate = self;
-    [locationmanager stopUpdatingLocation];
-    locationcheck = true;
 }
 
 - (IBAction)AddRow:(id)sender {
@@ -880,84 +863,6 @@
     }
 }
 
-#pragma mark - CCLocationManagerDelegate
-
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-    if(locationcheck){
-        NSLog(@"updateLocation %@",locations);
-        CLLocation *newLocation = [locations lastObject];
-        
-        CLLocation *oldLocation;
-        if(locations.count >1){
-            oldLocation = [locations objectAtIndex:locations.count-2];
-        }
-        else{
-            oldLocation = nil;
-        }
-        
-        float longitude = newLocation.coordinate.longitude;
-        float latitude = newLocation.coordinate.latitude;
-
-        NSLog(@"new location is %f, %f",longitude, latitude);
-        NSLog(@"location : %@", newLocation);
-        locationcheck = false;
-        
-        
-        
-        
-        //send location to server
-        
-//        if([[userinfo objectForKey:@"btd_type"] isEqualToString:@"student"]){
-            NSString *username = [userinfo objectForKey:UsernameKey];
-            NSString *password = [userinfo objectForKey:PasswordKey];
-            NSString *longitude_ = [NSString stringWithFormat:@"%1.6f", longitude];
-            NSString *latitude_ = [NSString stringWithFormat:@"%1.6f", latitude];
-            
-            NSDictionary *params = @{@"username":username,
-                                     @"password":password,
-                                     @"post_id":pid,
-                                     @"longitute":longitude_,
-                                     @"latitute":latitude_};
-            
-            AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-            
-            [AFmanager PUT:@"http://www.bttendance.com/api/post/attendance/current/location" parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
-                //attendance start
-                NSLog(@"Send current location, %@",responsObject);
-                
-                //gps location stop
-//                locationmanager.delegate = self;
-//                [locationmanager stopUpdatingLocation];
-//                locationcheck = true;
-                
-            }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-                
-                //alert showing
-                NSString *string = @"Attendance Check Fail, please try again";
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                
-                //button restore
-                [currentpostcell.check_button addTarget:self action:@selector(send_attendance_check:) forControlEvents:UIControlEventTouchUpInside];
-                
-                NSLog(@"send current loaction fail with %@", error);
-                
-            }];
-            
-        }
-        
-        
-//    }
-//    MKCoordinateRegion userLocation = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1500.0, 1500.0);
-    
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if([[userinfo objectForKey:@"btd_type"] isEqualToString:@"professor"] && buttonIndex==1){
@@ -1036,7 +941,6 @@
 }
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"item : %@", item);
     
     if(item == _Course && viewscope
        &&[[userinfo objectForKey:@"btd_type"] isEqualToString:@"student"]){

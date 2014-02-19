@@ -21,6 +21,7 @@
 @property (assign, nonatomic) NSDate *time;
 @property (assign, nonatomic) NSInteger gap;
 @property (assign, nonatomic) NSInteger lastpid;
+@property (assign, nonatomic) NSInteger grade;
 
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 @property (weak, nonatomic) IBOutlet UIButton *check_button;
