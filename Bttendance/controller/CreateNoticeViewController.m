@@ -6,13 +6,13 @@
 //  Copyright (c) 2014년 Utopia. All rights reserved.
 //
 
-#import "NoticeViewController.h"
+#import "CreateNoticeViewController.h"
 
-@interface NoticeViewController ()
+@interface CreateNoticeViewController ()
 
 @end
 
-@implementation NoticeViewController
+@implementation CreateNoticeViewController
 @synthesize cid, currentcell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -21,7 +21,6 @@
     if (self) {
         // Custom initialization
         userinfo = [BTUserDefault getUserInfo];
-
     }
     return self;
 }
@@ -45,8 +44,13 @@
     titlelabel.text = NSLocalizedString(@"Post Notice", @"");
     [titlelabel sizeToFit];
     
+    _message.tintColor = [BTColor BT_silver:1];
+    
     Cid = [NSString stringWithString:cid];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [_message becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,7 +73,9 @@
     [AFmanager POST:[BTURL stringByAppendingString:@"/post/create/notice"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         [self.navigationController popViewControllerAnimated:YES];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+        NSString *string = @"Fails to made a notice, please try again";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }];    
 }
 

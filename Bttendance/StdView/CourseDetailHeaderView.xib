@@ -95,7 +95,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="TA">
+                    <state key="normal" title="Manager">
                         <color key="titleColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -111,10 +111,10 @@
                 <outlet property="grade" destination="VXj-5r-Xec" id="YvL-YX-yR4"/>
                 <outlet property="gradeBt" destination="Mhq-0X-eG1" id="mhF-Rq-ImX"/>
                 <outlet property="lectureattr" destination="ejm-Ab-gSJ" id="wC0-Mq-pQJ"/>
+                <outlet property="managerBt" destination="zFY-zW-PEd" id="hrC-bR-hAj"/>
                 <outlet property="noticeBt" destination="3YF-Rl-4ec" id="C6f-Hc-Qgr"/>
                 <outlet property="profname" destination="g0k-yD-43t" id="Gfh-If-aE0"/>
                 <outlet property="schoolname" destination="deP-rv-nkL" id="1gl-c5-xPf"/>
-                <outlet property="taBt" destination="zFY-zW-PEd" id="EmT-hB-It4"/>
             </connections>
         </view>
     </objects>

@@ -19,7 +19,7 @@
 #import "SchoolChooseView.h"
 
 
-@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
+@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>{
     
     NSInteger rowcount1;
     NSInteger rowcount2;
@@ -30,12 +30,17 @@
     NSArray *attendingCourses;
     
     CourseCell *currentcell;
+    
+    NSString *pid;
+    NSString *cid;
+    
+    CBMutableService *myservice;
+    CBPeripheralManager *myPmanager;
+    CBCentralManager *myCmanager;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-
 -(void)move_to_school:(id)sender;
--(void)move_to_course:(id)sender;
 
 @end

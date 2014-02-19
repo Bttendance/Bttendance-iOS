@@ -65,6 +65,7 @@
     
     [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
     [coursedetailheaderview.gradeBt addTarget:self action:@selector(show_grade) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.managerBt addTarget:self action:@selector(show_manager) forControlEvents:UIControlEventTouchUpInside];
     
     if(auth)
         [coursedetailheaderview.BTicon addTarget:self action:@selector(BTiconAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -288,12 +289,19 @@
 }
 
 -(void)create_notice{
-    NoticeViewController *noticeView = [[NoticeViewController alloc] init];
+    CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] init];
     
     noticeView.cid = [NSString stringWithFormat:@"%ld", currentcell.CourseID];
     noticeView.currentcell = currentcell;
     
     [self.navigationController pushViewController:noticeView animated:YES];
+}
+
+-(void)show_manager{
+    ManagerViewController *managerView = [[ManagerViewController alloc] initWithNibName:@"ManagerViewController" bundle:nil];
+    managerView.courseId = currentcell.CourseID;
+    managerView.courseName = currentcell.CourseName.text;
+    [self.navigationController pushViewController:managerView animated:YES];
 }
 
 

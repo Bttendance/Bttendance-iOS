@@ -25,11 +25,13 @@
     CourseInfoCell *currentcell;
     
     int sid;
+    NSString *sname;
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property (nonatomic) int sid;
+@property (nonatomic) NSString *sname;
 
 -(IBAction)check_button_action:(id)sender;
 

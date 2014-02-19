@@ -23,6 +23,11 @@
         userinfo = [BTUserDefault getUserInfo];
         supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
         attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
+        
+        myservice = [BTUserDefault getUserService];
+        myCmanager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+        myPmanager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:nil];
+        [myPmanager addService:myservice];
     }
     
     return self;
@@ -155,10 +160,10 @@
                     for (int i = 0 ; i< data.count; i++){
                         if( [[supervisingCourses objectAtIndex:indexPath.row] intValue] ==
                            [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
-                            cell.CourseName.text = [[data objectAtIndex:indexPath.row] objectForKey:@"name"];
-                            cell.Professor.text = [[data objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
-                            cell.School.text = [[data objectAtIndex:indexPath.row] objectForKey:@"school_name"];
-                            cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                            cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                            cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                            cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                            cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
                             cell.backgroundColor = [BTColor BT_grey:1];
                             cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                             cell.cellbackground.layer.cornerRadius = 2;
@@ -208,6 +213,7 @@
                             cell.backgroundColor = [BTColor BT_grey:1];
                             cell.cellbackground.backgroundColor = [BTColor BT_white:1];
                             cell.cellbackground.layer.cornerRadius = 2;
+                            [cell.check_button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
                             break;
                         }
                     }
@@ -271,15 +277,128 @@
     }
 }
 
--(void)move_to_course:(id)sender{
-//    StdCourseDetailView *stdCourseDetailView = [[StdCourseDetailView alloc] init];
-//    stdCourseDetailView.currentcell = (CourseCell *)[self.tableview cellForRowAtIndexPath:indexPath];
-//    [self.navigationController pushViewController:stdCourseDetailView animated:YES];
+-(void)attdStart:(id)sender{
+
+    UIButton *send = (UIButton *)sender;
+    CourseCell *cell = (CourseCell *)send.superview.superview.superview;
+    currentcell = cell;
+    cid = [NSString stringWithFormat:@"%ld", (long)cell.CourseID];
+    
+    //alert showing
+    NSString *string = @"Do you wish to start attendance check?";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attendance check" message:string delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+    [alert show];
 }
 
--(void)attdStart:(id)sender{
-    NSLog(@"attendance check start");
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex ==1){
+        //start attendance
+        NSString *username = [userinfo objectForKey:UsernameKey];
+        NSString *password = [userinfo objectForKey:PasswordKey];
+        
+        NSDictionary *params = @{@"username":username,
+                                 @"password":password,
+                                 @"course_id":cid};
+        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+        [AFmanager POST:@"http://www.bttendance.com/api/post/attendance/start" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+            //attendance start
+            NSArray *posts = [responseObject objectForKey:@"posts"];
+            
+            //find pid
+            pid = [NSString stringWithFormat:@"%d", [[[responseObject objectForKey:@"posts"] objectAtIndex:(posts.count-1)] intValue]];
+            
+            //time convert
+            NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+            
+            NSDateFormatter *dm = [[NSDateFormatter alloc] init];
+            [dm setTimeZone:[NSTimeZone timeZoneWithName:@"KST"]];
+            
+            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            [dateformatter setTimeZone:gmt];
+            
+            [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+            [dm setDateFormat:@"yy/MM/dd HH:mm"];
+            NSDate *updatedAt = [dateformatter dateFromString:[responseObject objectForKey:@"updatedAt"]];
+            
+            NSTimeInterval secs = [updatedAt timeIntervalSinceNow];
+            
+            currentcell.gap = secs;
+            
+            //start bt scan
+            //advertise
+            [myPmanager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[myservice.UUID]}];
+            //                                           , CBAdvertisementDataLocalNameKey:[[UIDevice currentDevice] name]}];
+            NSLog(@"my servie uuid is %@", myservice.UUID);
+            NSLog(@"my device name is %@", [[UIDevice currentDevice] name]);
+            
+            //scan
+            [myCmanager scanForPeripheralsWithServices:nil options:nil];
+            
+            //image change start
+//            [self showing_timer_course:currentcell];
+            
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            
+        }];
+    } else {
+        //nothing to do
+    }
+}
+
+#pragma mark - CBCentralManagerDelegate
+-(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+    if(pid == nil){
+        //wtf?? pid is null
+    }
+    NSString *username = [userinfo objectForKey:UsernameKey];
+    NSString *password = [userinfo objectForKey:PasswordKey];
+    NSString *uuid = [BTUserDefault representativeString:[[advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey] objectAtIndex:0]];
     
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"post_id":pid,
+                             @"uuid":uuid};
+    
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+    
+    [AFmanager PUT:@"http://www.bttendance.com/api/post/attendance/found/device" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        //alert showing
+        NSString *string = @"Attendance Check Fail, please try again";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }];
+}
+
+-(void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    NSString *state = nil;
+    switch ([myCmanager state]) {
+        case CBCentralManagerStateUnsupported:
+            state = @"The platform hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStatePoweredOff:{
+            state = @"Bluetooth is currently powered off.";
+            //alert showing
+            NSString *string = @"Please enable your Bluetooth for Attendance Check";
+            NSString *title = @"Your Bluetooth is currently off";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        case CBCentralManagerStatePoweredOn:
+            state = @"power-on";
+            break;
+        case CBCentralManagerStateUnknown:
+            state = @"Unknown state";
+            break;
+        default:
+            state = @"default";
+            break;
+    }
 }
 
 

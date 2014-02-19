@@ -23,5 +23,5 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *gradeBt;
 @property (weak, nonatomic) IBOutlet UIButton *noticeBt;
-@property (weak, nonatomic) IBOutlet UIButton *taBt;
+@property (weak, nonatomic) IBOutlet UIButton *managerBt;
 @end

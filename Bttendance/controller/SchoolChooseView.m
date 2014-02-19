@@ -49,7 +49,6 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Choose School", @"");
     [titlelabel sizeToFit];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -202,6 +201,7 @@
     } else{
         CourseAttendView *courseAttendView = [[CourseAttendView alloc] initWithNibName:@"CourseAttendView" bundle:nil];
         courseAttendView.sid = ((SchoolInfoCell *)[self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolID_int;
+        courseAttendView.sname = ((SchoolInfoCell *)[self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolName.text;
         [self.navigationController pushViewController:courseAttendView animated:YES];
     }
 }

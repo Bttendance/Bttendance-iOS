@@ -95,6 +95,8 @@
     NSDictionary *params = @{@"username":username,
                              @"password":password};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/feed"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
         
@@ -103,9 +105,11 @@
         
         rowcount = data.count;
         [_tableview reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"get user's feeds fail : %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 
 }
@@ -206,10 +210,6 @@
         
         CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
         
-        
-        
-        //        CGSize MessageLabelSize = [message sizeWithFont:cellfont forWidth:200 lineBreakMode:NSLineBreakByWordWrapping];
-        //
         CGRect frame = cell.Message.frame;
         frame.size.height = MessageLabelSize.size.height;
         cell.Message.frame = frame;
@@ -222,8 +222,7 @@
         frame = cell.cellbackground.frame;
         frame.size.height = frame.size.height + MessageLabelSize.size.height;
         cell.cellbackground.frame = frame;
-    }
-    else{
+    } else {
         cell.isNotice = false;
     
         if(time + cell.gap <= 0){//time over;

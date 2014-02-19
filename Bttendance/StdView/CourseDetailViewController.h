@@ -15,20 +15,18 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 #import "GradeViewController.h"
-#import "NoticeViewController.h"
+#import "CreateNoticeViewController.h"
+#import "ManagerViewController.h"
 
 
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     __weak CourseCell *currentcell;
     
     NSDictionary *userinfo;
-    
     NSInteger rowcount;
-    
     NSMutableArray *data;
     
     NSString *my_id;
-    
     Boolean auth;
     
     int time;

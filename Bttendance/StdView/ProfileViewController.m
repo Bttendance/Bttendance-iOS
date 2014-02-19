@@ -44,13 +44,16 @@
     NSDictionary *params = @{@"username":username,
                              @"password":password};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         alluserschools = responseObject;
         [self.tableview reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
     
     ProfileHeaderView *profileheaderview = [[ProfileHeaderView alloc] init];
@@ -72,6 +75,9 @@
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSDictionary *params = @{@"username":username,
                              @"password":password};
+    
+    employedschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
+    enrolledschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
@@ -152,16 +158,21 @@
                 && [[employedschoollist[indexPath.row] objectForKey:@"id"] integerValue] == school_id) {
                 ((SchoolInfoCell *)cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
                 ((SchoolInfoCell *)cell).Info_SchoolID.text = @"Professor";
+                ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[employedschoollist objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                ((SchoolInfoCell *)cell).backgroundColor = [UIColor clearColor];
+                ((SchoolInfoCell *)cell).contentView.backgroundColor = [UIColor clearColor];
                 break;
             }
             if (indexPath.row >= [employedschoollist count]
                 && [[enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"id"] integerValue] == school_id) {
                 ((SchoolInfoCell *)cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
-                ((SchoolInfoCell *)cell).Info_SchoolID.text = [enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"key"];
+                ((SchoolInfoCell *)cell).Info_SchoolID.text = [NSString stringWithFormat:@"Student - %@",[enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"key"]];
+                ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[enrolledschoollist objectAtIndex:indexPath.row - [employedschoollist count]] objectForKey:@"id"] intValue];
+                ((SchoolInfoCell *)cell).backgroundColor = [UIColor clearColor];
+                ((SchoolInfoCell *)cell).contentView.backgroundColor = [UIColor clearColor];
                 break;
             }
         }
-        ((SchoolInfoCell *)cell).Info_SchoolID_int = [[[employedschoollist objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

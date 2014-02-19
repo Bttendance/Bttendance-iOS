@@ -69,7 +69,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="attendancecheckcyan.png" width="104" height="104"/>
-        <image name="attendanceringnonalpha.png" width="104" height="104"/>
+        <image name="attendancecheckcyan.png" width="52" height="52"/>
+        <image name="attendanceringnonalpha.png" width="52" height="52"/>
     </resources>
 </document>

@@ -182,13 +182,11 @@ NSString *serialRequest;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Serial request is unavailable.\nPlease check your email again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];
-    
 }
 
 -(void)backbuttonpressed:(id)aResponder{
     //move to view which has index 1 in viewstack;
     [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
 }
-
 
 @end
