@@ -22,27 +22,19 @@
 #import "AttdStatViewController.h"
 #import "BTAPIs.h"
 
-@interface FeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, UIAlertViewDelegate>{
-    CBMutableService *myservice;
-    CBPeripheralManager *myPmanager;
-    CBCentralManager *myCmanager;
+@interface FeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     
     NSDictionary *userinfo;
-    
     NSMutableArray * data;
     
     NSString *pid;
-    
     NSString *cid;
-    
     NSString *my_id;
     
     PostCell *currentpostcell;
-    
     CourseCell *currentcoursecell;
     
     NSInteger rowcount;
-    
     int time;
     
     Boolean locationcheck;
@@ -53,8 +45,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 -(void)showing_timer_post:(PostCell *) cell;
--(void)change_check_post1:(NSTimer *)timer;
--(void)send_attendance_check1:(id)sender;
--(void)receiveMessage1:(id)sender;
+-(void)change_check_post:(NSTimer *)timer;
+-(void)send_attendance_check:(id)sender;
+-(void)receiveMessage:(id)sender;
 
 @end

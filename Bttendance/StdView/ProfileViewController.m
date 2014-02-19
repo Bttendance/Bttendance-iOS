@@ -36,26 +36,6 @@
     [super viewDidLoad];
     
     _navigationbar.tintColor = [UIColor whiteColor];
-    
-    
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    
-    NSDictionary *params = @{@"username":username,
-                             @"password":password};
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        alluserschools = responseObject;
-        [self.tableview reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }];
-    
     ProfileHeaderView *profileheaderview = [[ProfileHeaderView alloc] init];
     
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:self options:nil];
@@ -68,8 +48,7 @@
     else
         profileheaderview.accountType.text = @"Student";
     
-    profileheaderview.userName.text = username;
-    
+    profileheaderview.userName.text = [userinfo objectForKey:UsernameKey];
     self.tableview.tableHeaderView = profileheaderview;
     rowcount = 0;
 }
@@ -85,12 +64,17 @@
     employedschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
     enrolledschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+    
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         alluserschools = responseObject;
         rowcount = [employedschoollist count] + [enrolledschoollist count];
         [self.tableview reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 

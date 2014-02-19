@@ -41,25 +41,13 @@
     CAGradientLayer *layerR = [CAGradientLayer layer];
     layerR.frame = _gradientR.bounds;
     layerR.colors = [NSArray arrayWithObjects:(id)[[BTColor BT_Red:1] CGColor],(id)[[BTColor BT_Red:0] CGColor], nil];
-//    [UIColor colorWithRed:0.757 green:0.153 blue:0.176 alpha:1];
+
     [layerR setStartPoint:CGPointMake(0.0, 0.5)];
     [layerR setEndPoint:CGPointMake(1.0, 0.5)];
 
     [_gradientR.layer insertSublayer:layerR atIndex:0];
     
-    
-    
-    //------- navigation hidden -------//
-
-    //------- background image trans -------//
-//    myBGImages = [NSArray arrayWithObjects:@"Personalize_bg1.jpg", @"back2.png", nil];
-    
     [self.view setBackgroundColor:[UIColor blackColor]];
-    
-//    back1 = [[UIView alloc] initWithFrame:self.view.frame];
-//    back2 = [[UIView alloc] initWithFrame:self.view.frame];
-//    [back1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Personalize_bg1.jpg"]]];
-//    [back2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Personalize_bg2.jpg"]]];
     
     
     back1.alpha = 0;

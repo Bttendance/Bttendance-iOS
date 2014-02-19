@@ -117,7 +117,7 @@
 }
 
 +(BOOL)isFirstLaunch{
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"btd_isSignup"])
+    if([[NSUserDefaults standardUserDefaults] boolForKey:FirstLaunchKey])
         return false;
     else
         return true;

@@ -19,6 +19,7 @@
 #define SupervisingCoursesKey @"btd_supervising_courses"
 #define EmployedSchoolsKey @"btd_employed_schools"
 #define EnrolledSchoolsKey @"btd_enrolled_schools"
+#define FirstLaunchKey @"btd_first"
 
 @interface BTUserDefault : NSObject {
    

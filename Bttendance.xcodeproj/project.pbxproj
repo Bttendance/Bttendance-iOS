@@ -70,8 +70,6 @@
 		218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9B11188ED28C00E8BAD0 /* ProfileNameEditViewController.xib */; };
 		218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9B15188FD2C800E8BAD0 /* ProfileEmailEditViewController.m */; };
 		218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9B16188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib */; };
-		2190C4941850715100626628 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2190C4921850715100626628 /* MainView.m */; };
-		2190C4951850715100626628 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2190C4931850715100626628 /* MainView.xib */; };
 		2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2190C4971850C35100626628 /* bgmainlossy@2x.jpg */; };
 		21917903186C38DD00799CC0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917901186C38DD00799CC0 /* MainViewController.m */; };
 		21917904186C38DD00799CC0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21917902186C38DD00799CC0 /* MainViewController.xib */; };
@@ -236,9 +234,6 @@
 		218D9B14188FD2C800E8BAD0 /* ProfileEmailEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileEmailEditViewController.h; path = StdView/ProfileEmailEditViewController.h; sourceTree = "<group>"; };
 		218D9B15188FD2C800E8BAD0 /* ProfileEmailEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileEmailEditViewController.m; path = StdView/ProfileEmailEditViewController.m; sourceTree = "<group>"; };
 		218D9B16188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileEmailEditViewController.xib; path = StdView/ProfileEmailEditViewController.xib; sourceTree = "<group>"; };
-		2190C4911850715100626628 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = controller/MainView.h; sourceTree = "<group>"; };
-		2190C4921850715100626628 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = controller/MainView.m; sourceTree = "<group>"; };
-		2190C4931850715100626628 /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainView.xib; path = controller/MainView.xib; sourceTree = "<group>"; };
 		2190C4971850C35100626628 /* bgmainlossy@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "bgmainlossy@2x.jpg"; path = "Image/bgmainlossy@2x.jpg"; sourceTree = "<group>"; };
 		21917900186C38DD00799CC0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = controller/MainViewController.h; sourceTree = "<group>"; };
 		21917901186C38DD00799CC0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = controller/MainViewController.m; sourceTree = "<group>"; };
@@ -468,9 +463,6 @@
 				D485A09D1878343A00F9561B /* SubViewController */,
 				D41DF93C18ACCCA30019C3AB /* SubView */,
 				217D75B11850D77300AA0D95 /* TableViewCell */,
-				2190C4911850715100626628 /* MainView.h */,
-				2190C4921850715100626628 /* MainView.m */,
-				2190C4931850715100626628 /* MainView.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -797,7 +789,6 @@
 				218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
-				2190C4951850715100626628 /* MainView.xib in Resources */,
 				2191793618724EC600799CC0 /* attendfail@2x.png in Resources */,
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */,
@@ -932,7 +923,6 @@
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
 				21CF9354184B398D00A81590 /* SerialViewController.m in Sources */,
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
-				2190C4941850715100626628 /* MainView.m in Sources */,
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpController.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,

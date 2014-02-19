@@ -51,30 +51,25 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *uuid = [userinfo objectForKey:UUIDKey];
     
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"device_uuid":uuid};
     NSDictionary *params_ = @{@"username":username,
                               @"password":password};
     
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"device_uuid":uuid};
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/auto/signin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         [BTUserDefault setUserInfo:responseObject];
-
-        userinfo = [BTUserDefault getUserInfo];
-        supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
-        attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
         
         [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
-            
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             rowcount1 = [supervisingCourses count] + 1;
             rowcount2 = [attendingCourses count] + 1;
@@ -83,14 +78,11 @@
             
         }failure:^(AFHTTPRequestOperation *operation, NSError *error){
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            
             NSLog(@"Get User Courses Fail : %@", error);
         }];
-        
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -267,11 +259,9 @@
         courseDetailViewController.currentcell = cell;
         
         if(indexPath.section == 0){
-            //section 0
             courseDetailViewController.auth = YES;
         }
         else{
-            //section 1
             courseDetailViewController.auth = NO;
         }
         
@@ -280,7 +270,6 @@
 }
 
 -(void)attdStart:(id)sender{
-
     UIButton *send = (UIButton *)sender;
     CourseCell *cell = (CourseCell *)send.superview.superview.superview;
     currentcell = cell;
@@ -302,7 +291,7 @@
                                  @"password":password,
                                  @"course_id":cid};
         AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-        [AFmanager POST:@"http://www.bttendance.com/api/post/attendance/start" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        [AFmanager POST:[BTURL stringByAppendingString:@"/post/attendance/start"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
             //attendance start
             NSArray *posts = [responseObject objectForKey:@"posts"];
             
@@ -364,12 +353,7 @@
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
     [AFmanager PUT:@"http://www.bttendance.com/api/post/attendance/found/device" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        //alert showing
-        NSString *string = @"Attendance Check Fail, please try again";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
     }];
 }
 
@@ -385,10 +369,10 @@
         case CBCentralManagerStatePoweredOff:{
             state = @"Bluetooth is currently powered off.";
             //alert showing
-            NSString *string = @"Please enable your Bluetooth for Attendance Check";
-            NSString *title = @"Your Bluetooth is currently off";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+//            NSString *string = @"Please enable your Bluetooth for Attendance Check";
+//            NSString *title = @"Your Bluetooth is currently off";
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
             break;
         }
         case CBCentralManagerStatePoweredOn:
@@ -402,6 +386,5 @@
             break;
     }
 }
-
 
 @end

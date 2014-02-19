@@ -52,6 +52,27 @@
     item2.selectedImage = [UIImage imageNamed:@"iostabbara2"];
     
     tbc.selectedIndex = 1;
+    
+    NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
+    NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
+    NSString *uuid = [[BTUserDefault getUserInfo] objectForKey:UUIDKey];
+    
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"device_uuid":uuid};
+    
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+    [AFmanager GET:[BTURL stringByAppendingString:@"/user/auto/signin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        [BTUserDefault setUserInfo:responseObject];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        if (operation.response.statusCode == 401) {
+            [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:FirstLaunchKey];
+            CatchPointController *catchView = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
+            [self.navigationController pushViewController:catchView animated:NO];
+        }
+    }];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
 }
 
 - (void)didReceiveMemoryWarning

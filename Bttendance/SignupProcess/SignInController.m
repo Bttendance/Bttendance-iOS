@@ -233,7 +233,7 @@ NSString *signinRequest;
     [AFmanager GET:signinRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"SignIn success : %@", responseObject);
 
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"btd_isSignup"];
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:FirstLaunchKey];
         [BTUserDefault setUserInfo:responseObject];
         
         NSLog(@"signup data %@",[BTUserDefault getUserInfo]);
@@ -245,10 +245,9 @@ NSString *signinRequest;
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"SignIn fail %@", error);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Sign In Failed. Please check your username and password again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }];
 }
-
-
-
 
 @end

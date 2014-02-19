@@ -7,6 +7,7 @@
 //
 
 #import "SignUpController.h"
+#import "MainViewController.h"
 
 NSString *signupRequest;
 
@@ -321,14 +322,13 @@ NSString *signupRequest;
                              @"full_name":fullname,
                              @"password":password,
                              @"device_type":@"iphone",
-                             @"device_uuid":uuid,
-                             @"notification_key": token};
+                             @"device_uuid":uuid};
     
     [AFmanager POST:signupRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"SignUp success : %@", responseObject);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:TRUE forKey:@"btd_isSignup"];
+        [defaults setBool:TRUE forKey:FirstLaunchKey];
         [BTUserDefault setUserInfo:responseObject];
         
         if (serial != nil) {

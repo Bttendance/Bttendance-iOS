@@ -32,23 +32,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController;
     
-    
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
-
-    
     if([BTUserDefault isFirstLaunch]){
-        
         firstview = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
-
-        navigationController = [[UINavigationController alloc] initWithRootViewController:firstview];
-
-    }
-    else{
+    } else {
         firstview = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-        
-        //aps regist
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound];
-
     }
         
     // Navigation
@@ -58,17 +45,9 @@
 
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
-    
-    //    [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    
-//    NSDictionary *noti = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//    if(noti){
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWMESSAGE" object:nil];
-//    }
   
     if([[[UIDevice currentDevice] systemVersion] floatValue] >=7){
         [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-        
         application.applicationIconBadgeNumber = 0;
     }
     

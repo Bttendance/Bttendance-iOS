@@ -55,12 +55,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *gradient;
 @property (weak, nonatomic) IBOutlet UIImageView *gradientR;
 
-//
-//-(void) studentMove:(id)sender withEvent:(UIEvent *)event;
-
-@property (strong, nonatomic) SignUpController *signUpController;
-@property (strong, nonatomic) SignInController *signInController;
-@property (strong, nonatomic) SerialViewController *serial_InputController;
 @property (weak, nonatomic) IBOutlet UILabel *Title;
 @property (weak, nonatomic) IBOutlet UILabel *subTitle;
 - (IBAction)profButtonPressed:(id)sender;

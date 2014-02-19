@@ -17,6 +17,7 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "SchoolChooseView.h"
+#import "BTAPIs.h"
 
 
 @interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>{

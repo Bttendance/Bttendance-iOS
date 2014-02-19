@@ -22,12 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *gradient;
-
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigation;
 
-@property (strong, nonatomic) SignInController *signInController;
-//@property (strong, nonatomic) SignUpController *signUpController;
-@property (strong, nonatomic) PersonalizeController *personalizeController;
 - (IBAction)SignupButtonDown:(id)sender;
 - (IBAction)SigninButtonDown:(id)sender;
 - (IBAction)SignupButtonOutside:(id)sender;

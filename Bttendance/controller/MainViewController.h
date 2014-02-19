@@ -20,6 +20,7 @@
 #import "AppDelegate.h"
 #import "CourseCreateController.h"
 #import "AttdStatViewController.h"
+#import "CatchPointController.h"
 
 @interface MainViewController : UIViewController{
     IBOutlet UITabBarController *tbc;
