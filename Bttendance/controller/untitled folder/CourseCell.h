@@ -29,5 +29,6 @@
 @property (assign, nonatomic) NSInteger gap;
 
 @property (assign, nonatomic) NSTimer *blink;
+@property (assign, nonatomic) NSInteger blinkTime;
 
 @end

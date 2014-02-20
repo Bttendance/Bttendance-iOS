@@ -149,21 +149,26 @@
                          cell.background.frame = CGRectMake(29, 75, 50, 0);
                      }
                      completion:^(BOOL finished){
-                         cell.check_icon.alpha = 1.0f;
-                         if (cell.blink != nil ) {
-                             [cell.blink invalidate];
-                             cell.blink = nil;
-                         }
                      }];
     
-    if (cell.blink == nil) {
-        NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell,@"cell", nil] repeats:YES];
-        cell.blink = blink;
-    }
+    cell.blinkTime = 180 + cell.gap;
+    if (cell.blink != nil)
+        [cell.blink invalidate];
+    NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell, @"cell", nil] repeats:YES];
+    cell.blink = blink;
 }
 
 -(void)blink:(NSTimer *)timer {
     PostCell *cell = [[timer userInfo] objectForKey:@"cell"];
+    
+    cell.blinkTime--;
+    if (cell.blinkTime < 0) {
+        cell.check_icon.alpha = 1;
+        if (cell.blink != nil)
+            [cell.blink invalidate];
+        cell.blink = nil;
+        return;
+    }
     
     if (cell.check_icon.alpha < 0.5) {
         [UIImageView beginAnimations:nil context:NULL];

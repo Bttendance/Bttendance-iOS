@@ -177,7 +177,6 @@
         case 1:
         default:
             if (rowcount2 == 1 || indexPath.row == [attendingCourses count]) {
-                
                 static NSString *CellIdentifier1 = @"ButtonCell";
                 ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
                 
@@ -192,7 +191,6 @@
                 
                 return cell;
             } else {
-                
                 static NSString *CellIdentifier = @"CourseCell";
                 
                 CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -282,22 +280,26 @@
                          cell.background.frame = CGRectMake(239, 75, 50, 0);
                      }
                      completion:^(BOOL finished){
-                         cell.check_icon.alpha = 1.0f;
-                         if (cell.blink != nil ) {
-                             [cell.blink invalidate];
-                             cell.blink = nil;
-                         }
-                         [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                      }];
     
-    if (cell.blink == nil) {
-        NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell,@"cell", nil] repeats:YES];
-        cell.blink = blink;
-    }
+    cell.blinkTime = 180 + cell.gap;
+    if (cell.blink != nil)
+        [cell.blink invalidate];
+    NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell,@"cell", nil] repeats:YES];
+    cell.blink = blink;
 }
 
 -(void)blink:(NSTimer *)timer {
     CourseCell *cell = [[timer userInfo] objectForKey:@"cell"];
+    
+    cell.blinkTime--;
+    if (cell.blinkTime < 0) {
+        cell.check_icon.alpha = 1;
+        if (cell.blink != nil)
+            [cell.blink invalidate];
+        cell.blink = nil;
+        return;
+    }
     
     if (cell.check_icon.alpha < 0.5) {
         [UIImageView beginAnimations:nil context:NULL];
