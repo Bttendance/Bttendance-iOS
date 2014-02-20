@@ -24,11 +24,9 @@
 
 
 + (CBMutableService *) getUserService {
-    
     KeychainItemWrapper *keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"BTDUUID" accessGroup:nil];
     NSString *_NSUUID_str = [keychain objectForKey:(__bridge id)kSecAttrAccount];
-    if([_NSUUID_str isEqual:@""]){//if there is no previous uuid in keychain
-        
+    if([_NSUUID_str isEqual:@""]) {
         //make user unique service
         CBUUID *UserUUID = [CBUUID UUIDWithNSUUID:[[NSUUID alloc] init]];
         NSString *_BTD = @"Bttendance";
@@ -39,18 +37,13 @@
         _NSUUID_str = [BTUserDefault representativeString:UserService.UUID];
         [keychain setObject:_NSUUID_str forKey:(__bridge id)kSecAttrAccount];
         return UserService;
+    } else {
+        CBUUID *UserUUID = [CBUUID UUIDWithString:_NSUUID_str];
+        CBMutableCharacteristic *UserChar = [[CBMutableCharacteristic alloc] initWithType:UserUUID properties:CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsReadable];
+        CBMutableService *UserService = [[CBMutableService alloc] initWithType:UserUUID primary:YES];
+        UserService.characteristics = @[UserChar];
+        return UserService;
     }
-    
-    else{//there is previous uuid in keychain
-            //make user unique service
-            CBUUID *UserUUID = [CBUUID UUIDWithString:_NSUUID_str];
-            CBMutableCharacteristic *UserChar = [[CBMutableCharacteristic alloc] initWithType:UserUUID properties:CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsReadable];
-            CBMutableService *UserService = [[CBMutableService alloc] initWithType:UserUUID primary:YES];
-            UserService.characteristics = @[UserChar];
-        
-            return UserService;
-    }
-    
 }
 
 +(NSString *)representativeString:(CBUUID *) _CBUUID{

@@ -17,6 +17,8 @@
 #import "GradeViewController.h"
 #import "CreateNoticeViewController.h"
 #import "ManagerViewController.h"
+#import "AttdStatViewController.h"
+#import "BTDateFormatter.h"
 
 
 @interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
@@ -37,6 +39,4 @@
 @property (weak, nonatomic) CourseCell *currentcell;
 @property (nonatomic) Boolean auth;
 
--(void)showing_timer_post:(PostCell *) cell;
--(void)change_check_post2:(NSTimer *)timer;
 @end

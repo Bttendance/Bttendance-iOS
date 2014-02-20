@@ -152,7 +152,7 @@
         NSDictionary *params = @{@"username":username,
                                  @"password":password,
                                   @"manager":managerName,
-                                @"course_id":[NSString stringWithFormat:@"%ld",courseId]};
+                                @"course_id":[NSString stringWithFormat:@"%ld",(long) courseId]};
         
         AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
         [AFmanager PUT:[BTURL stringByAppendingString:@"/course/add/manager"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){

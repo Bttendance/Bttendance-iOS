@@ -13,7 +13,6 @@
 @end
 
 @implementation AttdStatViewController
-
 @synthesize courseId, courseName, postId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,7 +26,6 @@
         data1 = [[NSMutableArray alloc] init];
         
         userinfo = [BTUserDefault getUserInfo];
-        viewscope = true;
         self.navigationItem.hidesBackButton = NO;
     }
     return self;
@@ -51,103 +49,71 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = courseName;
     [titlelabel sizeToFit];
-    
-    
-    if([[userinfo objectForKey:@"btd_type"] isEqualToString:@"professor"]){
-        
-        [_tab_bar setSelectedItem:_Course];//setting for  temp
-        [_Feed setEnabled:FALSE];
-    }
-    else{
-        [_tab_bar setSelectedItem:_Feed];//setting for  temp
-    }
-    
-    // Do any additional setup after loading the view from its nib.
-        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
-        NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
-        NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-    
-        NSDictionary *params = @{@"username":username,
-                                 @"password":password,
-                                 @"course_id":[NSString stringWithFormat:@"%ld", (long)courseId]};
-    
-        NSLog(@"params info : %@",params);
-        [AFmanager GET:[BTURL stringByAppendingString:@"/course/students"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-            NSLog(@"Get Joinable Courses List success : %@", responseObject);
-            NSDictionary *studentlist = responseObject;
-            NSLog(@"course count : %lu", (unsigned long)studentlist.count);
-            
-            NSString *postAPI = [NSString stringWithFormat:[BTURL stringByAppendingString:@"/post/%ld"],(long)postId];
-            [AFmanager GET:postAPI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject_){
-                NSDictionary *checks = [responseObject_ objectForKey:@"checks"];
-                
-                if(studentlist.count != 0){
-                    for(int i = 0; i< studentlist.count; i++){
-                        BOOL checked = false;
-                        for(int j = 0; j < checks.count; j++){
-                            
-                            NSString *value = [[responseObject_ objectForKey:@"checks"] objectAtIndex:j];
-                            int checkedId = [value intValue];
-                            int studentId = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                            
-                            if(studentId == checkedId){
-                                checked = true;
-                            }
-                        }
-                        
-                        if (checked) {
-                            NSLog(@"unchecked %@",[responseObject objectAtIndex:i]);
-                            [data1 addObject:[responseObject objectAtIndex:i]];
-                        } else {
-                            NSLog(@"checked %@",[responseObject objectAtIndex:i]);
-                            [data0 addObject:[responseObject objectAtIndex:i]];
-                        }
-                    }
-                    rowcount0 = data0.count;
-                    rowcount1 = data1.count;
-                    [self.tableview reloadData];
-                }
-                else{
-                    data0 = responseObject;
-                    rowcount0 = data0.count;
-                    data1 = nil;
-                    rowcount1 = 0;
-                    [self.tableview reloadData];
-                }
-                NSLog(@"section 0 info : %@", data0);
-                NSLog(@"section 1 info : %@", data1);
-                
-            }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-                NSLog(@"Get Post Fail : %@", error);
-            }];
-    
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            NSLog(@"Get Course Student List fail %@", error);
-        }];
-
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    viewscope = true;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
-    if([[userinfo objectForKey:@"btd_type"] isEqualToString:@"professor"]){
+    NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
+    NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
+    
+    NSDictionary *params = @{@"username":username,
+                             @"password":password,
+                             @"course_id":[NSString stringWithFormat:@"%ld", (long)courseId]};
+    
+    NSLog(@"params info : %@",params);
+    [AFmanager GET:[BTURL stringByAppendingString:@"/course/students"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         
-        [_tab_bar setSelectedItem:_Course];//setting for  temp
-        [_Feed setEnabled:FALSE];
-    }
-    else{
-        [_tab_bar setSelectedItem:_Course];//setting for  temp
-    }
-    
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+        NSDictionary *studentlist = responseObject;
+        NSString *postAPI = [NSString stringWithFormat:[BTURL stringByAppendingString:@"/post/%ld"],(long)postId];
+        [AFmanager GET:postAPI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject_){
+            NSDictionary *checks = [responseObject_ objectForKey:@"checks"];
+            
+            if(studentlist.count != 0){
+                for(int i = 0; i< studentlist.count; i++){
+                    BOOL checked = false;
+                    for(int j = 0; j < checks.count; j++){
+                        
+                        NSString *value = [[responseObject_ objectForKey:@"checks"] objectAtIndex:j];
+                        int checkedId = [value intValue];
+                        int studentId = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
+                        
+                        if(studentId == checkedId){
+                            checked = true;
+                        }
+                    }
+                    
+                    if (checked) {
+                        NSLog(@"unchecked %@",[responseObject objectAtIndex:i]);
+                        [data1 addObject:[responseObject objectAtIndex:i]];
+                    } else {
+                        NSLog(@"checked %@",[responseObject objectAtIndex:i]);
+                        [data0 addObject:[responseObject objectAtIndex:i]];
+                    }
+                }
+                rowcount0 = data0.count;
+                rowcount1 = data1.count;
+                [self.tableview reloadData];
+            }
+            else{
+                data0 = responseObject;
+                rowcount0 = data0.count;
+                data1 = nil;
+                rowcount1 = 0;
+                [self.tableview reloadData];
+            }
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            NSLog(@"Get Post Fail : %@", error);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        }];
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"Get Course Student List fail %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }];
 }
 
 -(IBAction)check_button_action :(id)sender{
@@ -157,17 +123,10 @@
     UserInfoCell *comingcell = (UserInfoCell *)comingbutton.superview.superview.superview;
     currentcell = comingcell;
     
-    
     //alert showing
     NSString *string = [NSString stringWithFormat:@"Do you want to approve %@'s attendance check manually?", comingcell.Info_Username] ;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attendance Check" message:string delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
     [alert show];
-    
-    NSLog(@"sender to button %@",comingbutton);
-    NSLog(@"button's cell : %@", comingcell);
-    NSLog(@"button's username : %@", comingcell.Info_Username);
-    NSLog(@"button's email : %@",comingcell.Info_Email);
-    NSLog(@"button's userid : %ld",(long)comingcell.Info_UserID);
     
     //disable button
     [comingbutton removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
@@ -179,25 +138,22 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section ==0)
-        return rowcount0;
-    
-    else if(section == 1)
-        return rowcount1;
-    else
-        return 0;
-//    return 1;
+    switch (section) {
+        case 0:
+            return rowcount0;
+        case 1:
+        default:
+            return rowcount1;
+    }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section ==0){
-        return @"Attendance un-checked students";
-    }
-    else if(section == 1){
-        return @"Attendance checked students";
-    }
-    else{
-        return @" ";
+    switch (section) {
+        case 0:
+            return @"Attendance un-checked students";
+        case 1:
+        default:
+            return @"Attendance checked students";
     }
 }
 
@@ -232,7 +188,10 @@
 
     }
     return cell;
-    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 35;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -265,32 +224,14 @@
             [[self tableview] endUpdates];
             
         }failure:^(AFHTTPRequestOperation *opration, NSError *error){
-            NSLog(@"Attendance check fail : %@", error);
-            //fail
-            
-            //display alert
             NSString *string = @"Attendance check failed, please try again";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-            
-            //restore button event
             [currentcell.Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
         }];
     }
-    if(buttonIndex == 0){//cancel
-        //restore button event
+    if(buttonIndex == 0){
         [currentcell.Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
-    }
-
-}
-
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"item : %@", item);
-    
-    if(item == _Feed && viewscope
-       &&[[userinfo objectForKey:@"btd_type"] isEqualToString:@"student"]){
-        [self.navigationController popViewControllerAnimated:NO];
-        viewscope = false;
     }
 }
 

@@ -67,8 +67,8 @@
     NSDictionary *params = @{@"username":username,
                              @"password":password};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
     [AFmanager GET:[BTURL stringByAppendingString:@"/school/all"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSDictionary *schoollist = responseObject;
         
@@ -108,8 +108,9 @@
             [self.tableview reloadData];
         }
         
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 

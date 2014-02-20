@@ -23,14 +23,8 @@
     NSDictionary *userinfo;
     
     UserInfoCell *currentcell;
-    
-    Boolean viewscope;
- 
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (weak, nonatomic) IBOutlet UITabBar *tab_bar;
-@property (weak, nonatomic) IBOutlet UITabBarItem *Course;
-@property (weak, nonatomic) IBOutlet UITabBarItem *Feed;
 
 
 @property (assign, nonatomic) NSInteger postId;

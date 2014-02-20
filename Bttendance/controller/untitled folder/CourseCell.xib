@@ -14,11 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="1aE-NP-43m">
+                    <view contentMode="scaleToFill" id="5Dz-K9-uHe">
                         <rect key="frame" x="11" y="7" width="298" height="88"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </imageView>
+                    </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hbQ-y0-XWg">
                         <rect key="frame" x="26" y="22" width="205" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -40,10 +40,11 @@
                         <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8YN-Gh-pXa">
-                        <rect key="frame" x="239" y="25" width="52" height="52"/>
+                    <view contentMode="scaleToFill" id="23H-p5-4CZ">
+                        <rect key="frame" x="239" y="75" width="50" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <color key="backgroundColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendancecheckcyan.png" id="ZLg-bQ-Yxz">
                         <rect key="frame" x="239" y="25" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,8 +64,8 @@
                 <outlet property="CourseName" destination="hbQ-y0-XWg" id="HbV-Rj-yB5"/>
                 <outlet property="Professor" destination="Ues-Ey-bKv" id="gj6-KA-raG"/>
                 <outlet property="School" destination="Bhc-xB-PLF" id="HOs-hp-8I4"/>
-                <outlet property="background" destination="8YN-Gh-pXa" id="yk3-di-2C8"/>
-                <outlet property="cellbackground" destination="1aE-NP-43m" id="T0X-NE-yNF"/>
+                <outlet property="background" destination="23H-p5-4CZ" id="idH-2b-9Xe"/>
+                <outlet property="cellbackground" destination="5Dz-K9-uHe" id="JGe-49-7cL"/>
                 <outlet property="check_button" destination="oZU-Oh-712" id="Ob0-5P-Lre"/>
                 <outlet property="check_icon" destination="ZLg-bQ-Yxz" id="bus-7P-5AO"/>
             </connections>

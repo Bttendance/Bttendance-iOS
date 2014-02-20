@@ -7,20 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CourseCell.h"
-#import <CoreBluetooth/CoreBluetooth.h>
-#import <MapKit/MapKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
-#import "CourseAttendView.h"
-#import "CourseInfoCell.h"
 #import "BTColor.h"
 #import "PostCell.h"
-#import "ButtonCell.h"
 #import "AppDelegate.h"
-#import "CourseCreateController.h"
 #import "AttdStatViewController.h"
 #import "BTAPIs.h"
+#import "BTDateFormatter.h"
 
 @interface FeedViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     
@@ -31,22 +25,9 @@
     NSString *cid;
     NSString *my_id;
     
-    PostCell *currentpostcell;
-    CourseCell *currentcoursecell;
-    
     NSInteger rowcount;
-    int time;
-    
-    Boolean locationcheck;
-    Boolean first_launch;
-    
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
--(void)showing_timer_post:(PostCell *) cell;
--(void)change_check_post:(NSTimer *)timer;
--(void)send_attendance_check:(id)sender;
--(void)receiveMessage:(id)sender;
 
 @end

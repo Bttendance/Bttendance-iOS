@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController">
             <connections>
-                <outlet property="tableview" destination="OX0-Lm-Z1g" id="9IB-t1-vS9"/>
+                <outlet property="tableview" destination="OX0-Lm-Z1g" id="QaD-Bc-SK5"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -21,8 +21,8 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="jhh-rM-tzG"/>
-                        <outlet property="delegate" destination="-1" id="xDH-C2-w6o"/>
+                        <outlet property="dataSource" destination="-1" id="Q5Q-2c-MUw"/>
+                        <outlet property="delegate" destination="-1" id="81y-id-cvf"/>
                     </connections>
                 </tableView>
             </subviews>

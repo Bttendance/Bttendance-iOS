@@ -53,6 +53,7 @@
     
     
     // Do any additional setup after loading the view from its nib.
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
 
     NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
@@ -109,8 +110,10 @@
             rowcount1 = data1.count;
             [self.tableview reloadData];
         }
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Get Joinable Courses List fail %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 
@@ -256,12 +259,9 @@
 
     [AFmanager PUT:[BTURL stringByAppendingString:@"/user/attend/course"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
         NSLog(@"join course success : %@", responsObject);
-        //join!!
         [BTUserDefault setUserInfo:responsObject];
-
-        //change icon
         [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
-        //move to section 1
+
         rowcount1--;
         [[self tableview] beginUpdates];
         NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
@@ -270,14 +270,9 @@
         [[self tableview] endUpdates];
 
     }failure:^(AFHTTPRequestOperation *opration, NSError *error){
-        NSLog(@"join course fail : %@", error);
-
-        //display alert
         NSString *string = @"Could not join course, please try again";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-
-        //restore button event
         [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
     }];
 }

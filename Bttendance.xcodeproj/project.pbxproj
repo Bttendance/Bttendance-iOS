@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2127B27218B10D19000B2E8D /* f1f1ff.png in Resources */ = {isa = PBXBuildFile; fileRef = 2127B27118B10D19000B2E8D /* f1f1ff.png */; };
 		212C05AE183B726D00AD6654 /* CatchPointController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C05AC183B726D00AD6654 /* CatchPointController.m */; };
 		212C05AF183B726D00AD6654 /* CatchPointController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212C05AD183B726D00AD6654 /* CatchPointController.xib */; };
 		212C05B9183B73E000AD6654 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 212C05B7183B73E000AD6654 /* SignUpController.m */; };
@@ -38,15 +37,9 @@
 		21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21469A4418929E3C005D4FF2 /* CourseDetailViewController.xib */; };
 		21469A4A18929ED7005D4FF2 /* CourseDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21469A4818929ED7005D4FF2 /* CourseDetailHeaderView.m */; };
 		21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21469A4918929ED7005D4FF2 /* CourseDetailHeaderView.xib */; };
-		214FA101184CC2E6006DCD44 /* 0072b0.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FA100184CC2E6006DCD44 /* 0072b0.png */; };
-		214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */ = {isa = PBXBuildFile; fileRef = 214FA102184CC2EE006DCD44 /* 33b5e5.png */; };
 		21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21532F2918773B140065EB3C /* SignButtonCell.m */; };
 		21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21532F2A18773B140065EB3C /* SignButtonCell.xib */; };
 		215D4A5318461B30004C1947 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* CustomCell.m */; };
-		217971D9189695C500CEB8A3 /* ProfFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C1189695C500CEB8A3 /* ProfFeedView.m */; };
-		217971DA189695C500CEB8A3 /* ProfCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 217971C3189695C500CEB8A3 /* ProfCourseView.m */; };
-		217971E6189695C500CEB8A3 /* ProfCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D5189695C500CEB8A3 /* ProfCourseView.xib */; };
-		217971E7189695C500CEB8A3 /* ProfFeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217971D6189695C500CEB8A3 /* ProfFeedView.xib */; };
 		217AB56718368FAE00A8F9C1 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */; };
 		217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75B41850D7C100AA0D95 /* CourseCell.xib */; };
 		217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75B81850FA8C00AA0D95 /* CourseCell.m */; };
@@ -114,6 +107,7 @@
 		D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62D118731C33005A4CF9 /* iostabbari2@2x.png */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D44224D818B5F06A0028B048 /* BTDateFormatter.m */; };
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotViewController.m */; };
 		D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotViewController.xib */; };
@@ -144,7 +138,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2127B27118B10D19000B2E8D /* f1f1ff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = f1f1ff.png; path = Image/f1f1ff.png; sourceTree = "<group>"; };
 		212C05AB183B726D00AD6654 /* CatchPointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatchPointController.h; path = controller/CatchPointController.h; sourceTree = "<group>"; };
 		212C05AC183B726D00AD6654 /* CatchPointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatchPointController.m; path = controller/CatchPointController.m; sourceTree = "<group>"; };
 		212C05AD183B726D00AD6654 /* CatchPointController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointController.xib; path = controller/CatchPointController.xib; sourceTree = "<group>"; };
@@ -187,19 +180,11 @@
 		21469A4718929ED7005D4FF2 /* CourseDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseDetailHeaderView.h; path = StdView/CourseDetailHeaderView.h; sourceTree = "<group>"; };
 		21469A4818929ED7005D4FF2 /* CourseDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseDetailHeaderView.m; path = StdView/CourseDetailHeaderView.m; sourceTree = "<group>"; };
 		21469A4918929ED7005D4FF2 /* CourseDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseDetailHeaderView.xib; path = StdView/CourseDetailHeaderView.xib; sourceTree = "<group>"; };
-		214FA100184CC2E6006DCD44 /* 0072b0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 0072b0.png; path = Image/0072b0.png; sourceTree = "<group>"; };
-		214FA102184CC2EE006DCD44 /* 33b5e5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 33b5e5.png; path = Image/33b5e5.png; sourceTree = "<group>"; };
 		21532F2818773B140065EB3C /* SignButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignButtonCell.h; path = controller/SignButtonCell.h; sourceTree = "<group>"; };
 		21532F2918773B140065EB3C /* SignButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignButtonCell.m; path = controller/SignButtonCell.m; sourceTree = "<group>"; };
 		21532F2A18773B140065EB3C /* SignButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignButtonCell.xib; path = controller/SignButtonCell.xib; sourceTree = "<group>"; };
 		215D4A5118461B30004C1947 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		215D4A5218461B30004C1947 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
-		217971C1189695C500CEB8A3 /* ProfFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfFeedView.m; path = ProfView/ProfFeedView.m; sourceTree = "<group>"; };
-		217971C3189695C500CEB8A3 /* ProfCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfCourseView.m; path = ProfView/ProfCourseView.m; sourceTree = "<group>"; };
-		217971C5189695C500CEB8A3 /* ProfCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfCourseView.h; path = ProfView/ProfCourseView.h; sourceTree = "<group>"; };
-		217971D5189695C500CEB8A3 /* ProfCourseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfCourseView.xib; path = ProfView/ProfCourseView.xib; sourceTree = "<group>"; };
-		217971D6189695C500CEB8A3 /* ProfFeedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfFeedView.xib; path = ProfView/ProfFeedView.xib; sourceTree = "<group>"; };
-		217971D7189695C500CEB8A3 /* ProfFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfFeedView.h; path = ProfView/ProfFeedView.h; sourceTree = "<group>"; };
 		217AB5641836073800A8F9C1 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
 		217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		217D75B41850D7C100AA0D95 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseCell.xib; path = "controller/untitled folder/CourseCell.xib"; sourceTree = "<group>"; };
@@ -291,6 +276,8 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D44224D718B5F06A0028B048 /* BTDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDateFormatter.h; sourceTree = "<group>"; };
+		D44224D818B5F06A0028B048 /* BTDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDateFormatter.m; sourceTree = "<group>"; };
 		D46D892D18AFE88B0051F291 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D46D892E18AFE88B0051F291 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D46D893018AFED7C0051F291 /* ForgotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
@@ -430,6 +417,7 @@
 				D49A789B18ACFB4500B317C0 /* SerialViewController */,
 				D47DB52418AF85AC007C23A3 /* CustomUIView */,
 				2137BBBA182D36DB00B59E15 /* Module */,
+				D44224D618B5F02D0028B048 /* Helper */,
 				2135C3D9182BE63D002C45DB /* ViewController */,
 				2135C3AA182BDD4E002C45DB /* AppDelegate.h */,
 				2135C3AB182BDD4E002C45DB /* AppDelegate.m */,
@@ -454,7 +442,6 @@
 		2135C3D9182BE63D002C45DB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				218D9AD91886AA3F00E8BAD0 /* ProfView */,
 				21917900186C38DD00799CC0 /* MainViewController.h */,
 				21917901186C38DD00799CC0 /* MainViewController.m */,
 				21917902186C38DD00799CC0 /* MainViewController.xib */,
@@ -487,8 +474,8 @@
 			children = (
 				215D4A5118461B30004C1947 /* CustomCell.h */,
 				215D4A5218461B30004C1947 /* CustomCell.m */,
-				D485A0A918784C9C00F9561B /* UserInfoCell.m */,
 				D485A0AA18784C9C00F9561B /* UserInfoCell.h */,
+				D485A0A918784C9C00F9561B /* UserInfoCell.m */,
 				D485A0A818784C9C00F9561B /* UserInfoCell.xib */,
 				21532F2818773B140065EB3C /* SignButtonCell.h */,
 				21532F2918773B140065EB3C /* SignButtonCell.m */,
@@ -516,19 +503,6 @@
 				2131F5161897D6E00096404D /* GradeCell.xib */,
 			);
 			name = TableViewCell;
-			sourceTree = "<group>";
-		};
-		218D9AD91886AA3F00E8BAD0 /* ProfView */ = {
-			isa = PBXGroup;
-			children = (
-				217971D7189695C500CEB8A3 /* ProfFeedView.h */,
-				217971C1189695C500CEB8A3 /* ProfFeedView.m */,
-				217971D6189695C500CEB8A3 /* ProfFeedView.xib */,
-				217971C5189695C500CEB8A3 /* ProfCourseView.h */,
-				217971C3189695C500CEB8A3 /* ProfCourseView.m */,
-				217971D5189695C500CEB8A3 /* ProfCourseView.xib */,
-			);
-			name = ProfView;
 			sourceTree = "<group>";
 		};
 		218D9ADA1886AA4600E8BAD0 /* TabItemViewController */ = {
@@ -574,9 +548,6 @@
 				217D75BE1850FD3700AA0D95 /* Personalize_bg2@2x.jpg */,
 				217D75BF1850FD3700AA0D95 /* Personalize_bg1@2x.jpg */,
 				2190C4971850C35100626628 /* bgmainlossy@2x.jpg */,
-				214FA100184CC2E6006DCD44 /* 0072b0.png */,
-				214FA102184CC2EE006DCD44 /* 33b5e5.png */,
-				2127B27118B10D19000B2E8D /* f1f1ff.png */,
 				217D75C71853208400AA0D95 /* BTColor.h */,
 				217D75C81853208400AA0D95 /* BTColor.m */,
 			);
@@ -626,6 +597,15 @@
 				21EE90F2189159D2000C9CAB /* SchoolChooseView.xib */,
 			);
 			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		D44224D618B5F02D0028B048 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D44224D718B5F06A0028B048 /* BTDateFormatter.h */,
+				D44224D818B5F06A0028B048 /* BTDateFormatter.m */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		D47DB52418AF85AC007C23A3 /* CustomUIView */ = {
@@ -768,8 +748,6 @@
 			files = (
 				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
 				D407B26F18AD803E009BCF8C /* CourseCreateController.xib in Resources */,
-				217971E7189695C500CEB8A3 /* ProfFeedView.xib in Resources */,
-				214FA101184CC2E6006DCD44 /* 0072b0.png in Resources */,
 				D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */,
 				2191793518724EC600799CC0 /* attendancering@2x.png in Resources */,
 				D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */,
@@ -784,7 +762,6 @@
 				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */,
-				217971E6189695C500CEB8A3 /* ProfCourseView.xib in Resources */,
 				21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */,
 				218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
@@ -820,10 +797,8 @@
 				2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */,
 				D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
-				214FA103184CC2EE006DCD44 /* 33b5e5.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D41C62D618731C33005A4CF9 /* iostabbari1@2x.png in Resources */,
-				2127B27218B10D19000B2E8D /* f1f1ff.png in Resources */,
 				217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */,
 				D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */,
 				21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */,
@@ -891,7 +866,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				217D75C51852157400AA0D95 /* StudentConfirm.m in Sources */,
-				217971DA189695C500CEB8A3 /* ProfCourseView.m in Sources */,
+				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */,
 				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
@@ -935,7 +910,6 @@
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
 				21917903186C38DD00799CC0 /* MainViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
-				217971D9189695C500CEB8A3 /* ProfFeedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,19 +1027,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					"/Users/haje/Desktop/Bttendance/Bttendance-iOS",
 					/Users/TheFinestArtist/Desktop/Bttendance/iOS,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bttendance/Bttendance-Prefix.pch";
 				INFOPLIST_FILE = "Bttendance/Bttendance-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/haje/Desktop/Bttendance/Bttendance-iOS/Bttendance",
-					/Users/haje/Downloads/GoogleAnalyticsServicesiOS_3.02,
-					/Users/haje/Downloads/GoogleAnalyticsServicesiOS_3.03a,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4FA33836-DA5F-4B48-93B6-9A4499687544";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1084,19 +1052,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					"/Users/haje/Desktop/Bttendance/Bttendance-iOS",
 					/Users/TheFinestArtist/Desktop/Bttendance/iOS,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bttendance/Bttendance-Prefix.pch";
 				INFOPLIST_FILE = "Bttendance/Bttendance-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/haje/Desktop/Bttendance/Bttendance-iOS/Bttendance",
-					/Users/haje/Downloads/GoogleAnalyticsServicesiOS_3.02,
-					/Users/haje/Downloads/GoogleAnalyticsServicesiOS_3.03a,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4FA33836-DA5F-4B48-93B6-9A4499687544";
 				TARGETED_DEVICE_FAMILY = 1;

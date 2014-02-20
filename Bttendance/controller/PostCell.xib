@@ -14,10 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jcE-CK-Ro5">
+                    <view contentMode="scaleToFill" id="fPr-L9-jKr">
                         <rect key="frame" x="11" y="7" width="298" height="88"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QNd-1g-5nL">
                         <rect key="frame" x="91" y="22" width="200" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -26,45 +27,43 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dzh-x8-ccq">
-                        <rect key="frame" x="91" y="40" width="200" height="21"/>
+                        <rect key="frame" x="91" y="42" width="200" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sWX-27-20k">
-                        <rect key="frame" x="91" y="55" width="200" height="21"/>
+                        <rect key="frame" x="91" y="57" width="200" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oPf-MV-54B">
-                        <rect key="frame" x="29" y="25" width="52" height="52"/>
+                    <view contentMode="scaleToFill" id="c9K-ab-9xJ">
+                        <rect key="frame" x="29" y="75" width="50" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <color key="backgroundColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendancecheckcyan.png" id="DBq-kw-Pbf">
                         <rect key="frame" x="29" y="25" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="AKK-eU-Auf">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendanceringnonalpha.png" id="2ac-aS-2ha">
                         <rect key="frame" x="29" y="25" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" backgroundImage="attendanceringnonalpha.png">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    </imageView>
                 </subviews>
+                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <connections>
                 <outlet property="Date" destination="sWX-27-20k" id="2Op-zo-LAd"/>
                 <outlet property="Message" destination="Dzh-x8-ccq" id="uSd-is-NiN"/>
                 <outlet property="Title" destination="QNd-1g-5nL" id="RrY-c0-RgT"/>
-                <outlet property="background" destination="oPf-MV-54B" id="ONd-Ji-Mdz"/>
-                <outlet property="cellbackground" destination="jcE-CK-Ro5" id="ZAq-dZ-Qaw"/>
-                <outlet property="check_button" destination="AKK-eU-Auf" id="F7J-Sv-dx8"/>
+                <outlet property="background" destination="c9K-ab-9xJ" id="Bsg-s1-8Jf"/>
+                <outlet property="cellbackground" destination="fPr-L9-jKr" id="Iv6-Vx-FLm"/>
                 <outlet property="check_icon" destination="DBq-kw-Pbf" id="fuf-dd-GqG"/>
+                <outlet property="check_overlay" destination="2ac-aS-2ha" id="Irc-34-iYP"/>
             </connections>
         </tableViewCell>
     </objects>

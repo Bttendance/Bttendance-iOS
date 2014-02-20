@@ -13,7 +13,6 @@
 
 @implementation PostCell
 
-
 +(PostCell *)cellFromNibNamed:(NSString *)nibName{
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
@@ -27,7 +26,5 @@
     }
     return cell;
 }
-
-
 
 @end

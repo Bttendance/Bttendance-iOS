@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "ProfCourseView.h"
-#import "ProfFeedView.h"
 #import "FeedViewController.h"
 #import "CourseListViewController.h"
 #import "ProfileViewController.h"
@@ -17,11 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-
-    __block UIBackgroundTaskIdentifier background_task;
-    NSTimer *app_timer;
     UIViewController *firstview;
-    
 }
 
 @property (strong, nonatomic) UIWindow *window;

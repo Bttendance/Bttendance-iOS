@@ -65,6 +65,7 @@
         [deviceId appendFormat:@"%02x", ptr[i]];
     }
     NSString *device_token = [NSString stringWithString:deviceId];
+    NSLog(@"Register notification, %@", device_token);
     
     NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
     NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
@@ -76,7 +77,7 @@
                              @"notification_key":device_token};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/update/notification_key"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/update/notification_key"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         [BTUserDefault setUserInfo:responseObject];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
     }];
@@ -86,22 +87,12 @@
     NSDictionary *noti = userInfo;
     
     if([[noti objectForKey:@"message"] isEqualToString:@"Attendance has been checked"]){
-        //attendance has been checked   no sound no vibration
+        AudioServicesPlaySystemSound(4095);
+    } else {
+        AudioServicesPlaySystemSound(1007);
     }
     
-    else{
-    
-    AudioServicesPlaySystemSound(1007);
-        
-    }
-    NSString *string = [NSString stringWithFormat:@"%@",[noti objectForKey:@"message"]];
-    
-    NSString *alert_title = [NSString stringWithFormat:@"Course %@",[noti objectForKey:@"title"]];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alert_title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWMESSAGE" object:nil];
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -117,56 +108,36 @@
     
     application.applicationIconBadgeNumber = 0;
     
+    
     if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) { //Check if our iOS version supports multitasking I.E iOS 4
 		if ([[UIDevice currentDevice] isMultitaskingSupported]) { //Check if device supports mulitasking
             
-            background_task = [application beginBackgroundTaskWithExpirationHandler: ^ {
-                if(background_task != UIBackgroundTaskInvalid){
-                    [application endBackgroundTask: background_task]; //Tell the system that we are done with the tasks
-                    background_task = UIBackgroundTaskInvalid; //Set the task to be invalid
-                }
-            }];
-
+			__block UIBackgroundTaskIdentifier background_task; //Create a task object
+            
+			background_task = [application beginBackgroundTaskWithExpirationHandler: ^ {
+				[application endBackgroundTask: background_task]; //Tell the system that we are done with the tasks
+				background_task = UIBackgroundTaskInvalid; //Set the task to be invalid
+				//System will be shutting down the app at any point in time now
+			}];
+            
 			//Background tasks require you to use asyncrous tasks
             
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				//Perform your tasks that your application requires
-                
-                //start background task
-                while(true){
-//                    NSLog(@"Running in the background!, %f",[application backgroundTimeRemaining]);
-                    //check timer
-                    
-                    [NSThread sleepForTimeInterval:4];// thread sleep
-                    
-                }
-                
-                //end background task
-//                NSLog(@"Running in the background Ended!");
+                NSLog(@"Running in the background!");
+                sleep(30);
+                NSLog(@"Running in the background Ended!");
 				[application endBackgroundTask: background_task]; //End the task so the system knows that you are done with what you need to perform
 				background_task = UIBackgroundTaskInvalid; //Invalidate the background_task
 			});
 		}
 	}
-
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     application.applicationIconBadgeNumber = 0;
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) { //Check if our iOS version supports multitasking I.E iOS 4
-		if ([[UIDevice currentDevice] isMultitaskingSupported]) { //Check if device supports mulitasking
-            NSLog(@"Running in the foreground!");
-            [application endBackgroundTask:background_task];
-            background_task = UIBackgroundTaskInvalid;
-            [firstview viewWillAppear:YES];
-            
-
-		}
-	}
-
+    [firstview viewWillAppear:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

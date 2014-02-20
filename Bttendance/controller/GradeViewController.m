@@ -46,8 +46,8 @@
                              @"password":password,
                              @"course_id":cid};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
     [AFmanager GET:[BTURL stringByAppendingString:@"/course/grades"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         data = responseObject;
@@ -58,11 +58,11 @@
             [self.tableview reloadData];
             
         }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }];
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
     
 };

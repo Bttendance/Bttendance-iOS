@@ -384,7 +384,6 @@ NSString *signupRequest;
         }
 
     }];
-
 }
 
 @end

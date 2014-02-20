@@ -17,8 +17,7 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "SchoolChooseView.h"
-#import "BTAPIs.h"
-
+#import "BTDateFormatter.h"
 
 @interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>{
     
@@ -30,14 +29,14 @@
     NSArray *supervisingCourses;
     NSArray *attendingCourses;
     
-    CourseCell *currentcell;
-    
-    NSString *pid;
-    NSString *cid;
+    NSArray *attdingPostIDs;
+    NSString *attdStartingCid;
     
     CBMutableService *myservice;
     CBPeripheralManager *myPmanager;
     CBCentralManager *myCmanager;
+    
+    Boolean turnBTOnMessage;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;

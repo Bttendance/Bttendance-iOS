@@ -205,7 +205,7 @@ NSString *createCourseRequest;
     NSString *number = [((CustomCell *)[self.tableView cellForRowAtIndexPath:number_index]).textfield text];
     NSString *school = [((CustomCell *)[self.tableView cellForRowAtIndexPath:school_index]).textfield text];
     NSString *prfname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
-    NSString *sid = [NSString stringWithFormat:@"%ld", self.schoolId];
+    NSString *sid = [NSString stringWithFormat:@"%ld", (long) self.schoolId];
     
     [self JSONCreateCourseRequest:username :password :name :number :sid :prfname];
     

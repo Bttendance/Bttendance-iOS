@@ -82,6 +82,7 @@
                              @"password":password,
                              @"course_id":cid};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/course/feed"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
         
@@ -90,9 +91,11 @@
         
         rowcount = data.count;
         [_tableview reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"get course's feeds fail : %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 
@@ -110,9 +113,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *CellIentifierCP = @"PostCell";
-    
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIentifierCP];
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
     if(cell == nil){
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
@@ -122,146 +123,115 @@
     cell.Title.text = [[data objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.Message.text = [[data objectAtIndex:indexPath.row] objectForKey:@"message"];
     cell.PostID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue];
+    cell.CourseName = [[data objectAtIndex:indexPath.row] objectForKey:@"course_name"];
     
-    //time convert
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    
-    NSDateFormatter *dm = [[NSDateFormatter alloc] init];
-    [dm setTimeZone:[NSTimeZone timeZoneWithName:@"KST"]];
-    
-    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    [dateformatter setTimeZone:gmt];
-    
-    [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    [dm setDateFormat:@"yy/MM/dd HH:mm"];
-    NSDate *updatedAt = [dateformatter dateFromString:[[data objectAtIndex:indexPath.row] objectForKey:@"updatedAt"]];
-    
-    cell.Date.text = [dm stringFromDate:updatedAt];
-    updatedAt = [dm dateFromString:cell.Date.text];
-    
-    NSTimeInterval secs = [updatedAt timeIntervalSinceNow];
-    
-    cell.gap = secs;
-    
-    
-    cell.backgroundColor = [BTColor BT_grey:1];
-    cell.cellbackground.backgroundColor = [BTColor BT_white:1];
+    NSString *createdAt = [[data objectAtIndex:indexPath.row] objectForKey:@"createdAt"];
+    cell.createdDate = [BTDateFormatter dateFromUTC:createdAt];
+    cell.Date.text = [BTDateFormatter stringFromUTC:createdAt];
+    cell.gap = [BTDateFormatter intervalFromUTC:createdAt];
     cell.cellbackground.layer.cornerRadius = 2;
-
-    cell.timer = 0;
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if(time + cell.gap <= 0){//time over;
-        //check attendance completed
-        NSArray *temp = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
+    if([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]){
+        cell.isNotice = true;
+        [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
+        [cell.check_overlay setImage:nil];
+    } else {
+        cell.isNotice = false;
+        
         Boolean check = false;
-        for(int i = 0; i < temp.count ; i++){
-            NSString *check_id = [NSString stringWithFormat:@"%@",[[[data objectAtIndex:indexPath.row] objectForKey:@"checks"]objectAtIndex:i]];
-            if([my_id isEqualToString:check_id]){
-                check = true;
-            }
-        }
-        if(!check){ // NOT ATTENDANCE!!!!
-            //change image
-            [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
-            [cell.check_button setBackgroundImage:Nil forState:UIControlStateNormal];
-        }
-    }
-    else{//ongoing
-        NSArray *temp = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
-        Boolean check = false;
-        for(int i = 0; i < temp.count ; i++){
+        NSArray *checks = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
+        for(int i = 0; i < checks.count ; i++){
             NSString *check_id = [NSString stringWithFormat:@"%@",[[[data objectAtIndex:indexPath.row] objectForKey:@"checks"] objectAtIndex:i]];
-            if([my_id isEqualToString:check_id]){
+            if([my_id isEqualToString:check_id])
                 check = true;
+        }
+        
+        Boolean manager = false;
+        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        for (int i = 0; i < [supervisingCourses count]; i++) {
+            if ([[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue] == [[supervisingCourses objectAtIndex:i] intValue])
+                manager = true;
+        }
+        
+        if (manager) {
+            if(180.0f + cell.gap > 0.0f)
+                [self startAnimation:cell];
+            else {
+                // Show Attd Stat
+            }
+        } else {
+            if(!check) {
+                if(180.0f + cell.gap > 0.0f) {
+                    [self startAnimation:cell];
+                } else if (!check) {
+                    [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
+                    [cell.check_overlay setImage:nil];
+                }
             }
         }
-        if(check){
-            [cell.background setImage:nil];
-        }
-        else{
-            [self showing_timer_post:cell];
-        }
     }
-    
     return cell;
     
 }
 
-
--(void)showing_timer_post:(PostCell *)cell{
-    float a = -cell.gap;
-    float ratio = a/(float)time;
-    
-    if(time > a){
-        [cell.background setImage:[UIImage imageNamed:@"0072b0.png"]];
-        
-        CGRect frame1 = cell.background.frame;
-        frame1.size.height = cell.background.frame.size.height*(1.0f - ratio);
-        frame1.origin.y = cell.background.frame.origin.y + cell.background.frame.size.height*ratio;
-        cell.background.frame = frame1;
-        
-        [UIImageView beginAnimations:nil context:NULL];
-        [UIImageView setAnimationDuration:(time -a)];
-        
-        CGRect frame = cell.background.frame;
-        frame.size.height = 0.0f;
-        frame.origin.y = 77.0f;
-        cell.background.frame = frame;
-        [UIImageView commitAnimations];
-        
-        cell.timer = cell.timer - cell.gap;
-        
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(change_check_post2:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell,@"cell", nil] repeats:YES];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(data.count != 0) {
+        PostCell *cell = (PostCell *)[self.tableview cellForRowAtIndexPath:indexPath];
+        AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
+        statView.postId = cell.PostID;
+        statView.courseId = cell.CourseID;
+        statView.courseName = cell.CourseName;
+        [self.navigationController pushViewController:statView animated:YES];
     }
 }
 
--(void)change_check_post2:(NSTimer *)timer{
+-(void)startAnimation:(PostCell *)cell {
+    
+    float height = (180.0f + cell.gap) / 180.0f * 50.0f;
+    cell.background.frame = CGRectMake(29, 75 - height, 50, height);
+    [UIView animateWithDuration:180.0f + cell.gap
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         cell.background.frame = CGRectMake(29, 75, 50, 0);
+                     }
+                     completion:^(BOOL finished){
+                         cell.check_icon.alpha = 1.0f;
+                         if (cell.blink != nil ) {
+                             [cell.blink invalidate];
+                             cell.blink = nil;
+                         }
+                     }];
+    
+    if (cell.blink == nil) {
+        NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell,@"cell", nil] repeats:YES];
+        cell.blink = blink;
+    }
+}
+
+-(void)blink:(NSTimer *)timer {
     PostCell *cell = [[timer userInfo] objectForKey:@"cell"];
     
-    NSInteger i = cell.timer;
-    
-    if(i >= 2*time){
-        [timer invalidate];
-        timer = nil;
-        i = 0;
+    if (cell.check_icon.alpha < 0.5) {
+        [UIImageView beginAnimations:nil context:NULL];
+        [UIImageView setAnimationDuration:1.0];
+        cell.check_icon.alpha = 1;
+        [UIImageView commitAnimations];
+    } else {
+        [UIImageView beginAnimations:nil context:NULL];
+        [UIImageView setAnimationDuration:1.0];
+        cell.check_icon.alpha = 0;
+        [UIImageView commitAnimations];
     }
-    
-    int j = i%2;
-    
-    switch (j) {
-        case 0:{
-            cell.check_icon.alpha = 0;
-            [UIImageView beginAnimations:nil context:NULL];
-            [UIImageView setAnimationDuration:0.5];
-            cell.check_icon.alpha = 1;
-            [UIImageView commitAnimations];
-            i++;
-            cell.timer = i;
-            break;
-        }
-        case 1:{
-            cell.check_icon.alpha = 1;
-            [UIImageView beginAnimations:nil context:NULL];
-            [UIImageView setAnimationDuration:0.5];
-            cell.check_icon.alpha = 0;
-            [UIImageView commitAnimations];
-            i++;
-            cell.timer = i;
-            break;
-        }
-        default:
-            break;
-    }
-    
 }
 
 -(void)showgrade:(CGFloat)grade :(CourseDetailHeaderView *)view{
     CGRect frame = view.grade.frame;
     frame.size.height = 94.0f * (100.0f-grade) / 100.0f;
     [view.grade setFrame:frame];
-    NSLog(@"set grade showing");
 }
 
 -(void)BTiconAction:(id)sender{

@@ -17,18 +17,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *School;
 
 @property (assign, nonatomic) NSInteger CourseID;
-@property (assign, nonatomic) NSInteger timer;
-@property (assign, nonatomic) NSDate *time;
-@property (assign, nonatomic) NSInteger gap;
-@property (assign, nonatomic) NSInteger lastpid;
 @property (assign, nonatomic) NSInteger grade;
 
-@property (weak, nonatomic) IBOutlet UIImageView *background;
+@property (weak, nonatomic) IBOutlet UIView *background;
 @property (weak, nonatomic) IBOutlet UIButton *check_button;
 @property (weak, nonatomic) IBOutlet UIImageView *check_icon;
 
-@property (weak, nonatomic) IBOutlet UIImageView *cellbackground;
+@property (weak, nonatomic) IBOutlet UIView *cellbackground;
 
-@property (weak, nonatomic) NSTimer *nstimer;
+@property (assign, nonatomic) NSDate *attdCheckedDate;
+@property (assign, nonatomic) NSInteger gap;
+
+@property (assign, nonatomic) NSTimer *blink;
 
 @end

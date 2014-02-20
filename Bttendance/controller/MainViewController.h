@@ -7,19 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CourseCell.h"
-#import <CoreBluetooth/CoreBluetooth.h>
-#import <MapKit/MapKit.h>
 #import <AFNetworking/AFNetworking.h>
-#import "BTUserDefault.h"
-#import "CourseAttendView.h"
-#import "CourseInfoCell.h"
-#import "BTColor.h"
-#import "PostCell.h"
-#import "ButtonCell.h"
-#import "AppDelegate.h"
-#import "CourseCreateController.h"
-#import "AttdStatViewController.h"
 #import "CatchPointController.h"
 
 @interface MainViewController : UIViewController{
