@@ -203,7 +203,7 @@ NSString *signinRequest;
     NSString *username = [((CustomCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield text];
     NSString *password = [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield text];
     
-    [self JSONSigninRequest:username :password];
+    [self JSONSigninRequest:username :password :sender];
     
 }
 
@@ -222,8 +222,12 @@ NSString *signinRequest;
     return NO;
 }
 
--(void)JSONSigninRequest:(NSString *)username :(NSString *)password{
+-(void)JSONSigninRequest:(NSString *)username :(NSString *)password :(id)sender{
     
+    UIButton *button = (UIButton *)sender;
+    button.enabled = NO;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     NSString *uuid = [BTUserDefault representativeString:[BTUserDefault getUserService].UUID];
     NSDictionary *params = @{@"username":username,
@@ -232,6 +236,7 @@ NSString *signinRequest;
     
     [AFmanager GET:signinRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"SignIn success : %@", responseObject);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:FirstLaunchKey];
         [BTUserDefault setUserInfo:responseObject];
@@ -245,6 +250,8 @@ NSString *signinRequest;
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"SignIn fail %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        button.enabled = YES;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Sign In Failed. Please check your username and password again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];

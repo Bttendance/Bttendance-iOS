@@ -129,7 +129,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(data.count != 0) {
+        
         PostCell *cell = (PostCell *)[self.tableview cellForRowAtIndexPath:indexPath];
+        
+        Boolean manager = false;
+        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        for (int i = 0; i < [supervisingCourses count]; i++) {
+            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+                manager = true;
+        }
+        
+        if (!manager)
+            return;
+        
         AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
         statView.postId = cell.PostID;
         statView.courseId = cell.CourseID;
@@ -163,10 +175,25 @@
     
     cell.blinkTime--;
     if (cell.blinkTime < 0) {
-        cell.check_icon.alpha = 1;
-        if (cell.blink != nil)
-            [cell.blink invalidate];
-        cell.blink = nil;
+        
+        Boolean manager = false;
+        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        for (int i = 0; i < [supervisingCourses count]; i++) {
+            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+                manager = true;
+        }
+        
+        if (manager) {
+            cell.check_icon.alpha = 1;
+            if (cell.blink != nil)
+                [cell.blink invalidate];
+            cell.blink = nil;
+        } else {
+            [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
+            [cell.check_overlay setImage:nil];
+        }
+        [self refreshFeed:nil];
+        
         return;
     }
     

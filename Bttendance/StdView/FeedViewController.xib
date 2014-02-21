@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController">
             <connections>
-                <outlet property="tableview" destination="OX0-Lm-Z1g" id="QaD-Bc-SK5"/>
+                <outlet property="tableview" destination="BnW-s7-Pmx" id="Tb1-Hp-RhM"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -16,22 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OX0-Lm-Z1g">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BnW-s7-Pmx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="Q5Q-2c-MUw"/>
-                        <outlet property="delegate" destination="-1" id="81y-id-cvf"/>
+                        <outlet property="dataSource" destination="-1" id="IjS-QN-fKA"/>
+                        <outlet property="delegate" destination="-1" id="Jb9-iF-saX"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="OX0-Lm-Z1g" secondAttribute="bottom" id="6on-4f-YSc"/>
-                <constraint firstItem="OX0-Lm-Z1g" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="AeW-d1-3HH"/>
-                <constraint firstAttribute="trailing" secondItem="OX0-Lm-Z1g" secondAttribute="trailing" id="RZP-H7-nR7"/>
-                <constraint firstItem="OX0-Lm-Z1g" firstAttribute="top" secondItem="1" secondAttribute="top" id="ir7-wP-yBH"/>
+                <constraint firstAttribute="bottom" secondItem="BnW-s7-Pmx" secondAttribute="bottom" id="EGU-hS-Udk"/>
+                <constraint firstItem="BnW-s7-Pmx" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="b1p-p2-Bfo"/>
+                <constraint firstAttribute="trailing" secondItem="BnW-s7-Pmx" secondAttribute="trailing" id="nXx-Mx-XBk"/>
+                <constraint firstItem="BnW-s7-Pmx" firstAttribute="top" secondItem="1" secondAttribute="top" id="rK3-8f-ahd"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

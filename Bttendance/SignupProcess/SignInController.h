@@ -20,13 +20,7 @@
     NSIndexPath *username_index, *password_index;
 }
 
-
-
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
 @property (weak, nonatomic) NSDictionary *user_info;
-
--(IBAction)signinButton:(id)sender;
--(void)JSONSigninRequest:(NSString *) username :(NSString *) password;
 
 @end

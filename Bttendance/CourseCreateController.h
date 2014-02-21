@@ -31,8 +31,4 @@
 @property (weak, nonatomic) NSString *schoolName;
 @property (weak, nonatomic) NSString *prfName;
 
--(IBAction)CreateButton:(id)sender;
-
--(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname;
-
 @end

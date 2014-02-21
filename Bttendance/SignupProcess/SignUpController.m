@@ -233,7 +233,7 @@ NSString *signupRequest;
     [self.navigationController pushViewController:webView animated:YES];
 }
 
--(IBAction)SignUnButton:(id)sender{
+-(void)SignUnButton:(id)sender{
     NSString *fullname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
     NSString *email = [((CustomCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield text];
     NSString *username = [((CustomCell *)[self.tableView cellForRowAtIndexPath:username_index]).textfield text];
@@ -257,7 +257,7 @@ NSString *signupRequest;
     }
     
     else{
-        [self JSONSignupRequest:username :email :fullname :password];
+        [self JSONSignupRequest:username :email :fullname :password: sender];
         NSLog(@"fullname : %@",fullname);
         NSLog(@"email : %@",email);
         NSLog(@"usename : %@",username);
@@ -307,8 +307,12 @@ NSString *signupRequest;
 
 }
 
--(void)JSONSignupRequest:(NSString *)username :(NSString *)email :(NSString *)fullname :(NSString *)password {
-
+-(void)JSONSignupRequest:(NSString *)username :(NSString *)email :(NSString *)fullname :(NSString *)password :(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    button.enabled = NO;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     NSString *uuid = [BTUserDefault representativeString:[BTUserDefault getUserService].UUID];
     NSDictionary *params = @{@"username":username,
@@ -320,6 +324,7 @@ NSString *signupRequest;
     
     [AFmanager POST:signupRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"SignUp success : %@", responseObject);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:TRUE forKey:FirstLaunchKey];
@@ -354,6 +359,8 @@ NSString *signupRequest;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSString *rawstring = [[[operation responseObject] objectForKey:@"message"] objectAtIndex:0];
         NSLog(@"error json : %@", rawstring);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        button.enabled = YES;
         
         NSRange user_email = [rawstring rangeOfString:@"\"user_email_key\"" options:NSCaseInsensitiveSearch];
         NSRange user_name = [rawstring rangeOfString:@"\"user_username_key\"" options:NSCaseInsensitiveSearch];

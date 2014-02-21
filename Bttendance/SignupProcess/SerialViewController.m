@@ -201,23 +201,27 @@
     [self.navigationController pushViewController:webView animated:YES];
 }
 
--(IBAction)enter:(id)sender{
+-(void)enter:(id)sender{
     
-    enterBt.enabled = NO;
+    UIButton *button = (UIButton *)sender;
+    button.enabled = NO;
+    
     NSString *serial = [((CustomCell *)[self.tableView cellForRowAtIndexPath:serialcode]).textfield text];
-    
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if (isSignUp) {
         NSDictionary *params = @{@"serial":serial};
         [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
             NSLog(@"Getting success : %@",responseObject);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
             signUpController.schoolId = [[responseObject objectForKey:@"id"] integerValue];
             signUpController.serial = serial;
             [self.navigationController pushViewController:signUpController animated:YES];
         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            enterBt.enabled = YES;
+            button.enabled = YES;
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             UIAlertView *wrongserial = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Serial code is not valiable.\nPlease check again" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             [wrongserial show];
         }];
@@ -232,6 +236,7 @@
                                  @"serial":serial};
         [AFmanager PUT:[BTURL stringByAppendingString:@"/user/employ/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
             NSLog(@"Getting success : %@",responseObject);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [BTUserDefault setUserInfo:responseObject];
             CourseCreateController *createCourseController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
             createCourseController.schoolId = schoolId;
@@ -239,7 +244,8 @@
             createCourseController.prfName = [userinfo objectForKey:FullNameKey];
             [self.navigationController pushViewController:createCourseController animated:YES];
         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            enterBt.enabled = YES;
+            button.enabled = YES;
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             UIAlertView *wrongserial = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Serial code is not valiable.\nPlease check again" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
             [wrongserial show];
         }];

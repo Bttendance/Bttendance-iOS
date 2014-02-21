@@ -27,7 +27,12 @@ NSString *createCourseRequest;
         number_index= [NSIndexPath indexPathForRow:1 inSection:0];
         school_index = [NSIndexPath indexPathForRow:3 inSection:0];
         profname_index = [NSIndexPath indexPathForRow:2 inSection:0];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonSystemItemCancel target:self action:@selector(backbuttonpressed:)];
+        
+        UIButton *settingsView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 20)];
+        [settingsView addTarget:self action:@selector(backbuttonpressed:) forControlEvents:UIControlEventTouchUpInside];
+        [settingsView setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:settingsView];
+        [self.navigationItem setLeftBarButtonItem:settingsButton];
         self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
@@ -197,7 +202,7 @@ NSString *createCourseRequest;
     }
 }
 
--(IBAction)CreateButton:(id)sender{
+-(void)CreateButton:(id)sender{
     NSDictionary *userinfo = [BTUserDefault getUserInfo];
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
@@ -207,7 +212,7 @@ NSString *createCourseRequest;
     NSString *prfname = [((CustomCell *)[self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
     NSString *sid = [NSString stringWithFormat:@"%ld", (long) self.schoolId];
     
-    [self JSONCreateCourseRequest:username :password :name :number :sid :prfname];
+    [self JSONCreateCourseRequest:username :password :name :number :sid :prfname :sender];
     
     NSLog(@"name : %@",name);
     NSLog(@"number : %@",number);
@@ -233,10 +238,12 @@ NSString *createCourseRequest;
         return NO;
     }
     return NO;
-
 }
 
--(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname{
+-(void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname :(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    button.enabled = NO;
     
     NSDictionary *params = @{@"username":username,
                              @"password":password,
@@ -245,14 +252,18 @@ NSString *createCourseRequest;
                              @"school_id":school_id,
                              @"professor_name":prfname};
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager POST:createCourseRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"Create Course success : %@", responseObject);
         
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [self.navigationController popToRootViewControllerAnimated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Create Course fail %@", error);
+        button.enabled = YES;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 
 }

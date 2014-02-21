@@ -18,7 +18,6 @@
 @interface SerialViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
     NSString *type;
     NSIndexPath *serialcode;
-    UIButton *enterBt;
     
     Boolean isSignUp;
     NSInteger schoolId;
@@ -28,7 +27,5 @@
 @property (nonatomic) Boolean isSignUp;
 @property (nonatomic) NSInteger schoolId;
 @property (nonatomic) NSString *schoolName;
-
--(IBAction)enter:(id)sender;
 
 @end

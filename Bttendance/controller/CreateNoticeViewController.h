@@ -17,6 +17,7 @@
     NSDictionary *userinfo;
     __weak NSString *cid;
     __weak CourseCell *currentcell;
+    UIBarButtonItem *post;
     
     NSString *Cid;
     

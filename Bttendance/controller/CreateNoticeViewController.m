@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIBarButtonItem *post = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice)];
+    post = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice)];
     self.navigationItem.rightBarButtonItem = post;
     
     //Navigation title
@@ -59,6 +59,9 @@
 }
 
 -(void)post_Notice{
+    
+    post.enabled = NO;
+    
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *message = [self.message text];
@@ -72,6 +75,7 @@
     [AFmanager POST:[BTURL stringByAppendingString:@"/post/create/notice"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         [self.navigationController popViewControllerAnimated:YES];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        post.enabled = YES;
         NSString *string = @"Fails to made a notice, please try again";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];

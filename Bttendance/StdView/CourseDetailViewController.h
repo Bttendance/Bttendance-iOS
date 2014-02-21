@@ -30,8 +30,6 @@
     
     NSString *my_id;
     Boolean auth;
-    
-    int time;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
