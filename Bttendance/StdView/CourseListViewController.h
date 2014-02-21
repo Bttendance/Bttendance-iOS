@@ -19,7 +19,7 @@
 #import "SchoolChooseView.h"
 #import "BTDateFormatter.h"
 
-@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>{
+@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralManagerDelegate>{
     
     NSInteger rowcount1;
     NSInteger rowcount2;
@@ -29,18 +29,14 @@
     NSArray *supervisingCourses;
     NSArray *attendingCourses;
     
-    NSArray *attdingPostIDs;
+    NSMutableArray *attdingPostIDs;
     NSString *attdStartingCid;
     
     CBMutableService *myservice;
     CBPeripheralManager *myPmanager;
     CBCentralManager *myCmanager;
-    
-    Boolean turnBTOnMessage;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
--(void)move_to_school:(id)sender;
 
 @end

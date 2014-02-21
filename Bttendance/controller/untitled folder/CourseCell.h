@@ -31,4 +31,6 @@
 @property (assign, nonatomic) NSTimer *blink;
 @property (assign, nonatomic) NSInteger blinkTime;
 
+@property (assign, nonatomic) BOOL isManager;
+
 @end

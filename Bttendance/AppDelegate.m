@@ -112,8 +112,7 @@
     if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) { //Check if our iOS version supports multitasking I.E iOS 4
 		if ([[UIDevice currentDevice] isMultitaskingSupported]) { //Check if device supports mulitasking
             
-			__block UIBackgroundTaskIdentifier background_task; //Create a task object
-            
+            __block UIBackgroundTaskIdentifier background_task;
 			background_task = [application beginBackgroundTaskWithExpirationHandler: ^ {
 				[application endBackgroundTask: background_task]; //Tell the system that we are done with the tasks
 				background_task = UIBackgroundTaskInvalid; //Set the task to be invalid

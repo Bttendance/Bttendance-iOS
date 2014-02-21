@@ -23,8 +23,18 @@
         userinfo = [BTUserDefault getUserInfo];
         my_id = [userinfo objectForKey:UseridKey];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:@"NEWMESSAGE" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     return self;
+}
+
+- (void)appDidBecomeActive:(NSNotification *)notification {
+    [self.tableview reloadData];
+}
+
+- (void)appDidEnterForeground:(NSNotification *)notification {
+    [self.tableview reloadData];
 }
 
 - (void)viewDidLoad
@@ -164,7 +174,8 @@
             if(180.0f + cell.gap > 0.0f)
                 [self startAnimation:cell];
             else {
-                // Show Attd Stat
+                int grade = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] intValue];
+                [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
             }
         } else {
             if(!check) {
@@ -192,7 +203,7 @@
                 manager = true;
         }
         
-        if (!manager)
+        if (!manager || cell.isNotice)
             return;
         
         AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];

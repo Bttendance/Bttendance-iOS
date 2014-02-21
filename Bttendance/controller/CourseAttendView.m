@@ -104,7 +104,6 @@
             rowcount1 = data1.count;
             [self.tableview reloadData];
         } else{
-            data0 = nil;
             rowcount0 = 0;
             data1 = responseObject;
             rowcount1 = data1.count;

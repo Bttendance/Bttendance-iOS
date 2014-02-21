@@ -23,15 +23,22 @@
         userinfo = [BTUserDefault getUserInfo];
         supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
         attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
+        attdingPostIDs = [[NSMutableArray alloc] init];
         
         myservice = [BTUserDefault getUserService];
         myCmanager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         [myPmanager addService:myservice];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourses:) name:@"NEWMESSAGE" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     
     return self;
+}
+
+- (void)appDidEnterForeground:(NSNotification *)notification {
+    [self.tableview reloadData];
+    [self checkAttdScan];
 }
 
 - (void)viewDidLoad
@@ -42,7 +49,6 @@
     
     rowcount1 = 1;
     rowcount2 = 1;
-    turnBTOnMessage = false;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -66,33 +72,24 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/user/auto/signin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
         [BTUserDefault setUserInfo:responseObject];
-        
         [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            userinfo = [BTUserDefault getUserInfo];
             supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
             attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
             rowcount1 = [supervisingCourses count] + 1;
             rowcount2 = [attendingCourses count] + 1;
             data = responseObject;
+            [self checkAttdScan];
             [self.tableview reloadData];
-            
         }failure:^(AFHTTPRequestOperation *operation, NSError *error){
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            NSLog(@"Get User Courses Fail : %@", error);
         }];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -160,14 +157,19 @@
                             cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
                             cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
                             cell.cellbackground.layer.cornerRadius = 2;
+                            cell.isManager = true;
                             [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
                             
                             NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
                             cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
                             cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
                             if (180.0f + cell.gap > 0.0f) {
                                 [self startAnimation:cell];
-                                [self startAttdScan];
+                            } else if (cell.blink != nil) {
+                                cell.check_icon.alpha = 1;
+                                [cell.blink invalidate];
+                                cell.blink = nil;
                             }
                             
                             break;
@@ -212,14 +214,19 @@
                             cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
                             cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
                             cell.cellbackground.layer.cornerRadius = 2;
-                            [cell.check_button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+                            cell.isManager = false;
+                            [cell.check_button removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                            [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
                             
                             NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
                             cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
                             cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
                             if (180.0f + cell.gap > 0.0f) {
                                 [self startAnimation:cell];
-                                [self startAttdScan];
+                            } else if (cell.blink != nil) {
+                                cell.check_icon.alpha = 1;
+                                [cell.blink invalidate];
+                                cell.blink = nil;
                             }
                             
                             break;
@@ -258,10 +265,9 @@
         CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
         courseDetailViewController.currentcell = cell;
         
-        if(indexPath.section == 0){
+        if(indexPath.section == 0) {
             courseDetailViewController.auth = YES;
-        }
-        else{
+        } else {
             courseDetailViewController.auth = NO;
         }
         
@@ -269,19 +275,22 @@
     }
 }
 
-
 -(void)startAnimation:(CourseCell *)cell {
     
     float height = (180.0f + cell.gap) / 180.0f * 50.0f;
     cell.background.frame = CGRectMake(239, 75 - height, 50, height);
-    [cell.check_button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    [cell.check_button removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
     [UIView animateWithDuration:180.0f + cell.gap
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         cell.background.frame = CGRectMake(239, 75, 50, 0);
+                         [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
                      }
                      completion:^(BOOL finished){
+                         if (cell.isManager) {
+                             [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                         }
+                         [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
                      }];
     
     cell.blinkTime = 180 + cell.gap;
@@ -338,7 +347,6 @@
     attdStartingCid = [NSString stringWithFormat:@"%ld", (long)cell.CourseID];
     
     UIAlertView *alert;
-    
     switch ([myCmanager state]) {
         case CBCentralManagerStatePoweredOn: //power-on
             alert = [[UIAlertView alloc] initWithTitle:cell.CourseName.text message:@"Do you wish to start attendance check?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
@@ -357,13 +365,11 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1 && [myCmanager state] == CBCentralManagerStatePoweredOn) {
-        myPmanager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:nil];
+    if (buttonIndex == 1 && [myCmanager state] == CBCentralManagerStatePoweredOn)
         [self startAttdCheck];
-    }
     
     if (buttonIndex == 0 && [myCmanager state] == CBCentralManagerStatePoweredOff)
-        myPmanager = [[CBPeripheralManager alloc] initWithDelegate:nil queue:nil];
+        myPmanager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
 }
 
 -(void)startAttdCheck {
@@ -382,34 +388,74 @@
     }];
 }
 
+-(void)checkAttdScan {
+    //Attendance Start Check
+    [attdingPostIDs removeAllObjects];
+    for (int i = 0; i < data.count; i++) {
+        NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
+        int gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+        if (180.0f + gap > 0.0f) {
+            NSArray *posts = [[data objectAtIndex:i] objectForKey:@"posts"];
+            NSNumber *maxID = [posts valueForKeyPath:@"@max.intValue"];
+            [attdingPostIDs addObject:maxID];
+        }
+    }
+    
+    //Attendance Start
+    if ([attdingPostIDs count] > 0)
+        [self startAttdScan];
+}
+
 -(void)startAttdScan {
-    [myPmanager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[myservice.UUID]}];
-    [myCmanager scanForPeripheralsWithServices:nil options:nil];
+    UIAlertView *alert;
+    switch ([myCmanager state]) {
+        case CBCentralManagerStatePoweredOn:{ //power-on
+            myPmanager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+            [myCmanager scanForPeripheralsWithServices:nil options:nil];
+            break;
+        }
+        case CBCentralManagerStatePoweredOff: //powered off
+            alert = [[UIAlertView alloc] initWithTitle:@"Turn On Bluetooth" message:@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+        case CBCentralManagerStateUnknown: //Unknown state
+        case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
+        case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
+        default: //default
+            alert = [[UIAlertView alloc] initWithTitle:@"Device Unsupported" message:@"Your device doesn't support proper bluetooth version." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            break;
+    }
 }
 
 #pragma mark - CBCentralManagerDelegate
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
-    if(attdingPostIDs == nil)
-        return;
 
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *uuid = [BTUserDefault representativeString:[[advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey] objectAtIndex:0]];
     
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"post_id":attdingPostIDs[0],
-                             @"uuid":uuid};
+    NSLog(@"Found %@", uuid);
     
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager PUT:[BTURL stringByAppendingString:@"/post/attendance/found/device"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-    }];
+    for (int i = 0; i < [attdingPostIDs count]; i++) {
+        NSLog(@"Found %@ and postid %d", uuid, [[attdingPostIDs objectAtIndex:i] intValue]);
+        NSDictionary *params = @{@"username":username,
+                                 @"password":password,
+                                 @"post_id":[[attdingPostIDs objectAtIndex:i] stringValue],
+                                 @"uuid":uuid};
+        
+        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+        [AFmanager PUT:[BTURL stringByAppendingString:@"/post/attendance/found/device"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+            
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            
+        }];
+    }
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
     NSString *state = nil;
-    switch ([myCmanager state]) {
+    switch ([central state]) {
         case CBCentralManagerStateUnsupported:
             state = @"The platform hardware doesn't support Bluetooth Low Energy.";
             break;
@@ -420,6 +466,7 @@
             state = @"Bluetooth is currently powered off.";
             break;
         case CBCentralManagerStatePoweredOn:
+            [self checkAttdScan];
             state = @"power-on";
             break;
         case CBCentralManagerStateUnknown:
@@ -429,8 +476,34 @@
             state = @"default";
             break;
     }
-    
-    NSLog(@"Bluetooth STATE : %@", state);
+    NSLog(@"Central STATE : %@", state);
+}
+
+#pragma mark - CBPeripheralDelegate
+-(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
+    NSString *state = nil;
+    switch ([peripheral state]) {
+        case CBPeripheralManagerStateUnsupported:
+            state = @"The platform hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBPeripheralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBPeripheralManagerStatePoweredOff:
+            state = @"Bluetooth is currently powered off.";
+            break;
+        case CBPeripheralManagerStatePoweredOn:
+            [myPmanager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey:@[myservice.UUID]}];
+            state = @"power-on";
+            break;
+        case CBPeripheralManagerStateUnknown:
+            state = @"Unknown state";
+            break;
+        default:
+            state = @"default";
+            break;
+    }
+    NSLog(@"Peripheral STATE : %@", state);
 }
 
 @end
