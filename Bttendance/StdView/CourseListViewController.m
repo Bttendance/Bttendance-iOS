@@ -71,6 +71,8 @@
         
         [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject){
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
+            attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
             rowcount1 = [supervisingCourses count] + 1;
             rowcount2 = [attendingCourses count] + 1;
             data = responseObject;

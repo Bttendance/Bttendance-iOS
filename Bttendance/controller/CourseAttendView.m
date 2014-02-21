@@ -260,13 +260,19 @@
     [AFmanager PUT:[BTURL stringByAppendingString:@"/user/attend/course"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
         NSLog(@"join course success : %@", responsObject);
         [BTUserDefault setUserInfo:responsObject];
-        [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
-
-        rowcount1--;
+        
         [[self tableview] beginUpdates];
-        NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
-        [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
+        rowcount1--;
         rowcount0++;
+        NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
+        for (int i = 0; i < [data1 count]; i++) {
+            if ([[[data1 objectAtIndex:i] objectForKey:@"id"] intValue] == currentcell.Info_CourseID) {
+                [data0 addObject:[data1 objectAtIndex:i]];
+                [data1 removeObjectAtIndex:i];
+            }
+        }
+        [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [[self tableview] endUpdates];
 
     }failure:^(AFHTTPRequestOperation *opration, NSError *error){

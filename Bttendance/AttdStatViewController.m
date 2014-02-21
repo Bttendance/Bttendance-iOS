@@ -52,6 +52,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self refreshStat];
+}
+
+-(void)refreshStat {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     
@@ -69,6 +73,9 @@
         NSString *postAPI = [NSString stringWithFormat:[BTURL stringByAppendingString:@"/post/%ld"],(long)postId];
         [AFmanager GET:postAPI parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject_){
             NSDictionary *checks = [responseObject_ objectForKey:@"checks"];
+            
+            [data0 removeAllObjects];
+            [data1 removeAllObjects];
             
             if(studentlist.count != 0){
                 for(int i = 0; i< studentlist.count; i++){
@@ -211,16 +218,19 @@
         
         [AFmanager PUT:[BTURL stringByAppendingString:@"/post/attendance/check/manually"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
             NSLog(@"join course success : %@", responsObject);
-            //join!!
-            
-            //change icon
-            [currentcell.Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
-            //move to section 1
-            rowcount1++;
+
             [[self tableview] beginUpdates];
-            NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
-            [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+            [currentcell.Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
+            rowcount1++;
             rowcount0--;
+            NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
+            for (int i = 0; i < [data0 count]; i++) {
+                if ([[[data0 objectAtIndex:i] objectForKey:@"id"] intValue] == currentcell.Info_UserID) {
+                    [data1 addObject:[data0 objectAtIndex:i]];
+                    [data0 removeObjectAtIndex:i];
+                }
+            }
+            [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
             [[self tableview] endUpdates];
             
         }failure:^(AFHTTPRequestOperation *opration, NSError *error){
