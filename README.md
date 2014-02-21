@@ -6,5 +6,4 @@ Bttendance-iOS
 ####Supported Bluetooth Profile
 - http://support.apple.com/kb/ht3647
 
-####Samchon 
 ####TheFinestArtist
