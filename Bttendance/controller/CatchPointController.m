@@ -67,8 +67,6 @@
     _Signin.alpha = 1;
     [UIImageView commitAnimations];
     
-    
-    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -106,27 +104,35 @@
 }
 
 -(IBAction)Signup_button:(id)sender{
-    NSLog(@"signup button pressed");
-//    SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
-//    [self.navigationController pushViewController:signUpController animated:YES];
-    _Signup.backgroundColor = [UIColor colorWithRed:0.2 green:0.71 blue:0.898 alpha:1];
-    PersonalizeController *personalizeController = [[PersonalizeController alloc] initWithNibName:@"PersonalizeController" bundle:nil];
-    _btdtitle.alpha = 1;
-    _subtitle.alpha = 1;
-    _gradient.alpha = 1;
-    _bgImage.alpha = 1;
-    _Signup.alpha = 1;
-    _Signin.alpha = 1;
-    [UIImageView animateWithDuration:1 animations:^{
-        _btdtitle.alpha = 0;
-        _subtitle.alpha = 0;
-        _gradient.alpha = 0;
-        _bgImage.alpha = 0;
-        _Signup.alpha = 0;
-        _Signin.alpha = 0;
-    }completion:^(BOOL finished){
-        [self.navigationController pushViewController:personalizeController animated:NO];
-    }];
+    SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
+    [self.navigationController pushViewController:signUpController animated:YES];
+    
+//    [UIView transitionWithView:self.navigationController.view
+//                      duration:0.75
+//                       options:UIViewAnimationOptionTransitionCurlUp
+//                    animations:^{
+//                        [self.navigationController pushViewController:signUpController animated:NO];
+//                    }
+//                    completion:nil];
+    
+//    _Signup.backgroundColor = [UIColor colorWithRed:0.2 green:0.71 blue:0.898 alpha:1];
+//    PersonalizeController *personalizeController = [[PersonalizeController alloc] initWithNibName:@"PersonalizeController" bundle:nil];
+//    _btdtitle.alpha = 1;
+//    _subtitle.alpha = 1;
+//    _gradient.alpha = 1;
+//    _bgImage.alpha = 1;
+//    _Signup.alpha = 1;
+//    _Signin.alpha = 1;
+//    [UIImageView animateWithDuration:1 animations:^{
+//        _btdtitle.alpha = 0;
+//        _subtitle.alpha = 0;
+//        _gradient.alpha = 0;
+//        _bgImage.alpha = 0;
+//        _Signup.alpha = 0;
+//        _Signin.alpha = 0;
+//    }completion:^(BOOL finished){
+//        [self.navigationController pushViewController:personalizeController animated:NO];
+//    }];
 }
 
 -(IBAction)Signin_button:(id)sender{
@@ -137,6 +143,14 @@
     
     SignInController *signInController = [[SignInController alloc] initWithNibName:@"SignInController" bundle:nil];
     [self.navigationController pushViewController:signInController animated:YES];
+    
+//    [UIView transitionWithView:self.navigationController.view
+//                      duration:1
+//                       options:UIViewAnimationOptionTransitionCurlUp
+//                    animations:^{
+//                        [self.navigationController pushViewController:signInController animated:NO];
+//                    }
+//                    completion:nil];
     
 }
 

@@ -15,6 +15,7 @@
 #import "BTAPIs.h"
 #import "NIAttributedLabel.h"
 #import "WebViewController.h"
+#import "CatchPointController.h"
 
 
 @interface SignUpController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate, NIAttributedLabelDelegate>{

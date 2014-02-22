@@ -106,7 +106,6 @@
             else{
                 data0 = responseObject;
                 rowcount0 = data0.count;
-                data1 = nil;
                 rowcount1 = 0;
                 [self.tableview reloadData];
             }
@@ -228,6 +227,7 @@
                 if ([[[data0 objectAtIndex:i] objectForKey:@"id"] intValue] == currentcell.Info_UserID) {
                     [data1 addObject:[data0 objectAtIndex:i]];
                     [data0 removeObjectAtIndex:i];
+                    break;
                 }
             }
             [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];

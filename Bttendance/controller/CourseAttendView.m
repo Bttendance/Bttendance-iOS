@@ -105,7 +105,8 @@
             [self.tableview reloadData];
         } else{
             rowcount0 = 0;
-            data1 = responseObject;
+            for(int i = 0 ; i < courselist.count; i++)
+                [data1 addObject:[responseObject objectAtIndex:i]];
             rowcount1 = data1.count;
             [self.tableview reloadData];
         }
@@ -269,6 +270,7 @@
             if ([[[data1 objectAtIndex:i] objectForKey:@"id"] intValue] == currentcell.Info_CourseID) {
                 [data0 addObject:[data1 objectAtIndex:i]];
                 [data1 removeObjectAtIndex:i];
+                break;
             }
         }
         [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

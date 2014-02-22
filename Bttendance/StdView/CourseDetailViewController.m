@@ -225,6 +225,8 @@
                          cell.background.frame = CGRectMake(29, 75, 50, 0);
                      }
                      completion:^(BOOL finished){
+                         if (finished)
+                             [self refreshFeed:nil];
                      }];
     
     
@@ -257,8 +259,6 @@
             [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
             [cell.check_overlay setImage:nil];
         }
-        [self refreshFeed:nil];
-        
         return;
     }
     

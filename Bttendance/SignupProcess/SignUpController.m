@@ -83,11 +83,14 @@ NSString *signupRequest;
     NSLog(@"set autofocus");
     CustomCell *cell1 = (CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index];
     [cell1.textfield becomeFirstResponder];
-
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -281,7 +284,6 @@ NSString *signupRequest;
     NSLog(@"return call!");
     
     if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:fullname_index]).textfield]){
-        
         [((CustomCell *)[self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
         return YES;
     }
@@ -362,33 +364,38 @@ NSString *signupRequest;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         button.enabled = YES;
         
-        NSRange user_email = [rawstring rangeOfString:@"\"user_email_key\"" options:NSCaseInsensitiveSearch];
-        NSRange user_name = [rawstring rangeOfString:@"\"user_username_key\"" options:NSCaseInsensitiveSearch];
-        NSRange user_uuid = [rawstring rangeOfString:@"\"user_device_uuid_key\"" options:NSCaseInsensitiveSearch];
+        NSString *string = @"Error in sign up.\nPlease try again.";
+        NSString *title = @"Sign Up Error";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
         
-//        NSString *user
-        if(user_email.location != NSNotFound){ //email duplicate
-            //alert showing
-            NSString *string = @"Email currently in use.\nPlease try a different address.";
-            NSString *title = @"Duplication Error";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-
-        }
-        if (user_name.location != NSNotFound){ //username duplicate
-            //alert showing
-            NSString *string = @"Username currently in use.\nPlease try a different Username";
-            NSString *title = @"Duplication Error";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-        if(user_uuid.location != NSNotFound){ //uuid duplicate!!! critical!
-            //alert showing
-            NSString *string = @"Your device currently in use.\n Any further progress in signing up may result in disadvantage on your end.";
-            NSString *title = @"Critical Error in Validation";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+//        NSRange user_email = [rawstring rangeOfString:@"\"user_email_key\"" options:NSCaseInsensitiveSearch];
+//        NSRange user_name = [rawstring rangeOfString:@"\"user_username_key\"" options:NSCaseInsensitiveSearch];
+//        NSRange user_uuid = [rawstring rangeOfString:@"\"user_device_uuid_key\"" options:NSCaseInsensitiveSearch];
+//        
+////        NSString *user
+//        if(user_email.location != NSNotFound){ //email duplicate
+//            //alert showing
+//            NSString *string = @"Email currently in use.\nPlease try a different address.";
+//            NSString *title = @"Duplication Error";
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//
+//        }
+//        if (user_name.location != NSNotFound){ //username duplicate
+//            //alert showing
+//            NSString *string = @"Username currently in use.\nPlease try a different Username";
+//            NSString *title = @"Duplication Error";
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//        }
+//        if(user_uuid.location != NSNotFound){ //uuid duplicate!!! critical!
+//            //alert showing
+//            NSString *string = @"Your device currently in use.\n Any further progress in signing up may result in disadvantage on your end.";
+//            NSString *title = @"Critical Error in Validation";
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//        }
 
     }];
 }
