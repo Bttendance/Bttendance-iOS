@@ -287,10 +287,11 @@
                          [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
                      }
                      completion:^(BOOL finished){
-                         if (cell.isManager) {
-                             [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                         if (finished) {
+                             [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                             if (cell.isManager)
+                                 [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                          }
-                         [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
                      }];
     
     cell.blinkTime = 180 + cell.gap;
