@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define DEV YES
+#define DEV NO
 
 #ifdef DEV
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
