@@ -26,8 +26,6 @@
     
     NSMutableArray *data;
     
-    NSMutableArray *studentlist;
-    
     NSInteger rowcount;
     
 }

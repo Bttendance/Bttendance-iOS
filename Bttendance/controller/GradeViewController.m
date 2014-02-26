@@ -49,17 +49,10 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
     [AFmanager GET:[BTURL stringByAppendingString:@"/course/grades"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
         data = responseObject;
         rowcount = data.count;
-        [AFmanager GET:[BTURL stringByAppendingString:@"/course/students"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObejct){
-            studentlist = responseObejct;
-            
-            [self.tableview reloadData];
-            
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        }];
+        [self.tableview reloadData];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -90,17 +83,11 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    for(int i = 0; i < studentlist.count; i++){
-        if([[data objectAtIndex:indexPath.row] objectForKey:@"id"] == [[studentlist objectAtIndex:i] objectForKey:@"id"]){
-            cell.name.text = [[studentlist objectAtIndex:i] objectForKey:@"full_name"];
-            cell.idnumber.text = [[studentlist objectAtIndex:i] objectForKey:@"email"];
-            NSArray* stringcomp = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] componentsSeparatedByString:@"/"];
-            cell.att.text = [stringcomp objectAtIndex:0];
-            cell.tot.text = [stringcomp objectAtIndex:1];
-            break;
-        }
-    }
+    cell.name.text = [[data objectAtIndex:indexPath.row] objectForKey:@"full_name"];
+    cell.idnumber.text = [[data objectAtIndex:indexPath.row] objectForKey:@"student_id"];
+    NSArray* stringcomp = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] componentsSeparatedByString:@"/"];
+    cell.att.text = [stringcomp objectAtIndex:0];
+    cell.tot.text = [stringcomp objectAtIndex:1];
     
     return cell;
 }
