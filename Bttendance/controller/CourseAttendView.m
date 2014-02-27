@@ -72,7 +72,7 @@
         NSDictionary *courselist = responseObject;
         NSLog(@"course count : %lu", (unsigned long)courselist.count);
         
-        if(attdcourse.count != 0){
+        if(attdcourse.count != 0 || supvcourse.count != 0){
             for(int i = 0 ; i < courselist.count; i++){
                 Boolean joined = false;
                 for(int j = 0; j < attdcourse.count; j++){
@@ -94,9 +94,9 @@
                         break;
                     }
                 }
-                if(joined)
+                if(joined || supved)
                     [data0 addObject:[responseObject objectAtIndex:i]];
-                else if (!supved)
+                else
                     [data1 addObject:[responseObject objectAtIndex:i]];
             }
             rowcount0 = data0.count;

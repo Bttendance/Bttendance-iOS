@@ -208,14 +208,13 @@ NSString *signinRequest;
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     if([textField isEqual:((CustomCell *)[self.tableview cellForRowAtIndexPath:username_index]).textfield]){
-        
         [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
     
     if([textField isEqual:((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield]){
-        
         [((CustomCell *)[self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+        [self signinButton:nil];
     }
     
     return NO;

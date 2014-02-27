@@ -56,9 +56,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    data0 = [[NSMutableArray alloc] init];
-    data1 = [[NSMutableArray alloc] init];
 
     
     NSString *username = [userinfo objectForKey:UsernameKey];
@@ -78,6 +75,8 @@
         else
             userschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
         
+        data0 = [[NSMutableArray alloc] init];
+        data1 = [[NSMutableArray alloc] init];
         if(userschoollist.count != 0){
             for(int i =0; i < schoollist.count; i++){
                 Boolean joined = false;

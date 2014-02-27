@@ -112,6 +112,7 @@ NSString *serialRequest;
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(CustomCell *)cell textfield].placeholder = @"john@bttendance.com";
+            [(CustomCell *)cell textfield].text = [[BTUserDefault getUserInfo] objectForKey:EmailKey];
             [(CustomCell *)cell textfield].delegate = self;
             [(CustomCell *)cell textfield].frame = CGRectMake(78, 1, 222, 40);
             [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyNext;

@@ -199,7 +199,7 @@ NSString *signupRequest;
             label.text = @"By tapping \"Sign up\" above, you are agreeing to the Terms of Service and Privacy Policy.";
             [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
                      range:[label.text rangeOfString:@"Terms of Service"]];
-            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/policy"]
+            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
                      range:[label.text rangeOfString:@"Privacy Policy"]];
             label.textAlignment = NSTextAlignmentRight;
             label.linkColor = [BTColor BT_navy:1];
@@ -302,6 +302,7 @@ NSString *signupRequest;
     if([textField isEqual:((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield]){
 
         [((CustomCell *)[self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+        [self SignUnButton:nil];
     }
     
     return NO;

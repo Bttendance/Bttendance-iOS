@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#define DEV NO
+#define DEV YES
 
-#ifdef DEV
+#if DEV == YES
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
 #else
     #define BTURL @"http://www.bttd.co/api"
