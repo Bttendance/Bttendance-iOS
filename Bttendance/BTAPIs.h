@@ -8,13 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#define DEV YES
+#define BTURL @"http://bttendance-dev.herokuapp.com/api"
+//#define BTURL @"http://www.bttd.co/api"
 
-#if DEV == YES
-    #define BTURL @"http://bttendance-dev.herokuapp.com/api"
-#else
-    #define BTURL @"http://www.bttd.co/api"
-#endif
 
 
 @interface BTAPIs : NSObject

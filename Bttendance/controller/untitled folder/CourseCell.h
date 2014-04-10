@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *Professor;
 @property (weak, nonatomic) IBOutlet UILabel *School;
 
+@property (weak, nonatomic) IBOutlet UIButton *attendanceBt;
+@property (weak, nonatomic) IBOutlet UIButton *clickerBt;
+@property (weak, nonatomic) IBOutlet UIButton *noticeBt;
+
 @property (assign, nonatomic) NSInteger CourseID;
 @property (assign, nonatomic) NSInteger grade;
 

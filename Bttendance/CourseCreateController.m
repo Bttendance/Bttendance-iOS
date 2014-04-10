@@ -28,7 +28,7 @@ NSString *createCourseRequest;
         school_index = [NSIndexPath indexPathForRow:3 inSection:0];
         profname_index = [NSIndexPath indexPathForRow:2 inSection:0];
         
-        UIButton *settingsView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 20)];
+        UIButton *settingsView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
         [settingsView addTarget:self action:@selector(backbuttonpressed:) forControlEvents:UIControlEventTouchUpInside];
         [settingsView setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:settingsView];

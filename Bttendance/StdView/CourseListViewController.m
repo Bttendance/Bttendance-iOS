@@ -31,9 +31,84 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourses:) name:@"NEWMESSAGE" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        NSString *username = [userinfo objectForKey:UsernameKey];
+        NSString *password = [userinfo objectForKey:PasswordKey];
+
+//        NSDictionary *params = @{@"username":username,
+//                                 @"password":password};
+        socketIO = [[SocketIO alloc] initWithDelegate:self];
+        //        [socketIO connectToHost:@"bttendance-dev.herokuapp.com" onPort:0];
+//        [socketIO connectToHost:@"localhost" onPort:1337 withParams:params withNamespace:@"api/clickers/click"];
+        [socketIO connectToHost:@"localhost" onPort:1337];
+        
+        UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 13.5, 13.5)];
+        [plusButton addTarget:self action:@selector(plusButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [plusButton setBackgroundImage:[UIImage imageNamed:@"plus@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:plusButton];
+        [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
     
     return self;
+}
+
+-(void)socketIODidConnect:(SocketIO *)socket{
+    NSLog(@"Connected to %@", socket.host);
+    [socket sendMessage:@"Hello"];
+}
+
+-(void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error{
+    NSLog(@"Disconnected : %@", socket.host);
+}
+
+-(void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet{
+    NSLog(@"didReceiveEvent : %@", [packet dataAsJSON]);
+    
+    if ([[[packet dataAsJSON] objectForKey:@"name"]  isEqual: @"onConnect"]) {
+        
+        NSString *username = [userinfo objectForKey:UsernameKey];
+        NSString *password = [userinfo objectForKey:PasswordKey];
+        NSString *socketId = [[[packet dataAsJSON] objectForKey:@"args"][0] objectForKey:@"socketId"];
+        
+        NSDictionary *params = @{@"username":username,
+                                 @"password":password,
+                                 @"socket_id":socketId,
+                                 @"clicker_id":@"1"};
+        
+        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+        [AFmanager POST:@"http://localhost:1337/api/clickers/connect" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+            NSLog(@"responseObject : %@", responseObject);
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            
+        }];
+    }
+    
+    if ([[[packet dataAsJSON] objectForKey:@"name"]  isEqual: @"clickers"]) {
+        NSLog(@"clickers : %@",[[[packet dataAsJSON] objectForKey:@"args"][0] objectForKey:@"data"]);
+    }
+}
+
+-(void)socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet{
+    NSLog(@"didReceiveJSON : %@", packet);
+}
+
+-(void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet{
+    NSLog(@"didReceiveMessage : %@", packet);
+}
+
+-(void)plusButtonPressed:(id)aResponder{
+    NSLog(@"plusButtonPressed");
+    
+    NSDictionary *params = @{@"post_id":@"1",
+                             @"clicker_id":@"1"};
+    
+    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
+    [AFmanager PUT:@"http://localhost:1337/api/clickers/click" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"responseObject : %@", responseObject);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        
+    }];
+    
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
@@ -55,6 +130,29 @@
     [super viewWillAppear:animated];
     [self.tableview reloadData];
     [self refreshCourses:nil];
+    
+//    SIAlertView *message = [[SIAlertView alloc] initWithTitle:nil
+//                                                   andMessage:nil];
+//    
+//    [message addButtonWithTitle:@"Button1"
+//                             type:SIAlertViewButtonTypeDefault
+//                          handler:^(SIAlertView *alert) {
+//                              NSLog(@"Button1 Clicked");
+//                          }];
+//    [message addButtonWithTitle:@"Button2"
+//                             type:SIAlertViewButtonTypeDefault
+//                          handler:^(SIAlertView *alert) {
+//                              NSLog(@"Button2 Clicked");
+//                          }];
+//    [message addButtonWithTitle:@"Button3"
+//                             type:SIAlertViewButtonTypeDestructive
+//                          handler:^(SIAlertView *alert) {
+//                              NSLog(@"Button3 Clicked");
+//                          }];
+//    
+//    message.transitionStyle = SIAlertViewTransitionStyleFade;
+//    
+//    [message show];
 }
 
 -(void)refreshCourses:(id)sender{
@@ -78,8 +176,12 @@
             userinfo = [BTUserDefault getUserInfo];
             supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
             attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
-            rowcount1 = [supervisingCourses count] + 1;
-            rowcount2 = [attendingCourses count] + 1;
+            rowcount1 = [supervisingCourses count];
+            rowcount2 = [attendingCourses count];
+            if (rowcount1 > 0)
+                sectionCount++;
+            if (rowcount2 > 0)
+                sectionCount++;
             data = responseObject;
             [self checkAttdScan];
             [self.tableview reloadData];
@@ -92,150 +194,154 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return sectionCount;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
+    if (sectionCount == 2) {
+        switch (section) {
+            case 0:
+                return @"Supervising Courses";
+            case 1:
+            default:
+                return @"Attending Courses";
+        }
+    } else if (sectionCount == 1) {
+        if (rowcount1 > 0)
             return @"Supervising Courses";
-        case 1:
-        default:
+        else
             return @"Attending Courses";
-    }
+    } else
+        return @"";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    switch (section) {
-        case 0:
+    if (sectionCount == 2) {
+        switch (section) {
+            case 0:
+                return rowcount1;
+            case 1:
+            default:
+                return rowcount2;
+        }
+    } else if (sectionCount == 1) {
+        if (rowcount1 > 0)
             return rowcount1;
-        case 1:
-        default:
+        else
             return rowcount2;
-    }
+    } else
+        return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    switch (indexPath.section) {
-        case 0:
-            if (rowcount1 == 1 || indexPath.row == [supervisingCourses count]) {
-                
-                static NSString *CellIdentifier1 = @"ButtonCell";
-                ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-                
-                if(cell == nil){
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ButtonCell" owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [BTColor BT_grey:1];
-                [cell.button addTarget:self action:@selector(move_to_school:) forControlEvents:UIControlEventTouchUpInside];
-                
-                return cell;
-            } else {
-                
-                static NSString *CellIdentifier = @"CourseCell";
-                
-                CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if(cell == nil){
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseCell" owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if(data.count != 0){
-                    for (int i = 0 ; i< data.count; i++){
-                        if( [[supervisingCourses objectAtIndex:indexPath.row] intValue] ==
-                           [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
-                            cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                            cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                            cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                            cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                            cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
-                            cell.cellbackground.layer.cornerRadius = 2;
-                            cell.isManager = true;
-                            [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
-                            [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
-                            
-                            NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-                            cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
-                            cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
-                            if (180.0f + cell.gap > 0.0f) {
-                                [self startAnimation:cell];
-                            } else if (cell.blink != nil) {
-                                cell.check_icon.alpha = 1;
-                                [cell.blink invalidate];
-                                cell.blink = nil;
-                            }
-                            
-                            break;
-                        }
-                    }
-                }
-                return cell;
-            }
-        case 1:
-        default:
-            if (rowcount2 == 1 || indexPath.row == [attendingCourses count]) {
-                static NSString *CellIdentifier1 = @"ButtonCell";
-                ButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-                
-                if(cell == nil){
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ButtonCell" owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [BTColor BT_grey:1];
-                [cell.button addTarget:self action:@selector(move_to_school:) forControlEvents:UIControlEventTouchUpInside];
-                
-                return cell;
-            } else {
-                static NSString *CellIdentifier = @"CourseCell";
-                
-                CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if(cell == nil){
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseCell" owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                if(data.count != 0){
-                    for(int i = 0; i< data.count; i++){
-                        if( [[attendingCourses objectAtIndex:indexPath.row] intValue] ==
-                           [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
-                            cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                            cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                            cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                            cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                            cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
-                            cell.cellbackground.layer.cornerRadius = 2;
-                            cell.isManager = false;
-                            [cell.check_button removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
-                            [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
-                            
-                            NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-                            cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
-                            cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
-                            if (180.0f + cell.gap > 0.0f) {
-                                [self startAnimation:cell];
-                            } else if (cell.blink != nil) {
-                                cell.check_icon.alpha = 1;
-                                [cell.blink invalidate];
-                                cell.blink = nil;
-                            }
-                            
-                            break;
-                        }
-                    }
-                }
-                return cell;
-            }
+    if (sectionCount == 2) {
+        switch (indexPath.section) {
+            case 0:
+                return [self supervisingCellWith:tableView at:indexPath.row];
+            case 1:
+            default:
+                return [self attendingCellWith:tableView at:indexPath.row];
+        }
+    } else if (sectionCount ==1) {
+        if (rowcount1 > 0)
+            return [self supervisingCellWith:tableView at:indexPath.row];
+        else
+            return [self attendingCellWith:tableView at:indexPath.row];
+    } else
+        return nil;
+}
+
+-(UITableViewCell *)supervisingCellWith:(UITableView *)tableView at:(NSInteger)rowIndex {
+    
+    static NSString *CellIdentifier = @"CourseCell";
+    
+    CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil){
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseCell" owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if(data.count != 0){
+        for (int i = 0 ; i< data.count; i++){
+            if( [[supervisingCourses objectAtIndex:rowIndex] intValue] ==
+               [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
+                cell.cellbackground.layer.cornerRadius = 2;
+                cell.isManager = true;
+                [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                
+                NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
+                cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
+                cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+                if (180.0f + cell.gap > 0.0f) {
+                    [self startAnimation:cell];
+                } else if (cell.blink != nil) {
+                    cell.check_icon.alpha = 1;
+                    [cell.blink invalidate];
+                    cell.blink = nil;
+                }
+                
+                break;
+            }
+        }
+    }
+    return cell;
+}
+
+-(UITableViewCell *)attendingCellWith:(UITableView *)tableView at:(NSInteger)rowIndex {
+    
+    static NSString *CellIdentifier = @"CourseCell";
+    
+    CourseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil){
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseCell" owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if(data.count != 0){
+        for(int i = 0; i< data.count; i++){
+            if( [[attendingCourses objectAtIndex:rowIndex] intValue] ==
+               [[[data objectAtIndex:i] objectForKey:@"id"] intValue]){
+                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
+                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
+                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
+                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
+                cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
+                cell.cellbackground.layer.cornerRadius = 2;
+                cell.isManager = false;
+                [cell.check_button removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                
+                NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
+                cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
+                cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+                if (180.0f + cell.gap > 0.0f) {
+                    [self startAnimation:cell];
+                } else if (cell.blink != nil) {
+                    cell.check_icon.alpha = 1;
+                    [cell.blink invalidate];
+                    cell.blink = nil;
+                }
+                
+                cell.attendanceBt.hidden = YES;
+                cell.clickerBt.hidden = YES;
+                cell.noticeBt.hidden = YES;
+                
+                break;
+            }
+        }
+    }
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -244,19 +350,21 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    switch (indexPath.section) {
-        case 0:
-            if(indexPath.row == [supervisingCourses count])
-                return 71.0f;
-            else
+    if (sectionCount == 2) {
+        switch (indexPath.section) {
+            case 0:
+                return 146.0f;
+            case 1:
+            default:
                 return 102.0f;
-        case 1:
-        default:
-            if(indexPath.row == [attendingCourses count])
-                return 71.0f;
-            else
-                return 102.0f;
-    }
+        }
+    } else if (sectionCount ==1) {
+        if (rowcount1 > 0)
+            return 146.0f;
+        else
+            return 102.0f;
+    } else
+        return 0.0f;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -382,9 +490,9 @@
                              @"course_id":attdStartingCid};
     
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager POST:[BTURL stringByAppendingString:@"/post/attendance/start"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [AFmanager POST:[BTURL stringByAppendingString:@"/post/attendance/start"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self startAttdScan];
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
 }

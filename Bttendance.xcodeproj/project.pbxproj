@@ -111,7 +111,6 @@
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotViewController.m */; };
 		D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotViewController.xib */; };
-		D47705C118B6D3B100D7C661 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D47705C018B6D3B100D7C661 /* back@2x.png */; };
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D485A0A21878347500F9561B /* CourseCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateController.m */; };
@@ -119,6 +118,20 @@
 		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
+		D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4BFBF18F639B7002DE88C /* XYPieChart.m */; };
+		D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC118F63B0F002DE88C /* a@2x.png */; };
+		D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC218F63B0F002DE88C /* attendance@2x.png */; };
+		D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC318F63B0F002DE88C /* b@2x.png */; };
+		D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC518F63B0F002DE88C /* c@2x.png */; };
+		D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC618F63B0F002DE88C /* clicker@2x.png */; };
+		D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC718F63B0F002DE88C /* d@2x.png */; };
+		D4B4BFD418F63B10002DE88C /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC818F63B10002DE88C /* notice@2x.png */; };
+		D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC918F63B10002DE88C /* plus@2x.png */; };
+		D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCA18F63B10002DE88C /* polledge@2x.png */; };
+		D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */; };
+		D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCC18F63B10002DE88C /* setting@2x.png */; };
+		D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFD918F63B3C002DE88C /* back@2x.png */; };
+		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
 		D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */; };
 		D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */; };
 		D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */; };
@@ -284,7 +297,6 @@
 		D46D893018AFED7C0051F291 /* ForgotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
 		D46D893118AFED7C0051F291 /* ForgotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotViewController.m; sourceTree = "<group>"; };
 		D46D893218AFED7C0051F291 /* ForgotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotViewController.xib; sourceTree = "<group>"; };
-		D47705C018B6D3B100D7C661 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		D478DF021873ADFE00BA9BE7 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostCell.xib; path = controller/PostCell.xib; sourceTree = "<group>"; };
 		D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVUnderlineButton.h; sourceTree = "<group>"; };
 		D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
@@ -297,6 +309,21 @@
 		D485A0A818784C9C00F9561B /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		D485A0A918784C9C00F9561B /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		D4B4BFBE18F639B7002DE88C /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYPieChart.h; path = ../XYPieChart/XYPieChart.h; sourceTree = "<group>"; };
+		D4B4BFBF18F639B7002DE88C /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYPieChart.m; path = ../XYPieChart/XYPieChart.m; sourceTree = "<group>"; };
+		D4B4BFC118F63B0F002DE88C /* a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC218F63B0F002DE88C /* attendance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC318F63B0F002DE88C /* b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC518F63B0F002DE88C /* c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC618F63B0F002DE88C /* clicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clicker@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC718F63B0F002DE88C /* d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "d@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC818F63B10002DE88C /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@2x.png"; sourceTree = "<group>"; };
+		D4B4BFC918F63B10002DE88C /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
+		D4B4BFCA18F63B10002DE88C /* polledge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polledge@2x.png"; sourceTree = "<group>"; };
+		D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pollicon@2x.png"; sourceTree = "<group>"; };
+		D4B4BFCC18F63B10002DE88C /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		D4B4BFD918F63B3C002DE88C /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendanceringnonalphabig@2x.png"; sourceTree = "<group>"; };
 		D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendancecheckcyanbig@2x.png"; sourceTree = "<group>"; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -313,6 +340,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */,
 				2182679D18A8810800F71819 /* AdSupport.framework in Frameworks */,
 				2182679B18A8803000F71819 /* libsqlite3.0.dylib in Frameworks */,
 				D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */,
@@ -390,6 +418,7 @@
 		2135C398182BDD4E002C45DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */,
 				D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */,
 				D41D684F18AA11520058E356 /* Crashlytics.framework */,
 				2182679C18A8810800F71819 /* AdSupport.framework */,
@@ -526,7 +555,18 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				D47705C018B6D3B100D7C661 /* back@2x.png */,
+				D4B4BFD918F63B3C002DE88C /* back@2x.png */,
+				D4B4BFC118F63B0F002DE88C /* a@2x.png */,
+				D4B4BFC218F63B0F002DE88C /* attendance@2x.png */,
+				D4B4BFC318F63B0F002DE88C /* b@2x.png */,
+				D4B4BFC518F63B0F002DE88C /* c@2x.png */,
+				D4B4BFC618F63B0F002DE88C /* clicker@2x.png */,
+				D4B4BFC718F63B0F002DE88C /* d@2x.png */,
+				D4B4BFC818F63B10002DE88C /* notice@2x.png */,
+				D4B4BFC918F63B10002DE88C /* plus@2x.png */,
+				D4B4BFCA18F63B10002DE88C /* polledge@2x.png */,
+				D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */,
+				D4B4BFCC18F63B10002DE88C /* setting@2x.png */,
 				D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */,
 				D4B5066E18B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png */,
 				D4B5066F18B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png */,
@@ -614,6 +654,8 @@
 		D47DB52418AF85AC007C23A3 /* CustomUIView */ = {
 			isa = PBXGroup;
 			children = (
+				D4B4BFBE18F639B7002DE88C /* XYPieChart.h */,
+				D4B4BFBF18F639B7002DE88C /* XYPieChart.m */,
 				D46D892D18AFE88B0051F291 /* WebViewController.h */,
 				D46D892E18AFE88B0051F291 /* WebViewController.m */,
 				D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */,
@@ -726,7 +768,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -758,14 +800,18 @@
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
 				D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */,
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
+				D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */,
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
 				21917904186C38DD00799CC0 /* MainViewController.xib in Resources */,
+				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
 				D407B27418AF5E30009BCF8C /* SerialRequestViewController.xib in Resources */,
 				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */,
+				D4B4BFD418F63B10002DE88C /* notice@2x.png in Resources */,
 				21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */,
+				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
@@ -773,6 +819,8 @@
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
+				D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */,
+				D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */,
 				D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */,
 				218D9AF81886AE2700E8BAD0 /* ProfileViewController.xib in Resources */,
 				21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */,
@@ -780,6 +828,7 @@
 				21B599E41876A7500063D7C4 /* ButtonCell.xib in Resources */,
 				D41C62D518731C33005A4CF9 /* iostabbari0@2x.png in Resources */,
 				21917911186D958E00799CC0 /* CourseInfoCell.xib in Resources */,
+				D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */,
 				217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */,
 				217D75C61852157400AA0D95 /* StudentConfirm.xib in Resources */,
 				2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */,
@@ -787,16 +836,19 @@
 				21C48E34183F63C200C8D772 /* PersonalizeController.xib in Resources */,
 				217D75C01850FD3700AA0D95 /* Personalize_bg2@2x.jpg in Resources */,
 				2191790C186D951000799CC0 /* CourseAttendView.xib in Resources */,
-				D47705C118B6D3B100D7C661 /* back@2x.png in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
 				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
+				D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */,
 				2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */,
 				212C05AF183B726D00AD6654 /* CatchPointController.xib in Resources */,
 				D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */,
+				D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */,
+				D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */,
 				D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */,
 				218D9AEE1886AE0000E8BAD0 /* FeedViewController.xib in Resources */,
+				D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */,
 				212C05BA183B73E000AD6654 /* SignUpController.xib in Resources */,
 				2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */,
 				D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */,
@@ -805,6 +857,7 @@
 				D41C62D618731C33005A4CF9 /* iostabbari1@2x.png in Resources */,
 				217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */,
 				D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */,
+				D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */,
 				21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -889,6 +942,7 @@
 				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
 				2131F5121897817F0096404D /* GradeViewController.m in Sources */,
 				D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */,
+				D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */,
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
 				21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */,
 				D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */,
@@ -1036,10 +1090,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bttendance/Bttendance-Prefix.pch";
 				INFOPLIST_FILE = "Bttendance/Bttendance-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F6A51A6C-E1B8-4EA2-9295-09AD7ECD2986";
+				PROVISIONING_PROFILE = "60A7BD28-EE98-49B8-965B-CF9E3DE1A741";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1061,10 +1115,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bttendance/Bttendance-Prefix.pch";
 				INFOPLIST_FILE = "Bttendance/Bttendance-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F6A51A6C-E1B8-4EA2-9295-09AD7ECD2986";
+				PROVISIONING_PROFILE = "60A7BD28-EE98-49B8-965B-CF9E3DE1A741";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1115,7 +1169,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

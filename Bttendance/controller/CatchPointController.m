@@ -106,6 +106,8 @@
 -(IBAction)Signup_button:(id)sender{
     SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
     [self.navigationController pushViewController:signUpController animated:YES];
+//    PersonalizeController *signUpController = [[PersonalizeController alloc] initWithNibName:@"PersonalizeController" bundle:nil];
+//    [self.navigationController pushViewController:signUpController animated:YES];
     
 //    [UIView transitionWithView:self.navigationController.view
 //                      duration:0.75
