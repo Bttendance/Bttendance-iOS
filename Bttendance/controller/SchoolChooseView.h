@@ -2,8 +2,8 @@
 //  SchoolView.h
 //  Bttendance
 //
-//  Created by HAJE on 2014. 1. 23..
-//  Copyright (c) 2014년 Utopia. All rights reserved.
+//  Created by TheFinestArtist on 2014. 1. 23..
+//  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

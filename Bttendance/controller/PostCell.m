@@ -3,7 +3,7 @@
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 1. 1..
-//  Copyright (c) 2014년 Utopia. All rights reserved.
+//  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
 #import "PostCell.h"

@@ -3,7 +3,7 @@
 //  Bttendance
 //
 //  Created by H AJE on 2013. 11. 9..
-//  Copyright (c) 2013년 Utopia. All rights reserved.
+//  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
 #import "BTUserDefault.h"

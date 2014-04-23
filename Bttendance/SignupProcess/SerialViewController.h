@@ -2,8 +2,8 @@
 //  Serial_Input.h
 //  Bttendance
 //
-//  Created by HAJE on 2013. 12. 1..
-//  Copyright (c) 2013년 Utopia. All rights reserved.
+//  Created by TheFinestArtist on 2013. 12. 1..
+//  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

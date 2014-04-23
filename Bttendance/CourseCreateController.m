@@ -2,8 +2,8 @@
 //  SignUpController.m
 //  Bttendance
 //
-//  Created by HAJE on 2013. 11. 19..
-//  Copyright (c) 2013년 Utopia. All rights reserved.
+//  Created by TheFinestArtist on 2013. 11. 19..
+//  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
 #import "CourseCreateController.h"
