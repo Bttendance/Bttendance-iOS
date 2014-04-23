@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BTColor.h"
-#import "ProfileViewController.h"
-#import "BTAPIs.h"
 
-@interface ProfileNameEditViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
+@interface ProfileNameEditViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     __weak NSString *fullname;
     NSDictionary *userinfo;
 }
 
-@property (weak, nonatomic) NSString *fullname;
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UITextField *name_field;
+@property(weak, nonatomic) NSString *fullname;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(strong, nonatomic) IBOutlet UITextField *name_field;
 
--(void)save_fullname;
+- (void)save_fullname;
 
 @end

@@ -14,14 +14,14 @@
 
 @implementation CourseInfoCell
 
-+(CourseInfoCell *)cellFromNibNamed:(NSString *)nibName{
++ (CourseInfoCell *)cellFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     CourseInfoCell *cell = nil;
-    NSObject* nibItem = nil;
-    while((nibItem = [nibEnumerator nextObject]) != nil){
-        if([nibItem isKindOfClass:[CourseInfoCell class]]){
-            cell = (CourseInfoCell *)nibItem;
+    NSObject *nibItem = nil;
+    while ((nibItem = [nibEnumerator nextObject]) != nil) {
+        if ([nibItem isKindOfClass:[CourseInfoCell class]]) {
+            cell = (CourseInfoCell *) nibItem;
             break;
         }
     }

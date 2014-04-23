@@ -7,6 +7,9 @@
 //
 
 #import "CourseAttendView.h"
+#import "BTUserDefault.h"
+#import "BTColor.h"
+#import "BTAPIs.h"
 
 @interface CourseAttendView ()
 
@@ -16,8 +19,7 @@
 @synthesize sid;
 @synthesize sname;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -25,20 +27,30 @@
         rowcount1 = 0;
         data0 = [[NSMutableArray alloc] init];
         data1 = [[NSMutableArray alloc] init];
-        
+
         userinfo = [BTUserDefault getUserInfo];
-//        self.navigationItem.hidesBackButton = YES;
+        //        self.navigationItem.hidesBackButton = YES;
+
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     //set tableview background color
     [self tableview].backgroundColor = [BTColor BT_grey:1];
-    
+
     //Navigation title
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -49,52 +61,52 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Attend Course", @"");
     [titlelabel sizeToFit];
-    
-    
+
+
     // Do any additional setup after loading the view from its nib.
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
 
     NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
     NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-    NSString *school_id = [NSString stringWithFormat:@"%ld", (long)sid];
+    NSString *school_id = [NSString stringWithFormat:@"%ld", (long) sid];
 
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"school_id":school_id};
-    
+    NSDictionary *params = @{@"username" : username,
+            @"password" : password,
+            @"school_id" : school_id};
+
     NSArray *attdcourse = [[NSUserDefaults standardUserDefaults] objectForKey:AttendingCoursesKey];
     NSArray *supvcourse = [[NSUserDefaults standardUserDefaults] objectForKey:SupervisingCoursesKey];
 
-    NSLog(@"user info : %@",params);
-    [AFmanager GET:[BTURL stringByAppendingString:@"/school/courses"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+    NSLog(@"user info : %@", params);
+    [AFmanager GET:[BTURL stringByAppendingString:@"/school/courses"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Get Joinable Courses List success : %@", responseObject);
         NSDictionary *courselist = responseObject;
-        NSLog(@"course count : %lu", (unsigned long)courselist.count);
-        
-        if(attdcourse.count != 0 || supvcourse.count != 0){
-            for(int i = 0 ; i < courselist.count; i++){
+        NSLog(@"course count : %lu", (unsigned long) courselist.count);
+
+        if (attdcourse.count != 0 || supvcourse.count != 0) {
+            for (int i = 0; i < courselist.count; i++) {
                 Boolean joined = false;
-                for(int j = 0; j < attdcourse.count; j++){
+                for (int j = 0; j < attdcourse.count; j++) {
                     int attd_int = [attdcourse[j] intValue];
                     int course_int = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                    
-                    if(attd_int == course_int){
+
+                    if (attd_int == course_int) {
                         joined = true;
                         break;
                     }
                 }
                 Boolean supved = false;
-                for(int j = 0; j < supvcourse.count; j++){
+                for (int j = 0; j < supvcourse.count; j++) {
                     int attd_int = [supvcourse[j] intValue];
                     int course_int = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                    
-                    if(attd_int == course_int){
+
+                    if (attd_int == course_int) {
                         supved = true;
                         break;
                     }
                 }
-                if(joined || supved)
+                if (joined || supved)
                     [data0 addObject:[responseObject objectAtIndex:i]];
                 else
                     [data1 addObject:[responseObject objectAtIndex:i]];
@@ -102,58 +114,58 @@
             rowcount0 = data0.count;
             rowcount1 = data1.count;
             [self.tableview reloadData];
-        } else{
+        } else {
             rowcount0 = 0;
-            for(int i = 0 ; i < courselist.count; i++)
+            for (int i = 0; i < courselist.count; i++)
                 [data1 addObject:[responseObject objectAtIndex:i]];
             rowcount1 = data1.count;
             [self.tableview reloadData];
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Get Joinable Courses List fail %@", error);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 
--(IBAction)check_button_action:(id)sender{
-    
-    UIButton *comingbutton = (UIButton *)sender;
-    CourseInfoCell *comingcell = (CourseInfoCell *)comingbutton.superview.superview.superview;
+- (IBAction)check_button_action:(id)sender {
+
+    UIButton *comingbutton = (UIButton *) sender;
+    CourseInfoCell *comingcell = (CourseInfoCell *) comingbutton.superview.superview.superview;
     currentcell = comingcell;
-    
+
     NSArray *enrolledSchools = [[BTUserDefault getUserInfo] objectForKey:EnrolledSchoolsKey];
     BOOL hasBeenEnrolled = NO;
-    for (int i=0;i<[enrolledSchools count];i++)
+    for (int i = 0; i < [enrolledSchools count]; i++)
         if ([[enrolledSchools[i] objectForKey:@"id"] integerValue] == sid)
             hasBeenEnrolled = YES;
-    
+
     if (hasBeenEnrolled) {
-        NSString *string = [NSString stringWithFormat:@"%@ %@\n%@\n%@ ", comingcell.Info_CourseNumber, comingcell.Info_CourseName.text, comingcell.Info_ProfName.text, comingcell.Info_SchoolName ] ;
+        NSString *string = [NSString stringWithFormat:@"%@ %@\n%@\n%@ ", comingcell.Info_CourseNumber, comingcell.Info_CourseName.text, comingcell.Info_ProfName.text, comingcell.Info_SchoolName];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Join Course" message:string delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
         [alert show];
     } else {
-        UIAlertView * alert2 = [[UIAlertView alloc] initWithTitle:@"Student ID or Phone Number"
-                                                          message:[NSString stringWithFormat:@"Before you join course %@, you need to enter your student ID or your phone number", comingcell.Info_CourseName.text]
-                                                         delegate:self
-                                                cancelButtonTitle:@"Cancel"
-                                                otherButtonTitles:@"Confirm", Nil];
+        UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Student ID or Phone Number"
+                                                         message:[NSString stringWithFormat:@"Before you join course %@, you need to enter your student ID or your phone number", comingcell.Info_CourseName.text]
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                               otherButtonTitles:@"Confirm", Nil];
         alert2.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alert2 show];
     }
 
-    NSLog(@"sender to button %@",comingbutton);
+    NSLog(@"sender to button %@", comingbutton);
     NSLog(@"button's cell : %@", comingcell);
     NSLog(@"button's coursename : %@", comingcell.Info_CourseName.text);
-    NSLog(@"button's profname : %@",comingcell.Info_ProfName.text);
-    NSLog(@"button's courseid : %ld",(long)comingcell.Info_CourseID);
+    NSLog(@"button's profname : %@", comingcell.Info_ProfName.text);
+    NSLog(@"button's courseid : %ld", (long) comingcell.Info_CourseID);
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
             return rowcount0;
@@ -163,7 +175,7 @@
     }
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
             return @"Attending Courses";
@@ -173,29 +185,29 @@
     }
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CourseInfoCell";
-    
+
     CourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil){
+    if (cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseInfoCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-    if(indexPath.section == 0){
+    if (indexPath.section == 0) {
         cell.Info_ProfName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
         cell.Info_CourseName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data0 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.backgroundColor  = [BTColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
         [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName = [[data0 objectAtIndex:indexPath.row] objectForKey:@"school_name"];
         cell.Info_CourseNumber = [[data0 objectAtIndex:indexPath.row] objectForKey:@"number"];
     }
-    if(indexPath.section == 1){
+    if (indexPath.section == 1) {
         cell.Info_ProfName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"professor_name"];
         cell.Info_CourseName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.Info_CourseID = [[[data1 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.backgroundColor  = [BTColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
         [cell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrolladd@2x.png"] forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName = [[data1 objectAtIndex:indexPath.row] objectForKey:@"school_name"];
@@ -205,38 +217,38 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 35;
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if(buttonIndex == 0){//cancel
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    if (buttonIndex == 0) {//cancel
         //restore button event
         [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
         return;
     }
-    
+
     if ([alertView alertViewStyle] == UIAlertViewStyleDefault) {
         [self attendCourse];
     }
-    
+
     if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-        
+
         AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-        
+
         NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
         NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-        
-        NSDictionary *params = @{@"username":username,
-                                 @"password":password,
-                                @"school_id":[NSString stringWithFormat:@"%d",sid],
-                               @"student_id":[[alertView textFieldAtIndex:0] text]};
-        
-        [AFmanager PUT:[BTURL stringByAppendingString:@"/user/enroll/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
+
+        NSDictionary *params = @{@"username" : username,
+                @"password" : password,
+                @"school_id" : [NSString stringWithFormat:@"%d", sid],
+                @"student_id" : [[alertView textFieldAtIndex:0] text]};
+
+        [AFmanager PUT:[BTURL stringByAppendingString:@"/user/enroll/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject) {
             [BTUserDefault setUserInfo:responsObject];
             [self attendCourse];
-        }failure:^(AFHTTPRequestOperation *opration, NSError *error){
+        }      failure:^(AFHTTPRequestOperation *opration, NSError *error) {
             NSString *string = @"Could not join course, please try again";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -244,22 +256,22 @@
     }
 }
 
--(void) attendCourse {
+- (void)attendCourse {
 
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
 
     NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
     NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-    NSString *cid = [NSString stringWithFormat:@"%ld",(long)currentcell.Info_CourseID];
+    NSString *cid = [NSString stringWithFormat:@"%ld", (long) currentcell.Info_CourseID];
 
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"course_id":cid};
+    NSDictionary *params = @{@"username" : username,
+            @"password" : password,
+            @"course_id" : cid};
 
-    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/attend/course"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
+    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/attend/course"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject) {
         NSLog(@"join course success : %@", responsObject);
         [BTUserDefault setUserInfo:responsObject];
-        
+
         [[self tableview] beginUpdates];
         [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
         rowcount1--;
@@ -275,7 +287,7 @@
         [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         [[self tableview] endUpdates];
 
-    }failure:^(AFHTTPRequestOperation *opration, NSError *error){
+    }      failure:^(AFHTTPRequestOperation *opration, NSError *error) {
         NSString *string = @"Could not join course, please try again";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];

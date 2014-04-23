@@ -14,14 +14,14 @@
 
 @implementation GradeCell
 
-+(GradeCell *)cellFromNibNamed:(NSString *)nibName{
++ (GradeCell *)cellFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     GradeCell *cell = nil;
-    NSObject* nibItem = nil;
+    NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
         if ([nibItem isKindOfClass:[GradeCell class]]) {
-            cell = (GradeCell *)nibItem;
+            cell = (GradeCell *) nibItem;
             break;
         }
     }

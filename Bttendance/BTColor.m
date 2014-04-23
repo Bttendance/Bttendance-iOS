@@ -10,31 +10,31 @@
 
 @implementation BTColor
 
-+(UIColor *)BT_navy:(CGFloat) _alpha{
++ (UIColor *)BT_navy:(CGFloat)_alpha {
     return [UIColor colorWithRed:0 green:0.447 blue:0.69 alpha:_alpha];
 }
 
-+(UIColor *)BT_cyan:(CGFloat)_alpha{
++ (UIColor *)BT_cyan:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.20 green:0.71 blue:0.898 alpha:_alpha];
 }
 
-+(UIColor *)BT_grey:(CGFloat)_alpha{
++ (UIColor *)BT_grey:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.914 green:0.914 blue:0.969 alpha:_alpha];
 }
 
-+(UIColor *)BT_black:(CGFloat)_alpha{
++ (UIColor *)BT_black:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.098 green:0.098 blue:0.153 alpha:_alpha];
 }
 
-+(UIColor *)BT_silver:(CGFloat)_alpha{
++ (UIColor *)BT_silver:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.427 green:0.427 blue:0.482 alpha:_alpha];
 }
 
-+(UIColor *)BT_white:(CGFloat)_alpha{
++ (UIColor *)BT_white:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.945 green:0.945 blue:1.00 alpha:_alpha];
 }
 
-+(UIColor *)BT_Red:(CGFloat)_alpha{
++ (UIColor *)BT_red:(CGFloat)_alpha {
     return [UIColor colorWithRed:0.757 green:0.153 blue:0.176 alpha:_alpha];
 }
 

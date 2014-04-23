@@ -6,7 +6,6 @@
 //  Copyright (c) 2013년 Utopia. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
 #define UsernameKey @"btd_username"
@@ -22,16 +21,20 @@
 #define FirstLaunchKey @"btd_first"
 
 @interface BTUserDefault : NSObject {
-   
+
 }
 
-+ (NSString *) getUUIDstr;
-+ (CBMutableService *) getUserService;
-+ (NSString *)representativeString:(CBUUID *) _CBUUID ;
++ (NSString *)getUUIDstr;
+
++ (CBMutableService *)getUserService;
+
++ (NSString *)representativeString:(CBUUID *)_CBUUID;
+
 + (BOOL)isFirstLaunch;
 
-+ (NSDictionary *) getUserInfo;
-+ (void)setUserInfo:(id) responseObject;
++ (NSDictionary *)getUserInfo;
+
++ (void)setUserInfo:(id)responseObject;
 
 
 @end

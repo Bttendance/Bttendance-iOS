@@ -7,34 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CourseDetailHeaderView.h"
-#import "PostCell.h"
-#import "CourseCell.h"
-#import "BTUserDefault.h"
-#import "BTColor.h"
-#import <AFNetworking/AFNetworking.h>
-#import "BTAPIs.h"
-#import "GradeViewController.h"
-#import "CreateNoticeViewController.h"
-#import "ManagerViewController.h"
-#import "AttdStatViewController.h"
-#import "BTDateFormatter.h"
 
-
-@interface CourseDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     __weak CourseCell *currentcell;
-    
+
     NSDictionary *userinfo;
     NSInteger rowcount;
     NSMutableArray *data;
-    
+
     NSString *my_id;
     Boolean auth;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property (weak, nonatomic) CourseCell *currentcell;
-@property (nonatomic) Boolean auth;
+@property(weak, nonatomic) CourseCell *currentcell;
+@property(nonatomic) Boolean auth;
 
 @end

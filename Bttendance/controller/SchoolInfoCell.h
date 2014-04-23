@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking/AFNetworking.h>
 
 @interface SchoolInfoCell : UITableViewCell
 
-+(SchoolInfoCell *)cellFromNibNamed:(NSString *)nibName;
++ (SchoolInfoCell *)cellFromNibNamed:(NSString *)nibName;
 
-@property (weak, nonatomic) IBOutlet UILabel *Info_SchoolName;
-@property (weak, nonatomic) IBOutlet UILabel *Info_SchoolID;
-@property (weak, nonatomic) IBOutlet UIButton *Info_Check;
-@property (assign, nonatomic) NSInteger Info_SchoolID_int;
+@property(weak, nonatomic) IBOutlet UILabel *Info_SchoolName;
+@property(weak, nonatomic) IBOutlet UILabel *Info_SchoolID;
+@property(weak, nonatomic) IBOutlet UIButton *Info_Check;
+@property(assign, nonatomic) NSInteger Info_SchoolID_int;
 
 @end

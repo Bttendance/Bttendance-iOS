@@ -13,14 +13,14 @@
 
 @implementation PostCell
 
-+(PostCell *)cellFromNibNamed:(NSString *)nibName{
++ (PostCell *)cellFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     PostCell *cell = nil;
-    NSObject* nibItem = nil;
+    NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
         if ([nibItem isKindOfClass:[PostCell class]]) {
-            cell = (PostCell *)nibItem;
+            cell = (PostCell *) nibItem;
             break;
         }
     }

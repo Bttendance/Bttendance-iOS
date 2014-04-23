@@ -7,38 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProfileHeaderView.h"
-#import <AFNetworking/AFNetworking.h>
-#import "BTUserDefault.h"
-#import "BTColor.h"
-#import "ProfileNameEditViewController.h"
-#import "ProfileEmailEditViewController.h"
-#import "ProfileCell.h"
-#import "ButtonCell.h"
-#import "SchoolChooseView.h"
-#import "SchoolInfoCell.h"
-#import "BTAPIs.h"
 
-@interface ProfileViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSUInteger rowcount;
-    
+
     NSDictionary *userinfo;
-    
+
     NSMutableArray *data;
     NSMutableArray *alluserschools;
     NSMutableArray *employedschoollist;
     NSMutableArray *enrolledschoollist;
-    
+
     __strong NSString *fullname;
     __strong NSString *email;
-    
+
     Boolean first;
 }
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *navigationbar;
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) IBOutlet UINavigationBar *navigationbar;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property (strong, nonatomic) NSString *fullname;
-@property (strong, nonatomic) NSString *email;
+@property(strong, nonatomic) NSString *fullname;
+@property(strong, nonatomic) NSString *email;
 
 @end

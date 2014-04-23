@@ -6,13 +6,11 @@
 //  Copyright (c) 2014년 Utopia. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface SignButtonCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *button;
+@property(weak, nonatomic) IBOutlet UIButton *button;
 
-+(SignButtonCell *)cellFromNibNamed:(NSString *)nibName;
++ (SignButtonCell *)cellFromNibNamed:(NSString *)nibName;
 
 
 @end

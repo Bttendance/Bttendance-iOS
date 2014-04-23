@@ -14,14 +14,14 @@
 
 @implementation CourseDetailHeaderView
 
-+(CourseDetailHeaderView *)viewFromNibNamed:(NSString *)nibName{
++ (CourseDetailHeaderView *)viewFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     CourseDetailHeaderView *view = nil;
-    NSObject* nibItem = nil;
-    while((nibItem = [nibEnumerator nextObject]) != nil){
-        if([nibItem isKindOfClass:[CourseDetailHeaderView class]]){
-            view = (CourseDetailHeaderView *)nibItem;
+    NSObject *nibItem = nil;
+    while ((nibItem = [nibEnumerator nextObject]) != nil) {
+        if ([nibItem isKindOfClass:[CourseDetailHeaderView class]]) {
+            view = (CourseDetailHeaderView *) nibItem;
             break;
         }
     }

@@ -7,6 +7,10 @@
 //
 
 #import "CreateNoticeViewController.h"
+#import "BTUserDefault.h"
+#import <AFNetworking/AFNetworking.h>
+#import "BTAPIs.h"
+#import "BTColor.h"
 
 @interface CreateNoticeViewController ()
 
@@ -15,23 +19,32 @@
 @implementation CreateNoticeViewController
 @synthesize cid, currentcell;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         userinfo = [BTUserDefault getUserInfo];
+
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     post = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice)];
     self.navigationItem.rightBarButtonItem = post;
-    
+
     //Navigation title
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -42,9 +55,9 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Post Notice", @"");
     [titlelabel sizeToFit];
-    
+
     _message.tintColor = [BTColor BT_silver:1];
-    
+
     Cid = [NSString stringWithString:cid];
 }
 
@@ -52,37 +65,36 @@
     [_message becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)post_Notice{
-    
+- (void)post_Notice {
+
     post.enabled = NO;
-    
+
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *message = [self.message text];
-    
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"course_id":self.cid,
-                             @"message":message};
+
+    NSDictionary *params = @{@"username" : username,
+            @"password" : password,
+            @"course_id" : self.cid,
+            @"message" : message};
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
-    [AFmanager POST:[BTURL stringByAppendingString:@"/post/create/notice"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+
+    [AFmanager POST:[BTURL stringByAppendingString:@"/post/create/notice"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.navigationController popViewControllerAnimated:YES];
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+    }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         post.enabled = YES;
         NSString *string = @"Fails to made a notice, please try again";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-    }];    
+    }];
 }
 
--(void)textViewDidChange:(UITextView *)textView{
+- (void)textViewDidChange:(UITextView *)textView {
     self.placeholder.hidden = textView.hasText;
 }
 

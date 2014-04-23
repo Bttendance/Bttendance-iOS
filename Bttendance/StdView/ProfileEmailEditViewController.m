@@ -7,6 +7,11 @@
 //
 
 #import "ProfileEmailEditViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import "BTColor.h"
+#import "ProfileViewController.h"
+#import "BTAPIs.h"
+#import "BTUserDefault.h"
 
 @interface ProfileEmailEditViewController ()
 
@@ -14,22 +19,32 @@
 
 @implementation ProfileEmailEditViewController
 @synthesize email;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         userinfo = [BTUserDefault getUserInfo];
+
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save_email)];
     self.navigationItem.rightBarButtonItem = save;
-    
+
     //Navigation title
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -42,68 +57,67 @@
     [titlelabel sizeToFit];
 
     // Do any additional setup after loading the view from its nib.
-    
+
 }
 
--(void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [_email_field becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)save_email{
-    
-    NSString *temp = ((UITextField *)[[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
-    
+- (void)save_email {
+
+    NSString *temp = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
+
     email = temp;
-    
+
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *device_uuid = [userinfo objectForKey:UUIDKey];
-    
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"device_uuid":device_uuid,
-                             @"email":email};
-    
+
+    NSDictionary *params = @{@"username" : username,
+            @"password" : password,
+            @"device_uuid" : device_uuid,
+            @"email" : email};
+
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
-    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/update/email"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
+
+    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/update/email"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
         [[NSUserDefaults standardUserDefaults] setObject:email forKey:EmailKey];
         //load previous view
-        ((ProfileViewController *)[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2]).email = temp;
+        ((ProfileViewController *) [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2]).email = temp;
         [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        
+
+    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
     }];
-    
-    
+
+
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"NameEditCell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(cell==nil){
+
+    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+
     _email_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _email_field.text = email;
     _email_field.textColor = [BTColor BT_black:1];
@@ -119,16 +133,16 @@
     cell.contentView.backgroundColor = [BTColor BT_white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:_email_field];
-    
+
     return cell;
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self save_email];
     return NO;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return @"Enter New Email address";
 }
 

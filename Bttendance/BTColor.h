@@ -10,12 +10,18 @@
 
 @interface BTColor : UIColor
 
-+(UIColor *)BT_navy:(CGFloat)_alpha;
-+(UIColor *)BT_cyan:(CGFloat)_alpha;
-+(UIColor *)BT_white:(CGFloat)_alpha;
-+(UIColor *)BT_grey:(CGFloat)_alpha;
-+(UIColor *)BT_silver:(CGFloat)_alpha;
-+(UIColor *)BT_black:(CGFloat)_alpha;
-+(UIColor *)BT_Red:(CGFloat)_alpha;
++ (UIColor *)BT_navy:(CGFloat)_alpha;
+
++ (UIColor *)BT_cyan:(CGFloat)_alpha;
+
++ (UIColor *)BT_white:(CGFloat)_alpha;
+
++ (UIColor *)BT_grey:(CGFloat)_alpha;
+
++ (UIColor *)BT_silver:(CGFloat)_alpha;
+
++ (UIColor *)BT_black:(CGFloat)_alpha;
+
++ (UIColor *)BT_red:(CGFloat)_alpha;
 
 @end

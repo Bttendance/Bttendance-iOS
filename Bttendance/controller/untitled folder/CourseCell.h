@@ -11,30 +11,31 @@
 @interface CourseCell : UITableViewCell {
 }
 
-+(CourseCell *)cellFromNibNamed:(NSString *)nibName;
-@property (weak, nonatomic) IBOutlet UILabel *CourseName;
-@property (weak, nonatomic) IBOutlet UILabel *Professor;
-@property (weak, nonatomic) IBOutlet UILabel *School;
++ (CourseCell *)cellFromNibNamed:(NSString *)nibName;
 
-@property (weak, nonatomic) IBOutlet UIButton *attendanceBt;
-@property (weak, nonatomic) IBOutlet UIButton *clickerBt;
-@property (weak, nonatomic) IBOutlet UIButton *noticeBt;
+@property(weak, nonatomic) IBOutlet UILabel *CourseName;
+@property(weak, nonatomic) IBOutlet UILabel *Professor;
+@property(weak, nonatomic) IBOutlet UILabel *School;
 
-@property (assign, nonatomic) NSInteger CourseID;
-@property (assign, nonatomic) NSInteger grade;
+@property(weak, nonatomic) IBOutlet UIButton *attendanceBt;
+@property(weak, nonatomic) IBOutlet UIButton *clickerBt;
+@property(weak, nonatomic) IBOutlet UIButton *noticeBt;
 
-@property (weak, nonatomic) IBOutlet UIView *background;
-@property (weak, nonatomic) IBOutlet UIButton *check_button;
-@property (weak, nonatomic) IBOutlet UIImageView *check_icon;
+@property(assign, nonatomic) NSInteger CourseID;
+@property(assign, nonatomic) NSInteger grade;
 
-@property (weak, nonatomic) IBOutlet UIView *cellbackground;
+@property(weak, nonatomic) IBOutlet UIView *background;
+@property(weak, nonatomic) IBOutlet UIButton *check_button;
+@property(weak, nonatomic) IBOutlet UIImageView *check_icon;
 
-@property (assign, nonatomic) NSDate *attdCheckedDate;
-@property (assign, nonatomic) NSInteger gap;
+@property(weak, nonatomic) IBOutlet UIView *cellbackground;
 
-@property (assign, nonatomic) NSTimer *blink;
-@property (assign, nonatomic) NSInteger blinkTime;
+@property(assign, nonatomic) NSDate *attdCheckedDate;
+@property(assign, nonatomic) NSInteger gap;
 
-@property (assign, nonatomic) BOOL isManager;
+@property(assign, nonatomic) NSTimer *blink;
+@property(assign, nonatomic) NSInteger blinkTime;
+
+@property(assign, nonatomic) BOOL isManager;
 
 @end

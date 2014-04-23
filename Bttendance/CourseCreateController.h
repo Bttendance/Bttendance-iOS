@@ -7,14 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking.h>
-#import "AppDelegate.h"
-#import "CustomCell.h"
-#import "SignButtonCell.h"
-#import "BTColor.h"
-#import "BTAPIs.h"
 
-@interface CourseCreateController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface CourseCreateController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSIndexPath *name_index, *number_index, *school_index, *profname_index;
     NSDictionary *user_info;
     NSInteger schoolId;
@@ -25,10 +19,10 @@
 
 //@property (retain, nonatomic) IBOutlet UINavigationItem *navigation;
 
-@property (strong, nonatomic) IBOutlet UIButton *create;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSInteger schoolId;
-@property (weak, nonatomic) NSString *schoolName;
-@property (weak, nonatomic) NSString *prfName;
+@property(strong, nonatomic) IBOutlet UIButton *create;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) NSInteger schoolId;
+@property(weak, nonatomic) NSString *schoolName;
+@property(weak, nonatomic) NSString *prfName;
 
 @end

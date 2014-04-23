@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BTColor.h"
 
-@interface CustomCell : UITableViewCell{
+@interface CustomCell : UITableViewCell {
     UITextField *textfield;
 }
 
-@property (retain, nonatomic) UITextField *textfield;
+@property(retain, nonatomic) UITextField *textfield;
 
 @end

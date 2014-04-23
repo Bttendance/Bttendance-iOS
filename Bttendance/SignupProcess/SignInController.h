@@ -7,20 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking.h>
-#import "CustomCell.h"
-#import "MainViewController.h"
-#import "SignButtonCell.h"
-#import "BTAPIs.h"
-#import "BTUserDefault.h"
-#import "ForgotViewController.h"
 
-@interface SignInController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
-    
+@interface SignInController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
+
     NSIndexPath *username_index, *password_index;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (weak, nonatomic) NSDictionary *user_info;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) NSDictionary *user_info;
 
 @end

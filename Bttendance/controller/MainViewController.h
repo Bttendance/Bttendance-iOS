@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking/AFNetworking.h>
-#import "CatchPointController.h"
 
-@interface MainViewController : UIViewController{
+@interface MainViewController : UIViewController {
     IBOutlet UITabBarController *tbc;
 }
 

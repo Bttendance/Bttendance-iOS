@@ -11,8 +11,8 @@
 @interface ProfileCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *data;
+@property(weak, nonatomic) IBOutlet UILabel *title;
+@property(weak, nonatomic) IBOutlet UILabel *data;
 
-+(ProfileCell *)cellFromNibNamed:(NSString *)nibName;
++ (ProfileCell *)cellFromNibNamed:(NSString *)nibName;
 @end

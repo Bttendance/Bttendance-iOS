@@ -7,6 +7,16 @@
 //
 
 #import "SerialViewController.h"
+#import "CustomCell.h"
+#import <AFNetworking.h>
+#import "SignUpController.h"
+#import "BTAPIs.h"
+#import "BVUnderlineButton.h"
+#import "BTColor.h"
+#import "SerialRequestViewController.h"
+#import "WebViewController.h"
+#import "BTUserDefault.h"
+#import "CourseCreateController.h"
 
 @interface SerialViewController ()
 @end
@@ -16,8 +26,7 @@
 @synthesize schoolId;
 @synthesize schoolName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -26,13 +35,12 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     //settitle
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
@@ -42,9 +50,9 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Serial Code", @"");
     [titlelabel sizeToFit];
-    
+
     [self showNavigation];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
@@ -64,31 +72,30 @@
 - (void)showNavigation {
     //Navigation showing
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7 ){
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    CustomCell *cell1 = (CustomCell *)[self.tableView cellForRowAtIndexPath:serialcode];
+- (void)viewDidAppear:(BOOL)animated {
+    CustomCell *cell1 = (CustomCell *) [self.tableView cellForRowAtIndexPath:serialcode];
     [cell1.textfield becomeFirstResponder];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [self showNavigation];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (isSignUp)
         return 4;
     else if (schoolId == 1)
@@ -97,50 +104,50 @@
         return 2;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil){
+
+    if (cell == nil) {
         cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
-    
-    switch(indexPath.row){
-        case 0:{
+
+    switch (indexPath.row) {
+        case 0: {
             [[cell textLabel] setText:@"  Serial"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
-            
-            [(CustomCell *)cell textfield].placeholder = @"Enter Serial Code";
-            [(CustomCell *)cell textfield].delegate = self;
-            [(CustomCell *)cell textfield].frame = CGRectMake(78, 1, 222, 40);
-            [(CustomCell *)cell textfield].returnKeyType = UIReturnKeyDone;
-            [(CustomCell *)cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(CustomCell *)cell textfield].secureTextEntry = YES;
-            
-            [[(CustomCell *)cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *)cell textfield] setFont:[UIFont systemFontOfSize:15]];
+
+            [(CustomCell *) cell textfield].placeholder = @"Enter Serial Code";
+            [(CustomCell *) cell textfield].delegate = self;
+            [(CustomCell *) cell textfield].frame = CGRectMake(78, 1, 222, 40);
+            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyDone;
+            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(CustomCell *) cell textfield].secureTextEntry = YES;
+
+            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
-        case 1:{
+        case 1: {
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
             cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            if(cell_new == nil){
+
+            if (cell_new == nil) {
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
-            
+
             [cell_new.button setTitle:@"Enter" forState:UIControlStateNormal];
             cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
-            
+
             return cell_new;
         }
         case 2: {
@@ -172,11 +179,11 @@
         default:
             break;
     }
-    
+
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 1:
             return 78;
@@ -189,36 +196,36 @@
     }
 }
 
--(void)request:(id)sender{
+- (void)request:(id)sender {
     SerialRequestViewController *serialRequestViewController = [[SerialRequestViewController alloc] initWithNibName:@"SerialRequestViewController" bundle:nil];
     [self.navigationController pushViewController:serialRequestViewController animated:YES];
-    
+
 }
 
--(void)partnership:(id)sender{
-    WebViewController *webView = [[WebViewController alloc]initWithURLString:@"http://www.bttendance.com/contact"];
+- (void)partnership:(id)sender {
+    WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/contact"];
     [self.navigationController pushViewController:webView animated:YES];
 }
 
--(void)enter:(id)sender{
-    
-    UIButton *button = (UIButton *)sender;
+- (void)enter:(id)sender {
+
+    UIButton *button = (UIButton *) sender;
     button.enabled = NO;
-    
-    NSString *serial = [((CustomCell *)[self.tableView cellForRowAtIndexPath:serialcode]).textfield text];
+
+    NSString *serial = [((CustomCell *) [self.tableView cellForRowAtIndexPath:serialcode]).textfield text];
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if (isSignUp) {
-        NSDictionary *params = @{@"serial":serial};
-        [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-            NSLog(@"Getting success : %@",responseObject);
+        NSDictionary *params = @{@"serial" : serial};
+        [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Getting success : %@", responseObject);
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             SignUpController *signUpController = [[SignUpController alloc] initWithNibName:@"SignUpController" bundle:nil];
             signUpController.schoolId = [[responseObject objectForKey:@"id"] integerValue];
             signUpController.serial = serial;
             [self.navigationController pushViewController:signUpController animated:YES];
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             button.enabled = YES;
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             UIAlertView *wrongserial = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Serial code is not valiable.\nPlease check again" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -228,13 +235,13 @@
         NSDictionary *userinfo = [BTUserDefault getUserInfo];
         NSString *username = [userinfo objectForKey:UsernameKey];
         NSString *password = [userinfo objectForKey:PasswordKey];
-        
-        NSDictionary *params = @{@"username":username,
-                                 @"password":password,
-                                 @"school_id":[NSString stringWithFormat:@"%ld",(long)schoolId],
-                                 @"serial":serial};
-        [AFmanager PUT:[BTURL stringByAppendingString:@"/user/employ/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-            NSLog(@"Getting success : %@",responseObject);
+
+        NSDictionary *params = @{@"username" : username,
+                @"password" : password,
+                @"school_id" : [NSString stringWithFormat:@"%ld", (long) schoolId],
+                @"serial" : serial};
+        [AFmanager PUT:[BTURL stringByAppendingString:@"/user/employ/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Getting success : %@", responseObject);
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [BTUserDefault setUserInfo:responseObject];
             CourseCreateController *createCourseController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
@@ -242,7 +249,7 @@
             createCourseController.schoolName = schoolName;
             createCourseController.prfName = [userinfo objectForKey:FullNameKey];
             [self.navigationController pushViewController:createCourseController animated:YES];
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             button.enabled = YES;
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             UIAlertView *wrongserial = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Serial code is not valiable.\nPlease check again" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];

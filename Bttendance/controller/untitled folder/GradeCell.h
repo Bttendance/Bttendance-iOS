@@ -10,13 +10,14 @@
 
 @interface GradeCell : UITableViewCell
 
-+(GradeCell *)cellFromNibNamed:(NSString *)nibName;
-@property (weak,nonatomic) IBOutlet UIImageView *profile_image;
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *idnumber;
-@property (weak, nonatomic) IBOutlet UIImageView *grade_image;
-@property (weak, nonatomic) IBOutlet UILabel *att;
-@property (weak, nonatomic) IBOutlet UILabel *tot;
++ (GradeCell *)cellFromNibNamed:(NSString *)nibName;
+
+@property(weak, nonatomic) IBOutlet UIImageView *profile_image;
+@property(weak, nonatomic) IBOutlet UILabel *name;
+@property(weak, nonatomic) IBOutlet UILabel *idnumber;
+@property(weak, nonatomic) IBOutlet UIImageView *grade_image;
+@property(weak, nonatomic) IBOutlet UILabel *att;
+@property(weak, nonatomic) IBOutlet UILabel *tot;
 
 
 @end

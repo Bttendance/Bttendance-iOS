@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BTColor.h"
 
-@interface ButtonCell :UITableViewCell {
+@interface ButtonCell : UITableViewCell {
 }
 
-+(ButtonCell *)cellFromNibNamed:(NSString *)nibName;
++ (ButtonCell *)cellFromNibNamed:(NSString *)nibName;
 
-@property (weak, nonatomic) IBOutlet UIButton *button;
+@property(weak, nonatomic) IBOutlet UIButton *button;
 
 @end

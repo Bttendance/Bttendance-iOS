@@ -45,8 +45,6 @@
 		217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75B81850FA8C00AA0D95 /* CourseCell.m */; };
 		217D75C01850FD3700AA0D95 /* Personalize_bg2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 217D75BE1850FD3700AA0D95 /* Personalize_bg2@2x.jpg */; };
 		217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 217D75BF1850FD3700AA0D95 /* Personalize_bg1@2x.jpg */; };
-		217D75C51852157400AA0D95 /* StudentConfirm.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C31852157400AA0D95 /* StudentConfirm.m */; };
-		217D75C61852157400AA0D95 /* StudentConfirm.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75C41852157400AA0D95 /* StudentConfirm.xib */; };
 		217D75C91853208400AA0D95 /* BTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C81853208400AA0D95 /* BTColor.m */; };
 		2182679618A87B1900F71819 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679518A87B1900F71819 /* CFNetwork.framework */; };
 		2182679B18A8803000F71819 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679A18A8803000F71819 /* libsqlite3.0.dylib */; };
@@ -85,8 +83,6 @@
 		21C1B77F18794102009CC932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21C1B77E18794102009CC932 /* SystemConfiguration.framework */; };
 		21C48E2E183D08E800C8D772 /* SignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C48E2C183D08E800C8D772 /* SignInController.m */; };
 		21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C48E2D183D08E800C8D772 /* SignInController.xib */; };
-		21C48E33183F63C200C8D772 /* PersonalizeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C48E31183F63C200C8D772 /* PersonalizeController.m */; };
-		21C48E34183F63C200C8D772 /* PersonalizeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C48E32183F63C200C8D772 /* PersonalizeController.xib */; };
 		21C48E411841F53800C8D772 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C48E401841F53800C8D772 /* Images.xcassets */; };
 		21CF9354184B398D00A81590 /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CF9352184B398D00A81590 /* SerialViewController.m */; };
 		21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CF9353184B398D00A81590 /* SerialViewController.xib */; };
@@ -206,9 +202,6 @@
 		217D75B81850FA8C00AA0D95 /* CourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseCell.m; path = "controller/untitled folder/CourseCell.m"; sourceTree = "<group>"; };
 		217D75BE1850FD3700AA0D95 /* Personalize_bg2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Personalize_bg2@2x.jpg"; path = "Image/Personalize_bg2@2x.jpg"; sourceTree = "<group>"; };
 		217D75BF1850FD3700AA0D95 /* Personalize_bg1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Personalize_bg1@2x.jpg"; path = "Image/Personalize_bg1@2x.jpg"; sourceTree = "<group>"; };
-		217D75C21852157400AA0D95 /* StudentConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentConfirm.h; path = SignupProcess/StudentConfirm.h; sourceTree = "<group>"; };
-		217D75C31852157400AA0D95 /* StudentConfirm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentConfirm.m; path = SignupProcess/StudentConfirm.m; sourceTree = "<group>"; };
-		217D75C41852157400AA0D95 /* StudentConfirm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentConfirm.xib; path = SignupProcess/StudentConfirm.xib; sourceTree = "<group>"; };
 		217D75C71853208400AA0D95 /* BTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTColor.h; sourceTree = "<group>"; };
 		217D75C81853208400AA0D95 /* BTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTColor.m; sourceTree = "<group>"; };
 		2182679518A87B1900F71819 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -261,9 +254,6 @@
 		21C48E2B183D08E800C8D772 /* SignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInController.h; path = SignupProcess/SignInController.h; sourceTree = "<group>"; };
 		21C48E2C183D08E800C8D772 /* SignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInController.m; path = SignupProcess/SignInController.m; sourceTree = "<group>"; };
 		21C48E2D183D08E800C8D772 /* SignInController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInController.xib; path = SignupProcess/SignInController.xib; sourceTree = "<group>"; };
-		21C48E30183F63C200C8D772 /* PersonalizeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalizeController.h; path = SignupProcess/PersonalizeController.h; sourceTree = "<group>"; };
-		21C48E31183F63C200C8D772 /* PersonalizeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalizeController.m; path = SignupProcess/PersonalizeController.m; sourceTree = "<group>"; };
-		21C48E32183F63C200C8D772 /* PersonalizeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonalizeController.xib; path = SignupProcess/PersonalizeController.xib; sourceTree = "<group>"; };
 		21C48E401841F53800C8D772 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		21CF9351184B398D00A81590 /* SerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SerialViewController.h; path = SignupProcess/SerialViewController.h; sourceTree = "<group>"; };
 		21CF9352184B398D00A81590 /* SerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SerialViewController.m; path = SignupProcess/SerialViewController.m; sourceTree = "<group>"; };
@@ -383,12 +373,6 @@
 				21C48E2B183D08E800C8D772 /* SignInController.h */,
 				21C48E2C183D08E800C8D772 /* SignInController.m */,
 				21C48E2D183D08E800C8D772 /* SignInController.xib */,
-				21C48E30183F63C200C8D772 /* PersonalizeController.h */,
-				21C48E31183F63C200C8D772 /* PersonalizeController.m */,
-				21C48E32183F63C200C8D772 /* PersonalizeController.xib */,
-				217D75C21852157400AA0D95 /* StudentConfirm.h */,
-				217D75C31852157400AA0D95 /* StudentConfirm.m */,
-				217D75C41852157400AA0D95 /* StudentConfirm.xib */,
 				D46D893018AFED7C0051F291 /* ForgotViewController.h */,
 				D46D893118AFED7C0051F291 /* ForgotViewController.m */,
 				D46D893218AFED7C0051F291 /* ForgotViewController.xib */,
@@ -448,6 +432,7 @@
 				D49A789B18ACFB4500B317C0 /* SerialViewController */,
 				D47DB52418AF85AC007C23A3 /* CustomUIView */,
 				2137BBBA182D36DB00B59E15 /* Module */,
+				D4AE743A18FE246300601FDD /* Models */,
 				D44224D618B5F02D0028B048 /* Helper */,
 				2135C3D9182BE63D002C45DB /* ViewController */,
 				2135C3AA182BDD4E002C45DB /* AppDelegate.h */,
@@ -490,8 +475,8 @@
 			children = (
 				2137BBBE182D482200B59E15 /* BTUserDefault.h */,
 				2137BBBF182D482200B59E15 /* BTUserDefault.m */,
-				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
 				21FCDB3B182F341D00F3A759 /* KeychainItemWrapper.h */,
+				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
 				21917905186C3E1800799CC0 /* JSONController.h */,
 				21917906186C3E1800799CC0 /* JSONController.m */,
 				D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */,
@@ -702,6 +687,13 @@
 			name = SerialViewController;
 			sourceTree = "<group>";
 		};
+		D4AE743A18FE246300601FDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -830,10 +822,8 @@
 				21917911186D958E00799CC0 /* CourseInfoCell.xib in Resources */,
 				D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */,
 				217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */,
-				217D75C61852157400AA0D95 /* StudentConfirm.xib in Resources */,
 				2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */,
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
-				21C48E34183F63C200C8D772 /* PersonalizeController.xib in Resources */,
 				217D75C01850FD3700AA0D95 /* Personalize_bg2@2x.jpg in Resources */,
 				2191790C186D951000799CC0 /* CourseAttendView.xib in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */,
@@ -922,7 +912,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217D75C51852157400AA0D95 /* StudentConfirm.m in Sources */,
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */,
@@ -951,7 +940,6 @@
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
 				2191790B186D951000799CC0 /* CourseAttendView.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
-				21C48E33183F63C200C8D772 /* PersonalizeController.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
 				21CF9354184B398D00A81590 /* SerialViewController.m in Sources */,

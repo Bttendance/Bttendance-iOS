@@ -7,31 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking/AFNetworking.h>
 #import "UserInfoCell.h"
-#import "BTUserDefault.h"
-#import "BTColor.h"
-#import "BTAPIs.h"
 
-@interface AttdStatViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
-    NSUInteger rowcount0;//for section 0
+@interface AttdStatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+    NSUInteger rowcount0;
+    //for section 0
     NSUInteger rowcount1;//for section 1
-    
+
     NSMutableArray *data0;
     NSMutableArray *data1;
-    
+
     NSDictionary *userinfo;
-    
+
     UserInfoCell *currentcell;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
 
-@property (assign, nonatomic) NSInteger postId;
-@property (assign, nonatomic) NSInteger courseId;
-@property (assign, nonatomic) NSString *courseName;
+@property(assign, nonatomic) NSInteger postId;
+@property(assign, nonatomic) NSInteger courseId;
+@property(assign, nonatomic) NSString *courseName;
 
 
--(IBAction)check_button_action:(id)sender;
+- (IBAction)check_button_action:(id)sender;
 
 @end

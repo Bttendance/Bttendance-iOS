@@ -14,14 +14,14 @@
 
 @implementation SignButtonCell
 
-+(SignButtonCell *)cellFromNibNamed:(NSString *)nibName{
++ (SignButtonCell *)cellFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     SignButtonCell *cell = nil;
-    NSObject* nibItem = nil;
+    NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
         if ([nibItem isKindOfClass:[SignButtonCell class]]) {
-            cell = (SignButtonCell *)nibItem;
+            cell = (SignButtonCell *) nibItem;
             break;
         }
     }

@@ -7,20 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BTColor.h"
-#import "ProfileViewController.h"
-#import "BTAPIs.h"
 
-@interface ProfileEmailEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
-    
+@interface ProfileEmailEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+
     __weak NSString *email;
-    
+
     NSDictionary *userinfo;
 }
 
-@property (weak, nonatomic) NSString *email;
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UITextField *email_field;
--(void)save_email;
+@property(weak, nonatomic) NSString *email;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(strong, nonatomic) IBOutlet UITextField *email_field;
+
+- (void)save_email;
 
 @end

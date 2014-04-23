@@ -7,11 +7,12 @@
 //
 
 #import "CustomCell.h"
+#import "BTColor.h"
 
 @implementation CustomCell
 @synthesize textfield;
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -27,13 +28,12 @@
         [self addSubview:underline];
         [self addSubview:left];
         [self addSubview:right];
-        
+
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 

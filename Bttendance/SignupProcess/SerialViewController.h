@@ -7,25 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomCell.h"
-#import <AFNetworking.h>
-#import "SignUpController.h"
-#import "BTAPIs.h"
-#import "BVUnderlineButton.h"
-#import "BTColor.h"
-#import "SerialRequestViewController.h"
 
-@interface SerialViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
+@interface SerialViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSString *type;
     NSIndexPath *serialcode;
-    
+
     Boolean isSignUp;
     NSInteger schoolId;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) Boolean isSignUp;
-@property (nonatomic) NSInteger schoolId;
-@property (nonatomic) NSString *schoolName;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) Boolean isSignUp;
+@property(nonatomic) NSInteger schoolId;
+@property(nonatomic) NSString *schoolName;
 
 @end
