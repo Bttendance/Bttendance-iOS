@@ -9,7 +9,6 @@
 #import "CourseDetailViewController.h"
 #import "CourseDetailHeaderView.h"
 #import "PostCell.h"
-#import "CourseCell.h"
 #import "BTColor.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
@@ -18,6 +17,7 @@
 #import "ManagerViewController.h"
 #import "AttdStatViewController.h"
 #import "BTDateFormatter.h"
+#import "BTUserDefault.h"
 
 @interface CourseDetailViewController ()
 

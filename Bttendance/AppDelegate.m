@@ -10,11 +10,11 @@
 #import "CatchPointController.h"
 #import "SignInController.h"
 #import "SignUpController.h"
-#import "PersonalizeController.h"
 #import "ViewController.h"
 #import "BTUserDefault.h"
 #import <Crashlytics/Crashlytics.h>
-//#import "MainView.h"
+#import <AFNetworking/AFNetworking.h>
+#import "BTAPIs.h"
 
 @implementation AppDelegate
 

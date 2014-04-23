@@ -12,6 +12,7 @@
 #import "SignButtonCell.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
+#import "BTColor.h"
 
 @interface ManagerViewController ()
 

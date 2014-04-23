@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CourseCell.h"
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     __weak CourseCell *currentcell;

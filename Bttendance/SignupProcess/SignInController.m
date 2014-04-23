@@ -14,6 +14,8 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "ForgotViewController.h"
+#import "BTColor.h"
+#import "BVUnderlineButton.h"
 
 NSString *signinRequest;
 

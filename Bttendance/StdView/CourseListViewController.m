@@ -16,6 +16,7 @@
 #import "BTAPIs.h"
 #import "SchoolChooseView.h"
 #import "BTDateFormatter.h"
+#import "CreateNoticeViewController.h"
 
 @interface CourseListViewController ()
 

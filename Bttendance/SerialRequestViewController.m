@@ -11,6 +11,8 @@
 #import "CustomCell.h"
 #import "SignButtonCell.h"
 #import "BTAPIs.h"
+#import "BTColor.h"
+#import "BTUserDefault.h"
 
 NSString *serialRequest;
 
