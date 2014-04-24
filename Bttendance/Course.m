@@ -49,6 +49,8 @@
         self.attdCheckedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"attdCheckedAt"]];
         self.clicker_usage = [[dictionary objectForKey:@"clicker_usage"] integerValue];
         self.notice_usage = [[dictionary objectForKey:@"notice_usage"] integerValue];
+        
+        self.grade = [dictionary objectForKey:@"grade"];
     }
     return self;
 }

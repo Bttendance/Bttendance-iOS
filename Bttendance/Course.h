@@ -26,6 +26,8 @@
 @property(assign) NSInteger  clicker_usage;
 @property(assign) NSInteger  notice_usage;
 
+@property(strong, nonatomic) NSString  *grade;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

@@ -23,6 +23,8 @@
         self.course = [[Course alloc] initWithDictionary:[dictionary objectForKey:@"course"]];
         self.attendance = [[Attendance alloc] initWithDictionary:[dictionary objectForKey:@"attendance"]];
         self.clicker = [[Clicker alloc] initWithDictionary:[dictionary objectForKey:@"clicker"]];
+        
+        self.grade = [dictionary objectForKey:@"grade"];
     }
     return self;
 }

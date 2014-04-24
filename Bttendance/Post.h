@@ -29,6 +29,8 @@
 @property(strong, nonatomic) Attendance  *attendance;
 @property(strong, nonatomic) Clicker  *clicker;
 
+@property(strong, nonatomic) NSString  *grade;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

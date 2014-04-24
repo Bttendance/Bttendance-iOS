@@ -64,7 +64,6 @@
 		2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2190C4971850C35100626628 /* bgmainlossy@2x.jpg */; };
 		21917903186C38DD00799CC0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917901186C38DD00799CC0 /* MainViewController.m */; };
 		21917904186C38DD00799CC0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21917902186C38DD00799CC0 /* MainViewController.xib */; };
-		21917907186C3E1800799CC0 /* JSONController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917906186C3E1800799CC0 /* JSONController.m */; };
 		2191790B186D951000799CC0 /* CourseAttendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917909186D951000799CC0 /* CourseAttendView.m */; };
 		2191790C186D951000799CC0 /* CourseAttendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2191790A186D951000799CC0 /* CourseAttendView.xib */; };
 		21917910186D958E00799CC0 /* CourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2191790E186D958E00799CC0 /* CourseInfoCell.m */; };
@@ -107,6 +106,9 @@
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotViewController.m */; };
 		D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotViewController.xib */; };
+		D47223041908E54D00CE7015 /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223031908E54D00CE7015 /* Email.m */; };
+		D47223071908E55600CE7015 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223061908E55600CE7015 /* Notification.m */; };
+		D472230A1908E55D00CE7015 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223091908E55D00CE7015 /* Error.m */; };
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D485A0A21878347500F9561B /* CourseCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateController.m */; };
@@ -239,8 +241,6 @@
 		21917900186C38DD00799CC0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = controller/MainViewController.h; sourceTree = "<group>"; };
 		21917901186C38DD00799CC0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = controller/MainViewController.m; sourceTree = "<group>"; };
 		21917902186C38DD00799CC0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = controller/MainViewController.xib; sourceTree = "<group>"; };
-		21917905186C3E1800799CC0 /* JSONController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONController.h; path = controller/JSONController.h; sourceTree = "<group>"; };
-		21917906186C3E1800799CC0 /* JSONController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONController.m; path = controller/JSONController.m; sourceTree = "<group>"; };
 		21917908186D951000799CC0 /* CourseAttendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseAttendView.h; path = controller/CourseAttendView.h; sourceTree = "<group>"; };
 		21917909186D951000799CC0 /* CourseAttendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseAttendView.m; path = controller/CourseAttendView.m; sourceTree = "<group>"; };
 		2191790A186D951000799CC0 /* CourseAttendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseAttendView.xib; path = controller/CourseAttendView.xib; sourceTree = "<group>"; };
@@ -296,6 +296,12 @@
 		D46D893018AFED7C0051F291 /* ForgotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
 		D46D893118AFED7C0051F291 /* ForgotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotViewController.m; sourceTree = "<group>"; };
 		D46D893218AFED7C0051F291 /* ForgotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotViewController.xib; sourceTree = "<group>"; };
+		D47223021908E54D00CE7015 /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
+		D47223031908E54D00CE7015 /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
+		D47223051908E55600CE7015 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		D47223061908E55600CE7015 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		D47223081908E55D00CE7015 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		D47223091908E55D00CE7015 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		D478DF021873ADFE00BA9BE7 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostCell.xib; path = controller/PostCell.xib; sourceTree = "<group>"; };
 		D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVUnderlineButton.h; sourceTree = "<group>"; };
 		D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
@@ -504,8 +510,6 @@
 				2137BBBF182D482200B59E15 /* BTUserDefault.m */,
 				21FCDB3B182F341D00F3A759 /* KeychainItemWrapper.h */,
 				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
-				21917905186C3E1800799CC0 /* JSONController.h */,
-				21917906186C3E1800799CC0 /* JSONController.m */,
 				D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */,
 				D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */,
 			);
@@ -735,6 +739,12 @@
 				D4FD44CA19081FDD00FB52A5 /* Attendance.m */,
 				D4FD44CC19081FF400FB52A5 /* Serial.h */,
 				D4FD44CD19081FF400FB52A5 /* Serial.m */,
+				D47223021908E54D00CE7015 /* Email.h */,
+				D47223031908E54D00CE7015 /* Email.m */,
+				D47223051908E55600CE7015 /* Notification.h */,
+				D47223061908E55600CE7015 /* Notification.m */,
+				D47223081908E55D00CE7015 /* Error.h */,
+				D47223091908E55D00CE7015 /* Error.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -987,6 +997,7 @@
 				D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */,
 				D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */,
 				21C48E2E183D08E800C8D772 /* SignInController.m in Sources */,
+				D47223071908E55600CE7015 /* Notification.m in Sources */,
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
 				2191790B186D951000799CC0 /* CourseAttendView.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
@@ -1002,12 +1013,13 @@
 				2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */,
 				D4FD44B41908194F00FB52A5 /* User.m in Sources */,
 				D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */,
+				D47223041908E54D00CE7015 /* Email.m in Sources */,
 				D4FD44BD19081F8800FB52A5 /* Course.m in Sources */,
 				215D4A5318461B30004C1947 /* CustomCell.m in Sources */,
-				21917907186C3E1800799CC0 /* JSONController.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
+				D472230A1908E55D00CE7015 /* Error.m in Sources */,
 				21917903186C38DD00799CC0 /* MainViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
 			);
