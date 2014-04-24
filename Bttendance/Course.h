@@ -21,10 +21,10 @@
 @property(strong, nonatomic) NSArray  *managers;
 @property(strong, nonatomic) NSArray  *students;
 @property(strong, nonatomic) NSArray  *posts;
-@property(assign) NSInteger  *students_count;
+@property(assign) NSInteger  students_count;
 @property(strong, nonatomic) NSDate  *attdCheckedAt;
-@property(assign) NSInteger  *clicker_usage;
-@property(assign) NSInteger  *notice_usage;
+@property(assign) NSInteger  clicker_usage;
+@property(assign) NSInteger  notice_usage;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
