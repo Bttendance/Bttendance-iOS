@@ -135,6 +135,15 @@
 		D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
+		D4FD44B41908194F00FB52A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B31908194F00FB52A5 /* User.m */; };
+		D4FD44B719081F6F00FB52A5 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B619081F6F00FB52A5 /* Device.m */; };
+		D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B919081F7E00FB52A5 /* Post.m */; };
+		D4FD44BD19081F8800FB52A5 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44BC19081F8800FB52A5 /* Course.m */; };
+		D4FD44C019081F9300FB52A5 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44BF19081F9300FB52A5 /* School.m */; };
+		D4FD44C519081FC400FB52A5 /* Identification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44C419081FC400FB52A5 /* Identification.m */; };
+		D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44C719081FD200FB52A5 /* Clicker.m */; };
+		D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44CA19081FDD00FB52A5 /* Attendance.m */; };
+		D4FD44CE19081FF400FB52A5 /* Serial.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44CD19081FF400FB52A5 /* Serial.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,6 +332,24 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		D4FD44B21908194F00FB52A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D4FD44B31908194F00FB52A5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D4FD44B519081F6F00FB52A5 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		D4FD44B619081F6F00FB52A5 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		D4FD44B819081F7E00FB52A5 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		D4FD44B919081F7E00FB52A5 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		D4FD44BB19081F8800FB52A5 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		D4FD44BC19081F8800FB52A5 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		D4FD44BE19081F9300FB52A5 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		D4FD44BF19081F9300FB52A5 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
+		D4FD44C319081FC400FB52A5 /* Identification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Identification.h; sourceTree = "<group>"; };
+		D4FD44C419081FC400FB52A5 /* Identification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Identification.m; sourceTree = "<group>"; };
+		D4FD44C619081FD200FB52A5 /* Clicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clicker.h; sourceTree = "<group>"; };
+		D4FD44C719081FD200FB52A5 /* Clicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clicker.m; sourceTree = "<group>"; };
+		D4FD44C919081FDD00FB52A5 /* Attendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attendance.h; sourceTree = "<group>"; };
+		D4FD44CA19081FDD00FB52A5 /* Attendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
+		D4FD44CC19081FF400FB52A5 /* Serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serial.h; sourceTree = "<group>"; };
+		D4FD44CD19081FF400FB52A5 /* Serial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serial.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -690,6 +717,24 @@
 		D4AE743A18FE246300601FDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D4FD44B21908194F00FB52A5 /* User.h */,
+				D4FD44B31908194F00FB52A5 /* User.m */,
+				D4FD44B519081F6F00FB52A5 /* Device.h */,
+				D4FD44B619081F6F00FB52A5 /* Device.m */,
+				D4FD44B819081F7E00FB52A5 /* Post.h */,
+				D4FD44B919081F7E00FB52A5 /* Post.m */,
+				D4FD44BB19081F8800FB52A5 /* Course.h */,
+				D4FD44BC19081F8800FB52A5 /* Course.m */,
+				D4FD44BE19081F9300FB52A5 /* School.h */,
+				D4FD44BF19081F9300FB52A5 /* School.m */,
+				D4FD44C319081FC400FB52A5 /* Identification.h */,
+				D4FD44C419081FC400FB52A5 /* Identification.m */,
+				D4FD44C619081FD200FB52A5 /* Clicker.h */,
+				D4FD44C719081FD200FB52A5 /* Clicker.m */,
+				D4FD44C919081FDD00FB52A5 /* Attendance.h */,
+				D4FD44CA19081FDD00FB52A5 /* Attendance.m */,
+				D4FD44CC19081FF400FB52A5 /* Serial.h */,
+				D4FD44CD19081FF400FB52A5 /* Serial.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -760,7 +805,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -915,14 +960,18 @@
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */,
+				D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */,
 				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
+				D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */,
 				2135C3AF182BDD4E002C45DB /* Bttendance.xcdatamodeld in Sources */,
 				21469A4A18929ED7005D4FF2 /* CourseDetailHeaderView.m in Sources */,
 				21B599E31876A7500063D7C4 /* ButtonCell.m in Sources */,
+				D4FD44B719081F6F00FB52A5 /* Device.m in Sources */,
 				21917910186D958E00799CC0 /* CourseInfoCell.m in Sources */,
 				212C05AE183B726D00AD6654 /* CatchPointController.m in Sources */,
+				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateController.m in Sources */,
 				2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */,
 				D407B27318AF5E30009BCF8C /* SerialRequestViewController.m in Sources */,
@@ -931,6 +980,7 @@
 				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
 				2131F5121897817F0096404D /* GradeViewController.m in Sources */,
 				D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */,
+				D4FD44C519081FC400FB52A5 /* Identification.m in Sources */,
 				D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */,
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
 				21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */,
@@ -942,13 +992,17 @@
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
+				D4FD44C019081F9300FB52A5 /* School.m in Sources */,
 				21CF9354184B398D00A81590 /* SerialViewController.m in Sources */,
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpController.m in Sources */,
+				D4FD44CE19081FF400FB52A5 /* Serial.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,
 				2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */,
+				D4FD44B41908194F00FB52A5 /* User.m in Sources */,
 				D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */,
+				D4FD44BD19081F8800FB52A5 /* Course.m in Sources */,
 				215D4A5318461B30004C1947 /* CustomCell.m in Sources */,
 				21917907186C3E1800799CC0 /* JSONController.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
@@ -1157,7 +1211,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,
