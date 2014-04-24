@@ -12,10 +12,22 @@
 #import "Attendance.h"
 #import "Clicker.h"
 
-@class User;
-@class Course;
-@class Attendance;
-@class Clicker;
+@class SimpleUser;
+@class SimpleCourse;
+@class SimpleAttendance;
+@class SimpleClicker;
+
+@interface SimplePost : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *type;
+@property(strong, nonatomic) NSString  *message;
+@property(assign) NSInteger  author;
+@property(assign) NSInteger  course;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
 
 @interface Post : NSObject
 
@@ -24,10 +36,10 @@
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *type;
 @property(strong, nonatomic) NSString  *message;
-@property(strong, nonatomic) User  *author;
-@property(strong, nonatomic) Course  *course;
-@property(strong, nonatomic) Attendance  *attendance;
-@property(strong, nonatomic) Clicker  *clicker;
+@property(strong, nonatomic) SimpleUser  *author;
+@property(strong, nonatomic) SimpleCourse  *course;
+@property(strong, nonatomic) SimpleAttendance  *attendance;
+@property(strong, nonatomic) SimpleClicker  *clicker;
 
 @property(strong, nonatomic) NSString  *grade;
 

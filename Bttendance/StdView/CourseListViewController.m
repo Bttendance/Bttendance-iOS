@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "SocketIOPacket.h"
 #import "BTUserDefault.h"
+#import "BTUUID.h"
 #import "BTColor.h"
 #import "CourseCell.h"
 #import "CourseDetailViewController.h"
@@ -35,7 +36,7 @@
         attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
         attdingPostIDs = [[NSMutableArray alloc] init];
 
-        myservice = [BTUserDefault getUserService];
+        myservice = [BTUUID getUserService];
         myCmanager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
         [myPmanager addService:myservice];
 
@@ -605,7 +606,7 @@
 
     NSString *username = [userinfo objectForKey:UsernameKey];
     NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *uuid = [BTUserDefault representativeString:[[advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey] objectAtIndex:0]];
+    NSString *uuid = [BTUUID representativeString:[[advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey] objectAtIndex:0]];
 
     NSLog(@"Found %@", uuid);
 

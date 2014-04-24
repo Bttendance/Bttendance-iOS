@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@interface SimpleSchool : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *name;
+@property(strong, nonatomic) NSString  *logo_image;
+@property(strong, nonatomic) NSURL  *website;
+@property(strong, nonatomic) NSString  *type;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+
 @interface School : NSObject
 
 @property(assign) NSInteger id;

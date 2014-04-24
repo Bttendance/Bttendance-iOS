@@ -9,7 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "Post.h"
 
-@class Post;
+@class SimplePost;
+
+@interface SimpleClicker : NSObject
+
+@property(assign) NSInteger id;
+@property(assign) NSInteger  choice_count;
+@property(strong, nonatomic) NSArray  *a_students;
+@property(strong, nonatomic) NSArray  *b_students;
+@property(strong, nonatomic) NSArray  *c_students;
+@property(strong, nonatomic) NSArray  *d_students;
+@property(strong, nonatomic) NSArray  *e_students;
+@property(assign) NSInteger  post;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
 
 @interface Clicker : NSObject
 
@@ -22,7 +38,7 @@
 @property(strong, nonatomic) NSArray  *c_students;
 @property(strong, nonatomic) NSArray  *d_students;
 @property(strong, nonatomic) NSArray  *e_students;
-@property(strong, nonatomic) Post  *post;
+@property(strong, nonatomic) SimplePost  *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

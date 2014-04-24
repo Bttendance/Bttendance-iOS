@@ -10,14 +10,28 @@
 #import "User.h"
 #import "School.h"
 
+@class SimpleSchool;
+@class SimpleUser;
+
+@interface SimpleIdentification : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *identity;
+@property(assign) NSInteger  school;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+
 @interface Identification : NSObject
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *identity;
-@property(strong, nonatomic) User  *owner;
-@property(strong, nonatomic) School  *school;
+@property(strong, nonatomic) SimpleUser  *owner;
+@property(strong, nonatomic) SimpleSchool  *school;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

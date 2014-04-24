@@ -9,6 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "School.h"
 
+@class SimpleSchool;
+
+@interface SimpleCourse : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *name;
+@property(strong, nonatomic) NSString  *number;
+@property(strong, nonatomic) NSString  *professor_name;
+@property(assign) NSInteger  school;
+@property(assign) NSInteger  students_count;
+@property(assign) NSInteger  clicker_usage;
+@property(assign) NSInteger  notice_usage;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+
 @interface Course : NSObject
 
 @property(assign) NSInteger id;
@@ -17,7 +35,7 @@
 @property(strong, nonatomic) NSString  *name;
 @property(strong, nonatomic) NSString  *number;
 @property(strong, nonatomic) NSString  *professor_name;
-@property(strong, nonatomic) School  *school;
+@property(strong, nonatomic) SimpleSchool  *school;
 @property(strong, nonatomic) NSArray  *managers;
 @property(strong, nonatomic) NSArray  *students;
 @property(strong, nonatomic) NSArray  *posts;

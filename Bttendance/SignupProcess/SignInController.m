@@ -16,6 +16,7 @@
 #import "ForgotViewController.h"
 #import "BTColor.h"
 #import "BVUnderlineButton.h"
+#import "BTUUID.h"
 
 NSString *signinRequest;
 
@@ -233,7 +234,7 @@ NSString *signinRequest;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    NSString *uuid = [BTUserDefault representativeString:[BTUserDefault getUserService].UUID];
+    NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
     NSDictionary *params = @{@"username" : username,
             @"password" : password,
             @"device_uuid" : uuid};

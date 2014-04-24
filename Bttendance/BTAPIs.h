@@ -23,110 +23,108 @@
 
 @interface BTAPIs : NSObject
 
-+ (void)SignUpWithFullName:(NSString *)full_name
++ (void)signUpWithFullName:(NSString *)full_name
                   username:(NSString *)username
+                     email:(NSString *)email
                   password:(NSString *)password
-                deviceType:(NSString *)device_type
-                deviceUUID:(NSString *)device_uuid
                    success:(void (^)(User *user))success;
 
-+ (void)AutoSignInWithAppVersion:(NSString *)app_version
++ (void)autoSignInWithAppVersion:(NSString *)app_version
                          success:(void (^)(User *user))success;
 
-+ (void)SignInWithUsername:(NSString *)username
++ (void)signInWithUsername:(NSString *)username
                   password:(NSString *)password
-                deviceUUID:(NSString *)device_uuid
                    success:(void (^)(User *user))success;
 
-+ (void)ForgotPasswordWithEmail:(NSString *)email
++ (void)forgotPasswordWithEmail:(NSString *)email
                         success:(void (^)(Email *email))success;
 
-+ (void)UpdateProfileImage:(NSString *)profile_image
++ (void)updateProfileImage:(NSString *)profile_image
                    success:(void (^)(User *user))success;
 
-+ (void)UpdateFullName:(NSString *)full_name
++ (void)updateFullName:(NSString *)full_name
                success:(void (^)(User *user))success;
 
-+ (void)UpdateEmail:(NSString *)email
++ (void)updateEmail:(NSString *)email
             success:(void (^)(User *user))success;
 
-+ (void)FeedWithPage:(NSInteger)page
++ (void)feedWithPage:(NSInteger)page
              success:(void (^)(NSArray *posts))success;
 
-+ (void)CoursesAtSuccess:(void (^)(NSArray *courses))success;
++ (void)coursesAtSuccess:(void (^)(NSArray *courses))success;
 
-+ (void)SearchUser:(NSString *)search_id
++ (void)searchUser:(NSString *)search_id
            success:(void (^)(User *user))success;
 
-+ (void)UpdateNotificationKey:(NSString *)notification_key
++ (void)updateNotificationKey:(NSString *)notification_key
                       success:(void (^)(User *user))success;
 
-+ (void)AllSchoolsAtSuccess:(void (^)(NSArray *schools))success;
++ (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success;
 
-+ (void)CoursesForSchool:(NSString *)school_id
++ (void)coursesForSchool:(NSString *)school_id
                  success:(void (^)(NSArray *courses))success;
 
-+ (void)EmploySchool:(NSString *)school_id
++ (void)employSchool:(NSString *)school_id
               serial:(NSString *)serial
              success:(void (^)(User *user))success;
 
-+ (void)EnrollSchool:(NSString *)school_id
++ (void)enrollSchool:(NSString *)school_id
             identity:(NSString *)student_id
              success:(void (^)(User *user))success;
 
-+ (void)CreateCourseWitheName:(NSString *)name
++ (void)createCourseWitheName:(NSString *)name
                        number:(NSString *)number
                        school:(NSString *)school_id
                 professorName:(NSString *)professor_name
                       success:(void (^)(Email *email))success;
 
-+ (void)AttendCourse:(NSString *)course_id
++ (void)attendCourse:(NSString *)course_id
              success:(void (^)(User *user))success;
 
-+ (void)DettendCourse:(NSString *)course_id
++ (void)dettendCourse:(NSString *)course_id
               success:(void (^)(User *user))success;
 
-+ (void)FeedForCourse:(NSString *)course_id
++ (void)feedForCourse:(NSString *)course_id
                  page:(NSInteger)page
               success:(void (^)(NSArray *posts))success;
 
-+ (void)StudentsForCourse:(NSString *)course_id
++ (void)studentsForCourse:(NSString *)course_id
                   success:(void (^)(NSArray *users))success;
 
-+ (void)AddManagerWithCourse:(NSString *)course_id
++ (void)addManagerWithCourse:(NSString *)course_id
                      manager:(NSString *)manager
                      success:(void (^)(Course *course))success;
 
-+ (void)GradesWithCourse:(NSString *)course_id
++ (void)gradesWithCourse:(NSString *)course_id
                  success:(void (^)(NSArray *users))success;
 
-+ (void)GradesExportWithCourse:(NSString *)course_id
++ (void)gradesExportWithCourse:(NSString *)course_id
                        success:(void (^)(Email *email))success;
 
-+ (void)StartAttendanceWithCourse:(NSString *)course_id
++ (void)startAttendanceWithCourse:(NSString *)course_id
                           success:(void (^)(Post *post))success;
 
-+ (void)StartClickerWithCourse:(NSString *)course_id
++ (void)startClickerWithCourse:(NSString *)course_id
                        message:(NSString *)message
                        success:(void (^)(Post *post))success;
 
-+ (void)StartNoticeWithCourse:(NSString *)course_id
++ (void)startNoticeWithCourse:(NSString *)course_id
                       message:(NSString *)message
                       success:(void (^)(Post *post))success;
 
-+ (void)FoundDeviceWithAttendance:(NSString *)attendance_id
++ (void)foundDeviceWithAttendance:(NSString *)attendance_id
                              uuid:(NSString *)uuid
                           success:(void (^)(Attendance *attendance))success;
 
-+ (void)CheckManuallyWithAttendance:(NSString *)attendance_id
++ (void)checkManuallyWithAttendance:(NSString *)attendance_id
                                user:(NSString *)user_id
                             success:(void (^)(Attendance *attendance))success;
 
-+ (void)ConnectWithClicker:(NSString *)clicker_id
++ (void)connectWithClicker:(NSString *)clicker_id
                     socker:(NSString *)socket_id
                    success:(void (^)(Clicker *clicker))success;
 
-+ (void)ClickWithClicker:(NSString *)clicker_id
++ (void)clickWithClicker:(NSString *)clicker_id
                   choice:(NSString *)choice_number
                  success:(void (^)(Clicker *clicker))success;
 

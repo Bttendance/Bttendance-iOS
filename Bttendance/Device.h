@@ -9,7 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
-@class User;
+@class SimpleUser;
+
+@interface SimpleDevice : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *type;
+@property(strong, nonatomic) NSString  *uuid;
+@property(strong, nonatomic) NSString  *notification_key;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
 
 @interface Device : NSObject
 
@@ -20,7 +32,7 @@
 @property(strong, nonatomic) NSString  *uuid;
 @property(strong, nonatomic) NSString  *mac_address;
 @property(strong, nonatomic) NSString  *notification_key;
-@property(strong, nonatomic) User  *owner;
+@property(strong, nonatomic) SimpleUser  *owner;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

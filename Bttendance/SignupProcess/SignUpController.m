@@ -15,6 +15,7 @@
 #import "BTAPIs.h"
 #import "WebViewController.h"
 #import "BTUserDefault.h"
+#import "BTUUID.h"
 
 NSString *signupRequest;
 
@@ -321,7 +322,7 @@ NSString *signupRequest;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    NSString *uuid = [BTUserDefault representativeString:[BTUserDefault getUserService].UUID];
+    NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
     NSDictionary *params = @{@"username" : username,
             @"email" : email,
             @"full_name" : fullname,

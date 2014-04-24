@@ -109,6 +109,7 @@
 		D47223041908E54D00CE7015 /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223031908E54D00CE7015 /* Email.m */; };
 		D47223071908E55600CE7015 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223061908E55600CE7015 /* Notification.m */; };
 		D472230A1908E55D00CE7015 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223091908E55D00CE7015 /* Error.m */; };
+		D472230D1909178500CE7015 /* BTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D472230C1909178500CE7015 /* BTUUID.m */; };
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D485A0A21878347500F9561B /* CourseCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateController.m */; };
@@ -116,6 +117,7 @@
 		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
+		D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */; };
 		D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4BFBF18F639B7002DE88C /* XYPieChart.m */; };
 		D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC118F63B0F002DE88C /* a@2x.png */; };
 		D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC218F63B0F002DE88C /* attendance@2x.png */; };
@@ -137,6 +139,7 @@
 		D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
+		D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */; };
 		D4FD44B41908194F00FB52A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B31908194F00FB52A5 /* User.m */; };
 		D4FD44B719081F6F00FB52A5 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B619081F6F00FB52A5 /* Device.m */; };
 		D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B919081F7E00FB52A5 /* Post.m */; };
@@ -302,6 +305,8 @@
 		D47223061908E55600CE7015 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		D47223081908E55D00CE7015 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		D47223091908E55D00CE7015 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		D472230B1909178500CE7015 /* BTUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUUID.h; sourceTree = "<group>"; };
+		D472230C1909178500CE7015 /* BTUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUUID.m; sourceTree = "<group>"; };
 		D478DF021873ADFE00BA9BE7 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostCell.xib; path = controller/PostCell.xib; sourceTree = "<group>"; };
 		D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVUnderlineButton.h; sourceTree = "<group>"; };
 		D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
@@ -314,6 +319,8 @@
 		D485A0A818784C9C00F9561B /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		D485A0A918784C9C00F9561B /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
+		D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
 		D4B4BFBE18F639B7002DE88C /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYPieChart.h; path = ../XYPieChart/XYPieChart.h; sourceTree = "<group>"; };
 		D4B4BFBF18F639B7002DE88C /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYPieChart.m; path = ../XYPieChart/XYPieChart.m; sourceTree = "<group>"; };
 		D4B4BFC118F63B0F002DE88C /* a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a@2x.png"; sourceTree = "<group>"; };
@@ -338,6 +345,8 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFResponseSerializer.h; sourceTree = "<group>"; };
+		D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFResponseSerializer.m; sourceTree = "<group>"; };
 		D4FD44B21908194F00FB52A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D4FD44B31908194F00FB52A5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D4FD44B519081F6F00FB52A5 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -460,6 +469,7 @@
 		2135C3A1182BDD4E002C45DB /* Bttendance */ = {
 			isa = PBXGroup;
 			children = (
+				D4AFCA5B1909583800FA62A9 /* Extensions */,
 				21C48E39183FB2BC00C8D772 /* Resource */,
 				212C05B0183B72EE00AD6654 /* SignUpProcess */,
 				D49A789B18ACFB4500B317C0 /* SerialViewController */,
@@ -508,8 +518,6 @@
 			children = (
 				2137BBBE182D482200B59E15 /* BTUserDefault.h */,
 				2137BBBF182D482200B59E15 /* BTUserDefault.m */,
-				21FCDB3B182F341D00F3A759 /* KeychainItemWrapper.h */,
-				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
 				D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */,
 				D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */,
 			);
@@ -663,6 +671,12 @@
 			children = (
 				D44224D718B5F06A0028B048 /* BTDateFormatter.h */,
 				D44224D818B5F06A0028B048 /* BTDateFormatter.m */,
+				21FCDB3B182F341D00F3A759 /* KeychainItemWrapper.h */,
+				21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */,
+				D472230B1909178500CE7015 /* BTUUID.h */,
+				D472230C1909178500CE7015 /* BTUUID.m */,
+				D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */,
+				D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -749,6 +763,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		D4AFCA5B1909583800FA62A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */,
+				D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -815,7 +838,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -989,7 +1012,9 @@
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
 				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
 				2131F5121897817F0096404D /* GradeViewController.m in Sources */,
+				D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */,
 				D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */,
+				D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */,
 				D4FD44C519081FC400FB52A5 /* Identification.m in Sources */,
 				D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */,
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
@@ -999,6 +1024,7 @@
 				21C48E2E183D08E800C8D772 /* SignInController.m in Sources */,
 				D47223071908E55600CE7015 /* Notification.m in Sources */,
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
+				D472230D1909178500CE7015 /* BTUUID.m in Sources */,
 				2191790B186D951000799CC0 /* CourseAttendView.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
@@ -1223,7 +1249,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

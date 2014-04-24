@@ -8,18 +8,40 @@
 
 #import "Identification.h"
 #import "BTDateFormatter.h"
+#import "NSDictionary+Bttendance.h"
+
+@implementation SimpleIdentification
+
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    
+    dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
+    self = [super init];
+
+    if (self) {
+        self.id = [[dictionary objectForKey:@"id"] integerValue];
+        self.identity = [dictionary objectForKey:@"identity"];
+        self.school = [[dictionary objectForKey:@"school"] integerValue];
+    }
+    return self;
+}
+
+@end
+
 
 @implementation Identification
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
+    
+    dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
     self = [super init];
+
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
         self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
         self.identity = [dictionary objectForKey:@"identity"];
-        self.owner = [[User alloc] initWithDictionary:[dictionary objectForKey:@"owner"]];
-        self.school = [[School alloc] initWithDictionary:[dictionary objectForKey:@"school"]];
+        self.owner = [[SimpleUser alloc] initWithDictionary:[dictionary objectForKey:@"owner"]];
+        self.school = [[SimpleSchool alloc] initWithDictionary:[dictionary objectForKey:@"school"]];
     }
     return self;
 }

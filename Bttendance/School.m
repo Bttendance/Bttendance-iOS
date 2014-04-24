@@ -11,11 +11,34 @@
 #import "Serial.h"
 #import "Course.h"
 #import "User.h"
+#import "NSDictionary+Bttendance.h"
+
+@implementation SimpleSchool
+
+- (id)initWithDictionary:(NSDictionary *)dictionary {
+    
+    dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
+    self = [super init];
+
+    if (self) {
+        self.id = [[dictionary objectForKey:@"id"] integerValue];
+        self.name = [dictionary objectForKey:@"name"];
+        self.logo_image = [dictionary objectForKey:@"logo_image"];
+        self.website = [NSURL URLWithString:[[dictionary objectForKey:@"website"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        self.type = [dictionary objectForKey:@"type"];
+    }
+    return self;
+}
+
+@end
 
 @implementation School
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
+    
+    dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
     self = [super init];
+
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
@@ -27,28 +50,28 @@
         
         NSMutableArray *serials = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"serials"]) {
-            Serial *serial = [[Serial alloc] initWithDictionary:dic];
+            SimpleSerial *serial = [[SimpleSerial alloc] initWithDictionary:dic];
             [serials addObject:serial];
         }
         self.serials = serials;
         
         NSMutableArray *courses = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"courses"]) {
-            Course *course = [[Course alloc] initWithDictionary:dic];
+            SimpleCourse *course = [[SimpleCourse alloc] initWithDictionary:dic];
             [courses addObject:course];
         }
         self.courses = courses;
         
         NSMutableArray *professors = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"professors"]) {
-            User *user = [[User alloc] initWithDictionary:dic];
+            SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
             [professors addObject:user];
         }
         self.professors = professors;
         
         NSMutableArray *students = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"students"]) {
-            User *user = [[User alloc] initWithDictionary:dic];
+            SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
             [students addObject:user];
         }
         self.students = students;
