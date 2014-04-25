@@ -11,7 +11,6 @@
 #import "BTColor.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
-#import "BTUserDefault.h"
 
 @interface ProfileEmailEditViewController ()
 
@@ -23,9 +22,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        userinfo = [BTUserDefault getUserInfo];
-
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
@@ -71,34 +67,12 @@
 }
 
 - (void)save_email {
-
-    NSString *temp = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
-
-    email = temp;
-
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *device_uuid = [userinfo objectForKey:UUIDKey];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"device_uuid" : device_uuid,
-            @"email" : email};
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-
-    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/update/email"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        [[NSUserDefaults standardUserDefaults] setObject:email forKey:EmailKey];
-        //load previous view
-        ((ProfileViewController *) [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2]).email = temp;
-        [self.navigationController popToRootViewControllerAnimated:YES];
-
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-    }];
-
-
+    email = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
+    [BTAPIs updateEmail:email
+                success:^(User *user) {
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                } failure:^(NSError *error) {
+                }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

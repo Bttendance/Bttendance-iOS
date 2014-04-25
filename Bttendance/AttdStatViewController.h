@@ -11,23 +11,19 @@
 
 @interface AttdStatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     NSUInteger rowcount0;
-    //for section 0
-    NSUInteger rowcount1;//for section 1
+    NSUInteger rowcount1;
 
     NSMutableArray *data0;
     NSMutableArray *data1;
 
-    NSDictionary *userinfo;
-
     UserInfoCell *currentcell;
 }
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property(assign, nonatomic) NSInteger postId;
 @property(assign, nonatomic) NSInteger courseId;
 @property(assign, nonatomic) NSString *courseName;
-
 
 - (IBAction)check_button_action:(id)sender;
 

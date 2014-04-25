@@ -10,7 +10,6 @@
 #import "CourseCell.h"
 
 @interface GradeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-    NSDictionary *userinfo;
 
     __weak NSString *cid;
 
@@ -18,7 +17,7 @@
 
     __weak CourseCell *currentcell;
 
-    NSMutableArray *data;
+    NSArray *data;
 
     NSInteger rowcount;
 

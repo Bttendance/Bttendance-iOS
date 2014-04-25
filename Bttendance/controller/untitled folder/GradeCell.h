@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface GradeCell : UITableViewCell
 
@@ -19,5 +20,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *att;
 @property(weak, nonatomic) IBOutlet UILabel *tot;
 
+@property(assign, nonatomic) User *user;
 
 @end

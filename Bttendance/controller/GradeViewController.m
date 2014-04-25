@@ -22,7 +22,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        userinfo = [BTUserDefault getUserInfo];
         rowcount = 0;
 
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
@@ -50,25 +49,12 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = @"Grade";
     [titlelabel sizeToFit];
-
-    // Do any additional setup after loading the view from its nib.
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"course_id" : cid};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/course/grades"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        data = responseObject;
+    
+    [BTAPIs gradesWithCourse:cid success:^(NSArray *users) {
+        data = users;
         rowcount = data.count;
         [self.tableview reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    } failure:^(NSError *error) {
     }];
 
 };

@@ -205,20 +205,25 @@ NSString *createCourseRequest;
 }
 
 - (void)CreateButton:(id)sender {
-    NSDictionary *userinfo = [BTUserDefault getUserInfo];
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
+    
+    UIButton *button = (UIButton *) sender;
+    button.enabled = NO;
+    
     NSString *name = [((CustomCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield text];
     NSString *number = [((CustomCell *) [self.tableView cellForRowAtIndexPath:number_index]).textfield text];
     NSString *school = [((CustomCell *) [self.tableView cellForRowAtIndexPath:school_index]).textfield text];
     NSString *prfname = [((CustomCell *) [self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
     NSString *sid = [NSString stringWithFormat:@"%ld", (long) self.schoolId];
-
-    [self JSONCreateCourseRequest:username :password :name :number :sid :prfname :sender];
-
-    NSLog(@"name : %@", name);
-    NSLog(@"number : %@", number);
-    NSLog(@"school : %@", school);
+    
+    [BTAPIs createCourseWitheName:name
+                           number:number
+                           school:sid
+                    professorName:prfName
+                          success:^(Email *email) {
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                          } failure:^(NSError *error) {
+                              button.enabled = YES;
+                          }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -240,34 +245,6 @@ NSString *createCourseRequest;
         return NO;
     }
     return NO;
-}
-
-- (void)JSONCreateCourseRequest:(NSString *)username :(NSString *)password :(NSString *)name :(NSString *)number :(NSString *)school_id :(NSString *)prfname :(id)sender {
-
-    UIButton *button = (UIButton *) sender;
-    button.enabled = NO;
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"name" : name,
-            @"number" : number,
-            @"school_id" : school_id,
-            @"professor_name" : prfname};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager POST:createCourseRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Create Course success : %@", responseObject);
-
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [self.navigationController popToRootViewControllerAnimated:YES];
-
-    }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Create Course fail %@", error);
-        button.enabled = YES;
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }];
-
 }
 
 - (void)backbuttonpressed:(id)aResponder {

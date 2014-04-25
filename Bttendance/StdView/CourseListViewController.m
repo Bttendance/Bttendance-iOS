@@ -18,6 +18,7 @@
 #import "SchoolChooseView.h"
 #import "BTDateFormatter.h"
 #import "CreateNoticeViewController.h"
+#import "Course.h"
 
 @interface CourseListViewController ()
 
@@ -31,9 +32,7 @@
 
     if (self) {
         data = [[NSMutableArray alloc] init];
-        userinfo = [BTUserDefault getUserInfo];
-        supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
-        attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
+        user = [BTUserDefault getUser];
         attdingPostIDs = [[NSMutableArray alloc] init];
 
         myservice = [BTUUID getUserService];
@@ -43,11 +42,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourses:) name:@"NEWMESSAGE" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
-        NSString *username = [userinfo objectForKey:UsernameKey];
-        NSString *password = [userinfo objectForKey:PasswordKey];
-
-//        NSDictionary *params = @{@"username":username,
-//                                 @"password":password};
         socketIO = [[SocketIO alloc] initWithDelegate:self];
         //        [socketIO connectToHost:@"bttendance-dev.herokuapp.com" onPort:0];
 //        [socketIO connectToHost:@"localhost" onPort:1337 withParams:params withNamespace:@"api/clickers/click"];
@@ -77,8 +71,8 @@
 
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"onConnect"]) {
 
-        NSString *username = [userinfo objectForKey:UsernameKey];
-        NSString *password = [userinfo objectForKey:PasswordKey];
+        NSString *username = [BTUserDefault getUsername];
+        NSString *password = [BTUserDefault getPassword];
         NSString *socketId = [[[packet dataAsJSON] objectForKey:@"args"][0] objectForKey:@"socketId"];
 
         NSDictionary *params = @{@"username" : username,
@@ -168,11 +162,9 @@
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
 
-    userinfo = [BTUserDefault getUserInfo];
-    supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
-    attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
-    rowcount1 = [supervisingCourses count];
-    rowcount2 = [attendingCourses count];
+    user = [BTUserDefault getUser];
+    rowcount1 = [user.supervising_courses count];
+    rowcount2 = [user.attending_courses count];
     sectionCount = 0;
     if (rowcount1 > 0)
         sectionCount++;
@@ -189,41 +181,14 @@
 }
 
 - (void)refreshCourses:(id)sender {
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *uuid = [userinfo objectForKey:UUIDKey];
-
-    NSDictionary *params_ = @{@"username" : username,
-            @"password" : password};
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"device_uuid" : uuid};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/auto/signin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [BTUserDefault setUserInfo:responseObject];
-        [AFmanager GET:[BTURL stringByAppendingString:@"/user/courses"] parameters:params_ success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            userinfo = [BTUserDefault getUserInfo];
-            supervisingCourses = [userinfo objectForKey:SupervisingCoursesKey];
-            attendingCourses = [userinfo objectForKey:AttendingCoursesKey];
-            rowcount1 = [supervisingCourses count];
-            rowcount2 = [attendingCourses count];
-            sectionCount = 0;
-            if (rowcount1 > 0)
-                sectionCount++;
-            if (rowcount2 > 0)
-                sectionCount++;
-            data = responseObject;
+    [BTAPIs autoSignInInSuccess:^(User *user) {
+        [BTAPIs coursesInSuccess:^(NSArray *courses) {
+            data = courses;
             [self checkAttdScan];
             [self.tableview reloadData];
-        }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        } failure:^(NSError *error) {
         }];
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    } failure:^(NSError *error) {
     }];
 }
 
@@ -242,7 +207,7 @@
                 return @"Attending Courses";
         }
     } else if (sectionCount == 1) {
-        if ([[[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey] count] > 0)
+        if (rowcount1 > 0)
             return @"Supervising Courses";
         else
             return @"Attending Courses";
@@ -251,7 +216,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     if (sectionCount == 2) {
         switch (section) {
             case 0:
@@ -270,7 +234,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (sectionCount == 2) {
         switch (indexPath.section) {
             case 0:
@@ -301,24 +264,21 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (data.count != 0) {
         for (int i = 0; i < data.count; i++) {
-            if ([[supervisingCourses objectAtIndex:rowIndex] intValue] ==
-                    [[[data objectAtIndex:i] objectForKey:@"id"] intValue]) {
-                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
+            if (((SimpleCourse *)[user.supervising_courses objectAtIndex:rowIndex]).id ==
+                    ((Course *)[data objectAtIndex:i]).id) {
+                cell.course = [data objectAtIndex:i];
+                cell.CourseName.text = cell.course.name;
+                cell.Professor.text = cell.course.professor_name;
+                cell.School.text = cell.course.school.name;
                 cell.cellbackground.layer.cornerRadius = 2;
                 cell.isManager = true;
-                [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
 
                 [cell.attendanceBt addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.clickerBt addTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.noticeBt addTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
 
-                NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-                cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
-                cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+                cell.gap = [cell.course.attdCheckedAt timeIntervalSinceNow];
                 if (180.0f + cell.gap > 0.0f) {
                     [self startAnimation:cell];
                 } else if (cell.blink != nil) {
@@ -347,24 +307,21 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (data.count != 0) {
         for (int i = 0; i < data.count; i++) {
-            if ([[attendingCourses objectAtIndex:rowIndex] intValue] ==
-                    [[[data objectAtIndex:i] objectForKey:@"id"] intValue]) {
-                cell.CourseName.text = [[data objectAtIndex:i] objectForKey:@"name"];
-                cell.Professor.text = [[data objectAtIndex:i] objectForKey:@"professor_name"];
-                cell.School.text = [[data objectAtIndex:i] objectForKey:@"school_name"];
-                cell.CourseID = [[[data objectAtIndex:i] objectForKey:@"id"] intValue];
-                cell.grade = [[[data objectAtIndex:i] objectForKey:@"grade"] intValue];
+            if (((SimpleCourse *)[user.attending_courses objectAtIndex:rowIndex]).id ==
+                ((Course *)[data objectAtIndex:i]).id) {
+                cell.course = [data objectAtIndex:i];
+                cell.CourseName.text = cell.course.name;
+                cell.Professor.text = cell.course.professor_name;
+                cell.School.text = cell.course.school.name;
                 cell.cellbackground.layer.cornerRadius = 2;
                 cell.isManager = false;
-                [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
 
                 [cell.attendanceBt removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.clickerBt removeTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.noticeBt removeTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
 
-                NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-                cell.attdCheckedDate = [BTDateFormatter dateFromUTC:attdCheckedAt];
-                cell.gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+                cell.gap = [cell.course.attdCheckedAt timeIntervalSinceNow];
                 if (180.0f + cell.gap > 0.0f) {
                     [self startAnimation:cell];
                 } else if (cell.blink != nil) {
@@ -438,7 +395,7 @@
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
-                             [cell.background setFrame:CGRectMake(239, 75 - cell.grade / 2, 50, cell.grade / 2)];
+                             [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
                              if (cell.isManager)
                                  [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                          }
@@ -486,7 +443,7 @@
 - (void)attdStart:(id)sender {
     UIButton *send = (UIButton *) sender;
     CourseCell *cell = (CourseCell *) send.superview.superview.superview;
-    attdStartingCid = [NSString stringWithFormat:@"%ld", (long) cell.CourseID];
+    attdStartingCid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
 
     UIAlertView *alert;
     switch ([myCmanager state]) {
@@ -515,7 +472,7 @@
     CourseCell *cell = (CourseCell *) send.superview.superview.superview;
 
     CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
-    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.CourseID];
+    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
     noticeView.currentcell = cell;
     [self.navigationController pushViewController:noticeView animated:YES];
 }
@@ -546,19 +503,11 @@
 
 #pragma Attendance Check Events
 - (void)startAttdCheck {
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"course_id" : attdStartingCid};
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager POST:[BTURL stringByAppendingString:@"/post/attendance/start"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self startAttdScan];
-    }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-    }];
+    [BTAPIs startAttendanceWithCourse:attdStartingCid
+                              success:^(Post *post) {
+                                  [self startAttdCheck];
+                              } failure:^(NSError *error) {
+                              }];
 }
 
 - (void)checkAttdScan {
@@ -603,26 +552,15 @@
 
 #pragma mark - CBCentralManagerDelegate
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
-
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
     NSString *uuid = [BTUUID representativeString:[[advertisementData objectForKey:CBAdvertisementDataServiceUUIDsKey] objectAtIndex:0]];
-
     NSLog(@"Found %@", uuid);
 
     for (int i = 0; i < [attdingPostIDs count]; i++) {
-        NSLog(@"Found %@ and postid %d", uuid, [[attdingPostIDs objectAtIndex:i] intValue]);
-        NSDictionary *params = @{@"username" : username,
-                @"password" : password,
-                @"post_id" : [[attdingPostIDs objectAtIndex:i] stringValue],
-                @"uuid" : uuid};
-
-        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-        [AFmanager PUT:[BTURL stringByAppendingString:@"/post/attendance/found/device"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-        }];
+        [BTAPIs foundDeviceWithAttendance:[[attdingPostIDs objectAtIndex:i] stringValue]
+                                     uuid:uuid
+                                  success:^(Attendance *attendance) {
+                                  } failure:^(NSError *error) {
+                                  }];
     }
 }
 

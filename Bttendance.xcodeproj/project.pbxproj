@@ -83,8 +83,6 @@
 		21C48E2E183D08E800C8D772 /* SignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C48E2C183D08E800C8D772 /* SignInController.m */; };
 		21C48E2F183D08E800C8D772 /* SignInController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21C48E2D183D08E800C8D772 /* SignInController.xib */; };
 		21C48E411841F53800C8D772 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C48E401841F53800C8D772 /* Images.xcassets */; };
-		21CF9354184B398D00A81590 /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21CF9352184B398D00A81590 /* SerialViewController.m */; };
-		21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CF9353184B398D00A81590 /* SerialViewController.xib */; };
 		21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EE90F1189159D2000C9CAB /* SchoolChooseView.m */; };
 		21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21EE90F2189159D2000C9CAB /* SchoolChooseView.xib */; };
 		21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21EE90F618915DB6000C9CAB /* SchoolInfoCell.m */; };
@@ -92,8 +90,6 @@
 		21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */; };
 		8B4ADAB2504F484B9187A3C7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FFE56A63304447F9FD8FB81 /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		D407B26F18AD803E009BCF8C /* CourseCreateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A09E1878347500F9561B /* CourseCreateController.xib */; };
-		D407B27318AF5E30009BCF8C /* SerialRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */; };
-		D407B27418AF5E30009BCF8C /* SerialRequestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */; };
 		D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CC18731C33005A4CF9 /* iostabbara0@2x.png */; };
 		D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CD18731C33005A4CF9 /* iostabbara1@2x.png */; };
 		D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62CE18731C33005A4CF9 /* iostabbara2@2x.png */; };
@@ -267,9 +263,6 @@
 		21C48E2C183D08E800C8D772 /* SignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInController.m; path = SignupProcess/SignInController.m; sourceTree = "<group>"; };
 		21C48E2D183D08E800C8D772 /* SignInController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInController.xib; path = SignupProcess/SignInController.xib; sourceTree = "<group>"; };
 		21C48E401841F53800C8D772 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		21CF9351184B398D00A81590 /* SerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SerialViewController.h; path = SignupProcess/SerialViewController.h; sourceTree = "<group>"; };
-		21CF9352184B398D00A81590 /* SerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SerialViewController.m; path = SignupProcess/SerialViewController.m; sourceTree = "<group>"; };
-		21CF9353184B398D00A81590 /* SerialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SerialViewController.xib; path = SignupProcess/SerialViewController.xib; sourceTree = "<group>"; };
 		21EE90F0189159D2000C9CAB /* SchoolChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolChooseView.h; path = controller/SchoolChooseView.h; sourceTree = "<group>"; };
 		21EE90F1189159D2000C9CAB /* SchoolChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolChooseView.m; path = controller/SchoolChooseView.m; sourceTree = "<group>"; };
 		21EE90F2189159D2000C9CAB /* SchoolChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SchoolChooseView.xib; path = controller/SchoolChooseView.xib; sourceTree = "<group>"; };
@@ -280,9 +273,6 @@
 		21FCDB3C182F341D00F3A759 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		3FFE56A63304447F9FD8FB81 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC1263958E74E31B808FFC6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		D407B27018AF5E30009BCF8C /* SerialRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialRequestViewController.h; sourceTree = "<group>"; };
-		D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialRequestViewController.m; sourceTree = "<group>"; };
-		D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerialRequestViewController.xib; sourceTree = "<group>"; };
 		D41C62CC18731C33005A4CF9 /* iostabbara0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara0@2x.png"; sourceTree = "<group>"; };
 		D41C62CD18731C33005A4CF9 /* iostabbara1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara1@2x.png"; sourceTree = "<group>"; };
 		D41C62CE18731C33005A4CF9 /* iostabbara2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iostabbara2@2x.png"; sourceTree = "<group>"; };
@@ -472,7 +462,6 @@
 				D4AFCA5B1909583800FA62A9 /* Extensions */,
 				21C48E39183FB2BC00C8D772 /* Resource */,
 				212C05B0183B72EE00AD6654 /* SignUpProcess */,
-				D49A789B18ACFB4500B317C0 /* SerialViewController */,
 				D47DB52418AF85AC007C23A3 /* CustomUIView */,
 				2137BBBA182D36DB00B59E15 /* Module */,
 				D4AE743A18FE246300601FDD /* Models */,
@@ -719,19 +708,6 @@
 			name = SubViewController;
 			sourceTree = "<group>";
 		};
-		D49A789B18ACFB4500B317C0 /* SerialViewController */ = {
-			isa = PBXGroup;
-			children = (
-				21CF9351184B398D00A81590 /* SerialViewController.h */,
-				21CF9352184B398D00A81590 /* SerialViewController.m */,
-				21CF9353184B398D00A81590 /* SerialViewController.xib */,
-				D407B27018AF5E30009BCF8C /* SerialRequestViewController.h */,
-				D407B27118AF5E30009BCF8C /* SerialRequestViewController.m */,
-				D407B27218AF5E30009BCF8C /* SerialRequestViewController.xib */,
-			);
-			name = SerialViewController;
-			sourceTree = "<group>";
-		};
 		D4AE743A18FE246300601FDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,7 +851,6 @@
 				21917904186C38DD00799CC0 /* MainViewController.xib in Resources */,
 				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
-				D407B27418AF5E30009BCF8C /* SerialRequestViewController.xib in Resources */,
 				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */,
@@ -926,7 +901,6 @@
 				217D75C11850FD3700AA0D95 /* Personalize_bg1@2x.jpg in Resources */,
 				D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */,
 				D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */,
-				21CF9355184B398D00A81590 /* SerialViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,7 +981,6 @@
 				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateController.m in Sources */,
 				2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */,
-				D407B27318AF5E30009BCF8C /* SerialRequestViewController.m in Sources */,
 				218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */,
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
 				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
@@ -1030,7 +1003,6 @@
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
 				D4FD44C019081F9300FB52A5 /* School.m in Sources */,
-				21CF9354184B398D00A81590 /* SerialViewController.m in Sources */,
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpController.m in Sources */,

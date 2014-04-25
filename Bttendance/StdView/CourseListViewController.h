@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <socket.IO/SocketIO.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "User.h"
 
 @interface CourseListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralManagerDelegate, SocketIODelegate, UIActionSheetDelegate> {
 
@@ -16,10 +17,8 @@
     NSInteger rowcount2;
     NSInteger sectionCount;
 
-    NSMutableArray *data;
-    NSDictionary *userinfo;
-    NSArray *supervisingCourses;
-    NSArray *attendingCourses;
+    NSArray *data;
+    User *user;
 
     NSMutableArray *attdingPostIDs;
     NSString *attdStartingCid;

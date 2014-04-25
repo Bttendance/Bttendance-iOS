@@ -254,23 +254,23 @@ NSString *signupRequest;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 
-    }
-    else if (password.length < 6) {
+    } else if (password.length < 6) {
         //alert showing
         NSString *string = @"Password must be longer than 6 letters";
         NSString *title = @"Invalidate Password";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 
-    }
-
-    else {
-        [self JSONSignupRequest:username :email :fullname :password :sender];
-        NSLog(@"fullname : %@", fullname);
-        NSLog(@"email : %@", email);
-        NSLog(@"usename : %@", username);
-        NSLog(@"password : %@", password);
-
+    } else {
+        UIButton *button = (UIButton *) sender;
+        button.enabled = NO;
+        
+        [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {
+            MainViewController *mainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+            [self.navigationController setViewControllers:[NSArray arrayWithObject:mainView] animated:YES];
+        } failure:^(NSError *error) {
+            button.enabled = YES;
+        }];
     }
 
 }
@@ -285,125 +285,29 @@ NSString *signupRequest;
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-
-    NSLog(@"return call!");
-
+    
     if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield]) {
         [((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
         return YES;
     }
 
     if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
-
         [((CustomCell *) [self.tableView cellForRowAtIndexPath:username_index]).textfield becomeFirstResponder];
         return YES;
     }
 
     if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:username_index]).textfield]) {
-
         [((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
 
     if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
-
         [((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
         [self SignUnButton:nil];
     }
 
     return NO;
 
-}
-
-- (void)JSONSignupRequest:(NSString *)username :(NSString *)email :(NSString *)fullname :(NSString *)password :(id)sender {
-
-    UIButton *button = (UIButton *) sender;
-    button.enabled = NO;
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
-    NSDictionary *params = @{@"username" : username,
-            @"email" : email,
-            @"full_name" : fullname,
-            @"password" : password,
-            @"device_type" : @"iphone",
-            @"device_uuid" : uuid};
-
-    [AFmanager POST:signupRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"SignUp success : %@", responseObject);
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:TRUE forKey:FirstLaunchKey];
-        [BTUserDefault setUserInfo:responseObject];
-
-        if (serial != nil) {
-            NSDictionary *userinfo = [BTUserDefault getUserInfo];
-            NSString *username = [userinfo objectForKey:UsernameKey];
-            NSString *password = [userinfo objectForKey:PasswordKey];
-
-            NSDictionary *params = @{@"username" : username,
-                    @"password" : password,
-                    @"school_id" : [NSString stringWithFormat:@"%ld", (long) schoolId],
-                    @"serial" : serial};
-            [AFmanager PUT:[BTURL stringByAppendingString:@"/user/employ/school"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"Getting success : %@", responseObject);
-                [BTUserDefault setUserInfo:responseObject];
-                MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-                self.navigationController.navigationBarHidden = YES;
-                [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
-            }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-                self.navigationController.navigationBarHidden = YES;
-                [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
-            }];
-        } else {
-            MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-            self.navigationController.navigationBarHidden = YES;
-            [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
-        }
-
-    }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSString *rawstring = [[[operation responseObject] objectForKey:@"message"] objectAtIndex:0];
-        NSLog(@"error json : %@", rawstring);
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        button.enabled = YES;
-
-        NSString *string = @"Error in sign up.\nPlease try again.";
-        NSString *title = @"Sign Up Error";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-
-//        NSRange user_email = [rawstring rangeOfString:@"\"user_email_key\"" options:NSCaseInsensitiveSearch];
-//        NSRange user_name = [rawstring rangeOfString:@"\"user_username_key\"" options:NSCaseInsensitiveSearch];
-//        NSRange user_uuid = [rawstring rangeOfString:@"\"user_device_uuid_key\"" options:NSCaseInsensitiveSearch];
-//        
-////        NSString *user
-//        if(user_email.location != NSNotFound){ //email duplicate
-//            //alert showing
-//            NSString *string = @"Email currently in use.\nPlease try a different address.";
-//            NSString *title = @"Duplication Error";
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//
-//        }
-//        if (user_name.location != NSNotFound){ //username duplicate
-//            //alert showing
-//            NSString *string = @"Username currently in use.\nPlease try a different Username";
-//            NSString *title = @"Duplication Error";
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//        }
-//        if(user_uuid.location != NSNotFound){ //uuid duplicate!!! critical!
-//            //alert showing
-//            NSString *string = @"Your device currently in use.\n Any further progress in signing up may result in disadvantage on your end.";
-//            NSString *title = @"Critical Error in Validation";
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//        }
-
-    }];
 }
 
 @end

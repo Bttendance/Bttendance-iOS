@@ -10,7 +10,6 @@
 #import "SignUpController.h"
 #import "SignInController.h"
 #import "BTColor.h"
-#import "BTAPIs.h"
 
 @interface CatchPointController ()
 
@@ -69,11 +68,6 @@
     [UIImageView commitAnimations];
 
     // Do any additional setup after loading the view from its nib.
-    [BTAPIs signInWithUsername:@"thefinestartis"
-                      password:@"best0fv"
-                       success:^(User *user) {
-
-                    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

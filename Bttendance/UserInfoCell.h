@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface UserInfoCell : UITableViewCell
 
@@ -16,8 +17,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *Email;
 @property(weak, nonatomic) IBOutlet UIButton *Check;
 
-@property(assign, nonatomic) NSInteger Info_UserID;
-@property(weak, nonatomic) NSString *Info_Username;
-@property(weak, nonatomic) NSString *Info_Email;
+@property(assign, nonatomic) User *user;
 
 @end

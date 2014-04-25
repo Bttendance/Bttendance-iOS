@@ -10,7 +10,6 @@
 #import "CourseCell.h"
 
 @interface CreateNoticeViewController : UIViewController <UITextViewDelegate> {
-    NSDictionary *userinfo;
     __weak NSString *cid;
     __weak CourseCell *currentcell;
     UIBarButtonItem *post;

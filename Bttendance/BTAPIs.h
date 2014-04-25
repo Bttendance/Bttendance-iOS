@@ -27,105 +27,130 @@
                   username:(NSString *)username
                      email:(NSString *)email
                   password:(NSString *)password
-                   success:(void (^)(User *user))success;
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure;
 
-+ (void)autoSignInWithAppVersion:(NSString *)app_version
-                         success:(void (^)(User *user))success;
++ (void)autoSignInInSuccess:(void (^)(User *user))success
+                    failure:(void (^)(NSError *error))failure;
 
 + (void)signInWithUsername:(NSString *)username
                   password:(NSString *)password
-                   success:(void (^)(User *user))success;
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure;
 
 + (void)forgotPasswordWithEmail:(NSString *)email
-                        success:(void (^)(Email *email))success;
+                        success:(void (^)(Email *email))success
+                        failure:(void (^)(NSError *error))failure;
 
 + (void)updateProfileImage:(NSString *)profile_image
-                   success:(void (^)(User *user))success;
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure;
 
 + (void)updateFullName:(NSString *)full_name
-               success:(void (^)(User *user))success;
+               success:(void (^)(User *user))success
+               failure:(void (^)(NSError *error))failure;
 
 + (void)updateEmail:(NSString *)email
-            success:(void (^)(User *user))success;
+            success:(void (^)(User *user))success
+            failure:(void (^)(NSError *error))failure;
 
 + (void)feedWithPage:(NSInteger)page
-             success:(void (^)(NSArray *posts))success;
+             success:(void (^)(NSArray *posts))success
+             failure:(void (^)(NSError *error))failure;
 
-+ (void)coursesAtSuccess:(void (^)(NSArray *courses))success;
++ (void)coursesInSuccess:(void (^)(NSArray *courses))success
+                 failure:(void (^)(NSError *error))failure;
 
 + (void)searchUser:(NSString *)search_id
-           success:(void (^)(User *user))success;
+           success:(void (^)(User *user))success
+           failure:(void (^)(NSError *error))failure;
 
 + (void)updateNotificationKey:(NSString *)notification_key
-                      success:(void (^)(User *user))success;
+                      success:(void (^)(User *user))success
+                      failure:(void (^)(NSError *error))failure;
 
-+ (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success;
++ (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success
+                    failure:(void (^)(NSError *error))failure;
 
 + (void)coursesForSchool:(NSString *)school_id
-                 success:(void (^)(NSArray *courses))success;
-
-+ (void)employSchool:(NSString *)school_id
-              serial:(NSString *)serial
-             success:(void (^)(User *user))success;
+                 success:(void (^)(NSArray *courses))success
+                 failure:(void (^)(NSError *error))failure;
 
 + (void)enrollSchool:(NSString *)school_id
             identity:(NSString *)student_id
-             success:(void (^)(User *user))success;
+             success:(void (^)(User *user))success
+             failure:(void (^)(NSError *error))failure;
 
 + (void)createCourseWitheName:(NSString *)name
                        number:(NSString *)number
                        school:(NSString *)school_id
                 professorName:(NSString *)professor_name
-                      success:(void (^)(Email *email))success;
+                      success:(void (^)(Email *email))success
+                      failure:(void (^)(NSError *error))failure;
 
 + (void)attendCourse:(NSString *)course_id
-             success:(void (^)(User *user))success;
+             success:(void (^)(User *user))success
+             failure:(void (^)(NSError *error))failure;
 
 + (void)dettendCourse:(NSString *)course_id
-              success:(void (^)(User *user))success;
+              success:(void (^)(User *user))success
+              failure:(void (^)(NSError *error))failure;
 
 + (void)feedForCourse:(NSString *)course_id
                  page:(NSInteger)page
-              success:(void (^)(NSArray *posts))success;
+              success:(void (^)(NSArray *posts))success
+              failure:(void (^)(NSError *error))failure;
 
 + (void)studentsForCourse:(NSString *)course_id
-                  success:(void (^)(NSArray *users))success;
+                  success:(void (^)(NSArray *users))success
+                  failure:(void (^)(NSError *error))failure;
 
 + (void)addManagerWithCourse:(NSString *)course_id
                      manager:(NSString *)manager
-                     success:(void (^)(Course *course))success;
+                     success:(void (^)(Course *course))success
+                     failure:(void (^)(NSError *error))failure;
 
 + (void)gradesWithCourse:(NSString *)course_id
-                 success:(void (^)(NSArray *users))success;
+                 success:(void (^)(NSArray *users))success
+                 failure:(void (^)(NSError *error))failure;
 
 + (void)gradesExportWithCourse:(NSString *)course_id
-                       success:(void (^)(Email *email))success;
+                       success:(void (^)(Email *email))success
+                       failure:(void (^)(NSError *error))failure;
 
 + (void)startAttendanceWithCourse:(NSString *)course_id
-                          success:(void (^)(Post *post))success;
+                          success:(void (^)(Post *post))success
+                          failure:(void (^)(NSError *error))failure;
 
 + (void)startClickerWithCourse:(NSString *)course_id
                        message:(NSString *)message
-                       success:(void (^)(Post *post))success;
+                   choiceCount:(NSString *)choice_count
+                       success:(void (^)(Post *post))success
+                       failure:(void (^)(NSError *error))failure;
 
-+ (void)startNoticeWithCourse:(NSString *)course_id
-                      message:(NSString *)message
-                      success:(void (^)(Post *post))success;
++ (void)createNoticeWithCourse:(NSString *)course_id
+                       message:(NSString *)message
+                       success:(void (^)(Post *post))success
+                       failure:(void (^)(NSError *error))failure;
 
 + (void)foundDeviceWithAttendance:(NSString *)attendance_id
                              uuid:(NSString *)uuid
-                          success:(void (^)(Attendance *attendance))success;
+                          success:(void (^)(Attendance *attendance))success
+                          failure:(void (^)(NSError *error))failure;
 
 + (void)checkManuallyWithAttendance:(NSString *)attendance_id
                                user:(NSString *)user_id
-                            success:(void (^)(Attendance *attendance))success;
+                            success:(void (^)(Attendance *attendance))success
+                            failure:(void (^)(NSError *error))failure;
 
 + (void)connectWithClicker:(NSString *)clicker_id
                     socker:(NSString *)socket_id
-                   success:(void (^)(Clicker *clicker))success;
+                   success:(void (^)(Clicker *clicker))success
+                   failure:(void (^)(NSError *error))failure;
 
 + (void)clickWithClicker:(NSString *)clicker_id
                   choice:(NSString *)choice_number
-                 success:(void (^)(Clicker *clicker))success;
+                 success:(void (^)(Clicker *clicker))success
+                 failure:(void (^)(NSError *error))failure;
 
 @end

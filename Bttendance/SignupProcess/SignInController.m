@@ -29,7 +29,6 @@ NSString *signinRequest;
 @synthesize user_info;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    signinRequest = [BTURL stringByAppendingString:@"/user/signin"];
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -208,9 +207,17 @@ NSString *signinRequest;
 - (IBAction)signinButton:(id)sender {
     NSString *username = [((CustomCell *) [self.tableview cellForRowAtIndexPath:username_index]).textfield text];
     NSString *password = [((CustomCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield text];
-
-    [self JSONSigninRequest:username :password :sender];
-
+    
+    UIButton *button = (UIButton *) sender;
+    button.enabled = NO;
+    
+    [BTAPIs signInWithUsername:username password:password success:^(User *user) {
+        MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+    } failure:^(NSError *error) {
+        button.enabled = YES;
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -225,41 +232,6 @@ NSString *signinRequest;
     }
 
     return NO;
-}
-
-- (void)JSONSigninRequest:(NSString *)username :(NSString *)password :(id)sender {
-
-    UIButton *button = (UIButton *) sender;
-    button.enabled = NO;
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"device_uuid" : uuid};
-
-    [AFmanager GET:signinRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"SignIn success : %@", responseObject);
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:FirstLaunchKey];
-        [BTUserDefault setUserInfo:responseObject];
-
-        NSLog(@"signup data %@", [BTUserDefault getUserInfo]);
-
-        MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-//        [self.navigationController pushViewController:stdMainView animated:YES];
-        self.navigationController.navigationBarHidden = YES;
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
-
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"SignIn fail %@", error);
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        button.enabled = YES;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Sign In Failed. Please check your username and password again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }];
 }
 
 @end

@@ -23,8 +23,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        userinfo = [BTUserDefault getUserInfo];
-
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
@@ -71,27 +69,13 @@
 }
 
 - (void)post_Notice {
-
     post.enabled = NO;
-
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *message = [self.message text];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"course_id" : self.cid,
-            @"message" : message};
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-
-    [AFmanager POST:[BTURL stringByAppendingString:@"/post/create/notice"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        post.enabled = YES;
-        NSString *string = @"Fails to made a notice, please try again";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }];
+    [BTAPIs createNoticeWithCourse:Cid
+                           message:[self.message text] success:^(Post *post) {
+                               [self.navigationController popViewControllerAnimated:YES];
+                           } failure:^(NSError *error) {
+                               post.enabled = YES;
+                           }];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

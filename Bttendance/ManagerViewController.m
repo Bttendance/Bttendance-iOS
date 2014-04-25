@@ -135,46 +135,47 @@
 
 - (IBAction)add:(id)sender {
     NSString *search = [((CustomCell *) [self.tableView cellForRowAtIndexPath:searchField]).textfield text];
-    NSDictionary *userinfo = [BTUserDefault getUserInfo];
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"search_id" : search};
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/search/user"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        managerFullName = [responseObject objectForKey:@"full_name"];
-        managerName = [responseObject objectForKey:@"username"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Manager" message:[NSString stringWithFormat:@"Would you like to add \"%@\" as a manager of course %@", managerFullName, courseName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
-        [alert show];
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Fail to find a user \"%@\".\nPlease check User Id of Email again.", search] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }];
+    [BTAPIs searchUser:search
+               success:^(User *user) {
+                   NSString *message = [NSString stringWithFormat:@"Would you like to add \"%@\" as a manager of course %@", user.full_name, courseName];
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Manager"
+                                                                   message:message
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Confirm", nil];
+                   [alert show];
+               } failure:^(NSError *error) {
+                   NSString *message = [NSString stringWithFormat:@"Fail to find a user \"%@\".\nPlease check User Id of Email again.", search];
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                   message:message
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles:nil, nil];
+                   [alert show];
+               }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        //start attendance
-        NSDictionary *userinfo = [BTUserDefault getUserInfo];
-        NSString *username = [userinfo objectForKey:UsernameKey];
-        NSString *password = [userinfo objectForKey:PasswordKey];
-
-        NSDictionary *params = @{@"username" : username,
-                @"password" : password,
-                @"manager" : managerName,
-                @"course_id" : [NSString stringWithFormat:@"%ld", (long) courseId]};
-
-        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-        [AFmanager PUT:[BTURL stringByAppendingString:@"/course/add/manager"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:[NSString stringWithFormat:@"\"%@\" is now a manager of course %@.", managerFullName, courseName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Fail to add a user %@ as a manager.\nPlease check User Id of Email again.", managerFullName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }];
+        [BTAPIs addManagerWithCourse:[NSString stringWithFormat:@"%ld", (long) courseId]
+                             manager:managerName
+                             success:^(Course *course) {
+                                 NSString *message = [NSString stringWithFormat:@"\"%@\" is now a manager of course %@.", managerFullName, courseName];
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                                 message:message
+                                                                                delegate:nil
+                                                                       cancelButtonTitle:@"OK"
+                                                                       otherButtonTitles:nil, nil];
+                                 [alert show];
+                             } failure:^(NSError *error) {
+                                 NSString *message = [NSString stringWithFormat:@"Fail to add a user %@ as a manager.\nPlease check User Id of Email again.", managerFullName];
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                 message:message
+                                                                                delegate:nil
+                                                                       cancelButtonTitle:@"OK"
+                                                                       otherButtonTitles:nil, nil];
+                                 [alert show];
+                             }];
     }
 }
 

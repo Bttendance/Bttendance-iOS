@@ -10,14 +10,12 @@
 #import "CourseInfoCell.h"
 
 @interface CourseAttendView : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+    
     NSUInteger rowcount0;
-    //for section 0
-    NSUInteger rowcount1;//for section 1
+    NSUInteger rowcount1;
 
     NSMutableArray *data0;
     NSMutableArray *data1;
-
-    NSDictionary *userinfo;
 
     CourseInfoCell *currentcell;
 

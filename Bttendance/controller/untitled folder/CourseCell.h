@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Course.h"
 
 @interface CourseCell : UITableViewCell {
 }
@@ -21,18 +22,15 @@
 @property(weak, nonatomic) IBOutlet UIButton *clickerBt;
 @property(weak, nonatomic) IBOutlet UIButton *noticeBt;
 
-@property(assign, nonatomic) NSInteger CourseID;
-@property(assign, nonatomic) NSInteger grade;
-
 @property(weak, nonatomic) IBOutlet UIView *background;
 @property(weak, nonatomic) IBOutlet UIButton *check_button;
 @property(weak, nonatomic) IBOutlet UIImageView *check_icon;
 
 @property(weak, nonatomic) IBOutlet UIView *cellbackground;
 
-@property(assign, nonatomic) NSDate *attdCheckedDate;
-@property(assign, nonatomic) NSInteger gap;
+@property(assign, nonatomic) Course *course;
 
+@property(assign, nonatomic) NSInteger gap;
 @property(assign, nonatomic) NSTimer *blink;
 @property(assign, nonatomic) NSInteger blinkTime;
 

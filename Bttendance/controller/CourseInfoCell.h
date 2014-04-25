@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AFNetworking/AFNetworking.h>
+#import "Course.h"
 
 @interface CourseInfoCell : UITableViewCell
 
@@ -17,9 +18,7 @@
 @property(weak, nonatomic) IBOutlet UILabel *Info_CourseName;
 @property(weak, nonatomic) IBOutlet UIButton *Info_Check;
 @property(weak, nonatomic) IBOutlet UIButton *Info_Button;
-@property(assign, nonatomic) NSInteger Info_CourseID;
 
-@property(weak, nonatomic) NSString *Info_SchoolName;
-@property(weak, nonatomic) NSString *Info_CourseNumber;
+@property(assign, nonatomic) Course *course;
 
 @end

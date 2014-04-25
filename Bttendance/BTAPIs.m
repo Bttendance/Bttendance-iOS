@@ -8,10 +8,18 @@
 
 #import "BTAPIs.h"
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import "AFResponseSerializer.h"
 #import "BTUserDefault.h"
 #import "BTUUID.h"
-#import "AFResponseSerializer.h"
 #import "User.h"
+#import "Course.h"
+#import "School.h"
+#import "Post.h"
+#import "Attendance.h"
+#import "Clicker.h"
+#import "Error.h"
+#import "Email.h"
 
 @implementation BTAPIs
 
@@ -22,8 +30,8 @@
 	dispatch_once(&onceToken, ^{
 		manager = [AFHTTPRequestOperationManager manager];
 		manager.responseSerializer = [AFResponseSerializer serializer];
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 	});
-    
 	return (manager);
 }
 
@@ -35,7 +43,8 @@
                   username:(NSString *)username
                      email:(NSString *)email
                   password:(NSString *)password
-                   success:(void (^)(User *user))success {
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure {
     
     NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
     NSDictionary *params = @{@"username" : username,
@@ -48,21 +57,41 @@
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/users/signup"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+                             [BTUserDefault setUser:responseObject];
+                             User *user = [[User alloc] initWithDictionary:responseObject];
+                             success(user);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-    }];
-    
+                             failure(error);
+                         }];
 }
 
-+ (void)autoSignInWithAppVersion:(NSString *)app_version
-                         success:(void (^)(User *user))success {
++ (void)autoSignInInSuccess:(void (^)(User *user))success
+                    failure:(void (^)(NSError *error))failure {
     
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"device_type" : @"iphone",
+                             @"device_uuid" : [BTUserDefault getUUID],
+                             @"app_version" : appVersion};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/auto/signin"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)signInWithUsername:(NSString *)username
                   password:(NSString *)password
-                   success:(void (^)(User *user))success {
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure {
     
     NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
     NSDictionary *params = @{@"username" : username,
@@ -72,156 +101,539 @@
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             User *user = [[User alloc] initWithDictionary:responseObject];
                             success(user);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-    }];
+                            failure(error);
+                        }];
 }
 
 + (void)forgotPasswordWithEmail:(NSString *)email
-                        success:(void (^)(Email *email))success {
+                        success:(void (^)(Email *email))success
+                        failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"email" : email};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/forgot/password"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Email *email = [[Email alloc] initWithDictionary:responseObject];
+                            success(email);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)updateProfileImage:(NSString *)profile_image
-                   success:(void (^)(User *user))success {
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"device_uuid" : [BTUserDefault getUUID],
+                             @"profile_image" : profile_image};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/profile_image"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)updateFullName:(NSString *)full_name
-               success:(void (^)(User *user))success {
+               success:(void (^)(User *user))success
+               failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"device_uuid" : [BTUserDefault getUUID],
+                             @"full_name" : full_name};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/full_name"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)updateEmail:(NSString *)email
-            success:(void (^)(User *user))success {
+            success:(void (^)(User *user))success
+            failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"device_uuid" : [BTUserDefault getUUID],
+                             @"email" : email};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/email"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)feedWithPage:(NSInteger)page
-             success:(void (^)(NSArray *posts))success {
+             success:(void (^)(NSArray *posts))success
+             failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"page" : [NSString stringWithFormat: @"%ld", page]};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/feed"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *posts = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                Post *post = [[Post alloc] initWithDictionary:dic];
+                                [posts addObject:post];
+                            }
+                            success(posts);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
-+ (void)coursesAtSuccess:(void (^)(NSArray *courses))success {
++ (void)coursesInSuccess:(void (^)(NSArray *courses))success
+                 failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                              @"password" : [BTUserDefault getPassword]};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/courses"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *courses = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                Course *course = [[Course alloc] initWithDictionary:dic];
+                                [courses addObject:course];
+                            }
+                            success(courses);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)searchUser:(NSString *)search_id
-           success:(void (^)(User *user))success {
+           success:(void (^)(User *user))success
+           failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"search_id" : search_id};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/search"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)updateNotificationKey:(NSString *)notification_key
-                      success:(void (^)(User *user))success {
+                      success:(void (^)(User *user))success
+                      failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"device_uuid" : [BTUserDefault getUUID],
+                             @"notification_key" : notification_key};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/devices/update/notification_key"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
-+ (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success {
++ (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success
+                    failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword]};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/schools/all"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *schools = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                School *school = [[School alloc] initWithDictionary:dic];
+                                [schools addObject:school];
+                            }
+                            success(schools);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)coursesForSchool:(NSString *)school_id
-                 success:(void (^)(NSArray *courses))success {
+                 success:(void (^)(NSArray *courses))success
+                 failure:(void (^)(NSError *error))failure {
     
-}
-
-+ (void)employSchool:(NSString *)school_id
-              serial:(NSString *)serial
-             success:(void (^)(User *user))success {
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"school_id" : school_id};
     
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/schools/courses"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *courses = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                Course *course = [[Course alloc] initWithDictionary:dic];
+                                [courses addObject:course];
+                            }
+                            success(courses);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)enrollSchool:(NSString *)school_id
             identity:(NSString *)student_id
-             success:(void (^)(User *user))success {
+             success:(void (^)(User *user))success
+             failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"school_id" : school_id,
+                             @"student_id" : student_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/enroll/school"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)createCourseWitheName:(NSString *)name
                        number:(NSString *)number
                        school:(NSString *)school_id
                 professorName:(NSString *)professor_name
-                      success:(void (^)(Email *email))success {
+                      success:(void (^)(Email *email))success
+                      failure:(void (^)(NSError *error))failure {
     
+    
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"name" : name,
+                             @"number" : number,
+                             @"school_id" : school_id,
+                             @"professor_name" : professor_name};
+    
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Email *email = [[Email alloc] initWithDictionary:responseObject];
+                             success(email);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];
 }
 
 + (void)attendCourse:(NSString *)course_id
-             success:(void (^)(User *user))success {
+             success:(void (^)(User *user))success
+             failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/attend/course"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)dettendCourse:(NSString *)course_id
-              success:(void (^)(User *user))success {
+              success:(void (^)(User *user))success
+              failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/dettend/course"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
     
 }
 
 + (void)feedForCourse:(NSString *)course_id
                  page:(NSInteger)page
-              success:(void (^)(NSArray *posts))success {
+              success:(void (^)(NSArray *posts))success
+              failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id,
+                             @"page" : [NSString stringWithFormat: @"%ld", page]};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/feed"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *posts = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                Post *post = [[Post alloc] initWithDictionary:dic];
+                                [posts addObject:post];
+                            }
+                            success(posts);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)studentsForCourse:(NSString *)course_id
-                  success:(void (^)(NSArray *users))success {
+                  success:(void (^)(NSArray *users))success
+                  failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/students"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            NSMutableArray *users = [NSMutableArray array];
+                            for (NSDictionary *dic in responseObject) {
+                                User *user = [[User alloc] initWithDictionary:dic];
+                                [users addObject:user];
+                            }
+                            success(users);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)addManagerWithCourse:(NSString *)course_id
                      manager:(NSString *)manager
-                     success:(void (^)(Course *course))success {
+                     success:(void (^)(Course *course))success
+                     failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id,
+                             @"manager" : manager};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/add/manager"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Course *course = [[Course alloc] initWithDictionary:responseObject];
+                            success(course);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)gradesWithCourse:(NSString *)course_id
-                 success:(void (^)(NSArray *users))success {
+                 success:(void (^)(NSArray *users))success
+                 failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/grades"]
+                     parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         NSMutableArray *users = [NSMutableArray array];
+                         for (NSDictionary *dic in responseObject) {
+                             User *user = [[User alloc] initWithDictionary:dic];
+                             [users addObject:user];
+                         }
+                         success(users);
+                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         [self failureHandleWithError:error];
+                         failure(error);
+                     }];
 }
 
 + (void)gradesExportWithCourse:(NSString *)course_id
-                       success:(void (^)(Email *email))success {
+                       success:(void (^)(Email *email))success
+                       failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/export/grades"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Email *email = [[Email alloc] initWithDictionary:responseObject];
+                            success(email);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)startAttendanceWithCourse:(NSString *)course_id
-                          success:(void (^)(Post *post))success {
+                          success:(void (^)(Post *post))success
+                          failure:(void (^)(NSError *error))failure {
+
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/attendance"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Post *post = [[Post alloc] initWithDictionary:responseObject];
+                             success(post);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];
     
 }
 
 + (void)startClickerWithCourse:(NSString *)course_id
                        message:(NSString *)message
-                       success:(void (^)(Post *post))success {
+                   choiceCount:(NSString *)choice_count
+                       success:(void (^)(Post *post))success
+                       failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id,
+                             @"message" : message,
+                             @"choice_count" : choice_count};
+    
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/clicker"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Post *post = [[Post alloc] initWithDictionary:responseObject];
+                             success(post);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];    
 }
 
-+ (void)startNoticeWithCourse:(NSString *)course_id
++ (void)createNoticeWithCourse:(NSString *)course_id
                       message:(NSString *)message
-                      success:(void (^)(Post *post))success {
+                      success:(void (^)(Post *post))success
+                      failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id,
+                             @"message" : message};
+    
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/create/notice"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Post *post = [[Post alloc] initWithDictionary:responseObject];
+                             success(post);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];
 }
 
 + (void)foundDeviceWithAttendance:(NSString *)attendance_id
                              uuid:(NSString *)uuid
-                          success:(void (^)(Attendance *attendance))success {
+                          success:(void (^)(Attendance *attendance))success
+                          failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"attendance_id" : attendance_id,
+                             @"uuid" : uuid};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/found/device"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
+                            success(attendance);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)checkManuallyWithAttendance:(NSString *)attendance_id
                                user:(NSString *)user_id
-                            success:(void (^)(Attendance *attendance))success {
+                            success:(void (^)(Attendance *attendance))success
+                            failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"attendance_id" : attendance_id,
+                             @"user_id" : user_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/check/manually"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
+                            success(attendance);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)connectWithClicker:(NSString *)clicker_id
                     socker:(NSString *)socket_id
-                   success:(void (^)(Clicker *clicker))success {
+                   success:(void (^)(Clicker *clicker))success
+                   failure:(void (^)(NSError *error))failure {
     
 }
 
 + (void)clickWithClicker:(NSString *)clicker_id
                   choice:(NSString *)choice_number
-                 success:(void (^)(Clicker *clicker))success {
+                 success:(void (^)(Clicker *clicker))success
+                 failure:(void (^)(NSError *error))failure {
     
 }
 

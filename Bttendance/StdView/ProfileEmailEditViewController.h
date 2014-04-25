@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileEmailEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-
     __weak NSString *email;
-
-    NSDictionary *userinfo;
 }
 
 @property(weak, nonatomic) NSString *email;

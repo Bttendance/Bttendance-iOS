@@ -10,7 +10,6 @@
 
 @interface ProfileNameEditViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     __weak NSString *fullname;
-    NSDictionary *userinfo;
 }
 
 @property(weak, nonatomic) NSString *fullname;

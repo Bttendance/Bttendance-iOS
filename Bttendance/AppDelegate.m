@@ -31,7 +31,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController;
     
-    if([BTUserDefault isFirstLaunch]){
+    if([BTUserDefault getUser] != nil
+       && [BTUserDefault getUsername] != nil
+       && [BTUserDefault getPassword] != nil){
         firstview = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
     } else {
         firstview = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
@@ -60,27 +62,9 @@
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     NSMutableString *deviceId= [NSMutableString string];
     const unsigned char* ptr = (const unsigned char*)[deviceToken bytes];
-    
-    for(int i =0; i < 32; i++){
+    for(int i =0; i < 32; i++)
         [deviceId appendFormat:@"%02x", ptr[i]];
-    }
     NSString *device_token = [NSString stringWithString:deviceId];
-    NSLog(@"Register notification, %@", device_token);
-    
-    NSString *username = [[BTUserDefault getUserInfo] objectForKey:UsernameKey];
-    NSString *password = [[BTUserDefault getUserInfo] objectForKey:PasswordKey];
-    NSString *uuid = [[BTUserDefault getUserInfo] objectForKey:UUIDKey];
-    
-    NSDictionary *params = @{@"username":username,
-                             @"password":password,
-                             @"device_uuid":uuid,
-                             @"notification_key":device_token};
-    
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager PUT:[BTURL stringByAppendingString:@"/user/update/notification_key"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        [BTUserDefault setUserInfo:responseObject];
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-    }];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{

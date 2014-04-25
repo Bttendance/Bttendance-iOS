@@ -10,55 +10,52 @@
 
 @implementation BTUserDefault
 
-+ (NSDictionary *)getUserInfo {
-    NSString *uuid = [[NSUserDefaults standardUserDefaults] stringForKey:UUIDKey];
-    NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:UsernameKey];
-    NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:PasswordKey];
-    NSString *userid = [[NSUserDefaults standardUserDefaults] stringForKey:UseridKey];
-    NSString *fullname = [[NSUserDefaults standardUserDefaults] stringForKey:FullNameKey];
-    NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey:EmailKey];
-    NSArray *attendingCourses = [[NSUserDefaults standardUserDefaults] arrayForKey:AttendingCoursesKey];
-    NSArray *supervisingCourses = [[NSUserDefaults standardUserDefaults] arrayForKey:SupervisingCoursesKey];
-    NSArray *employedSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EmployedSchoolsKey];
-    NSArray *enrolledSchools = [[NSUserDefaults standardUserDefaults] arrayForKey:EnrolledSchoolsKey];
-
-    NSDictionary *user_info = @{UsernameKey : username, PasswordKey : password, UUIDKey : uuid, UseridKey : userid,
-            FullNameKey : fullname, EmailKey : email, AttendingCoursesKey : attendingCourses,
-            SupervisingCoursesKey : supervisingCourses, EmployedSchoolsKey : employedSchools,
-            EnrolledSchoolsKey : enrolledSchools};
-
-    return user_info;
++ (NSString *)getUsername {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:UsernameKey];
 }
 
-+ (void)setUserInfo:(id)responseObject {
-    NSString *username = [responseObject objectForKey:@"username"];
-    NSString *password = [responseObject objectForKey:@"password"];
-    NSString *userid = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"id"]];
-    NSString *fullname = [responseObject objectForKey:@"full_name"];
-    NSString *email = [responseObject objectForKey:@"email"];
-    NSArray *attendingCourses = [responseObject objectForKey:@"attending_courses"];
-    NSArray *supervisingCourses = [responseObject objectForKey:@"supervising_courses"];
-    NSArray *employedSchools = [responseObject objectForKey:@"employed_schools"];
-    NSArray *enrolledSchools = [responseObject objectForKey:@"enrolled_schools"];
++ (NSString *)getPassword {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:PasswordKey];
+}
 
++ (NSString *)getUUID {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:UUIDKey];
+}
+
++ (User *)getUser {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:UserJSONKey];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    User *user = [[User alloc] initWithDictionary:json];
+    return user;
+}
+
++ (void)setUser:(id)responseObject {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    User *user = [[User alloc] initWithDictionary:responseObject];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSString stringWithString:username] forKey:UsernameKey];
-    [defaults setObject:[NSString stringWithString:password] forKey:PasswordKey];
-    [defaults setObject:[NSString stringWithString:userid] forKey:UseridKey];
-    [defaults setObject:[NSString stringWithString:fullname] forKey:FullNameKey];
-    [defaults setObject:[NSString stringWithString:email] forKey:EmailKey];
-    [defaults setObject:[NSArray arrayWithArray:attendingCourses] forKey:AttendingCoursesKey];
-    [defaults setObject:[NSArray arrayWithArray:supervisingCourses] forKey:SupervisingCoursesKey];
-    [defaults setObject:[NSArray arrayWithArray:employedSchools] forKey:EmployedSchoolsKey];
-    [defaults setObject:[NSArray arrayWithArray:enrolledSchools] forKey:EnrolledSchoolsKey];
+    [defaults setObject:user.username forKey:UsernameKey];
+    [defaults setObject:user.password forKey:PasswordKey];
+    [defaults setObject:user.device.uuid forKey:UUIDKey];
+    [defaults setObject:jsonString forKey:UserJSONKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (BOOL)isFirstLaunch {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:FirstLaunchKey])
-        return false;
-    else
-        return true;
++ (void)clear {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary * keys = [defaults dictionaryRepresentation];
+    for (id key in keys)
+        [defaults removeObjectForKey:key];
+    [defaults synchronize];
 }
 
 @end
