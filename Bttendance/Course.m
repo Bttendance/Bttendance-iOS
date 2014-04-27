@@ -44,8 +44,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.name = [dictionary objectForKey:@"name"];
         self.number = [dictionary objectForKey:@"number"];
         self.professor_name = [dictionary objectForKey:@"professor_name"];
@@ -73,7 +73,7 @@
         self.posts = posts;
         
         self.students_count = [[dictionary objectForKey:@"students_count"] integerValue];
-        self.attdCheckedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"attdCheckedAt"]];
+        self.attdCheckedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"attdCheckedAt"]];
         self.clicker_usage = [[dictionary objectForKey:@"clicker_usage"] integerValue];
         self.notice_usage = [[dictionary objectForKey:@"notice_usage"] integerValue];
         

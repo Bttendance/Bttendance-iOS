@@ -10,10 +10,12 @@
 
 @interface BTDateFormatter : NSObject
 
-+ (NSDate *)dateFromUTC:(NSString *)dateString;
++ (NSDate *)dateFromString:(NSString *)dateString;
 
-+ (NSString *)stringFromUTC:(NSString *)dateString;
++ (NSString *)stringFromString:(NSString *)dateString;
 
-+ (NSTimeInterval)intervalFromUTC:(NSString *)dateString;
++ (NSTimeInterval)intervalFromString:(NSString *)dateString;
+
++ (NSString *)stringFromDate:(NSDate *)date;
 
 @end

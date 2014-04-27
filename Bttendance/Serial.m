@@ -38,8 +38,8 @@
 
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.key = [dictionary objectForKey:@"key"];
         self.school = [[SimpleSchool alloc] initWithDictionary:[dictionary objectForKey:@"school"]];
         

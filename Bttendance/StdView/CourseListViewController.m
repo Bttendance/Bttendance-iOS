@@ -515,7 +515,7 @@
     [attdingPostIDs removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-        int gap = [BTDateFormatter intervalFromUTC:attdCheckedAt];
+        int gap = [BTDateFormatter intervalFromString:attdCheckedAt];
         if (180.0f + gap > 0.0f) {
             NSArray *posts = [[data objectAtIndex:i] objectForKey:@"posts"];
             NSNumber *maxID = [posts valueForKeyPath:@"@max.intValue"];

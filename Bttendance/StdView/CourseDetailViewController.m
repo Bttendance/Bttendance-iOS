@@ -18,6 +18,7 @@
 #import "AttdStatViewController.h"
 #import "BTDateFormatter.h"
 #import "BTUserDefault.h"
+#import "Post.h"
 
 @interface CourseDetailViewController ()
 
@@ -30,8 +31,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        userinfo = [BTUserDefault getUserInfo];
-        my_id = [userinfo objectForKey:UseridKey];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:@"NEWMESSAGE" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -100,7 +99,7 @@
         coursedetailheaderview.managerBt.hidden = YES;
     }
 
-    [self showgrade:currentcell.grade :coursedetailheaderview];
+    [self showgrade:[currentcell.course.grade integerValue]:coursedetailheaderview];
     self.tableview.tableHeaderView = coursedetailheaderview;
 }
 
@@ -109,28 +108,15 @@
 }
 
 - (void)refreshFeed:(id)sender {
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSString *cid = [NSString stringWithFormat:@"%ld", (long) currentcell.CourseID];
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password,
-            @"course_id" : cid};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/course/feed"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject) {
-
-        data = responsObject;
-        NSLog(@"data , %@", data);
-
-        rowcount = data.count;
-        [_tableview reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"get course's feeds fail : %@", error);
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }];
+    
+    [BTAPIs feedForCourse:[NSString stringWithFormat:@"%ld", (long) currentcell.course.id]
+                     page:1
+                  success:^(NSArray *posts) {
+                      data = posts;
+                      rowcount = data.count;
+                      [_tableview reloadData];
+                  } failure:^(NSError *error) {
+                  }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -153,27 +139,18 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-
-    cell.Title.text = [[data objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.Message.text = [[data objectAtIndex:indexPath.row] objectForKey:@"message"];
-    cell.PostID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue];
-    cell.CourseName = [[data objectAtIndex:indexPath.row] objectForKey:@"course_name"];
-
-    NSString *createdAt = [[data objectAtIndex:indexPath.row] objectForKey:@"createdAt"];
-    cell.createdDate = [BTDateFormatter dateFromUTC:createdAt];
-    cell.Date.text = [BTDateFormatter stringFromUTC:createdAt];
-    cell.gap = [BTDateFormatter intervalFromUTC:createdAt];
+    
+    cell.post = [data objectAtIndex:indexPath.row];
+    cell.Title.text = currentcell.course.name;
+    cell.Message.text = cell.post.message;
     cell.cellbackground.layer.cornerRadius = 2;
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if ([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]) {
-        cell.isNotice = true;
         [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
         [cell.check_overlay setImage:nil];
     } else {
-        cell.isNotice = false;
 
         Boolean check = false;
         NSArray *checks = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
@@ -184,7 +161,7 @@
         }
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
             if ([[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue] == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
@@ -217,19 +194,19 @@
         PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
         }
 
-        if (!manager || cell.isNotice)
+        if (!manager || [cell.post.type isEqualToString:@"notice"])
             return;
 
         AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
-        statView.postId = cell.PostID;
-        statView.courseId = cell.CourseID;
-        statView.courseName = cell.CourseName;
+        statView.postId = cell.post.id;
+        statView.courseId = cell.post.course.id;
+        statView.courseName = cell.post.course.name;
         [self.navigationController pushViewController:statView animated:YES];
     }
 }
@@ -264,9 +241,9 @@
     if (cell.blinkTime < 0) {
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
         }
 
@@ -307,21 +284,21 @@
 
 - (void)show_grade {
     GradeViewController *gradeView = [[GradeViewController alloc] initWithNibName:@"GradeViewController" bundle:nil];
-    gradeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.CourseID];
+    gradeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.course.id];
     gradeView.currentcell = currentcell;
     [self.navigationController pushViewController:gradeView animated:YES];
 }
 
 - (void)create_notice {
     CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
-    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.CourseID];
+    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.course.id];
     noticeView.currentcell = currentcell;
     [self.navigationController pushViewController:noticeView animated:YES];
 }
 
 - (void)show_manager {
     ManagerViewController *managerView = [[ManagerViewController alloc] initWithNibName:@"ManagerViewController" bundle:nil];
-    managerView.courseId = currentcell.CourseID;
+    managerView.courseId = currentcell.course.id;
     managerView.courseName = currentcell.CourseName.text;
     [self.navigationController pushViewController:managerView animated:YES];
 }

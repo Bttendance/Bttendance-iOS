@@ -12,9 +12,8 @@
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     __weak CourseCell *currentcell;
 
-    NSDictionary *userinfo;
     NSInteger rowcount;
-    NSMutableArray *data;
+    NSArray *data;
 
     NSString *my_id;
     Boolean auth;

@@ -37,8 +37,8 @@
 
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.checked_students = [dictionary objectForKey:@"checked_students"];
         self.clusters = [dictionary objectForKey:@"clusters"];
         self.post = [[SimplePost alloc] initWithDictionary:[dictionary objectForKey:@"post"]];

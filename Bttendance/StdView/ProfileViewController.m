@@ -29,11 +29,11 @@
     self = [super initWithCoder:aDecoder];
 
     if (self) {
-        userinfo = [BTUserDefault getUserInfo];
-        fullname = [userinfo objectForKey:FullNameKey];
-        email = [userinfo objectForKey:EmailKey];
-        employedschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
-        enrolledschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
+        user = [BTUserDefault getUser];
+        fullname = user.full_name;
+        email = user.email;
+        employedschoollist = user.employed_schools;
+        enrolledschoollist = user.enrolled_schools;
     }
 
     return self;
@@ -55,34 +55,18 @@
     else
         profileheaderview.accountType.text = @"Student";
 
-    profileheaderview.userName.text = [userinfo objectForKey:UsernameKey];
+    profileheaderview.userName.text = user.username;
     self.tableview.tableHeaderView = profileheaderview;
     rowcount = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password};
-
-    employedschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
-    enrolledschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/schools"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        alluserschools = responseObject;
-        rowcount = [employedschoollist count] + [enrolledschoollist count];
-        [self.tableview reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }];
+    user = [BTUserDefault getUser];
+    fullname = user.full_name;
+    email = user.email;
+    employedschoollist = user.employed_schools;
+    enrolledschoollist = user.enrolled_schools;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -155,7 +139,7 @@
                     && [[employedschoollist[indexPath.row] objectForKey:@"id"] integerValue] == school_id) {
                 ((SchoolInfoCell *) cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
                 ((SchoolInfoCell *) cell).Info_SchoolID.text = @"Professor";
-                ((SchoolInfoCell *) cell).Info_SchoolID_int = [[[employedschoollist objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
+                ((SchoolInfoCell *) cell).school = ((SimpleSchool *)employedschoollist[indexPath.row]);
                 ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
                 ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];
                 break;
@@ -164,7 +148,7 @@
                     && [[enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"id"] integerValue] == school_id) {
                 ((SchoolInfoCell *) cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
                 ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:@"Student - %@", [enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"key"]];
-                ((SchoolInfoCell *) cell).Info_SchoolID_int = [[[enrolledschoollist objectAtIndex:indexPath.row - [employedschoollist count]] objectForKey:@"id"] intValue];
+                ((SchoolInfoCell *) cell).school = ((SimpleSchool *)employedschoollist[indexPath.row]);
                 ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
                 ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];
                 break;

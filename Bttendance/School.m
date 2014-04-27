@@ -41,8 +41,8 @@
 
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.name = [dictionary objectForKey:@"name"];
         self.logo_image = [dictionary objectForKey:@"logo_image"];
         self.website = [NSURL URLWithString:[[dictionary objectForKey:@"website"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

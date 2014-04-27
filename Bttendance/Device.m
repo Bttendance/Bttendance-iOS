@@ -38,8 +38,8 @@
 
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [BTDateFormatter dateFromUTC:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.type = [dictionary objectForKey:@"type"];
         self.uuid = [dictionary objectForKey:@"uuid"];
         self.mac_address = [dictionary objectForKey:@"mac_address"];

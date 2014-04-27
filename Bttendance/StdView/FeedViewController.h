@@ -10,12 +10,10 @@
 
 @interface FeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 
-    NSDictionary *userinfo;
-    NSMutableArray *data;
+    NSArray *data;
 
     NSString *pid;
     NSString *cid;
-    NSString *my_id;
 
     NSInteger rowcount;
 }

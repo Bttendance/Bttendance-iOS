@@ -24,8 +24,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         rowcount = 0;
-        userinfo = [BTUserDefault getUserInfo];
-        my_id = [userinfo objectForKey:UseridKey];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:@"NEWMESSAGE" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -49,22 +47,13 @@
 }
 
 - (void)refreshFeed:(id)sender {
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/user/feed"] parameters:params success:^(AFHTTPRequestOperation *operation, id responsObject) {
-        data = responsObject;
-        rowcount = data.count;
-        [self.tableview reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }];
+    [BTAPIs feedWithPage:0
+                 success:^(NSArray *posts) {
+                     data = posts;
+                     rowcount = data.count;
+                     [self.tableview reloadData];
+                 } failure:^(NSError *error) {
+                 }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,37 +77,29 @@
         cell = [topLevelObjects objectAtIndex:0];
     }
 
-    cell.Title.text = [[data objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.Message.text = [[data objectAtIndex:indexPath.row] objectForKey:@"message"];
-    cell.PostID = [[[data objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-    cell.CourseID = [[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue];
-    cell.CourseName = [[data objectAtIndex:indexPath.row] objectForKey:@"course_name"];
-
-    NSString *createdAt = [[data objectAtIndex:indexPath.row] objectForKey:@"createdAt"];
-    cell.createdDate = [BTDateFormatter dateFromUTC:createdAt];
-    cell.Date.text = [BTDateFormatter stringFromUTC:createdAt];
-    cell.gap = [BTDateFormatter intervalFromUTC:createdAt];
+    cell.post = [data objectAtIndex:indexPath.row];
+    cell.Title.text = cell.post.course.name;
+    cell.Message.text = cell.post.message;
+    cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
+    cell.gap = [cell.post.createdAt timeIntervalSinceNow];
     cell.cellbackground.layer.cornerRadius = 2;
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if ([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]) {
-        cell.isNotice = true;
         [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
         [cell.check_overlay setImage:nil];
     } else {
-        cell.isNotice = false;
-
         Boolean check = false;
         NSArray *checks = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
         for (int i = 0; i < checks.count; i++) {
             NSString *check_id = [NSString stringWithFormat:@"%@", [[[data objectAtIndex:indexPath.row] objectForKey:@"checks"] objectAtIndex:i]];
-            if ([my_id isEqualToString:check_id])
+            if ([BTUserDefault getUser].id == [check_id integerValue])
                 check = true;
         }
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
             if ([[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue] == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
@@ -151,19 +132,19 @@
         PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
         }
 
-        if (!manager || cell.isNotice)
+        if (!manager || [cell.post.type isEqualToString:@"notice"])
             return;
 
         AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
-        statView.postId = cell.PostID;
-        statView.courseId = cell.CourseID;
-        statView.courseName = cell.CourseName;
+        statView.postId = cell.post.id;
+        statView.courseId = cell.post.course.id;
+        statView.courseName = cell.post.course.name;
         [self.navigationController pushViewController:statView animated:YES];
     }
 }
@@ -197,9 +178,9 @@
     if (cell.blinkTime < 0) {
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [[BTUserDefault getUserInfo] objectForKey:SupervisingCoursesKey];
+        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.CourseID == [[supervisingCourses objectAtIndex:i] intValue])
+            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;
         }
 

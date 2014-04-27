@@ -13,7 +13,6 @@
 #import "BTAPIs.h"
 #import "CourseAttendView.h"
 #import "CourseCreateController.h"
-#import "SerialViewController.h"
 
 @interface SchoolChooseView ()
 
@@ -30,8 +29,6 @@
         rowcount1 = 0;
         data0 = [[NSMutableArray alloc] init];
         data1 = [[NSMutableArray alloc] init];
-
-        userinfo = [BTUserDefault getUserInfo];
 
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
@@ -72,60 +69,46 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-
-    NSString *username = [userinfo objectForKey:UsernameKey];
-    NSString *password = [userinfo objectForKey:PasswordKey];
-
-    NSDictionary *params = @{@"username" : username,
-            @"password" : password};
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager GET:[BTURL stringByAppendingString:@"/school/all"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *schoollist = responseObject;
-
+    
+    [BTAPIs allSchoolsAtSuccess:^(NSArray *schools) {
         NSArray *userschoollist;
         if (auth)
-            userschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
+            userschoollist = [BTUserDefault getUser].employed_schools;
         else
-            userschoollist = [[NSUserDefaults standardUserDefaults] objectForKey:EnrolledSchoolsKey];
-
+            userschoollist = [BTUserDefault getUser].enrolled_schools;
+        
         data0 = [[NSMutableArray alloc] init];
         data1 = [[NSMutableArray alloc] init];
         if (userschoollist.count != 0) {
-            for (int i = 0; i < schoollist.count; i++) {
+            for (int i = 0; i < schools.count; i++) {
                 Boolean joined = false;
                 for (int j = 0; j < userschoollist.count; j++) {
-                    int school_id = [[[responseObject objectAtIndex:i] objectForKey:@"id"] intValue];
-                    int userschool_id = [[userschoollist[j] objectForKey:@"id"] intValue];
+                    NSInteger school_id = ((School *)[schools objectAtIndex:i]).id;
+                    NSInteger userschool_id = ((SimpleSchool *)[userschoollist objectAtIndex:j]).id;
                     if (school_id == userschool_id) {
                         joined = true;
                         break;
                     }
                 }
-
+                
                 if (joined)
-                    [data0 addObject:[responseObject objectAtIndex:i]];
+                    [data0 addObject:[schools objectAtIndex:i]];
                 else
-                    [data1 addObject:[responseObject objectAtIndex:i]];
+                    [data1 addObject:[schools objectAtIndex:i]];
             }
-
+            
             rowcount0 = data0.count;
             rowcount1 = data1.count;
             [self.tableview reloadData];
-
+            
         } else {
             data0 = nil;
             rowcount0 = 0;
-            data1 = responseObject;
+            data1 = [NSMutableArray arrayWithArray:schools];
             rowcount1 = data1.count;
             [self.tableview reloadData];
         }
-
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    } failure:^(NSError *error) {
     }];
 }
 
@@ -163,18 +146,18 @@
         cell = [topLevelObjects objectAtIndex:0];
     }
     if (indexPath.section == 0) {
-        cell.Info_SchoolName.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"name"];
-        cell.Info_SchoolID_int = [[[data0 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.Info_SchoolID.text = [[data0 objectAtIndex:indexPath.row] objectForKey:@"website"];
+        cell.school = [data0 objectAtIndex:indexPath.row];
+        cell.Info_SchoolName.text = cell.school.name;
+        cell.Info_SchoolID.text = [cell.school.website absoluteString];
         cell.backgroundColor = [BTColor BT_white:1];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
     if (indexPath.section == 1) {
-        cell.Info_SchoolName.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"name"];
-        cell.Info_SchoolID_int = [[[data1 objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
-        cell.Info_SchoolID.text = [[data1 objectAtIndex:indexPath.row] objectForKey:@"website"];
+        cell.school = [data1 objectAtIndex:indexPath.row];
+        cell.Info_SchoolName.text = cell.school.name;
+        cell.Info_SchoolID.text = [cell.school.website absoluteString];
         cell.backgroundColor = [BTColor BT_white:1];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -189,11 +172,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (auth) {
-        NSInteger scid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolID_int;
-        NSString *scname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolName.text;
-        NSString *prfname = [userinfo objectForKey:FullNameKey];
+        NSInteger scid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;
+        NSString *scname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.name;
+        NSString *prfname = [BTUserDefault getUser].username;
         if (indexPath.section == 0) {
-            NSArray *school_list = [[NSUserDefaults standardUserDefaults] objectForKey:EmployedSchoolsKey];
+            NSArray *school_list = [BTUserDefault getUser].employed_schools;
             for (int i = 0; i < school_list.count; i++) {
                 if ([[school_list[i] objectForKey:@"id"] intValue] == scid) {
                     AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
@@ -206,31 +189,23 @@
                             courseCreateController.prfName = prfname;
                             [self.navigationController pushViewController:courseCreateController animated:YES];
                         } else {
-                            [self showSerialView:scid name:scname];
+//                            [self showSerialView:scid name:scname];
                         }
                     }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        [self showSerialView:scid name:scname];
+//                        [self showSerialView:scid name:scname];
                     }];
                     break;
                 }
             }
         } else {
-            [self showSerialView:scid name:scname];
+//            [self showSerialView:scid name:scname];
         }
     } else {
         CourseAttendView *courseAttendView = [[CourseAttendView alloc] initWithNibName:@"CourseAttendView" bundle:nil];
-        courseAttendView.sid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolID_int;
-        courseAttendView.sname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).Info_SchoolName.text;
+        courseAttendView.sid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;
+        courseAttendView.sname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.name;
         [self.navigationController pushViewController:courseAttendView animated:YES];
     }
-}
-
-- (void)showSerialView:(NSInteger)schoolId name:(NSString *)schoolName {
-    SerialViewController *serialViewController = [[SerialViewController alloc] initWithNibName:@"SerialViewController" bundle:nil];
-    serialViewController.isSignUp = false;
-    serialViewController.schoolId = schoolId;
-    serialViewController.schoolName = schoolName;
-    [self.navigationController pushViewController:serialViewController animated:YES];
 }
 
 @end

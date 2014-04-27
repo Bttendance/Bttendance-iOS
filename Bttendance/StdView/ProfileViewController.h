@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSUInteger rowcount;
 
-    NSDictionary *userinfo;
+    User *user;
 
     NSMutableArray *data;
     NSMutableArray *alluserschools;
-    NSMutableArray *employedschoollist;
-    NSMutableArray *enrolledschoollist;
+    NSArray *employedschoollist;
+    NSArray *enrolledschoollist;
 
     __strong NSString *fullname;
     __strong NSString *email;
