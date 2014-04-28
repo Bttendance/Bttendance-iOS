@@ -125,7 +125,7 @@
                     failure:(void (^)(NSError *error))failure {
     
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSDictionary *params = @{@"username" : @"teh",
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
                              @"password" : [BTUserDefault getPassword],
                              @"device_type" : @"iphone",
                              @"device_uuid" : [BTUserDefault getUUID],

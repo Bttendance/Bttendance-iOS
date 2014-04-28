@@ -31,9 +31,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController;
     
-    if([BTUserDefault getUser] == nil
-       || [BTUserDefault getUsername] == nil
-       || [BTUserDefault getPassword] == nil) {
+    if([BTUserDefault getUsername] == nil
+       || [BTUserDefault getPassword] == nil
+       || [BTUserDefault getUUID] == nil) {
         [BTUserDefault clear];
         firstview = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
     } else {
