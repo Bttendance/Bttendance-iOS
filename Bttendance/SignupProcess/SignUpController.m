@@ -36,8 +36,19 @@ NSString *signupRequest;
         email_index = [NSIndexPath indexPathForRow:1 inSection:0];
         username_index = [NSIndexPath indexPathForRow:2 inSection:0];
         password_index = [NSIndexPath indexPathForRow:3 inSection:0];
+        
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
+}
+
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -92,10 +103,6 @@ NSString *signupRequest;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -267,7 +274,7 @@ NSString *signupRequest;
         
         [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {
             MainViewController *mainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-            [self.navigationController setViewControllers:[NSArray arrayWithObject:mainView] animated:YES];
+            [self.navigationController setViewControllers:[NSArray arrayWithObject:mainView] animated:NO];
         } failure:^(NSError *error) {
             button.enabled = YES;
         }];

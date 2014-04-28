@@ -29,6 +29,7 @@
 @property(weak, nonatomic) IBOutlet UIView *cellbackground;
 
 @property(assign, nonatomic) Course *course;
+@property(assign, nonatomic) SimpleCourse *simpleCourse;
 
 @property(assign, nonatomic) NSInteger gap;
 @property(assign, nonatomic) NSTimer *blink;

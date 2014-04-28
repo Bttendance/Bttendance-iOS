@@ -45,7 +45,7 @@
         
         NSMutableArray *owners = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"owners"]) {
-            SimpleUser *user = [[User alloc] initWithDictionary:dic];
+            SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
             [owners addObject:user];
         }
         self.owners = owners;

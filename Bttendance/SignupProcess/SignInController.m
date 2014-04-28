@@ -34,8 +34,19 @@ NSString *signinRequest;
         // Custom initialization
         username_index = [NSIndexPath indexPathForRow:0 inSection:0];
         password_index = [NSIndexPath indexPathForRow:1 inSection:0];
+        
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
+}
+
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -80,11 +91,6 @@ NSString *signinRequest;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -214,7 +220,7 @@ NSString *signinRequest;
     [BTAPIs signInWithUsername:username password:password success:^(User *user) {
         MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
         self.navigationController.navigationBarHidden = YES;
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:YES];
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:NO];
     } failure:^(NSError *error) {
         button.enabled = YES;
     }];

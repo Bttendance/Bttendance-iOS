@@ -34,7 +34,7 @@
 }
 
 - (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {

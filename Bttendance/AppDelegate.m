@@ -31,9 +31,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController;
     
-    if([BTUserDefault getUser] != nil
-       && [BTUserDefault getUsername] != nil
-       && [BTUserDefault getPassword] != nil){
+    if([BTUserDefault getUser] == nil
+       || [BTUserDefault getUsername] == nil
+       || [BTUserDefault getPassword] == nil) {
+        [BTUserDefault clear];
         firstview = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
     } else {
         firstview = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
@@ -43,6 +44,7 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:firstview];
     navigationController.navigationBarHidden = YES;
     self.window.rootViewController = navigationController;
+    _navController = navigationController;
 
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
@@ -65,6 +67,10 @@
     for(int i =0; i < 32; i++)
         [deviceId appendFormat:@"%02x", ptr[i]];
     NSString *device_token = [NSString stringWithString:deviceId];
+    [BTAPIs updateNotificationKey:device_token
+                          success:^(User *user) {
+                          } failure:^(NSError *error) {
+                          }];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{

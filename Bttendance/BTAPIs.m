@@ -9,6 +9,7 @@
 #import "BTAPIs.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import "AFNetworkActivityLogger.h"
 #import "AFResponseSerializer.h"
 #import "BTUserDefault.h"
 #import "BTUUID.h"
@@ -20,6 +21,8 @@
 #import "Clicker.h"
 #import "Error.h"
 #import "Email.h"
+#import "CatchPointController.h"
+#import "AppDelegate.h"
 
 @implementation BTAPIs
 
@@ -31,14 +34,66 @@
 		manager = [AFHTTPRequestOperationManager manager];
 		manager.responseSerializer = [AFResponseSerializer serializer];
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+#ifdef DEBUG
+        [[AFNetworkActivityLogger sharedLogger] startLogging];
+        [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+#endif
 	});
 	return (manager);
 }
 
 + (void)failureHandleWithError:(NSError *)error {
     
+    //        401 : Auto Sign Out
+    //        441 : Update Recommended
+    //        442 : Update Required
+    
+    NSInteger statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+    Error *errorJson = [[Error alloc] initWithDictionary:[[error userInfo] objectForKey:AFResponseSerializerKey]];
+    
+    if (statusCode == 441) {
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:errorJson.title
+                                           message:errorJson.message
+                                          delegate:self
+                                 cancelButtonTitle:@"Confirm"
+                                 otherButtonTitles:@"Cancel", nil];
+        [alert show];
+    } else { //(log, toast, alert)
+        if ([errorJson.type isEqualToString:@"log"]) {
+            NSLog(@"Error : %@", errorJson.message);
+        } else if ([errorJson.type isEqualToString:@"toast"]) {
+            
+        } else if ([errorJson.type isEqualToString:@"alert"]) {
+            UIAlertView *alert;
+            alert = [[UIAlertView alloc] initWithTitle:errorJson.title
+                                               message:errorJson.message
+                                              delegate:self
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil, nil];
+            alert.tag = statusCode;
+            [alert show];
+        }
+    }
 }
 
+#pragma UIAlertViewDelegate
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (alertView.tag == 401) {
+        [BTUserDefault clear];
+        CatchPointController *catchView = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate.navController pushViewController:catchView animated:NO];
+    }
+    
+    if ((alertView.tag == 441 || alertView.tag == 442) && buttonIndex == 0) {
+        NSString *iTunesLink = @"https://itunes.apple.com/us/app/apple-store/id829410376?mt=8";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    }
+}
+
+#pragma APIs
 + (void)signUpWithFullName:(NSString *)full_name
                   username:(NSString *)username
                      email:(NSString *)email
@@ -70,7 +125,7 @@
                     failure:(void (^)(NSError *error))failure {
     
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"username" : @"teh",
                              @"password" : [BTUserDefault getPassword],
                              @"device_type" : @"iphone",
                              @"device_uuid" : [BTUserDefault getUUID],

@@ -36,7 +36,7 @@
 }
 
 - (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -75,7 +75,7 @@
 
     [BTAPIs updateFullName:fullname
                    success:^(User *user) {
-                       [self.navigationController popToRootViewControllerAnimated:YES];
+                       [self.navigationController popViewControllerAnimated:YES];
                    } failure:^(NSError *error) {
                    }];
 }

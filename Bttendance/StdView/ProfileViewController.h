@@ -10,14 +10,8 @@
 #import "User.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-    NSUInteger rowcount;
 
     User *user;
-
-    NSMutableArray *data;
-    NSMutableArray *alluserschools;
-    NSArray *employedschoollist;
-    NSArray *enrolledschoollist;
 
     __strong NSString *fullname;
     __strong NSString *email;

@@ -13,8 +13,6 @@
 #import "BTColor.h"
 #import "BTAPIs.h"
 
-NSString *forgotRequest;
-
 @interface ForgotViewController ()
 
 @end
@@ -22,12 +20,22 @@ NSString *forgotRequest;
 @implementation ForgotViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    forgotRequest = [BTURL stringByAppendingString:@"/user/forgot/password"];
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         email_index = [NSIndexPath indexPathForRow:0 inSection:0];
+        
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
+}
+
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -173,23 +181,18 @@ NSString *forgotRequest;
 }
 
 - (void)JSONForgotRequest:(NSString *)email {
-
-    NSDictionary *params = @{@"email" : email};
-
-    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-    [AFmanager PUT:forgotRequest parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Password recovery has been succeeded.\nPlease check your email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Password recovery is unavailable.\nPlease check your email again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }];
-
-}
-
-- (void)backbuttonpressed:(id)aResponder {
-    //move to view which has index 1 in viewstack;
-    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
+    
+    [BTAPIs forgotPasswordWithEmail:email
+                            success:^(Email *email) {
+                                NSString *message = [NSString stringWithFormat:@"Password recovery has been succeeded.\nPlease check your email.\n%@", email.email];
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                                message:message
+                                                                               delegate:self
+                                                                      cancelButtonTitle:@"OK"
+                                                                      otherButtonTitles:nil];
+                                [alert show];
+                            } failure:^(NSError *error) {
+                            }];
 }
 
 @end

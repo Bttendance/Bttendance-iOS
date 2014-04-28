@@ -15,6 +15,7 @@
 #import "ProfileCell.h"
 #import "SchoolChooseView.h"
 #import "BTAPIs.h"
+#import "Identification.h"
 
 @interface ProfileViewController ()
 
@@ -32,8 +33,6 @@
         user = [BTUserDefault getUser];
         fullname = user.full_name;
         email = user.email;
-        employedschoollist = user.employed_schools;
-        enrolledschoollist = user.enrolled_schools;
     }
 
     return self;
@@ -48,16 +47,15 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:self options:nil];
     profileheaderview = [topLevelObjects objectAtIndex:0];
 
-    if ([employedschoollist count] > 0 && [enrolledschoollist count] > 0)
+    if ([user.employed_schools count] > 0 && [user.enrolled_schools count] > 0)
         profileheaderview.accountType.text = @"Professor & Student";
-    else if ([employedschoollist count] > 0)
+    else if ([user.employed_schools count] > 0)
         profileheaderview.accountType.text = @"Professor";
     else
         profileheaderview.accountType.text = @"Student";
 
     profileheaderview.userName.text = user.username;
     self.tableview.tableHeaderView = profileheaderview;
-    rowcount = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,8 +63,6 @@
     user = [BTUserDefault getUser];
     fullname = user.full_name;
     email = user.email;
-    employedschoollist = user.employed_schools;
-    enrolledschoollist = user.enrolled_schools;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -83,7 +79,7 @@
             return 3;
         case 1:
         default:
-            return rowcount;
+            return [user.employed_schools count] + [user.enrolled_schools count];
     }
 }
 
@@ -132,28 +128,22 @@
     else if (indexPath.section == 1) {
         NSArray *topLevelObejcts = [[NSBundle mainBundle] loadNibNamed:@"SchoolInfoCell" owner:self options:nil];
         cell = [topLevelObejcts objectAtIndex:0];
-
-        for (int i = 0; i < [alluserschools count]; i++) {
-            int school_id = [[[alluserschools objectAtIndex:i] objectForKey:@"id"] intValue];
-            if (indexPath.row < [employedschoollist count]
-                    && [[employedschoollist[indexPath.row] objectForKey:@"id"] integerValue] == school_id) {
-                ((SchoolInfoCell *) cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
-                ((SchoolInfoCell *) cell).Info_SchoolID.text = @"Professor";
-                ((SchoolInfoCell *) cell).school = ((SimpleSchool *)employedschoollist[indexPath.row]);
-                ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
-                ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];
-                break;
-            }
-            if (indexPath.row >= [employedschoollist count]
-                    && [[enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"id"] integerValue] == school_id) {
-                ((SchoolInfoCell *) cell).Info_SchoolName.text = [[alluserschools objectAtIndex:i] objectForKey:@"name"];
-                ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:@"Student - %@", [enrolledschoollist[indexPath.row - [employedschoollist count]] objectForKey:@"key"]];
-                ((SchoolInfoCell *) cell).school = ((SimpleSchool *)employedschoollist[indexPath.row]);
-                ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
-                ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];
-                break;
-            }
+        
+        if (indexPath.row < [user.employed_schools count]) {
+            ((SchoolInfoCell *) cell).simpleSchool = user.employed_schools[indexPath.row];
+            ((SchoolInfoCell *) cell).Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
+            ((SchoolInfoCell *) cell).Info_SchoolID.text = @"Professor";
+        } else {
+            ((SchoolInfoCell *) cell).simpleSchool = user.enrolled_schools[indexPath.row - [user.employed_schools count]];
+            ((SchoolInfoCell *) cell).Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
+            NSString *identity = @"";
+            for (int j = 0; j < [user.identifications count]; j++)
+                if (((SimpleIdentification *)user.identifications[j]).school == ((SchoolInfoCell *) cell).simpleSchool.id)
+                    identity = ((SimpleIdentification *)user.identifications[j]).identity;
+            ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:@"Student - %@", identity];
         }
+        ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
+        ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

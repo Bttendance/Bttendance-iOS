@@ -154,7 +154,7 @@
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
     [self.tableview reloadData];
-    [self checkAttdScan];
+//    [self checkAttdScan];
 }
 
 - (void)viewDidLoad {
@@ -170,8 +170,6 @@
         sectionCount++;
     if (rowcount2 > 0)
         sectionCount++;
-    rowcount1 = 0;
-    rowcount2 = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -181,15 +179,12 @@
 }
 
 - (void)refreshCourses:(id)sender {
-    [BTAPIs autoSignInInSuccess:^(User *user) {
-        [BTAPIs coursesInSuccess:^(NSArray *courses) {
-            data = courses;
-            [self checkAttdScan];
-            [self.tableview reloadData];
-        } failure:^(NSError *error) {
-        }];
-    } failure:^(NSError *error) {
-    }];
+//    [BTAPIs coursesInSuccess:^(NSArray *courses) {
+//        data = courses;
+//        [self checkAttdScan];
+//        [self.tableview reloadData];
+//    } failure:^(NSError *error) {
+//    }];
 }
 
 #pragma UITableViewDelegate
@@ -290,6 +285,20 @@
                 break;
             }
         }
+    } else {
+        cell.simpleCourse = [user.supervising_courses objectAtIndex:rowIndex];
+        for (int i = 0; i < [user.employed_schools count]; i++)
+            if (((SimpleSchool *)user.employed_schools[i]).id == cell.simpleCourse.school)
+                cell.School.text = ((SimpleSchool *)user.employed_schools[i]).name;
+        cell.CourseName.text = cell.simpleCourse.name;
+        cell.Professor.text = cell.simpleCourse.professor_name;
+        cell.cellbackground.layer.cornerRadius = 2;
+        cell.isManager = true;
+        [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
+        
+        [cell.attendanceBt addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.clickerBt addTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.noticeBt addTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
 }
@@ -315,7 +324,7 @@
                 cell.School.text = cell.course.school.name;
                 cell.cellbackground.layer.cornerRadius = 2;
                 cell.isManager = false;
-                [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
+                [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
 
                 [cell.attendanceBt removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                 [cell.clickerBt removeTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
@@ -333,6 +342,20 @@
                 break;
             }
         }
+    } else {
+        cell.simpleCourse = [user.attending_courses objectAtIndex:rowIndex];
+        for (int i = 0; i < [user.enrolled_schools count]; i++)
+            if (((SimpleSchool *)user.enrolled_schools[i]).id == cell.simpleCourse.school)
+                cell.School.text = ((SimpleSchool *)user.enrolled_schools[i]).name;
+        cell.CourseName.text = cell.simpleCourse.name;
+        cell.Professor.text = cell.simpleCourse.professor_name;
+        cell.cellbackground.layer.cornerRadius = 2;
+        cell.isManager = true;
+        [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
+        
+        [cell.attendanceBt removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.clickerBt removeTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.noticeBt removeTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
     }
 
     cell.attendanceBt.hidden = YES;
@@ -366,19 +389,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (data.count != 0) {
-        CourseCell *cell = (CourseCell *) [self.tableview cellForRowAtIndexPath:indexPath];
-        CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
-        courseDetailViewController.currentcell = cell;
+    CourseCell *cell = (CourseCell *) [self.tableview cellForRowAtIndexPath:indexPath];
+    CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
+    courseDetailViewController.currentcell = cell;
 
-        if (indexPath.section == 0) {
-            courseDetailViewController.auth = YES;
-        } else {
-            courseDetailViewController.auth = NO;
-        }
-
-        [self.navigationController pushViewController:courseDetailViewController animated:YES];
+    if (indexPath.section == 0) {
+        courseDetailViewController.auth = YES;
+    } else {
+        courseDetailViewController.auth = NO;
     }
+
+    [self.navigationController pushViewController:courseDetailViewController animated:YES];
 }
 
 #pragma Course Button Animation
@@ -514,12 +535,12 @@
     //Attendance Start Check
     [attdingPostIDs removeAllObjects];
     for (int i = 0; i < data.count; i++) {
-        NSString *attdCheckedAt = [[data objectAtIndex:i] objectForKey:@"attdCheckedAt"];
-        int gap = [BTDateFormatter intervalFromString:attdCheckedAt];
+        Course *course = [data objectAtIndex:i];
+        int gap = [course.attdCheckedAt timeIntervalSinceNow];
         if (180.0f + gap > 0.0f) {
-            NSArray *posts = [[data objectAtIndex:i] objectForKey:@"posts"];
-            NSNumber *maxID = [posts valueForKeyPath:@"@max.intValue"];
-            [attdingPostIDs addObject:maxID];
+//            NSArray *posts = [[data objectAtIndex:i] objectForKey:@"posts"];
+//            NSNumber *maxID = [posts valueForKeyPath:@"@max.intValue"];
+//            [attdingPostIDs addObject:maxID];
         }
     }
 

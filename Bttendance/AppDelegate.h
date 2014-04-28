@@ -14,13 +14,11 @@
 #import "MainViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UIViewController *firstview;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
-//@property (strong, nonatomic) UIViewController *viewController;
 @property (strong, nonatomic) UINavigationController *navController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

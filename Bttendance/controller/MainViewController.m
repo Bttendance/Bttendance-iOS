@@ -11,7 +11,6 @@
 #import "BTColor.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
-#import "CatchPointController.h"
 
 @interface MainViewController ()
 
@@ -55,23 +54,12 @@
     item2.selectedImage = [UIImage imageNamed:@"iostabbara2"];
 
     tbc.selectedIndex = 1;
-
+    
     [BTAPIs autoSignInInSuccess:^(User *user) {
-        
     } failure:^(NSError *error) {
-//        if (operation.response.statusCode == 401) {
-//            [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:FirstLaunchKey];
-//            CatchPointController *catchView = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
-//            [self.navigationController pushViewController:catchView animated:NO];
-//        }
     }];
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

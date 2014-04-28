@@ -21,7 +21,7 @@
     #define BTURL @"http://www.bttd.co/api"
 #endif
 
-@interface BTAPIs : NSObject
+@interface BTAPIs : NSObject <UIAlertViewDelegate>
 
 + (void)signUpWithFullName:(NSString *)full_name
                   username:(NSString *)username

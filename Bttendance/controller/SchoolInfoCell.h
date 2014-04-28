@@ -18,5 +18,6 @@
 @property(weak, nonatomic) IBOutlet UIButton *Info_Check;
 
 @property(assign, nonatomic) School *school;
+@property(assign, nonatomic) SimpleSchool *simpleSchool;
 
 @end
