@@ -19,6 +19,7 @@
 #import "BTDateFormatter.h"
 #import "CreateNoticeViewController.h"
 #import "Course.h"
+#import "BTNotification.h"
 
 @interface CourseListViewController ()
 
@@ -170,12 +171,22 @@
         sectionCount++;
     if (rowcount2 > 0)
         sectionCount++;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:UserUpdated object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableview reloadData];
     [self refreshCourses:nil];
+}
+
+- (void)reloadTableView:(NSNotification *)noti {
+    [self.tableview reloadData];
 }
 
 - (void)refreshCourses:(id)sender {

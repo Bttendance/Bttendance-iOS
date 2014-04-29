@@ -15,6 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
+#import "BTNotification.h"
 
 @implementation AppDelegate
 

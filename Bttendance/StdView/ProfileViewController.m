@@ -16,6 +16,7 @@
 #import "SchoolChooseView.h"
 #import "BTAPIs.h"
 #import "Identification.h"
+#import "BTNotification.h"
 
 @interface ProfileViewController ()
 
@@ -56,6 +57,12 @@
 
     profileheaderview.userName.text = user.username;
     self.tableview.tableHeaderView = profileheaderview;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:UserUpdated object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +74,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)reloadTableView:(NSNotification *)noti {
+    [self.tableview reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

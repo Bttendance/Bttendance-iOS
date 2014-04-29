@@ -135,6 +135,7 @@
 		D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
+		D4BF2678190ED17D00B75521 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF2677190ED17D00B75521 /* BTNotification.m */; };
 		D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */; };
 		D4FD44B41908194F00FB52A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B31908194F00FB52A5 /* User.m */; };
 		D4FD44B719081F6F00FB52A5 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B619081F6F00FB52A5 /* Device.m */; };
@@ -335,6 +336,8 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		D4BF2676190ED17D00B75521 /* BTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNotification.h; sourceTree = "<group>"; };
+		D4BF2677190ED17D00B75521 /* BTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNotification.m; sourceTree = "<group>"; };
 		D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFResponseSerializer.h; sourceTree = "<group>"; };
 		D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFResponseSerializer.m; sourceTree = "<group>"; };
 		D4FD44B21908194F00FB52A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 				D472230C1909178500CE7015 /* BTUUID.m */,
 				D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */,
 				D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */,
+				D4BF2676190ED17D00B75521 /* BTNotification.h */,
+				D4BF2677190ED17D00B75521 /* BTNotification.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -814,7 +819,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1017,6 +1022,7 @@
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
+				D4BF2678190ED17D00B75521 /* BTNotification.m in Sources */,
 				D472230A1908E55D00CE7015 /* Error.m in Sources */,
 				21917903186C38DD00799CC0 /* MainViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
@@ -1221,7 +1227,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

@@ -11,6 +11,7 @@
 #import "BTColor.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
+#import "BTNotification.h"
 
 @interface MainViewController ()
 
@@ -56,6 +57,7 @@
     tbc.selectedIndex = 1;
     
     [BTAPIs autoSignInInSuccess:^(User *user) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
     } failure:^(NSError *error) {
     }];
 
