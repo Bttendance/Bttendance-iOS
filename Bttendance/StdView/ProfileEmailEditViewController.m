@@ -44,7 +44,6 @@
     self.navigationItem.rightBarButtonItem = save;
 
     //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
@@ -53,9 +52,6 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Edit Email", @"");
     [titlelabel sizeToFit];
-
-    // Do any additional setup after loading the view from its nib.
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -95,9 +91,8 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil) {
+    if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
 
     _email_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _email_field.text = email;

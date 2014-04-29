@@ -396,7 +396,7 @@
                              @"school_id" : school_id,
                              @"student_id" : student_id};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/enroll/school"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/schools/enroll"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
@@ -442,7 +442,7 @@
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/attend/course"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/attend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
@@ -462,7 +462,7 @@
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/dettend/course"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/dettend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];

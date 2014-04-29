@@ -23,21 +23,21 @@
                         <rect key="frame" x="29" y="24" width="205" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ues-Ey-bKv">
                         <rect key="frame" x="29" y="42" width="205" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bhc-xB-PLF">
                         <rect key="frame" x="29" y="57" width="205" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" id="23H-p5-4CZ">
@@ -104,12 +104,15 @@
                 <outlet property="Professor" destination="Ues-Ey-bKv" id="gj6-KA-raG"/>
                 <outlet property="School" destination="Bhc-xB-PLF" id="HOs-hp-8I4"/>
                 <outlet property="attendanceBt" destination="VYR-Up-oay" id="okY-04-qwp"/>
+                <outlet property="attendanceView" destination="LeB-RU-dMq" id="7in-7Q-fuq"/>
                 <outlet property="background" destination="23H-p5-4CZ" id="idH-2b-9Xe"/>
                 <outlet property="cellbackground" destination="5Dz-K9-uHe" id="JGe-49-7cL"/>
                 <outlet property="check_button" destination="oZU-Oh-712" id="Ob0-5P-Lre"/>
                 <outlet property="check_icon" destination="ZLg-bQ-Yxz" id="bus-7P-5AO"/>
                 <outlet property="clickerBt" destination="W3q-Jj-ZiD" id="YkN-mS-b3t"/>
+                <outlet property="clickerView" destination="kmK-6p-LjA" id="YyG-qx-Sea"/>
                 <outlet property="noticeBt" destination="yXR-aN-YfO" id="2f7-jG-Y0T"/>
+                <outlet property="noticeView" destination="KbZ-xF-kor" id="zRf-rB-afB"/>
             </connections>
         </tableViewCell>
     </objects>

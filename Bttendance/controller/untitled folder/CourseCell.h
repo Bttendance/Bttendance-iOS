@@ -18,9 +18,13 @@
 @property(weak, nonatomic) IBOutlet UILabel *Professor;
 @property(weak, nonatomic) IBOutlet UILabel *School;
 
-@property(weak, nonatomic) IBOutlet UIButton *attendanceBt;
 @property(weak, nonatomic) IBOutlet UIButton *clickerBt;
+@property(weak, nonatomic) IBOutlet UIButton *attendanceBt;
 @property(weak, nonatomic) IBOutlet UIButton *noticeBt;
+
+@property(weak, nonatomic) IBOutlet UIImageView *clickerView;
+@property(weak, nonatomic) IBOutlet UIImageView *attendanceView;
+@property(weak, nonatomic) IBOutlet UIImageView *noticeView;
 
 @property(weak, nonatomic) IBOutlet UIView *background;
 @property(weak, nonatomic) IBOutlet UIButton *check_button;

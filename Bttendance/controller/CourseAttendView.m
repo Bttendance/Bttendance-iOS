@@ -117,21 +117,26 @@
     NSArray *enrolledSchools = [BTUserDefault getUser].enrolled_schools;
     BOOL hasBeenEnrolled = NO;
     for (int i = 0; i < [enrolledSchools count]; i++)
-        if (((School *)enrolledSchools[i]).id == sid)
+        if (((SimpleSchool *)enrolledSchools[i]).id == sid)
             hasBeenEnrolled = YES;
 
     if (hasBeenEnrolled) {
-        NSString *string = [NSString stringWithFormat:@"%@ %@\n%@\n%@ ", comingcell.course.number, comingcell.course.name, comingcell.course.professor_name, comingcell.course.school.name];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Join Course" message:string delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+        NSString *message = [NSString stringWithFormat:@"Would you like to attend %@ by %@?",comingcell.course.name, comingcell.course.professor_name];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attend Course"
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Confirm"
+                                              otherButtonTitles:@"Cancel", nil];
         [alert show];
     } else {
-        UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Student ID or Phone Number"
-                                                         message:[NSString stringWithFormat:@"Before you join course %@, you need to enter your student ID or your phone number", comingcell.Info_CourseName.text]
+        NSString *message = [NSString stringWithFormat:@"Before you join course %@, you need to enter your student ID or your phone number", comingcell.Info_CourseName.text];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Student ID or Phone Number"
+                                                         message:message
                                                         delegate:self
-                                               cancelButtonTitle:@"Cancel"
-                                               otherButtonTitles:@"Confirm", Nil];
-        alert2.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert2 show];
+                                               cancelButtonTitle:@"Confirm"
+                                               otherButtonTitles:@"Cancel", Nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
     }
 }
 
@@ -176,7 +181,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (indexPath.section == 1) {
-        cell.course = [data0 objectAtIndex:indexPath.row];
+        cell.course = [data1 objectAtIndex:indexPath.row];
         cell.Info_ProfName.text = cell.course.professor_name;
         cell.Info_CourseName.text = cell.course.name;
         cell.backgroundColor = [BTColor BT_white:1];
@@ -193,8 +198,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 
-    if (buttonIndex == 0) {//cancel
-        //restore button event
+    if (buttonIndex == 1) {//cancel
         [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
         return;
     }
@@ -210,13 +214,6 @@
                      success:^(User *user) {
                          [self attendCourse];
                      } failure:^(NSError *error) {
-                         NSString *string = @"Could not join course, please try again";
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                         message:string
-                                                                        delegate:nil
-                                                               cancelButtonTitle:@"OK"
-                                                               otherButtonTitles:nil];
-                         [alert show];
                      }];
     }
 }
@@ -230,7 +227,7 @@
                      rowcount0++;
                      NSIndexPath *comingcell_index = [[self tableview] indexPathForCell:currentcell];
                      for (int i = 0; i < [data1 count]; i++) {
-                         if ([[[data1 objectAtIndex:i] objectForKey:@"id"] intValue] == currentcell.course.id) {
+                         if (((Course *)[data1 objectAtIndex:i]).id == currentcell.course.id) {
                              [data0 addObject:[data1 objectAtIndex:i]];
                              [data1 removeObjectAtIndex:i];
                              break;
@@ -239,13 +236,6 @@
                      [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                      [[self tableview] endUpdates];
                  } failure:^(NSError *error) {
-                     NSString *message = @"Could not attend current course, please try again";
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                     message:message
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                     [alert show];
                      [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
                  }];
 }

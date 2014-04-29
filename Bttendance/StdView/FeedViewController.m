@@ -89,19 +89,18 @@
     if ([cell.post.type isEqualToString:@"notice"]) {
         [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
         [cell.check_overlay setImage:nil];
-    } else {
+    } else if ([cell.post.type isEqualToString:@"attendance"]) {
         Boolean check = false;
-        NSArray *checks = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
+        NSArray *checks = cell.post.attendance.checked_students;
         for (int i = 0; i < checks.count; i++) {
-            NSString *check_id = [NSString stringWithFormat:@"%@", [[[data objectAtIndex:indexPath.row] objectForKey:@"checks"] objectAtIndex:i]];
-            if ([BTUserDefault getUser].id == [check_id integerValue])
+            if ([BTUserDefault getUser].id == [checks[i] intValue])
                 check = true;
         }
 
         Boolean manager = false;
         NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
-            if ([[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue] == [[supervisingCourses objectAtIndex:i] intValue])
+            if (cell.post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
                 manager = true;
         }
 
@@ -109,7 +108,7 @@
             if (180.0f + cell.gap > 0.0f)
                 [self startAnimation:cell];
             else {
-                int grade = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] intValue];
+                int grade =  [cell.post.grade intValue];
                 [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
             }
         } else {
@@ -122,6 +121,8 @@
                 }
             }
         }
+    } else {
+        
     }
     return cell;
 }

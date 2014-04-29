@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -51,22 +51,29 @@
                             <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lecture Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejm-Ab-gSJ">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ejm-Ab-gSJ">
                             <rect key="frame" x="140" y="72" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tE8-4P-izT">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance Grade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tE8-4P-izT">
                             <rect key="frame" x="140" y="87" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Place" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wKz-Zo-ZCt">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clicker Usage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wKz-Zo-ZCt">
                             <rect key="frame" x="140" y="102" width="138" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notice Usage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EUm-eH-kl6">
+                            <rect key="frame" x="140" y="117" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -120,18 +127,19 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="BTicon" destination="mqc-vJ-u8y" id="xPD-cC-CuE"/>
+                <outlet property="attendanceGrade" destination="tE8-4P-izT" id="PXK-sf-jdO"/>
                 <outlet property="background" destination="xzu-cK-emS" id="f7g-FA-N2R"/>
                 <outlet property="bg" destination="009-5s-lOE" id="W1g-D7-rNW"/>
-                <outlet property="classplace" destination="wKz-Zo-ZCt" id="MHT-Mn-KnM"/>
                 <outlet property="clickerBt" destination="Vax-xU-mwJ" id="AY9-vT-67I"/>
-                <outlet property="data_time" destination="tE8-4P-izT" id="nPB-XB-gLc"/>
+                <outlet property="clickerUsage" destination="wKz-Zo-ZCt" id="6VV-gi-WeU"/>
                 <outlet property="grade" destination="Z4Q-r1-4yD" id="07z-yV-Ahn"/>
                 <outlet property="gradeBt" destination="Mhq-0X-eG1" id="mhF-Rq-ImX"/>
-                <outlet property="lectureattr" destination="ejm-Ab-gSJ" id="wC0-Mq-pQJ"/>
                 <outlet property="managerBt" destination="zFY-zW-PEd" id="hrC-bR-hAj"/>
                 <outlet property="noticeBt" destination="3YF-Rl-4ec" id="C6f-Hc-Qgr"/>
+                <outlet property="noticeUsage" destination="EUm-eH-kl6" id="5SX-1G-S0D"/>
                 <outlet property="profname" destination="g0k-yD-43t" id="Gfh-If-aE0"/>
                 <outlet property="schoolname" destination="deP-rv-nkL" id="1gl-c5-xPf"/>
+                <outlet property="studentNumber" destination="ejm-Ab-gSJ" id="fiN-so-Vr8"/>
             </connections>
         </view>
     </objects>

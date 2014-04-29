@@ -377,10 +377,14 @@
         [cell.clickerBt removeTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
         [cell.noticeBt removeTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
     }
-
-    cell.attendanceBt.hidden = YES;
+    
     cell.clickerBt.hidden = YES;
+    cell.attendanceBt.hidden = YES;
     cell.noticeBt.hidden = YES;
+    
+    cell.clickerView.hidden = YES;
+    cell.attendanceView.hidden = YES;
+    cell.noticeView.hidden = YES;
 
     return cell;
 }
@@ -390,7 +394,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (sectionCount == 2) {
         switch (indexPath.section) {
             case 0:

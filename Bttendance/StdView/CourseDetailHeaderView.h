@@ -16,9 +16,10 @@
 
 @property(weak, nonatomic) IBOutlet UILabel *profname;
 @property(weak, nonatomic) IBOutlet UILabel *schoolname;
-@property(weak, nonatomic) IBOutlet UILabel *lectureattr;
-@property(weak, nonatomic) IBOutlet UILabel *data_time;
-@property(weak, nonatomic) IBOutlet UILabel *classplace;
+@property(weak, nonatomic) IBOutlet UILabel *studentNumber;
+@property(weak, nonatomic) IBOutlet UILabel *attendanceGrade;
+@property(weak, nonatomic) IBOutlet UILabel *clickerUsage;
+@property(weak, nonatomic) IBOutlet UILabel *noticeUsage;
 @property(weak, nonatomic) IBOutlet UIView *background;
 @property(weak, nonatomic) IBOutlet UIView *grade;
 @property(weak, nonatomic) IBOutlet UIButton *BTicon;
