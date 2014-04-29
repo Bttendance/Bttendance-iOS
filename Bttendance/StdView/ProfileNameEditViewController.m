@@ -12,6 +12,8 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import <AFNetworking/AFNetworking.h>
+#import "BTNotification.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ProfileNameEditViewController ()
 
@@ -55,7 +57,6 @@
     titlelabel.text = NSLocalizedString(@"Edit Name", @"");
     [titlelabel sizeToFit];
 
-
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -73,10 +74,19 @@
     //save data in textfield to temp var;
     fullname = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
 
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"updating full name";
+    hud.yOffset = -40.0f;
+    
     [BTAPIs updateFullName:fullname
                    success:^(User *user) {
+                       [hud hide:YES];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
                        [self.navigationController popViewControllerAnimated:YES];
                    } failure:^(NSError *error) {
+                       [hud hide:YES];
                    }];
 }
 

@@ -16,6 +16,7 @@
 #import "WebViewController.h"
 #import "BTUserDefault.h"
 #import "BTUUID.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 NSString *signupRequest;
 
@@ -96,7 +97,6 @@ NSString *signupRequest;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"set autofocus");
     CustomCell *cell1 = (CustomCell *) [self.tableView cellForRowAtIndexPath:fullname_index];
     [cell1.textfield becomeFirstResponder];
 }
@@ -223,6 +223,7 @@ NSString *signupRequest;
             label.delegate = self;
             [cell addSubview:label];
             [cell contentView].backgroundColor = [BTColor BT_grey:1];
+            [(CustomCell *) cell textfield].hidden = YES;
             break;
         }
         default:
@@ -256,15 +257,15 @@ NSString *signupRequest;
 
     if (username.length < 5 || username.length > 20) {
         //alert showing
-        NSString *string = @"Username must be between 5 to 20 letters in length";
-        NSString *title = @"Invalidate Username";
+        NSString *title = @"Username is too short";
+        NSString *string = @"Username need to be longer than 5 and less than 20 letters.";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 
     } else if (password.length < 6) {
         //alert showing
-        NSString *string = @"Password must be longer than 6 letters";
-        NSString *title = @"Invalidate Password";
+        NSString *title = @"Password is too short";
+        NSString *string = @"Password need to be longer than 6 letters.";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 
@@ -272,10 +273,18 @@ NSString *signupRequest;
         UIButton *button = (UIButton *) sender;
         button.enabled = NO;
         
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [BTColor BT_navy:0.7];
+        hud.labelText = @"Loading";
+        hud.detailsLabelText = @"Signing Up Bttendance";
+        hud.yOffset = -40.0f;
+        
         [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {
+            [hud hide:YES];
             MainViewController *mainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
             [self.navigationController setViewControllers:[NSArray arrayWithObject:mainView] animated:NO];
         } failure:^(NSError *error) {
+            [hud hide:YES];
             button.enabled = YES;
         }];
     }

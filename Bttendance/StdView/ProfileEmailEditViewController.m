@@ -11,6 +11,8 @@
 #import "BTColor.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
+#import "BTNotification.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ProfileEmailEditViewController ()
 
@@ -61,17 +63,22 @@
     [_email_field becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)save_email {
     email = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"updating full name";
+    hud.yOffset = -40.0f;
+    
     [BTAPIs updateEmail:email
                 success:^(User *user) {
+                    [hud hide:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
                     [self.navigationController popViewControllerAnimated:YES];
                 } failure:^(NSError *error) {
+                    [hud hide:YES];
                 }];
 }
 

@@ -32,15 +32,19 @@ NSString *createCourseRequest;
         number_index = [NSIndexPath indexPathForRow:1 inSection:0];
         school_index = [NSIndexPath indexPathForRow:3 inSection:0];
         profname_index = [NSIndexPath indexPathForRow:2 inSection:0];
-
+        
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
-        [backButton addTarget:self action:@selector(backbuttonpressed:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [self.navigationItem setLeftBarButtonItem:backButtonItem];
         self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
+}
+
+- (void)back:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -68,7 +72,6 @@ NSString *createCourseRequest;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"set autofocus");
     CustomCell *cell1 = (CustomCell *) [self.tableView cellForRowAtIndexPath:name_index];
     [cell1.textfield becomeFirstResponder];
 
@@ -211,14 +214,13 @@ NSString *createCourseRequest;
     
     NSString *name = [((CustomCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield text];
     NSString *number = [((CustomCell *) [self.tableView cellForRowAtIndexPath:number_index]).textfield text];
-    NSString *school = [((CustomCell *) [self.tableView cellForRowAtIndexPath:school_index]).textfield text];
-    NSString *prfname = [((CustomCell *) [self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
+    NSString *prof = [((CustomCell *) [self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
     NSString *sid = [NSString stringWithFormat:@"%ld", (long) self.schoolId];
     
     [BTAPIs createCourseWitheName:name
                            number:number
                            school:sid
-                    professorName:prfName
+                    professorName:prof
                           success:^(Email *email) {
                               [self.navigationController popToRootViewControllerAnimated:YES];
                           } failure:^(NSError *error) {
@@ -227,8 +229,6 @@ NSString *createCourseRequest;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-
-    NSLog(@"return call!");
 
     if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield]) {
         [((CustomCell *) [self.tableView cellForRowAtIndexPath:number_index]).textfield becomeFirstResponder];
@@ -245,11 +245,6 @@ NSString *createCourseRequest;
         return NO;
     }
     return NO;
-}
-
-- (void)backbuttonpressed:(id)aResponder {
-    //move to view which has index 1 in viewstack;
-    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
 }
 
 @end

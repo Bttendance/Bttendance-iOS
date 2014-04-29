@@ -86,7 +86,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if ([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]) {
+    if ([cell.post.type isEqualToString:@"notice"]) {
         [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
         [cell.check_overlay setImage:nil];
     } else {

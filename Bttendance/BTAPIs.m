@@ -23,6 +23,8 @@
 #import "Email.h"
 #import "CatchPointController.h"
 #import "AppDelegate.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import "BTColor.h"
 
 @implementation BTAPIs
 
@@ -58,12 +60,23 @@
                                           delegate:self
                                  cancelButtonTitle:@"Confirm"
                                  otherButtonTitles:@"Cancel", nil];
+        alert.tag = statusCode;
         [alert show];
     } else { //(log, toast, alert)
         if ([errorJson.type isEqualToString:@"log"]) {
             NSLog(@"Error : %@", errorJson.message);
         } else if ([errorJson.type isEqualToString:@"toast"]) {
-            
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            NSArray *viewControllers = [appDelegate.navController viewControllers];
+            UIViewController *currentViewController = viewControllers[[viewControllers count] - 1];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:currentViewController.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.color = [BTColor BT_navy:0.7];
+            hud.detailsLabelText = errorJson.message;
+            hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
+            hud.yOffset = - currentViewController.view.frame.size.height / 2 + 44;
+            hud.margin = 14.0f;
+            [hud hide:YES afterDelay:1];
         } else if ([errorJson.type isEqualToString:@"alert"]) {
             UIAlertView *alert;
             alert = [[UIAlertView alloc] initWithTitle:errorJson.title

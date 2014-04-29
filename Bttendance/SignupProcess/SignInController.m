@@ -17,6 +17,7 @@
 #import "BTColor.h"
 #import "BVUnderlineButton.h"
 #import "BTUUID.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 NSString *signinRequest;
 
@@ -177,14 +178,16 @@ NSString *signinRequest;
         }
         case 3: {
             BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
-            partnership.frame = CGRectMake(0.0f, 5.0f, 320.0f, 60.0f);
             partnership.backgroundColor = [UIColor clearColor];
             [partnership setTitle:@"Forgot Password?" forState:UIControlStateNormal];
             [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
             partnership.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
             [partnership addTarget:self action:@selector(forgot:) forControlEvents:UIControlEventTouchUpInside];
+            [partnership sizeToFit];
+            partnership.center = CGPointMake(cell.frame.size.width / 2, cell.frame.size.height / 2 + 10);
             [cell addSubview:partnership];
             [cell contentView].backgroundColor = [BTColor BT_grey:1];
+            [(CustomCell *) cell textfield].hidden = YES;
             break;
         }
         default:
@@ -217,11 +220,19 @@ NSString *signinRequest;
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Loging In Bttendance";
+    hud.yOffset = -40.0f;
+    
     [BTAPIs signInWithUsername:username password:password success:^(User *user) {
+        [hud hide:YES];
         MainViewController *stdMainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController setViewControllers:[NSArray arrayWithObject:stdMainView] animated:NO];
     } failure:^(NSError *error) {
+        [hud hide:YES];
         button.enabled = YES;
     }];
 }

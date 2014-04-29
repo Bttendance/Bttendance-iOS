@@ -133,6 +133,8 @@
 		D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */; };
 		D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2131F5111897817F0096404D /* GradeViewController.xib */; };
 		D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */; };
+		D4BAA504190FADC200E414CC /* CreateClickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA502190FADC200E414CC /* CreateClickerViewController.m */; };
+		D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
 		D4BF2678190ED17D00B75521 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF2677190ED17D00B75521 /* BTNotification.m */; };
@@ -333,6 +335,9 @@
 		D4B5067618B4E7790075E2F8 /* grade_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grade_bg@2x.png"; sourceTree = "<group>"; };
 		D4BA04D218AA3B2B0004A0EC /* BTAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAPIs.h; sourceTree = "<group>"; };
 		D4BA04D318AA3B2B0004A0EC /* BTAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAPIs.m; sourceTree = "<group>"; };
+		D4BAA501190FADC200E414CC /* CreateClickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateClickerViewController.h; sourceTree = "<group>"; };
+		D4BAA502190FADC200E414CC /* CreateClickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateClickerViewController.m; sourceTree = "<group>"; };
+		D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateClickerViewController.xib; sourceTree = "<group>"; };
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
@@ -703,6 +708,9 @@
 				2131F50A189781650096404D /* CreateNoticeViewController.h */,
 				2131F50B189781650096404D /* CreateNoticeViewController.m */,
 				2131F50C189781650096404D /* CreateNoticeViewController.xib */,
+				D4BAA501190FADC200E414CC /* CreateClickerViewController.h */,
+				D4BAA502190FADC200E414CC /* CreateClickerViewController.m */,
+				D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */,
 				2131F50F1897817F0096404D /* GradeViewController.h */,
 				2131F5101897817F0096404D /* GradeViewController.m */,
 				2131F5111897817F0096404D /* GradeViewController.xib */,
@@ -853,6 +861,7 @@
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
 				D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */,
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
+				D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */,
 				21917904186C38DD00799CC0 /* MainViewController.xib in Resources */,
 				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
@@ -1005,6 +1014,7 @@
 				D472230D1909178500CE7015 /* BTUUID.m in Sources */,
 				2191790B186D951000799CC0 /* CourseAttendView.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
+				D4BAA504190FADC200E414CC /* CreateClickerViewController.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
 				D4FD44C019081F9300FB52A5 /* School.m in Sources */,

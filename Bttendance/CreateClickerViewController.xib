@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateNoticeViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateClickerViewController">
             <connections>
-                <outlet property="message" destination="4hS-vL-RpS" id="gxt-Gv-S5W"/>
-                <outlet property="placeholder" destination="32J-4R-vFL" id="Ik2-wf-aGl"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="message" destination="tW6-Qj-G0I" id="AMl-s3-OuQ"/>
+                <outlet property="placeholder" destination="vNy-JA-h9A" id="udc-UJ-Axc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What should they know?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32J-4R-vFL">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Presentation#1 Page#11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNy-JA-h9A">
                     <rect key="frame" x="86" y="17" width="159" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hS-vL-RpS">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tW6-Qj-G0I">
                     <rect key="frame" x="80" y="11" width="230" height="332"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="332" id="bhz-5n-zLp"/>
+                        <constraint firstAttribute="height" constant="332" id="3zh-iR-yPW"/>
+                        <constraint firstAttribute="width" constant="230" id="mPP-De-yBa"/>
                     </constraints>
                     <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="hH4-Mr-qpj"/>
-                    </connections>
                 </textView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="notice.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-o6-fOg">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pollicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGn-zk-41V">
                     <rect key="frame" x="16" y="18" width="52" height="52"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="52" id="Fdy-rr-Cff"/>
-                        <constraint firstAttribute="height" constant="52" id="pnc-Hq-fXL"/>
+                        <constraint firstAttribute="height" constant="52" id="4hR-ce-ABA"/>
+                        <constraint firstAttribute="width" constant="52" id="VPM-yf-4pj"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Qnz-o6-fOg" firstAttribute="top" secondItem="1" secondAttribute="top" constant="18" id="38p-jc-zCl"/>
-                <constraint firstItem="4hS-vL-RpS" firstAttribute="top" secondItem="1" secondAttribute="top" constant="11" id="B5k-vP-vAL"/>
-                <constraint firstItem="Qnz-o6-fOg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="Rvp-3R-XYh"/>
-                <constraint firstItem="4hS-vL-RpS" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="80" id="X9B-JV-WCm"/>
-                <constraint firstAttribute="trailing" secondItem="4hS-vL-RpS" secondAttribute="trailing" constant="10" id="dqy-RL-J8l"/>
+                <constraint firstItem="AGn-zk-41V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="BK2-A7-NYD"/>
+                <constraint firstAttribute="trailing" secondItem="tW6-Qj-G0I" secondAttribute="trailing" constant="10" id="DMw-Od-4ks"/>
+                <constraint firstItem="tW6-Qj-G0I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="80" id="SOj-hG-9iY"/>
+                <constraint firstItem="AGn-zk-41V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="bNg-KE-EdC"/>
+                <constraint firstItem="tW6-Qj-G0I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="cka-jH-BrL"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
-        <image name="notice.png" width="52" height="52"/>
+        <image name="pollicon.png" width="52" height="52"/>
     </resources>
 </document>

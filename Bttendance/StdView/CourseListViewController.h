@@ -12,7 +12,7 @@
 #import "User.h"
 
 @interface CourseListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralManagerDelegate, SocketIODelegate, UIActionSheetDelegate> {
-
+    
     NSInteger rowcount1;
     NSInteger rowcount2;
     NSInteger sectionCount;
@@ -31,5 +31,6 @@
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) IBOutlet UIView *noCourseView;
 
 @end

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseListViewController">
             <connections>
+                <outlet property="noCourseView" destination="LXS-oi-wpK" id="LHs-Og-h8U"/>
                 <outlet property="tableview" destination="3F6-Gh-tke" id="OIX-he-TQg"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -25,13 +26,66 @@
                         <outlet property="delegate" destination="-1" id="n9m-8S-Erf"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXS-oi-wpK">
+                    <rect key="frame" x="0.0" y="209" width="320" height="149"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Course Yet :(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJF-ih-vzf">
+                            <rect key="frame" x="82" y="29" width="157" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="157" id="YJo-AS-6rb"/>
+                                <constraint firstAttribute="height" constant="21" id="pJL-cm-bK2"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press '+' button " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmR-BG-h2l">
+                            <rect key="frame" x="18" y="58" width="284" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="4VI-DP-iJx"/>
+                                <constraint firstAttribute="width" constant="284" id="lfJ-hq-i4k"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to create or attend a course." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0m-p9-Gw7">
+                            <rect key="frame" x="18" y="76" width="284" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Txj-wO-ev0"/>
+                                <constraint firstAttribute="width" constant="284" id="upW-7k-f3V"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="EmR-BG-h2l" secondAttribute="centerX" id="27m-5n-U8D"/>
+                        <constraint firstItem="EmR-BG-h2l" firstAttribute="top" secondItem="LXS-oi-wpK" secondAttribute="top" constant="58" id="8M8-Q3-mVs"/>
+                        <constraint firstAttribute="centerX" secondItem="HJF-ih-vzf" secondAttribute="centerX" id="Egm-Kt-wwQ"/>
+                        <constraint firstAttribute="height" constant="149" id="NEq-j1-yuy"/>
+                        <constraint firstAttribute="centerX" secondItem="u0m-p9-Gw7" secondAttribute="centerX" id="Ueh-Pf-dGb"/>
+                        <constraint firstItem="u0m-p9-Gw7" firstAttribute="top" secondItem="LXS-oi-wpK" secondAttribute="top" constant="76" id="edQ-79-feb"/>
+                        <constraint firstAttribute="width" constant="320" id="hEh-yB-5TY"/>
+                        <constraint firstItem="HJF-ih-vzf" firstAttribute="top" secondItem="LXS-oi-wpK" secondAttribute="top" constant="29" id="jhp-Ev-JNL"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="3F6-Gh-tke" firstAttribute="top" secondItem="1" secondAttribute="top" id="72V-q3-zzt"/>
                 <constraint firstItem="3F6-Gh-tke" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="H3C-Ho-toj"/>
+                <constraint firstAttribute="trailing" secondItem="LXS-oi-wpK" secondAttribute="trailing" id="M9S-zn-lXk"/>
+                <constraint firstItem="LXS-oi-wpK" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="cN7-qi-t40"/>
                 <constraint firstAttribute="bottom" secondItem="3F6-Gh-tke" secondAttribute="bottom" id="ghC-Av-kYC"/>
                 <constraint firstAttribute="trailing" secondItem="3F6-Gh-tke" secondAttribute="trailing" id="gsI-3e-Vz4"/>
+                <constraint firstAttribute="centerY" secondItem="LXS-oi-wpK" secondAttribute="centerY" id="zru-et-MrG"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

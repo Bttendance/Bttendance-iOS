@@ -18,6 +18,7 @@
 #import "SchoolChooseView.h"
 #import "BTDateFormatter.h"
 #import "CreateNoticeViewController.h"
+#import "CreateClickerViewController.h"
 #import "Course.h"
 #import "BTNotification.h"
 
@@ -162,16 +163,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
-
-    user = [BTUserDefault getUser];
-    rowcount1 = [user.supervising_courses count];
-    rowcount2 = [user.attending_courses count];
-    sectionCount = 0;
-    if (rowcount1 > 0)
-        sectionCount++;
-    if (rowcount2 > 0)
-        sectionCount++;
-    
+    [self refreshUser];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
 }
 
@@ -181,6 +173,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self refreshUser];
     [self.tableview reloadData];
     [self refreshCourses:nil];
 }
@@ -196,6 +189,22 @@
 //        [self.tableview reloadData];
 //    } failure:^(NSError *error) {
 //    }];
+}
+
+- (void)refreshUser {
+    user = [BTUserDefault getUser];
+    rowcount1 = [user.supervising_courses count];
+    rowcount2 = [user.attending_courses count];
+    sectionCount = 0;
+    if (rowcount1 > 0)
+        sectionCount++;
+    if (rowcount2 > 0)
+        sectionCount++;
+    
+    if (sectionCount == 0)
+        _noCourseView.hidden = NO;
+    else
+        _noCourseView.hidden = YES;
 }
 
 #pragma UITableViewDelegate
@@ -496,7 +505,16 @@
 }
 
 - (void)clickerStart:(id)sender {
-
+    UIButton *send = (UIButton *) sender;
+    CourseCell *cell = (CourseCell *) send.superview.superview.superview;
+    
+    CreateClickerViewController *clickerView = [[CreateClickerViewController alloc] initWithNibName:@"CreateClickerViewController" bundle:nil];
+    if (cell.course != nil)
+        clickerView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
+    else
+        clickerView.cid = [NSString stringWithFormat:@"%ld", (long) cell.simpleCourse.id];
+    clickerView.currentcell = cell;
+    [self.navigationController pushViewController:clickerView animated:YES];
 }
 
 - (void)createNotice:(id)sender {
@@ -504,7 +522,10 @@
     CourseCell *cell = (CourseCell *) send.superview.superview.superview;
 
     CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
-    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
+    if (cell.course != nil)
+        noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
+    else
+        noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.simpleCourse.id];
     noticeView.currentcell = cell;
     [self.navigationController pushViewController:noticeView animated:YES];
 }

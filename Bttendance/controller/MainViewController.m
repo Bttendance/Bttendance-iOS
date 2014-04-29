@@ -62,6 +62,13 @@
     }];
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    
+    id barButtonAppearance = [UIBarButtonItem appearance];
+    NSDictionary *barButtonTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:16.0f], NSFontAttributeName, nil];
+    [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
+                                       forState:UIControlStateNormal];
+    [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
+                                       forState:UIControlStateHighlighted];
 }
 
 @end

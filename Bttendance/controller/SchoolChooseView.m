@@ -27,6 +27,7 @@
         // Custom initialization
         rowcount0 = 0;
         rowcount1 = 0;
+        sectionCount = 0;
         data0 = [[NSMutableArray alloc] init];
         data1 = [[NSMutableArray alloc] init];
 
@@ -99,6 +100,11 @@
             
             rowcount0 = data0.count;
             rowcount1 = data1.count;
+            sectionCount = 0;
+            if (rowcount0 > 0)
+                sectionCount++;
+            if (rowcount1 > 0)
+                sectionCount++;
             [self.tableview reloadData];
             
         } else {
@@ -106,6 +112,7 @@
             rowcount0 = 0;
             data1 = [NSMutableArray arrayWithArray:schools];
             rowcount1 = data1.count;
+            sectionCount = 1;
             [self.tableview reloadData];
         }
     } failure:^(NSError *error) {
@@ -113,56 +120,104 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return sectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0)
-        return rowcount0;
-    else if (section == 1)
-        return rowcount1;
-    else
+    if (sectionCount == 2) {
+        switch (section) {
+            case 0:
+                return rowcount0;
+            case 1:
+            default:
+                return rowcount1;
+        }
+    } else if (sectionCount == 1) {
+        if (rowcount0 > 0)
+            return rowcount0;
+        else
+            return rowcount1;
+    } else
         return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            if (auth)
-                return @"Employed Schools";
-            else
-                return @"Enrolled Schools";
-        case 1:
-        default:
+    if (sectionCount == 2) {
+        switch (section) {
+            case 0:
+                if (auth)
+                    return @"Employed Schools";
+                else
+                    return @"Enrolled Schools";
+            case 1:
+            default:
+                return @"Joinable Schools";
+        }
+    } else if (sectionCount == 1) {
+        if (rowcount0 > 0 && auth)
+            return @"Employed Schools";
+        else if (rowcount0 > 0 && !auth)
+            return @"Enrolled Schools";
+        else
             return @"Joinable Schools";
-    }
+    } else
+        return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (sectionCount == 2) {
+        switch (indexPath.section) {
+            case 0:
+                return [self mySchoolCellWith:tableView at:indexPath.row];
+            case 1:
+            default:
+                return [self otherSchoolCellWith:tableView at:indexPath.row];
+        }
+    } else if (sectionCount == 1) {
+        if (rowcount0 > 0)
+            return [self mySchoolCellWith:tableView at:indexPath.row];
+        else
+            return [self otherSchoolCellWith:tableView at:indexPath.row];
+    } else
+        return nil;
+}
+
+- (SchoolInfoCell *)mySchoolCellWith:(UITableView *)tableView at:(NSInteger)rowIndex {
+    
     static NSString *CellIdentifier = @"SchoolInfoCell";
     SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SchoolInfoCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-    if (indexPath.section == 0) {
-        cell.school = [data0 objectAtIndex:indexPath.row];
-        cell.Info_SchoolName.text = cell.school.name;
-        cell.Info_SchoolID.text = [cell.school.website absoluteString];
-        cell.backgroundColor = [BTColor BT_white:1];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.school = [data0 objectAtIndex:rowIndex];
+    cell.Info_SchoolName.text = cell.school.name;
+    cell.Info_SchoolID.text = [cell.school.website absoluteString];
+    cell.backgroundColor = [BTColor BT_white:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+}
 
+- (SchoolInfoCell *)otherSchoolCellWith:(UITableView *)tableView at:(NSInteger)rowIndex {
+    
+    static NSString *CellIdentifier = @"SchoolInfoCell";
+    SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SchoolInfoCell" owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
     }
-    if (indexPath.section == 1) {
-        cell.school = [data1 objectAtIndex:indexPath.row];
-        cell.Info_SchoolName.text = cell.school.name;
-        cell.Info_SchoolID.text = [cell.school.website absoluteString];
-        cell.backgroundColor = [BTColor BT_white:1];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-
+    
+    cell.school = [data1 objectAtIndex:rowIndex];
+    cell.Info_SchoolName.text = cell.school.name;
+    cell.Info_SchoolID.text = [cell.school.website absoluteString];
+    cell.backgroundColor = [BTColor BT_white:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -172,34 +227,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (auth) {
-        NSInteger scid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;
-        NSString *scname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.name;
-        NSString *prfname = [BTUserDefault getUser].username;
-        if (indexPath.section == 0) {
-            NSArray *school_list = [BTUserDefault getUser].employed_schools;
-            for (int i = 0; i < school_list.count; i++) {
-                if ([[school_list[i] objectForKey:@"id"] intValue] == scid) {
-                    AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-                    NSDictionary *params = @{@"serial" : [school_list[i] objectForKey:@"key"]};
-                    [AFmanager GET:[BTURL stringByAppendingString:@"/serial/validate"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        if ([[responseObject objectForKey:@"id"] integerValue] == scid) {
-                            CourseCreateController *courseCreateController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
-                            courseCreateController.schoolId = scid;
-                            courseCreateController.schoolName = scname;
-                            courseCreateController.prfName = prfname;
-                            [self.navigationController pushViewController:courseCreateController animated:YES];
-                        } else {
-//                            [self showSerialView:scid name:scname];
-                        }
-                    }      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                        [self showSerialView:scid name:scname];
-                    }];
-                    break;
-                }
-            }
-        } else {
-//            [self showSerialView:scid name:scname];
-        }
+        CourseCreateController *courseCreateController = [[CourseCreateController alloc] initWithNibName:@"CourseCreateController" bundle:nil];
+        courseCreateController.schoolId = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;
+        courseCreateController.schoolName = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.name;
+        courseCreateController.prfName = [BTUserDefault getUser].full_name;
+        [self.navigationController pushViewController:courseCreateController animated:YES];
     } else {
         CourseAttendView *courseAttendView = [[CourseAttendView alloc] initWithNibName:@"CourseAttendView" bundle:nil];
         courseAttendView.sid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;

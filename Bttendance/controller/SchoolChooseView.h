@@ -10,6 +10,8 @@
 #import "SchoolInfoCell.h"
 
 @interface SchoolChooseView : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+    
+    NSUInteger sectionCount;
     NSUInteger rowcount0;
     NSUInteger rowcount1;
     
