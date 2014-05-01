@@ -13,6 +13,7 @@
 #import "BTColor.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 NSString *createCourseRequest;
 
@@ -128,7 +129,7 @@ NSString *createCourseRequest;
             break;
         }
         case 1: {
-            [[cell textLabel] setText:@"Number"];
+            [[cell textLabel] setText:@"Course ID"];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -217,15 +218,30 @@ NSString *createCourseRequest;
     NSString *prof = [((CustomCell *) [self.tableView cellForRowAtIndexPath:profname_index]).textfield text];
     NSString *sid = [NSString stringWithFormat:@"%ld", (long) self.schoolId];
     
-    [BTAPIs createCourseWitheName:name
-                           number:number
-                           school:sid
-                    professorName:prof
-                          success:^(Email *email) {
-                              [self.navigationController popToRootViewControllerAnimated:YES];
-                          } failure:^(NSError *error) {
-                              button.enabled = YES;
-                          }];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Creating Course";
+    hud.yOffset = -40.0f;
+    
+    [BTAPIs createCourseRequestWithName:name
+                                 number:number
+                                 school:sid
+                          professorName:prof
+                                success:^(Email *email) {
+                                    [hud hide:YES];
+                                    NSString *message = [NSString stringWithFormat:@"Course creation has been succeeded. Please check your email.\n%@", email.email];
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Course Create Success"
+                                                                                    message:message
+                                                                                   delegate:nil
+                                                                          cancelButtonTitle:@"OK"
+                                                                          otherButtonTitles:nil];
+                                    [alert show];
+                                    [self.navigationController popToRootViewControllerAnimated:YES];
+                                } failure:^(NSError *error) {
+                                    button.enabled = YES;
+                                    [hud hide:YES];
+                                }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -145,12 +145,11 @@
 //    
 //    [message show];
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-            initWithTitle:@""
-                 delegate:self
-        cancelButtonTitle:@"Cancel"
-   destructiveButtonTitle:nil
-        otherButtonTitles:@"Create Course", @"Attend Course", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Create Course", @"Attend Course", nil];
     [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
 }
 
@@ -320,6 +319,15 @@
         [cell.clickerBt addTarget:self action:@selector(clickerStart:) forControlEvents:UIControlEventTouchUpInside];
         [cell.noticeBt addTarget:self action:@selector(createNotice:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    cell.clickerBt.hidden = NO;
+    cell.attendanceBt.hidden = NO;
+    cell.noticeBt.hidden = NO;
+    
+    cell.clickerView.hidden = NO;
+    cell.attendanceView.hidden = NO;
+    cell.noticeView.hidden = NO;
+    
     return cell;
 }
 

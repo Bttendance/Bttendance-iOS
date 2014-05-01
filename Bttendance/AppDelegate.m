@@ -27,6 +27,8 @@
 {
     [Crashlytics startWithAPIKey:@"933280081941175a775ecfe701fefa562b7f8a01"];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

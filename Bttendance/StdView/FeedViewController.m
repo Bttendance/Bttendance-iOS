@@ -65,7 +65,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 102.0;
+    Post *post = [data objectAtIndex:indexPath.row];
+    UIFont *cellfont = [UIFont systemFontOfSize:12];
+    NSString *rawmessage = post.message;
+    NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
+    CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    
+    return 102 + ceil(MessageLabelSize.size.height) - 15;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,6 +89,13 @@
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
     cell.gap = [cell.post.createdAt timeIntervalSinceNow];
     cell.cellbackground.layer.cornerRadius = 2;
+    
+    cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.Message.numberOfLines = 0;
+    [cell.Message sizeToFit];
+    NSInteger height = cell.Message.frame.size.height;
+    [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
+    [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -129,7 +142,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (data.count != 0) {
-
         PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
 
         Boolean manager = false;
@@ -151,7 +163,6 @@
 }
 
 - (void)startAnimation:(PostCell *)cell {
-
     float height = (180.0f + cell.gap) / 180.0f * 50.0f;
     cell.background.frame = CGRectMake(29, 75 - height, 50, height);
     [UIView animateWithDuration:180.0f + cell.gap

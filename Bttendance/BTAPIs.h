@@ -81,12 +81,12 @@
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure;
 
-+ (void)createCourseWitheName:(NSString *)name
-                       number:(NSString *)number
-                       school:(NSString *)school_id
-                professorName:(NSString *)professor_name
-                      success:(void (^)(Email *email))success
-                      failure:(void (^)(NSError *error))failure;
++ (void)createCourseRequestWithName:(NSString *)name
+                             number:(NSString *)number
+                             school:(NSString *)school_id
+                      professorName:(NSString *)professor_name
+                            success:(void (^)(Email *email))success
+                            failure:(void (^)(NSError *error))failure;
 
 + (void)attendCourse:(NSString *)course_id
              success:(void (^)(User *user))success
@@ -114,7 +114,7 @@
                  success:(void (^)(NSArray *users))success
                  failure:(void (^)(NSError *error))failure;
 
-+ (void)gradesExportWithCourse:(NSString *)course_id
++ (void)exportGradesWithCourse:(NSString *)course_id
                        success:(void (^)(Email *email))success
                        failure:(void (^)(NSError *error))failure;
 

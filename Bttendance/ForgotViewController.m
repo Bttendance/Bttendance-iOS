@@ -12,6 +12,7 @@
 #import "SignButtonCell.h"
 #import "BTColor.h"
 #import "BTAPIs.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ForgotViewController ()
 
@@ -182,16 +183,24 @@
 
 - (void)JSONForgotRequest:(NSString *)email {
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Recoverying Password";
+    hud.yOffset = -40.0f;
+    
     [BTAPIs forgotPasswordWithEmail:email
                             success:^(Email *email) {
+                                [hud hide:YES];
                                 NSString *message = [NSString stringWithFormat:@"Password recovery has been succeeded.\nPlease check your email.\n%@", email.email];
-                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password Recovery Success"
                                                                                 message:message
                                                                                delegate:self
                                                                       cancelButtonTitle:@"OK"
                                                                       otherButtonTitles:nil];
                                 [alert show];
                             } failure:^(NSError *error) {
+                                [hud hide:YES];
                             }];
 }
 

@@ -408,12 +408,12 @@
                         }];
 }
 
-+ (void)createCourseWitheName:(NSString *)name
-                       number:(NSString *)number
-                       school:(NSString *)school_id
-                professorName:(NSString *)professor_name
-                      success:(void (^)(Email *email))success
-                      failure:(void (^)(NSError *error))failure {
++ (void)createCourseRequestWithName:(NSString *)name
+                             number:(NSString *)number
+                             school:(NSString *)school_id
+                      professorName:(NSString *)professor_name
+                            success:(void (^)(Email *email))success
+                            failure:(void (^)(NSError *error))failure {
     
     
     NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
@@ -423,7 +423,7 @@
                              @"school_id" : school_id,
                              @"professor_name" : professor_name};
     
-    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create"]
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create/request"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              Email *email = [[Email alloc] initWithDictionary:responseObject];
@@ -566,7 +566,7 @@
                      }];
 }
 
-+ (void)gradesExportWithCourse:(NSString *)course_id
++ (void)exportGradesWithCourse:(NSString *)course_id
                        success:(void (^)(Email *email))success
                        failure:(void (^)(NSError *error))failure {
     
