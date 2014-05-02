@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CourseCell.h"
 
-@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
     __weak CourseCell *currentcell;
 
     NSInteger rowcount;

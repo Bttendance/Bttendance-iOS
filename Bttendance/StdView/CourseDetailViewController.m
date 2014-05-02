@@ -19,6 +19,7 @@
 #import "BTDateFormatter.h"
 #import "BTUserDefault.h"
 #import "Post.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface CourseDetailViewController ()
 
@@ -35,18 +36,42 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [self.navigationItem setLeftBarButtonItem:backButtonItem];
         self.navigationItem.leftItemsSupplementBackButton = NO;
+        
+        UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
+        [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
+        [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
     return self;
 }
 
 - (void)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setting:(id)sender {
+    if (auth) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Show Grades", @"Export Grades", nil];
+        [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Unjoin Course", nil];
+        [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
+    }
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
@@ -281,26 +306,90 @@
     NSLog(@"BTicon pressed");
 }
 
-- (void)show_grade {
-    GradeViewController *gradeView = [[GradeViewController alloc] initWithNibName:@"GradeViewController" bundle:nil];
-    gradeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.course.id];
-    gradeView.currentcell = currentcell;
-    [self.navigationController pushViewController:gradeView animated:YES];
+#pragma UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            if (auth)
+                [self show_grade];
+            else;
+                [self dettend_course];
+            break;
+        case 1:
+            if (auth)
+                [self export_grade];
+            break;
+        case 2:
+        default:
+            break;
+    }
 }
 
+#pragma Actions
 - (void)create_notice {
     CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
-    noticeView.cid = [NSString stringWithFormat:@"%ld", (long) currentcell.course.id];
+    noticeView.cid = [self courseId];
     noticeView.currentcell = currentcell;
     [self.navigationController pushViewController:noticeView animated:YES];
 }
 
 - (void)show_manager {
     ManagerViewController *managerView = [[ManagerViewController alloc] initWithNibName:@"ManagerViewController" bundle:nil];
-    managerView.courseId = currentcell.course.id;
+    managerView.courseId = [self courseId];
     managerView.courseName = currentcell.CourseName.text;
     [self.navigationController pushViewController:managerView animated:YES];
 }
 
+- (void)show_grade {
+    GradeViewController *gradeView = [[GradeViewController alloc] initWithNibName:@"GradeViewController" bundle:nil];
+    gradeView.cid = [self courseId];
+    gradeView.currentcell = currentcell;
+    [self.navigationController pushViewController:gradeView animated:YES];
+}
+
+- (void)export_grade {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Exporting Grades";
+    hud.yOffset = -40.0f;
+    
+    [BTAPIs exportGradesWithCourse:[self courseId]
+                           success:^(Email *email) {
+                               [hud hide:YES];
+                               NSString *message = [NSString stringWithFormat:@"Exporting Grades has been finished.\nPlease check your email.\n%@", email.email];
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exporting Grades"
+                                                                               message:message
+                                                                              delegate:self
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil];
+                               [alert show];
+                           } failure:^(NSError *error) {
+                               [hud hide:YES];
+                           }];
+}
+
+- (void)dettend_course {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Unjoining Course";
+    hud.yOffset = -40.0f;
+    [BTAPIs dettendCourse:[self courseId]
+                  success:^(User *user) {
+                      [hud hide:YES];
+                      [self.navigationController popViewControllerAnimated:YES];
+                  } failure:^(NSError *error) {
+                      [hud hide:YES];
+                  }];
+}
+
+#pragma Helpers
+-(NSString *)courseId {
+    NSInteger courseId = currentcell.course.id;
+    if (courseId == 0)
+        courseId = currentcell.simpleCourse.id;
+    return [NSString stringWithFormat:@"%ld", courseId];
+}
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
 
     User *user;
 

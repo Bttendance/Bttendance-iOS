@@ -28,7 +28,7 @@
         // Custom initialization
         searchField = [NSIndexPath indexPathForRow:0 inSection:0];
 
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -156,7 +156,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [BTAPIs addManagerWithCourse:[NSString stringWithFormat:@"%ld", (long) courseId]
+        [BTAPIs addManagerWithCourse:courseId
                              manager:managerName
                              success:^(Course *course) {
                                  NSString *message = [NSString stringWithFormat:@"\"%@\" is now a manager of course %@.", managerFullName, courseName];

@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface ManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
-    NSInteger courseId;
+    NSString *courseId;
     NSString *courseName;
     NSIndexPath *searchField;
     NSString *managerName;
     NSString *managerFullName;
 }
 
-@property(nonatomic) NSInteger courseId;
+@property(nonatomic) NSString *courseId;
 @property(nonatomic) NSString *courseName;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 

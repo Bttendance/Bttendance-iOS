@@ -31,7 +31,7 @@
         data0 = [[NSMutableArray alloc] init];
         data1 = [[NSMutableArray alloc] init];
 
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 9.5, 15)];
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];

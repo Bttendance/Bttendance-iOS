@@ -49,7 +49,7 @@
 //        [socketIO connectToHost:@"localhost" onPort:1337 withParams:params withNamespace:@"api/clickers/click"];
         [socketIO connectToHost:@"localhost" onPort:1337];
 
-        UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 13.5, 13.5)];
+        UIButton *plusButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [plusButton addTarget:self action:@selector(plusButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [plusButton setBackgroundImage:[UIImage imageNamed:@"plus@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:plusButton];
@@ -103,7 +103,7 @@
     NSLog(@"didReceiveMessage : %@", packet);
 }
 
-- (void)plusButtonPressed:(id)aResponder {
+- (void)plusButtonPressed:(id)selector {
     NSLog(@"plusButtonPressed");
 
 //    NSDictionary *params = @{@"post_id":@"1",

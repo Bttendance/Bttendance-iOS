@@ -34,9 +34,24 @@
         user = [BTUserDefault getUser];
         fullname = user.full_name;
         email = user.email;
+        
+        UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
+        [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
+        [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
 
     return self;
+}
+
+- (void)setting:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Edit Name", @"Edit Email", nil];
+    [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
 }
 
 - (void)viewDidLoad {
@@ -170,22 +185,32 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1)
-        return;
+#pragma UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self editName];
+            break;
+        case 1:
+            [self editEmail];
+            break;
+        case 2:
+        default:
+            break;
+    }
+}
 
-    if (indexPath.row == 0) {
-        //for edit name
-        ProfileNameEditViewController *stdProfileNameEditView = [[ProfileNameEditViewController alloc] init];
-        stdProfileNameEditView.fullname = fullname;
-        [self.navigationController pushViewController:stdProfileNameEditView animated:YES];
-    }
-    if (indexPath.row == 1) {
-        //for edit email
-        ProfileEmailEditViewController *stdProfileEmailEditView = [[ProfileEmailEditViewController alloc] init];
-        stdProfileEmailEditView.email = email;
-        [self.navigationController pushViewController:stdProfileEmailEditView animated:YES];
-    }
+#pragma Actions
+- (void)editName {
+    ProfileNameEditViewController *stdProfileNameEditView = [[ProfileNameEditViewController alloc] init];
+    stdProfileNameEditView.fullname = fullname;
+    [self.navigationController pushViewController:stdProfileNameEditView animated:YES];
+}
+
+- (void)editEmail {
+    ProfileEmailEditViewController *stdProfileEmailEditView = [[ProfileEmailEditViewController alloc] init];
+    stdProfileEmailEditView.email = email;
+    [self.navigationController pushViewController:stdProfileEmailEditView animated:YES];
 }
 
 @end
