@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import "FeedViewController.h"
+#import "CourseListViewController.h"
+#import "ProfileViewController.h"
+#import "MainViewController.h"
 #import "CatchPointController.h"
 #import "SignInController.h"
 #import "SignUpController.h"
@@ -15,7 +20,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
-#import "BTNotification.h"
+#import "Notification.h"
 
 @implementation AppDelegate
 
@@ -77,9 +82,10 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    NSDictionary *noti = userInfo;
+
+    Notification *noti = [[Notification alloc] initWithDictionary:userInfo];
     
-    if([[noti objectForKey:@"message"] isEqualToString:@"Attendance has been checked"]){
+    if([noti.message isEqualToString:@"Attendance has been checked"]){
         AudioServicesPlaySystemSound(4095);
     } else {
         AudioServicesPlaySystemSound(1007);

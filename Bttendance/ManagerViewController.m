@@ -112,7 +112,6 @@
             }
 
             [cell_new.button setTitle:@"ADD" forState:UIControlStateNormal];
-            cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;

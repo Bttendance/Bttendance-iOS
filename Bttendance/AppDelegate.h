@@ -7,12 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import "FeedViewController.h"
-#import "CourseListViewController.h"
-#import "ProfileViewController.h"
-#import "MainViewController.h"
-#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     UIViewController *firstview;

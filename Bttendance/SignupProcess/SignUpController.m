@@ -201,7 +201,6 @@ NSString *signupRequest;
             }
 
             [cell_new.button setTitle:@"Sign Up" forState:UIControlStateNormal];
-            cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;

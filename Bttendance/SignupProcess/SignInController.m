@@ -170,7 +170,6 @@ NSString *signinRequest;
             }
 
             [cell_new.button setTitle:@"Log In" forState:UIControlStateNormal];
-            cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;

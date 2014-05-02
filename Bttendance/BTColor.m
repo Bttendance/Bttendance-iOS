@@ -38,6 +38,26 @@
     return [UIColor colorWithRed:0.757 green:0.153 blue:0.176 alpha:_alpha];
 }
 
++ (UIColor *)BT_clicker_a:(CGFloat)_alpha {
+    return [UIColor colorWithRed:0 green:0.447 blue:0.69 alpha:_alpha];
+}
+
++ (UIColor *)BT_clicker_b:(CGFloat)_alpha {
+    return [UIColor colorWithRed:0.125 green:0.576 blue:0.796 alpha:_alpha];
+}
+
++ (UIColor *)BT_clicker_c:(CGFloat)_alpha {
+    return [UIColor colorWithRed:0.498 green:0.788 blue:0.937 alpha:_alpha];
+}
+
++ (UIColor *)BT_clicker_d:(CGFloat)_alpha {
+    return [UIColor colorWithRed:0.776 green:0.886 blue:0.976 alpha:_alpha];
+}
+
++ (UIColor *)BT_clicker_e:(CGFloat)_alpha {
+    return [UIColor colorWithRed:0.914 green:0.914 blue:0.969 alpha:_alpha];
+}
+
 @end
 
 //BT_navy 0, 0.447, 0.69
@@ -47,3 +67,9 @@
 //BT_silver 0.427, 0.427, 0.482
 //BT_white 0.945, 0.945, 1.00
 //BT_red 0.757, 0.153, 0.176
+
+//BT_clicker_a 0, 0.447, 0.69
+//BT_clicker_b 0.125, 0.576, 0.796
+//BT_clicker_c 0.498, 0.788, 0.937
+//BT_clicker_d 0.776, 0.886, 0.976
+//BT_clicker_e 0.914, 0.914, 0.969

@@ -187,7 +187,6 @@ NSString *createCourseRequest;
             }
 
             [cell_new.button setTitle:@"Create Course" forState:UIControlStateNormal];
-            cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(CreateButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;

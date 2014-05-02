@@ -11,8 +11,8 @@
 #import "BTColor.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
-#import "BTNotification.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "BTNotification.h"
 
 @interface ProfileEmailEditViewController ()
 

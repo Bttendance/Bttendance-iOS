@@ -41,18 +41,29 @@
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
+                                                        NSForegroundColorAttributeName : [BTColor BT_navy:1]
+                                                        } forState:UIControlStateSelected];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
+                                                        NSForegroundColorAttributeName : [BTColor BT_silver:1]
+                                                        } forState:UIControlStateNormal];
+    
+    [[UITabBar appearance] setTintColor:[BTColor BT_navy:1]];
+    [[UITabBar appearance] setBarTintColor:[BTColor BT_black:1]];
 
     UITabBarItem *item0 = [tbc.tabBar.items objectAtIndex:0];
-    item0.image = [UIImage imageNamed:@"iostabbari0"];
-    item0.selectedImage = [UIImage imageNamed:@"iostabbara0"];
+    item0.image = [[UIImage imageNamed:@"iostabbari0"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item0.selectedImage = [[UIImage imageNamed:@"iostabbara0"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     UITabBarItem *item1 = [tbc.tabBar.items objectAtIndex:1];
-    item1.image = [UIImage imageNamed:@"iostabbari1"];
-    item1.selectedImage = [UIImage imageNamed:@"iostabbara1"];
+    item1.image = [[UIImage imageNamed:@"iostabbari1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [[UIImage imageNamed:@"iostabbara1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     UITabBarItem *item2 = [tbc.tabBar.items objectAtIndex:2];
-    item2.image = [UIImage imageNamed:@"iostabbari2"];
-    item2.selectedImage = [UIImage imageNamed:@"iostabbara2"];
+    item2.image = [[UIImage imageNamed:@"iostabbari2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [[UIImage imageNamed:@"iostabbara2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     tbc.selectedIndex = 1;
     

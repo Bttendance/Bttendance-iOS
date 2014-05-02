@@ -24,4 +24,14 @@
 
 + (UIColor *)BT_red:(CGFloat)_alpha;
 
++ (UIColor *)BT_clicker_a:(CGFloat)_alpha;
+
++ (UIColor *)BT_clicker_b:(CGFloat)_alpha;
+
++ (UIColor *)BT_clicker_c:(CGFloat)_alpha;
+
++ (UIColor *)BT_clicker_d:(CGFloat)_alpha;
+
++ (UIColor *)BT_clicker_e:(CGFloat)_alpha;
+
 @end

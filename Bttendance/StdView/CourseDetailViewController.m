@@ -143,7 +143,6 @@
     cell.post = [data objectAtIndex:indexPath.row];
     cell.Title.text = currentcell.course.name;
     cell.Message.text = cell.post.message;
-    cell.cellbackground.layer.cornerRadius = 2;
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 

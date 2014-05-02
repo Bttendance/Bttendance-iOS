@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Post.h"
+#import "XYPieChart.h"
 
 @class SimplePost;
 
-@interface SimpleClicker : NSObject
+@interface SimpleClicker : NSObject <XYPieChartDataSource>
 
 @property(assign) NSInteger id;
 @property(assign) NSInteger  choice_count;
@@ -23,11 +24,12 @@
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSString *)detailText;
 
 @end
 
 
-@interface Clicker : NSObject
+@interface Clicker : NSObject <XYPieChartDataSource>
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;

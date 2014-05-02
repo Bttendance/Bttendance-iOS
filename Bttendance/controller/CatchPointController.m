@@ -44,9 +44,6 @@
         self.navigationController.navigationBar.translucent = NO;
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
-    //button round
-    _Signin.layer.cornerRadius = 3;
-    _Signup.layer.cornerRadius = 3;
 
     //button setting
 

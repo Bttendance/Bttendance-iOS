@@ -284,7 +284,6 @@
                 cell.CourseName.text = cell.course.name;
                 cell.Professor.text = cell.course.professor_name;
                 cell.School.text = cell.course.school.name;
-                cell.cellbackground.layer.cornerRadius = 2;
                 cell.isManager = true;
                 [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
 
@@ -311,7 +310,6 @@
                 cell.School.text = ((SimpleSchool *)user.employed_schools[i]).name;
         cell.CourseName.text = cell.simpleCourse.name;
         cell.Professor.text = cell.simpleCourse.professor_name;
-        cell.cellbackground.layer.cornerRadius = 2;
         cell.isManager = true;
         [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
         
@@ -350,7 +348,6 @@
                 cell.CourseName.text = cell.course.name;
                 cell.Professor.text = cell.course.professor_name;
                 cell.School.text = cell.course.school.name;
-                cell.cellbackground.layer.cornerRadius = 2;
                 cell.isManager = false;
                 [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
 
@@ -377,7 +374,6 @@
                 cell.School.text = ((SimpleSchool *)user.enrolled_schools[i]).name;
         cell.CourseName.text = cell.simpleCourse.name;
         cell.Professor.text = cell.simpleCourse.professor_name;
-        cell.cellbackground.layer.cornerRadius = 2;
         cell.isManager = true;
         [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
         

@@ -146,7 +146,6 @@
             }
 
             [cell_new.button setTitle:@"Submit" forState:UIControlStateNormal];
-            cell_new.button.layer.cornerRadius = 3;
             [cell_new.button addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
             cell.contentView.backgroundColor = [BTColor BT_grey:1];
 
