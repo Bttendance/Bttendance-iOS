@@ -12,7 +12,7 @@
 
 @interface ClickerDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property(assign, nonatomic) Clicker *clicker;
-@property(assign, nonatomic) Post *post;
+@property(retain, nonatomic) Clicker *clicker;
+@property(retain, nonatomic) Post *post;
 
 @end

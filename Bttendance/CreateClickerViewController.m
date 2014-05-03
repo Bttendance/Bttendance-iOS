@@ -17,7 +17,7 @@
 @end
 
 @implementation CreateClickerViewController
-@synthesize cid, currentcell;
+@synthesize cid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,8 +55,6 @@
     [titlelabel sizeToFit];
     
     _message.tintColor = [BTColor BT_silver:1];
-    
-    Cid = [NSString stringWithString:cid];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,7 +68,7 @@
 
 - (void)start_clicker {
     start.enabled = NO;
-    [BTAPIs startClickerWithCourse:Cid
+    [BTAPIs startClickerWithCourse:cid
                            message:[self.message text]
                        choiceCount:@"4"
                            success:^(Post *post) {

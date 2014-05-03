@@ -11,13 +11,14 @@
 #import "BTUserDefault.h"
 #import "GradeCell.h"
 #import "BTAPIs.h"
+#import "User.h"
 
 @interface GradeViewController ()
 
 @end
 
 @implementation GradeViewController
-@synthesize currentcell, cid;
+@synthesize cid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -47,21 +48,17 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = @"Grade";
+    titlelabel.text = @"Grades";
     [titlelabel sizeToFit];
     
-    [BTAPIs gradesWithCourse:cid success:^(NSArray *users) {
-        data = users;
+    [BTAPIs gradesWithCourse:cid success:^(NSArray *simpleUsers) {
+        data = simpleUsers;
         rowcount = data.count;
         [self.tableview reloadData];
     } failure:^(NSError *error) {
     }];
 
 };
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return rowcount;
@@ -80,11 +77,12 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"GradeCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-
+    
+    SimpleUser *simpleUser = [data objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.name.text = [[data objectAtIndex:indexPath.row] objectForKey:@"full_name"];
-    cell.idnumber.text = [[data objectAtIndex:indexPath.row] objectForKey:@"student_id"];
-    NSArray *stringcomp = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] componentsSeparatedByString:@"/"];
+    cell.name.text = simpleUser.full_name;
+    cell.idnumber.text = simpleUser.student_id;
+    NSArray *stringcomp = [simpleUser.grade componentsSeparatedByString:@"/"];
     cell.att.text = [stringcomp objectAtIndex:0];
     cell.tot.text = [stringcomp objectAtIndex:1];
 

@@ -418,7 +418,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CourseCell *cell = (CourseCell *) [self.tableview cellForRowAtIndexPath:indexPath];
     CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
-    courseDetailViewController.currentcell = cell;
+    courseDetailViewController.course = cell.course;
+    courseDetailViewController.simpleCourse = cell.simpleCourse;
 
     if (indexPath.section == 0) {
         courseDetailViewController.auth = YES;
@@ -520,7 +521,6 @@
         clickerView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
     else
         clickerView.cid = [NSString stringWithFormat:@"%ld", (long) cell.simpleCourse.id];
-    clickerView.currentcell = cell;
     [self.navigationController pushViewController:clickerView animated:YES];
 }
 
@@ -533,7 +533,6 @@
         noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.course.id];
     else
         noticeView.cid = [NSString stringWithFormat:@"%ld", (long) cell.simpleCourse.id];
-    noticeView.currentcell = cell;
     [self.navigationController pushViewController:noticeView animated:YES];
 }
 

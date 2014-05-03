@@ -20,6 +20,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *att;
 @property(weak, nonatomic) IBOutlet UILabel *tot;
 
-@property(assign, nonatomic) User *user;
+@property(retain, nonatomic) User *user;
 
 @end

@@ -65,6 +65,7 @@
     return YES;
 }
 
+#pragma RemoteNotification
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"fail to register remote notification, %@", error);
 }
@@ -94,6 +95,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWMESSAGE" object:nil];
 }
 
+#pragma StatusBar
+- (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame {
+
+}
+
+#pragma Background
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -166,7 +173,6 @@
 }
 
 #pragma mark - Core Data stack
-
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext

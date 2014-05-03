@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CourseCell.h"
+#import "Course.h"
 
-@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
-    __weak CourseCell *currentcell;
+@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
 
     NSInteger rowcount;
     NSArray *data;
@@ -21,7 +20,8 @@
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property(weak, nonatomic) CourseCell *currentcell;
+@property(retain, nonatomic) Course *course;
+@property(retain, nonatomic) SimpleCourse *simpleCourse;
 @property(nonatomic) Boolean auth;
 
 @end

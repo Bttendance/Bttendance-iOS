@@ -27,11 +27,16 @@
         self.email = [dictionary objectForKey:@"email"];
         self.full_name = [dictionary objectForKey:@"full_name"];
         self.profile_image = [NSURL URLWithString:[[dictionary objectForKey:@"profile_image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        //Added by APIs
+        self.grade = [dictionary objectForKey:@"grade"];
+        self.student_id = [dictionary objectForKey:@"student_id"];
     }
     return self;
 }
 
 @end
+
 
 
 @implementation User

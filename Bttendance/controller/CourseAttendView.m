@@ -12,6 +12,7 @@
 #import "BTAPIs.h"
 #import "Course.h"
 #import "School.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface CourseAttendView ()
 
@@ -208,7 +209,6 @@
     }
 
     if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
-
         [BTAPIs enrollSchool:[NSString stringWithFormat:@"%ld", sid]
                     identity:[[alertView textFieldAtIndex:0] text]
                      success:^(User *user) {
@@ -219,8 +219,16 @@
 }
 
 - (void)attendCourse {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Attending Course";
+    hud.yOffset = -40.0f;
+    
     [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long) currentcell.course.id]
                  success:^(User *user) {
+                     [hud hide:YES];
                      [[self tableview] beginUpdates];
                      [currentcell.Info_Check setBackgroundImage:[UIImage imageNamed:@"enrollconfirm@2x.png"] forState:UIControlStateNormal];
                      rowcount1--;
@@ -236,6 +244,7 @@
                      [[self tableview] moveRowAtIndexPath:comingcell_index toIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                      [[self tableview] endUpdates];
                  } failure:^(NSError *error) {
+                     [hud hide:YES];
                      [currentcell.Info_Check addTarget:self action:@selector(check_button_action:) forControlEvents:UIControlEventTouchUpInside];
                  }];
 }

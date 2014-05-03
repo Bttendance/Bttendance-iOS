@@ -229,8 +229,8 @@ NSString *createCourseRequest;
                           professorName:prof
                                 success:^(Email *email) {
                                     [hud hide:YES];
-                                    NSString *message = [NSString stringWithFormat:@"Course creation has been succeeded. Please check your email.\n%@", email.email];
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Course Create Success"
+                                    NSString *message = [NSString stringWithFormat:@"Verification code for activating your course has been sent via email.\n%@", email.email];
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Sent"
                                                                                     message:message
                                                                                    delegate:nil
                                                                           cancelButtonTitle:@"OK"

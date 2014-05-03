@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserInfoCell.h"
+#import "Post.h"
 
 @interface AttdStatViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     NSUInteger rowcount0;
@@ -20,10 +21,7 @@
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-
-@property(assign, nonatomic) NSInteger postId;
-@property(assign, nonatomic) NSInteger courseId;
-@property(assign, nonatomic) NSString *courseName;
+@property(retain, nonatomic) Post *post;
 
 - (IBAction)check_button_action:(id)sender;
 

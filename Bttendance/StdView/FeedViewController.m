@@ -41,6 +41,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    user = [BTUserDefault getUser];
     [self refreshFeed:nil];
 }
 
@@ -65,15 +66,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = [data objectAtIndex:indexPath.row];
     
-    post.type = @"clicker";
-    SimpleClicker *clicker = [[SimpleClicker alloc] init];
-    clicker.a_students = [[NSArray alloc] initWithObjects:@"1", nil];
-    clicker.b_students = [[NSArray alloc] initWithObjects:@"2", @"3", nil];
-    clicker.c_students = [[NSArray alloc] initWithObjects:@"4", @"5", nil];
-    clicker.d_students = [[NSArray alloc] initWithObjects:@"6", nil];
+//    post.type = @"clicker";
+//    SimpleClicker *clicker = [[SimpleClicker alloc] init];
+//    clicker.a_students = [[NSArray alloc] initWithObjects:@"1", nil];
+//    clicker.b_students = [[NSArray alloc] initWithObjects:@"2", @"3", nil];
+//    clicker.c_students = [[NSArray alloc] initWithObjects:@"4", @"5", nil];
+//    clicker.d_students = [[NSArray alloc] initWithObjects:@"6", nil];
 //    clicker.e_students = [[NSArray alloc] initWithObjects:@"7", @"8", nil];
-    clicker.choice_count = 4;
-    post.clicker = clicker;
+//    clicker.choice_count = 4;
+//    post.clicker = clicker;
     
     UIFont *cellfont = [UIFont systemFontOfSize:12];
     NSString *rawmessage = post.message;
@@ -82,7 +83,7 @@
     NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
     CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     
-    return 102 + ceil(MessageLabelSize.size.height) - 15;
+    return 102 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,7 +122,7 @@
     cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
     cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
-    NSInteger height = cell.Message.frame.size.height;
+    NSInteger height = MAX(cell.Message.frame.size.height, 15);
     [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
     [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
     
@@ -149,7 +150,7 @@
     cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
     cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
-    NSInteger height = cell.Message.frame.size.height;
+    NSInteger height = MAX(cell.Message.frame.size.height, 15);
     [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
     [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
     
@@ -158,12 +159,12 @@
     Boolean check = false;
     NSArray *checks = cell.post.attendance.checked_students;
     for (int i = 0; i < checks.count; i++) {
-        if ([BTUserDefault getUser].id == [checks[i] intValue])
+        if (user.id == [checks[i] intValue])
             check = true;
     }
     
     Boolean manager = false;
-    NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
+    NSArray *supervisingCourses = user.supervising_courses;
     for (int i = 0; i < [supervisingCourses count]; i++) {
         if (cell.post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
             manager = true;
@@ -206,7 +207,7 @@
     cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
     cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
-    NSInteger height = cell.Message.frame.size.height;
+    NSInteger height = MAX(cell.Message.frame.size.height, 15);
     [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
     [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
     
@@ -222,16 +223,14 @@
         PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
+        NSArray *supervisingCourses = user.supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++)
             if (cell.post.course.id == ((SimpleCourse *)supervisingCourses[i]).id)
                 manager = true;
 
         if (manager && [cell.post.type isEqualToString:@"attendance"]) {
             AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
-            statView.postId = cell.post.id;
-            statView.courseId = cell.post.course.id;
-            statView.courseName = cell.post.course.name;
+            statView.post = cell.post;
             [self.navigationController pushViewController:statView animated:YES];
         }
         
@@ -276,7 +275,7 @@
     if (cell.blinkTime < 0) {
 
         Boolean manager = false;
-        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
+        NSArray *supervisingCourses = user.supervising_courses;
         for (int i = 0; i < [supervisingCourses count]; i++) {
             if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
                 manager = true;

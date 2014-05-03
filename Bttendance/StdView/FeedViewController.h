@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface FeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 
     NSArray *data;
+    User *user;
 
     NSString *pid;
     NSString *cid;

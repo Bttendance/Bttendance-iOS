@@ -102,7 +102,7 @@
               failure:(void (^)(NSError *error))failure;
 
 + (void)studentsForCourse:(NSString *)course_id
-                  success:(void (^)(NSArray *users))success
+                  success:(void (^)(NSArray *simpleUsers))success
                   failure:(void (^)(NSError *error))failure;
 
 + (void)addManagerWithCourse:(NSString *)course_id
@@ -111,7 +111,7 @@
                      failure:(void (^)(NSError *error))failure;
 
 + (void)gradesWithCourse:(NSString *)course_id
-                 success:(void (^)(NSArray *users))success
+                 success:(void (^)(NSArray *simpleUsers))success
                  failure:(void (^)(NSError *error))failure;
 
 + (void)exportGradesWithCourse:(NSString *)course_id

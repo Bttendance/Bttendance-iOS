@@ -17,7 +17,7 @@
 @end
 
 @implementation CreateNoticeViewController
-@synthesize cid, currentcell;
+@synthesize cid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,8 +55,6 @@
     [titlelabel sizeToFit];
 
     _message.tintColor = [BTColor BT_silver:1];
-
-    Cid = [NSString stringWithString:cid];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,7 +68,7 @@
 
 - (void)post_Notice {
     post.enabled = NO;
-    [BTAPIs createNoticeWithCourse:Cid
+    [BTAPIs createNoticeWithCourse:cid
                            message:[self.message text] success:^(Post *post) {
                                [self.navigationController popViewControllerAnimated:YES];
                            } failure:^(NSError *error) {

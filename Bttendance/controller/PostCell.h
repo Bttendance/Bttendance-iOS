@@ -24,10 +24,10 @@
 
 @property(weak, nonatomic) IBOutlet UIView *cellbackground;
 
-@property(assign, nonatomic) Post *post;
+@property(retain, nonatomic) Post *post;
 @property(assign, nonatomic) NSInteger gap;
 
-@property(assign, nonatomic) NSTimer *blink;
+@property(retain, nonatomic) NSTimer *blink;
 @property(assign, nonatomic) NSInteger blinkTime;
 
 @end

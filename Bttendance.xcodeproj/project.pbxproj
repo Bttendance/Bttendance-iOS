@@ -114,6 +114,13 @@
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
 		D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */; };
+		D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B466F41912121500AB6486 /* notice_small@2x.png */; };
+		D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B466FA1912370A00AB6486 /* BTNotification.m */; };
+		D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B466FC1912527A00AB6486 /* clickerring@2x.png */; };
+		D4B467011912760A00AB6486 /* ClickerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B466FF1912760A00AB6486 /* ClickerDetailViewController.m */; };
+		D4B467021912760A00AB6486 /* ClickerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B467001912760A00AB6486 /* ClickerDetailViewController.xib */; };
+		D4B467061913504B00AB6486 /* ClickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B467041913504B00AB6486 /* ClickerCell.m */; };
+		D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B467051913504B00AB6486 /* ClickerCell.xib */; };
 		D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4BFBF18F639B7002DE88C /* XYPieChart.m */; };
 		D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC118F63B0F002DE88C /* a@2x.png */; };
 		D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC218F63B0F002DE88C /* attendance@2x.png */; };
@@ -121,7 +128,6 @@
 		D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC518F63B0F002DE88C /* c@2x.png */; };
 		D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC618F63B0F002DE88C /* clicker@2x.png */; };
 		D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC718F63B0F002DE88C /* d@2x.png */; };
-		D4B4BFD418F63B10002DE88C /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC818F63B10002DE88C /* notice@2x.png */; };
 		D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC918F63B10002DE88C /* plus@2x.png */; };
 		D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCA18F63B10002DE88C /* polledge@2x.png */; };
 		D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */; };
@@ -137,7 +143,6 @@
 		D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
-		D4BF2678190ED17D00B75521 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF2677190ED17D00B75521 /* BTNotification.m */; };
 		D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */; };
 		D4FD44B41908194F00FB52A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B31908194F00FB52A5 /* User.m */; };
 		D4FD44B719081F6F00FB52A5 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B619081F6F00FB52A5 /* Device.m */; };
@@ -314,6 +319,16 @@
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
 		D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
 		D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
+		D4B466F41912121500AB6486 /* notice_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice_small@2x.png"; sourceTree = "<group>"; };
+		D4B466F91912370A00AB6486 /* BTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNotification.h; sourceTree = "<group>"; };
+		D4B466FA1912370A00AB6486 /* BTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNotification.m; sourceTree = "<group>"; };
+		D4B466FC1912527A00AB6486 /* clickerring@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clickerring@2x.png"; sourceTree = "<group>"; };
+		D4B466FE1912760A00AB6486 /* ClickerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerDetailViewController.h; sourceTree = "<group>"; };
+		D4B466FF1912760A00AB6486 /* ClickerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerDetailViewController.m; sourceTree = "<group>"; };
+		D4B467001912760A00AB6486 /* ClickerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClickerDetailViewController.xib; sourceTree = "<group>"; };
+		D4B467031913504B00AB6486 /* ClickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerCell.h; sourceTree = "<group>"; };
+		D4B467041913504B00AB6486 /* ClickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerCell.m; sourceTree = "<group>"; };
+		D4B467051913504B00AB6486 /* ClickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClickerCell.xib; sourceTree = "<group>"; };
 		D4B4BFBE18F639B7002DE88C /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYPieChart.h; path = ../XYPieChart/XYPieChart.h; sourceTree = "<group>"; };
 		D4B4BFBF18F639B7002DE88C /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYPieChart.m; path = ../XYPieChart/XYPieChart.m; sourceTree = "<group>"; };
 		D4B4BFC118F63B0F002DE88C /* a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a@2x.png"; sourceTree = "<group>"; };
@@ -322,7 +337,6 @@
 		D4B4BFC518F63B0F002DE88C /* c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC618F63B0F002DE88C /* clicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clicker@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC718F63B0F002DE88C /* d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "d@2x.png"; sourceTree = "<group>"; };
-		D4B4BFC818F63B10002DE88C /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC918F63B10002DE88C /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		D4B4BFCA18F63B10002DE88C /* polledge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polledge@2x.png"; sourceTree = "<group>"; };
 		D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pollicon@2x.png"; sourceTree = "<group>"; };
@@ -341,8 +355,6 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
-		D4BF2676190ED17D00B75521 /* BTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNotification.h; sourceTree = "<group>"; };
-		D4BF2677190ED17D00B75521 /* BTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNotification.m; sourceTree = "<group>"; };
 		D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFResponseSerializer.h; sourceTree = "<group>"; };
 		D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFResponseSerializer.m; sourceTree = "<group>"; };
 		D4FD44B21908194F00FB52A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -553,6 +565,9 @@
 				2131F5141897D6E00096404D /* GradeCell.h */,
 				2131F5151897D6E00096404D /* GradeCell.m */,
 				2131F5161897D6E00096404D /* GradeCell.xib */,
+				D4B467031913504B00AB6486 /* ClickerCell.h */,
+				D4B467041913504B00AB6486 /* ClickerCell.m */,
+				D4B467051913504B00AB6486 /* ClickerCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -576,6 +591,7 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D4B466FC1912527A00AB6486 /* clickerring@2x.png */,
 				D4B4BFD918F63B3C002DE88C /* back@2x.png */,
 				D4B4BFC118F63B0F002DE88C /* a@2x.png */,
 				D4B4BFC218F63B0F002DE88C /* attendance@2x.png */,
@@ -583,7 +599,7 @@
 				D4B4BFC518F63B0F002DE88C /* c@2x.png */,
 				D4B4BFC618F63B0F002DE88C /* clicker@2x.png */,
 				D4B4BFC718F63B0F002DE88C /* d@2x.png */,
-				D4B4BFC818F63B10002DE88C /* notice@2x.png */,
+				D4B466F41912121500AB6486 /* notice_small@2x.png */,
 				D4B4BFC918F63B10002DE88C /* plus@2x.png */,
 				D4B4BFCA18F63B10002DE88C /* polledge@2x.png */,
 				D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */,
@@ -674,8 +690,8 @@
 				D472230C1909178500CE7015 /* BTUUID.m */,
 				D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */,
 				D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */,
-				D4BF2676190ED17D00B75521 /* BTNotification.h */,
-				D4BF2677190ED17D00B75521 /* BTNotification.m */,
+				D4B466F91912370A00AB6486 /* BTNotification.h */,
+				D4B466FA1912370A00AB6486 /* BTNotification.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -717,6 +733,9 @@
 				D4BBC04F18B3F72900551565 /* ManagerViewController.h */,
 				D4BBC05018B3F72900551565 /* ManagerViewController.m */,
 				D4BBC05118B3F72900551565 /* ManagerViewController.xib */,
+				D4B466FE1912760A00AB6486 /* ClickerDetailViewController.h */,
+				D4B466FF1912760A00AB6486 /* ClickerDetailViewController.m */,
+				D4B467001912760A00AB6486 /* ClickerDetailViewController.xib */,
 			);
 			name = SubViewController;
 			sourceTree = "<group>";
@@ -868,8 +887,8 @@
 				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseView.xib in Resources */,
-				D4B4BFD418F63B10002DE88C /* notice@2x.png in Resources */,
 				21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */,
+				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
@@ -879,6 +898,7 @@
 				D41C62D218731C33005A4CF9 /* iostabbara0@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
 				D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */,
+				D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */,
 				D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */,
 				D41C62D418731C33005A4CF9 /* iostabbara2@2x.png in Resources */,
 				218D9AF81886AE2700E8BAD0 /* ProfileViewController.xib in Resources */,
@@ -890,6 +910,7 @@
 				D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */,
 				217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */,
 				2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */,
+				D4B467021912760A00AB6486 /* ClickerDetailViewController.xib in Resources */,
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				217D75C01850FD3700AA0D95 /* Personalize_bg2@2x.jpg in Resources */,
 				2191790C186D951000799CC0 /* CourseAttendView.xib in Resources */,
@@ -902,6 +923,7 @@
 				212C05AF183B726D00AD6654 /* CatchPointController.xib in Resources */,
 				D41C62D318731C33005A4CF9 /* iostabbara1@2x.png in Resources */,
 				D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */,
+				D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */,
 				D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */,
 				D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */,
 				218D9AEE1886AE0000E8BAD0 /* FeedViewController.xib in Resources */,
@@ -988,12 +1010,14 @@
 				D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */,
 				2135C3AF182BDD4E002C45DB /* Bttendance.xcdatamodeld in Sources */,
 				21469A4A18929ED7005D4FF2 /* CourseDetailHeaderView.m in Sources */,
+				D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */,
 				21B599E31876A7500063D7C4 /* ButtonCell.m in Sources */,
 				D4FD44B719081F6F00FB52A5 /* Device.m in Sources */,
 				21917910186D958E00799CC0 /* CourseInfoCell.m in Sources */,
 				212C05AE183B726D00AD6654 /* CatchPointController.m in Sources */,
 				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateController.m in Sources */,
+				D4B467061913504B00AB6486 /* ClickerCell.m in Sources */,
 				2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */,
 				218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */,
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
@@ -1017,6 +1041,7 @@
 				D4BAA504190FADC200E414CC /* CreateClickerViewController.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */,
+				D4B467011912760A00AB6486 /* ClickerDetailViewController.m in Sources */,
 				D4FD44C019081F9300FB52A5 /* School.m in Sources */,
 				218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */,
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
@@ -1032,7 +1057,6 @@
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
-				D4BF2678190ED17D00B75521 /* BTNotification.m in Sources */,
 				D472230A1908E55D00CE7015 /* Error.m in Sources */,
 				21917903186C38DD00799CC0 /* MainViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
@@ -1149,7 +1173,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Tae Hwan Kim (DS2DX5746A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tae Hwan Kim (DS2DX5746A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",

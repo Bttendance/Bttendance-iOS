@@ -17,6 +17,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *Email;
 @property(weak, nonatomic) IBOutlet UIButton *Check;
 
-@property(assign, nonatomic) User *user;
+@property(retain, nonatomic) SimpleUser *simpleUser;
 
 @end

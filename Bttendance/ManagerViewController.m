@@ -13,6 +13,7 @@
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "BTColor.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ManagerViewController ()
 
@@ -133,47 +134,55 @@
 }
 
 - (IBAction)add:(id)sender {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = @"Loading";
+    hud.detailsLabelText = @"Searching User";
+    hud.yOffset = -40.0f;
+    
     NSString *search = [((CustomCell *) [self.tableView cellForRowAtIndexPath:searchField]).textfield text];
     [BTAPIs searchUser:search
                success:^(User *user) {
+                   [hud hide:YES];
+                   managerName = user.username;
+                   managerFullName = user.full_name;
                    NSString *message = [NSString stringWithFormat:@"Would you like to add \"%@\" as a manager of course %@", user.full_name, courseName];
                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Manager"
                                                                    message:message
                                                                   delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Confirm", nil];
+                                                         cancelButtonTitle:@"Confirm"
+                                                         otherButtonTitles:@"Cancel", nil];
+                   alert.tag = 200;
                    [alert show];
                } failure:^(NSError *error) {
-                   NSString *message = [NSString stringWithFormat:@"Fail to find a user \"%@\".\nPlease check User Id of Email again.", search];
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                   message:message
-                                                                  delegate:nil
-                                                         cancelButtonTitle:@"OK"
-                                                         otherButtonTitles:nil, nil];
-                   [alert show];
+                   [hud hide:YES];
                }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
+    if (buttonIndex == 0 && alertView.tag == 200) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [BTColor BT_navy:0.7];
+        hud.labelText = @"Loading";
+        hud.detailsLabelText = @"Adding Manager";
+        hud.yOffset = -40.0f;
+        
         [BTAPIs addManagerWithCourse:courseId
                              manager:managerName
                              success:^(Course *course) {
-                                 NSString *message = [NSString stringWithFormat:@"\"%@\" is now a manager of course %@.", managerFullName, courseName];
-                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                 [hud hide:YES];
+                                 NSString *message = [NSString stringWithFormat:@"\"%@\" is now manager of %@.", managerFullName, courseName];
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Manager Added"
                                                                                  message:message
                                                                                 delegate:nil
                                                                        cancelButtonTitle:@"OK"
                                                                        otherButtonTitles:nil, nil];
                                  [alert show];
+                                 [self.navigationController popViewControllerAnimated:YES];
                              } failure:^(NSError *error) {
-                                 NSString *message = [NSString stringWithFormat:@"Fail to add a user %@ as a manager.\nPlease check User Id of Email again.", managerFullName];
-                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                                 message:message
-                                                                                delegate:nil
-                                                                       cancelButtonTitle:@"OK"
-                                                                       otherButtonTitles:nil, nil];
-                                 [alert show];
+                                 [hud hide:YES];
                              }];
     }
 }

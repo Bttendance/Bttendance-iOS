@@ -19,6 +19,6 @@
 @property(weak, nonatomic) IBOutlet UIButton *Info_Check;
 @property(weak, nonatomic) IBOutlet UIButton *Info_Button;
 
-@property(assign, nonatomic) Course *course;
+@property(retain, nonatomic) Course *course;
 
 @end

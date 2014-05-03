@@ -19,6 +19,10 @@
 @property(strong, nonatomic) NSString  *full_name;
 @property(strong, nonatomic) NSURL  *profile_image;
 
+//Added by APIs
+@property(strong, nonatomic) NSString  *grade;
+@property(strong, nonatomic) NSString  *student_id;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

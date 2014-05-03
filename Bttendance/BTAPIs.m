@@ -62,6 +62,16 @@
                                  otherButtonTitles:@"Cancel", nil];
         alert.tag = statusCode;
         [alert show];
+    } else if (statusCode == 503) {
+        UIAlertView *alert;
+        NSString *message = @"Too many users are connecting at the same time, please try again later.";
+        alert = [[UIAlertView alloc] initWithTitle:@"Ooooppss!"
+                                           message:message
+                                          delegate:self
+                                 cancelButtonTitle:@"Confirm"
+                                 otherButtonTitles:nil];
+        alert.tag = statusCode;
+        [alert show];
     } else { //(log, toast, alert)
         if ([errorJson.type isEqualToString:@"log"]) {
             NSLog(@"Error : %@", errorJson.message);
@@ -71,19 +81,19 @@
             UIViewController *currentViewController = viewControllers[[viewControllers count] - 1];
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:currentViewController.view animated:YES];
             hud.mode = MBProgressHUDModeText;
-            hud.color = [BTColor BT_navy:0.7];
+            hud.color = [BTColor BT_cyan:0.7];
             hud.detailsLabelText = errorJson.message;
             hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
-            hud.yOffset = - currentViewController.view.frame.size.height / 2 + 44;
+            hud.yOffset = - currentViewController.view.frame.size.height / 2 + 104;
             hud.margin = 14.0f;
-            [hud hide:YES afterDelay:1];
+            [hud hide:YES afterDelay:1.5];
         } else if ([errorJson.type isEqualToString:@"alert"]) {
             UIAlertView *alert;
             alert = [[UIAlertView alloc] initWithTitle:errorJson.title
                                                message:errorJson.message
                                               delegate:self
                                      cancelButtonTitle:@"OK"
-                                     otherButtonTitles:nil, nil];
+                                     otherButtonTitles:nil];
             alert.tag = statusCode;
             [alert show];
         }
@@ -501,7 +511,7 @@
 }
 
 + (void)studentsForCourse:(NSString *)course_id
-                  success:(void (^)(NSArray *users))success
+                  success:(void (^)(NSArray *simpleUsers))success
                   failure:(void (^)(NSError *error))failure {
     
     NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
@@ -511,12 +521,12 @@
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/students"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            NSMutableArray *users = [NSMutableArray array];
+                            NSMutableArray *simpleUsers = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
-                                User *user = [[User alloc] initWithDictionary:dic];
-                                [users addObject:user];
+                                SimpleUser *simpleUser = [[SimpleUser alloc] initWithDictionary:dic];
+                                [simpleUsers addObject:simpleUser];
                             }
-                            success(users);
+                            success(simpleUsers);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             failure(error);
@@ -545,7 +555,7 @@
 }
 
 + (void)gradesWithCourse:(NSString *)course_id
-                 success:(void (^)(NSArray *users))success
+                 success:(void (^)(NSArray *simpleUsers))success
                  failure:(void (^)(NSError *error))failure {
     
     NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
@@ -554,12 +564,12 @@
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/grades"]
                      parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         NSMutableArray *users = [NSMutableArray array];
+                         NSMutableArray *simpleUsers = [NSMutableArray array];
                          for (NSDictionary *dic in responseObject) {
-                             User *user = [[User alloc] initWithDictionary:dic];
-                             [users addObject:user];
+                             SimpleUser *simpleUser = [[SimpleUser alloc] initWithDictionary:dic];
+                             [simpleUsers addObject:simpleUser];
                          }
-                         success(users);
+                         success(simpleUsers);
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          [self failureHandleWithError:error];
                          failure(error);
