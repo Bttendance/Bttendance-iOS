@@ -66,6 +66,11 @@
 }
 
 - (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index {
+    
+    NSInteger participatedStudents = self.a_students.count + self.b_students.count + self.c_students.count + self.d_students.count + self.e_students.count;
+    if (participatedStudents == 0)
+        return 1;
+    
     switch (index) {
         case 0:
             return self.a_students.count;
@@ -130,6 +135,11 @@
 }
 
 - (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index {
+    
+    NSInteger participatedStudents = self.a_students.count + self.b_students.count + self.c_students.count + self.d_students.count + self.e_students.count;
+    if (participatedStudents == 0)
+        return 1;
+    
     switch (index) {
         case 0:
             return self.a_students.count;

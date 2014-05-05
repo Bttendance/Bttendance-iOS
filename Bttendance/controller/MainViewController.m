@@ -12,6 +12,7 @@
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "BTNotification.h"
+#import "BTAgent.h"
 
 @interface MainViewController ()
 
@@ -23,8 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [self.view addSubview:tbc.view];
-
+        [self.view addSubview:tabBarController.view];
     }
     return self;
 }
@@ -53,24 +53,19 @@
     [[UITabBar appearance] setTintColor:[BTColor BT_navy:1]];
     [[UITabBar appearance] setBarTintColor:[BTColor BT_black:1]];
 
-    UITabBarItem *item0 = [tbc.tabBar.items objectAtIndex:0];
+    UITabBarItem *item0 = [tabBarController.tabBar.items objectAtIndex:0];
     item0.image = [[UIImage imageNamed:@"iostabbari0"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item0.selectedImage = [[UIImage imageNamed:@"iostabbara0"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    UITabBarItem *item1 = [tbc.tabBar.items objectAtIndex:1];
+    UITabBarItem *item1 = [tabBarController.tabBar.items objectAtIndex:1];
     item1.image = [[UIImage imageNamed:@"iostabbari1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [[UIImage imageNamed:@"iostabbara1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    UITabBarItem *item2 = [tbc.tabBar.items objectAtIndex:2];
+    UITabBarItem *item2 = [tabBarController.tabBar.items objectAtIndex:2];
     item2.image = [[UIImage imageNamed:@"iostabbari2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item2.selectedImage = [[UIImage imageNamed:@"iostabbara2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    tbc.selectedIndex = 1;
-    
-    [BTAPIs autoSignInInSuccess:^(User *user) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
-    } failure:^(NSError *error) {
-    }];
+    tabBarController.selectedIndex = 1;
 
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
@@ -80,6 +75,15 @@
                                        forState:UIControlStateNormal];
     [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
                                        forState:UIControlStateHighlighted];
+    
+    [BTAgent sharedInstance];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [BTAPIs autoSignInInSuccess:^(User *user) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+    } failure:^(NSError *error) {
+    }];
 }
 
 @end

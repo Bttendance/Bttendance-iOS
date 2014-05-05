@@ -18,6 +18,7 @@
 #import "AttdStatViewController.h"
 #import "BTDateFormatter.h"
 #import "BTUserDefault.h"
+#import "BTNotification.h"
 #import "Post.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "User.h"
@@ -33,9 +34,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:@"NEWMESSAGE" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader:) name:[NSString stringWithFormat:@"%@%@", CourseUpdated, [self courseId]] object:nil];
 
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
@@ -101,23 +103,11 @@
     [self tableview].backgroundColor = [BTColor BT_grey:1];
 
     //set header view
-    CourseDetailHeaderView *coursedetailheaderview = [[CourseDetailHeaderView alloc] init];
-
+    coursedetailheaderview = [[CourseDetailHeaderView alloc] init];
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
     coursedetailheaderview = [topLevelObjects objectAtIndex:0];
-
-    coursedetailheaderview.profname.text = [self profName];
-    coursedetailheaderview.schoolname.text = [self schoolName];
-    coursedetailheaderview.background.layer.cornerRadius = 52.5f;
-    coursedetailheaderview.background.layer.masksToBounds = YES;
-    coursedetailheaderview.studentNumber.text = [NSString stringWithFormat:@"%ld students", [self studentCount]];
-    coursedetailheaderview.attendanceGrade.text = [NSString stringWithFormat:@"%@%% attendance rate", [self grade]];
-    coursedetailheaderview.clickerUsage.text = [NSString stringWithFormat:@"%ld clickers", [self clickerUsage]];
-    coursedetailheaderview.noticeUsage.text = [NSString stringWithFormat:@"%ld notices", [self noticeUsage]];
     
-    [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
-    [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
-    [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
+    [self refreshHeader:nil];
 
     if (auth) {
         [coursedetailheaderview.BTicon addTarget:self action:@selector(BTiconAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -151,6 +141,29 @@
 //                  }];
 }
 
+- (void)refreshHeader:(id)sender {
+    NSNotification *notification = sender;
+    if ([notification object] != nil)
+        course = [notification object];
+
+    coursedetailheaderview.profname.text = [self profName];
+    coursedetailheaderview.schoolname.text = [self schoolName];
+    coursedetailheaderview.background.layer.cornerRadius = 52.5f;
+    coursedetailheaderview.background.layer.masksToBounds = YES;
+    coursedetailheaderview.studentNumber.text = [NSString stringWithFormat:@"%d students", (int)[self studentCount]];
+    coursedetailheaderview.attendanceGrade.text = [NSString stringWithFormat:@"%@%% attendance rate", [self grade]];
+    coursedetailheaderview.clickerUsage.text = [NSString stringWithFormat:@"%d clickers", (int)[self clickerUsage]];
+    coursedetailheaderview.noticeUsage.text = [NSString stringWithFormat:@"%d notices", (int)[self noticeUsage]];
+    
+    [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
+    
+    double gap = [course.attdCheckedAt timeIntervalSinceNow];
+    if (180.0f + gap > 0.0f && course != nil)
+        [coursedetailheaderview.attendanceBt removeTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return rowcount;
 }
@@ -161,144 +174,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 102.0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
-    }
-    
-    cell.post = [data objectAtIndex:indexPath.row];
-    cell.Title.text = [self courseName];
-    cell.Message.text = cell.post.message;
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    if ([[[data objectAtIndex:indexPath.row] objectForKey:@"type"] isEqualToString:@"notice"]) {
-        [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
-        [cell.check_overlay setImage:nil];
-    } else {
-
-        Boolean check = false;
-        NSArray *checks = [[data objectAtIndex:indexPath.row] objectForKey:@"checks"];
-        for (int i = 0; i < checks.count; i++) {
-            NSString *check_id = [NSString stringWithFormat:@"%@", [[[data objectAtIndex:indexPath.row] objectForKey:@"checks"] objectAtIndex:i]];
-            if ([my_id isEqualToString:check_id])
-                check = true;
-        }
-
-        Boolean manager = false;
-        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
-        for (int i = 0; i < [supervisingCourses count]; i++) {
-            if ([[[data objectAtIndex:indexPath.row] objectForKey:@"course"] intValue] == [[supervisingCourses objectAtIndex:i] intValue])
-                manager = true;
-        }
-
-        if (manager) {
-            if (180.0f + cell.gap > 0.0f)
-                [self startAnimation:cell];
-            else {
-                int grade = [[[data objectAtIndex:indexPath.row] objectForKey:@"grade"] intValue];
-                [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
-            }
-        } else {
-            if (!check) {
-                if (180.0f + cell.gap > 0.0f) {
-                    [self startAnimation:cell];
-                } else if (!check) {
-                    [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
-                    [cell.check_overlay setImage:nil];
-                }
-            }
-        }
-    }
-    return cell;
-
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (data.count != 0) {
-        PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
-
-        Boolean manager = false;
-        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
-        for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
-                manager = true;
-        }
-
-        if (!manager || [cell.post.type isEqualToString:@"notice"])
-            return;
-
-        AttdStatViewController *statView = [[AttdStatViewController alloc] initWithNibName:@"AttdStatViewController" bundle:nil];
-        statView.post = cell.post;
-        [self.navigationController pushViewController:statView animated:YES];
-    }
-}
-
-- (void)startAnimation:(PostCell *)cell {
-
-    float height = (180.0f + cell.gap) / 180.0f * 50.0f;
-    cell.background.frame = CGRectMake(29, 75 - height, 50, height);
-    [UIView animateWithDuration:180.0f + cell.gap
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         cell.background.frame = CGRectMake(29, 75, 50, 0);
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished)
-                             [self refreshFeed:nil];
-                     }];
-
-
-    cell.blinkTime = 180 + cell.gap;
-    if (cell.blink != nil)
-        [cell.blink invalidate];
-    NSTimer *blink = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(blink:) userInfo:[NSDictionary dictionaryWithObjectsAndKeys:cell, @"cell", nil] repeats:YES];
-    cell.blink = blink;
-}
-
-- (void)blink:(NSTimer *)timer {
-    PostCell *cell = [[timer userInfo] objectForKey:@"cell"];
-
-    cell.blinkTime--;
-    if (cell.blinkTime < 0) {
-
-        Boolean manager = false;
-        NSArray *supervisingCourses = [BTUserDefault getUser].supervising_courses;
-        for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (cell.post.course.id == [[supervisingCourses objectAtIndex:i] intValue])
-                manager = true;
-        }
-
-        if (manager) {
-            cell.check_icon.alpha = 1;
-            if (cell.blink != nil)
-                [cell.blink invalidate];
-            cell.blink = nil;
-        } else {
-            [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
-            [cell.check_overlay setImage:nil];
-        }
-        return;
-    }
-
-    if (cell.check_icon.alpha < 0.5) {
-        [UIImageView beginAnimations:nil context:NULL];
-        [UIImageView setAnimationDuration:1.0];
-        cell.check_icon.alpha = 1;
-        [UIImageView commitAnimations];
-    } else {
-        [UIImageView beginAnimations:nil context:NULL];
-        [UIImageView setAnimationDuration:1.0];
-        cell.check_icon.alpha = 0;
-        [UIImageView commitAnimations];
-    }
 }
 
 - (void)showgrade:(CGFloat)grade :(CourseDetailHeaderView *)view {
@@ -417,7 +292,7 @@
     NSInteger courseId = course.id;
     if (courseId == 0)
         courseId = simpleCourse.id;
-    return [NSString stringWithFormat:@"%ld", courseId];
+    return [NSString stringWithFormat:@"%d", (int)courseId];
 }
 
 -(NSString *)courseName {

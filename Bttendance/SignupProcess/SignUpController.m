@@ -281,6 +281,7 @@ NSString *signupRequest;
         [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {
             [hud hide:YES];
             MainViewController *mainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+            self.navigationController.navigationBarHidden = YES;
             [self.navigationController setViewControllers:[NSArray arrayWithObject:mainView] animated:NO];
         } failure:^(NSError *error) {
             [hud hide:YES];

@@ -28,6 +28,8 @@
 
 @implementation BTAPIs
 
+static UIAlertView *Ooooppss;
+
 + (AFHTTPRequestOperationManager *)sharedAFManager
 {
 	static AFHTTPRequestOperationManager *manager = nil;
@@ -41,14 +43,14 @@
         [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
 #endif
 	});
-	return (manager);
+	return manager;
 }
 
 + (void)failureHandleWithError:(NSError *)error {
     
-    //        401 : Auto Sign Out
-    //        441 : Update Recommended
-    //        442 : Update Required
+    //401 : Auto Sign Out
+    //441 : Update Recommended
+    //442 : Update Required
     
     NSInteger statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
     Error *errorJson = [[Error alloc] initWithDictionary:[[error userInfo] objectForKey:AFResponseSerializerKey]];
@@ -63,15 +65,18 @@
         alert.tag = statusCode;
         [alert show];
     } else if (statusCode == 503) {
-        UIAlertView *alert;
-        NSString *message = @"Too many users are connecting at the same time, please try again later.";
-        alert = [[UIAlertView alloc] initWithTitle:@"Ooooppss!"
-                                           message:message
-                                          delegate:self
-                                 cancelButtonTitle:@"Confirm"
-                                 otherButtonTitles:nil];
-        alert.tag = statusCode;
-        [alert show];
+        if (Ooooppss == nil) {
+            NSString *message = @"Too many users are connecting at the same time, please try again later.";
+            Ooooppss = [[UIAlertView alloc] initWithTitle:@"Ooooppss!"
+                                               message:message
+                                              delegate:self
+                                     cancelButtonTitle:@"Confirm"
+                                     otherButtonTitles:nil];
+            Ooooppss.tag = statusCode;
+        }
+        
+        if (!Ooooppss.visible)
+            [Ooooppss show];
     } else { //(log, toast, alert)
         if ([errorJson.type isEqualToString:@"log"]) {
             NSLog(@"Error : %@", errorJson.message);
@@ -657,6 +662,26 @@
                              [self failureHandleWithError:error];
                              failure(error);
                          }];
+}
+
++ (void)fromCoursesWithCourses:(NSArray *)course_ids
+                       success:(void (^)(NSArray *attendanceIDs))success
+                       failure:(void (^)(NSError *error))failure {
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:[BTUserDefault getUsername] forKey:@"username"];
+    [params setObject:[BTUserDefault getPassword] forKey:@"password"];
+    for (int i = 0; i < course_ids.count; i++)
+        [params setObject:[NSString stringWithFormat:@"%@", course_ids[i]] forKey:@"course_ids"];
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/attendances/from/courses"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            success(responseObject);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)foundDeviceWithAttendance:(NSString *)attendance_id

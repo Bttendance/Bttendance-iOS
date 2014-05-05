@@ -51,8 +51,8 @@
 		2182679D18A8810800F71819 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679C18A8810800F71819 /* AdSupport.framework */; };
 		218D9AED1886AE0000E8BAD0 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9AEB1886AE0000E8BAD0 /* FeedViewController.m */; };
 		218D9AEE1886AE0000E8BAD0 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9AEC1886AE0000E8BAD0 /* FeedViewController.xib */; };
-		218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9AF01886AE0F00E8BAD0 /* CourseListViewController.m */; };
-		218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9AF11886AE0F00E8BAD0 /* CourseListViewController.xib */; };
+		218D9AF21886AE0F00E8BAD0 /* CoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9AF01886AE0F00E8BAD0 /* CoursesViewController.m */; };
+		218D9AF31886AE0F00E8BAD0 /* CoursesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9AF11886AE0F00E8BAD0 /* CoursesViewController.xib */; };
 		218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */; };
 		218D9AF81886AE2700E8BAD0 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9AF61886AE2700E8BAD0 /* ProfileViewController.xib */; };
 		218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9B0B188EAE1B00E8BAD0 /* ProfileHeaderView.m */; };
@@ -98,7 +98,9 @@
 		D41C62D718731C33005A4CF9 /* iostabbari2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41C62D118731C33005A4CF9 /* iostabbari2@2x.png */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380E9B1916DF4D008F8A78 /* BTBlink.m */; };
 		D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D44224D818B5F06A0028B048 /* BTDateFormatter.m */; };
+		D45B5D431915F84900C8C015 /* BTAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B5D421915F84900C8C015 /* BTAgent.m */; };
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotViewController.m */; };
 		D46D893418AFED7C0051F291 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotViewController.xib */; };
@@ -228,9 +230,9 @@
 		218D9AEA1886AE0000E8BAD0 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedViewController.h; path = StdView/FeedViewController.h; sourceTree = "<group>"; };
 		218D9AEB1886AE0000E8BAD0 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedViewController.m; path = StdView/FeedViewController.m; sourceTree = "<group>"; };
 		218D9AEC1886AE0000E8BAD0 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedViewController.xib; path = StdView/FeedViewController.xib; sourceTree = "<group>"; };
-		218D9AEF1886AE0F00E8BAD0 /* CourseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseListViewController.h; path = StdView/CourseListViewController.h; sourceTree = "<group>"; };
-		218D9AF01886AE0F00E8BAD0 /* CourseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseListViewController.m; path = StdView/CourseListViewController.m; sourceTree = "<group>"; };
-		218D9AF11886AE0F00E8BAD0 /* CourseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseListViewController.xib; path = StdView/CourseListViewController.xib; sourceTree = "<group>"; };
+		218D9AEF1886AE0F00E8BAD0 /* CoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoursesViewController.h; path = StdView/CoursesViewController.h; sourceTree = "<group>"; };
+		218D9AF01886AE0F00E8BAD0 /* CoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoursesViewController.m; path = StdView/CoursesViewController.m; sourceTree = "<group>"; };
+		218D9AF11886AE0F00E8BAD0 /* CoursesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CoursesViewController.xib; path = StdView/CoursesViewController.xib; sourceTree = "<group>"; };
 		218D9AF41886AE2600E8BAD0 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = StdView/ProfileViewController.h; sourceTree = "<group>"; };
 		218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = StdView/ProfileViewController.m; sourceTree = "<group>"; };
 		218D9AF61886AE2700E8BAD0 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = StdView/ProfileViewController.xib; sourceTree = "<group>"; };
@@ -290,8 +292,12 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D4380E9A1916DF4D008F8A78 /* BTBlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlink.h; sourceTree = "<group>"; };
+		D4380E9B1916DF4D008F8A78 /* BTBlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlink.m; sourceTree = "<group>"; };
 		D44224D718B5F06A0028B048 /* BTDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDateFormatter.h; sourceTree = "<group>"; };
 		D44224D818B5F06A0028B048 /* BTDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDateFormatter.m; sourceTree = "<group>"; };
+		D45B5D411915F84900C8C015 /* BTAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAgent.h; sourceTree = "<group>"; };
+		D45B5D421915F84900C8C015 /* BTAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAgent.m; sourceTree = "<group>"; };
 		D46D892D18AFE88B0051F291 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D46D892E18AFE88B0051F291 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D46D893018AFED7C0051F291 /* ForgotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
@@ -578,9 +584,9 @@
 				218D9AEA1886AE0000E8BAD0 /* FeedViewController.h */,
 				218D9AEB1886AE0000E8BAD0 /* FeedViewController.m */,
 				218D9AEC1886AE0000E8BAD0 /* FeedViewController.xib */,
-				218D9AEF1886AE0F00E8BAD0 /* CourseListViewController.h */,
-				218D9AF01886AE0F00E8BAD0 /* CourseListViewController.m */,
-				218D9AF11886AE0F00E8BAD0 /* CourseListViewController.xib */,
+				218D9AEF1886AE0F00E8BAD0 /* CoursesViewController.h */,
+				218D9AF01886AE0F00E8BAD0 /* CoursesViewController.m */,
+				218D9AF11886AE0F00E8BAD0 /* CoursesViewController.xib */,
 				218D9AF41886AE2600E8BAD0 /* ProfileViewController.h */,
 				218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */,
 				218D9AF61886AE2700E8BAD0 /* ProfileViewController.xib */,
@@ -692,6 +698,10 @@
 				D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */,
 				D4B466F91912370A00AB6486 /* BTNotification.h */,
 				D4B466FA1912370A00AB6486 /* BTNotification.m */,
+				D45B5D411915F84900C8C015 /* BTAgent.h */,
+				D45B5D421915F84900C8C015 /* BTAgent.m */,
+				D4380E9A1916DF4D008F8A78 /* BTBlink.h */,
+				D4380E9B1916DF4D008F8A78 /* BTBlink.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -846,7 +856,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -890,7 +900,7 @@
 				21469A4618929E3C005D4FF2 /* CourseDetailViewController.xib in Resources */,
 				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
-				218D9AF31886AE0F00E8BAD0 /* CourseListViewController.xib in Resources */,
+				218D9AF31886AE0F00E8BAD0 /* CoursesViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
 				2191793618724EC600799CC0 /* attendfail@2x.png in Resources */,
@@ -1002,8 +1012,9 @@
 			files = (
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
-				218D9AF21886AE0F00E8BAD0 /* CourseListViewController.m in Sources */,
+				218D9AF21886AE0F00E8BAD0 /* CoursesViewController.m in Sources */,
 				D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */,
+				D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */,
 				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
@@ -1057,6 +1068,7 @@
 				21EE90F3189159D2000C9CAB /* SchoolChooseView.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
+				D45B5D431915F84900C8C015 /* BTAgent.m in Sources */,
 				D472230A1908E55D00CE7015 /* Error.m in Sources */,
 				21917903186C38DD00799CC0 /* MainViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
@@ -1261,7 +1273,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

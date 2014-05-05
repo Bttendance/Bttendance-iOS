@@ -36,8 +36,6 @@
 @property(retain, nonatomic) SimpleCourse *simpleCourse;
 
 @property(assign, nonatomic) NSInteger gap;
-@property(retain, nonatomic) NSTimer *blink;
-@property(assign, nonatomic) NSInteger blinkTime;
 
 @property(assign, nonatomic) BOOL isManager;
 

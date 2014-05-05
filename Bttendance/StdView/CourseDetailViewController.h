@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "CourseDetailHeaderView.h"
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
 
@@ -16,6 +17,8 @@
 
     NSString *my_id;
     Boolean auth;
+    
+    CourseDetailHeaderView *coursedetailheaderview;
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;

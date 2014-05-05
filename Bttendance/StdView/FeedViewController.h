@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface FeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface FeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
 
     NSArray *data;
     User *user;
@@ -18,6 +18,9 @@
     NSString *cid;
 
     NSInteger rowcount;
+    NSTimer *refreshTimer;
+    
+    NSTimeInterval lastScroll;
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;

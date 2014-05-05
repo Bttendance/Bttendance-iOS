@@ -133,6 +133,10 @@
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure;
 
++ (void)fromCoursesWithCourses:(NSArray *)course_ids
+                       success:(void (^)(NSArray *attendanceIDs))success
+                       failure:(void (^)(NSError *error))failure;
+
 + (void)foundDeviceWithAttendance:(NSString *)attendance_id
                              uuid:(NSString *)uuid
                           success:(void (^)(Attendance *attendance))success

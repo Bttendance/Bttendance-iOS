@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseListViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoursesViewController">
             <connections>
                 <outlet property="noCourseView" destination="LXS-oi-wpK" id="LHs-Og-h8U"/>
                 <outlet property="tableview" destination="3F6-Gh-tke" id="OIX-he-TQg"/>

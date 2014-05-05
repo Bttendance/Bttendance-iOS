@@ -12,7 +12,7 @@
     UIBarButtonItem *start;
 }
 
-@property(weak, nonatomic) NSString *cid;
+@property(retain, nonatomic) NSString *cid;
 @property(weak, nonatomic) IBOutlet UITextView *message;
 @property(weak, nonatomic) IBOutlet UILabel *placeholder;
 

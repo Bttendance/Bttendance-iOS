@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "FeedViewController.h"
-#import "CourseListViewController.h"
+#import "CoursesViewController.h"
 #import "ProfileViewController.h"
 #import "MainViewController.h"
 #import "CatchPointController.h"
@@ -21,6 +21,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 #import "Notification.h"
+#import "BTNotification.h"
 
 @implementation AppDelegate
 
@@ -83,16 +84,34 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-
+    
+    AudioServicesPlaySystemSound(1007);
+    
+    //attendance_started, attendance_on_going, attendance_checked, clicker_started, notice, added_as_manager, course_created
     Notification *noti = [[Notification alloc] initWithDictionary:userInfo];
-    
-    if([noti.message isEqualToString:@"Attendance has been checked"]){
-        AudioServicesPlaySystemSound(4095);
-    } else {
-        AudioServicesPlaySystemSound(1007);
+    if([noti.type isEqualToString:@"attendance_started"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CoursesRefresh object:nil];
+    } else if([noti.type isEqualToString:@"attendance_on_going"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CoursesRefresh object:nil];
+    } else if([noti.type isEqualToString:@"attendance_checked"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+    } else if([noti.type isEqualToString:@"clicker_started"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+    } else if([noti.type isEqualToString:@"notice"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+    } else if([noti.type isEqualToString:@"added_as_manager"]) {
+        [BTAPIs autoSignInInSuccess:^(User *user) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+        } failure:^(NSError *error) {
+        }];
+    } else if([noti.type isEqualToString:@"course_created"]) {
+        [BTAPIs autoSignInInSuccess:^(User *user) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+        } failure:^(NSError *error) {
+        }];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"NEWMESSAGE" object:nil];
 }
 
 #pragma StatusBar

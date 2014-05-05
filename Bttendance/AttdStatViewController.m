@@ -181,7 +181,7 @@
         hud.detailsLabelText = @"Attendance Checking";
         hud.yOffset = -40.0f;
         
-        [BTAPIs checkManuallyWithAttendance:[NSString stringWithFormat:@"%ld", (long) post.course.id]
+        [BTAPIs checkManuallyWithAttendance:[NSString stringWithFormat:@"%ld", (long) post.attendance.id]
                                        user:[NSString stringWithFormat:@"%ld", (long) currentcell.simpleUser.id]
                                     success:^(Attendance *attendance) {
                                         [hud hide:YES];

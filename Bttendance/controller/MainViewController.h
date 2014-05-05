@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController {
-    IBOutlet UITabBarController *tbc;
+    IBOutlet UITabBarController *tabBarController;
 }
 
 @end

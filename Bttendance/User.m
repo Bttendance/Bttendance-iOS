@@ -63,14 +63,30 @@
             SimpleCourse *course = [[SimpleCourse alloc] initWithDictionary:dic];
             [supervising_courses addObject:course];
         }
-        self.supervising_courses = supervising_courses;
+        
+        self.supervising_courses = [supervising_courses sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            NSInteger first = ((SimpleCourse *)a).id;
+            NSInteger second = ((SimpleCourse *)b).id;
+            if (first > second)
+                return (NSComparisonResult)NSOrderedDescending;
+            else
+                return (NSComparisonResult)NSOrderedAscending;
+        }];
         
         NSMutableArray *attending_courses = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"attending_courses"]) {
             SimpleCourse *course = [[SimpleCourse alloc] initWithDictionary:dic];
             [attending_courses addObject:course];
         }
-        self.attending_courses = attending_courses;
+        
+        self.attending_courses = [attending_courses sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            NSInteger first = ((SimpleCourse *)a).id;
+            NSInteger second = ((SimpleCourse *)b).id;
+            if (first > second)
+                return (NSComparisonResult)NSOrderedDescending;
+            else
+                return (NSComparisonResult)NSOrderedAscending;
+        }];
         
         NSMutableArray *employed_schools = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"employed_schools"]) {

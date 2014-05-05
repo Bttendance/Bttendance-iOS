@@ -27,7 +27,4 @@
 @property(retain, nonatomic) Post *post;
 @property(assign, nonatomic) NSInteger gap;
 
-@property(retain, nonatomic) NSTimer *blink;
-@property(assign, nonatomic) NSInteger blinkTime;
-
 @end

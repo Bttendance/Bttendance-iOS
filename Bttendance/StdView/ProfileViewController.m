@@ -40,6 +40,8 @@
         [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
         [self.navigationItem setRightBarButtonItem:plusButtonItem];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     }
 
     return self;
@@ -72,12 +74,6 @@
 
     profileheaderview.userName.text = user.username;
     self.tableview.tableHeaderView = profileheaderview;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
-}
-
-- (void)viewDidUnload {
-    [[NSNotificationCenter defaultCenter]  removeObserver:self name:UserUpdated object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

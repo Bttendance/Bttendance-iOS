@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #define UserUpdated @"user_updated"
+#define FeedRefresh @"feed_refresh"
+#define CoursesRefresh @"courses_refresh"
+#define CourseUpdated @"course_updated"
 
 @interface BTNotification : NSObject
 
