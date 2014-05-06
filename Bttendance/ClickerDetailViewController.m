@@ -10,13 +10,14 @@
 #import "BTDateFormatter.h"
 #import "BTColor.h"
 #import "XYPieChart.h"
+#import "BTNotification.h"
 
 @interface ClickerDetailViewController ()
 
 @end
 
 @implementation ClickerDetailViewController
-@synthesize clicker, post;
+@synthesize post;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,7 +40,6 @@
     [super viewDidLoad];
     
     //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
@@ -48,13 +48,20 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = post.course.name;
     [titlelabel sizeToFit];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
+}
+
+- (void)updateClicker:(NSNotification *)notification {
+    if ([notification object] == nil)
+        return;
     
-//    _message.text = @"a\nb\nc\nd\ne";
-//    _message.lineBreakMode = NSLineBreakByWordWrapping;
-//    _message.numberOfLines = 0;
-//    [_message sizeToFit];
-//    _time.text = [BTDateFormatter stringFromDate:post.createdAt];
-//    _detail.text = [post.clicker detailText];
+    Clicker *clicker = [notification object];
+    [post.clicker copyDataFromClicker:clicker];
+    [chart reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [chart reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -101,7 +108,9 @@
             label.frame = CGRectMake(40, 20, 240, label.frame.size.height);
             label.textAlignment = NSTextAlignmentCenter;
             [cell.contentView addSubview:label];
+            
             cell.backgroundColor = [BTColor BT_grey:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         case 1: //time
@@ -116,7 +125,9 @@
             label.textAlignment = NSTextAlignmentCenter;
             label.text = [BTDateFormatter stringFromDate:post.createdAt];
             [cell.contentView addSubview:label];
+            
             cell.backgroundColor = [BTColor BT_grey:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         case 2: //ring
@@ -125,11 +136,11 @@
             if (cell == nil)
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ImageCell"];
             
-            XYPieChart *chart = [[XYPieChart alloc] initWithFrame:CGRectMake(40, 24, 240, 240)];
+            chart = [[XYPieChart alloc] initWithFrame:CGRectMake(40, 24, 240, 240)];
             chart.showLabel = NO;
             chart.pieRadius = 120;
+            chart.userInteractionEnabled = NO;
             [chart setDataSource:post.clicker];
-            [chart reloadData];
             [cell.contentView addSubview:chart];
             
             UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(39, 23, 242, 242)];
@@ -137,6 +148,7 @@
             [cell.contentView addSubview:image];
             
             cell.backgroundColor = [BTColor BT_grey:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         case 3: //detail
@@ -151,7 +163,9 @@
             label.textAlignment = NSTextAlignmentCenter;
             label.text = [post.clicker detailText];
             [cell.contentView addSubview:label];
+            
             cell.backgroundColor = [BTColor BT_grey:1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         default:

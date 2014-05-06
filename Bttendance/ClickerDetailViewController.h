@@ -10,9 +10,10 @@
 #import "Clicker.h"
 #import "Post.h"
 
-@interface ClickerDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ClickerDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    XYPieChart *chart;
+}
 
-@property(retain, nonatomic) Clicker *clicker;
 @property(retain, nonatomic) Post *post;
 
 @end

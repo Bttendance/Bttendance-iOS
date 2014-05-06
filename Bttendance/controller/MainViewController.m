@@ -12,7 +12,8 @@
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "BTNotification.h"
-#import "BTAgent.h"
+#import "AttendanceAgent.h"
+#import "SocketAgent.h"
 
 @interface MainViewController ()
 
@@ -76,7 +77,7 @@
     [barButtonAppearance setTitleTextAttributes:barButtonTextAttributes
                                        forState:UIControlStateHighlighted];
     
-    [BTAgent sharedInstance];
+    [AttendanceAgent sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +85,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
     } failure:^(NSError *error) {
     }];
+    
+    [[SocketAgent sharedInstance] socketConnet];
 }
 
 @end

@@ -727,10 +727,24 @@ static UIAlertView *Ooooppss;
 }
 
 + (void)connectWithClicker:(NSString *)clicker_id
-                    socker:(NSString *)socket_id
+                    socket:(NSString *)socket_id
                    success:(void (^)(Clicker *clicker))success
                    failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"clicker_id" : clicker_id,
+                             @"socket_id" : socket_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/clickers/connect"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Clicker *clicker = [[Clicker alloc] initWithDictionary:responseObject];
+                            success(clicker);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 + (void)clickWithClicker:(NSString *)clicker_id
@@ -738,6 +752,20 @@ static UIAlertView *Ooooppss;
                  success:(void (^)(Clicker *clicker))success
                  failure:(void (^)(NSError *error))failure {
     
+    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+                             @"password" : [BTUserDefault getPassword],
+                             @"clicker_id" : clicker_id,
+                             @"choice_number" : choice_number};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/clickers/click"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Clicker *clicker = [[Clicker alloc] initWithDictionary:responseObject];
+                            success(clicker);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
 }
 
 @end

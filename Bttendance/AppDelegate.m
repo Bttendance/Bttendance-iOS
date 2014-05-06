@@ -99,6 +99,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
     } else if([noti.type isEqualToString:@"clicker_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+    } else if([noti.type isEqualToString:@"clicker_on_going"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
     } else if([noti.type isEqualToString:@"notice"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
     } else if([noti.type isEqualToString:@"added_as_manager"]) {

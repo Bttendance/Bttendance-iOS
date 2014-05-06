@@ -11,7 +11,7 @@
 
 @interface FeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate> {
 
-    NSArray *data;
+    NSMutableArray *data;
     User *user;
 
     NSString *pid;

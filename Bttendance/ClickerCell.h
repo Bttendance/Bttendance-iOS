@@ -11,7 +11,7 @@
 
 @interface ClickerCell : UITableViewCell
 
-+ (ClickerCell *)cellFromNimNamed:(NSString *)nimName;
++ (ClickerCell *)cellFromNimNamed:(NSString *)nibName;
 
 @property(weak, nonatomic) IBOutlet UIView *background;
 
@@ -24,10 +24,10 @@
 @property(weak, nonatomic) IBOutlet UIView *bg_c;
 @property(weak, nonatomic) IBOutlet UIView *bg_d;
 
-@property(weak, nonatomic) IBOutlet UIImageView *ring_a;
-@property(weak, nonatomic) IBOutlet UIImageView *ring_b;
-@property(weak, nonatomic) IBOutlet UIImageView *ring_c;
-@property(weak, nonatomic) IBOutlet UIImageView *ring_d;
+@property(weak, nonatomic) IBOutlet UIButton *ring_a;
+@property(weak, nonatomic) IBOutlet UIButton *ring_b;
+@property(weak, nonatomic) IBOutlet UIButton *ring_c;
+@property(weak, nonatomic) IBOutlet UIButton *ring_d;
 
 @property(weak, nonatomic) IBOutlet UIImageView *blink_a;
 @property(weak, nonatomic) IBOutlet UIImageView *blink_b;

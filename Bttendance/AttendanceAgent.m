@@ -6,20 +6,19 @@
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "BTAgent.h"
+#import "AttendanceAgent.h"
 #import "BTAPIs.h"
 #import "BTUUID.h"
-#import "SocketIOPacket.h"
 #import "BTUserDefault.h"
 
-@implementation BTAgent
+@implementation AttendanceAgent
 
-+ (BTAgent *)sharedInstance {
-    static BTAgent *agent;
++ (AttendanceAgent *)sharedInstance {
+    static AttendanceAgent *agent;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        agent = [[BTAgent alloc]init];
+        agent = [[AttendanceAgent alloc]init];
     });
     
     return agent;
@@ -39,11 +38,6 @@
                                                         serviceType:@"Bttendance"];
     mMCBrowser.delegate = self;
     mMCAdvertiser.delegate = self;
-    
-    socketIO = [[SocketIO alloc] initWithDelegate:self];
-    //        [socketIO connectToHost:@"bttendance-dev.herokuapp.com" onPort:0];
-    //        [socketIO connectToHost:@"localhost" onPort:1337 withParams:params withNamespace:@"api/clickers/click"];
-//    [socketIO connectToHost:@"localhost" onPort:1337];
     
     attdStartingCourseID = @"";
     attdScanningAttendanceIDs = [[NSMutableArray alloc] init];
@@ -295,42 +289,6 @@
 
 #pragma MCNearbyServiceAdvertiserDelegate
 -(void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession *))invitationHandler{
-}
-
-#pragma Socket.io
-- (void)socketIODidConnect:(SocketIO *)socket {
-    NSLog(@"Connected to %@", socket.host);
-    [socket sendMessage:@"Hello"];
-}
-
-- (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
-    NSLog(@"Disconnected : %@", socket.host);
-}
-
-- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    NSLog(@"didReceiveEvent : %@", [packet dataAsJSON]);
-    
-    if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"onConnect"]) {
-        
-//        AFHTTPRequestOperationManager *AFmanager = [AFHTTPRequestOperationManager manager];
-//        [AFmanager POST:@"http://localhost:1337/api/clickers/connect" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"responseObject : %@", responseObject);
-//        }       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            
-//        }];
-    }
-    
-    if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clickers"]) {
-        NSLog(@"clickers : %@", [[[packet dataAsJSON] objectForKey:@"args"][0] objectForKey:@"data"]);
-    }
-}
-
-- (void)socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet {
-    NSLog(@"didReceiveJSON : %@", packet);
-}
-
-- (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet {
-    NSLog(@"didReceiveMessage : %@", packet);
 }
 
 @end

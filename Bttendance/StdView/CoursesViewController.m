@@ -19,7 +19,7 @@
 #import "CreateClickerViewController.h"
 #import "Course.h"
 #import "BTNotification.h"
-#import "BTAgent.h"
+#import "AttendanceAgent.h"
 #import "BTBlink.h"
 
 @interface CoursesViewController ()
@@ -85,7 +85,7 @@
 - (void)refreshCourses:(id)sender {
     [BTAPIs coursesInSuccess:^(NSArray *courses) {
         for (Course *course in courses)
-            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"%@%d", CourseUpdated, (int)course.id] object:course];
+            [[NSNotificationCenter defaultCenter] postNotificationName:CourseUpdated object:course];
         data = courses;
         [self.tableview reloadData];
         [self checkAttdScan];
@@ -103,7 +103,7 @@
     }
     
     if (array.count > 0) {
-        BTAgent *agent = [BTAgent sharedInstance];
+        AttendanceAgent *agent = [AttendanceAgent sharedInstance];
         [agent startAttdScanWithCourseIDs:array];
     }
 }
@@ -404,7 +404,7 @@
         courseName = [NSString stringWithFormat:@"%@", cell.simpleCourse.name];
         courseID = [NSString stringWithFormat:@"%ld", (long) cell.simpleCourse.id];
     }
-    [[BTAgent sharedInstance] startAttdWithCourseName:courseName andID:courseID];
+    [[AttendanceAgent sharedInstance] startAttdWithCourseName:courseName andID:courseID];
 }
 
 - (void)clickerStart:(id)sender {

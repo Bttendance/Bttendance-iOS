@@ -8,18 +8,24 @@
 
 #import "ClickerCell.h"
 
+@interface ClickerCell ()
+
+@end
+
 @implementation ClickerCell
 
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
++ (ClickerCell *)cellFromNimNamed:(NSString *)nibName {
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
+    NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
+    ClickerCell *cell = nil;
+    NSObject *nibItem = nil;
+    while ((nibItem = [nibEnumerator nextObject]) != nil) {
+        if ([nibItem isKindOfClass:[ClickerCell class]]) {
+            cell = (ClickerCell *) nibItem;
+            break;
+        }
+    }
+    return cell;
 }
 
 @end

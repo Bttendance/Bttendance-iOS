@@ -24,12 +24,13 @@
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)copyDataFromClicker:(id)object;
 - (NSString *)detailText;
 
 @end
 
 
-@interface Clicker : NSObject <XYPieChartDataSource>
+@interface Clicker : NSObject
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;

@@ -12,6 +12,7 @@
 #define FeedRefresh @"feed_refresh"
 #define CoursesRefresh @"courses_refresh"
 #define CourseUpdated @"course_updated"
+#define ClickerUpdated @"clicker_updated"
 
 @interface BTNotification : NSObject
 

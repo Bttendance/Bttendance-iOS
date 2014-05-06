@@ -18,15 +18,19 @@
 #import "Clicker.h"
 #import "XYPieChart.h"
 #import "BTBlink.h"
-#import "BTAgent.h"
+#import "AttendanceAgent.h"
+#import "ClickerCell.h"
+#import "SocketAgent.h"
 
 @implementation FeedViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        data = [[NSMutableArray alloc] init];
         rowcount = 0;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
@@ -51,16 +55,33 @@
 - (void)refreshFeed:(id)sender {
     [BTAPIs feedWithPage:0
                  success:^(NSArray *posts) {
-                     data = posts;
+                     data = [NSMutableArray arrayWithArray:posts];
                      rowcount = data.count;
                      [self.tableview reloadData];
-                     [self checkAttdScan];
+                     [self checkAttendanceScan];
+                     [self checkClickerScan];
                      [self refreshCheck];
                  } failure:^(NSError *error) {
                  }];
 }
 
-- (void)checkAttdScan {
+// UpdateClicker Notification Event
+- (void)updateClicker:(NSNotification *)notification {
+    if ([notification object] == nil || data.count == 0)
+        return;
+    
+    Clicker *clicker = [notification object];
+    for (int i = 0; i < data.count; i++) {
+        Post *post = data[i];
+        if ([post.type isEqualToString:@"clicker"] && clicker.id == post.clicker.id) {
+            [post.clicker copyDataFromClicker:clicker];
+        }
+    }
+    [self.tableview reloadData];
+}
+
+// Check if any attendance is on-going
+- (void)checkAttendanceScan {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (Post *post in data) {
         double gap = [post.createdAt timeIntervalSinceNow];
@@ -69,26 +90,51 @@
     }
     
     if (array.count > 0) {
-        BTAgent *agent = [BTAgent sharedInstance];
+        AttendanceAgent *agent = [AttendanceAgent sharedInstance];
         [agent startAttdScanWithAttendanceIDs:array];
     }
 }
+// Check is any clicker is on-going
+- (void)checkClickerScan {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (Post *post in data) {
+        double gap = [post.createdAt timeIntervalSinceNow];
+        if (60.0f + gap > 0.0f && [post.type isEqualToString:@"clicker"])
+            [array addObject:[NSString stringWithFormat:@"%d", (int)post.clicker.id]];
+    }
+    
+    if (array.count > 0) {
+        for (NSString *ID in array)
+             [[SocketAgent sharedInstance] connetWithClicker:ID];
+    }
+}
 
+// Check when to refresh feed
 - (void)refreshCheck {
-    float gap = 0.0f;
+    float gap = 180.0f;
+    
     for (Post *post in data) {
         float interval = [post.createdAt timeIntervalSinceNow];
+        
         if ([post.type isEqualToString:@"attendance"]
             && interval > -180.0f
-            && gap > interval) {
-            gap = interval;
+            && gap > 180.0f + interval) {
+            gap = 180.0f + interval;
+            NSLog(@"gap : %f", gap);
+        }
+        
+        if ([post.type isEqualToString:@"clicker"]
+            && interval > -60.0f
+            && gap > 60.0f + interval) {
+            gap = 60.0f + interval;
+            NSLog(@"gap : %f", gap);
         }
     }
     
-    if (gap < 0.0f) {
+    if (gap < 180.0f) {
         if (refreshTimer != nil)
             [refreshTimer invalidate];
-        refreshTimer = [NSTimer scheduledTimerWithTimeInterval:180.0f + gap
+        refreshTimer = [NSTimer scheduledTimerWithTimeInterval:gap
                                                         target:self
                                                       selector:@selector(refreshFeed:)
                                                       userInfo:nil
@@ -106,6 +152,34 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = [data objectAtIndex:indexPath.row];
+    
+    if ([post.type isEqualToString:@"clicker"]) {
+        
+        Boolean manager = false;
+        NSArray *supervisingCourses = user.supervising_courses;
+        for (int i = 0; i < [supervisingCourses count]; i++) {
+            if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
+                manager = true;
+        }
+        
+        Boolean check = false;
+        NSMutableArray *checks = [[NSMutableArray alloc] init];
+        [checks addObjectsFromArray:post.clicker.a_students];
+        [checks addObjectsFromArray:post.clicker.b_students];
+        [checks addObjectsFromArray:post.clicker.c_students];
+        [checks addObjectsFromArray:post.clicker.d_students];
+        [checks addObjectsFromArray:post.clicker.e_students];
+        for (int i = 0; i < checks.count; i++)
+            if (user.id == [checks[i] intValue])
+                check = true;
+        
+        double gap = [post.createdAt timeIntervalSinceNow];
+        
+        if (60.0f + gap > 0.0f && !check && !manager) {
+            return 179;
+        }
+    }
+    
     UIFont *cellfont = [UIFont systemFontOfSize:12];
     NSString *rawmessage = post.message;
     if ([post.type isEqualToString:@"clicker"])
@@ -128,46 +202,162 @@
     }
 }
 
+// ClickerCell
 - (UITableViewCell *)clickerCellWith:(UITableView *)tableView with:(Post *)post {
     
-    static NSString *CellIdentifier = @"PostCell";
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+    Boolean manager = false;
+    NSArray *supervisingCourses = user.supervising_courses;
+    for (int i = 0; i < [supervisingCourses count]; i++) {
+        if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
+            manager = true;
     }
     
-    XYPieChart *chart = [[XYPieChart alloc] initWithFrame:CGRectMake(30, 26, 50, 50)];
-    chart.showLabel = NO;
-    chart.pieRadius = 25;
-    [chart setDataSource:post.clicker];
-    [chart reloadData];
-    [cell.contentView insertSubview:chart aboveSubview:cell.background];
+    Boolean check = false;
+    NSMutableArray *checks = [[NSMutableArray alloc] init];
+    [checks addObjectsFromArray:post.clicker.a_students];
+    [checks addObjectsFromArray:post.clicker.b_students];
+    [checks addObjectsFromArray:post.clicker.c_students];
+    [checks addObjectsFromArray:post.clicker.d_students];
+    [checks addObjectsFromArray:post.clicker.e_students];
+    for (int i = 0; i < checks.count; i++)
+        if (user.id == [checks[i] intValue])
+            check = true;
     
-    cell.post = post;
-    cell.Title.text = cell.post.course.name;
-    cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
-    cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
-    cell.gap = [cell.post.createdAt timeIntervalSinceNow];
+    double gap = [post.createdAt timeIntervalSinceNow];
     
-    cell.Message.frame = CGRectMake(93, 49, 200, 15);
-    cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.Message.numberOfLines = 0;
-    [cell.Message sizeToFit];
-    NSInteger height = MAX(cell.Message.frame.size.height, 15);
-    [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
-    [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
-    
-    [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [[BTBlink sharedInstance] removeView:cell.check_icon];
-    [cell.check_icon setImage:[UIImage imageNamed:@"clickerring@2x.png"]];
-    [cell.check_overlay setImage:nil];
-    return cell;
+    // Clicker Choice
+    if (60.0f + gap > 0.0f && !check && !manager) {
+        static NSString *CellIdentifier = @"ClickerCell";
+        ClickerCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        cell.post = post;
+        cell.courseName.text = cell.post.course.name;
+        cell.message.text = cell.post.message;
+        cell.date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
+        
+        cell.message.frame = CGRectMake(20, 46, 280, 15);
+        cell.message.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.message.numberOfLines = 0;
+        [cell.message sizeToFit];
+        NSInteger height = MAX(cell.message.frame.size.height, 15);
+        
+        [cell.background setFrame:CGRectMake(11, 7, 298, 150 + height)];
+        [cell.date setFrame:CGRectMake(97, 33 + height, 210, 21)];
+        
+        if (cell.post.clicker.choice_count < 4) {
+            cell.blink_d.hidden = YES;
+            cell.bg_d.hidden = YES;
+            cell.ring_d.hidden = YES;
+        }
+        
+        if (cell.post.clicker.choice_count < 3) {
+            cell.blink_c.hidden = YES;
+            cell.bg_c.hidden = YES;
+            cell.ring_c.hidden = YES;
+        }
+        
+        [cell.blink_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
+        [cell.blink_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
+        [cell.blink_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
+        [cell.blink_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
+        
+        double progress = 52.0f * -gap / 60.0f;
+        cell.bg_a.frame = CGRectMake(29, 64 + height + progress, 52, 52 - progress);
+        cell.bg_b.frame = CGRectMake(99, 64 + height + progress, 52, 52 - progress);
+        cell.bg_c.frame = CGRectMake(169, 64 + height + progress, 52, 52 - progress);
+        cell.bg_d.frame = CGRectMake(239, 64 + height + progress, 52, 52 - progress);
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:60.0f + gap];
+        cell.bg_a.frame = CGRectMake(29, 116 + height, 52, 0);
+        cell.bg_b.frame = CGRectMake(99, 116 + height, 52, 0);
+        cell.bg_c.frame = CGRectMake(169, 116 + height, 52, 0);
+        cell.bg_d.frame = CGRectMake(239, 116 + height, 52, 0);
+        [UIView commitAnimations];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSInteger count = 60 + gap;
+        BlinkView *blinkView_a = [[BlinkView alloc] initWithView:cell.blink_a andCount:count];
+        [[BTBlink sharedInstance] addBlinkView:blinkView_a];
+        BlinkView *blinkView_b = [[BlinkView alloc] initWithView:cell.blink_b andCount:count];
+        [[BTBlink sharedInstance] addBlinkView:blinkView_b];
+        BlinkView *blinkView_c = [[BlinkView alloc] initWithView:cell.blink_c andCount:count];
+        [[BTBlink sharedInstance] addBlinkView:blinkView_c];
+        BlinkView *blinkView_d = [[BlinkView alloc] initWithView:cell.blink_d andCount:count];
+        [[BTBlink sharedInstance] addBlinkView:blinkView_d];
+        
+        [cell.ring_a setImage:[UIImage imageNamed:@"a_clicked@2x.png"] forState:UIControlStateHighlighted];
+        [cell.ring_b setImage:[UIImage imageNamed:@"b_clicked@2x.png"] forState:UIControlStateHighlighted];
+        [cell.ring_c setImage:[UIImage imageNamed:@"c_clicked@2x.png"] forState:UIControlStateHighlighted];
+        [cell.ring_d setImage:[UIImage imageNamed:@"d_clicked@2x.png"] forState:UIControlStateHighlighted];
+        
+        [cell.ring_a addTarget:self action:@selector(click_a:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.ring_b addTarget:self action:@selector(click_b:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.ring_c addTarget:self action:@selector(click_c:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.ring_d addTarget:self action:@selector(click_d:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell;
+    } else { // Clicker Normal
+        static NSString *CellIdentifier = @"PostCell";
+        PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        XYPieChart *chart;
+        for (UIView *view in  cell.contentView.subviews) {
+            if ([view isKindOfClass:[XYPieChart class]]) {
+                if (view.tag == post.clicker.id)
+                    chart = (XYPieChart *)view;
+                else
+                    [view removeFromSuperview];
+            }
+        }
+        
+        if (chart == nil) {
+            chart = [[XYPieChart alloc] initWithFrame:CGRectMake(30, 26, 50, 50)];
+            chart.tag = post.clicker.id;
+            chart.showLabel = NO;
+            chart.pieRadius = 25;
+            chart.userInteractionEnabled = NO;
+        }
+        
+        [chart setDataSource:post.clicker];
+        [chart reloadData];
+        [cell.contentView insertSubview:chart aboveSubview:cell.background];
+        
+        cell.post = post;
+        cell.Title.text = cell.post.course.name;
+        cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
+        cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
+        cell.gap = [cell.post.createdAt timeIntervalSinceNow];
+        
+        cell.Message.frame = CGRectMake(93, 49, 200, 15);
+        cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.Message.numberOfLines = 0;
+        [cell.Message sizeToFit];
+        NSInteger height = MAX(cell.Message.frame.size.height, 15);
+        [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
+        [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
+        
+        [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [[BTBlink sharedInstance] removeView:cell.check_icon];
+        [cell.check_icon setImage:[UIImage imageNamed:@"clickerring@2x.png"]];
+        [cell.check_overlay setImage:nil];
+        return cell;
+    }
 }
 
+// AttendanceCell
 - (UITableViewCell *)attendanceCellWith:(UITableView *)tableView with:(Post *)post {
     
     static NSString *CellIdentifier = @"PostCell";
@@ -216,9 +406,12 @@
     [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha@2x.png"]];
     
     if (manager) {
-        if (180.0f + cell.gap > 0.0f)
+        if (180.0f + cell.gap > 0.0f) {
             [self startAttdAnimation:cell];
-        else {
+            NSInteger count = 180 + cell.gap;
+            BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
+            [[BTBlink sharedInstance] addBlinkView:blinkView];
+        } else {
             [[BTBlink sharedInstance] removeView:cell.check_icon];
             int grade =  [cell.post.grade intValue];
             [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
@@ -227,6 +420,9 @@
         if (!check) {
             if (180.0f + cell.gap > 0.0f) {
                 [self startAttdAnimation:cell];
+                NSInteger count = 180 + cell.gap;
+                BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
+                [[BTBlink sharedInstance] addBlinkView:blinkView];
             } else {
                 [[BTBlink sharedInstance] removeView:cell.check_icon];
                 [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
@@ -241,6 +437,7 @@
     return cell;
 }
 
+// NoticeCell
 - (UITableViewCell *)noticeCellWith:(UITableView *)tableView with:(Post *)post {
     
     static NSString *CellIdentifier = @"PostCell";
@@ -279,7 +476,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (data.count != 0) {
+    if (data.count != 0 && ![[self.tableview cellForRowAtIndexPath:indexPath] isKindOfClass:[ClickerCell class]]) {
         PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
 
         Boolean manager = false;
@@ -309,7 +506,43 @@
     lastScroll = [[NSDate date] timeIntervalSince1970];
 }
 
-#pragma Animation for Clicker
+#pragma Click Event for Clicker
+- (void)click_a:(id)sender {
+    UIButton *send = (UIButton *) sender;
+    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
+                      choice:@"1"
+                     success:^(Clicker *clicker) {
+                     } failure:^(NSError *error) {
+                     }];
+}
+- (void)click_b:(id)sender {
+    UIButton *send = (UIButton *) sender;
+    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
+                      choice:@"2"
+                     success:^(Clicker *clicker) {
+                     } failure:^(NSError *error) {
+                     }];
+}
+- (void)click_c:(id)sender {
+    UIButton *send = (UIButton *) sender;
+    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
+                      choice:@"3"
+                     success:^(Clicker *clicker) {
+                     } failure:^(NSError *error) {
+                     }];
+}
+- (void)click_d:(id)sender {
+    UIButton *send = (UIButton *) sender;
+    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
+                      choice:@"4"
+                     success:^(Clicker *clicker) {
+                     } failure:^(NSError *error) {
+                     }];
+}
 
 #pragma Animation for Attendance
 - (void)startAttdAnimation:(PostCell *)cell {
@@ -323,10 +556,6 @@
                      }
                      completion:^(BOOL finished) {
                      }];
-
-    NSInteger count = 180 + cell.gap;
-    BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
-    [[BTBlink sharedInstance] addBlinkView:blinkView];
 }
 
 @end

@@ -26,48 +26,39 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzX-mm-n38">
-                        <rect key="frame" x="20" y="43" width="280" height="21"/>
+                        <rect key="frame" x="20" y="46" width="280" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qa-5z-K2U">
+                        <rect key="frame" x="97" y="148" width="200" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gBd-Y7-pPW">
-                        <rect key="frame" x="29" y="79" width="52" height="52"/>
+                        <rect key="frame" x="29" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6I-Am-8r0">
-                        <rect key="frame" x="99" y="79" width="52" height="52"/>
+                        <rect key="frame" x="99" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.12549019607843137" green="0.57647058823529407" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uab-UF-QYV">
-                        <rect key="frame" x="169" y="79" width="52" height="52"/>
+                        <rect key="frame" x="169" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.49803921568627452" green="0.78823529411764703" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kS2-eO-MAh">
-                        <rect key="frame" x="239" y="79" width="52" height="52"/>
+                        <rect key="frame" x="239" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.77647058823529413" green="0.88627450980392153" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="attendanceringnonalpha.png" translatesAutoresizingMaskIntoConstraints="NO" id="rth-RC-tOo">
-                        <rect key="frame" x="29" y="79" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </imageView>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="attendanceringnonalpha.png" translatesAutoresizingMaskIntoConstraints="NO" id="2MN-5f-MtU">
-                        <rect key="frame" x="99" y="79" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </imageView>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="attendanceringnonalpha.png" translatesAutoresizingMaskIntoConstraints="NO" id="mjx-ab-jYl">
-                        <rect key="frame" x="169" y="79" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </imageView>
-                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="attendanceringnonalpha.png" translatesAutoresizingMaskIntoConstraints="NO" id="oSu-dH-jFY">
-                        <rect key="frame" x="239" y="79" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </imageView>
                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="a.png" translatesAutoresizingMaskIntoConstraints="NO" id="wge-bf-Tn6">
                         <rect key="frame" x="29" y="79" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -84,13 +75,34 @@
                         <rect key="frame" x="239" y="79" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qa-5z-K2U">
-                        <rect key="frame" x="97" y="148" width="200" height="21"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agl-M7-CWR">
+                        <rect key="frame" x="29" y="79" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <state key="normal" image="attendanceringnonalpha.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzv-2j-0zw">
+                        <rect key="frame" x="99" y="79" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="attendanceringnonalpha.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-oq-zWc">
+                        <rect key="frame" x="169" y="79" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="attendanceringnonalpha.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pnc-gT-wud">
+                        <rect key="frame" x="239" y="79" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="attendanceringnonalpha.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
@@ -107,10 +119,10 @@
                 <outlet property="courseName" destination="0v0-y0-tH2" id="2o4-ZG-zhi"/>
                 <outlet property="date" destination="5qa-5z-K2U" id="S4G-jb-hdO"/>
                 <outlet property="message" destination="lzX-mm-n38" id="oHn-kF-l6E"/>
-                <outlet property="ring_a" destination="rth-RC-tOo" id="hXx-tJ-PJu"/>
-                <outlet property="ring_b" destination="2MN-5f-MtU" id="rDa-0N-vfT"/>
-                <outlet property="ring_c" destination="mjx-ab-jYl" id="sV1-CV-Oof"/>
-                <outlet property="ring_d" destination="oSu-dH-jFY" id="vdp-TV-gHl"/>
+                <outlet property="ring_a" destination="agl-M7-CWR" id="Iza-We-fzH"/>
+                <outlet property="ring_b" destination="Yzv-2j-0zw" id="sZq-fx-vhW"/>
+                <outlet property="ring_c" destination="RCF-oq-zWc" id="Jqi-VU-6Mh"/>
+                <outlet property="ring_d" destination="Pnc-gT-wud" id="Izz-eR-clg"/>
             </connections>
         </tableViewCell>
     </objects>

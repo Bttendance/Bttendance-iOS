@@ -17,8 +17,10 @@
 
 #ifdef DEBUG
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
+    #define BTSOCKET @"bttendance-dev.herokuapp.com"
 #else
     #define BTURL @"http://www.bttd.co/api"
+    #define BTSOCKET @"www.bttd.co"
 #endif
 
 @interface BTAPIs : NSObject <UIAlertViewDelegate>
@@ -148,7 +150,7 @@
                             failure:(void (^)(NSError *error))failure;
 
 + (void)connectWithClicker:(NSString *)clicker_id
-                    socker:(NSString *)socket_id
+                    socket:(NSString *)socket_id
                    success:(void (^)(Clicker *clicker))success
                    failure:(void (^)(NSError *error))failure;
 
