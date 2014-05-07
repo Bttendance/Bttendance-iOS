@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseDetailHeaderView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="ySZ-p3-d9r" customClass="CourseDetailHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="221"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="009-5s-lOE">

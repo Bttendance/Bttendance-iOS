@@ -117,7 +117,7 @@
     [self refreshHeader:nil];
 
     if (!auth) {
-        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 175)];
+        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 178)];
         [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 161)];
         coursedetailheaderview.clickerBt.hidden = YES;
         coursedetailheaderview.attendanceBt.hidden = YES;
@@ -131,6 +131,9 @@
     frame.size.height = 94.0f * (100.0f - [[self grade] intValue]) / 100.0f;
     [coursedetailheaderview.grade setFrame:frame];
     self.tableview.tableHeaderView = coursedetailheaderview;
+    
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
+    self.tableview.tableFooterView = footer;
 }
 
 - (void)refreshHeader:(id)sender {
@@ -164,14 +167,9 @@
     [BTAPIs feedForCourse:[self courseId]
                      page:0
                   success:^(NSArray *posts) {
-                     int count = (int)data.count;
                      data = [NSMutableArray arrayWithArray:posts];
                      rowcount = data.count;
-                     if (count == data.count)
-                         [self.tableview reloadRowsAtIndexPaths:[self.tableview indexPathsForVisibleRows]
-                                               withRowAnimation:UITableViewRowAnimationNone];
-                     else
-                         [self.tableview reloadData];
+                     [self.tableview reloadData];
                      [self checkAttendanceScan];
                      [self checkClickerScan];
                      [self refreshCheck];
@@ -191,8 +189,7 @@
             [post.clicker copyDataFromClicker:clicker];
         }
     }
-    [self.tableview reloadRowsAtIndexPaths:[self.tableview indexPathsForVisibleRows]
-                          withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableview reloadData];
 }
 
 // Check if any attendance is on-going
@@ -446,7 +443,7 @@
         }
         
         if (chart == nil) {
-            chart = [[XYPieChart alloc] initWithFrame:CGRectMake(30, 26, 50, 50)];
+            chart = [[XYPieChart alloc] initWithFrame:CGRectMake(30, 33, 50, 50)];
             chart.tag = post.clicker.id;
             chart.showLabel = NO;
             chart.pieRadius = 25;
@@ -468,15 +465,16 @@
         cell.Message.numberOfLines = 0;
         [cell.Message sizeToFit];
         NSInteger height = MAX(cell.Message.frame.size.height, 15);
+        
         [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
         [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
-        
         [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [[BTBlink sharedInstance] removeView:cell.check_icon];
         [cell.check_icon setImage:[UIImage imageNamed:@"clickerring@2x.png"]];
+        cell.check_icon.frame = CGRectMake(29, 32, 52, 52);
         [cell.check_overlay setImage:nil];
         return cell;
     }
@@ -527,6 +525,7 @@
     }
     
     [cell.check_icon setImage:[UIImage imageNamed:@"attendancecheckcyan@2x.png"]];
+    cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
     [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha@2x.png"]];
     
     if (manager) {
@@ -595,6 +594,7 @@
     
     [[BTBlink sharedInstance] removeView:cell.check_icon];
     [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
+    cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
     [cell.check_overlay setImage:nil];
     return cell;
 }

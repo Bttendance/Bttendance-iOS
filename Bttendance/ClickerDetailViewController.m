@@ -58,6 +58,10 @@
     Clicker *clicker = [notification object];
     [post.clicker copyDataFromClicker:clicker];
     [chart reloadData];
+    
+    NSArray *array = [[NSArray alloc] initWithObjects:[NSIndexPath indexPathForRow:3 inSection:0], nil];
+    [self.tableview reloadRowsAtIndexPaths:array
+                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -157,12 +161,23 @@
             if (cell == nil)
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DetailCell"];
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 70)];
-            label.font = [UIFont systemFontOfSize:14];
-            label.textColor = [BTColor BT_silver:1];
-            label.textAlignment = NSTextAlignmentCenter;
+            
+            UILabel *label;
+            for (UIView *view in  cell.contentView.subviews) {
+                if ([view isKindOfClass:[UILabel class]]) {
+                        label = (UILabel *)view;
+                }
+            }
+            
+            if (label == nil) {
+                label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 70)];
+                label.font = [UIFont systemFontOfSize:14];
+                label.textColor = [BTColor BT_silver:1];
+                label.textAlignment = NSTextAlignmentCenter;
+                [cell.contentView addSubview:label];
+            }
+            
             label.text = [post.clicker detailText];
-            [cell.contentView addSubview:label];
             
             cell.backgroundColor = [BTColor BT_grey:1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

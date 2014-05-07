@@ -15,5 +15,6 @@
 }
 
 @property(retain, nonatomic) Post *post;
+@property(weak, atomic) IBOutlet UITableView *tableview;
 
 @end
