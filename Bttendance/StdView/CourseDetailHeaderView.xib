@@ -29,14 +29,10 @@
                             <rect key="frame" x="14" y="23" width="104" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="mqc-vJ-u8y">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendanceringnonalphabig.png" id="I3U-lD-27O">
                             <rect key="frame" x="14" y="23" width="104" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" backgroundImage="attendanceringnonalphabig.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
+                        </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prof. Kim Dong Jun" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0k-yD-43t">
                             <rect key="frame" x="140" y="27" width="138" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -132,15 +128,15 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="clicker.png" id="1dM-7J-M7H">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="clicker.png" id="1dM-7J-M7H">
                     <rect key="frame" x="47" y="181" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="attendance.png" id="R53-Rx-WRV">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="attendance.png" id="R53-Rx-WRV">
                     <rect key="frame" x="148" y="181" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="notice_small.png" id="xgP-7n-fn3">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="notice_small.png" id="xgP-7n-fn3">
                     <rect key="frame" x="248" y="181" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
@@ -148,7 +144,7 @@
             <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="BTicon" destination="mqc-vJ-u8y" id="xPD-cC-CuE"/>
+                <outlet property="BTicon" destination="I3U-lD-27O" id="KJM-7R-CNt"/>
                 <outlet property="attendanceBt" destination="Vax-xU-mwJ" id="cMe-zy-wiM"/>
                 <outlet property="attendanceGrade" destination="tE8-4P-izT" id="PXK-sf-jdO"/>
                 <outlet property="attendanceView" destination="R53-Rx-WRV" id="evO-eZ-F2B"/>

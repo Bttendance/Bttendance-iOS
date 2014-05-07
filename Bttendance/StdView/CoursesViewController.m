@@ -286,7 +286,7 @@
                 cell.Professor.text = cell.course.professor_name;
                 cell.School.text = cell.course.school.name;
                 cell.isManager = false;
-                [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
+                [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
 
                 cell.gap = [cell.course.attdCheckedAt timeIntervalSinceNow];
                 if (180.0f + cell.gap > 0.0f && cell.course.attdCheckedAt != nil)
@@ -304,8 +304,8 @@
                 cell.School.text = ((SimpleSchool *)user.enrolled_schools[i]).name;
         cell.CourseName.text = cell.simpleCourse.name;
         cell.Professor.text = cell.simpleCourse.professor_name;
-        cell.isManager = true;
-        [cell.background setFrame:CGRectMake(239, 75, 50, 0)];
+        cell.isManager = false;
+        [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
         [[BTBlink sharedInstance] removeView:cell.check_icon];
     }
     
@@ -351,13 +351,7 @@
     CourseDetailViewController *courseDetailViewController = [[CourseDetailViewController alloc] initWithNibName:@"CourseDetailViewController" bundle:nil];
     courseDetailViewController.course = cell.course;
     courseDetailViewController.simpleCourse = cell.simpleCourse;
-
-    if (indexPath.section == 0) {
-        courseDetailViewController.auth = YES;
-    } else {
-        courseDetailViewController.auth = NO;
-    }
-
+    courseDetailViewController.auth = cell.isManager;
     [self.navigationController pushViewController:courseDetailViewController animated:YES];
 }
 
@@ -365,7 +359,6 @@
 - (void)startAnimation:(CourseCell *)cell {
     float height = (180.0f + cell.gap) / 180.0f * 50.0f;
     cell.background.frame = CGRectMake(239, 75 - height, 50, height);
-    [cell.check_button removeTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
     [UIView animateWithDuration:180.0f + cell.gap
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
@@ -375,8 +368,6 @@
                      completion:^(BOOL finished) {
                          if (finished) {
                              [cell.background setFrame:CGRectMake(239, 75 - [cell.course.grade integerValue] / 2, 50, [cell.course.grade integerValue] / 2)];
-                             if (cell.isManager)
-                                 [cell.check_button addTarget:self action:@selector(attdStart:) forControlEvents:UIControlEventTouchUpInside];
                          }
                      }];
     

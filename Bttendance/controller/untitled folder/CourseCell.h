@@ -27,7 +27,7 @@
 @property(weak, nonatomic) IBOutlet UIImageView *noticeView;
 
 @property(weak, nonatomic) IBOutlet UIView *background;
-@property(weak, nonatomic) IBOutlet UIButton *check_button;
+@property(weak, nonatomic) IBOutlet UIImageView *check_image;
 @property(weak, nonatomic) IBOutlet UIImageView *check_icon;
 
 @property(weak, nonatomic) IBOutlet UIView *cellbackground;

@@ -50,14 +50,20 @@
     user = [BTUserDefault getUser];
     [self.tableview reloadData];
     [self refreshFeed:nil];
+    
 }
 
 - (void)refreshFeed:(id)sender {
     [BTAPIs feedWithPage:0
                  success:^(NSArray *posts) {
+                     int count = (int)data.count;
                      data = [NSMutableArray arrayWithArray:posts];
                      rowcount = data.count;
-                     [self.tableview reloadData];
+                     if (count == data.count)
+                         [self.tableview reloadRowsAtIndexPaths:[self.tableview indexPathsForVisibleRows]
+                                               withRowAnimation:UITableViewRowAnimationNone];
+                     else
+                         [self.tableview reloadData];
                      [self checkAttendanceScan];
                      [self checkClickerScan];
                      [self refreshCheck];
@@ -77,7 +83,8 @@
             [post.clicker copyDataFromClicker:clicker];
         }
     }
-    [self.tableview reloadData];
+    [self.tableview reloadRowsAtIndexPaths:[self.tableview indexPathsForVisibleRows]
+                          withRowAnimation:UITableViewRowAnimationNone];
 }
 
 // Check if any attendance is on-going
@@ -176,7 +183,13 @@
         double gap = [post.createdAt timeIntervalSinceNow];
         
         if (60.0f + gap > 0.0f && !check && !manager) {
-            return 179;
+        
+            UIFont *cellfont = [UIFont systemFontOfSize:12];
+            NSString *rawmessage = post.message;
+            NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
+            CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    
+            return 179 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
         }
     }
     
@@ -238,16 +251,15 @@
         cell.courseName.text = cell.post.course.name;
         cell.message.text = cell.post.message;
         cell.date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
-        
-        cell.message.frame = CGRectMake(20, 46, 280, 15);
+    
         cell.message.lineBreakMode = NSLineBreakByWordWrapping;
         cell.message.numberOfLines = 0;
         [cell.message sizeToFit];
         NSInteger height = MAX(cell.message.frame.size.height, 15);
-        
-        [cell.background setFrame:CGRectMake(11, 7, 298, 150 + height)];
-        [cell.date setFrame:CGRectMake(97, 33 + height, 210, 21)];
-        
+    
+        cell.message.frame = CGRectMake(20, 46, 280, height);
+        [cell.date setFrame:CGRectMake(97, 133 + height, 200, 21)];
+    
         if (cell.post.clicker.choice_count < 4) {
             cell.blink_d.hidden = YES;
             cell.bg_d.hidden = YES;
@@ -259,13 +271,18 @@
             cell.bg_c.hidden = YES;
             cell.ring_c.hidden = YES;
         }
-        
+    
         [cell.blink_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
         [cell.blink_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
         [cell.blink_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
         [cell.blink_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
         
-        double progress = 52.0f * -gap / 60.0f;
+        [cell.ring_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
+        [cell.ring_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
+        [cell.ring_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
+        [cell.ring_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
+    
+        double progress = MIN(52.0f * -gap / 60.0f, 52);
         cell.bg_a.frame = CGRectMake(29, 64 + height + progress, 52, 52 - progress);
         cell.bg_b.frame = CGRectMake(99, 64 + height + progress, 52, 52 - progress);
         cell.bg_c.frame = CGRectMake(169, 64 + height + progress, 52, 52 - progress);
@@ -300,7 +317,7 @@
         [cell.ring_b addTarget:self action:@selector(click_b:) forControlEvents:UIControlEventTouchUpInside];
         [cell.ring_c addTarget:self action:@selector(click_c:) forControlEvents:UIControlEventTouchUpInside];
         [cell.ring_d addTarget:self action:@selector(click_d:) forControlEvents:UIControlEventTouchUpInside];
-        
+    
         return cell;
     } else { // Clicker Normal
         static NSString *CellIdentifier = @"PostCell";
@@ -386,7 +403,6 @@
     [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     
     Boolean check = false;
     NSArray *checks = cell.post.attendance.checked_students;
@@ -499,11 +515,6 @@
         
         return;
     }
-}
-
-#pragma UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    lastScroll = [[NSDate date] timeIntervalSince1970];
 }
 
 #pragma Click Event for Clicker

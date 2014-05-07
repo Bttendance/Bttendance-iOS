@@ -22,7 +22,7 @@
 @property(weak, nonatomic) IBOutlet UILabel *noticeUsage;
 @property(weak, nonatomic) IBOutlet UIView *background;
 @property(weak, nonatomic) IBOutlet UIView *grade;
-@property(weak, nonatomic) IBOutlet UIButton *BTicon;
+@property(weak, nonatomic) IBOutlet UIImageView *BTicon;
 
 @property(weak, nonatomic) IBOutlet UIButton *clickerBt;
 @property(weak, nonatomic) IBOutlet UIButton *attendanceBt;

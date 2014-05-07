@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "User.h"
 #import "CourseDetailHeaderView.h"
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
@@ -17,6 +18,9 @@
 
     NSString *my_id;
     Boolean auth;
+    
+    User *user;
+    NSTimer *refreshTimer;
     
     CourseDetailHeaderView *coursedetailheaderview;
 }
