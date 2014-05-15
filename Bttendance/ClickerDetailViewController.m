@@ -56,6 +56,9 @@
         return;
     
     Clicker *clicker = [notification object];
+    if (post.clicker.id != clicker.id)
+        return;
+    
     [post.clicker copyDataFromClicker:clicker];
     [chart reloadData];
     

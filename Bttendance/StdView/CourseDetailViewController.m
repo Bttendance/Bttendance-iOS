@@ -183,13 +183,16 @@
         return;
     
     Clicker *clicker = [notification object];
+    Boolean found = NO;
     for (int i = 0; i < data.count; i++) {
         Post *post = data[i];
         if ([post.type isEqualToString:@"clicker"] && clicker.id == post.clicker.id) {
             [post.clicker copyDataFromClicker:clicker];
+            found = YES;
         }
     }
-    [self.tableview reloadData];
+    if (found)
+        [self.tableview reloadData];
 }
 
 // Check if any attendance is on-going
