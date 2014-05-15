@@ -53,7 +53,7 @@
             alert = [[UIAlertView alloc] initWithTitle:courseName
                                                message:@"Do you want to start attendance check?"
                                               delegate:self
-                                     cancelButtonTitle:@"Confrim"
+                                     cancelButtonTitle:@"Start"
                                      otherButtonTitles:@"Cancel", nil];
             alert.tag = 200;
             break;

@@ -279,7 +279,7 @@ static UIAlertView *Ooooppss;
     
     NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
                              @"password" : [BTUserDefault getPassword],
-                             @"page" : [NSString stringWithFormat: @"%ld", page]};
+                             @"page" : [NSString stringWithFormat: @"%d", (int)page]};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/feed"]
                      parameters:params
@@ -498,7 +498,7 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id,
-                             @"page" : [NSString stringWithFormat: @"%ld", page]};
+                             @"page" : [NSString stringWithFormat: @"%d", (int)page]};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/feed"]
                      parameters:params
