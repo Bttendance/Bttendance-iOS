@@ -10,6 +10,7 @@
 #import "Course.h"
 #import "User.h"
 #import "CourseDetailHeaderView.h"
+#import "RESideMenu.h"
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
 

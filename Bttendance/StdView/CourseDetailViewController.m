@@ -94,6 +94,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     NSString *title = [self courseName];
 
@@ -105,6 +107,18 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(title, @"");
     [titlelabel sizeToFit];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
+    }
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(presentLeftMenuViewController:)];
 
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];

@@ -11,10 +11,10 @@
 #import "FeedViewController.h"
 #import "CoursesViewController.h"
 #import "ProfileViewController.h"
-#import "MainViewController.h"
-#import "CatchPointController.h"
-#import "SignInController.h"
-#import "SignUpController.h"
+#import "CourseDetailViewController.h"
+#import "SideMenuViewController.h"
+#import "LeftMenuViewController.h"
+#import "CatchPointViewController.h"
 #import "ViewController.h"
 #import "BTUserDefault.h"
 #import <Crashlytics/Crashlytics.h>
@@ -34,28 +34,20 @@
     [Crashlytics startWithAPIKey:@"933280081941175a775ecfe701fefa562b7f8a01"];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    UINavigationController *navigationController;
     
     if([BTUserDefault getUsername] == nil
        || [BTUserDefault getPassword] == nil
        || [BTUserDefault getUUID] == nil) {
         [BTUserDefault clear];
-        firstview = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
+        firstview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
     } else {
-        firstview = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+        firstview = [[SideMenuViewController alloc] initByItSelf];
     }
-        
-    // Navigation
-    navigationController = [[UINavigationController alloc] initWithRootViewController:firstview];
-    navigationController.navigationBarHidden = YES;
-    self.window.rootViewController = navigationController;
-    _navController = navigationController;
-
-    [self.window addSubview:navigationController.view];
+    
+    self.navController = [[UINavigationController alloc] initWithRootViewController:firstview];
+    self.navController.navigationBarHidden = YES;
+    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
   
     if([[[UIDevice currentDevice] systemVersion] floatValue] >=7){

@@ -13,7 +13,7 @@
 #import "CourseCell.h"
 #import "CourseDetailViewController.h"
 #import "BTAPIs.h"
-#import "SchoolChooseView.h"
+#import "SchoolChooseViewController.h"
 #import "BTDateFormatter.h"
 #import "CreateNoticeViewController.h"
 #import "CreateClickerViewController.h"
@@ -378,7 +378,7 @@
 
 #pragma Button Events
 - (void)move_to_school:(BOOL)auth {
-    SchoolChooseView *schoolChooseView = [[SchoolChooseView alloc] init];
+    SchoolChooseViewController *schoolChooseView = [[SchoolChooseViewController alloc] init];
     schoolChooseView.auth = auth;
     [self.navigationController pushViewController:schoolChooseView animated:YES];
 }

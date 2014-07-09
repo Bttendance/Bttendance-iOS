@@ -13,8 +13,9 @@
 #import "ProfileNameEditViewController.h"
 #import "ProfileEmailEditViewController.h"
 #import "ProfileCell.h"
-#import "SchoolChooseView.h"
+#import "SchoolChooseViewController.h"
 #import "BTAPIs.h"
+#import "BTColor.h"
 #import "Identification.h"
 #import "BTNotification.h"
 
@@ -58,8 +59,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    _navigationbar.tintColor = [UIColor whiteColor];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
+    }
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(presentLeftMenuViewController:)];
+    
     ProfileHeaderView *profileheaderview = [[ProfileHeaderView alloc] init];
 
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:self options:nil];

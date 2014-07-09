@@ -21,7 +21,7 @@
 #import "Clicker.h"
 #import "Error.h"
 #import "Email.h"
-#import "CatchPointController.h"
+#import "CatchPointViewController.h"
 #import "AppDelegate.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "BTColor.h"
@@ -110,7 +110,7 @@ static UIAlertView *Ooooppss;
     
     if (alertView.tag == 401) {
         [BTUserDefault clear];
-        CatchPointController *catchView = [[CatchPointController alloc] initWithNibName:@"CatchPointController" bundle:nil];
+        CatchPointViewController *catchView = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate.navController pushViewController:catchView animated:NO];
     }
