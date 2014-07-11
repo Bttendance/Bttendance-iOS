@@ -6,13 +6,13 @@
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "GuideNoCourseViewController.h"
+#import "NoCourseViewController.h"
 
-@interface GuideNoCourseViewController ()
+@interface NoCourseViewController ()
 
 @end
 
-@implementation GuideNoCourseViewController
+@implementation NoCourseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

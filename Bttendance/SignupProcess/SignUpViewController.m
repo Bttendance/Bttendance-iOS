@@ -67,7 +67,7 @@ NSString *signupRequest;
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Sign up", @"");
+    titlelabel.text = NSLocalizedString(@"Sign Up", @"");
     [titlelabel sizeToFit];
 
     [self showNavigation];
@@ -131,11 +131,11 @@ NSString *signupRequest;
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:@"Full Name"];
+            [[cell textLabel] setText:NSLocalizedString(@"Full Name", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"John Smith";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"John Smith", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
@@ -146,11 +146,11 @@ NSString *signupRequest;
             break;
         }
         case 1: {
-            [[cell textLabel] setText:@"Email"];
+            [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"john@bttendance.com";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
@@ -161,11 +161,11 @@ NSString *signupRequest;
             break;
         }
         case 2: {
-            [[cell textLabel] setText:@"User ID"];
+            [[cell textLabel] setText:NSLocalizedString(@"User ID", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"@ID";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"@ID", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
@@ -176,11 +176,11 @@ NSString *signupRequest;
             break;
         }
         case 3: {
-            [[cell textLabel] setText:@"Password"];
+            [[cell textLabel] setText:NSLocalizedString(@"Password", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"Required";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"Required", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].secureTextEntry = YES;
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyDone;
@@ -200,7 +200,7 @@ NSString *signupRequest;
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
 
-            [cell_new.button setTitle:@"Sign Up" forState:UIControlStateNormal];
+            [cell_new.button setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -208,11 +208,11 @@ NSString *signupRequest;
         case 5: {
             NIAttributedLabel *label = [[NIAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
             label.backgroundColor = [UIColor clearColor];
-            label.text = @"By tapping \"Sign up\" above, you are agreeing to the Terms of Service and Privacy Policy.";
+            label.text = NSLocalizedString(@"By tapping \"Sign Up\" above, you are agreeing to the Terms of Service and Privacy Policy.", nil);
             [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
-                     range:[label.text rangeOfString:@"Terms of Service"]];
+                     range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
             [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
-                     range:[label.text rangeOfString:@"Privacy Policy"]];
+                     range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
             label.textAlignment = NSTextAlignmentRight;
             label.linkColor = [BTColor BT_navy:1];
             label.linksHaveUnderlines = YES;
@@ -256,16 +256,16 @@ NSString *signupRequest;
 
     if (username.length < 5 || username.length > 20) {
         //alert showing
-        NSString *title = @"Username is too short";
-        NSString *string = @"Username need to be longer than 5 and less than 20 letters.";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSString *title = NSLocalizedString(@"Username is too short", nil);
+        NSString *string = NSLocalizedString(@"Username need to be longer than 5 and less than 20 letters.", nil);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
 
     } else if (password.length < 6) {
         //alert showing
-        NSString *title = @"Password is too short";
-        NSString *string = @"Password need to be longer than 6 letters.";
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSString *title = NSLocalizedString(@"Password is too short", nil);
+        NSString *string = NSLocalizedString(@"Password need to be longer than 6 letters.", nil);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
 
     } else {
@@ -274,8 +274,8 @@ NSString *signupRequest;
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [BTColor BT_navy:0.7];
-        hud.labelText = @"Loading";
-        hud.detailsLabelText = @"Signing Up Bttendance";
+        hud.labelText = NSLocalizedString(@"Loading", nil);
+        hud.detailsLabelText = NSLocalizedString(@"Signing Up Bttendance", nil);
         hud.yOffset = -40.0f;
         
         [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {

@@ -115,7 +115,7 @@ NSString *createCourseRequest;
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:@"Name"];
+            [[cell textLabel] setText:NSLocalizedString(@"Name", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -129,7 +129,7 @@ NSString *createCourseRequest;
             break;
         }
         case 1: {
-            [[cell textLabel] setText:@"Course ID"];
+            [[cell textLabel] setText:NSLocalizedString(@"Course ID", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -144,7 +144,7 @@ NSString *createCourseRequest;
         }
 
         case 2: {
-            [[cell textLabel] setText:@"Professor"];
+            [[cell textLabel] setText:NSLocalizedString(@"Professor", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -161,7 +161,7 @@ NSString *createCourseRequest;
         }
 
         case 3: {
-            [[cell textLabel] setText:@"School"];
+            [[cell textLabel] setText:NSLocalizedString(@"School", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -186,7 +186,7 @@ NSString *createCourseRequest;
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
 
-            [cell_new.button setTitle:@"Create Course" forState:UIControlStateNormal];
+            [cell_new.button setTitle:NSLocalizedString(@"Create Course", nil) forState:UIControlStateNormal];
             [cell_new.button addTarget:self action:@selector(CreateButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -219,8 +219,8 @@ NSString *createCourseRequest;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Creating Course";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Creating Course", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs createCourseRequestWithName:name
@@ -229,11 +229,11 @@ NSString *createCourseRequest;
                           professorName:prof
                                 success:^(Email *email) {
                                     [hud hide:YES];
-                                    NSString *message = [NSString stringWithFormat:@"Verification code for activating your course has been sent via email.\n%@", email.email];
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email Sent"
+                                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Verification code for activating your course has been sent via email.\n\"%@\"", nil), email.email];
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email Sent", nil)
                                                                                     message:message
                                                                                    delegate:nil
-                                                                          cancelButtonTitle:@"OK"
+                                                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                                           otherButtonTitles:nil];
                                     [alert show];
                                     [self.navigationController popToRootViewControllerAnimated:YES];

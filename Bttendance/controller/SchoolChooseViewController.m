@@ -11,7 +11,6 @@
 #import "BTUserDefault.h"
 #import "BTColor.h"
 #import "BTAPIs.h"
-#import "CourseAttendViewController.h"
 #import "CourseCreateViewController.h"
 
 @interface SchoolChooseViewController ()
@@ -233,10 +232,6 @@
         courseCreateController.prfName = [BTUserDefault getUser].full_name;
         [self.navigationController pushViewController:courseCreateController animated:YES];
     } else {
-        CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
-        courseAttendView.sid = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.id;
-        courseAttendView.sname = ((SchoolInfoCell *) [self.tableview cellForRowAtIndexPath:indexPath]).school.name;
-        [self.navigationController pushViewController:courseAttendView animated:YES];
     }
 }
 

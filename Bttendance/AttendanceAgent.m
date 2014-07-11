@@ -51,17 +51,17 @@
     switch ([myCmanager state]) {
         case CBCentralManagerStatePoweredOn: //power-on
             alert = [[UIAlertView alloc] initWithTitle:courseName
-                                               message:@"Do you want to start attendance check?"
+                                               message:NSLocalizedString(@"Do you want to start attendance check?", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"Start"
-                                     otherButtonTitles:@"Cancel", nil];
+                                     cancelButtonTitle:NSLocalizedString(@"Start", nil)
+                                     otherButtonTitles:NSLocalizedString(@"Cancel", nil), nil];
             alert.tag = 200;
             break;
         case CBCentralManagerStatePoweredOff: //powered off
-            alert = [[UIAlertView alloc] initWithTitle:@"Turn On Bluetooth"
-                                               message:@"Your bluetooth is powered off. Before start Attedance check turn your bluetooth on."
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
+                                               message:NSLocalizedString(@"Your bluetooth is powered off. Before start Attedance check turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"OK"
+                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                      otherButtonTitles:nil, nil];
             alert.tag = 400;
             break;
@@ -69,10 +69,10 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
-            alert = [[UIAlertView alloc] initWithTitle:@"Device Unsupported"
-                                               message:@"Your device doesn't support proper bluetooth version."
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Unsupported", nil)
+                                               message:NSLocalizedString(@"Your device doesn't support proper bluetooth version.", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"OK"
+                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                      otherButtonTitles:nil, nil];
             break;
     }
@@ -95,10 +95,10 @@
             [self checkAttdWithCourseIDs:courseIDs];
             break;
         case CBCentralManagerStatePoweredOff: //powered off
-            alert = [[UIAlertView alloc] initWithTitle:@"Turn On Bluetooth"
-                                               message:@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on."
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
+                                               message:NSLocalizedString(@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"OK"
+                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                      otherButtonTitles:nil, nil];
             alert.tag = 400;
             [alert show];
@@ -107,10 +107,10 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
-            alert = [[UIAlertView alloc] initWithTitle:@"Check Bluetooth Status"
-                                               message:@"Go to Setting -> Bluetooth and turn on bluetooth."
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Check Bluetooth Status", nil)
+                                               message:NSLocalizedString(@"Go to Setting -> Bluetooth and turn on bluetooth.", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"OK"
+                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                      otherButtonTitles:nil, nil];
             alert.tag = 500;
             [alert show];
@@ -138,10 +138,10 @@
             [self checkAttdWithAttendanceIDs:attendanceIDs];
             break;
         case CBCentralManagerStatePoweredOff: //powered off
-            alert = [[UIAlertView alloc] initWithTitle:@"Turn On Bluetooth"
-                                               message:@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on."
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
+                                               message:NSLocalizedString(@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:@"OK"
+                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                      otherButtonTitles:nil, nil];
             alert.tag = 400;
             [alert show];

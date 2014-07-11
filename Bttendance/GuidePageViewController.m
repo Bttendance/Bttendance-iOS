@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    self.nextBt.titleLabel.text = NSLocalizedString(@"Next", nil);
+    
     self.guideFirstBG = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
     self.guidePollBG = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
     self.guideAttdBG = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
@@ -37,12 +39,6 @@
     self.guideAttdBG.backgroundColor = [UIColor greenColor];
     self.guideNoticeBG.backgroundColor = [UIColor purpleColor];
     self.guideLastBG.backgroundColor = [UIColor blackColor];
-    
-    self.guideFirstBG.alpha = 1.0;
-    self.guidePollBG.alpha = 0.0;
-    self.guideAttdBG.alpha = 0.0;
-    self.guideNoticeBG.alpha = 0.0;
-    self.guideLastBG.alpha = 0.0;
     
     [[self view] addSubview:self.guideFirstBG];
     [[self view] addSubview:self.guidePollBG];
@@ -62,6 +58,25 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
+    //all view component fade in
+    self.pageControl.alpha = 0;
+    self.closeBt.alpha = 0;
+    self.nextBt.alpha = 0;
+    self.swipeView.alpha = 0;
+    self.guideFirstBG.alpha = 0;
+    self.guidePollBG.alpha = 0;
+    self.guideAttdBG.alpha = 0;
+    self.guideNoticeBG.alpha = 0;
+    self.guideLastBG.alpha = 0;
+    [UIImageView beginAnimations:nil context:NULL];
+    [UIImageView setAnimationDuration:1];
+    self.pageControl.alpha = 1;
+    self.closeBt.alpha = 1;
+    self.nextBt.alpha = 1;
+    self.swipeView.alpha = 1;
+    self.guideFirstBG.alpha = 1;
+    [UIImageView commitAnimations];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -128,7 +143,23 @@
 #pragma IBAction
 - (IBAction)closeGuide:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.pageControl.alpha = 1;
+    self.closeBt.alpha = 1;
+    self.nextBt.alpha = 1;
+    self.swipeView.alpha = 1;
+    [UIView animateWithDuration:0.4f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.pageControl.alpha = 0;
+        self.closeBt.alpha = 0;
+        self.nextBt.alpha = 0;
+        self.swipeView.alpha = 0;
+        self.guideFirstBG.alpha = 0;
+        self.guidePollBG.alpha = 0;
+        self.guideAttdBG.alpha = 0;
+        self.guideNoticeBG.alpha = 0;
+        self.guideLastBG.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 
 - (IBAction)nextPage:(id)sender

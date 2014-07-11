@@ -119,11 +119,11 @@
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:@" Email"];
+            [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"john@bttendance.com";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].frame = CGRectMake(78, 1, 222, 40);
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
@@ -145,7 +145,7 @@
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
 
-            [cell_new.button setTitle:@"Submit" forState:UIControlStateNormal];
+            [cell_new.button setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
             [cell_new.button addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
             cell.contentView.backgroundColor = [BTColor BT_grey:1];
 
@@ -184,18 +184,18 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Recoverying Password";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Recoverying Password", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs forgotPasswordWithEmail:email
                             success:^(Email *email) {
                                 [hud hide:YES];
-                                NSString *message = [NSString stringWithFormat:@"Password recovery has been succeeded.\nPlease check your email.\n%@", email.email];
-                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Password Recovery Success"
+                                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Password recovery has been succeeded.\nPlease check your email.\n\"%@\"", nil), email.email];
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password Recovery Success", nil)
                                                                                 message:message
                                                                                delegate:self
-                                                                      cancelButtonTitle:@"OK"
+                                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                                       otherButtonTitles:nil];
                                 [alert show];
                             } failure:^(NSError *error) {

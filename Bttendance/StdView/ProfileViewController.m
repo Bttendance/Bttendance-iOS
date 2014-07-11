@@ -51,9 +51,9 @@
 - (void)setting:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                              delegate:self
-                                                    cancelButtonTitle:@"Cancel"
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Edit Name", @"Edit Email", nil];
+                                                    otherButtonTitles:NSLocalizedString(@"Edit Name", nil), NSLocalizedString(@"Edit Email", nil), nil];
     [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
 }
 
@@ -67,7 +67,7 @@
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", nil)
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentLeftMenuViewController:)];
@@ -78,11 +78,11 @@
     profileheaderview = [topLevelObjects objectAtIndex:0];
 
     if ([user.employed_schools count] > 0 && [user.enrolled_schools count] > 0)
-        profileheaderview.accountType.text = @"Professor & Student";
+        profileheaderview.accountType.text = NSLocalizedString(@"Professor & Student", nil);
     else if ([user.employed_schools count] > 0)
-        profileheaderview.accountType.text = @"Professor";
+        profileheaderview.accountType.text = NSLocalizedString(@"Professor", nil);
     else
-        profileheaderview.accountType.text = @"Student";
+        profileheaderview.accountType.text = NSLocalizedString(@"Student", nil);
 
     profileheaderview.userName.text = user.username;
     self.tableview.tableHeaderView = profileheaderview;
@@ -133,7 +133,7 @@
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileCell" owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
 
-                ((ProfileCell *) cell).title.text = @"Name";
+                ((ProfileCell *) cell).title.text = NSLocalizedString(@"Name", nil);
                 ((ProfileCell *) cell).data.text = fullname;
                 break;
             }
@@ -141,7 +141,7 @@
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileCell" owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
 
-                ((ProfileCell *) cell).title.text = @"Email";
+                ((ProfileCell *) cell).title.text = NSLocalizedString(@"Email", nil);
                 ((ProfileCell *) cell).data.text = email;
                 break;
             }
@@ -149,7 +149,7 @@
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ProfileCell" owner:self options:nil];
                 cell = [topLevelObjects objectAtIndex:0];
 
-                ((ProfileCell *) cell).title.text = @"School";
+                ((ProfileCell *) cell).title.text = NSLocalizedString(@"School", nil);
                 ((ProfileCell *) cell).data.text = @"";
                 ((ProfileCell *) cell).accessoryType = UITableViewCellAccessoryNone;
                 break;
@@ -166,7 +166,7 @@
         if (indexPath.row < [user.employed_schools count]) {
             ((SchoolInfoCell *) cell).simpleSchool = user.employed_schools[indexPath.row];
             ((SchoolInfoCell *) cell).Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
-            ((SchoolInfoCell *) cell).Info_SchoolID.text = @"Professor";
+            ((SchoolInfoCell *) cell).Info_SchoolID.text = NSLocalizedString(@"Professor", nil);
         } else {
             ((SchoolInfoCell *) cell).simpleSchool = user.enrolled_schools[indexPath.row - [user.employed_schools count]];
             ((SchoolInfoCell *) cell).Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
@@ -174,7 +174,7 @@
             for (int j = 0; j < [user.identifications count]; j++)
                 if (((SimpleIdentification *)user.identifications[j]).school == ((SchoolInfoCell *) cell).simpleSchool.id)
                     identity = ((SimpleIdentification *)user.identifications[j]).identity;
-            ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:@"Student - %@", identity];
+            ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"Student - \"%@\"", nil), identity];
         }
         ((SchoolInfoCell *) cell).backgroundColor = [UIColor clearColor];
         ((SchoolInfoCell *) cell).contentView.backgroundColor = [UIColor clearColor];

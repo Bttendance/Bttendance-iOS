@@ -67,9 +67,9 @@
         case 1: {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                      delegate:self
-                                                            cancelButtonTitle:@"Cancel"
+                                                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                        destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"Create Course", @"Attend Course", nil];
+                                                            otherButtonTitles:NSLocalizedString(@"Create Course", nil), NSLocalizedString(@"Attend Course", nil), nil];
             [actionSheet showInView:self.view];
             break;
         }
@@ -87,7 +87,7 @@
             //                                 [self.navigationController pushViewController:guidePage animated:NO];
             //                                 guidePage.view.alpha = 1;
             //                             }];
-            [self presentViewController:guidePage animated:YES completion:nil];
+            [self presentViewController:guidePage animated:NO completion:nil];
             break;
         }
         case 4: {

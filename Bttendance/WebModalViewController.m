@@ -1,11 +1,11 @@
-#import "WebViewController.h"
+#import "WebModalViewController.h"
 #import "BTColor.h"
 
-@interface WebViewController ()
+@interface WebModalViewController ()
 
 @end
 
-@implementation WebViewController
+@implementation WebModalViewController
 
 @synthesize URLString = URLString_;
 
@@ -17,16 +17,16 @@
         
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        backButton.titleLabel.text = NSLocalizedString(@"Close", nil);
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        [self.navigationItem setRightBarButtonItem:backButtonItem];
         self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     return self;
 }
 
 - (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

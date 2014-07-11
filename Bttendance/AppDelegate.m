@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import <AudioToolbox/AudioToolbox.h>
-#import "FeedViewController.h"
-#import "CoursesViewController.h"
 #import "ProfileViewController.h"
 #import "CourseDetailViewController.h"
 #import "SideMenuViewController.h"

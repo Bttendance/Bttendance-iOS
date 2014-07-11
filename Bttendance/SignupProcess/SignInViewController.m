@@ -65,7 +65,7 @@ NSString *signinRequest;
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Log in", @"");
+    titlelabel.text = NSLocalizedString(@"Log In", @"");
     [titlelabel sizeToFit];
 
     [self showNavigation];
@@ -130,11 +130,11 @@ NSString *signinRequest;
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:@"User ID"];
+            [[cell textLabel] setText:NSLocalizedString(@"User ID", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"or Email";
+            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"or Email", nil);
             [(CustomCell *) cell textfield].delegate = self;
             [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
@@ -146,7 +146,7 @@ NSString *signinRequest;
             break;
         }
         case 1: {
-            [[cell textLabel] setText:@"Password"];
+            [[cell textLabel] setText:NSLocalizedString(@"Password", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
@@ -169,7 +169,7 @@ NSString *signinRequest;
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
 
-            [cell_new.button setTitle:@"Log In" forState:UIControlStateNormal];
+            [cell_new.button setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -178,7 +178,7 @@ NSString *signinRequest;
         case 3: {
             BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
             partnership.backgroundColor = [UIColor clearColor];
-            [partnership setTitle:@"Forgot Password?" forState:UIControlStateNormal];
+            [partnership setTitle:NSLocalizedString(@"Forgot Password?", nil) forState:UIControlStateNormal];
             [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
             partnership.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
             [partnership addTarget:self action:@selector(forgot:) forControlEvents:UIControlEventTouchUpInside];
@@ -221,8 +221,8 @@ NSString *signinRequest;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Loging In Bttendance";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Loging In Bttendance", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs signInWithUsername:username password:password success:^(User *user) {

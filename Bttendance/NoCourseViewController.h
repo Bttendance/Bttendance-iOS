@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface GuideNoCourseViewController : UIViewController
+@interface NoCourseViewController : UIViewController
 
 @end
