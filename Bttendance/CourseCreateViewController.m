@@ -223,19 +223,11 @@ NSString *createCourseRequest;
     hud.detailsLabelText = NSLocalizedString(@"Creating Course", nil);
     hud.yOffset = -40.0f;
     
-    [BTAPIs createCourseRequestWithName:name
-                                 number:number
+    [BTAPIs createCourseInstantWithName:name
                                  school:sid
                           professorName:prof
-                                success:^(Email *email) {
+                                success:^(User *user) {
                                     [hud hide:YES];
-                                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Verification code for activating your course has been sent via email.\n\"%@\"", nil), email.email];
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email Sent", nil)
-                                                                                    message:message
-                                                                                   delegate:nil
-                                                                          cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                          otherButtonTitles:nil];
-                                    [alert show];
                                     [self.navigationController popToRootViewControllerAnimated:YES];
                                 } failure:^(NSError *error) {
                                     button.enabled = YES;

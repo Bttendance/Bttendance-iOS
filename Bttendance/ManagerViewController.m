@@ -145,9 +145,8 @@
     [BTAPIs searchUser:search
                success:^(User *user) {
                    [hud hide:YES];
-                   managerName = user.username;
                    managerFullName = user.full_name;
-                   NSString *message = [NSString stringWithFormat:@"Would you like to add \"%@\" as a manager of course %@", user.full_name, courseName];
+                   NSString *message = [NSString stringWithFormat:@"Would you like to add %@ as a manager of course %@", user.full_name, courseName];
                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Manager"
                                                                    message:message
                                                                   delegate:self
@@ -173,7 +172,7 @@
                              manager:managerName
                              success:^(Course *course) {
                                  [hud hide:YES];
-                                 NSString *message = [NSString stringWithFormat:@"\"%@\" is now manager of %@.", managerFullName, courseName];
+                                 NSString *message = [NSString stringWithFormat:@"%@ is now manager of %@.", managerFullName, courseName];
                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Manager Added"
                                                                                  message:message
                                                                                 delegate:nil

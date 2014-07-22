@@ -22,12 +22,8 @@
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.name = [dictionary objectForKey:@"name"];
-        self.number = [dictionary objectForKey:@"number"];
         self.professor_name = [dictionary objectForKey:@"professor_name"];
         self.school = [[dictionary objectForKey:@"school"] integerValue];
-        self.students_count = [[dictionary objectForKey:@"students_count"] integerValue];
-        self.clicker_usage = [[dictionary objectForKey:@"clicker_usage"] integerValue];
-        self.notice_usage = [[dictionary objectForKey:@"notice_usage"] integerValue];
     }
     return self;
 }
@@ -47,37 +43,18 @@
         self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
         self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.name = [dictionary objectForKey:@"name"];
-        self.number = [dictionary objectForKey:@"number"];
         self.professor_name = [dictionary objectForKey:@"professor_name"];
         self.school = [[SimpleSchool alloc] initWithDictionary:[dictionary objectForKey:@"school"]];
-        
-        NSMutableArray *managers = [NSMutableArray array];
-        for (NSDictionary *dic in [dictionary objectForKey:@"managers"]) {
-            SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
-            [managers addObject:user];
-        }
-        self.managers = managers;
-        
-        NSMutableArray *students = [NSMutableArray array];
-        for (NSDictionary *dic in [dictionary objectForKey:@"students"]) {
-            SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
-            [students addObject:user];
-        }
-        self.students = students;
-        
-        NSMutableArray *posts = [NSMutableArray array];
-        for (NSDictionary *dic in [dictionary objectForKey:@"posts"]) {
-            SimplePost *post = [[SimplePost alloc] initWithDictionary:dic];
-            [posts addObject:post];
-        }
-        self.posts = posts;
-        
+        self.managers_count = [[dictionary objectForKey:@"managers_count"] integerValue];
         self.students_count = [[dictionary objectForKey:@"students_count"] integerValue];
-        self.attdCheckedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"attdCheckedAt"]];
-        self.clicker_usage = [[dictionary objectForKey:@"clicker_usage"] integerValue];
-        self.notice_usage = [[dictionary objectForKey:@"notice_usage"] integerValue];
+        self.posts_count = [[dictionary objectForKey:@"posts_count"] integerValue];
+        self.code = [dictionary objectForKey:@"code"];
+        self.opened = [[dictionary objectForKey:@"opened"] boolValue];
         
-        self.grade = [dictionary objectForKey:@"grade"];
+        //Added by APIs
+        self.attendance_rate = [dictionary objectForKey:@"attendance_rate"];
+        self.clicker_rate = [dictionary objectForKey:@"clicker_rate"];
+        self.notice_unseen = [dictionary objectForKey:@"notice_unseen"];
     }
     return self;
 }

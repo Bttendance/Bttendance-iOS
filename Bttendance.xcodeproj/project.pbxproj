@@ -78,6 +78,9 @@
 		D407B26F18AD803E009BCF8C /* CourseCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A09E1878347500F9561B /* CourseCreateViewController.xib */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D42FAB0B197E4B330008945E /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0A197E4B330008945E /* Notice.m */; };
+		D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0D197E4D6A0008945E /* PushNoti.m */; };
+		D42FAB11197E4EE80008945E /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB10197E4EE80008945E /* Notification.m */; };
 		D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380E9B1916DF4D008F8A78 /* BTBlink.m */; };
 		D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */; };
 		D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */; };
@@ -90,7 +93,6 @@
 		D46D893318AFED7C0051F291 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotPassViewController.m */; };
 		D46D893418AFED7C0051F291 /* ForgotPassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46D893218AFED7C0051F291 /* ForgotPassViewController.xib */; };
 		D47223041908E54D00CE7015 /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223031908E54D00CE7015 /* Email.m */; };
-		D47223071908E55600CE7015 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223061908E55600CE7015 /* Notification.m */; };
 		D472230A1908E55D00CE7015 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D47223091908E55D00CE7015 /* Error.m */; };
 		D472230D1909178500CE7015 /* BTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D472230C1909178500CE7015 /* BTUUID.m */; };
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
@@ -181,7 +183,6 @@
 		D4FD44C519081FC400FB52A5 /* Identification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44C419081FC400FB52A5 /* Identification.m */; };
 		D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44C719081FD200FB52A5 /* Clicker.m */; };
 		D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44CA19081FDD00FB52A5 /* Attendance.m */; };
-		D4FD44CE19081FF400FB52A5 /* Serial.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44CD19081FF400FB52A5 /* Serial.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +296,12 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D42FAB09197E4B330008945E /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
+		D42FAB0A197E4B330008945E /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
+		D42FAB0C197E4D6A0008945E /* PushNoti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoti.h; sourceTree = "<group>"; };
+		D42FAB0D197E4D6A0008945E /* PushNoti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoti.m; sourceTree = "<group>"; };
+		D42FAB0F197E4EE80008945E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		D42FAB10197E4EE80008945E /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		D4380E9A1916DF4D008F8A78 /* BTBlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlink.h; sourceTree = "<group>"; };
 		D4380E9B1916DF4D008F8A78 /* BTBlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlink.m; sourceTree = "<group>"; };
 		D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_clicked@2x.png"; sourceTree = "<group>"; };
@@ -314,8 +321,6 @@
 		D46D893218AFED7C0051F291 /* ForgotPassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPassViewController.xib; sourceTree = "<group>"; };
 		D47223021908E54D00CE7015 /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
 		D47223031908E54D00CE7015 /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
-		D47223051908E55600CE7015 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		D47223061908E55600CE7015 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		D47223081908E55D00CE7015 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		D47223091908E55D00CE7015 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		D472230B1909178500CE7015 /* BTUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUUID.h; sourceTree = "<group>"; };
@@ -445,8 +450,6 @@
 		D4FD44C719081FD200FB52A5 /* Clicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clicker.m; sourceTree = "<group>"; };
 		D4FD44C919081FDD00FB52A5 /* Attendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attendance.h; sourceTree = "<group>"; };
 		D4FD44CA19081FDD00FB52A5 /* Attendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
-		D4FD44CC19081FF400FB52A5 /* Serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serial.h; sourceTree = "<group>"; };
-		D4FD44CD19081FF400FB52A5 /* Serial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serial.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -856,6 +859,8 @@
 				D4FD44B31908194F00FB52A5 /* User.m */,
 				D4FD44B519081F6F00FB52A5 /* Device.h */,
 				D4FD44B619081F6F00FB52A5 /* Device.m */,
+				D42FAB0F197E4EE80008945E /* Notification.h */,
+				D42FAB10197E4EE80008945E /* Notification.m */,
 				D4FD44B819081F7E00FB52A5 /* Post.h */,
 				D4FD44B919081F7E00FB52A5 /* Post.m */,
 				D4FD44BB19081F8800FB52A5 /* Course.h */,
@@ -868,12 +873,12 @@
 				D4FD44C719081FD200FB52A5 /* Clicker.m */,
 				D4FD44C919081FDD00FB52A5 /* Attendance.h */,
 				D4FD44CA19081FDD00FB52A5 /* Attendance.m */,
-				D4FD44CC19081FF400FB52A5 /* Serial.h */,
-				D4FD44CD19081FF400FB52A5 /* Serial.m */,
+				D42FAB09197E4B330008945E /* Notice.h */,
+				D42FAB0A197E4B330008945E /* Notice.m */,
 				D47223021908E54D00CE7015 /* Email.h */,
 				D47223031908E54D00CE7015 /* Email.m */,
-				D47223051908E55600CE7015 /* Notification.h */,
-				D47223061908E55600CE7015 /* Notification.m */,
+				D42FAB0C197E4D6A0008945E /* PushNoti.h */,
+				D42FAB0D197E4D6A0008945E /* PushNoti.m */,
 				D47223081908E55D00CE7015 /* Error.h */,
 				D47223091908E55D00CE7015 /* Error.m */,
 			);
@@ -1017,7 +1022,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1186,6 +1191,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42FAB11197E4EE80008945E /* Notification.m in Sources */,
+				D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */,
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */,
@@ -1204,6 +1211,7 @@
 				212C05AE183B726D00AD6654 /* CatchPointViewController.m in Sources */,
 				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateViewController.m in Sources */,
+				D42FAB0B197E4B330008945E /* Notice.m in Sources */,
 				D4B467061913504B00AB6486 /* ClickerCell.m in Sources */,
 				2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */,
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
@@ -1223,7 +1231,6 @@
 				D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */,
 				D4B56006196BE415005CFE30 /* ProfileIdentityEditViewController.m in Sources */,
 				21C48E2E183D08E800C8D772 /* SignInViewController.m in Sources */,
-				D47223071908E55600CE7015 /* Notification.m in Sources */,
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
 				D472230D1909178500CE7015 /* BTUUID.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
@@ -1238,7 +1245,6 @@
 				218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */,
 				212C05B9183B73E000AD6654 /* SignUpViewController.m in Sources */,
 				D4AD9D03196BC9CF00B88020 /* GuideCourseCreateViewController.m in Sources */,
-				D4FD44CE19081FF400FB52A5 /* Serial.m in Sources */,
 				217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */,
 				2137BBC0182D482200B59E15 /* BTUserDefault.m in Sources */,
 				D4AD9CFE196BC9B600B88020 /* NoCourseViewController.m in Sources */,
@@ -1488,7 +1494,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

@@ -138,7 +138,7 @@
     }
 
     CGRect frame = coursedetailheaderview.grade.frame;
-    frame.size.height = 94.0f * (100.0f - [[self grade] intValue]) / 100.0f;
+//    frame.size.height = 94.0f * (100.0f - [[self grade] intValue]) / 100.0f;
     [coursedetailheaderview.grade setFrame:frame];
     self.tableview.tableHeaderView = coursedetailheaderview;
     
@@ -155,10 +155,6 @@
     coursedetailheaderview.schoolname.text = [self schoolName];
     coursedetailheaderview.background.layer.cornerRadius = 52.5f;
     coursedetailheaderview.background.layer.masksToBounds = YES;
-    coursedetailheaderview.studentNumber.text = [NSString stringWithFormat:@"%d students", (int)[self studentCount]];
-    coursedetailheaderview.attendanceGrade.text = [NSString stringWithFormat:@"%@%% attendance rate", [self grade]];
-    coursedetailheaderview.clickerUsage.text = [NSString stringWithFormat:@"%d clickers", (int)[self clickerUsage]];
-    coursedetailheaderview.noticeUsage.text = [NSString stringWithFormat:@"%d notices", (int)[self noticeUsage]];
     
     [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
     [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
@@ -226,11 +222,6 @@
         double gap = [post.createdAt timeIntervalSinceNow];
         if (60.0f + gap > 0.0f && [post.type isEqualToString:@"clicker"])
             [array addObject:[NSString stringWithFormat:@"%d", (int)post.clicker.id]];
-    }
-    
-    if (array.count > 0) {
-        for (NSString *ID in array)
-            [[SocketAgent sharedInstance] connetWithClicker:ID];
     }
 }
 
@@ -831,32 +822,25 @@
     return schoolName;
 }
 
--(NSString *)grade {
-    NSString *grade = course.grade;
+-(NSString *)attendanceRate {
+    NSString *grade = course.attendance_rate;
     if (grade == nil)
         grade = @"0";
     return grade;
 }
 
--(NSInteger)studentCount {
-    NSInteger studentCount = course.students_count;
-    if (studentCount == 0)
-        studentCount = simpleCourse.students_count;
-    return studentCount;
+-(NSString *)clickerRate {
+    NSString *grade = course.clicker_rate;
+    if (grade == nil)
+        grade = @"0";
+    return grade;
 }
 
--(NSInteger)clickerUsage {
-    NSInteger clickerUsage = course.clicker_usage;
-    if (clickerUsage == 0)
-        clickerUsage = simpleCourse.clicker_usage;
-    return clickerUsage;
-}
-
--(NSInteger)noticeUsage {
-    NSInteger noticeUsage = course.notice_usage;
-    if (noticeUsage == 0)
-        noticeUsage = simpleCourse.notice_usage;
-    return noticeUsage;
+-(NSString *)noticeUnseen {
+    NSString *grade = course.notice_unseen;
+    if (grade == nil)
+        grade = @"0";
+    return grade;
 }
 
 @end

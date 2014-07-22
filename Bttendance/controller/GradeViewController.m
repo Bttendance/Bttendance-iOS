@@ -51,7 +51,7 @@
     titlelabel.text = @"Grades";
     [titlelabel sizeToFit];
     
-    [BTAPIs gradesWithCourse:cid success:^(NSArray *simpleUsers) {
+    [BTAPIs attendanceGradesWithCourse:cid success:^(NSArray *simpleUsers) {
         data = simpleUsers;
         rowcount = data.count;
         [self.tableview reloadData];

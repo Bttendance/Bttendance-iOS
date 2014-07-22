@@ -11,11 +11,13 @@
 #import "Course.h"
 #import "Attendance.h"
 #import "Clicker.h"
+#import "Notice.h"
 
 @class SimpleUser;
 @class SimpleCourse;
 @class SimpleAttendance;
 @class SimpleClicker;
+@class SimpleNotice;
 
 @interface SimplePost : NSObject
 
@@ -40,7 +42,9 @@
 @property(strong, nonatomic) SimpleCourse  *course;
 @property(strong, nonatomic) SimpleAttendance  *attendance;
 @property(strong, nonatomic) SimpleClicker  *clicker;
+@property(strong, nonatomic) SimpleNotice  *notice;
 
+//Added by APIs
 @property(strong, nonatomic) NSString  *grade;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

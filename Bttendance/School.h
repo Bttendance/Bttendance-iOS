@@ -12,8 +12,6 @@
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *logo_image;
-@property(strong, nonatomic) NSURL  *website;
 @property(strong, nonatomic) NSString  *type;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
@@ -27,13 +25,10 @@
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *logo_image;
-@property(strong, nonatomic) NSURL  *website;
 @property(strong, nonatomic) NSString  *type;
-@property(strong, nonatomic) NSArray  *serials;
-@property(strong, nonatomic) NSArray  *courses;
-@property(strong, nonatomic) NSArray  *professors;
-@property(strong, nonatomic) NSArray  *students;
+@property(assign) NSInteger  courses_count;
+@property(assign) NSInteger  professors_count;
+@property(assign) NSInteger  students_count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -15,12 +15,8 @@
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *number;
 @property(strong, nonatomic) NSString  *professor_name;
 @property(assign) NSInteger  school;
-@property(assign) NSInteger  students_count;
-@property(assign) NSInteger  clicker_usage;
-@property(assign) NSInteger  notice_usage;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -33,18 +29,18 @@
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *number;
 @property(strong, nonatomic) NSString  *professor_name;
 @property(strong, nonatomic) SimpleSchool  *school;
-@property(strong, nonatomic) NSArray  *managers;
-@property(strong, nonatomic) NSArray  *students;
-@property(strong, nonatomic) NSArray  *posts;
+@property(assign) NSInteger  managers_count;
 @property(assign) NSInteger  students_count;
-@property(strong, nonatomic) NSDate  *attdCheckedAt;
-@property(assign) NSInteger  clicker_usage;
-@property(assign) NSInteger  notice_usage;
+@property(assign) NSInteger  posts_count;
+@property(strong, nonatomic) NSString  *code;
+@property(assign) BOOL opened;
 
-@property(strong, nonatomic) NSString  *grade;
+//Added by APIs
+@property(strong, nonatomic) NSString  *attendance_rate;
+@property(strong, nonatomic) NSString  *clicker_rate;
+@property(strong, nonatomic) NSString  *notice_unseen;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

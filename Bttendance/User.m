@@ -10,7 +10,6 @@
 #import "BTDateFormatter.h"
 #import "Course.h"
 #import "School.h"
-#import "Serial.h"
 #import "Identification.h"
 #import "NSDictionary+Bttendance.h"
 
@@ -23,10 +22,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.username = [dictionary objectForKey:@"username"];
         self.email = [dictionary objectForKey:@"email"];
         self.full_name = [dictionary objectForKey:@"full_name"];
-        self.profile_image = [NSURL URLWithString:[[dictionary objectForKey:@"profile_image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
         //Added by APIs
         self.grade = [dictionary objectForKey:@"grade"];
@@ -50,13 +47,11 @@
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
         self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
-        self.username = [dictionary objectForKey:@"username"];
-        self.username_lower = [dictionary objectForKey:@"username_lower"];
         self.email = [dictionary objectForKey:@"email"];
         self.password = [dictionary objectForKey:@"password"];
         self.full_name = [dictionary objectForKey:@"full_name"];
-        self.profile_image = [NSURL URLWithString:[[dictionary objectForKey:@"profile_image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         self.device = [[SimpleDevice alloc] initWithDictionary:[dictionary objectForKey:@"device"]];
+        self.notification = [[SimpleNotification alloc] initWithDictionary:[dictionary objectForKey:@"notification"]];
         
         NSMutableArray *supervising_courses = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"supervising_courses"]) {
@@ -94,13 +89,6 @@
             [employed_schools addObject:school];
         }
         self.employed_schools = employed_schools;
-        
-        NSMutableArray *serials = [NSMutableArray array];
-        for (NSDictionary *dic in [dictionary objectForKey:@"serials"]) {
-            SimpleSerial *serial = [[SimpleSerial alloc] initWithDictionary:dic];
-            [serials addObject:serial];
-        }
-        self.serials = serials;
         
         NSMutableArray *enrolled_schools = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"enrolled_schools"]) {

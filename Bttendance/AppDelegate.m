@@ -19,7 +19,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 #import "BTColor.h"
-#import "Notification.h"
+#import "PushNoti.h"
 #import "BTNotification.h"
 
 @implementation AppDelegate
@@ -85,7 +85,7 @@
     AudioServicesPlaySystemSound(1007);
     
     //attendance_started, attendance_on_going, attendance_checked, clicker_started, notice, added_as_manager, course_created
-    Notification *noti = [[Notification alloc] initWithDictionary:userInfo];
+    PushNoti *noti = [[PushNoti alloc] initWithDictionary:userInfo];
     if([noti.type isEqualToString:@"attendance_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:CoursesRefresh object:nil];

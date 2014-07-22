@@ -12,12 +12,10 @@
 @interface SocketAgent : NSObject <SocketIODelegate> {
     SocketIO *socketIO;
     NSString *socketID;
-    NSMutableArray *clickerConnectingIDs;
 }
 
 + (SocketAgent *)sharedInstance;
 
 - (void)socketConnet;
-- (void)connetWithClicker:(NSString *) clickerID;
 
 @end

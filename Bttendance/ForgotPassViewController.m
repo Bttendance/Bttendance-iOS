@@ -194,7 +194,7 @@
     [BTAPIs forgotPasswordWithEmail:email
                             success:^(Email *email) {
                                 [hud hide:YES];
-                                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Password recovery has been succeeded.\nPlease check your email.\n\"%@\"", nil), email.email];
+                                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Password recovery has been succeeded.\nPlease check your email.\n%@", nil), email.email];
                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password Recovery Success", nil)
                                                                                 message:message
                                                                                delegate:self

@@ -28,7 +28,6 @@
 - (id)init {
     self = [super init];
     socketIO = [[SocketIO alloc] initWithDelegate:self];
-    clickerConnectingIDs = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -36,20 +35,6 @@
 - (void)socketConnet {
     if (!socketIO.isConnecting)
         [socketIO connectToHost:BTSOCKET onPort:0];
-}
-
-- (void)connetWithClicker:(NSString *) clickerID {
-    if (socketIO.isConnected) {
-        [BTAPIs connectWithClicker:clickerID
-                            socket:socketID
-                           success:^(Clicker *clicker) {
-                               
-                           } failure:^(NSError *error) {
-                           }];
-    } else {
-        [clickerConnectingIDs addObject:clickerID];
-        [self socketConnet];
-    }
 }
 
 #pragma Socket.io Delegate
@@ -67,10 +52,6 @@
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"onConnect"]) {
         socketID = [[data objectForKey:@"args"][0] objectForKey:@"socketID"];
-        for (int i = (int)clickerConnectingIDs.count - 1; i >=0; i--) {
-            [self connetWithClicker:clickerConnectingIDs[i]];
-            [clickerConnectingIDs removeObjectAtIndex:i];
-        }
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clickers"]) {

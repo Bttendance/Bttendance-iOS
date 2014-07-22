@@ -46,7 +46,9 @@
         self.course = [[SimpleCourse alloc] initWithDictionary:[dictionary objectForKey:@"course"]];
         self.attendance = [[SimpleAttendance alloc] initWithDictionary:[dictionary objectForKey:@"attendance"]];
         self.clicker = [[SimpleClicker alloc] initWithDictionary:[dictionary objectForKey:@"clicker"]];
+        self.notice = [[SimpleNotice alloc] initWithDictionary:[dictionary objectForKey:@"notice"]];
         
+        //Added by APIs
         self.grade = [dictionary objectForKey:@"grade"];
     }
     return self;

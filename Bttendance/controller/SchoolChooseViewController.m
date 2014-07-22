@@ -193,7 +193,10 @@
     
     cell.school = [data0 objectAtIndex:rowIndex];
     cell.Info_SchoolName.text = cell.school.name;
-    cell.Info_SchoolID.text = [cell.school.website absoluteString];
+    cell.Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"%d Courses  %d Professors  %d Students", nil)
+                               , cell.school.courses_count
+                               , cell.school.professors_count
+                               , cell.school.students_count];
     cell.backgroundColor = [BTColor BT_white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -212,7 +215,10 @@
     
     cell.school = [data1 objectAtIndex:rowIndex];
     cell.Info_SchoolName.text = cell.school.name;
-    cell.Info_SchoolID.text = [cell.school.website absoluteString];
+    cell.Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"%d Courses  %d Professors  %d Students", nil)
+                               , cell.school.courses_count
+                               , cell.school.professors_count
+                               , cell.school.students_count];
     cell.backgroundColor = [BTColor BT_white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

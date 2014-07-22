@@ -1,5 +1,5 @@
 //
-//  Notification.h
+//  Notice.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 7. 22..
@@ -7,31 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "Post.h"
 
-@class SimpleUser;
+@class SimplePost;
 
-@interface SimpleNotification : NSObject
+@interface SimpleNotice : NSObject
 
 @property(assign) NSInteger id;
-@property(assign) BOOL attendance;
-@property(assign) BOOL clicker;
-@property(assign) BOOL notice;
+@property(strong, nonatomic) NSArray  *seen_students;
+@property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface Notification : NSObject
+@interface Notice : NSObject
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
-@property(assign) BOOL attendance;
-@property(assign) BOOL clicker;
-@property(assign) BOOL notice;
-@property(strong, nonatomic) SimpleUser  *owner;
+@property(strong, nonatomic) NSArray  *seen_students;
+@property(strong, nonatomic) SimplePost  *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
