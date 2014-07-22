@@ -18,10 +18,6 @@
 @property(weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property(weak, nonatomic) IBOutlet UIImageView *gradient;
 
-- (IBAction)SignupButtonDown:(id)sender;
-- (IBAction)SigninButtonDown:(id)sender;
-- (IBAction)SignupButtonOutside:(id)sender;
-- (IBAction)SigninButtonOutside:(id)sender;
 - (IBAction)Signup_button:(id)sender;
 - (IBAction)Signin_button:(id)sender;
 

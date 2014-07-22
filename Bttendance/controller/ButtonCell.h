@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ButtonCell : UITableViewCell {
-}
+@interface ButtonCell : UITableViewCell
 
 + (ButtonCell *)cellFromNibNamed:(NSString *)nibName;
 

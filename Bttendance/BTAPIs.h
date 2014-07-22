@@ -26,7 +26,6 @@
 @interface BTAPIs : NSObject <UIAlertViewDelegate>
 
 + (void)signUpWithFullName:(NSString *)full_name
-                  username:(NSString *)username
                      email:(NSString *)email
                   password:(NSString *)password
                    success:(void (^)(User *user))success
@@ -35,18 +34,14 @@
 + (void)autoSignInInSuccess:(void (^)(User *user))success
                     failure:(void (^)(NSError *error))failure;
 
-+ (void)signInWithUsername:(NSString *)username
-                  password:(NSString *)password
-                   success:(void (^)(User *user))success
-                   failure:(void (^)(NSError *error))failure;
++ (void)signInWithEmail:(NSString *)email
+               password:(NSString *)password
+                success:(void (^)(User *user))success
+                failure:(void (^)(NSError *error))failure;
 
 + (void)forgotPasswordWithEmail:(NSString *)email
                         success:(void (^)(Email *email))success
                         failure:(void (^)(NSError *error))failure;
-
-+ (void)updateProfileImage:(NSString *)profile_image
-                   success:(void (^)(User *user))success
-                   failure:(void (^)(NSError *error))failure;
 
 + (void)updateFullName:(NSString *)full_name
                success:(void (^)(User *user))success

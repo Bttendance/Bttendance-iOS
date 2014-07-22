@@ -8,7 +8,7 @@
 
 #import <AFNetworking.h>
 #import "SignInViewController.h"
-#import "CustomCell.h"
+#import "TextInputCell.h"
 #import "SideMenuViewController.h"
 #import "SignButtonCell.h"
 #import "BTAPIs.h"
@@ -33,7 +33,7 @@ NSString *signinRequest;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        username_index = [NSIndexPath indexPathForRow:0 inSection:0];
+        email_index = [NSIndexPath indexPathForRow:0 inSection:0];
         password_index = [NSIndexPath indexPathForRow:1 inSection:0];
         
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -61,7 +61,7 @@ NSString *signinRequest;
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -96,7 +96,7 @@ NSString *signinRequest;
 
 - (void)viewDidAppear:(BOOL)animated {
     //set autofocus on Usernamefield
-    CustomCell *cell1 = (CustomCell *) [self.tableview cellForRowAtIndexPath:username_index];
+    TextInputCell *cell1 = (TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -123,26 +123,26 @@ NSString *signinRequest;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:NSLocalizedString(@"User ID", nil)];
+            [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"or Email", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(CustomCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
+            [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1: {
@@ -150,12 +150,12 @@ NSString *signinRequest;
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].secureTextEntry = YES;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyDone;
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].secureTextEntry = YES;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 2: {
@@ -170,6 +170,9 @@ NSString *signinRequest;
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -186,7 +189,7 @@ NSString *signinRequest;
             partnership.center = CGPointMake(cell.frame.size.width / 2, cell.frame.size.height / 2 + 10);
             [cell addSubview:partnership];
             [cell contentView].backgroundColor = [BTColor BT_grey:1];
-            [(CustomCell *) cell textfield].hidden = YES;
+            [(TextInputCell *) cell textfield].hidden = YES;
             break;
         }
         default:
@@ -213,8 +216,8 @@ NSString *signinRequest;
 }
 
 - (IBAction)signinButton:(id)sender {
-    NSString *username = [((CustomCell *) [self.tableview cellForRowAtIndexPath:username_index]).textfield text];
-    NSString *password = [((CustomCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).textfield text];
+    NSString *password = [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield text];
     
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
@@ -225,7 +228,7 @@ NSString *signinRequest;
     hud.detailsLabelText = NSLocalizedString(@"Loging In Bttendance", nil);
     hud.yOffset = -40.0f;
     
-    [BTAPIs signInWithUsername:username password:password success:^(User *user) {
+    [BTAPIs signInWithEmail:email password:password success:^(User *user) {
         [hud hide:YES];
         SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithNibName:@"SideMenuViewController" bundle:nil];
         self.navigationController.navigationBarHidden = YES;
@@ -237,13 +240,13 @@ NSString *signinRequest;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:((CustomCell *) [self.tableview cellForRowAtIndexPath:username_index]).textfield]) {
-        [((CustomCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).textfield]) {
+        [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((CustomCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield]) {
-        [((CustomCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield]) {
+        [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
         [self signinButton:nil];
     }
 

@@ -1,5 +1,5 @@
 //
-//  CustomCell.h
+//  TextInputCell.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2013. 11. 27..
@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomCell : UITableViewCell {
-    UITextField *textfield;
-}
+@interface TextInputCell : UITableViewCell
 
 @property(retain, nonatomic) UITextField *textfield;
 

@@ -7,16 +7,13 @@
 //
 #import "User.h"
 
-#define UsernameKey @"btd_username"
-#define PasswordKey @"btd_password"
-#define UUIDKey @"BT_UUIDKey"
 #define UserJSONKey @"btd_user_json"
 
 @interface BTUserDefault : NSObject {
 
 }
 
-+ (NSString *)getUsername;
++ (NSString *)getEmail;
 
 + (NSString *)getPassword;
 

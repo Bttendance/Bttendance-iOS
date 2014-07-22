@@ -7,23 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
 #import "RESideMenu.h"
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-    User *user;
-
-    __strong NSString *fullname;
-    __strong NSString *email;
-
-    Boolean first;
-}
-
-@property(weak, nonatomic) IBOutlet UINavigationBar *navigationbar;
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-
-@property(strong, nonatomic) NSString *fullname;
-@property(strong, nonatomic) NSString *email;
 
 @end

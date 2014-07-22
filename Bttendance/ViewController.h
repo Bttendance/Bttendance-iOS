@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "customCell.h"
+#import "TextInputCell.h"
 
-@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     NSIndexPath *fullname_index;
     NSIndexPath *email_index;
     NSIndexPath *username_index;

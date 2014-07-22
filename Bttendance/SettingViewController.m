@@ -8,26 +8,35 @@
 
 #import "SettingViewController.h"
 #import "BTColor.h"
+#import "User.h"
+#import "BTAPIs.h"
+#import "BTUserDefault.h"
+#import <AFNetworking/AFNetworking.h>
+#import "BTNotification.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SettingViewController ()
+
+@property(strong, nonatomic) User *user;
 
 @end
 
 @implementation SettingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.user = [BTUserDefault getUser];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
+    
+    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.textColor = [UIColor whiteColor];
+    self.navigationItem.titleView = titlelabel;
+    titlelabel.text = NSLocalizedString(@"Setting", nil);
+    [titlelabel sizeToFit];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -36,16 +45,10 @@
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", nil)
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(presentLeftMenuViewController:)];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

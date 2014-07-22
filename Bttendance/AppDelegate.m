@@ -18,6 +18,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
+#import "BTColor.h"
 #import "Notification.h"
 #import "BTNotification.h"
 
@@ -31,10 +32,16 @@
 {
     [Crashlytics startWithAPIKey:@"933280081941175a775ecfe701fefa562b7f8a01"];
     
+    NSDictionary* barButtonItemAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
+                                              NSForegroundColorAttributeName: [BTColor BT_white:1.0],
+                                              };
+    [[UIBarButtonItem appearanceWhenContainedIn: [UINavigationController class], nil] setTitleTextAttributes:barButtonItemAttributes
+                                                                                                    forState:UIControlStateNormal];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    if([BTUserDefault getUsername] == nil
+    if([BTUserDefault getEmail] == nil
        || [BTUserDefault getPassword] == nil
        || [BTUserDefault getUUID] == nil) {
         [BTUserDefault clear];

@@ -7,7 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "Identification.h"
 
-@interface ProfileIdentityEditViewController : UIViewController
+@interface ProfileIdentityEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+
+@property(weak, nonatomic) SimpleIdentification *identification;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(strong, nonatomic) IBOutlet UITextField *identity_field;
+
+- (void)save_identity;
 
 @end

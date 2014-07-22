@@ -8,7 +8,7 @@
 
 #import <AFNetworking.h>
 #import "ForgotPassViewController.h"
-#import "CustomCell.h"
+#import "TextInputCell.h"
 #import "SignButtonCell.h"
 #import "BTColor.h"
 #import "BTAPIs.h"
@@ -50,7 +50,7 @@
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -85,7 +85,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     //set autofocus on Usernamefield
-    CustomCell *cell = (CustomCell *) [self.tableView cellForRowAtIndexPath:email_index];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index];
     [cell.textfield becomeFirstResponder];
 }
 
@@ -112,7 +112,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
@@ -123,15 +123,15 @@
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].frame = CGRectMake(78, 1, 222, 40);
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].frame = CGRectMake(78, 1, 222, 40);
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
+            [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1: {
@@ -146,6 +146,9 @@
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
             [cell_new.button addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
             cell.contentView.backgroundColor = [BTColor BT_grey:1];
 
@@ -168,15 +171,15 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
-        [((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
         return YES;
     }
     return NO;
 }
 
 - (IBAction)submit:(id)sender {
-    NSString *email = [((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
     [self JSONForgotRequest:email];
 }
 

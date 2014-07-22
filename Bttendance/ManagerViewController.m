@@ -8,7 +8,7 @@
 
 #import "ManagerViewController.h"
 #import <AFNetworking.h>
-#import "CustomCell.h"
+#import "TextInputCell.h"
 #import "SignButtonCell.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
@@ -48,7 +48,7 @@
 
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -57,7 +57,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    CustomCell *cell = (CustomCell *) [self.tableView cellForRowAtIndexPath:searchField];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:searchField];
     [cell.textfield becomeFirstResponder];
 }
 
@@ -81,7 +81,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
@@ -92,13 +92,13 @@
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = @"or Email Address";
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyDone;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(TextInputCell *) cell textfield].placeholder = @"or Email Address";
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
+            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
         case 1: {
@@ -141,7 +141,7 @@
     hud.detailsLabelText = @"Searching User";
     hud.yOffset = -40.0f;
     
-    NSString *search = [((CustomCell *) [self.tableView cellForRowAtIndexPath:searchField]).textfield text];
+    NSString *search = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:searchField]).textfield text];
     [BTAPIs searchUser:search
                success:^(User *user) {
                    [hud hide:YES];

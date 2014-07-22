@@ -15,7 +15,8 @@
 
 @property(weak, nonatomic) IBOutlet UILabel *Info_SchoolName;
 @property(weak, nonatomic) IBOutlet UILabel *Info_SchoolID;
-@property(weak, nonatomic) IBOutlet UIButton *Info_Check;
+@property(weak, nonatomic) IBOutlet UIImageView *arrow;
+@property(weak, nonatomic) IBOutlet UIView *selected_bg;
 
 @property(retain, nonatomic) School *school;
 @property(retain, nonatomic) SimpleSchool *simpleSchool;

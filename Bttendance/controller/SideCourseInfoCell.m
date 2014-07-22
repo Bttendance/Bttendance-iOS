@@ -6,22 +6,22 @@
 //  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
-#import "CourseInfoCell.h"
+#import "SideCourseInfoCell.h"
 
-@interface CourseInfoCell ()
+@interface SideCourseInfoCell ()
 
 @end
 
-@implementation CourseInfoCell
+@implementation SideCourseInfoCell
 
-+ (CourseInfoCell *)cellFromNibNamed:(NSString *)nibName {
++ (SideCourseInfoCell *)cellFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-    CourseInfoCell *cell = nil;
+    SideCourseInfoCell *cell = nil;
     NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
-        if ([nibItem isKindOfClass:[CourseInfoCell class]]) {
-            cell = (CourseInfoCell *) nibItem;
+        if ([nibItem isKindOfClass:[SideCourseInfoCell class]]) {
+            cell = (SideCourseInfoCell *) nibItem;
             break;
         }
     }

@@ -10,7 +10,7 @@
 
 @interface SignInViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
 
-    NSIndexPath *username_index, *password_index;
+    NSIndexPath *email_index, *password_index;
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;

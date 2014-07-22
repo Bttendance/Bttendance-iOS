@@ -10,6 +10,14 @@
 
 @interface BTColor : UIColor
 
++ (UIImage *)imageWithColor:(UIColor *)color;
+
++ (UIImage *)imageWithNavyColor:(CGFloat)_alpha;
+
++ (UIImage *)imageWithCyanColor:(CGFloat)_alpha;
+
++ (UIImage *)imageWithBlackColor:(CGFloat)_alpha;
+
 + (UIColor *)BT_navy:(CGFloat)_alpha;
 
 + (UIColor *)BT_cyan:(CGFloat)_alpha;

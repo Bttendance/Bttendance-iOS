@@ -11,7 +11,7 @@
 
 
 @interface SignUpViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, NIAttributedLabelDelegate> {
-    NSIndexPath *fullname_index, *email_index, *username_index, *password_index;
+    NSIndexPath *fullname_index, *email_index, *password_index;
     NSDictionary *user_info;
 }
 

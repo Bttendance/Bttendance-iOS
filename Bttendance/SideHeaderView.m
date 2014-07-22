@@ -1,27 +1,27 @@
 //
-//  StdProfileHeaderView.m
+//  SideHeaderView.m
 //  bttendance
 //
-//  Created by TheFinestArtist on 2014. 1. 21..
+//  Created by TheFinestArtist on 2014. 7. 16..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "ProfileHeaderView.h"
+#import "SideHeaderView.h"
 
-@interface ProfileHeaderView ()
+@interface SideHeaderView ()
 
 @end
 
-@implementation ProfileHeaderView
+@implementation SideHeaderView
 
-+ (ProfileHeaderView *)viewFromNibNamed:(NSString *)nibName {
++ (SideHeaderView *)viewFromNibNamed:(NSString *)nibName {
     NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-    ProfileHeaderView *view = nil;
+    SideHeaderView *view = nil;
     NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
-        if ([nibItem isKindOfClass:[ProfileHeaderView class]]) {
-            view = (ProfileHeaderView *) nibItem;
+        if ([nibItem isKindOfClass:[SideHeaderView class]]) {
+            view = (SideHeaderView *) nibItem;
             break;
         }
     }

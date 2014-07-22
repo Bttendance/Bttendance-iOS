@@ -36,7 +36,7 @@
 		21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21469A4918929ED7005D4FF2 /* CourseDetailHeaderView.xib */; };
 		21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21532F2918773B140065EB3C /* SignButtonCell.m */; };
 		21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21532F2A18773B140065EB3C /* SignButtonCell.xib */; };
-		215D4A5318461B30004C1947 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* CustomCell.m */; };
+		215D4A5318461B30004C1947 /* TextInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 215D4A5218461B30004C1947 /* TextInputCell.m */; };
 		217AB56718368FAE00A8F9C1 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */; };
 		217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75B41850D7C100AA0D95 /* CourseCell.xib */; };
 		217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75B81850FA8C00AA0D95 /* CourseCell.m */; };
@@ -45,8 +45,6 @@
 		2182679B18A8803000F71819 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679A18A8803000F71819 /* libsqlite3.0.dylib */; };
 		2182679D18A8810800F71819 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679C18A8810800F71819 /* AdSupport.framework */; };
 		218D9AF71886AE2700E8BAD0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */; };
-		218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9B0B188EAE1B00E8BAD0 /* ProfileHeaderView.m */; };
-		218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9B0C188EAE1B00E8BAD0 /* ProfileHeaderView.xib */; };
 		218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9B10188ED28C00E8BAD0 /* ProfileNameEditViewController.m */; };
 		218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 218D9B11188ED28C00E8BAD0 /* ProfileNameEditViewController.xib */; };
 		218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 218D9B15188FD2C800E8BAD0 /* ProfileEmailEditViewController.m */; };
@@ -54,7 +52,7 @@
 		2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2190C4971850C35100626628 /* bgmainlossy@2x.jpg */; };
 		21917903186C38DD00799CC0 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917901186C38DD00799CC0 /* SideMenuViewController.m */; };
 		21917904186C38DD00799CC0 /* SideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21917902186C38DD00799CC0 /* SideMenuViewController.xib */; };
-		21917910186D958E00799CC0 /* CourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2191790E186D958E00799CC0 /* CourseInfoCell.m */; };
+		21917910186D958E00799CC0 /* SideCourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2191790E186D958E00799CC0 /* SideCourseInfoCell.m */; };
 		21917911186D958E00799CC0 /* CourseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2191790F186D958E00799CC0 /* CourseInfoCell.xib */; };
 		2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792918724AEA00799CC0 /* enrolladd@2x.png */; };
 		2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */; };
@@ -153,7 +151,28 @@
 		D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
+		D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D61974E2BD00F6D018 /* attendance_bg@2x.png */; };
+		D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D71974E2BD00F6D018 /* attendanceicon_gd@2x.png */; };
+		D4CD98E11974E2BD00F6D018 /* notice_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D81974E2BD00F6D018 /* notice_bg@2x.png */; };
+		D4CD98E21974E2BD00F6D018 /* noticeicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D91974E2BD00F6D018 /* noticeicon_gd@2x.png */; };
+		D4CD98E31974E2BD00F6D018 /* poll_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */; };
+		D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */; };
+		D4CD98E51974E2BD00F6D018 /* welcome_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */; };
+		D4CD98E61974E2BD00F6D018 /* welcome_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */; };
+		D4CD98E71974E2BD00F6D018 /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DE1974E2BD00F6D018 /* x@2x.png */; };
+		D4CD98EA19751A4E00F6D018 /* TextCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98E919751A4E00F6D018 /* TextCommentCell.m */; };
+		D4CD98EE197663A000F6D018 /* SideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98EC197663A000F6D018 /* SideHeaderView.m */; };
+		D4CD98EF197663A000F6D018 /* SideHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98ED197663A000F6D018 /* SideHeaderView.xib */; };
+		D4CD98F81976707300F6D018 /* SideInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98F61976707300F6D018 /* SideInfoCell.m */; };
+		D4CD98F91976707300F6D018 /* SideInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98F71976707300F6D018 /* SideInfoCell.xib */; };
+		D4CD98FD1976715B00F6D018 /* SideCourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98FB1976715B00F6D018 /* SideCourseInfoCell.m */; };
+		D4CD98FE1976715B00F6D018 /* SideCourseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98FC1976715B00F6D018 /* SideCourseInfoCell.xib */; };
 		D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */; };
+		D4FB95831976952200ADB9FA /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4FB95821976952200ADB9FA /* arrow@2x.png */; };
+		D4FB95871976A03300ADB9FA /* PasswordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB95851976A03300ADB9FA /* PasswordCell.m */; };
+		D4FB95881976A03300ADB9FA /* PasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FB95861976A03300ADB9FA /* PasswordCell.xib */; };
+		D4FB958C1977788F00ADB9FA /* ProfileUpdatePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB958A1977788F00ADB9FA /* ProfileUpdatePassViewController.m */; };
+		D4FB958D1977788F00ADB9FA /* ProfileUpdatePassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FB958B1977788F00ADB9FA /* ProfileUpdatePassViewController.xib */; };
 		D4FD44B41908194F00FB52A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B31908194F00FB52A5 /* User.m */; };
 		D4FD44B719081F6F00FB52A5 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B619081F6F00FB52A5 /* Device.m */; };
 		D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FD44B919081F7E00FB52A5 /* Post.m */; };
@@ -218,8 +237,8 @@
 		21532F2818773B140065EB3C /* SignButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignButtonCell.h; path = controller/SignButtonCell.h; sourceTree = "<group>"; };
 		21532F2918773B140065EB3C /* SignButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignButtonCell.m; path = controller/SignButtonCell.m; sourceTree = "<group>"; };
 		21532F2A18773B140065EB3C /* SignButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignButtonCell.xib; path = controller/SignButtonCell.xib; sourceTree = "<group>"; };
-		215D4A5118461B30004C1947 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
-		215D4A5218461B30004C1947 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		215D4A5118461B30004C1947 /* TextInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputCell.h; sourceTree = "<group>"; };
+		215D4A5218461B30004C1947 /* TextInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputCell.m; sourceTree = "<group>"; };
 		217AB5641836073800A8F9C1 /* BluetoothManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BluetoothManager.framework; path = System/Library/PrivateFrameworks/BluetoothManager.framework; sourceTree = SDKROOT; };
 		217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		217D75B41850D7C100AA0D95 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseCell.xib; path = "controller/untitled folder/CourseCell.xib"; sourceTree = "<group>"; };
@@ -233,9 +252,6 @@
 		218D9AF41886AE2600E8BAD0 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = StdView/ProfileViewController.h; sourceTree = "<group>"; };
 		218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = StdView/ProfileViewController.m; sourceTree = "<group>"; };
 		218D9AF91886DC5E00E8BAD0 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
-		218D9B0A188EAE1B00E8BAD0 /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileHeaderView.h; path = StdView/ProfileHeaderView.h; sourceTree = "<group>"; };
-		218D9B0B188EAE1B00E8BAD0 /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileHeaderView.m; path = StdView/ProfileHeaderView.m; sourceTree = "<group>"; };
-		218D9B0C188EAE1B00E8BAD0 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileHeaderView.xib; path = StdView/ProfileHeaderView.xib; sourceTree = "<group>"; };
 		218D9B0F188ED28C00E8BAD0 /* ProfileNameEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileNameEditViewController.h; path = StdView/ProfileNameEditViewController.h; sourceTree = "<group>"; };
 		218D9B10188ED28C00E8BAD0 /* ProfileNameEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileNameEditViewController.m; path = StdView/ProfileNameEditViewController.m; sourceTree = "<group>"; };
 		218D9B11188ED28C00E8BAD0 /* ProfileNameEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileNameEditViewController.xib; path = StdView/ProfileNameEditViewController.xib; sourceTree = "<group>"; };
@@ -247,7 +263,7 @@
 		21917901186C38DD00799CC0 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = controller/SideMenuViewController.m; sourceTree = "<group>"; };
 		21917902186C38DD00799CC0 /* SideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SideMenuViewController.xib; path = controller/SideMenuViewController.xib; sourceTree = "<group>"; };
 		2191790D186D958E00799CC0 /* CourseInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseInfoCell.h; path = controller/CourseInfoCell.h; sourceTree = "<group>"; };
-		2191790E186D958E00799CC0 /* CourseInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseInfoCell.m; path = controller/CourseInfoCell.m; sourceTree = "<group>"; };
+		2191790E186D958E00799CC0 /* SideCourseInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideCourseInfoCell.m; path = controller/SideCourseInfoCell.m; sourceTree = "<group>"; };
 		2191790F186D958E00799CC0 /* CourseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseInfoCell.xib; path = controller/CourseInfoCell.xib; sourceTree = "<group>"; };
 		2191792918724AEA00799CC0 /* enrolladd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enrolladd@2x.png"; path = "Image/enrolladd@2x.png"; sourceTree = "<group>"; };
 		2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enrollconfirm@2x.png"; path = "Image/enrollconfirm@2x.png"; sourceTree = "<group>"; };
@@ -384,8 +400,35 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		D4CD98D61974E2BD00F6D018 /* attendance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_bg@2x.png"; sourceTree = "<group>"; };
+		D4CD98D71974E2BD00F6D018 /* attendanceicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendanceicon_gd@2x.png"; sourceTree = "<group>"; };
+		D4CD98D81974E2BD00F6D018 /* notice_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice_bg@2x.png"; sourceTree = "<group>"; };
+		D4CD98D91974E2BD00F6D018 /* noticeicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noticeicon_gd@2x.png"; sourceTree = "<group>"; };
+		D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poll_bg@2x.png"; sourceTree = "<group>"; };
+		D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pollicon_gd@2x.png"; sourceTree = "<group>"; };
+		D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_bg@2x.png"; sourceTree = "<group>"; };
+		D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_icon.png; sourceTree = "<group>"; };
+		D4CD98DE1974E2BD00F6D018 /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
+		D4CD98E819751A4E00F6D018 /* TextCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCommentCell.h; sourceTree = "<group>"; };
+		D4CD98E919751A4E00F6D018 /* TextCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCommentCell.m; sourceTree = "<group>"; };
+		D4CD98EB197663A000F6D018 /* SideHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideHeaderView.h; sourceTree = "<group>"; };
+		D4CD98EC197663A000F6D018 /* SideHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideHeaderView.m; sourceTree = "<group>"; };
+		D4CD98ED197663A000F6D018 /* SideHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideHeaderView.xib; sourceTree = "<group>"; };
+		D4CD98F51976707300F6D018 /* SideInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideInfoCell.h; sourceTree = "<group>"; };
+		D4CD98F61976707300F6D018 /* SideInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideInfoCell.m; sourceTree = "<group>"; };
+		D4CD98F71976707300F6D018 /* SideInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideInfoCell.xib; sourceTree = "<group>"; };
+		D4CD98FA1976715B00F6D018 /* SideCourseInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideCourseInfoCell.h; sourceTree = "<group>"; };
+		D4CD98FB1976715B00F6D018 /* SideCourseInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideCourseInfoCell.m; sourceTree = "<group>"; };
+		D4CD98FC1976715B00F6D018 /* SideCourseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideCourseInfoCell.xib; sourceTree = "<group>"; };
 		D4EFB7F1190926FD0011645F /* AFResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFResponseSerializer.h; sourceTree = "<group>"; };
 		D4EFB7F2190926FD0011645F /* AFResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFResponseSerializer.m; sourceTree = "<group>"; };
+		D4FB95821976952200ADB9FA /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		D4FB95841976A03300ADB9FA /* PasswordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordCell.h; sourceTree = "<group>"; };
+		D4FB95851976A03300ADB9FA /* PasswordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordCell.m; sourceTree = "<group>"; };
+		D4FB95861976A03300ADB9FA /* PasswordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordCell.xib; sourceTree = "<group>"; };
+		D4FB95891977788F00ADB9FA /* ProfileUpdatePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileUpdatePassViewController.h; sourceTree = "<group>"; };
+		D4FB958A1977788F00ADB9FA /* ProfileUpdatePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileUpdatePassViewController.m; sourceTree = "<group>"; };
+		D4FB958B1977788F00ADB9FA /* ProfileUpdatePassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileUpdatePassViewController.xib; sourceTree = "<group>"; };
 		D4FD44B21908194F00FB52A5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D4FD44B31908194F00FB52A5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D4FD44B519081F6F00FB52A5 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -574,8 +617,16 @@
 		217D75B11850D77300AA0D95 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				215D4A5118461B30004C1947 /* CustomCell.h */,
-				215D4A5218461B30004C1947 /* CustomCell.m */,
+				215D4A5118461B30004C1947 /* TextInputCell.h */,
+				215D4A5218461B30004C1947 /* TextInputCell.m */,
+				D4CD98E819751A4E00F6D018 /* TextCommentCell.h */,
+				D4CD98E919751A4E00F6D018 /* TextCommentCell.m */,
+				D4CD98F51976707300F6D018 /* SideInfoCell.h */,
+				D4CD98F61976707300F6D018 /* SideInfoCell.m */,
+				D4CD98F71976707300F6D018 /* SideInfoCell.xib */,
+				D4CD98FA1976715B00F6D018 /* SideCourseInfoCell.h */,
+				D4CD98FB1976715B00F6D018 /* SideCourseInfoCell.m */,
+				D4CD98FC1976715B00F6D018 /* SideCourseInfoCell.xib */,
 				D485A0AA18784C9C00F9561B /* UserInfoCell.h */,
 				D485A0A918784C9C00F9561B /* UserInfoCell.m */,
 				D485A0A818784C9C00F9561B /* UserInfoCell.xib */,
@@ -586,7 +637,7 @@
 				217D75B81850FA8C00AA0D95 /* CourseCell.m */,
 				217D75B41850D7C100AA0D95 /* CourseCell.xib */,
 				2191790D186D958E00799CC0 /* CourseInfoCell.h */,
-				2191790E186D958E00799CC0 /* CourseInfoCell.m */,
+				2191790E186D958E00799CC0 /* SideCourseInfoCell.m */,
 				2191790F186D958E00799CC0 /* CourseInfoCell.xib */,
 				21EE90F518915DB6000C9CAB /* SchoolInfoCell.h */,
 				21EE90F618915DB6000C9CAB /* SchoolInfoCell.m */,
@@ -600,6 +651,9 @@
 				213B6C0E188FE62F00B3DF7B /* ProfileCell.h */,
 				213B6C0F188FE62F00B3DF7B /* ProfileCell.m */,
 				213B6C10188FE62F00B3DF7B /* ProfileCell.xib */,
+				D4FB95841976A03300ADB9FA /* PasswordCell.h */,
+				D4FB95851976A03300ADB9FA /* PasswordCell.m */,
+				D4FB95861976A03300ADB9FA /* PasswordCell.xib */,
 				2131F5141897D6E00096404D /* GradeCell.h */,
 				2131F5151897D6E00096404D /* GradeCell.m */,
 				2131F5161897D6E00096404D /* GradeCell.xib */,
@@ -613,6 +667,7 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D4FB95821976952200ADB9FA /* arrow@2x.png */,
 				D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */,
 				D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */,
 				D4380EA41918A3FF008F8A78 /* c_clicked@2x.png */,
@@ -649,6 +704,7 @@
 		21C48E39183FB2BC00C8D772 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D4CD98D51974E20D00F6D018 /* guide */,
 				219179121871293600799CC0 /* icons */,
 				2190C4971850C35100626628 /* bgmainlossy@2x.jpg */,
 				217D75C71853208400AA0D95 /* BTColor.h */,
@@ -660,12 +716,12 @@
 		D41DF93C18ACCCA30019C3AB /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				218D9B0A188EAE1B00E8BAD0 /* ProfileHeaderView.h */,
-				218D9B0B188EAE1B00E8BAD0 /* ProfileHeaderView.m */,
-				218D9B0C188EAE1B00E8BAD0 /* ProfileHeaderView.xib */,
 				21469A4718929ED7005D4FF2 /* CourseDetailHeaderView.h */,
 				21469A4818929ED7005D4FF2 /* CourseDetailHeaderView.m */,
 				21469A4918929ED7005D4FF2 /* CourseDetailHeaderView.xib */,
+				D4CD98EB197663A000F6D018 /* SideHeaderView.h */,
+				D4CD98EC197663A000F6D018 /* SideHeaderView.m */,
+				D4CD98ED197663A000F6D018 /* SideHeaderView.xib */,
 			);
 			name = SubView;
 			sourceTree = "<group>";
@@ -754,6 +810,9 @@
 				D4B56003196BE415005CFE30 /* ProfileIdentityEditViewController.h */,
 				D4B56004196BE415005CFE30 /* ProfileIdentityEditViewController.m */,
 				D4B56005196BE415005CFE30 /* ProfileIdentityEditViewController.xib */,
+				D4FB95891977788F00ADB9FA /* ProfileUpdatePassViewController.h */,
+				D4FB958A1977788F00ADB9FA /* ProfileUpdatePassViewController.m */,
+				D4FB958B1977788F00ADB9FA /* ProfileUpdatePassViewController.xib */,
 			);
 			name = ProfileEditViewController;
 			sourceTree = "<group>";
@@ -876,6 +935,22 @@
 			name = NoticeViewController;
 			sourceTree = "<group>";
 		};
+		D4CD98D51974E20D00F6D018 /* guide */ = {
+			isa = PBXGroup;
+			children = (
+				D4CD98D61974E2BD00F6D018 /* attendance_bg@2x.png */,
+				D4CD98D71974E2BD00F6D018 /* attendanceicon_gd@2x.png */,
+				D4CD98D81974E2BD00F6D018 /* notice_bg@2x.png */,
+				D4CD98D91974E2BD00F6D018 /* noticeicon_gd@2x.png */,
+				D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */,
+				D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */,
+				D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */,
+				D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */,
+				D4CD98DE1974E2BD00F6D018 /* x@2x.png */,
+			);
+			name = guide;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -965,13 +1040,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CD98FE1976715B00F6D018 /* SideCourseInfoCell.xib in Resources */,
 				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
 				D407B26F18AD803E009BCF8C /* CourseCreateViewController.xib in Resources */,
 				D46D893418AFED7C0051F291 /* ForgotPassViewController.xib in Resources */,
+				D4CD98E21974E2BD00F6D018 /* noticeicon_gd@2x.png in Resources */,
 				2191793518724EC600799CC0 /* attendancering@2x.png in Resources */,
 				D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */,
 				2131F5091896DE5B0096404D /* notice@2x.png in Resources */,
 				D4B56011196D1FBA005CFE30 /* SchoolCreateViewController.xib in Resources */,
+				D4CD98E11974E2BD00F6D018 /* notice_bg@2x.png in Resources */,
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
 				D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */,
 				D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */,
@@ -980,13 +1058,18 @@
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
 				D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */,
 				21917904186C38DD00799CC0 /* SideMenuViewController.xib in Resources */,
+				D4CD98E71974E2BD00F6D018 /* x@2x.png in Resources */,
+				D4CD98F91976707300F6D018 /* SideInfoCell.xib in Resources */,
+				D4FB958D1977788F00ADB9FA /* ProfileUpdatePassViewController.xib in Resources */,
 				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
 				D4B56002196BE3F1005CFE30 /* SettingViewController.xib in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
-				218D9B0E188EAE1B00E8BAD0 /* ProfileHeaderView.xib in Resources */,
+				D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseViewController.xib in Resources */,
+				D4CD98E61974E2BD00F6D018 /* welcome_icon.png in Resources */,
 				D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */,
+				D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */,
 				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
@@ -999,21 +1082,26 @@
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
 				D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */,
 				D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */,
+				D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */,
 				D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */,
 				D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */,
 				21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */,
+				D4CD98E51974E2BD00F6D018 /* welcome_bg@2x.png in Resources */,
 				2131F5181897D6E00096404D /* GradeCell.xib in Resources */,
 				21B599E41876A7500063D7C4 /* ButtonCell.xib in Resources */,
 				21917911186D958E00799CC0 /* CourseInfoCell.xib in Resources */,
 				D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */,
 				217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */,
+				D4CD98E31974E2BD00F6D018 /* poll_bg@2x.png in Resources */,
 				2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */,
 				D4B467021912760A00AB6486 /* ClickerDetailViewController.xib in Resources */,
+				D4CD98EF197663A000F6D018 /* SideHeaderView.xib in Resources */,
 				D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */,
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInViewController.xib in Resources */,
 				D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */,
 				D4AD9D04196BC9CF00B88020 /* GuideCourseCreateViewController.xib in Resources */,
+				D4FB95881976A03300ADB9FA /* PasswordCell.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
 				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
@@ -1034,6 +1122,7 @@
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D4B56007196BE415005CFE30 /* ProfileIdentityEditViewController.xib in Resources */,
 				D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */,
+				D4FB95831976952200ADB9FA /* arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1101,6 +1190,7 @@
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
 				D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */,
 				D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */,
+				D4CD98EE197663A000F6D018 /* SideHeaderView.m in Sources */,
 				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
@@ -1110,18 +1200,19 @@
 				D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */,
 				21B599E31876A7500063D7C4 /* ButtonCell.m in Sources */,
 				D4FD44B719081F6F00FB52A5 /* Device.m in Sources */,
-				21917910186D958E00799CC0 /* CourseInfoCell.m in Sources */,
+				21917910186D958E00799CC0 /* SideCourseInfoCell.m in Sources */,
 				212C05AE183B726D00AD6654 /* CatchPointViewController.m in Sources */,
 				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateViewController.m in Sources */,
 				D4B467061913504B00AB6486 /* ClickerCell.m in Sources */,
 				2131F50D189781650096404D /* CreateNoticeViewController.m in Sources */,
-				218D9B0D188EAE1B00E8BAD0 /* ProfileHeaderView.m in Sources */,
 				21EE90F818915DB6000C9CAB /* SchoolInfoCell.m in Sources */,
 				D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */,
+				D4FB95871976A03300ADB9FA /* PasswordCell.m in Sources */,
 				2131F5121897817F0096404D /* GradeViewController.m in Sources */,
 				D4EFB7F3190926FD0011645F /* AFResponseSerializer.m in Sources */,
 				D4BA04D418AA3B2B0004A0EC /* BTAPIs.m in Sources */,
+				D4FB958C1977788F00ADB9FA /* ProfileUpdatePassViewController.m in Sources */,
 				D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */,
 				D4FD44C519081FC400FB52A5 /* Identification.m in Sources */,
 				D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */,
@@ -1137,7 +1228,9 @@
 				D472230D1909178500CE7015 /* BTUUID.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				D4BAA504190FADC200E414CC /* CreateClickerViewController.m in Sources */,
+				D4CD98EA19751A4E00F6D018 /* TextCommentCell.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
+				D4CD98F81976707300F6D018 /* SideInfoCell.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotPassViewController.m in Sources */,
 				D4B56010196D1FBA005CFE30 /* SchoolCreateViewController.m in Sources */,
 				D4B467011912760A00AB6486 /* ClickerDetailViewController.m in Sources */,
@@ -1154,11 +1247,12 @@
 				D47223041908E54D00CE7015 /* Email.m in Sources */,
 				D4B56001196BE3F1005CFE30 /* SettingViewController.m in Sources */,
 				D4FD44BD19081F8800FB52A5 /* Course.m in Sources */,
-				215D4A5318461B30004C1947 /* CustomCell.m in Sources */,
+				215D4A5318461B30004C1947 /* TextInputCell.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseViewController.m in Sources */,
 				D4380EAC1918B395008F8A78 /* SocketAgent.m in Sources */,
 				D4AD9CF9196BC76500B88020 /* LeftMenuViewController.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
+				D4CD98FD1976715B00F6D018 /* SideCourseInfoCell.m in Sources */,
 				D4AD9D08196BC9EB00B88020 /* GuideCourseAttendViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
 				D4821A0D196D6C4A00A88ABC /* WebModalViewController.m in Sources */,

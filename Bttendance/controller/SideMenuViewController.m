@@ -39,16 +39,18 @@
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.view.backgroundColor = [BTColor BT_black:1.0];
-    self.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
-    self.contentViewShadowColor = [BTColor BT_grey:1.0];
-    self.contentViewShadowOpacity = 0.3;
-    self.contentViewShadowRadius = 20;
+    self.view.backgroundColor = [BTColor BT_white:1.0];
+    self.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
+    self.contentViewShadowColor = [BTColor BT_black:1.0];
+    self.contentViewShadowOpacity = 0.4;
+    self.contentViewShadowRadius = 10;
     self.contentViewShadowEnabled = YES;
-    self.contentViewScaleValue = 0.80;
-    self.contentViewInPortraitOffsetCenterX = 60.0f;
+    self.contentViewScaleValue = 1.0;
+    self.contentViewInPortraitOffsetCenterX = 110.0f;
     self.panGestureEnabled = NO;
+    self.parallaxEnabled = NO;
     self.bouncesHorizontally = YES;
+    self.menuPrefersStatusBarHidden = YES;
     self.delegate = self;
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];

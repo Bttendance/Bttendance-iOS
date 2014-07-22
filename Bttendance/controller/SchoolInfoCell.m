@@ -28,4 +28,11 @@
     return cell;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    if (highlighted)
+        self.selected_bg.hidden = NO;
+    else
+        self.selected_bg.hidden = YES;
+}
+
 @end

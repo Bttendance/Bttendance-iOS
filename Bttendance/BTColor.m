@@ -10,6 +10,32 @@
 
 @implementation BTColor
 
++ (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (UIImage *)imageWithNavyColor:(CGFloat)_alpha {
+    return [self imageWithColor:[self BT_navy:_alpha]];
+}
+
++ (UIImage *)imageWithCyanColor:(CGFloat)_alpha {
+    return [self imageWithColor:[self BT_cyan:_alpha]];
+}
+
++ (UIImage *)imageWithBlackColor:(CGFloat)_alpha {
+    return [self imageWithColor:[self BT_black:_alpha]];
+}
+
 + (UIColor *)BT_navy:(CGFloat)_alpha {
     return [UIColor colorWithRed:0 green:0.447 blue:0.69 alpha:_alpha];
 }

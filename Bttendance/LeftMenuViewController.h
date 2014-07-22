@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RESideMenu.h"
+#import "User.h"
 
 @interface LeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 

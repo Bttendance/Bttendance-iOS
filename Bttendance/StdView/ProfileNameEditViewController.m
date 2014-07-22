@@ -43,14 +43,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(save_fullname)];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil) style:UIBarButtonItemStyleDone target:self action:@selector(save_fullname)];
     self.navigationItem.rightBarButtonItem = save;
 
     //Navigation title
     //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -76,8 +76,8 @@
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"updating full name";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"updating full name", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs updateFullName:fullname
@@ -108,9 +108,7 @@
     }
 
     _name_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
-//    name_field.text = fullname;
-    ProfileViewController *parentView = (ProfileViewController *) [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
-    _name_field.text = parentView.fullname;
+    _name_field.text = fullname;
     _name_field.textColor = [BTColor BT_black:1];
     _name_field.tintColor = [BTColor BT_silver:1];
     _name_field.backgroundColor = [BTColor BT_white:1];
@@ -133,7 +131,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Enter New name";
+    return NSLocalizedString(@"Enter New name", nil);
 }
 
 @end

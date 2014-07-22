@@ -10,16 +10,16 @@
 
 @implementation BTUserDefault
 
-+ (NSString *)getUsername {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:UsernameKey];
++ (NSString *)getEmail {
+    return [self getUser].email;
 }
 
 + (NSString *)getPassword {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:PasswordKey];
+    return [self getUser].password;
 }
 
 + (NSString *)getUUID {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:UUIDKey];
+    return [self getUser].device.uuid;
 }
 
 + (User *)getUser {
@@ -39,13 +39,8 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    User *user = [[User alloc] initWithDictionary:responseObject];
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:user.username forKey:UsernameKey];
-    [defaults setObject:user.password forKey:PasswordKey];
-    [defaults setObject:user.device.uuid forKey:UUIDKey];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [defaults setObject:jsonString forKey:UserJSONKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

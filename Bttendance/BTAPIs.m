@@ -123,19 +123,19 @@ static UIAlertView *Ooooppss;
 
 #pragma APIs
 + (void)signUpWithFullName:(NSString *)full_name
-                  username:(NSString *)username
                      email:(NSString *)email
                   password:(NSString *)password
                    success:(void (^)(User *user))success
                    failure:(void (^)(NSError *error))failure {
     
     NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
-    NSDictionary *params = @{@"username" : username,
-                             @"email" : email,
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : email,
                              @"full_name" : full_name,
                              @"password" : password,
                              @"device_type" : @"iphone",
-                             @"device_uuid" : uuid};
+                             @"device_uuid" : uuid,
+                             @"locale" : locale};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/users/signup"]
                       parameters:params
@@ -153,11 +153,13 @@ static UIAlertView *Ooooppss;
                     failure:(void (^)(NSError *error))failure {
     
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"device_type" : @"iphone",
                              @"device_uuid" : [BTUserDefault getUUID],
-                             @"app_version" : appVersion};
+                             @"app_version" : appVersion,
+                             @"locale" : locale};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/auto/signin"]
                      parameters:params
@@ -171,15 +173,17 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)signInWithUsername:(NSString *)username
-                  password:(NSString *)password
-                   success:(void (^)(User *user))success
-                   failure:(void (^)(NSError *error))failure {
++ (void)signInWithEmail:(NSString *)email
+               password:(NSString *)password
+                success:(void (^)(User *user))success
+                failure:(void (^)(NSError *error))failure {
     
     NSString *uuid = [BTUUID representativeString:[BTUUID getUserService].UUID];
-    NSDictionary *params = @{@"username" : username,
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : email,
                              @"password" : password,
-                             @"device_uuid" : uuid};
+                             @"device_uuid" : uuid,
+                             @"locale" : locale};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/signin"]
                      parameters:params
@@ -197,7 +201,9 @@ static UIAlertView *Ooooppss;
                         success:(void (^)(Email *email))success
                         failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"email" : email};
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : email,
+                             @"locale" : locale};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/forgot/password"]
                      parameters:params
@@ -210,32 +216,11 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)updateProfileImage:(NSString *)profile_image
-                   success:(void (^)(User *user))success
-                   failure:(void (^)(NSError *error))failure {
-    
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
-                             @"password" : [BTUserDefault getPassword],
-                             @"device_uuid" : [BTUserDefault getUUID],
-                             @"profile_image" : profile_image};
-    
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/profile_image"]
-                     parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            User *user = [[User alloc] initWithDictionary:responseObject];
-                            success(user);
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            [self failureHandleWithError:error];
-                            failure(error);
-                        }];
-}
-
 + (void)updateFullName:(NSString *)full_name
                success:(void (^)(User *user))success
                failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"device_uuid" : [BTUserDefault getUUID],
                              @"full_name" : full_name};
@@ -256,7 +241,7 @@ static UIAlertView *Ooooppss;
             success:(void (^)(User *user))success
             failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"device_uuid" : [BTUserDefault getUUID],
                              @"email" : email};
@@ -277,7 +262,7 @@ static UIAlertView *Ooooppss;
              success:(void (^)(NSArray *posts))success
              failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"page" : [NSString stringWithFormat: @"%d", (int)page]};
     
@@ -299,8 +284,8 @@ static UIAlertView *Ooooppss;
 + (void)coursesInSuccess:(void (^)(NSArray *courses))success
                  failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
-                              @"password" : [BTUserDefault getPassword]};
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword]};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/courses"]
                      parameters:params
@@ -321,7 +306,7 @@ static UIAlertView *Ooooppss;
            success:(void (^)(User *user))success
            failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"search_id" : search_id};
     
@@ -340,7 +325,7 @@ static UIAlertView *Ooooppss;
                       success:(void (^)(User *user))success
                       failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"device_uuid" : [BTUserDefault getUUID],
                              @"notification_key" : notification_key};
@@ -360,7 +345,7 @@ static UIAlertView *Ooooppss;
 + (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success
                     failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword]};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/schools/all"]
@@ -382,7 +367,7 @@ static UIAlertView *Ooooppss;
                  success:(void (^)(NSArray *courses))success
                  failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"school_id" : school_id};
     
@@ -406,7 +391,7 @@ static UIAlertView *Ooooppss;
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"school_id" : school_id,
                              @"student_id" : student_id};
@@ -431,7 +416,7 @@ static UIAlertView *Ooooppss;
                             failure:(void (^)(NSError *error))failure {
     
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"name" : name,
                              @"number" : number,
@@ -453,7 +438,7 @@ static UIAlertView *Ooooppss;
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -473,7 +458,7 @@ static UIAlertView *Ooooppss;
               success:(void (^)(User *user))success
               failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -495,7 +480,7 @@ static UIAlertView *Ooooppss;
               success:(void (^)(NSArray *posts))success
               failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id,
                              @"page" : [NSString stringWithFormat: @"%d", (int)page]};
@@ -519,7 +504,7 @@ static UIAlertView *Ooooppss;
                   success:(void (^)(NSArray *simpleUsers))success
                   failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -543,7 +528,7 @@ static UIAlertView *Ooooppss;
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id,
                              @"manager" : manager};
@@ -563,7 +548,7 @@ static UIAlertView *Ooooppss;
                  success:(void (^)(NSArray *simpleUsers))success
                  failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -585,7 +570,7 @@ static UIAlertView *Ooooppss;
                        success:(void (^)(Email *email))success
                        failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -604,7 +589,7 @@ static UIAlertView *Ooooppss;
                           success:(void (^)(Post *post))success
                           failure:(void (^)(NSError *error))failure {
 
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id};
     
@@ -626,7 +611,7 @@ static UIAlertView *Ooooppss;
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id,
                              @"message" : message,
@@ -648,7 +633,7 @@ static UIAlertView *Ooooppss;
                       success:(void (^)(Post *post))success
                       failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"course_id" : course_id,
                              @"message" : message};
@@ -669,7 +654,7 @@ static UIAlertView *Ooooppss;
                        failure:(void (^)(NSError *error))failure {
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setObject:[BTUserDefault getUsername] forKey:@"username"];
+    [params setObject:[BTUserDefault getEmail] forKey:@"email"];
     [params setObject:[BTUserDefault getPassword] forKey:@"password"];
     for (int i = 0; i < course_ids.count; i++)
         [params setObject:[NSString stringWithFormat:@"%@", course_ids[i]] forKey:@"course_ids"];
@@ -689,7 +674,7 @@ static UIAlertView *Ooooppss;
                           success:(void (^)(Attendance *attendance))success
                           failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"attendance_id" : attendance_id,
                              @"uuid" : uuid};
@@ -710,7 +695,7 @@ static UIAlertView *Ooooppss;
                             success:(void (^)(Attendance *attendance))success
                             failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"attendance_id" : attendance_id,
                              @"user_id" : user_id};
@@ -731,7 +716,7 @@ static UIAlertView *Ooooppss;
                    success:(void (^)(Clicker *clicker))success
                    failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"clicker_id" : clicker_id,
                              @"socket_id" : socket_id};
@@ -752,7 +737,7 @@ static UIAlertView *Ooooppss;
                  success:(void (^)(Clicker *clicker))success
                  failure:(void (^)(NSError *error))failure {
     
-    NSDictionary *params = @{@"username" : [BTUserDefault getUsername],
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"clicker_id" : clicker_id,
                              @"choice_number" : choice_number};

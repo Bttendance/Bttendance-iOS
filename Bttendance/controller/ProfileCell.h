@@ -10,9 +10,10 @@
 
 @interface ProfileCell : UITableViewCell
 
++ (ProfileCell *)cellFromNibNamed:(NSString *)nibName;
 
 @property(weak, nonatomic) IBOutlet UILabel *title;
 @property(weak, nonatomic) IBOutlet UILabel *data;
+@property(weak, nonatomic) IBOutlet UIView *selected_bg;
 
-+ (ProfileCell *)cellFromNibNamed:(NSString *)nibName;
 @end

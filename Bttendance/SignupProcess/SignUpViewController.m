@@ -9,7 +9,8 @@
 #import <AFNetworking.h>
 #import "SignUpViewController.h"
 #import "SideMenuViewController.h"
-#import "CustomCell.h"
+#import "TextInputCell.h"
+#import "TextCommentCell.h"
 #import "SignButtonCell.h"
 #import "BTColor.h"
 #import "BTAPIs.h"
@@ -34,8 +35,7 @@ NSString *signupRequest;
     if (self) {
         // Custom initialization
         fullname_index = [NSIndexPath indexPathForRow:0 inSection:0];
-        email_index = [NSIndexPath indexPathForRow:1 inSection:0];
-        username_index = [NSIndexPath indexPathForRow:2 inSection:0];
+        email_index = [NSIndexPath indexPathForRow:2 inSection:0];
         password_index = [NSIndexPath indexPathForRow:3 inSection:0];
         
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -54,16 +54,14 @@ NSString *signupRequest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:18.0];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
@@ -97,7 +95,7 @@ NSString *signupRequest;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    CustomCell *cell1 = (CustomCell *) [self.tableView cellForRowAtIndexPath:fullname_index];
+    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -124,7 +122,7 @@ NSString *signupRequest;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell contentView].backgroundColor = [BTColor BT_white:1];
     }
@@ -135,44 +133,45 @@ NSString *signupRequest;
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"John Smith", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"John Smith", nil);
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
+            [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 1: {
+            static NSString *CellIdentifier1 = @"TextCommentCell";
+            TextCommentCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if (cell_new == nil) {
+                cell_new = [[TextCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
+                [cell contentView].backgroundColor = [BTColor BT_white:1];
+            }
+            
+            cell_new.comment.text = @"Please put your actual name.";
+            
+            return cell_new;
+        }
+        case 2: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
-
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-            [(CustomCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
-            break;
-        }
-        case 2: {
-            [[cell textLabel] setText:NSLocalizedString(@"User ID", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
-            [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
-
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"@ID", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(CustomCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(CustomCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
-
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
+            [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
+            [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 3: {
@@ -180,13 +179,13 @@ NSString *signupRequest;
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(CustomCell *) cell textfield].placeholder = NSLocalizedString(@"Required", nil);
-            [(CustomCell *) cell textfield].delegate = self;
-            [(CustomCell *) cell textfield].secureTextEntry = YES;
-            [(CustomCell *) cell textfield].returnKeyType = UIReturnKeyDone;
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"more than 6 letters..", nil);
+            [(TextInputCell *) cell textfield].delegate = self;
+            [(TextInputCell *) cell textfield].secureTextEntry = YES;
+            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
 
-            [[(CustomCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(CustomCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
         case 4: {
@@ -201,6 +200,10 @@ NSString *signupRequest;
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
+            
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -213,7 +216,7 @@ NSString *signupRequest;
                      range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
             [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
                      range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
-            label.textAlignment = NSTextAlignmentRight;
+            label.textAlignment = NSTextAlignmentCenter;
             label.linkColor = [BTColor BT_navy:1];
             label.linksHaveUnderlines = YES;
             label.textColor = [BTColor BT_silver:1];
@@ -222,7 +225,7 @@ NSString *signupRequest;
             label.delegate = self;
             [cell addSubview:label];
             [cell contentView].backgroundColor = [BTColor BT_grey:1];
-            [(CustomCell *) cell textfield].hidden = YES;
+            [(TextInputCell *) cell textfield].hidden = YES;
             break;
         }
         default:
@@ -234,6 +237,14 @@ NSString *signupRequest;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
+        case 0:
+            return 44;
+        case 1:
+            return 20;
+        case 2:
+            return 44;
+        case 3:
+            return 44;
         case 4:
             return 78;
         case 5:
@@ -249,76 +260,45 @@ NSString *signupRequest;
 }
 
 - (void)SignUnButton:(id)sender {
-    NSString *fullname = [((CustomCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
-    NSString *email = [((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
-    NSString *username = [((CustomCell *) [self.tableView cellForRowAtIndexPath:username_index]).textfield text];
-    NSString *password = [((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *fullname = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
+    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield text];
 
-    if (username.length < 5 || username.length > 20) {
-        //alert showing
-        NSString *title = NSLocalizedString(@"Username is too short", nil);
-        NSString *string = NSLocalizedString(@"Username need to be longer than 5 and less than 20 letters.", nil);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
-
-    } else if (password.length < 6) {
-        //alert showing
-        NSString *title = NSLocalizedString(@"Password is too short", nil);
-        NSString *string = NSLocalizedString(@"Password need to be longer than 6 letters.", nil);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:string delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
-
-    } else {
-        UIButton *button = (UIButton *) sender;
-        button.enabled = NO;
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [BTColor BT_navy:0.7];
-        hud.labelText = NSLocalizedString(@"Loading", nil);
-        hud.detailsLabelText = NSLocalizedString(@"Signing Up Bttendance", nil);
-        hud.yOffset = -40.0f;
-        
-        [BTAPIs signUpWithFullName:fullname username:username email:email password:password success:^(User *user) {
-            [hud hide:YES];
-            SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithNibName:@"SideMenuViewController" bundle:nil];
-            self.navigationController.navigationBarHidden = YES;
-            [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
-        } failure:^(NSError *error) {
-            [hud hide:YES];
-            button.enabled = YES;
-        }];
-    }
-
-}
-
-
-- (NSDictionary *)loadAccountinfor {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userinfo = @{@"username" : [defaults objectForKey:UsernameKey],
-            @"password" : [defaults objectForKey:PasswordKey]};
-    return userinfo;
+    UIButton *button = (UIButton *) sender;
+    button.enabled = NO;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Signing Up Bttendance", nil);
+    hud.yOffset = -40.0f;
+    
+    [BTAPIs signUpWithFullName:fullname email:email password:password success:^(User *user) {
+        [hud hide:YES];
+        SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithNibName:@"SideMenuViewController" bundle:nil];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
+    } failure:^(NSError *error) {
+        [hud hide:YES];
+        button.enabled = YES;
+    }];
 }
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield]) {
-        [((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
-        [((CustomCell *) [self.tableView cellForRowAtIndexPath:username_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:username_index]).textfield]) {
-        [((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
-        return YES;
-    }
-
-    if ([textField isEqual:((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
-        [((CustomCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
         [self SignUnButton:nil];
     }
 

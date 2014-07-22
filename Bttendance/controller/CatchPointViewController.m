@@ -10,6 +10,7 @@
 #import "SignUpViewController.h"
 #import "SignInViewController.h"
 #import "BTColor.h"
+#import "SocketAgent.h"
 
 @interface CatchPointViewController ()
 
@@ -17,37 +18,25 @@
 
 @implementation CatchPointViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
-    //status bar
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-    //gradient layer
-    CAGradientLayer *layer = [CAGradientLayer layer];
-    layer.frame = self.gradient.bounds;
-    layer.colors = [NSArray arrayWithObjects:(id) [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5] CGColor], (id) [[UIColor colorWithRed:0 green:0 blue:0 alpha:0] CGColor], nil];
-    [self.gradient.layer insertSublayer:layer atIndex:0];
-
-    //Navigation
-    self.navigationController.title = @"";
-    self.navigationController.navigationBarHidden = YES;
+    //navigation bar color
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 7) {
         self.navigationController.navigationBar.translucent = NO;
         self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
     }
+    
+    //gradient layer
+    CAGradientLayer *layer = [CAGradientLayer layer];
+    layer.frame = self.gradient.bounds;
+    layer.colors = [NSArray arrayWithObjects:(id) [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5] CGColor],
+                    (id) [[UIColor colorWithRed:0 green:0 blue:0 alpha:0] CGColor], nil];
+    [self.gradient.layer insertSublayer:layer atIndex:0];
 
     //button localization
     self.Signup.titleLabel.text = NSLocalizedString(@"Sign Up", nil);
     self.Signin.titleLabel.text = NSLocalizedString(@"Log In", nil);
-    self.btdtitle.text = NSLocalizedString(@"Bttendance", nil);
+    self.btdtitle.text = NSLocalizedString(@"BTTENDANCE", nil);
     self.subtitle.text = NSLocalizedString(@"Welcome to Bttendance", nil);
 
     //all view component fade in
@@ -66,40 +55,17 @@
     self.Signup.alpha = 1;
     self.Signin.alpha = 1;
     [UIImageView commitAnimations];
-
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.Signup setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateNormal];
+    [self.Signup setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateHighlighted];
+    
+    [self.Signin setBackgroundImage:[BTColor imageWithBlackColor:0.5] forState:UIControlStateNormal];
+    [self.Signin setBackgroundImage:[BTColor imageWithBlackColor:0.8] forState:UIControlStateHighlighted];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
     self.navigationController.navigationBarHidden = YES;
-    //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-    self.Signup.backgroundColor = [UIColor colorWithRed:0.2 green:0.71 blue:0.898 alpha:0.7];
-    self.Signin.backgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.15 alpha:0.5];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)SignupButtonDown:(id)sender {
-    self.Signup.backgroundColor = [UIColor colorWithRed:0.2 green:0.71 blue:0.898 alpha:1];
-}
-
-- (IBAction)SigninButtonDown:(id)sender {
-    self.Signin.backgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.15 alpha:0.8];
-}
-
-- (IBAction)SignupButtonOutside:(id)sender {
-    self.Signup.backgroundColor = [UIColor colorWithRed:0.2 green:0.71 blue:0.898 alpha:0.7];
-}
-
-- (IBAction)SigninButtonOutside:(id)sender {
-    self.Signin.backgroundColor = [UIColor colorWithRed:0.10 green:0.10 blue:0.15 alpha:0.5];
 }
 
 - (IBAction)Signup_button:(id)sender {

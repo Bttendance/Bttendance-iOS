@@ -10,7 +10,4 @@
 
 @property(weak, nonatomic) IBOutlet UIButton *button;
 
-+ (SignButtonCell *)cellFromNibNamed:(NSString *)nibName;
-
-
 @end

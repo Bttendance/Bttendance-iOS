@@ -1,21 +1,20 @@
 //
-//  CustomCell.m
+//  TextInputCell.m
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2013. 11. 27..
 //  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
-#import "CustomCell.h"
+#import "TextInputCell.h"
 #import "BTColor.h"
 
-@implementation CustomCell
+@implementation TextInputCell
 @synthesize textfield;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
         textfield = [[UITextField alloc] initWithFrame:CGRectMake(98, 1, 222, 40)];
         textfield.tintColor = [BTColor BT_silver:1];
         UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
