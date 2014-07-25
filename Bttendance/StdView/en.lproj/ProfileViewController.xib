@@ -16,10 +16,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="MVe-Pk-9ET">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MVe-Pk-9ET">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Osm-3t-1hS"/>
@@ -29,10 +29,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="MVe-Pk-9ET" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="3mP-Km-Mcg"/>
-                <constraint firstItem="MVe-Pk-9ET" firstAttribute="top" secondItem="1" secondAttribute="top" id="EqS-mw-KUa"/>
-                <constraint firstAttribute="bottom" secondItem="MVe-Pk-9ET" secondAttribute="bottom" id="J8y-aC-yIu"/>
-                <constraint firstAttribute="trailing" secondItem="MVe-Pk-9ET" secondAttribute="trailing" id="zeY-Gm-rqD"/>
+                <constraint firstItem="MVe-Pk-9ET" firstAttribute="top" secondItem="1" secondAttribute="top" id="0cd-lk-eSn"/>
+                <constraint firstAttribute="trailing" secondItem="MVe-Pk-9ET" secondAttribute="trailing" id="bcN-tI-hQv"/>
+                <constraint firstItem="MVe-Pk-9ET" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="cDJ-P7-3bl"/>
+                <constraint firstAttribute="bottom" secondItem="MVe-Pk-9ET" secondAttribute="bottom" id="wBR-M2-ytY"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

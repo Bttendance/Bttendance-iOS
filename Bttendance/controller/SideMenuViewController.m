@@ -56,11 +56,10 @@
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
     [AttendanceAgent sharedInstance];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    
     [BTAPIs autoSignInInSuccess:^(User *user) {
         [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SideRefresh object:nil];
     } failure:^(NSError *error) {
     }];
     
@@ -72,6 +71,7 @@
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
 {
     self.panGestureEnabled = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:SideRefresh object:nil];
 }
 
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController

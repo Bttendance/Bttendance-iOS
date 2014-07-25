@@ -7,9 +7,14 @@
 //
 
 #import "GuidePageViewController.h"
+#import "TutorialViewController.h"
 #import "BTColor.h"
+#import "BTUserDefault.h"
+#import "Course.h"
 
 @interface GuidePageViewController ()
+
+@property (assign) BOOL statusBarAnim;
 
 @end
 
@@ -72,19 +77,83 @@
     self.showMorePoll.layer.cornerRadius = 3.0;
     self.showMorePoll.layer.borderWidth = 1.2;
     self.showMorePoll.layer.borderColor = [BTColor BT_white:1.0].CGColor;
+    [self.showMorePoll setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMorePoll setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
     self.showMorePoll.layer.masksToBounds = YES;
     
     self.showMoreAttd.titleLabel.text = NSLocalizedString(@"더 알아보기", nil);
     self.showMoreAttd.layer.cornerRadius = 3.0;
     self.showMoreAttd.layer.borderWidth = 1.2;
     self.showMoreAttd.layer.borderColor = [BTColor BT_white:1.0].CGColor;
+    [self.showMoreAttd setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMoreAttd setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
     self.showMoreAttd.layer.masksToBounds = YES;
     
     self.showMoreNotice.titleLabel.text = NSLocalizedString(@"더 알아보기", nil);
     self.showMoreNotice.layer.cornerRadius = 3.0;
     self.showMoreNotice.layer.borderWidth = 1.2;
     self.showMoreNotice.layer.borderColor = [BTColor BT_white:1.0].CGColor;
+    [self.showMoreNotice setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMoreNotice setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
     self.showMoreNotice.layer.masksToBounds = YES;
+    
+    self.gdLastMsg1.text = NSLocalizedString(@"지금부터", nil);
+    self.gdLastMsg2.text = NSLocalizedString(@"BTTENDANCE를", nil);
+    self.gdLastMsg3.text = NSLocalizedString(@"시작해보세요.", nil);
+    
+    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
+    
+    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.2] forState:UIControlStateNormal];
+    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.1] forState:UIControlStateHighlighted];
+    
+    // If user already has a opened course
+    BOOL hasOpenedCourse = [[BTUserDefault getUser] hasOpenedCourse];
+    if (hasOpenedCourse) {
+        self.gdLastBt1.frame = CGRectMake(90, 440, 140, 48);
+        [self.gdLastBt1 setTitle:NSLocalizedString(@"계속하기", nil) forState:UIControlStateNormal];
+        self.gdLastBt2.hidden = YES;
+    }
+    
+    // Update UI for iPhone 4/4S
+    if ([[UIScreen mainScreen] bounds].size.height < 568) {
+        self.pageControl.frame = CGRectMake(125, 438, 71, 37);
+        self.nextBt.frame = CGRectMake(265, 436, 40, 40);
+        
+        self.gdPollTitle.frame = CGRectMake(20, 20, 280, 29);
+        self.gdPollImgBar.frame = CGRectMake(143, 62, 34, 4);
+        self.gdPollMsg1.frame = CGRectMake(20, 88, 280, 18);
+        self.gdPollMsg2.frame = CGRectMake(20, 114, 280, 18);
+        self.gdPollMsg3.frame = CGRectMake(20, 140, 280, 18);
+        self.gdPollImg.frame = CGRectMake(52, 155, 216, 216);
+        self.showMorePoll.frame = CGRectMake(120, 395, 80, 35);
+        
+        self.gdAttdTitle.frame = CGRectMake(20, 20, 280, 29);
+        self.gdAttdImgBar.frame = CGRectMake(143, 62, 34, 4);
+        self.gdAttdMsg1.frame = CGRectMake(20, 88, 280, 18);
+        self.gdAttdMsg2.frame = CGRectMake(20, 114, 280, 18);
+        self.gdAttdMsg3.frame = CGRectMake(20, 140, 280, 18);
+        self.gdAttdImg.frame = CGRectMake(52, 177, 218, 196);
+        self.showMoreAttd.frame = CGRectMake(120, 395, 80, 35);
+        
+        self.gdNoticeTitle.frame = CGRectMake(20, 20, 280, 29);
+        self.gdNoticeImgBar.frame = CGRectMake(143, 62, 34, 4);
+        self.gdNoticeMsg1.frame = CGRectMake(20, 88, 280, 18);
+        self.gdNoticeMsg2.frame = CGRectMake(20, 114, 280, 18);
+        self.gdNoticeMsg3.frame = CGRectMake(20, 140, 280, 18);
+        self.gdNoticeImg.frame = CGRectMake(52, 167, 218, 216);
+        self.showMoreNotice.frame = CGRectMake(120, 395, 80, 35);
+        
+        self.gdLastImg.frame = CGRectMake(127, 44, 66, 66);
+        self.gdLastMsg1.frame = CGRectMake(20, 146, 280, 30);
+        self.gdLastMsg2.frame = CGRectMake(20, 184, 280, 30);
+        self.gdLastMsg3.frame = CGRectMake(20, 226, 280, 30);
+        self.gdLastBt1.frame = CGRectMake(90, 308, 140, 48);
+        self.gdLastBt2.frame = CGRectMake(90, 370, 140, 48);
+        
+        if (hasOpenedCourse)
+            self.gdLastBt1.frame = CGRectMake(90, 365, 140, 48);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,12 +178,16 @@
     self.guideFirstBG.alpha = 1;
     [UIImageView commitAnimations];
     
-    self.pageControl.pageIndicatorTintColor = [BTColor BT_black:0.7];
-    self.pageControl.currentPageIndicatorTintColor = [BTColor BT_silver:0.7];
+    self.pageControl.pageIndicatorTintColor = [BTColor BT_grey:0.5];
+    self.pageControl.currentPageIndicatorTintColor = [BTColor BT_white:0.8];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    if (self.statusBarAnim) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    } else {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    }
 }
 
 #pragma SwipeViewDelegate
@@ -178,11 +251,22 @@
         self.guideLastBG.alpha = 1.0;
         self.nextBt.alpha = 0.0;
     }
+    
+    if (swipeView.scrollOffset < 3.5) {
+        [self.closeBt setImage:[UIImage imageNamed:@"x.png"] forState:UIControlStateNormal];
+        self.pageControl.pageIndicatorTintColor = [BTColor BT_white:0.5];
+        self.pageControl.currentPageIndicatorTintColor = [BTColor BT_white:0.8];
+    } else {
+        [self.closeBt setImage:[UIImage imageNamed:@"x_black.png"] forState:UIControlStateNormal];
+        self.pageControl.pageIndicatorTintColor = [BTColor BT_silver:0.5];
+        self.pageControl.currentPageIndicatorTintColor = [BTColor BT_silver:0.8];
+    }
 }
 
 #pragma IBAction
 - (IBAction)closeGuide:(id)sender
 {
+    self.statusBarAnim = NO;
     self.pageControl.alpha = 1;
     self.closeBt.alpha = 1;
     self.nextBt.alpha = 1;
@@ -205,6 +289,42 @@
 - (IBAction)nextPage:(id)sender
 {
     [self.swipeView scrollByNumberOfItems:1 duration:0.4];
+}
+
+- (IBAction)showTutorialPoll:(id)sender
+{
+    self.statusBarAnim = YES;
+    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_POLL_KR];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    } else {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_POLL];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    }
+}
+
+- (IBAction)showTutorialAttd:(id)sender
+{
+    self.statusBarAnim = YES;
+    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_ATTD_KR];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    } else {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_ATTD];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    }
+}
+
+- (IBAction)showTutorialNotice:(id)sender
+{
+    self.statusBarAnim = YES;
+    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_NOTICE_KR];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    } else {
+        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_NOTICE];
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
+    }
 }
 
 #pragma SwipeViewDataSource

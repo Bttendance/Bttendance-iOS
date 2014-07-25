@@ -41,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Update", nil) style:UIBarButtonItemStyleDone target:self action:@selector(update_pass)];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil) style:UIBarButtonItemStyleDone target:self action:@selector(update_pass)];
     self.navigationItem.rightBarButtonItem = save;
     
     //Navigation title
@@ -72,17 +72,18 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"updating identity", nil);
+    hud.detailsLabelText = NSLocalizedString(@"updating password", nil);
     hud.yOffset = -40.0f;
     
-    //    [BTAPIs updateFullName:fullname
-    //                   success:^(User *user) {
-    //                       [hud hide:YES];
-    //                       [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
-    //                       [self.navigationController popViewControllerAnimated:YES];
-    //                   } failure:^(NSError *error) {
-    //                       [hud hide:YES];
-    //                   }];
+    [BTAPIs updatePasswordWithOldOne:old_pass
+                              newOne:new_pass
+                             success:^(User *user) {
+                                 [hud hide:YES];
+                                 [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+                                 [self.navigationController popViewControllerAnimated:YES];
+                             } failure:^(NSError *error) {
+                                 [hud hide:YES];
+                             }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -112,6 +113,7 @@
             _password_old_field.keyboardType = UIKeyboardTypeDefault;
             _password_old_field.clearButtonMode = UITextFieldViewModeAlways;
             _password_old_field.returnKeyType = UIReturnKeyDone;
+            _password_old_field.secureTextEntry = YES;
             _password_old_field.delegate = self;
             
             cell.contentView.backgroundColor = [BTColor BT_white:1];
@@ -128,6 +130,7 @@
             _password_new_field.keyboardType = UIKeyboardTypeDefault;
             _password_new_field.clearButtonMode = UITextFieldViewModeAlways;
             _password_new_field.returnKeyType = UIReturnKeyDone;
+            _password_new_field.secureTextEntry = YES;
             _password_new_field.delegate = self;
             
             cell.contentView.backgroundColor = [BTColor BT_white:1];

@@ -80,14 +80,15 @@
     hud.detailsLabelText = NSLocalizedString(@"updating identity", nil);
     hud.yOffset = -40.0f;
     
-//    [BTAPIs updateFullName:fullname
-//                   success:^(User *user) {
-//                       [hud hide:YES];
-//                       [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
-//                       [self.navigationController popViewControllerAnimated:YES];
-//                   } failure:^(NSError *error) {
-//                       [hud hide:YES];
-//                   }];
+    [BTAPIs updateIdentityWithSchool:[NSString stringWithFormat:@"%ld", (long)self.identification.school]
+                            identity:identity
+                             success:^(User *user) {
+                                 [hud hide:YES];
+                                 [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+                                 [self.navigationController popViewControllerAnimated:YES];
+                             } failure:^(NSError *error) {
+                                 [hud hide:YES];
+                             }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

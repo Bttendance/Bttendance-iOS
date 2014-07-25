@@ -17,6 +17,7 @@
 @property(strong, nonatomic) NSString  *name;
 @property(strong, nonatomic) NSString  *professor_name;
 @property(assign) NSInteger  school;
+@property(assign) BOOL opened;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -24,6 +24,7 @@
         self.name = [dictionary objectForKey:@"name"];
         self.professor_name = [dictionary objectForKey:@"professor_name"];
         self.school = [[dictionary objectForKey:@"school"] integerValue];
+        self.opened = [[dictionary objectForKey:@"opened"] boolValue];
     }
     return self;
 }

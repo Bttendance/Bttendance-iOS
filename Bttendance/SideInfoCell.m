@@ -10,8 +10,8 @@
 
 @implementation SideInfoCell
 
-+ (SideInfoCell *)cellFromNibNamed:(NSString *)nibName {
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
++ (SideInfoCell *)cellFromNibNamed {
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"SideInfoCell" owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     SideInfoCell *cell = nil;
     NSObject *nibItem = nil;
@@ -22,6 +22,13 @@
         }
     }
     return cell;
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    if (highlighted)
+        self.selected_bg.hidden = NO;
+    else
+        self.selected_bg.hidden = YES;
 }
 
 @end

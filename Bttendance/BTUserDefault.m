@@ -2,16 +2,21 @@
 //  BTUserDefault.m
 //  Bttendance
 //
-//  Created by H AJE on 2013. 11. 9..
+//  Created by TheFinestArtist on 2013. 11. 9..
 //  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
 #import "BTUserDefault.h"
+#import "Course.h"
 
 @implementation BTUserDefault
 
 + (NSString *)getEmail {
     return [self getUser].email;
+}
+
++ (NSString *)getFullName {
+    return [self getUser].full_name;
 }
 
 + (NSString *)getPassword {
@@ -42,6 +47,56 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [defaults setObject:jsonString forKey:UserJSONKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// First Call is No else is YES
++ (BOOL)getSeenGuide {
+    BOOL seenGuide = [[NSUserDefaults standardUserDefaults] boolForKey:SeenGuideKey];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:SeenGuideKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return seenGuide;
+}
+
+// 0 for NoCourseView
++ (NSInteger)getLastSeenCourse {
+    NSInteger lastCourse = [[NSUserDefaults standardUserDefaults] integerForKey:LastSeenCourseKey];
+    
+    User *user = [BTUserDefault getUser];
+    if (lastCourse == 0) {
+        for (id course in user.supervising_courses) {
+            if (((SimpleCourse *) course).opened) {
+                lastCourse = ((SimpleCourse *)course).id;
+                [self setLastSeenCourse:lastCourse];
+                return lastCourse;
+            }
+        }
+        
+        for (id course in user.attending_courses) {
+            if (((SimpleCourse *) course).opened) {
+                lastCourse = ((SimpleCourse *)course).id;
+                [self setLastSeenCourse:lastCourse];
+                return lastCourse;
+            }
+        }
+    } else {
+        for (id course in [user.supervising_courses arrayByAddingObjectsFromArray:user.attending_courses]) {
+            if (!((SimpleCourse *) course).opened && ((SimpleCourse *) course).id == lastCourse) {
+                [self setLastSeenCourse:0];
+                return 0;
+            }
+        }
+    }
+    
+    return lastCourse;
+}
+
++ (void)setLastSeenCourse:(NSInteger)lastCourse {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:lastCourse forKey:LastSeenCourseKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

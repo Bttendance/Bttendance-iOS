@@ -6,22 +6,29 @@
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "CourseInfoCell.h"
+#import "SideCourseInfoCell.h"
 
-@implementation CourseInfoCell
+@implementation SideCourseInfoCell
 
-+ (CourseInfoCell *)cellFromNibNamed:(NSString *)nibName {
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
++ (SideCourseInfoCell *)cellFromNibNamed {
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"SideCourseInfoCell" owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-    CourseInfoCell *cell = nil;
+    SideCourseInfoCell *cell = nil;
     NSObject *nibItem = nil;
     while ((nibItem = [nibEnumerator nextObject]) != nil) {
-        if ([nibItem isKindOfClass:[CourseInfoCell class]]) {
-            cell = (CourseInfoCell *) nibItem;
+        if ([nibItem isKindOfClass:[SideCourseInfoCell class]]) {
+            cell = (SideCourseInfoCell *) nibItem;
             break;
         }
     }
     return cell;
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    if (highlighted)
+        self.selected_bg.hidden = NO;
+    else
+        self.selected_bg.hidden = YES;
 }
 
 @end

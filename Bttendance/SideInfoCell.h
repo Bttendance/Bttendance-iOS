@@ -10,9 +10,10 @@
 
 @interface SideInfoCell : UITableViewCell
 
-+ (SideInfoCell *)cellFromNibNamed:(NSString *)nibName;
++ (SideInfoCell *)cellFromNibNamed;
 
 @property (weak, nonatomic) IBOutlet UILabel *Info;
 @property (weak, nonatomic) IBOutlet UIImageView *Icon;
+@property(weak, nonatomic) IBOutlet UIView *selected_bg;
 
 @end

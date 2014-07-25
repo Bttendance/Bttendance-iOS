@@ -12,4 +12,6 @@
 
 @interface LeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+
 @end

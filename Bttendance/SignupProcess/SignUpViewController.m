@@ -67,31 +67,24 @@ NSString *signupRequest;
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Sign Up", @"");
     [titlelabel sizeToFit];
-
-    [self showNavigation];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)showNavigation {
-    //Navigation showing
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -104,7 +97,7 @@ NSString *signupRequest;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -112,7 +105,7 @@ NSString *signupRequest;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -144,22 +137,6 @@ NSString *signupRequest;
             break;
         }
         case 1: {
-            static NSString *CellIdentifier1 = @"TextCommentCell";
-            TextCommentCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            if (cell_new == nil) {
-                cell_new = [[TextCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-                cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-                [cell contentView].backgroundColor = [BTColor BT_white:1];
-            }
-            
-            cell_new.comment.text = @"Please put your actual name.";
-            
-            return cell_new;
-        }
-        case 2: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
@@ -174,7 +151,7 @@ NSString *signupRequest;
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
-        case 3: {
+        case 2: {
             [[cell textLabel] setText:NSLocalizedString(@"Password", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
@@ -188,7 +165,7 @@ NSString *signupRequest;
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
-        case 4: {
+        case 3: {
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
             cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -208,7 +185,7 @@ NSString *signupRequest;
 
             return cell_new;
         }
-        case 5: {
+        case 4: {
             NIAttributedLabel *label = [[NIAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
             label.backgroundColor = [UIColor clearColor];
             label.text = NSLocalizedString(@"By tapping \"Sign Up\" above, you are agreeing to the Terms of Service and Privacy Policy.", nil);
@@ -240,14 +217,12 @@ NSString *signupRequest;
         case 0:
             return 44;
         case 1:
-            return 20;
+            return 44;
         case 2:
             return 44;
         case 3:
-            return 44;
-        case 4:
             return 78;
-        case 5:
+        case 4:
             return 60;
         default:
             return 44;

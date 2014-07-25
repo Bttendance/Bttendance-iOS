@@ -10,10 +10,9 @@
 
 @interface SideHeaderView : UIView
 
-+ (SideHeaderView *)viewFromNibNamed:(NSString *)nibName;
++ (SideHeaderView *)viewFromNibNamed;
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *type;
 @property (weak, nonatomic) IBOutlet UIButton *headerBT;
 
 @end

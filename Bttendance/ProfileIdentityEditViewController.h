@@ -11,7 +11,7 @@
 
 @interface ProfileIdentityEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property(weak, nonatomic) SimpleIdentification *identification;
+@property(strong, nonatomic) SimpleIdentification *identification;
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *identity_field;
 

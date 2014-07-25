@@ -12,6 +12,10 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color;
 
++ (UIImage *)imageWithGreyColor:(CGFloat)_alpha;
+
++ (UIImage *)imageWithSilverColor:(CGFloat)_alpha;
+
 + (UIImage *)imageWithNavyColor:(CGFloat)_alpha;
 
 + (UIImage *)imageWithCyanColor:(CGFloat)_alpha;

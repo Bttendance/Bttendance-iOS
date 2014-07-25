@@ -67,31 +67,24 @@ NSString *signinRequest;
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Log In", @"");
     [titlelabel sizeToFit];
-
-    [self showNavigation];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)showNavigation {
-    //Navigation showing
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,7 +98,7 @@ NSString *signinRequest;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 #pragma Tableview Delegate

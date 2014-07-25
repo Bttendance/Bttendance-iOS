@@ -107,4 +107,50 @@
     return self;
 }
 
+- (BOOL)supervising:(NSInteger)course_id {
+    for (SimpleCourse *course in self.supervising_courses)
+        if (course.id == course_id)
+            return YES;
+    return NO;
+}
+
+- (BOOL)hasOpenedCourse {
+    NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
+    BOOL hasOpenCourse = NO;
+    for (id course in courses)
+        if (((SimpleCourse *) course).opened)
+            hasOpenCourse = YES;
+    
+    return hasOpenCourse;
+}
+
+- (NSArray *)getOpenedCourses {
+    NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
+    NSMutableArray *openedCourses = [[NSMutableArray alloc] init];;
+    for (id course in courses)
+        if (((SimpleCourse *) course).opened)
+            [openedCourses addObject:course];
+    
+    return openedCourses;
+}
+
+- (NSArray *)getClosedCourses {
+    NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
+    NSMutableArray *closedCourses = [[NSMutableArray alloc] init];;
+    for (id course in courses)
+        if (!((SimpleCourse *) course).opened)
+            [closedCourses addObject:course];
+
+    return closedCourses;
+}
+
+- (NSString *)getSchoolNameFromId:(NSInteger)schoolId {
+    NSArray *schools = [self.employed_schools arrayByAddingObjectsFromArray:self.enrolled_schools];
+    for (id school in schools)
+        if (((SimpleSchool *) school).id == schoolId)
+            return ((SimpleSchool *) school).name;
+    
+    return nil;
+}
+
 @end

@@ -68,7 +68,6 @@ NSString *createCourseRequest;
 
     //Navigation showing
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
 }
 
@@ -83,9 +82,8 @@ NSString *createCourseRequest;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //Navigation showing
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)didReceiveMemoryWarning {

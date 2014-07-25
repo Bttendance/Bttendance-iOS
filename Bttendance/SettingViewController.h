@@ -6,9 +6,11 @@
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

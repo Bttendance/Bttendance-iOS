@@ -46,4 +46,14 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
+- (BOOL)supervising:(NSInteger)course_id;
+
+- (BOOL)hasOpenedCourse;
+
+- (NSArray *)getOpenedCourses;
+
+- (NSArray *)getClosedCourses;
+
+- (NSString *)getSchoolNameFromId:(NSInteger)schoolId;
+
 @end

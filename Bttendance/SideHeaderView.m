@@ -7,6 +7,7 @@
 //
 
 #import "SideHeaderView.h"
+#import "BTColor.h"
 
 @interface SideHeaderView ()
 
@@ -14,8 +15,8 @@
 
 @implementation SideHeaderView
 
-+ (SideHeaderView *)viewFromNibNamed:(NSString *)nibName {
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
++ (SideHeaderView *)viewFromNibNamed {
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"SideHeaderView" owner:self options:NULL];
     NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
     SideHeaderView *view = nil;
     NSObject *nibItem = nil;
@@ -25,6 +26,10 @@
             break;
         }
     }
+    
+    [view.headerBT setBackgroundImage:[BTColor imageWithCyanColor:0.0] forState:UIControlStateNormal];
+    [view.headerBT setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    
     return view;
 }
 

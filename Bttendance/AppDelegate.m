@@ -38,6 +38,12 @@
     [[UIBarButtonItem appearanceWhenContainedIn: [UINavigationController class], nil] setTitleTextAttributes:barButtonItemAttributes
                                                                                                     forState:UIControlStateNormal];
     
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[UINavigationBar appearance] setTintColor:[BTColor BT_navy:1.0]];
+    } else {
+        [[UINavigationBar appearance] setBarTintColor:[BTColor BT_navy:1.0]];
+    }
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -88,10 +94,8 @@
     PushNoti *noti = [[PushNoti alloc] initWithDictionary:userInfo];
     if([noti.type isEqualToString:@"attendance_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:CoursesRefresh object:nil];
     } else if([noti.type isEqualToString:@"attendance_on_going"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:CoursesRefresh object:nil];
     } else if([noti.type isEqualToString:@"attendance_checked"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
     } else if([noti.type isEqualToString:@"clicker_started"]) {

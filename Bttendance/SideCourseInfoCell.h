@@ -10,10 +10,11 @@
 
 @interface SideCourseInfoCell : UITableViewCell
 
-+ (SideCourseInfoCell *)cellFromNibNamed:(NSString *)nibName;
++ (SideCourseInfoCell *)cellFromNibNamed;
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *message1;
 @property (weak, nonatomic) IBOutlet UILabel *message2;
+@property(weak, nonatomic) IBOutlet UIView *selected_bg;
 
 @end

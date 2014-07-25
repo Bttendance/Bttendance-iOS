@@ -56,31 +56,24 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Forgot Password", @"");
     [titlelabel sizeToFit];
-
-    [self showNavigation];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)showNavigation {
-    //Navigation showing
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -94,7 +87,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

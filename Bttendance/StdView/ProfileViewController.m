@@ -46,16 +46,13 @@
     [titlelabel sizeToFit];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.navigationController.navigationBar.translucent = NO;
-        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
-    }
+    self.navigationController.navigationBar.translucent = NO;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", nil)
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(presentLeftMenuViewController:)];
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [menuButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    [self.navigationItem setLeftBarButtonItem:menuButtonItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,68 +66,47 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 2;
-        case 1:
-            return [self.user.employed_schools count] + [self.user.enrolled_schools count];
-        case 2:
-        default:
-            return 1;
-    }
+    return [[self.user getClosedCourses] count] + [self.user.employed_schools count] + [self.user.enrolled_schools count] + 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0:
-            return 47;
-        case 1:
-            return 74;
-        case 2:
-        default:
-            return 47;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 0;
-        case 1:
-        default:
-            return 50;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return nil;
-        case 1: {
-            UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-            header.backgroundColor = [BTColor BT_grey:1.0];
-            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 29, 280, 14)];
-            title.text = NSLocalizedString(@"SCHOOL", nil);
-            title.font = [UIFont boldSystemFontOfSize:12];
-            title.textColor = [BTColor BT_silver:1.0];
-            [header addSubview:title];
-            return header;
-        }
-        case 2:
-        default: {
-            UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-            header.backgroundColor = [BTColor BT_grey:1.0];
-            return header;
-        }
-    }
+    
+    NSInteger closedCourses = [[self.user getClosedCourses] count];
+    NSInteger employedSchools = [self.user.employed_schools count];
+    NSInteger enrolledSchools = [self.user.enrolled_schools count];
+    
+    if (indexPath.row == 0
+        || indexPath.row == 1
+        || indexPath.row == closedCourses + employedSchools + enrolledSchools + 5)
+        return 47;
+    
+    if (indexPath.row == 2
+        || indexPath.row == closedCourses + 3)
+        return 60;
+    
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 4)
+        return 55;
+    
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6)
+        return 33;
+    
+    if (indexPath.row < closedCourses + employedSchools + enrolledSchools + 4)
+        return 74;
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
+    
+    NSInteger closedCourses = [[self.user getClosedCourses] count];
+    NSInteger employedSchools = [self.user.employed_schools count];
+    NSInteger enrolledSchools = [self.user.enrolled_schools count];
+    
+    if (indexPath.row == 0 || indexPath.row == 1) {
         static NSString *CellIdentifier = @"ProfileCell";
         ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -150,7 +126,21 @@
                 cell.data.text = self.user.email;
                 return cell;
         }
-    } else if (indexPath.section == 1) {
+    }
+    
+    else if (indexPath.row == 2) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
+        title.text = NSLocalizedString(@"CLOSED LECTURES", nil);
+        title.font = [UIFont boldSystemFontOfSize:12];
+        title.textColor = [BTColor BT_silver:1.0];
+        [cell addSubview:title];
+        return cell;
+    }
+    
+    else if (indexPath.row > 2 && indexPath.row < closedCourses + 3) {
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -158,14 +148,46 @@
             cell = [topLevelObjects objectAtIndex:0];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.Info_SchoolName.textColor = [BTColor BT_cyan:1.0];
         
-        if (indexPath.row < [self.user.employed_schools count]) {
-            cell.simpleSchool = self.user.employed_schools[indexPath.row];
+        NSArray *closedCourses = [self.user getClosedCourses];
+        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 3];
+        cell.Info_SchoolName.text = course.name;
+        cell.Info_SchoolID.text = [self.user getSchoolNameFromId:course.school];
+        cell.arrow.hidden = NO;
+        return  cell;
+    }
+    
+    else if (indexPath.row == closedCourses + 3) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
+        title.text = NSLocalizedString(@"SCHOOL", nil);
+        title.font = [UIFont boldSystemFontOfSize:12];
+        title.textColor = [BTColor BT_silver:1.0];
+        [cell addSubview:title];
+        return cell;
+    }
+    
+    else if (indexPath.row > closedCourses + 3 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 4) {
+        static NSString *CellIdentifier = @"SchoolInfoCell";
+        SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.Info_SchoolName.textColor = [BTColor BT_navy:1.0];
+        
+        NSInteger index = indexPath.row - closedCourses - 4;
+        if (index < employedSchools) {
+            cell.simpleSchool = self.user.employed_schools[index];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
             cell.Info_SchoolID.text = NSLocalizedString(@"Professor", nil);
             cell.arrow.hidden = YES;
         } else {
-            cell.simpleSchool = self.user.enrolled_schools[indexPath.row - [self.user.employed_schools count]];
+            cell.simpleSchool = self.user.enrolled_schools[index - employedSchools];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
             NSString *identity = @"";
             for (int j = 0; j < [self.user.identifications count]; j++)
@@ -175,7 +197,16 @@
             cell.arrow.hidden = NO;
         }
         return  cell;
-    } else {
+    }
+    
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 4) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        return cell;
+    }
+    
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 5) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -185,31 +216,53 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.password.text = NSLocalizedString(@"Update Password", nil);
+        cell.password.textColor = [BTColor BT_red:1.0];
+        return cell;
+    }
+    
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        return cell;
+    }
+    
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
         return cell;
     }
 }
 
-#pragma UITableViewDelegate
+//#pragma UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-                [self editName];
-                break;
-            case 1:
-            default:
-                [self editEmail];
-                break;
-        }
-    } else if (indexPath.section == 1) {
-        if (indexPath.row >= [self.user.employed_schools count]) {
-            SimpleSchool *school = self.user.enrolled_schools[indexPath.row - [self.user.employed_schools count]];
-            for (int j = 0; j < [self.user.identifications count]; j++)
-                if (((SimpleIdentification *)self.user.identifications[j]).school == school.id)
-                    [self editIdentity:self.user.identifications[j]];
-        }
-    } else {
+    
+    NSInteger closedCourses = [[self.user getClosedCourses] count];
+    NSInteger employedSchools = [self.user.employed_schools count];
+    NSInteger enrolledSchools = [self.user.enrolled_schools count];
+    
+    if (indexPath.row == 0)
+        [self editName];
+    
+    if (indexPath.row == 1)
+        [self editEmail];
+    
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 5)
         [self updatePass];
+    
+    
+    else if (indexPath.row > 2 && indexPath.row < closedCourses + 3) {
+        NSArray *closedCourses = [self.user getClosedCourses];
+        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 3];
+    }
+    
+    else if (indexPath.row > closedCourses + employedSchools + 3 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 4) {
+        NSInteger index = indexPath.row - closedCourses - employedSchools - 4;
+        SimpleSchool *school = self.user.enrolled_schools[index];
+        for (int j = 0; j < [self.user.identifications count]; j++)
+            if (((SimpleIdentification *)self.user.identifications[j]).school == school.id)
+                [self editIdentity:self.user.identifications[j]];
     }
 }
 

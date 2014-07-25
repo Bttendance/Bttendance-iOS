@@ -52,7 +52,6 @@
 		2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2190C4971850C35100626628 /* bgmainlossy@2x.jpg */; };
 		21917903186C38DD00799CC0 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21917901186C38DD00799CC0 /* SideMenuViewController.m */; };
 		21917904186C38DD00799CC0 /* SideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21917902186C38DD00799CC0 /* SideMenuViewController.xib */; };
-		21917910186D958E00799CC0 /* SideCourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2191790E186D958E00799CC0 /* SideCourseInfoCell.m */; };
 		21917911186D958E00799CC0 /* CourseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2191790F186D958E00799CC0 /* CourseInfoCell.xib */; };
 		2191792B18724AEA00799CC0 /* enrolladd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792918724AEA00799CC0 /* enrolladd@2x.png */; };
 		2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */; };
@@ -81,6 +80,10 @@
 		D42FAB0B197E4B330008945E /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0A197E4B330008945E /* Notice.m */; };
 		D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0D197E4D6A0008945E /* PushNoti.m */; };
 		D42FAB11197E4EE80008945E /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB10197E4EE80008945E /* Notification.m */; };
+		D42FAB14197E77870008945E /* x_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB12197E77870008945E /* x_black@2x.png */; };
+		D42FAB15197E77870008945E /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB13197E77870008945E /* x@2x.png */; };
+		D42FAB1A197E7BB50008945E /* start_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB18197E7BB50008945E /* start_icon@2x.png */; };
+		D42FAB1B197E7BB50008945E /* welcome_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB19197E7BB50008945E /* welcome_icon@2x.png */; };
 		D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380E9B1916DF4D008F8A78 /* BTBlink.m */; };
 		D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */; };
 		D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */; };
@@ -88,6 +91,11 @@
 		D4380EA91918A3FF008F8A78 /* d_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA51918A3FF008F8A78 /* d_clicked@2x.png */; };
 		D4380EAC1918B395008F8A78 /* SocketAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380EAB1918B395008F8A78 /* SocketAgent.m */; };
 		D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D44224D818B5F06A0028B048 /* BTDateFormatter.m */; };
+		D44AA0111982031300743C8A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D44AA00F1982031300743C8A /* NotificationCell.m */; };
+		D44AA0121982031300743C8A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44AA0101982031300743C8A /* NotificationCell.xib */; };
+		D44AA01819821FE900743C8A /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D44AA01719821FE900743C8A /* menu@2x.png */; };
+		D44AA01A19822B8800743C8A /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D44AA01919822B8800743C8A /* profile@2x.png */; };
+		D44AA01C19823C3B00743C8A /* side_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D44AA01B19823C3B00743C8A /* side_plus@2x.png */; };
 		D45B5D431915F84900C8C015 /* AttendanceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B5D421915F84900C8C015 /* AttendanceAgent.m */; };
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotPassViewController.m */; };
@@ -100,7 +108,7 @@
 		D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48219FF196D607700A88ABC /* ProfileViewController.xib */; };
 		D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */; };
 		D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A09196D677700A88ABC /* CatchPointViewController.xib */; };
-		D4821A0D196D6C4A00A88ABC /* WebModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4821A0C196D6C4A00A88ABC /* WebModalViewController.m */; };
+		D4821A0D196D6C4A00A88ABC /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4821A0C196D6C4A00A88ABC /* TutorialViewController.m */; };
 		D485A0A21878347500F9561B /* CourseCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateViewController.m */; };
 		D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A318783F2600F9561B /* AttdStatViewController.xib */; };
 		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
@@ -160,8 +168,6 @@
 		D4CD98E31974E2BD00F6D018 /* poll_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */; };
 		D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */; };
 		D4CD98E51974E2BD00F6D018 /* welcome_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */; };
-		D4CD98E61974E2BD00F6D018 /* welcome_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */; };
-		D4CD98E71974E2BD00F6D018 /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98DE1974E2BD00F6D018 /* x@2x.png */; };
 		D4CD98EA19751A4E00F6D018 /* TextCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98E919751A4E00F6D018 /* TextCommentCell.m */; };
 		D4CD98EE197663A000F6D018 /* SideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD98EC197663A000F6D018 /* SideHeaderView.m */; };
 		D4CD98EF197663A000F6D018 /* SideHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98ED197663A000F6D018 /* SideHeaderView.xib */; };
@@ -264,7 +270,6 @@
 		21917901186C38DD00799CC0 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = controller/SideMenuViewController.m; sourceTree = "<group>"; };
 		21917902186C38DD00799CC0 /* SideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SideMenuViewController.xib; path = controller/SideMenuViewController.xib; sourceTree = "<group>"; };
 		2191790D186D958E00799CC0 /* CourseInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseInfoCell.h; path = controller/CourseInfoCell.h; sourceTree = "<group>"; };
-		2191790E186D958E00799CC0 /* SideCourseInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideCourseInfoCell.m; path = controller/SideCourseInfoCell.m; sourceTree = "<group>"; };
 		2191790F186D958E00799CC0 /* CourseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseInfoCell.xib; path = controller/CourseInfoCell.xib; sourceTree = "<group>"; };
 		2191792918724AEA00799CC0 /* enrolladd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enrolladd@2x.png"; path = "Image/enrolladd@2x.png"; sourceTree = "<group>"; };
 		2191792A18724AEA00799CC0 /* enrollconfirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enrollconfirm@2x.png"; path = "Image/enrollconfirm@2x.png"; sourceTree = "<group>"; };
@@ -302,6 +307,10 @@
 		D42FAB0D197E4D6A0008945E /* PushNoti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoti.m; sourceTree = "<group>"; };
 		D42FAB0F197E4EE80008945E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		D42FAB10197E4EE80008945E /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		D42FAB12197E77870008945E /* x_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x_black@2x.png"; sourceTree = "<group>"; };
+		D42FAB13197E77870008945E /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
+		D42FAB18197E7BB50008945E /* start_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon@2x.png"; sourceTree = "<group>"; };
+		D42FAB19197E7BB50008945E /* welcome_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_icon@2x.png"; sourceTree = "<group>"; };
 		D4380E9A1916DF4D008F8A78 /* BTBlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlink.h; sourceTree = "<group>"; };
 		D4380E9B1916DF4D008F8A78 /* BTBlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlink.m; sourceTree = "<group>"; };
 		D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_clicked@2x.png"; sourceTree = "<group>"; };
@@ -312,6 +321,12 @@
 		D4380EAB1918B395008F8A78 /* SocketAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketAgent.m; sourceTree = "<group>"; };
 		D44224D718B5F06A0028B048 /* BTDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDateFormatter.h; sourceTree = "<group>"; };
 		D44224D818B5F06A0028B048 /* BTDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDateFormatter.m; sourceTree = "<group>"; };
+		D44AA00E1982031300743C8A /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCell.h; sourceTree = "<group>"; };
+		D44AA00F1982031300743C8A /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
+		D44AA0101982031300743C8A /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		D44AA01719821FE900743C8A /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
+		D44AA01919822B8800743C8A /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
+		D44AA01B19823C3B00743C8A /* side_plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "side_plus@2x.png"; sourceTree = "<group>"; };
 		D45B5D411915F84900C8C015 /* AttendanceAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceAgent.h; sourceTree = "<group>"; };
 		D45B5D421915F84900C8C015 /* AttendanceAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceAgent.m; sourceTree = "<group>"; };
 		D46D892D18AFE88B0051F291 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -331,8 +346,8 @@
 		D48219FE196D607700A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProfileViewController.xib; sourceTree = "<group>"; };
 		D4821A01196D60DD00A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CourseDetailViewController.xib; sourceTree = "<group>"; };
 		D4821A09196D677700A88ABC /* CatchPointViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointViewController.xib; path = controller/CatchPointViewController.xib; sourceTree = "<group>"; };
-		D4821A0B196D6C4A00A88ABC /* WebModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebModalViewController.h; sourceTree = "<group>"; };
-		D4821A0C196D6C4A00A88ABC /* WebModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebModalViewController.m; sourceTree = "<group>"; };
+		D4821A0B196D6C4A00A88ABC /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
+		D4821A0C196D6C4A00A88ABC /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		D485A09E1878347500F9561B /* CourseCreateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCreateViewController.xib; sourceTree = "<group>"; };
 		D485A09F1878347500F9561B /* CourseCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCreateViewController.m; sourceTree = "<group>"; };
 		D485A0A01878347500F9561B /* CourseCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCreateViewController.h; sourceTree = "<group>"; };
@@ -412,8 +427,6 @@
 		D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poll_bg@2x.png"; sourceTree = "<group>"; };
 		D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pollicon_gd@2x.png"; sourceTree = "<group>"; };
 		D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_bg@2x.png"; sourceTree = "<group>"; };
-		D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_icon.png; sourceTree = "<group>"; };
-		D4CD98DE1974E2BD00F6D018 /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
 		D4CD98E819751A4E00F6D018 /* TextCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCommentCell.h; sourceTree = "<group>"; };
 		D4CD98E919751A4E00F6D018 /* TextCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCommentCell.m; sourceTree = "<group>"; };
 		D4CD98EB197663A000F6D018 /* SideHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideHeaderView.h; sourceTree = "<group>"; };
@@ -640,7 +653,6 @@
 				217D75B81850FA8C00AA0D95 /* CourseCell.m */,
 				217D75B41850D7C100AA0D95 /* CourseCell.xib */,
 				2191790D186D958E00799CC0 /* CourseInfoCell.h */,
-				2191790E186D958E00799CC0 /* SideCourseInfoCell.m */,
 				2191790F186D958E00799CC0 /* CourseInfoCell.xib */,
 				21EE90F518915DB6000C9CAB /* SchoolInfoCell.h */,
 				21EE90F618915DB6000C9CAB /* SchoolInfoCell.m */,
@@ -663,6 +675,9 @@
 				D4B467031913504B00AB6486 /* ClickerCell.h */,
 				D4B467041913504B00AB6486 /* ClickerCell.m */,
 				D4B467051913504B00AB6486 /* ClickerCell.xib */,
+				D44AA00E1982031300743C8A /* NotificationCell.h */,
+				D44AA00F1982031300743C8A /* NotificationCell.m */,
+				D44AA0101982031300743C8A /* NotificationCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -670,6 +685,9 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D44AA01B19823C3B00743C8A /* side_plus@2x.png */,
+				D44AA01919822B8800743C8A /* profile@2x.png */,
+				D44AA01719821FE900743C8A /* menu@2x.png */,
 				D4FB95821976952200ADB9FA /* arrow@2x.png */,
 				D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */,
 				D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */,
@@ -778,8 +796,6 @@
 				D4B4BFBF18F639B7002DE88C /* XYPieChart.m */,
 				D46D892D18AFE88B0051F291 /* WebViewController.h */,
 				D46D892E18AFE88B0051F291 /* WebViewController.m */,
-				D4821A0B196D6C4A00A88ABC /* WebModalViewController.h */,
-				D4821A0C196D6C4A00A88ABC /* WebModalViewController.m */,
 				D47DB52518AF85BC007C23A3 /* BVUnderlineButton.h */,
 				D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */,
 			);
@@ -826,6 +842,8 @@
 				D4AD9CCA196A5FB800B88020 /* GuidePageViewController.h */,
 				D4AD9CCB196A5FB800B88020 /* GuidePageViewController.m */,
 				D4AD9CCC196A5FB800B88020 /* GuidePageViewController.xib */,
+				D4821A0B196D6C4A00A88ABC /* TutorialViewController.h */,
+				D4821A0C196D6C4A00A88ABC /* TutorialViewController.m */,
 				D4AD9D00196BC9CF00B88020 /* GuideCourseCreateViewController.h */,
 				D4AD9D01196BC9CF00B88020 /* GuideCourseCreateViewController.m */,
 				D4AD9D02196BC9CF00B88020 /* GuideCourseCreateViewController.xib */,
@@ -950,8 +968,10 @@
 				D4CD98DA1974E2BD00F6D018 /* poll_bg@2x.png */,
 				D4CD98DB1974E2BD00F6D018 /* pollicon_gd@2x.png */,
 				D4CD98DC1974E2BD00F6D018 /* welcome_bg@2x.png */,
-				D4CD98DD1974E2BD00F6D018 /* welcome_icon.png */,
-				D4CD98DE1974E2BD00F6D018 /* x@2x.png */,
+				D42FAB18197E7BB50008945E /* start_icon@2x.png */,
+				D42FAB19197E7BB50008945E /* welcome_icon@2x.png */,
+				D42FAB12197E77870008945E /* x_black@2x.png */,
+				D42FAB13197E77870008945E /* x@2x.png */,
 			);
 			name = guide;
 			sourceTree = "<group>";
@@ -1022,7 +1042,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1057,13 +1077,13 @@
 				D4CD98E11974E2BD00F6D018 /* notice_bg@2x.png in Resources */,
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
 				D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */,
+				D44AA0121982031300743C8A /* NotificationCell.xib in Resources */,
 				D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */,
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
 				D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */,
 				2191793318724EC600799CC0 /* attendancecheckgray@2x.png in Resources */,
 				D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */,
 				21917904186C38DD00799CC0 /* SideMenuViewController.xib in Resources */,
-				D4CD98E71974E2BD00F6D018 /* x@2x.png in Resources */,
 				D4CD98F91976707300F6D018 /* SideInfoCell.xib in Resources */,
 				D4FB958D1977788F00ADB9FA /* ProfileUpdatePassViewController.xib in Resources */,
 				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
@@ -1072,16 +1092,18 @@
 				D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseViewController.xib in Resources */,
-				D4CD98E61974E2BD00F6D018 /* welcome_icon.png in Resources */,
 				D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */,
 				D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */,
+				D42FAB1A197E7BB50008945E /* start_icon@2x.png in Resources */,
 				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
+				D44AA01C19823C3B00743C8A /* side_plus@2x.png in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
 				D4AD9CCE196A5FB800B88020 /* GuidePageViewController.xib in Resources */,
 				D4AD9CFA196BC76500B88020 /* LeftMenuViewController.xib in Resources */,
+				D42FAB14197E77870008945E /* x_black@2x.png in Resources */,
 				2191793618724EC600799CC0 /* attendfail@2x.png in Resources */,
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
@@ -1104,10 +1126,12 @@
 				D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */,
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInViewController.xib in Resources */,
+				D44AA01A19822B8800743C8A /* profile@2x.png in Resources */,
 				D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */,
 				D4AD9D04196BC9CF00B88020 /* GuideCourseCreateViewController.xib in Resources */,
 				D4FB95881976A03300ADB9FA /* PasswordCell.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
+				D44AA01819821FE900743C8A /* menu@2x.png in Resources */,
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
 				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
 				D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */,
@@ -1121,7 +1145,9 @@
 				D4AD9D0A196BE2BB00B88020 /* SignUpViewController.xib in Resources */,
 				D4380EA81918A3FF008F8A78 /* c_clicked@2x.png in Resources */,
 				D4380EA91918A3FF008F8A78 /* d_clicked@2x.png in Resources */,
+				D42FAB1B197E7BB50008945E /* welcome_icon@2x.png in Resources */,
 				2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */,
+				D42FAB15197E77870008945E /* x@2x.png in Resources */,
 				D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
@@ -1199,6 +1225,7 @@
 				D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */,
 				D4CD98EE197663A000F6D018 /* SideHeaderView.m in Sources */,
 				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
+				D44AA0111982031300743C8A /* NotificationCell.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
 				D4FD44BA19081F7E00FB52A5 /* Post.m in Sources */,
@@ -1207,7 +1234,6 @@
 				D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */,
 				21B599E31876A7500063D7C4 /* ButtonCell.m in Sources */,
 				D4FD44B719081F6F00FB52A5 /* Device.m in Sources */,
-				21917910186D958E00799CC0 /* SideCourseInfoCell.m in Sources */,
 				212C05AE183B726D00AD6654 /* CatchPointViewController.m in Sources */,
 				D4FD44CB19081FDD00FB52A5 /* Attendance.m in Sources */,
 				D485A0A21878347500F9561B /* CourseCreateViewController.m in Sources */,
@@ -1261,7 +1287,7 @@
 				D4CD98FD1976715B00F6D018 /* SideCourseInfoCell.m in Sources */,
 				D4AD9D08196BC9EB00B88020 /* GuideCourseAttendViewController.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
-				D4821A0D196D6C4A00A88ABC /* WebModalViewController.m in Sources */,
+				D4821A0D196D6C4A00A88ABC /* TutorialViewController.m in Sources */,
 				D45B5D431915F84900C8C015 /* AttendanceAgent.m in Sources */,
 				D472230A1908E55D00CE7015 /* Error.m in Sources */,
 				21917903186C38DD00799CC0 /* SideMenuViewController.m in Sources */,
@@ -1494,7 +1520,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

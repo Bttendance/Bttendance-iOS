@@ -1,5 +1,6 @@
 #import "WebViewController.h"
 #import "BTColor.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface WebViewController ()
 
@@ -38,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     UIWebView *webView = (UIWebView *)self.view;
     [webView setScalesPageToFit:YES];
@@ -60,16 +63,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self showNavigation];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [BTColor BT_navy:0.7];
+        hud.yOffset = -40.0f;
+        dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+        dispatch_after(dismissTime, dispatch_get_main_queue(), ^(void){
+            [hud hide:YES];
+        });
+    });
 }
 
-- (void)showNavigation {
-    //Navigation showing
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    }
-}
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }

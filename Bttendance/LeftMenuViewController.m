@@ -17,12 +17,15 @@
 #import "SideHeaderView.h"
 #import "SideInfoCell.h"
 #import "SideCourseInfoCell.h"
+#import "BTNotification.h"
+#import "BTAPIs.h"
+#import "UserVoice.h"
 
 @interface LeftMenuViewController ()
 
-@property (strong, readwrite, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) User *user;
 @property (strong, nonatomic) SideHeaderView *header;
+@property (strong, nonatomic) NSArray *courses;
 
 @end
 
@@ -32,200 +35,243 @@
 {
     [super viewDidLoad];
     
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SideHeaderView" owner:self options:nil];
-    self.header = [topLevelObjects objectAtIndex:0];
+    self.user = [BTUserDefault getUser];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
+    
+    self.header = [SideHeaderView viewFromNibNamed];
     [self.header.headerBT addTarget:self action:@selector(goToProfile:) forControlEvents:UIControlEventTouchUpInside];
+    self.tableview.tableHeaderView = self.header;
     
-    self.tableView = ({
-        UITableView *tableView = [[UITableView alloc] initWithFrame:
-                                  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-                                                              style:UITableViewStyleGrouped];
-        tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.opaque = NO;
-        tableView.backgroundColor = [UIColor clearColor];
-        tableView.backgroundView = nil;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView.bounces = NO;
-        tableView;
-    });
-    [self.view addSubview:self.tableView];
-    self.tableView.tableHeaderView = self.header;
-    
-    self.tableView.backgroundColor = [BTColor BT_white:1.0];
-    self.view.backgroundColor = [BTColor BT_white:1.0];
-    
-    [self refreshUser];
+    [self refreshHeader];
 }
 
-- (void)refreshUser
+- (void)refreshSide:(NSNotification *)noti {
+    [BTAPIs coursesInSuccess:^(NSArray *courses) {
+        self.courses = courses;
+        self.user = [BTUserDefault getUser];
+        [self refreshHeader];
+        [self.tableview reloadData];
+    } failure:^(NSError *error) {
+    }];
+}
+
+- (void)reloadTableView:(NSNotification *)noti {
+    self.user = [BTUserDefault getUser];
+    [self refreshHeader];
+    [self.tableview reloadData];
+}
+
+- (void)refreshHeader
 {
     self.user = [BTUserDefault getUser];
-    self.header.name.text = self.user.full_name;
+    
+    NSString *type;
     if (self.user.supervising_courses.count > 0)
-        self.header.type.text = NSLocalizedString(@"PROFESSOR", nil);
+        type = NSLocalizedString(@"PROFESSOR", nil);
     else
-        self.header.type.text = NSLocalizedString(@"STUDENT", nil);
+        type = NSLocalizedString(@"STUDENT", nil);
+    
+    if ([self.user.full_name rangeOfString:type].length == 0) {
+        NSString *title = [NSString stringWithFormat:@"%@  %@", self.user.full_name, type];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:title];
+        [str addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[title rangeOfString:type]];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[title rangeOfString:type]];
+        self.header.name.attributedText = str;
+    } else
+        self.header.name.text = self.user.full_name;
 }
 
-- (void)goToProfile:(id)sender
+#pragma mark UITableView Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex {
+    return [[self.user getOpenedCourses] count] + 6;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0)
+        return 62.5;
+    else if (indexPath.row <= [[self.user getOpenedCourses] count])
+        return 118;
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 1)
+        return 57.5;
+    else if (indexPath.row < [[self.user getOpenedCourses] count] + 5)
+        return 62.5;
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 5)
+        return 30;
+    else
+        return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProfileViewController *profileView = [[ProfileViewController alloc] initWithCoder:nil];
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:profileView]];
-    [self.sideMenuViewController hideMenuViewController];
+    if (indexPath.row == 0) {
+        static NSString *CellIdentifier = @"SideInfoCell";
+        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.Info.text = NSLocalizedString(@"Add Course", nil);
+        cell.Icon.hidden = NO;
+        return cell;
+    }
+    
+    else if (indexPath.row <= [[self.user getOpenedCourses] count]) {
+        static NSString *CellIdentifier = @"SideCourseInfoCell";
+        SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSInteger index = indexPath.row - 1;
+        SimpleCourse *openedCourse = [self.user getOpenedCourses][index];
+        cell.name.text = openedCourse.name;
+        
+        NSString *attendance_rate = @"";
+        NSString *clicker_rate = @"";
+        NSString *notice_unseen = @"";
+        
+        if (self.courses != nil && [self.courses count] != 0) {
+            for (Course *course in self.courses) {
+                if (course.id == openedCourse.id) {
+                    attendance_rate = course.attendance_rate;
+                    clicker_rate = course.clicker_rate;
+                    notice_unseen = course.notice_unseen;
+                }
+            }
+        }
+        
+        cell.message1.text = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %@%%  출석률 %@%%", nil), clicker_rate ,attendance_rate];
+        
+        if ([self.user supervising:openedCourse.id])
+            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽지 않은 학생 수 %@", nil), notice_unseen];
+        else
+            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %@", nil), notice_unseen];
+        
+        return cell;
+    }
+    
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 1) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 57.5)];
+        cell.backgroundColor = [BTColor BT_white:1.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UILabel *bttendance = [[UILabel alloc] initWithFrame:CGRectMake(14, 33.5, 280, 14)];
+        bttendance.text = NSLocalizedString(@"BTTENDANCE", nil);
+        bttendance.font = [UIFont boldSystemFontOfSize:12.0];
+        bttendance.textColor = [BTColor BT_navy:1.0];
+        [cell addSubview:bttendance];
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 56.5, 320, 1)];
+        view.backgroundColor = [BTColor BT_navy:1.0];
+        [cell addSubview:view];
+        
+        return cell;
+    }
+    
+    else if (indexPath.row < [[self.user getOpenedCourses] count] + 5) {
+        static NSString *CellIdentifier = @"SideInfoCell";
+        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.Icon.hidden = YES;
+        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 2;
+        switch (index) {
+            case 0:
+                cell.Info.text = NSLocalizedString(@"Guide", nil);
+                break;
+            case 1:
+                cell.Info.text = NSLocalizedString(@"Setting", nil);
+                break;
+            default:
+                cell.Info.text = NSLocalizedString(@"Feedback", nil);
+                break;
+        }
+        return cell;
+    }
+    
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 5) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_white:1.0];
+        return cell;
+    }
+    
+    else {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_white:1.0];
+        return cell;
+    }
 }
 
 #pragma mark UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.section) {
-        case 0: {
-            if (indexPath.row == 0) {
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
-                                                                         delegate:self
-                                                                cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                           destructiveButtonTitle:nil
-                                                                otherButtonTitles:NSLocalizedString(@"Create Course", nil), NSLocalizedString(@"Attend Course", nil), nil];
-                [actionSheet showInView:self.view];
+    
+    if (indexPath.row == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                                 delegate:self
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:NSLocalizedString(@"Create Course", nil), NSLocalizedString(@"Attend Course", nil), nil];
+        [actionSheet showInView:self.view];
+    }
+    
+    else if (indexPath.row <= [[self.user getOpenedCourses] count]) {
+        NSInteger index = indexPath.row - 1;
+        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+        courseDetail.simpleCourse = [self.user getOpenedCourses][index];
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    
+    else if (indexPath.row > [[self.user getOpenedCourses] count] + 1
+             && indexPath.row < [[self.user getOpenedCourses] count] + 5) {
+        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 2;
+        switch (index) {
+            case 0: {
+                GuidePageViewController *guidePage = [[GuidePageViewController alloc] initWithNibName:@"GuidePageViewController" bundle:nil];
+                [self presentViewController:guidePage animated:NO completion:nil];
                 break;
-            } else if (indexPath.row > self.user.supervising_courses.count) {
-                CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-                courseDetail.auth = NO;
-                courseDetail.simpleCourse = self.user.attending_courses[indexPath.row - self.user.supervising_courses.count - 1];
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
+            }
+            case 1: {
+                SettingViewController *settingView = [[SettingViewController alloc] initWithCoder:nil];
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:settingView]];
                 [self.sideMenuViewController hideMenuViewController];
                 break;
-            } else {
-                CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-                courseDetail.auth = NO;
-                courseDetail.simpleCourse = self.user.supervising_courses[indexPath.row - 1];
-                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
-                [self.sideMenuViewController hideMenuViewController];
+            }
+            default: {
+                UVConfig *config = [UVConfig configWithSite:@"bttendance.uservoice.com"];
+                config.forumId = 259759;
+                [config identifyUserWithEmail:self.user.email
+                                         name:self.user.full_name
+                                         guid:self.user.email];
+                [UserVoice initialize:config];
+                
+                [UVStyleSheet instance].tintColor = [BTColor BT_navy:1.0];
+                [UVStyleSheet instance].navigationBarBackgroundColor = [BTColor BT_black:1.0];
+                [UVStyleSheet instance].navigationBarTextColor = [BTColor BT_white:1.0];
+                [UVStyleSheet instance].navigationBarTintColor = [BTColor BT_white:1.0];
+                [UVStyleSheet instance].navigationBarActivityIndicatorColor = [BTColor BT_white:1.0];
+                [UVStyleSheet instance].loadingViewBackgroundColor = [BTColor BT_grey:1.0];
+                
+                [UserVoice presentUserVoiceNewIdeaFormForParentViewController:self];
                 break;
             }
-        }
-        case 1:
-        default:
-            switch (indexPath.row) {
-                case 0: {
-                    GuidePageViewController *guidePage = [[GuidePageViewController alloc] initWithNibName:@"GuidePageViewController" bundle:nil];
-                    [self presentViewController:guidePage animated:NO completion:nil];
-                    break;
-                }
-                case 1: {
-                    SettingViewController *settingView = [[SettingViewController alloc] initWithCoder:nil];
-                    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:settingView]];
-                    [self.sideMenuViewController hideMenuViewController];
-                    break;
-                }
-                default: {
-                    // facebook page
-                    break;
-                }
-            }
-    }
-}
-
-#pragma mark UITableView Datasource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    switch (sectionIndex) {
-        case 0:
-            return 1 + self.user.attending_courses.count + self.user.supervising_courses.count;
-        case 1:
-            return 3;
-        default:
-            return 0;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case 0:
-            return NSLocalizedString(@"LECTURES", nil);
-        case 1:
-            return NSLocalizedString(@"BTTENDANCE", nil);
-        default:
-            return nil;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.section) {
-        case 0:
-            if (indexPath.row == 0)
-                return 44;
-            else
-                return 113;
-        case 1:
-        default:
-            return 44;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.section) {
-        case 0: {
-            if (indexPath.row == 0) {
-                static NSString *CellIdentifier = @"SideInfoCell";
-                SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
-                if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                cell.Info.text = NSLocalizedString(@"Add Course", nil);
-                return cell;
-            } else if (indexPath.row > self.user.supervising_courses.count) {
-                static NSString *CellIdentifier = @"SideCourseInfoCell";
-                SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
-                if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                cell.name.text = ((SimpleCourse *)self.user.attending_courses[indexPath.row - self.user.supervising_courses.count - 1]).name;
-                return cell;
-            } else {
-                static NSString *CellIdentifier = @"SideCourseInfoCell";
-                SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
-                if (cell == nil) {
-                    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-                    cell = [topLevelObjects objectAtIndex:0];
-                }
-                cell.name.text = ((SimpleCourse *)self.user.supervising_courses[indexPath.row - 1]).name;
-                return cell;
-            }
-        }
-        case 1:
-        default: {
-            static NSString *CellIdentifier = @"SideInfoCell";
-            SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
-            if (cell == nil) {
-                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-                cell = [topLevelObjects objectAtIndex:0];
-            }
-            
-            switch (indexPath.row) {
-                case 0:
-                    cell.Info.text = NSLocalizedString(@"Guide", nil);
-                    break;
-                case 1:
-                    cell.Info.text = NSLocalizedString(@"Setting", nil);
-                    break;
-                default:
-                    cell.Info.text = NSLocalizedString(@"Feedback", nil);
-                    break;
-            }
-            return cell;
         }
     }
 }
@@ -244,6 +290,14 @@
         default:
             break;
     }
+}
+
+#pragma IBAction
+- (void)goToProfile:(id)sender
+{
+    ProfileViewController *profileView = [[ProfileViewController alloc] initWithCoder:nil];
+    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:profileView]];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 @end

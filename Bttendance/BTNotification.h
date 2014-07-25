@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #define UserUpdated @"user_updated"
+
 #define FeedRefresh @"feed_refresh"
-#define CoursesRefresh @"courses_refresh"
+#define SideRefresh @"side_refresh"
+
+// For Socket
 #define CourseUpdated @"course_updated"
+#define AttendanceUpdated @"attendance_updated"
 #define ClickerUpdated @"clicker_updated"
+#define NoticeUpdated @"notice_updated"
 
 @interface BTNotification : NSObject
 

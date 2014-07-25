@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface WebModalViewController : UIViewController <UIWebViewDelegate> {
+@interface TutorialViewController : UIViewController <UIWebViewDelegate> {
     UIActivityIndicatorView *activityIndicator;
     UILabel *titlelabel;
 }
