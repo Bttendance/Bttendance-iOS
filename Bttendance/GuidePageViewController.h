@@ -10,13 +10,6 @@
 #import <SwipeView.h>
 #import <QuartzCore/QuartzCore.h>
 
-#define TUTORIAL_POLL @"http://www.bttendance.com"
-#define TUTORIAL_ATTD @"http://www.bttendance.com"
-#define TUTORIAL_NOTICE @"http://www.bttendance.com"
-#define TUTORIAL_POLL_KR @"http://www.bttendance.com"
-#define TUTORIAL_ATTD_KR @"http://www.bttendance.com"
-#define TUTORIAL_NOTICE_KR @"http://www.bttendance.com"
-
 @interface GuidePageViewController : UIViewController <SwipeViewDataSource, SwipeViewDelegate>
 
 @property (strong, nonatomic) SwipeView *swipeView;

@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "SchoolInfoCell.h"
+#import "SchoolCreateViewController.h"
 
-@interface SchoolChooseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+@protocol SchoolChooseViewControllerDelegate <NSObject>
+
+@required
+- (void)chosenSchool:(School *)chosen;
+@end
+
+@interface SchoolChooseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UISearchBarDelegate, SchoolCreateViewControllerDelegate> {
     
     NSUInteger sectionCount;
     NSUInteger rowcount0;
     NSUInteger rowcount1;
+    
+    NSMutableArray *sortedSchools;
+    NSMutableArray *searchedSchools;
     
     NSMutableArray *data0;
     NSMutableArray *data1;
@@ -21,10 +31,14 @@
     NSDictionary *userinfo;
 
     SchoolInfoCell *currentcell;
-
-    Boolean auth;
 }
+
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-@property(nonatomic) Boolean auth;
+@property(weak, nonatomic) IBOutlet UIButton *createSchoolBt;
+@property(strong, nonatomic) UISearchBar *searchbar;
+
+@property (nonatomic, weak) id<SchoolChooseViewControllerDelegate> delegate;
+
+- (IBAction)createSchool:(id)sender;
 
 @end

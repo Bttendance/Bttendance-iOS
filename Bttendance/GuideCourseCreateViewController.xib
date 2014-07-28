@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideCourseCreateViewController">
             <connections>
+                <outlet property="nextBt" destination="4lX-KI-SmE" id="Ove-Tn-x6h"/>
+                <outlet property="tableview" destination="ssX-dj-qsb" id="rZb-Mu-teR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,42 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ssX-dj-qsb">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="MGE-Qc-3NC"/>
+                        <outlet property="delegate" destination="-1" id="afv-ec-zjM"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lX-KI-SmE">
+                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="hzP-Q6-A9Y"/>
+                    </constraints>
+                    <state key="normal" title="시작하기">
+                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="next:" destination="-1" eventType="touchUpInside" id="OJA-9n-ST7"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ssX-dj-qsb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DQi-jF-lHf"/>
+                <constraint firstItem="ssX-dj-qsb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dzp-bG-wQx"/>
+                <constraint firstAttribute="trailing" secondItem="4lX-KI-SmE" secondAttribute="trailing" id="EhM-Xh-g8G"/>
+                <constraint firstItem="4lX-KI-SmE" firstAttribute="top" secondItem="ssX-dj-qsb" secondAttribute="bottom" id="Ich-ex-WeN"/>
+                <constraint firstAttribute="trailing" secondItem="ssX-dj-qsb" secondAttribute="trailing" id="Tqs-nX-rYM"/>
+                <constraint firstAttribute="bottom" secondItem="4lX-KI-SmE" secondAttribute="bottom" id="YWP-Ml-xfB"/>
+                <constraint firstItem="4lX-KI-SmE" firstAttribute="top" secondItem="ssX-dj-qsb" secondAttribute="bottom" id="Z0n-ND-0uM"/>
+                <constraint firstItem="4lX-KI-SmE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yMs-OS-z1D"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

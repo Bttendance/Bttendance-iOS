@@ -7,19 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SchoolChooseViewController.h"
 
-@interface CourseCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
-    NSIndexPath *name_index, *number_index, *school_index, *profname_index;
-    NSDictionary *user_info;
-    NSInteger schoolId;
-    __weak NSString *schoolName;
-    __weak NSString *prfName;
+@interface CourseCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, SchoolChooseViewControllerDelegate> {
+    NSIndexPath *name_index, *school_index, *profname_index;
 }
 
-
-//@property (retain, nonatomic) IBOutlet UINavigationItem *navigation;
-
-@property(strong, nonatomic) IBOutlet UIButton *create;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) NSInteger schoolId;
 @property(weak, nonatomic) NSString *schoolName;

@@ -11,6 +11,8 @@
 @interface BTColor : UIColor
 
 + (UIImage *)imageWithColor:(UIColor *)color;
+    
++ (UIImage *)imageWithWhiteColor:(CGFloat)_alpha;
 
 + (UIImage *)imageWithGreyColor:(CGFloat)_alpha;
 

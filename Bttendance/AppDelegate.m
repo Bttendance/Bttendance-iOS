@@ -135,6 +135,7 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     application.applicationIconBadgeNumber = 0;
+    NSLog(@"applicationDidEnterBackground");
     
     
 //    if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) { //Check if our iOS version supports multitasking I.E iOS 4

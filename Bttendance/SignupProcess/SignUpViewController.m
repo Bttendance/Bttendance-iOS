@@ -68,7 +68,6 @@ NSString *signupRequest;
     titlelabel.text = NSLocalizedString(@"Sign Up", @"");
     [titlelabel sizeToFit];
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -97,7 +96,7 @@ NSString *signupRequest;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -178,8 +177,8 @@ NSString *signupRequest;
 
             [cell_new.button setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
             
             [cell_new.button addTarget:self action:@selector(SignUnButton:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -250,9 +249,8 @@ NSString *signupRequest;
     
     [BTAPIs signUpWithFullName:fullname email:email password:password success:^(User *user) {
         [hud hide:YES];
-        SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithNibName:@"SideMenuViewController" bundle:nil];
-        self.navigationController.navigationBarHidden = YES;
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
+        SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
+        [self.navigationController pushViewController:sideMenu animated:NO];
     } failure:^(NSError *error) {
         [hud hide:YES];
         button.enabled = YES;

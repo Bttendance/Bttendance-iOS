@@ -8,6 +8,8 @@
 
 #import "GuidePageViewController.h"
 #import "TutorialViewController.h"
+#import "CourseCreateViewController.h"
+#import "CourseAttendViewController.h"
 #import "BTColor.h"
 #import "BTUserDefault.h"
 #import "Course.h"
@@ -53,7 +55,7 @@
     [[self view] bringSubviewToFront:self.closeBt];
     [[self view] bringSubviewToFront:self.nextBt];
     
-    self.gdFirstTitle.text = NSLocalizedString(@"가입을 환영합니다!", nil);
+    self.gdFirstTitle.text = NSLocalizedString(@"환영합니다!", nil);
     self.gdFirstMsg1.text = NSLocalizedString(@"지금부터 BTTENDANCE를", nil);
     self.gdFirstMsg2.text = NSLocalizedString(@"어떻게 사용하실 수 있는지", nil);
     self.gdFirstMsg3.text = NSLocalizedString(@"소개할게요.", nil);
@@ -102,17 +104,25 @@
     self.gdLastMsg3.text = NSLocalizedString(@"시작해보세요.", nil);
     
     [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
+    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
     
     [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.2] forState:UIControlStateNormal];
     [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.1] forState:UIControlStateHighlighted];
+    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.1] forState:UIControlStateSelected];
     
     // If user already has a opened course
     BOOL hasOpenedCourse = [[BTUserDefault getUser] hasOpenedCourse];
     if (hasOpenedCourse) {
         self.gdLastBt1.frame = CGRectMake(90, 440, 140, 48);
         [self.gdLastBt1 setTitle:NSLocalizedString(@"계속하기", nil) forState:UIControlStateNormal];
+        [self.gdLastBt1 addTarget:self action:@selector(closeGuide:) forControlEvents:UIControlEventTouchUpInside];
         self.gdLastBt2.hidden = YES;
+    } else {
+        [self.gdLastBt1 setTitle:NSLocalizedString(@"강의 개설하기", nil) forState:UIControlStateNormal];
+        [self.gdLastBt1 addTarget:self action:@selector(createCourse:) forControlEvents:UIControlEventTouchUpInside];
+        [self.gdLastBt2 setTitle:NSLocalizedString(@"수강하기", nil) forState:UIControlStateNormal];
+        [self.gdLastBt2 addTarget:self action:@selector(attendCourse:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     // Update UI for iPhone 4/4S
@@ -294,37 +304,28 @@
 - (IBAction)showTutorialPoll:(id)sender
 {
     self.statusBarAnim = YES;
-    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_POLL_KR];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    } else {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_POLL];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    }
+    NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *url = [@"http://www.bttd.co/tutorial/poll?locale=" stringByAppendingString:locale];
+    TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
 
 - (IBAction)showTutorialAttd:(id)sender
 {
     self.statusBarAnim = YES;
-    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_ATTD_KR];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    } else {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_ATTD];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    }
+    NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *url = [@"http://www.bttd.co/tutorial/attendance?locale=" stringByAppendingString:locale];
+    TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
 
 - (IBAction)showTutorialNotice:(id)sender
 {
     self.statusBarAnim = YES;
-    if ([[[NSLocale preferredLanguages] objectAtIndex:0] isEqualToString:@"kr"]) {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_NOTICE_KR];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    } else {
-        TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:TUTORIAL_NOTICE];
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
-    }
+    NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString *url = [@"http://www.bttd.co/tutorial/notice?locale=" stringByAppendingString:locale];
+    TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
 
 #pragma SwipeViewDataSource
@@ -361,6 +362,16 @@
             break;
     }
     return nil;
+}
+
+- (void)createCourse:(id)selector {
+    CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
+    [self presentViewController:courseCreateView animated:YES completion:nil];
+}
+    
+- (void)attendCourse:(id)selector {
+    CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
+    [self presentViewController:courseAttendView animated:YES completion:nil];
 }
 
 @end

@@ -8,6 +8,11 @@
 
 #import "ViewController.h"
 
-@interface GuideCourseAttendViewController : UIViewController
+@interface GuideCourseAttendViewController : UIViewController <UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UIButton *nextBt;
+
+- (IBAction)next:(id)sender;
 
 @end

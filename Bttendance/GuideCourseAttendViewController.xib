@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideCourseAttendViewController">
             <connections>
+                <outlet property="nextBt" destination="vsb-Wt-Kbe" id="TtR-Lk-CNg"/>
+                <outlet property="tableview" destination="sHJ-og-vAN" id="gfC-er-yKI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,43 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sHJ-og-vAN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="UST-cz-cC5"/>
+                        <outlet property="delegate" destination="-1" id="yv1-ok-Y9i"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsb-Wt-Kbe">
+                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="9cE-AF-Rv2"/>
+                        <constraint firstAttribute="height" constant="46" id="m6p-Ke-tLb"/>
+                    </constraints>
+                    <state key="normal" title="시작하기">
+                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="next:" destination="-1" eventType="touchUpInside" id="Ln7-LB-96k"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vsb-Wt-Kbe" secondAttribute="trailing" id="38E-uh-7Cd"/>
+                <constraint firstAttribute="bottom" secondItem="vsb-Wt-Kbe" secondAttribute="bottom" id="Cfb-mj-CiN"/>
+                <constraint firstItem="vsb-Wt-Kbe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HpB-9n-3kQ"/>
+                <constraint firstItem="vsb-Wt-Kbe" firstAttribute="top" secondItem="sHJ-og-vAN" secondAttribute="bottom" id="PD2-7F-PVT"/>
+                <constraint firstItem="sHJ-og-vAN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pd4-50-RUo"/>
+                <constraint firstAttribute="trailing" secondItem="sHJ-og-vAN" secondAttribute="trailing" id="jSN-8R-FRO"/>
+                <constraint firstItem="vsb-Wt-Kbe" firstAttribute="top" secondItem="sHJ-og-vAN" secondAttribute="bottom" id="m7x-mZ-bB7"/>
+                <constraint firstItem="sHJ-og-vAN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zNm-gu-kCo"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

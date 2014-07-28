@@ -124,7 +124,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 13, 280, 70)];
-        title.text = NSLocalizedString(@"알람 설정을 끄면 강의자가 진행하는 액션에 대한 알림을\n받지 못합니다.", nil);
+        
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 5;
+        NSString *string = NSLocalizedString(@"알람 설정을 끄면 강의자가 진행하는 액션에 대한 알림을\n받지 못합니다.", nil);
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
+        [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
+        title.attributedText = str;
         title.numberOfLines = 0;
         title.font = [UIFont boldSystemFontOfSize:12];
         title.textColor = [BTColor BT_silver:1.0];
@@ -178,6 +184,8 @@
 //#pragma UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     switch (indexPath.row) {
         case 4:
             [self term];
@@ -216,13 +224,25 @@
 }
 
 - (void)term {
-    WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/terms"];
-    [self.navigationController pushViewController:webView animated:YES];
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([locale isEqualToString:@"ko"]) {
+        WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/terms"];
+        [self.navigationController pushViewController:webView animated:YES];
+    } else {
+        WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/terms-en"];
+        [self.navigationController pushViewController:webView animated:YES];
+    }
 }
 
 - (void)policy {
-    WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/privacy"];
-    [self.navigationController pushViewController:webView animated:YES];
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([locale isEqualToString:@"ko"]) {
+        WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/privacy"];
+        [self.navigationController pushViewController:webView animated:YES];
+    } else {
+        WebViewController *webView = [[WebViewController alloc] initWithURLString:@"http://www.bttendance.com/privacy-en"];
+        [self.navigationController pushViewController:webView animated:YES];
+    }
 }
 
 - (void)blog {

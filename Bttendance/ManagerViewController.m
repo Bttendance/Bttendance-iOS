@@ -113,6 +113,10 @@
             }
 
             [cell_new.button setTitle:@"ADD" forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            
             [cell_new.button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;

@@ -11,6 +11,7 @@
 #import "Notification.h"
 
 @class SimpleDevice;
+@class SimpleCourse;
 @class SimpleNotification;
 
 @interface SimpleUser : NSObject
@@ -49,6 +50,8 @@
 - (BOOL)supervising:(NSInteger)course_id;
 
 - (BOOL)hasOpenedCourse;
+
+- (SimpleCourse *)getCourse:(NSInteger)course_id;
 
 - (NSArray *)getOpenedCourses;
 

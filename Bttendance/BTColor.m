@@ -24,6 +24,10 @@
     return image;
 }
 
++ (UIImage *)imageWithWhiteColor:(CGFloat)_alpha {
+    return [self imageWithColor:[self BT_white:_alpha]];
+}
+
 + (UIImage *)imageWithGreyColor:(CGFloat)_alpha {
     return [self imageWithColor:[self BT_grey:_alpha]];
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SchoolChooseViewController">
             <connections>
+                <outlet property="createSchoolBt" destination="BIN-aP-XyH" id="AzU-JF-rrz"/>
                 <outlet property="tableview" destination="sPk-Zp-4lK" id="Vqi-Pf-IQ1"/>
                 <outlet property="view" destination="Zw3-3J-HVB" id="kPB-IY-JC7"/>
             </connections>
@@ -16,23 +17,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" allowsMultipleSelection="YES" rowHeight="53" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="sPk-Zp-4lK">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="sPk-Zp-4lK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="jnR-IT-R3x"/>
                         <outlet property="delegate" destination="-1" id="hgi-9Q-7A1"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIN-aP-XyH">
+                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="6Cn-nr-ajL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="찾고있는 학교나 단체가 목록에 없나요?">
+                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="createSchool:" destination="-1" eventType="touchUpInside" id="Mdd-wj-cIm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="sPk-Zp-4lK" secondAttribute="trailing" id="SzD-cZ-g8n"/>
-                <constraint firstItem="sPk-Zp-4lK" firstAttribute="leading" secondItem="Zw3-3J-HVB" secondAttribute="leading" id="lcy-m0-Vsp"/>
-                <constraint firstAttribute="bottom" secondItem="sPk-Zp-4lK" secondAttribute="bottom" id="nJu-aw-vAF"/>
-                <constraint firstItem="sPk-Zp-4lK" firstAttribute="top" secondItem="Zw3-3J-HVB" secondAttribute="top" id="wlg-4z-rc0"/>
+                <constraint firstItem="BIN-aP-XyH" firstAttribute="top" secondItem="sPk-Zp-4lK" secondAttribute="bottom" id="2ov-vR-uPu"/>
+                <constraint firstItem="BIN-aP-XyH" firstAttribute="top" secondItem="sPk-Zp-4lK" secondAttribute="bottom" id="43t-uZ-hgT"/>
+                <constraint firstItem="sPk-Zp-4lK" firstAttribute="top" secondItem="Zw3-3J-HVB" secondAttribute="top" id="BlJ-us-Huo"/>
+                <constraint firstAttribute="trailing" secondItem="sPk-Zp-4lK" secondAttribute="trailing" id="Dm1-Nz-YLO"/>
+                <constraint firstItem="sPk-Zp-4lK" firstAttribute="leading" secondItem="Zw3-3J-HVB" secondAttribute="leading" id="Hvb-u5-KxP"/>
+                <constraint firstAttribute="bottom" secondItem="BIN-aP-XyH" secondAttribute="bottom" id="UZH-R7-1NC"/>
+                <constraint firstItem="BIN-aP-XyH" firstAttribute="leading" secondItem="Zw3-3J-HVB" secondAttribute="leading" id="VXH-CS-3Ov"/>
+                <constraint firstAttribute="trailing" secondItem="BIN-aP-XyH" secondAttribute="trailing" id="jdd-LY-fiF"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

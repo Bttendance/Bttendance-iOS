@@ -16,6 +16,8 @@
 #import "SocketAgent.h"
 #import "LeftMenuViewController.h"
 #import "CourseDetailViewController.h"
+#import "NoCourseViewController.h"
+#import "GuidePageViewController.h"
 
 @interface SideMenuViewController ()
 
@@ -24,8 +26,18 @@
 @implementation SideMenuViewController
 
 - (id)initByItSelf {
-    UINavigationController *navigationController = [[UINavigationController alloc]
-                                                    initWithRootViewController:[[CourseDetailViewController alloc] init]];
+    
+    UINavigationController *navigationController;
+    
+    if ([BTUserDefault getLastSeenCourse] == 0) {
+        NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
+    } else {
+        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
+    }
+    
     LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] initWithNibName:@"LeftMenuViewController" bundle:nil];
     self = [self initWithContentViewController:navigationController
                         leftMenuViewController:leftMenuViewController
@@ -64,6 +76,13 @@
     }];
     
     [[SocketAgent sharedInstance] socketConnet];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (![BTUserDefault getSeenGuide]) {
+        GuidePageViewController *guidePage = [[GuidePageViewController alloc] initWithNibName:@"GuidePageViewController" bundle:nil];
+        [self presentViewController:guidePage animated:NO completion:nil];
+    }
 }
 
 #pragma mark RESideMenu Delegate

@@ -7,7 +7,19 @@
 //
 
 #import "ViewController.h"
+#import "School.h"
 
-@interface SchoolCreateViewController : UIViewController
+@protocol SchoolCreateViewControllerDelegate <NSObject>
+
+@required
+- (void)createdSchool:(School *)created;
+@end
+
+@interface SchoolCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
+    NSIndexPath *name_index;
+}
+
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) id<SchoolCreateViewControllerDelegate> delegate;
 
 @end

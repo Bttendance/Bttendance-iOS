@@ -36,4 +36,11 @@
         self.selected_bg.hidden = YES;
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    if (selected)
+        self.selected_bg.hidden = NO;
+    else
+        self.selected_bg.hidden = YES;
+}
+
 @end

@@ -9,12 +9,15 @@
 #import "LeftMenuViewController.h"
 #import "GuidePageViewController.h"
 #import "CourseCreateViewController.h"
+#import "CourseAttendViewController.h"
 #import "CourseDetailViewController.h"
+#import "GuideCourseCreateViewController.h"
+#import "GuideCourseAttendViewController.h"
 #import "ProfileViewController.h"
 #import "SettingViewController.h"
 #import "BTUserDefault.h"
 #import "BTColor.h"
-#import "SideHeaderView.h"
+#import "SideHeaderViewCell.h"
 #import "SideInfoCell.h"
 #import "SideCourseInfoCell.h"
 #import "BTNotification.h"
@@ -24,7 +27,6 @@
 @interface LeftMenuViewController ()
 
 @property (strong, nonatomic) User *user;
-@property (strong, nonatomic) SideHeaderView *header;
 @property (strong, nonatomic) NSArray *courses;
 
 @end
@@ -38,19 +40,12 @@
     self.user = [BTUserDefault getUser];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
-    
-    self.header = [SideHeaderView viewFromNibNamed];
-    [self.header.headerBT addTarget:self action:@selector(goToProfile:) forControlEvents:UIControlEventTouchUpInside];
-    self.tableview.tableHeaderView = self.header;
-    
-    [self refreshHeader];
 }
 
 - (void)refreshSide:(NSNotification *)noti {
     [BTAPIs coursesInSuccess:^(NSArray *courses) {
         self.courses = courses;
         self.user = [BTUserDefault getUser];
-        [self refreshHeader];
         [self.tableview reloadData];
     } failure:^(NSError *error) {
     }];
@@ -58,28 +53,7 @@
 
 - (void)reloadTableView:(NSNotification *)noti {
     self.user = [BTUserDefault getUser];
-    [self refreshHeader];
     [self.tableview reloadData];
-}
-
-- (void)refreshHeader
-{
-    self.user = [BTUserDefault getUser];
-    
-    NSString *type;
-    if (self.user.supervising_courses.count > 0)
-        type = NSLocalizedString(@"PROFESSOR", nil);
-    else
-        type = NSLocalizedString(@"STUDENT", nil);
-    
-    if ([self.user.full_name rangeOfString:type].length == 0) {
-        NSString *title = [NSString stringWithFormat:@"%@  %@", self.user.full_name, type];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:title];
-        [str addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[title rangeOfString:type]];
-        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[title rangeOfString:type]];
-        self.header.name.attributedText = str;
-    } else
-        self.header.name.text = self.user.full_name;
 }
 
 #pragma mark UITableView Datasource
@@ -88,19 +62,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex {
-    return [[self.user getOpenedCourses] count] + 6;
+    return [[self.user getOpenedCourses] count] + 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0)
+        return 133;
+    else if (indexPath.row == 1)
         return 62.5;
-    else if (indexPath.row <= [[self.user getOpenedCourses] count])
+    else if (indexPath.row <= [[self.user getOpenedCourses] count] + 1)
         return 118;
-    else if (indexPath.row == [[self.user getOpenedCourses] count] + 1)
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 2)
         return 57.5;
-    else if (indexPath.row < [[self.user getOpenedCourses] count] + 5)
+    else if (indexPath.row < [[self.user getOpenedCourses] count] + 6)
         return 62.5;
-    else if (indexPath.row == [[self.user getOpenedCourses] count] + 5)
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 6)
         return 30;
     else
         return 0;
@@ -108,7 +84,35 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == 0) {
+        static NSString *CellIdentifier = @"SideHeaderViewCell";
+        SideHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSString *type;
+        if (self.user.supervising_courses.count > 0)
+            type = NSLocalizedString(@"PROFESSOR", nil);
+        else
+            type = NSLocalizedString(@"STUDENT", nil);
+        
+        if ([self.user.full_name rangeOfString:type].length == 0) {
+            NSString *title = [NSString stringWithFormat:@"%@  %@", self.user.full_name, type];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:title];
+            [str addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[title rangeOfString:type]];
+            [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[title rangeOfString:type]];
+            cell.name.attributedText = str;
+        } else
+            cell.name.text = self.user.full_name;
+        
+        return cell;
+    }
+    
+    else if (indexPath.row == 1) {
         static NSString *CellIdentifier = @"SideInfoCell";
         SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
         if (cell == nil) {
@@ -122,7 +126,7 @@
         return cell;
     }
     
-    else if (indexPath.row <= [[self.user getOpenedCourses] count]) {
+    else if (indexPath.row <= [[self.user getOpenedCourses] count] + 1) {
         static NSString *CellIdentifier = @"SideCourseInfoCell";
         SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
         if (cell == nil) {
@@ -131,7 +135,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        NSInteger index = indexPath.row - 1;
+        NSInteger index = indexPath.row - 2;
         SimpleCourse *openedCourse = [self.user getOpenedCourses][index];
         cell.name.text = openedCourse.name;
         
@@ -159,7 +163,7 @@
         return cell;
     }
     
-    else if (indexPath.row == [[self.user getOpenedCourses] count] + 1) {
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 2) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 57.5)];
         cell.backgroundColor = [BTColor BT_white:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -177,7 +181,7 @@
         return cell;
     }
     
-    else if (indexPath.row < [[self.user getOpenedCourses] count] + 5) {
+    else if (indexPath.row < [[self.user getOpenedCourses] count] + 6) {
         static NSString *CellIdentifier = @"SideInfoCell";
         SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
         if (cell == nil) {
@@ -187,7 +191,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.Icon.hidden = YES;
-        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 2;
+        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 3;
         switch (index) {
             case 0:
                 cell.Info.text = NSLocalizedString(@"Guide", nil);
@@ -202,7 +206,7 @@
         return cell;
     }
     
-    else if (indexPath.row == [[self.user getOpenedCourses] count] + 5) {
+    else if (indexPath.row == [[self.user getOpenedCourses] count] + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_white:1.0];
@@ -223,6 +227,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0) {
+        ProfileViewController *profileView = [[ProfileViewController alloc] initWithCoder:nil];
+        [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:profileView]];
+        [self.sideMenuViewController hideMenuViewController];
+    }
+    
+    else if (indexPath.row == 1) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
@@ -231,17 +241,17 @@
         [actionSheet showInView:self.view];
     }
     
-    else if (indexPath.row <= [[self.user getOpenedCourses] count]) {
-        NSInteger index = indexPath.row - 1;
+    else if (indexPath.row <= [[self.user getOpenedCourses] count] + 1) {
+        NSInteger index = indexPath.row - 2;
         CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
         courseDetail.simpleCourse = [self.user getOpenedCourses][index];
         [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
         [self.sideMenuViewController hideMenuViewController];
     }
     
-    else if (indexPath.row > [[self.user getOpenedCourses] count] + 1
-             && indexPath.row < [[self.user getOpenedCourses] count] + 5) {
-        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 2;
+    else if (indexPath.row > [[self.user getOpenedCourses] count] + 2
+             && indexPath.row < [[self.user getOpenedCourses] count] + 6) {
+        NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 3;
         switch (index) {
             case 0: {
                 GuidePageViewController *guidePage = [[GuidePageViewController alloc] initWithNibName:@"GuidePageViewController" bundle:nil];
@@ -280,24 +290,18 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0: { //create course
-            CourseCreateViewController *schoolChooseView = [[CourseCreateViewController alloc] init];
-            [self.navigationController pushViewController:schoolChooseView animated:YES];
+            CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
+            [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseCreateView] animated:YES completion:nil];
             break;
         }
-        case 1: //attend course
+        case 1: { //attend course
+            CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
+            [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseAttendView] animated:YES completion:nil];
             break;
-        case 2:
+        }
         default:
             break;
     }
-}
-
-#pragma IBAction
-- (void)goToProfile:(id)sender
-{
-    ProfileViewController *profileView = [[ProfileViewController alloc] initWithCoder:nil];
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:profileView]];
-    [self.sideMenuViewController hideMenuViewController];
 }
 
 @end

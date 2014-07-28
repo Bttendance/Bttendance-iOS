@@ -68,7 +68,6 @@ NSString *signinRequest;
     titlelabel.text = NSLocalizedString(@"Log In", @"");
     [titlelabel sizeToFit];
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -98,7 +97,7 @@ NSString *signinRequest;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma Tableview Delegate
@@ -164,8 +163,8 @@ NSString *signinRequest;
 
             [cell_new.button setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -223,9 +222,8 @@ NSString *signinRequest;
     
     [BTAPIs signInWithEmail:email password:password success:^(User *user) {
         [hud hide:YES];
-        SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithNibName:@"SideMenuViewController" bundle:nil];
-        self.navigationController.navigationBarHidden = YES;
-        [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
+        SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
+        [self.navigationController pushViewController:sideMenu animated:NO];
     } failure:^(NSError *error) {
         [hud hide:YES];
         button.enabled = YES;

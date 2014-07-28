@@ -124,6 +124,15 @@
     return hasOpenCourse;
 }
 
+- (SimpleCourse *)getCourse:(NSInteger)course_id {
+    NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
+    for (SimpleCourse *course in courses)
+        if (course.id == course_id)
+            return course;
+    
+    return nil;
+}
+
 - (NSArray *)getOpenedCourses {
     NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
     NSMutableArray *openedCourses = [[NSMutableArray alloc] init];;

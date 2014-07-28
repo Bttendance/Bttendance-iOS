@@ -64,14 +64,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [BTColor BT_navy:0.7];
         hud.yOffset = -40.0f;
-        dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
+        dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 2.2 * NSEC_PER_SEC);
         dispatch_after(dismissTime, dispatch_get_main_queue(), ^(void){
             [hud hide:YES];
         });

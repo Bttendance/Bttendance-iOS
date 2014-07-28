@@ -47,14 +47,14 @@
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:@"Show Grades", @"Export Grades", @"Add Manager", nil];
-        [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
+        [actionSheet showInView:self.view];
     } else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:@"Unjoin Course", nil];
-        [actionSheet showFromTabBar:[[self tabBarController] tabBar]];
+        [actionSheet showInView:self.view];
     }
 }
 
@@ -93,12 +93,6 @@
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
-    
-    UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
-    [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
-    [self.navigationItem setRightBarButtonItem:plusButtonItem];
 
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
@@ -108,6 +102,9 @@
     coursedetailheaderview = [topLevelObjects objectAtIndex:0];
     
     [self refreshHeader:nil];
+    
+    user = [BTUserDefault getUser];
+    auth = simpleCourse.opened && [user supervising:simpleCourse.id];
 
     if (!auth) {
         [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 178)];
@@ -118,6 +115,23 @@
         coursedetailheaderview.clickerView.hidden = YES;
         coursedetailheaderview.attendanceView.hidden = YES;
         coursedetailheaderview.noticeView.hidden = YES;
+    }
+    
+    if (!simpleCourse.opened) {
+        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [self.navigationItem setLeftBarButtonItem:backButtonItem];
+        self.navigationItem.leftItemsSupplementBackButton = NO;
+    }
+    
+    if (simpleCourse.opened || auth) {
+        UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
+        [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
+        UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
+        [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
 
     CGRect frame = coursedetailheaderview.grade.frame;
@@ -340,7 +354,7 @@
         }
         
         cell.post = post;
-        cell.courseName.text = cell.post.course.name;
+        cell.courseName.text = NSLocalizedString(@"Clicker", nil);
         cell.message.text = cell.post.message;
         cell.date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
         
@@ -442,7 +456,7 @@
         [cell.contentView insertSubview:chart aboveSubview:cell.background];
         
         cell.post = post;
-        cell.Title.text = cell.post.course.name;
+        cell.Title.text = NSLocalizedString(@"Clicker", nil);
         cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
         cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
         cell.gap = [cell.post.createdAt timeIntervalSinceNow];
@@ -482,7 +496,7 @@
             [view removeFromSuperview];
     
     cell.post = post;
-    cell.Title.text = post.course.name;
+    cell.Title.text = NSLocalizedString(@"Attendance", nil);
     cell.Message.text = post.message;
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
     cell.gap = [cell.post.createdAt timeIntervalSinceNow];
@@ -562,7 +576,7 @@
             [view removeFromSuperview];
     
     cell.post = post;
-    cell.Title.text = cell.post.course.name;
+    cell.Title.text = NSLocalizedString(@"Notice", nil);
     cell.Message.text = cell.post.message;
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
     cell.gap = [cell.post.createdAt timeIntervalSinceNow];

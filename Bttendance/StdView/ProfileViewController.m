@@ -12,6 +12,7 @@
 #import "ProfileNameEditViewController.h"
 #import "ProfileEmailEditViewController.h"
 #import "ProfileIdentityEditViewController.h"
+#import "CourseDetailViewController.h"
 #import "ProfileUpdatePassViewController.h"
 #import "ProfileCell.h"
 #import "SchoolInfoCell.h"
@@ -186,6 +187,7 @@
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
             cell.Info_SchoolID.text = NSLocalizedString(@"Professor", nil);
             cell.arrow.hidden = YES;
+            cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.0];
         } else {
             cell.simpleSchool = self.user.enrolled_schools[index - employedSchools];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
@@ -195,6 +197,7 @@
                     identity = ((SimpleIdentification *)self.user.identifications[j]).identity;
             ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"Student - %@", nil), identity];
             cell.arrow.hidden = NO;
+            cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.1];
         }
         return  cell;
     }
@@ -238,6 +241,8 @@
 //#pragma UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSInteger closedCourses = [[self.user getClosedCourses] count];
     NSInteger employedSchools = [self.user.employed_schools count];
     NSInteger enrolledSchools = [self.user.enrolled_schools count];
@@ -254,7 +259,9 @@
     
     else if (indexPath.row > 2 && indexPath.row < closedCourses + 3) {
         NSArray *closedCourses = [self.user getClosedCourses];
-        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 3];
+        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+        courseDetail.simpleCourse = [closedCourses objectAtIndex:indexPath.row - 3];
+        [self.navigationController pushViewController:courseDetail animated:YES];
     }
     
     else if (indexPath.row > closedCourses + employedSchools + 3 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 4) {

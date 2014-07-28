@@ -57,7 +57,6 @@
     titlelabel.text = NSLocalizedString(@"Forgot Password", @"");
     [titlelabel sizeToFit];
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     self.navigationController.navigationBar.translucent = NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -140,8 +139,8 @@
 
             [cell_new.button setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.3] forState:UIControlStateDisabled];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
             [cell_new.button addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
             cell.contentView.backgroundColor = [BTColor BT_grey:1];
 
