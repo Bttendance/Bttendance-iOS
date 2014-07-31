@@ -7,7 +7,10 @@
 //
 
 #import "BTUserDefault.h"
+#import "BTNotification.h"
 #import "Course.h"
+#import "Post.h"
+#import "Question.h"
 
 @implementation BTUserDefault
 
@@ -47,6 +50,109 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [defaults setObject:jsonString forKey:UserJSONKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+}
+
++ (NSArray *)getCourses {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:CoursesJSONKey];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    NSMutableArray *courses = [NSMutableArray array];
+    for (NSDictionary *dic in json) {
+        Course *course = [[Course alloc] initWithDictionary:dic];
+        [courses addObject:course];
+    }
+    
+    return courses;
+}
+
++ (Course *)getCourse:(NSInteger)courseId {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:CoursesJSONKey];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    for (NSDictionary *dic in json) {
+        Course *course = [[Course alloc] initWithDictionary:dic];
+        if (course.id == courseId)
+            return course;
+    }
+    
+    return nil;
+}
+
++ (void)setCourses:(id)responseObject {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [defaults setObject:jsonString forKey:CoursesJSONKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSArray *)getPostsOfArray:(NSString *)courseId {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSMutableArray *posts = [NSMutableArray array];
+    for (NSDictionary *dic in responseObject) {
+        Post *post = [[Post alloc] initWithDictionary:dic];
+        [posts addObject:post];
+    }
+    return posts;
+}
+
++ (void)setPostArray:(id)responseObject ofCourse:(NSString *)courseId {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [defaults setObject:jsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSArray *)getQuestions {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:QuestionsJSONKey];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    NSMutableArray *questions = [NSMutableArray array];
+    for (NSDictionary *dic in json) {
+        Question *question = [[Question alloc] initWithDictionary:dic];
+        [questions addObject:question];
+    }
+    
+    return questions;
+}
+
++ (void)setQuestions:(id)responseObject {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [defaults setObject:jsonString forKey:QuestionsJSONKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

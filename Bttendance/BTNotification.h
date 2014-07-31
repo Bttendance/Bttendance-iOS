@@ -8,10 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+// For User update
 #define UserUpdated @"user_updated"
 
+// For refresh
 #define FeedRefresh @"feed_refresh"
 #define SideRefresh @"side_refresh"
+
+// For open course/post/modalview
+#define OpenCourse @"open_course"
+#define OpenPost @"open_post"
+#define OpenModalView @"modal_view"
+
+// USERINFO
+#define SimpleCourseInfo @"simple_course_info"
+#define ModalViewController @"modal_view_controller"
 
 // For Socket
 #define CourseUpdated @"course_updated"

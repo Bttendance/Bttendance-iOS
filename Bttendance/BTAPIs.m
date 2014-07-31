@@ -317,6 +317,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/courses"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setCourses:responseObject];
                             NSMutableArray *courses = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
                                 Course *course = [[Course alloc] initWithDictionary:dic];
@@ -353,7 +354,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-#pragma Notifications APIs
+#pragma Settings APIs
 + (void)updateNotiSettingAttendance:(BOOL)attendance
                             success:(void (^)(User *user))success
                             failure:(void (^)(NSError *error))failure {
@@ -364,7 +365,7 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"attendance" : (attendance) ? @"true" : @"false"};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/notifications/update/attendance"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/attendance"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
@@ -386,7 +387,7 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"clicker" : (clicker) ? @"true" : @"false"};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/notifications/update/clicker"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
@@ -408,12 +409,82 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"notice" : (notice) ? @"true" : @"false"};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/notifications/update/notice"]
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/notice"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
                             User *user = [[User alloc] initWithDictionary:responseObject];
                             success(user);
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
+}
+
+#pragma Questions APIs
++ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
+                     failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/questions/mine"]
+                        parameters:params
+                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                               [BTUserDefault setQuestions:responseObject];
+                               NSMutableArray *questions = [NSMutableArray array];
+                               for (NSDictionary *dic in responseObject) {
+                                   Question *question = [[Question alloc] initWithDictionary:dic];
+                                   [questions addObject:question];
+                               }
+                               success(questions);
+                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                               [self failureHandleWithError:error];
+                               failure(error);
+                           }];
+    
+}
+
++ (void)createQuestionWithMessage:(NSString *)message
+                   andChoiceCount:(NSString *)choice_count
+                          success:(void (^)(Question *question))success
+                          failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"message" : message,
+                             @"choice_count" : choice_count};
+    
+    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/questions/create"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Question *question = [[Question alloc] initWithDictionary:responseObject];
+                             success(question);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];
+}
+
++ (void)removeQuestionWithId:(NSString *)question_id
+                     success:(void (^)(Question *question))success
+                     failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"question_id" : question_id};
+    
+    [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/questions/remove"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Question *question = [[Question alloc] initWithDictionary:responseObject];
+                            success(question);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             failure(error);
@@ -545,6 +616,7 @@ static UIAlertView *Ooooppss;
 }
 
 + (void)searchCourseWithCode:(NSString *)course_code
+                        orId:(NSString *)course_id
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure {
     
@@ -552,7 +624,8 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_code" : course_code};
+                             @"course_code" : course_code,
+                             @"course_id" : course_id};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/search"]
                      parameters:params
@@ -626,6 +699,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/feed"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setPostArray:responseObject ofCourse:course_id];
                             NSMutableArray *posts = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
                                 Post *post = [[Post alloc] initWithDictionary:dic];
@@ -633,6 +707,50 @@ static UIAlertView *Ooooppss;
                             }
                             success(posts);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
+}
+
++ (void)openCourse:(NSString *)course_id
+           success:(void (^)(User *user))success
+           failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/open"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
+}
+
++ (void)closeCourse:(NSString *)course_id
+            success:(void (^)(User *user))success
+            failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"course_id" : course_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/close"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            User *user = [[User alloc] initWithDictionary:responseObject];
+                            success(user);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             failure(error);
                         }];
@@ -826,6 +944,29 @@ static UIAlertView *Ooooppss;
                          }];
 }
 
++ (void)updateMessageOfPost:(NSString *)post_id
+                withMessage:(NSString *)message
+                    success:(void (^)(Post *post))success
+                    failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"post_id" : post_id,
+                             @"message" : message};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/posts/update/message"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             Post *post = [[Post alloc] initWithDictionary:responseObject];
+                             success(post);
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             [self failureHandleWithError:error];
+                             failure(error);
+                         }];
+}
+
 + (void)removePost:(NSString *)post_id
            success:(void (^)(Post *post))success
            failure:(void (^)(NSError *error))failure {
@@ -836,7 +977,7 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"post_id" : post_id};
     
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/posts/remove"]
+    [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/posts/remove"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              Post *post = [[Post alloc] initWithDictionary:responseObject];
@@ -929,6 +1070,29 @@ static UIAlertView *Ooooppss;
                              @"user_id" : user_id};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/uncheck/manually"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
+                            success(attendance);
+                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
+}
+
++ (void)toggleManuallyWithAttendance:(NSString *)attendance_id
+                                user:(NSString *)user_id
+                             success:(void (^)(Attendance *attendance))success
+                             failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"attendance_id" : attendance_id,
+                             @"user_id" : user_id};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/toggle/manually"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];

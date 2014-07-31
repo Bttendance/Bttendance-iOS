@@ -17,6 +17,8 @@
 
 @interface SchoolCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSIndexPath *name_index;
+    NSIndexPath *type_index;
+    NSIndexPath *info_index;
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableView;

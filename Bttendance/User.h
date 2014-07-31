@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Device.h"
-#import "Notification.h"
+#import "Setting.h"
 
 @class SimpleDevice;
 @class SimpleCourse;
-@class SimpleNotification;
+@class SimpleSetting;
 
 @interface SimpleUser : NSObject
 
@@ -38,16 +38,19 @@
 @property(strong, nonatomic) NSString  *password;
 @property(strong, nonatomic) NSString  *full_name;
 @property(strong, nonatomic) SimpleDevice  *device;
-@property(strong, nonatomic) SimpleNotification  *notification;
+@property(strong, nonatomic) SimpleSetting  *setting;
 @property(strong, nonatomic) NSArray  *supervising_courses;
 @property(strong, nonatomic) NSArray  *attending_courses;
 @property(strong, nonatomic) NSArray  *employed_schools;
 @property(strong, nonatomic) NSArray  *enrolled_schools;
 @property(strong, nonatomic) NSArray  *identifications;
+@property(assign) NSInteger  questions_count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 - (BOOL)supervising:(NSInteger)course_id;
+
+- (BOOL)enrolled:(NSInteger)school_id;
 
 - (BOOL)hasOpenedCourse;
 

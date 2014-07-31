@@ -7,12 +7,10 @@
 //
 
 #import "LeftMenuViewController.h"
+#import "CourseDetailViewController.h"
 #import "GuidePageViewController.h"
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
-#import "CourseDetailViewController.h"
-#import "GuideCourseCreateViewController.h"
-#import "GuideCourseAttendViewController.h"
 #import "ProfileViewController.h"
 #import "SettingViewController.h"
 #import "BTUserDefault.h"
@@ -38,6 +36,7 @@
     [super viewDidLoad];
     
     self.user = [BTUserDefault getUser];
+    self.courses = [BTUserDefault getCourses];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
 }
@@ -87,12 +86,12 @@
     
     if (indexPath.row == 0) {
         static NSString *CellIdentifier = @"SideHeaderViewCell";
-        SideHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        SideHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSString *type;
         if (self.user.supervising_courses.count > 0)
@@ -109,17 +108,19 @@
         } else
             cell.name.text = self.user.full_name;
         
+        cell.line.frame = CGRectMake(14, 132.3, 242, 0.7);
+        
         return cell;
     }
     
     else if (indexPath.row == 1) {
         static NSString *CellIdentifier = @"SideInfoCell";
-        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.Info.text = NSLocalizedString(@"Add Course", nil);
         cell.Icon.hidden = NO;
@@ -128,12 +129,12 @@
     
     else if (indexPath.row <= [[self.user getOpenedCourses] count] + 1) {
         static NSString *CellIdentifier = @"SideCourseInfoCell";
-        SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        SideCourseInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSInteger index = indexPath.row - 2;
         SimpleCourse *openedCourse = [self.user getOpenedCourses][index];
@@ -174,7 +175,7 @@
         bttendance.textColor = [BTColor BT_navy:1.0];
         [cell addSubview:bttendance];
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 56.5, 320, 1)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(14, 56.5, 242, 0.7)];
         view.backgroundColor = [BTColor BT_navy:1.0];
         [cell addSubview:view];
         
@@ -183,12 +184,12 @@
     
     else if (indexPath.row < [[self.user getOpenedCourses] count] + 6) {
         static NSString *CellIdentifier = @"SideInfoCell";
-        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        SideInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.Icon.hidden = YES;
         NSInteger index = indexPath.row - [[self.user getOpenedCourses] count] - 3;

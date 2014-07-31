@@ -11,12 +11,14 @@
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
 #import "BTColor.h"
+#import "BTNotification.h"
 #import "BTUserDefault.h"
 #import "Course.h"
 
 @interface GuidePageViewController ()
 
 @property (assign) BOOL statusBarAnim;
+@property (assign) BOOL dissmissItself;
 
 @end
 
@@ -114,7 +116,7 @@
     // If user already has a opened course
     BOOL hasOpenedCourse = [[BTUserDefault getUser] hasOpenedCourse];
     if (hasOpenedCourse) {
-        self.gdLastBt1.frame = CGRectMake(90, 440, 140, 48);
+        self.gdLastBt1.frame = CGRectMake(90, 420, 140, 48);
         [self.gdLastBt1 setTitle:NSLocalizedString(@"계속하기", nil) forState:UIControlStateNormal];
         [self.gdLastBt1 addTarget:self action:@selector(closeGuide:) forControlEvents:UIControlEventTouchUpInside];
         self.gdLastBt2.hidden = YES;
@@ -162,11 +164,12 @@
         self.gdLastBt2.frame = CGRectMake(90, 370, 140, 48);
         
         if (hasOpenedCourse)
-            self.gdLastBt1.frame = CGRectMake(90, 365, 140, 48);
+            self.gdLastBt1.frame = CGRectMake(90, 345, 140, 48);
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     //all view component fade in
@@ -185,7 +188,18 @@
     self.closeBt.alpha = 1;
     self.nextBt.alpha = 1;
     self.swipeView.alpha = 1;
-    self.guideFirstBG.alpha = 1;
+    
+    if (self.swipeView.scrollOffset < 1)
+        self.guideFirstBG.alpha = 1;
+    else if (self.swipeView.scrollOffset < 2)
+        self.guidePollBG.alpha = 1;
+    else if (self.swipeView.scrollOffset < 3)
+        self.guideAttdBG.alpha = 1;
+    else if (self.swipeView.scrollOffset < 4)
+        self.guideNoticeBG.alpha = 1;
+    else
+        self.guideLastBG.alpha = 1;
+    
     [UIImageView commitAnimations];
     
     self.pageControl.pageIndicatorTintColor = [BTColor BT_grey:0.5];
@@ -304,8 +318,9 @@
 - (IBAction)showTutorialPoll:(id)sender
 {
     self.statusBarAnim = YES;
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString *url = [@"http://www.bttd.co/tutorial/poll?locale=" stringByAppendingString:locale];
+    NSString *url = [NSString stringWithFormat:@"http://www.bttd.co/tutorial/clicker?device_type=iphone&locale=%@&app_version=%@", locale, appVersion];
     TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
@@ -313,8 +328,9 @@
 - (IBAction)showTutorialAttd:(id)sender
 {
     self.statusBarAnim = YES;
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString *url = [@"http://www.bttd.co/tutorial/attendance?locale=" stringByAppendingString:locale];
+    NSString *url = [NSString stringWithFormat:@"http://www.bttd.co/tutorial/attendance?device_type=iphone&locale=%@&app_version=%@", locale, appVersion];
     TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
@@ -322,8 +338,9 @@
 - (IBAction)showTutorialNotice:(id)sender
 {
     self.statusBarAnim = YES;
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString *url = [@"http://www.bttd.co/tutorial/notice?locale=" stringByAppendingString:locale];
+    NSString *url = [NSString stringWithFormat:@"http://www.bttd.co/tutorial/notice?device_type=iphone&locale=%@&app_version=%@", locale, appVersion];
     TutorialViewController *tutorial = [[TutorialViewController alloc] initWithURLString:url];
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:tutorial] animated:YES completion:nil];
 }
@@ -366,12 +383,16 @@
 
 - (void)createCourse:(id)selector {
     CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
-    [self presentViewController:courseCreateView animated:YES completion:nil];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:[[UINavigationController alloc] initWithRootViewController:courseCreateView], ModalViewController, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data];
+    [self closeGuide:nil];
 }
-    
+
 - (void)attendCourse:(id)selector {
     CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
-    [self presentViewController:courseAttendView animated:YES completion:nil];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:[[UINavigationController alloc] initWithRootViewController:courseAttendView], ModalViewController, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data];
+    [self closeGuide:nil];
 }
 
 @end

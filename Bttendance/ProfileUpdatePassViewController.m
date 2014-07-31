@@ -79,7 +79,6 @@
                               newOne:new_pass
                              success:^(User *user) {
                                  [hud hide:YES];
-                                 [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
                                  [self.navigationController popViewControllerAnimated:YES];
                              } failure:^(NSError *error) {
                                  [hud hide:YES];

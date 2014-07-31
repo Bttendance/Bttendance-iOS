@@ -1,35 +1,34 @@
 //
-//  Identification.h
+//  Question.h
 //  bttendance
 //
-//  Created by TheFinestArtist on 2014. 4. 24..
+//  Created by TheFinestArtist on 2014. 7. 31..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class SimpleSchool;
 @class SimpleUser;
 
-@interface SimpleIdentification : NSObject
+@interface SimpleQuestion : NSObject
 
 @property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *identity;
-@property(assign) NSInteger  school;
+@property(strong, nonatomic) NSString  *message;
+@property(assign) NSInteger  choice_count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface Identification : NSObject
+@interface Question : NSObject
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *identity;
+@property(strong, nonatomic) NSString  *message;
+@property(assign) NSInteger  choice_count;
 @property(strong, nonatomic) SimpleUser  *owner;
-@property(strong, nonatomic) SimpleSchool  *school;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

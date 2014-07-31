@@ -86,22 +86,22 @@
         static NSString *CellIdentifier = @"NotificationCell";
         NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         switch (indexPath.row) {
             case 0:
                 cell.title.text = NSLocalizedString(@"출석체크 알림", nil);
-                cell.noti_switch.on = self.user.notification.attendance;
+                cell.noti_switch.on = self.user.setting.attendance;
                 [cell.noti_switch addTarget:self
                                      action:@selector(attendance:)
                            forControlEvents:UIControlEventValueChanged];
                 break;
             case 1:
                 cell.title.text = NSLocalizedString(@"설문조사 알림", nil);
-                cell.noti_switch.on = self.user.notification.clicker;
+                cell.noti_switch.on = self.user.setting.clicker;
                 [cell.noti_switch addTarget:self
                                      action:@selector(clicker:)
                            forControlEvents:UIControlEventValueChanged];
@@ -109,7 +109,7 @@
             case 2:
             default:
                 cell.title.text = NSLocalizedString(@"공지 알림", nil);
-                cell.noti_switch.on = self.user.notification.notice;
+                cell.noti_switch.on = self.user.setting.notice;
                 [cell.noti_switch addTarget:self
                                      action:@selector(notice:)
                            forControlEvents:UIControlEventValueChanged];
@@ -143,10 +143,10 @@
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         switch (indexPath.row) {
             case 4:

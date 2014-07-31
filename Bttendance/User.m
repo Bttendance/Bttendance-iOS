@@ -51,7 +51,7 @@
         self.password = [dictionary objectForKey:@"password"];
         self.full_name = [dictionary objectForKey:@"full_name"];
         self.device = [[SimpleDevice alloc] initWithDictionary:[dictionary objectForKey:@"device"]];
-        self.notification = [[SimpleNotification alloc] initWithDictionary:[dictionary objectForKey:@"notification"]];
+        self.setting = [[SimpleSetting alloc] initWithDictionary:[dictionary objectForKey:@"notification"]];
         
         NSMutableArray *supervising_courses = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"supervising_courses"]) {
@@ -103,6 +103,8 @@
             [identifications addObject:identification];
         }
         self.identifications = identifications;
+        
+        self.questions_count = [[dictionary objectForKey:@"questions_count"] integerValue];
     }
     return self;
 }
@@ -110,6 +112,13 @@
 - (BOOL)supervising:(NSInteger)course_id {
     for (SimpleCourse *course in self.supervising_courses)
         if (course.id == course_id)
+            return YES;
+    return NO;
+}
+
+- (BOOL)enrolled:(NSInteger)school_id {
+    for (SimpleSchool *school in self.enrolled_schools)
+        if (school.id == school_id)
             return YES;
     return NO;
 }

@@ -157,9 +157,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"1";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
@@ -177,9 +177,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"2";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
@@ -197,9 +197,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"3";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
@@ -217,9 +217,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"4";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
@@ -243,7 +243,7 @@
 
 #pragma IBAction
 - (IBAction)next:(id)sender {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

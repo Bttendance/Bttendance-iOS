@@ -13,9 +13,14 @@
 #import "BTColor.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "BTNotification.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AudioToolbox/AudioServices.h>
+#import "GuideCourseAttendViewController.h"
 
 @interface CourseAttendViewController ()
+
+@property (strong, nonatomic) Course *attendingCourse;
 
 @end
 
@@ -97,7 +102,7 @@
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
     }
     
     switch (indexPath.row) {
@@ -105,15 +110,19 @@
             [[cell textLabel] setText:NSLocalizedString(@"Code", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell textLabel].backgroundColor = [UIColor clearColor];
             
             [(TextInputCell *) cell textfield].frame = CGRectMake(68, 1, 252, 40);
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"클래스 코드를 입력해 주세요.", nil);
             [(TextInputCell *) cell textfield].delegate = self;
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
+            [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeASCIICapable;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
             [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
+            [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 1: {
@@ -143,10 +152,32 @@
 
 - (void)attendButton:(id)sender {
     
-    UIButton *button = (UIButton *) sender;
-    button.enabled = NO;
-    
     NSString *code = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield text];
+    
+    BOOL pass = YES;
+    
+    if (code == nil || code.length == 0) {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[BTColor BT_red:0.5]
+                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        pass = NO;
+    }
+    
+    NSString *nameRegex = @"[A-Za-z0-9]+";
+    NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    
+    if(![nameTest evaluateWithObject:code]){
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield.text = @"";
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[BTColor BT_red:0.5]
+                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        pass = NO;
+    }
+    
+    if (!pass) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        return;
+    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
@@ -154,19 +185,120 @@
     hud.detailsLabelText = NSLocalizedString(@"Searching Course", nil);
     hud.yOffset = -40.0f;
     
-    [BTAPIs searchCourseWithCode:code success:^(Course *course) {
-        hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
-        [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)course.id] success:^(User *user) {
-            [hud hide:YES];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        } failure:^(NSError *error) {
-            button.enabled = YES;
-            [hud hide:YES];
-        }];
+    [BTAPIs searchCourseWithCode:code orId:@"" success:^(Course *course) {
+        [hud hide:YES];
+        
+        self.attendingCourse = course;
+        if ([[BTUserDefault getUser] enrolled:course.school.id]) {
+            [self attendCourse];
+        } else {
+            
+            NSString *title;
+            NSString *message;
+            
+            if ([course.school.type isEqualToString:@"university"]) {
+                title = NSLocalizedString(@"Student Number", @"for univ");
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number", @"for univ"), self.attendingCourse.name];
+            } else if ([course.school.type isEqualToString:@"school"]) {
+                title = NSLocalizedString(@"Student Number", @"for school");
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number", @"for school"), self.attendingCourse.name];
+            } else if ([course.school.type isEqualToString:@"institute"]) {
+                title = NSLocalizedString(@"Phone Number", nil);
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your phone number", nil), self.attendingCourse.name];
+            } else {
+                title = NSLocalizedString(@"Identity", nil);
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your identity", nil), self.attendingCourse.name];
+            }
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                            message:message
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Confirm"
+                                                  otherButtonTitles:@"Cancel", Nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert show];
+        }
+        
     } failure:^(NSError *error) {
-        button.enabled = YES;
+        self.attendingCourse = nil;
         [hud hide:YES];
     }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (self.attendingCourse == nil)
+        return;
+    
+    if (buttonIndex == 1) {//cancel
+        return;
+    }
+    
+    if ([alertView alertViewStyle] == UIAlertViewStyleDefault) {
+        [self attendCourse];
+    }
+    
+    if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [BTColor BT_navy:0.7];
+        hud.labelText = NSLocalizedString(@"Loading", nil);
+        hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
+        hud.yOffset = -40.0f;
+        
+        [BTAPIs enrollSchool:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.school.id]
+                    identity:[[alertView textFieldAtIndex:0] text]
+                     success:^(User *user) {
+                         [hud hide:YES];
+                         [self attendCourse];
+                     } failure:^(NSError *error) {
+                         [hud hide:YES];
+                     }];
+    }
+}
+
+- (void)attendCourse {
+    
+    if (self.attendingCourse == nil)
+        return;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
+    hud.yOffset = -40.0f;
+    
+    NSArray *old_courses = [[BTUserDefault getUser] getOpenedCourses];
+    
+    [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.id]
+                 success:^(User *user) {
+                     [hud hide:YES];
+                     
+                     SimpleCourse *createdCourse;
+                     NSArray *new_courses = [[BTUserDefault getUser] getOpenedCourses];
+                     for (SimpleCourse *newCourse in new_courses) {
+                         BOOL isNew = YES;
+                         for (SimpleCourse *oldCourse in old_courses) {
+                             if (newCourse.id == oldCourse.id) {
+                                 isNew = NO;
+                                 break;
+                             }
+                         }
+                         if (isNew)
+                             createdCourse = newCourse;
+                     }
+                     
+                     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:createdCourse, SimpleCourseInfo, nil];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+                     
+                     GuideCourseAttendViewController *courseAttendView = [[GuideCourseAttendViewController alloc] initWithNibName:@"GuideCourseAttendViewController" bundle:nil];
+                     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:courseAttendView, ModalViewController, nil];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data2];
+                     
+                     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+                 } failure:^(NSError *error) {
+                     [hud hide:YES];
+                 }];
 }
 
 @end

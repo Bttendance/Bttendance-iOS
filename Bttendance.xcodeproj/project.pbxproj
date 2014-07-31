@@ -78,7 +78,7 @@
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
 		D42FAB0B197E4B330008945E /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0A197E4B330008945E /* Notice.m */; };
 		D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0D197E4D6A0008945E /* PushNoti.m */; };
-		D42FAB11197E4EE80008945E /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB10197E4EE80008945E /* Notification.m */; };
+		D42FAB11197E4EE80008945E /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB10197E4EE80008945E /* Setting.m */; };
 		D42FAB14197E77870008945E /* x_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB12197E77870008945E /* x_black@2x.png */; };
 		D42FAB15197E77870008945E /* x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB13197E77870008945E /* x@2x.png */; };
 		D42FAB1A197E7BB50008945E /* start_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB18197E7BB50008945E /* start_icon@2x.png */; };
@@ -109,6 +109,12 @@
 		D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D478DF021873ADFE00BA9BE7 /* PostCell.xib */; };
 		D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */; };
 		D481EBAB19862AD3001CAA8E /* ChooseSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBAA19862AD3001CAA8E /* ChooseSchoolCell.m */; };
+		D481EBAF19873C1A001CAA8E /* ChooseTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBAD19873C1A001CAA8E /* ChooseTypeCell.m */; };
+		D481EBB019873C1A001CAA8E /* ChooseTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481EBAE19873C1A001CAA8E /* ChooseTypeCell.xib */; };
+		D481EBB5198744D0001CAA8E /* attendance_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D481EBB3198744D0001CAA8E /* attendance_grey@2x.png */; };
+		D481EBB6198744D0001CAA8E /* attendance_silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D481EBB4198744D0001CAA8E /* attendance_silver@2x.png */; };
+		D481EBB819874626001CAA8E /* attendance_cyan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D481EBB719874626001CAA8E /* attendance_cyan@2x.png */; };
+		D481EBBB198A89E5001CAA8E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBBA198A89E5001CAA8E /* Question.m */; };
 		D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48219FF196D607700A88ABC /* ProfileViewController.xib */; };
 		D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */; };
 		D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A09196D677700A88ABC /* CatchPointViewController.xib */; };
@@ -307,8 +313,8 @@
 		D42FAB0A197E4B330008945E /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		D42FAB0C197E4D6A0008945E /* PushNoti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoti.h; sourceTree = "<group>"; };
 		D42FAB0D197E4D6A0008945E /* PushNoti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoti.m; sourceTree = "<group>"; };
-		D42FAB0F197E4EE80008945E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		D42FAB10197E4EE80008945E /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		D42FAB0F197E4EE80008945E /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		D42FAB10197E4EE80008945E /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		D42FAB12197E77870008945E /* x_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x_black@2x.png"; sourceTree = "<group>"; };
 		D42FAB13197E77870008945E /* x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x@2x.png"; sourceTree = "<group>"; };
 		D42FAB18197E7BB50008945E /* start_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_icon@2x.png"; sourceTree = "<group>"; };
@@ -353,6 +359,14 @@
 		D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
 		D481EBA919862AD3001CAA8E /* ChooseSchoolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolCell.h; sourceTree = "<group>"; };
 		D481EBAA19862AD3001CAA8E /* ChooseSchoolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolCell.m; sourceTree = "<group>"; };
+		D481EBAC19873C1A001CAA8E /* ChooseTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTypeCell.h; sourceTree = "<group>"; };
+		D481EBAD19873C1A001CAA8E /* ChooseTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTypeCell.m; sourceTree = "<group>"; };
+		D481EBAE19873C1A001CAA8E /* ChooseTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTypeCell.xib; sourceTree = "<group>"; };
+		D481EBB3198744D0001CAA8E /* attendance_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_grey@2x.png"; sourceTree = "<group>"; };
+		D481EBB4198744D0001CAA8E /* attendance_silver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_silver@2x.png"; sourceTree = "<group>"; };
+		D481EBB719874626001CAA8E /* attendance_cyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_cyan@2x.png"; sourceTree = "<group>"; };
+		D481EBB9198A89E5001CAA8E /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		D481EBBA198A89E5001CAA8E /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		D48219FE196D607700A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProfileViewController.xib; sourceTree = "<group>"; };
 		D4821A01196D60DD00A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CourseDetailViewController.xib; sourceTree = "<group>"; };
 		D4821A09196D677700A88ABC /* CatchPointViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointViewController.xib; path = controller/CatchPointViewController.xib; sourceTree = "<group>"; };
@@ -691,6 +705,9 @@
 				D44AA00E1982031300743C8A /* NotificationCell.h */,
 				D44AA00F1982031300743C8A /* NotificationCell.m */,
 				D44AA0101982031300743C8A /* NotificationCell.xib */,
+				D481EBAC19873C1A001CAA8E /* ChooseTypeCell.h */,
+				D481EBAD19873C1A001CAA8E /* ChooseTypeCell.m */,
+				D481EBAE19873C1A001CAA8E /* ChooseTypeCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -698,6 +715,9 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D481EBB719874626001CAA8E /* attendance_cyan@2x.png */,
+				D481EBB3198744D0001CAA8E /* attendance_grey@2x.png */,
+				D481EBB4198744D0001CAA8E /* attendance_silver@2x.png */,
 				D44AA01B19823C3B00743C8A /* side_plus@2x.png */,
 				D44AA01919822B8800743C8A /* profile@2x.png */,
 				D44AA01719821FE900743C8A /* menu@2x.png */,
@@ -890,8 +910,8 @@
 				D4FD44B31908194F00FB52A5 /* User.m */,
 				D4FD44B519081F6F00FB52A5 /* Device.h */,
 				D4FD44B619081F6F00FB52A5 /* Device.m */,
-				D42FAB0F197E4EE80008945E /* Notification.h */,
-				D42FAB10197E4EE80008945E /* Notification.m */,
+				D42FAB0F197E4EE80008945E /* Setting.h */,
+				D42FAB10197E4EE80008945E /* Setting.m */,
 				D4FD44B819081F7E00FB52A5 /* Post.h */,
 				D4FD44B919081F7E00FB52A5 /* Post.m */,
 				D4FD44BB19081F8800FB52A5 /* Course.h */,
@@ -900,6 +920,8 @@
 				D4FD44BF19081F9300FB52A5 /* School.m */,
 				D4FD44C319081FC400FB52A5 /* Identification.h */,
 				D4FD44C419081FC400FB52A5 /* Identification.m */,
+				D481EBB9198A89E5001CAA8E /* Question.h */,
+				D481EBBA198A89E5001CAA8E /* Question.m */,
 				D4FD44C619081FD200FB52A5 /* Clicker.h */,
 				D4FD44C719081FD200FB52A5 /* Clicker.m */,
 				D4FD44C919081FDD00FB52A5 /* Attendance.h */,
@@ -1085,6 +1107,7 @@
 				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
 				D407B26F18AD803E009BCF8C /* CourseCreateViewController.xib in Resources */,
 				D46D893418AFED7C0051F291 /* ForgotPassViewController.xib in Resources */,
+				D481EBB5198744D0001CAA8E /* attendance_grey@2x.png in Resources */,
 				D4CD98E21974E2BD00F6D018 /* noticeicon_gd@2x.png in Resources */,
 				2191793518724EC600799CC0 /* attendancering@2x.png in Resources */,
 				D485A0A618783F2600F9561B /* AttdStatViewController.xib in Resources */,
@@ -1116,6 +1139,7 @@
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
 				D44AA01C19823C3B00743C8A /* side_plus@2x.png in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
+				D481EBB6198744D0001CAA8E /* attendance_silver@2x.png in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
 				D4AD9CCE196A5FB800B88020 /* GuidePageViewController.xib in Resources */,
 				D4AD9CFA196BC76500B88020 /* LeftMenuViewController.xib in Resources */,
@@ -1125,6 +1149,7 @@
 				21917938187250D600799CC0 /* attendanceringnonalpha@2x.png in Resources */,
 				2190C4991850C35100626628 /* bgmainlossy@2x.jpg in Resources */,
 				D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */,
+				D481EBB819874626001CAA8E /* attendance_cyan@2x.png in Resources */,
 				D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */,
 				D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */,
 				D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */,
@@ -1157,6 +1182,7 @@
 				D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */,
 				D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */,
 				D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */,
+				D481EBB019873C1A001CAA8E /* ChooseTypeCell.xib in Resources */,
 				D4AD9D09196BC9EB00B88020 /* GuideCourseAttendViewController.xib in Resources */,
 				D4AD9D0A196BE2BB00B88020 /* SignUpViewController.xib in Resources */,
 				D4380EA81918A3FF008F8A78 /* c_clicked@2x.png in Resources */,
@@ -1234,7 +1260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D42FAB11197E4EE80008945E /* Notification.m in Sources */,
+				D42FAB11197E4EE80008945E /* Setting.m in Sources */,
 				D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */,
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
 				218D9B17188FD2C800E8BAD0 /* ProfileEmailEditViewController.m in Sources */,
@@ -1298,6 +1324,7 @@
 				D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */,
 				D47223041908E54D00CE7015 /* Email.m in Sources */,
 				D4B56001196BE3F1005CFE30 /* SettingViewController.m in Sources */,
+				D481EBAF19873C1A001CAA8E /* ChooseTypeCell.m in Sources */,
 				D4FD44BD19081F8800FB52A5 /* Course.m in Sources */,
 				215D4A5318461B30004C1947 /* TextInputCell.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseViewController.m in Sources */,
@@ -1310,6 +1337,7 @@
 				D4821A0D196D6C4A00A88ABC /* TutorialViewController.m in Sources */,
 				D45B5D431915F84900C8C015 /* AttendanceAgent.m in Sources */,
 				D472230A1908E55D00CE7015 /* Error.m in Sources */,
+				D481EBBB198A89E5001CAA8E /* Question.m in Sources */,
 				21917903186C38DD00799CC0 /* SideMenuViewController.m in Sources */,
 				213B6C11188FE62F00B3DF7B /* ProfileCell.m in Sources */,
 			);

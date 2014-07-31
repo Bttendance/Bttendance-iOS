@@ -15,6 +15,7 @@
 #import "Clicker.h"
 #import "Notice.h"
 #import "Email.h"
+#import "Question.h"
 
 #ifdef DEBUG
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
@@ -70,7 +71,7 @@
                       success:(void (^)(User *user))success
                       failure:(void (^)(NSError *error))failure;
 
-#pragma Notifications APIs
+#pragma Settings APIs
 + (void)updateNotiSettingAttendance:(BOOL)attendance
                             success:(void (^)(User *user))success
                             failure:(void (^)(NSError *error))failure;
@@ -82,6 +83,19 @@
 + (void)updateNotiSettingNotice:(BOOL)notice
                         success:(void (^)(User *user))success
                         failure:(void (^)(NSError *error))failure;
+
+#pragma Questions APIs
++ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
+                     failure:(void (^)(NSError *error))failure;
+
++ (void)createQuestionWithMessage:(NSString *)message
+                   andChoiceCount:(NSString *)choice_count
+                          success:(void (^)(Question *question))success
+                          failure:(void (^)(NSError *error))failure;
+
++ (void)removeQuestionWithId:(NSString *)question_id
+                     success:(void (^)(Question *question))success
+                     failure:(void (^)(NSError *error))failure;
 
 #pragma Identifications APIs
 + (void)updateIdentityWithSchool:(NSString *)school_id
@@ -111,6 +125,7 @@
                             failure:(void (^)(NSError *error))failure;
 
 + (void)searchCourseWithCode:(NSString *)course_code
+                        orId:(NSString *)course_id
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure;
 
@@ -126,6 +141,14 @@
                  page:(NSInteger)page
               success:(void (^)(NSArray *posts))success
               failure:(void (^)(NSError *error))failure;
+
++ (void)openCourse:(NSString *)course_id
+           success:(void (^)(User *user))success
+           failure:(void (^)(NSError *error))failure;
+
++ (void)closeCourse:(NSString *)course_id
+            success:(void (^)(User *user))success
+            failure:(void (^)(NSError *error))failure;
 
 + (void)addManagerWithCourse:(NSString *)course_id
                      manager:(NSString *)manager
@@ -164,6 +187,11 @@
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure;
 
++ (void)updateMessageOfPost:(NSString *)post_id
+                withMessage:(NSString *)message
+                    success:(void (^)(Post *post))success
+                    failure:(void (^)(NSError *error))failure;
+
 + (void)removePost:(NSString *)post_id
            success:(void (^)(Post *post))success
            failure:(void (^)(NSError *error))failure;
@@ -184,9 +212,14 @@
                             failure:(void (^)(NSError *error))failure;
 
 + (void)uncheckManuallyWithAttendance:(NSString *)attendance_id
-                               user:(NSString *)user_id
-                            success:(void (^)(Attendance *attendance))success
-                            failure:(void (^)(NSError *error))failure;
+                                 user:(NSString *)user_id
+                              success:(void (^)(Attendance *attendance))success
+                              failure:(void (^)(NSError *error))failure;
+
++ (void)toggleManuallyWithAttendance:(NSString *)attendance_id
+                                user:(NSString *)user_id
+                             success:(void (^)(Attendance *attendance))success
+                             failure:(void (^)(NSError *error))failure;
 
 #pragma Clickers APIs
 + (void)clickWithClicker:(NSString *)clicker_id

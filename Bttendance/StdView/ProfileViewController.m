@@ -111,10 +111,10 @@
         static NSString *CellIdentifier = @"ProfileCell";
         ProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         switch (indexPath.row) {
             case 0:
@@ -145,10 +145,10 @@
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName.textColor = [BTColor BT_cyan:1.0];
         
         NSArray *closedCourses = [self.user getClosedCourses];
@@ -175,10 +175,10 @@
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.Info_SchoolName.textColor = [BTColor BT_navy:1.0];
         
         NSInteger index = indexPath.row - closedCourses - 4;
@@ -213,10 +213,10 @@
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.password.text = NSLocalizedString(@"Update Password", nil);
         cell.password.textColor = [BTColor BT_red:1.0];

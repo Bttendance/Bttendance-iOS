@@ -41,12 +41,19 @@
 }
 
 - (void)setting:(id)sender {
-    if (auth) {
+    if (auth && [self opened]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:@"Close Course"
+                                                        otherButtonTitles:@"Add Manager", @"Show Grades", @"Export Grades", @"Attendance Grades", @"Clicker Grades", nil];
+        [actionSheet showInView:self.view];
+    } else if (auth && ![self opened]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Show Grades", @"Export Grades", @"Add Manager", nil];
+                                                        otherButtonTitles:@"Open Course", nil];
         [actionSheet showInView:self.view];
     } else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
@@ -104,6 +111,8 @@
     [self refreshHeader:nil];
     
     user = [BTUserDefault getUser];
+    data = [BTUserDefault getPostsOfArray:[self courseId]];
+    rowcount = data.count;
     auth = simpleCourse.opened && [user supervising:simpleCourse.id];
 
     if (!auth) {
@@ -347,10 +356,11 @@
     // Clicker Choice
     if (60.0f + gap > 0.0f && !check && !manager) {
         static NSString *CellIdentifier = @"ClickerCell";
-        ClickerCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        ClickerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         cell.post = post;
@@ -429,8 +439,9 @@
         static NSString *CellIdentifier = @"PostCell";
         PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = [topLevelObjects objectAtIndex:0];
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         XYPieChart *chart;
@@ -487,8 +498,9 @@
     static NSString *CellIdentifier = @"PostCell";
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     for (UIView *view in  cell.contentView.subviews)
@@ -567,8 +579,9 @@
     static NSString *CellIdentifier = @"PostCell";
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     for (UIView *view in  cell.contentView.subviews)
@@ -789,6 +802,13 @@
     if (courseId == 0)
         courseId = simpleCourse.id;
     return [NSString stringWithFormat:@"%d", (int)courseId];
+}
+
+-(BOOL)opened {
+    BOOL opened = course.opened;
+    if (course == nil)
+        opened = simpleCourse.opened;
+    return opened;
 }
 
 -(NSString *)courseName {

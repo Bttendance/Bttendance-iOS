@@ -18,6 +18,7 @@
 #import "BTUserDefault.h"
 #import "BTUUID.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AudioToolbox/AudioServices.h>
 
 NSString *signupRequest;
 
@@ -35,8 +36,8 @@ NSString *signupRequest;
     if (self) {
         // Custom initialization
         fullname_index = [NSIndexPath indexPathForRow:0 inSection:0];
-        email_index = [NSIndexPath indexPathForRow:2 inSection:0];
-        password_index = [NSIndexPath indexPathForRow:3 inSection:0];
+        email_index = [NSIndexPath indexPathForRow:1 inSection:0];
+        password_index = [NSIndexPath indexPathForRow:2 inSection:0];
         
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,7 +117,7 @@ NSString *signupRequest;
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [BTColor BT_white:1];
     }
 
     switch (indexPath.row) {
@@ -124,6 +125,7 @@ NSString *signupRequest;
             [[cell textLabel] setText:NSLocalizedString(@"Full Name", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell textLabel].backgroundColor = [UIColor clearColor];
 
             [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"John Smith", nil);
             [(TextInputCell *) cell textfield].delegate = self;
@@ -133,12 +135,14 @@ NSString *signupRequest;
 
             [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 1: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell textLabel].backgroundColor = [UIColor clearColor];
             
             [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
             [(TextInputCell *) cell textfield].delegate = self;
@@ -148,12 +152,14 @@ NSString *signupRequest;
             [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
             [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 2: {
             [[cell textLabel] setText:NSLocalizedString(@"Password", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            [cell textLabel].backgroundColor = [UIColor clearColor];
 
             [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"more than 6 letters..", nil);
             [(TextInputCell *) cell textfield].delegate = self;
@@ -162,6 +168,7 @@ NSString *signupRequest;
 
             [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
+            [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 3: {
@@ -240,6 +247,35 @@ NSString *signupRequest;
 
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
+    
+    BOOL pass = YES;
+    
+    if (fullname == nil || fullname.length == 0) {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        pass = NO;
+    } else {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).contentView.backgroundColor = [UIColor clearColor];
+    }
+    
+    if (email == nil || email.length == 0) {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        pass = NO;
+    } else {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
+    }
+    
+    if (password == nil || password.length < 6) {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        pass = NO;
+    } else {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
+    }
+    
+    if (!pass) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        button.enabled = YES;
+        return;
+    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];

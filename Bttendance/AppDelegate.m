@@ -109,11 +109,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
         } failure:^(NSError *error) {
         }];
-    } else if([noti.type isEqualToString:@"course_created"]) {
-        [BTAPIs autoSignInInSuccess:^(User *user) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
-        } failure:^(NSError *error) {
-        }];
     }
 }
 

@@ -148,7 +148,7 @@
             [cell addSubview:title];
             
             UILabel *code = [[UILabel alloc]initWithFrame:CGRectMake(30, 63, 107.5, 77.5)];
-            code.text = NSLocalizedString(@"5DXL", nil);
+            code.text = [self.courseCode uppercaseString];
             code.font = [UIFont boldSystemFontOfSize:30];
             code.textAlignment = NSTextAlignmentCenter;
             code.textColor = [BTColor BT_navy:1.0];
@@ -176,7 +176,7 @@
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 28, 320, 20)];
             title.text = NSLocalizedString(@"BTTENDANCE를 잘 사용하는 법", nil);
-            title.font = [UIFont boldSystemFontOfSize:18];
+            title.font = [UIFont boldSystemFontOfSize:18.5];
             title.textAlignment = NSTextAlignmentCenter;
             title.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:title];
@@ -188,16 +188,16 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"1";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message1];
             
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message1.frame.size.height - 4)];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message1.frame.size.height - 6)];
             line.backgroundColor = [BTColor BT_navy:1];
             [cell addSubview:line];
             
@@ -208,16 +208,16 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"2";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message2];
             
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message2.frame.size.height - 4)];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message2.frame.size.height - 6)];
             line.backgroundColor = [BTColor BT_navy:1];
             [cell addSubview:line];
             
@@ -228,16 +228,16 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1.0];
             
-            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 6, 30, 60)];
+            UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"3";
-            number.font = [UIFont boldSystemFontOfSize:58];
+            number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
             number.textColor = [BTColor BT_navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message3];
             
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message3.frame.size.height - 4)];
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message3.frame.size.height - 6)];
             line.backgroundColor = [BTColor BT_navy:1];
             [cell addSubview:line];
             
@@ -254,7 +254,7 @@
 
 #pragma IBAction
 - (IBAction)next:(id)sender {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

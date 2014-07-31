@@ -36,7 +36,7 @@
                         </accessibility>
                     </imageView>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uY2-iU-cAw">
-                        <rect key="frame" x="0.0" y="132" width="320" height="1"/>
+                        <rect key="frame" x="14" y="132" width="242" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.44705882349999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -51,6 +51,7 @@
                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <connections>
+                <outlet property="line" destination="uY2-iU-cAw" id="06S-ur-Tfn"/>
                 <outlet property="name" destination="Qzu-OC-Glk" id="dR9-Vg-B4W"/>
                 <outlet property="selected_bg" destination="Tcy-i2-150" id="y3I-Pz-nbt"/>
             </connections>

@@ -13,6 +13,7 @@
 + (SideHeaderViewCell *)cellFromNibNamed;
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIView *line;
 @property (weak, nonatomic) IBOutlet UIView *selected_bg;
 
 @end

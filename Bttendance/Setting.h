@@ -1,5 +1,5 @@
 //
-//  Notification.h
+//  Setting.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 7. 22..
@@ -11,7 +11,7 @@
 
 @class SimpleUser;
 
-@interface SimpleNotification : NSObject
+@interface SimpleSetting : NSObject
 
 @property(assign) NSInteger id;
 @property(assign) BOOL attendance;
@@ -23,7 +23,7 @@
 @end
 
 
-@interface Notification : NSObject
+@interface Setting : NSObject
 
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;

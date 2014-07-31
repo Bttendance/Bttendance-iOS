@@ -18,8 +18,14 @@
 #import "CourseDetailViewController.h"
 #import "NoCourseViewController.h"
 #import "GuidePageViewController.h"
+#import "CourseCreateViewController.h"
+#import "CourseAttendViewController.h"
+#import "GuideCourseCreateViewController.h"
+#import "GuideCourseAttendViewController.h"
 
 @interface SideMenuViewController ()
+
+@property (strong, nonatomic) UIViewController *popupController;
 
 @end
 
@@ -33,9 +39,11 @@
         NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
     } else {
-        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
-        navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
+        NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
+//        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+//        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
+//        navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
     }
     
     LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] initWithNibName:@"LeftMenuViewController" bundle:nil];
@@ -70,23 +78,66 @@
     [AttendanceAgent sharedInstance];
     
     [BTAPIs autoSignInInSuccess:^(User *user) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:SideRefresh object:nil];
     } failure:^(NSError *error) {
     }];
     
     [[SocketAgent sharedInstance] socketConnet];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openCourse:) name:OpenCourse object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenPost object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setModalView:) name:OpenModalView object:nil];
+    
     if (![BTUserDefault getSeenGuide]) {
         GuidePageViewController *guidePage = [[GuidePageViewController alloc] initWithNibName:@"GuidePageViewController" bundle:nil];
-        [self presentViewController:guidePage animated:NO completion:nil];
+        self.popupController = guidePage;
     }
 }
 
-#pragma mark RESideMenu Delegate
+- (void)viewDidAppear:(BOOL)animated {
+    if (self.popupController != nil) {
+        if ([self.popupController isKindOfClass:[CourseCreateViewController class]]) {
+            [self presentViewController:self.popupController animated:YES completion:nil];
+        } else if ([self.popupController isKindOfClass:[CourseAttendViewController class]]) {
+            [self presentViewController:self.popupController animated:YES completion:nil];
+        } else
+            [self presentViewController:self.popupController animated:NO completion:nil];
+        self.popupController = nil;
+    }
+}
 
+#pragma NSNotification
+- (void)openCourse:(NSNotification *)aNotification {
+    NSDictionary *dict = [aNotification userInfo];
+    SimpleCourse *course = [dict objectForKey:SimpleCourseInfo];
+    if (course == nil)
+        return;
+    
+    CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+    courseDetail.simpleCourse = course;
+    [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
+    [self hideMenuViewController];
+}
+
+- (void)openPost:(NSNotification *)aNotification {
+//    NSDictionary *dict = [aNotification userInfo];
+//    NSString *courseId = [dict objectForKey:CourseId];
+//    SimpleCourse *course = [[BTUserDefault getUser] getCourse:[courseId integerValue]];
+//    if (course == nil)
+//        return;
+//    
+//    CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+//    courseDetail.simpleCourse = course;
+//    [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
+//    [self hideMenuViewController];
+}
+
+- (void)setModalView:(NSNotification *)aNotification {
+    NSDictionary *dict = [aNotification userInfo];
+    self.popupController = [dict objectForKey:ModalViewController];
+}
+
+#pragma mark RESideMenu Delegate
 - (void)sideMenu:(RESideMenu *)sideMenu willShowMenuViewController:(UIViewController *)menuViewController
 {
     self.panGestureEnabled = YES;

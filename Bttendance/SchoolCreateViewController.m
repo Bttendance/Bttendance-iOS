@@ -10,12 +10,17 @@
 #import <AFNetworking.h>
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
+#import "ChooseTypeCell.h"
 #import "BTColor.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "CourseCreateViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AudioToolbox/AudioServices.h>
 
 @interface SchoolCreateViewController ()
+
+@property (strong, nonatomic) UILabel *info;
 
 @end
 
@@ -29,6 +34,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     name_index = [NSIndexPath indexPathForRow:0 inSection:0];
+    type_index = [NSIndexPath indexPathForRow:1 inSection:0];
+    info_index = [NSIndexPath indexPathForRow:2 inSection:0];
     
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
@@ -92,46 +99,64 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BTColor BT_white:1];
-    }
-    
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:NSLocalizedString(@"기관명", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
-            [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
+            static NSString *CellIdentifier = @"TextInputCell";
+            TextInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
-            [(TextInputCell *) cell textfield].delegate = self;
-            [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
-            [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
-            [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            if (cell == nil) {
+                cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor = [BTColor BT_white:1];
+            }
             
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
-            [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
-            break;
+            cell.textLabel.text = NSLocalizedString(@"기관명", nil);
+            cell.textLabel.textColor = [BTColor BT_navy:1];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+            cell.textLabel.backgroundColor = [UIColor clearColor];
+            
+            cell.textfield.delegate = self;
+            cell.textfield.frame = CGRectMake(68, 1, 252, 40);
+            cell.textfield.placeholder = NSLocalizedString(@"기관명을 영어로 입력해주세요.", nil);
+            cell.textfield.returnKeyType = UIReturnKeyNext;
+            cell.textfield.autocorrectionType = UITextAutocorrectionTypeNo;
+            cell.textfield.keyboardType = UIKeyboardTypeASCIICapable;
+            cell.textfield.textColor = [BTColor BT_black:1];
+            cell.textfield.font = [UIFont systemFontOfSize:15];
+            cell.textfield.backgroundColor = [UIColor clearColor];
+            
+            return cell;
         }
+            
         case 1: {
-            break;
+            static NSString *CellIdentifier1 = @"ChooseTypeCell";
+            ChooseTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+            
+            if (cell == nil) {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ChooseTypeCell" owner:self options:nil];
+                cell = [topLevelObjects objectAtIndex:0];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            cell.typeLable1.text = NSLocalizedString(@"University", nil);
+            cell.typeLable2.text = NSLocalizedString(@"School", nil);
+            cell.typeLable3.text = NSLocalizedString(@"Institute", nil);
+            cell.typeLable4.text = NSLocalizedString(@"Etc.", nil);
+            
+            return cell;
         }
             
         case 2: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 26)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_grey:1.0];
-            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 13, 280, 15)];
-            title .textAlignment = NSTextAlignmentCenter;
-            title.text = NSLocalizedString(@"해당 기관을 선택해주세요.", nil);
-            title.numberOfLines = 0;
-            title.font = [UIFont systemFontOfSize:12];
-            title.textColor = [BTColor BT_silver:1.0];
-            [cell addSubview:title];
+            self.info = [[UILabel alloc] initWithFrame:CGRectMake(20, 13, 280, 15)];
+            self.info.textAlignment = NSTextAlignmentCenter;
+            self.info.text = NSLocalizedString(@"해당 기관을 선택해주세요.", nil);
+            self.info.numberOfLines = 0;
+            self.info.font = [UIFont systemFontOfSize:12];
+            self.info.textColor = [BTColor BT_silver:1.0];
+            [cell addSubview:self.info];
             return cell;
         }
             
@@ -154,11 +179,12 @@
             
             return cell_new;
         }
-        default:
-            break;
+        default: {
+            UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
     }
-    
-    return cell;
 }
 
 - (void)createButton:(id)sender {
@@ -167,6 +193,39 @@
     button.enabled = NO;
     
     NSString *name = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield text];
+    NSString *type = ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:type_index]).type;
+    
+    BOOL pass = YES;
+    
+    if (name == nil || name.length == 0) {
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield setValue:[BTColor BT_red:0.5]
+                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        pass = NO;
+    }
+    
+    NSString *nameRegex = @"[A-Za-z0-9 ]+";
+    NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    
+    if(![nameTest evaluateWithObject:name]){
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield.text = @"";
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield setValue:[BTColor BT_red:0.5]
+                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        pass = NO;
+    }
+        
+    if (type == nil || type.length == 0) {
+        ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:type_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        self.info.textColor = [BTColor BT_red:1.0];
+        pass = NO;
+    }
+    
+    if (!pass) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        button.enabled = YES;
+        return;
+    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
@@ -175,11 +234,23 @@
     hud.yOffset = -40.0f;
     
     [BTAPIs createSchoolWithName:name
-                            type:@"asdf"
+                            type:type
                          success:^(School *school) {
-
+                             button.enabled = YES;
+                             [hud hide:YES];
+                             [self.delegate createdSchool:school];
+                             
+                             UIViewController *courseCreate;
+                             for (UIViewController *controller in self.navigationController.viewControllers)
+                                 if ([controller isKindOfClass:[CourseCreateViewController class]])
+                                     courseCreate = controller;
+                             if (courseCreate != nil)
+                                 [self.navigationController popToViewController:courseCreate animated:YES];
+                             else
+                                 [self.navigationController popViewControllerAnimated:YES];
                          } failure:^(NSError *error) {
-
+                             button.enabled = YES;
+                             [hud hide:YES];
                          }];
 }
 

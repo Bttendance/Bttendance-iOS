@@ -299,7 +299,6 @@
 #pragma SchoolCreateViewControllerDelegate
 - (void)createdSchool:(School *)created {
     [self.delegate chosenSchool:created];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma UISearchBarDelegate

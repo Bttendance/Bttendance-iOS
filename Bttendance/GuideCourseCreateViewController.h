@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIButton *nextBt;
+@property (strong, nonatomic) NSString *courseCode;
 
 - (IBAction)next:(id)sender;
 
