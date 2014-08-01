@@ -123,6 +123,10 @@
     return NO;
 }
 
+- (NSArray *)getAllSchools {
+    return [self.employed_schools arrayByAddingObjectsFromArray:self.enrolled_schools];
+}
+
 - (BOOL)hasOpenedCourse {
     NSArray *courses = [self.supervising_courses arrayByAddingObjectsFromArray:self.attending_courses];
     BOOL hasOpenCourse = NO;

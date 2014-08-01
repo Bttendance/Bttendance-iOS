@@ -23,6 +23,7 @@
 // USERINFO
 #define SimpleCourseInfo @"simple_course_info"
 #define ModalViewController @"modal_view_controller"
+#define ModalViewAnim @"modal_view_anim"
 
 // For Socket
 #define CourseUpdated @"course_updated"

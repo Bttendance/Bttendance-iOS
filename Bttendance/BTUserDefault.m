@@ -127,6 +127,35 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (NSArray *)getSchools {
+    NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:SchoolsJSONKey];
+    if (jsonString == nil)
+        return nil;
+    
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    NSMutableArray *schools = [NSMutableArray array];
+    for (NSDictionary *dic in json) {
+        School *school = [[School alloc] initWithDictionary:dic];
+        [schools addObject:school];
+    }
+    
+    return schools;
+}
+
++ (void)setSchools:(id)responseObject {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [defaults setObject:jsonString forKey:SchoolsJSONKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (NSArray *)getQuestions {
     NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:QuestionsJSONKey];
     if (jsonString == nil)

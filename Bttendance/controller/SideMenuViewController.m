@@ -26,6 +26,7 @@
 @interface SideMenuViewController ()
 
 @property (strong, nonatomic) UIViewController *popupController;
+@property (assign) BOOL anim;
 
 @end
 
@@ -39,14 +40,13 @@
         NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
     } else {
-        NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
-        navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
-//        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-//        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
-//        navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
+        CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
+        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
+        navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
     }
     
     LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] initWithNibName:@"LeftMenuViewController" bundle:nil];
+    
     self = [self initWithContentViewController:navigationController
                         leftMenuViewController:leftMenuViewController
                        rightMenuViewController:nil];
@@ -96,13 +96,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (self.popupController != nil) {
-        if ([self.popupController isKindOfClass:[CourseCreateViewController class]]) {
-            [self presentViewController:self.popupController animated:YES completion:nil];
-        } else if ([self.popupController isKindOfClass:[CourseAttendViewController class]]) {
-            [self presentViewController:self.popupController animated:YES completion:nil];
-        } else
-            [self presentViewController:self.popupController animated:NO completion:nil];
+        [self presentViewController:self.popupController animated:self.anim completion:nil];
         self.popupController = nil;
+        self.anim = NO;
     }
 }
 
@@ -135,6 +131,7 @@
 - (void)setModalView:(NSNotification *)aNotification {
     NSDictionary *dict = [aNotification userInfo];
     self.popupController = [dict objectForKey:ModalViewController];
+    self.anim = [[dict objectForKey:ModalViewAnim] boolValue];
 }
 
 #pragma mark RESideMenu Delegate

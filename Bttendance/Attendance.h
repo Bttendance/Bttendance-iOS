@@ -14,7 +14,9 @@
 @interface SimpleAttendance : NSObject
 
 @property(assign) NSInteger id;
+@property(strong, nonatomic) NSString  *type;
 @property(strong, nonatomic) NSArray  *checked_students;
+@property(strong, nonatomic) NSArray  *late_students;
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
@@ -27,7 +29,9 @@
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
+@property(strong, nonatomic) NSString  *type;
 @property(strong, nonatomic) NSArray  *checked_students;
+@property(strong, nonatomic) NSArray  *late_students;
 @property(strong, nonatomic) NSArray  *clusters;
 @property(strong, nonatomic) SimplePost  *post;
 

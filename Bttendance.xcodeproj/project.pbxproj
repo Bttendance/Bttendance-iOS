@@ -115,6 +115,8 @@
 		D481EBB6198744D0001CAA8E /* attendance_silver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D481EBB4198744D0001CAA8E /* attendance_silver@2x.png */; };
 		D481EBB819874626001CAA8E /* attendance_cyan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D481EBB719874626001CAA8E /* attendance_cyan@2x.png */; };
 		D481EBBB198A89E5001CAA8E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBBA198A89E5001CAA8E /* Question.m */; };
+		D481EBC0198B3698001CAA8E /* QuestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBBE198B3698001CAA8E /* QuestionListViewController.m */; };
+		D481EBC1198B3698001CAA8E /* QuestionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */; };
 		D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48219FF196D607700A88ABC /* ProfileViewController.xib */; };
 		D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */; };
 		D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A09196D677700A88ABC /* CatchPointViewController.xib */; };
@@ -367,6 +369,9 @@
 		D481EBB719874626001CAA8E /* attendance_cyan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_cyan@2x.png"; sourceTree = "<group>"; };
 		D481EBB9198A89E5001CAA8E /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		D481EBBA198A89E5001CAA8E /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		D481EBBD198B3698001CAA8E /* QuestionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionListViewController.h; sourceTree = "<group>"; };
+		D481EBBE198B3698001CAA8E /* QuestionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionListViewController.m; sourceTree = "<group>"; };
+		D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionListViewController.xib; sourceTree = "<group>"; };
 		D48219FE196D607700A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProfileViewController.xib; sourceTree = "<group>"; };
 		D4821A01196D60DD00A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CourseDetailViewController.xib; sourceTree = "<group>"; };
 		D4821A09196D677700A88ABC /* CatchPointViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointViewController.xib; path = controller/CatchPointViewController.xib; sourceTree = "<group>"; };
@@ -636,6 +641,7 @@
 				D4B56008196BE428005CFE30 /* AttendanceViewController */,
 				D4B56009196BE441005CFE30 /* PollViewController */,
 				D4B5600B196BE480005CFE30 /* NoticeViewController */,
+				D481EBBC198B30DE001CAA8E /* QuestionController */,
 				D485A09D1878343A00F9561B /* ProfileEditViewController */,
 				D41DF93C18ACCCA30019C3AB /* HeaderView */,
 				217D75B11850D77300AA0D95 /* TableViewCell */,
@@ -830,6 +836,16 @@
 				D47DB52618AF85BC007C23A3 /* BVUnderlineButton.m */,
 			);
 			name = CustomUIView;
+			sourceTree = "<group>";
+		};
+		D481EBBC198B30DE001CAA8E /* QuestionController */ = {
+			isa = PBXGroup;
+			children = (
+				D481EBBD198B3698001CAA8E /* QuestionListViewController.h */,
+				D481EBBE198B3698001CAA8E /* QuestionListViewController.m */,
+				D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */,
+			);
+			name = QuestionController;
 			sourceTree = "<group>";
 		};
 		D48219FB196D5FD400A88ABC /* en.lproj */ = {
@@ -1138,6 +1154,7 @@
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
 				D44AA01C19823C3B00743C8A /* side_plus@2x.png in Resources */,
+				D481EBC1198B3698001CAA8E /* QuestionListViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				D481EBB6198744D0001CAA8E /* attendance_silver@2x.png in Resources */,
 				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
@@ -1309,6 +1326,7 @@
 				D481EBAB19862AD3001CAA8E /* ChooseSchoolCell.m in Sources */,
 				D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */,
 				D4CD98F81976707300F6D018 /* SideInfoCell.m in Sources */,
+				D481EBC0198B3698001CAA8E /* QuestionListViewController.m in Sources */,
 				D44AA0201982760100743C8A /* CourseAttendViewController.m in Sources */,
 				D46D893318AFED7C0051F291 /* ForgotPassViewController.m in Sources */,
 				D4B56010196D1FBA005CFE30 /* SchoolCreateViewController.m in Sources */,

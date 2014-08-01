@@ -11,6 +11,7 @@
 #define UserJSONKey @"btd_user_json"
 #define CoursesJSONKey @"btd_courses_json"
 #define PostJSONArrayOfCourseKey @"btd_post_json_array_of_course"
+#define SchoolsJSONKey @"btd_schools_json"
 #define QuestionsJSONKey @"btd_questions_json"
 #define SeenGuideKey @"btd_seen_guide"
 #define LastSeenCourseKey @"btd_last_seen_course"
@@ -40,6 +41,10 @@
 + (NSArray *)getPostsOfArray:(NSString *)courseId;
 
 + (void)setPostArray:(id)responseObject ofCourse:(NSString *)courseId;
+
++ (NSArray *)getSchools;
+
++ (void)setSchools:(id)responseObject;
 
 + (NSArray *)getQuestions;
 

@@ -66,6 +66,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
+    //all view component fade in
+    self.tableview.alpha = 0;
+    self.nextBt.alpha = 0;
+    [UIImageView beginAnimations:nil context:NULL];
+    [UIImageView setAnimationDuration:1];
+    self.tableview.alpha = 1;
+    self.nextBt.alpha = 1;
+    [UIImageView commitAnimations];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -254,7 +263,14 @@
 
 #pragma IBAction
 - (IBAction)next:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.tableview.alpha = 1;
+    self.nextBt.alpha = 1;
+    [UIView animateWithDuration:0.4f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableview.alpha = 0;
+        self.nextBt.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 
 @end

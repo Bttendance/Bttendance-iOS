@@ -552,6 +552,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/schools/all"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setSchools:responseObject];
                             NSMutableArray *schools = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
                                 School *school = [[School alloc] initWithDictionary:dic];

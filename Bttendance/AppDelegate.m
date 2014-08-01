@@ -13,6 +13,7 @@
 #import "SideMenuViewController.h"
 #import "LeftMenuViewController.h"
 #import "CatchPointViewController.h"
+#import "NoCourseViewController.h"
 #import "ViewController.h"
 #import "BTUserDefault.h"
 #import <Crashlytics/Crashlytics.h>
@@ -52,13 +53,14 @@
        || [BTUserDefault getUUID] == nil) {
         [BTUserDefault clear];
         firstview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:firstview];
+        self.window.rootViewController = self.navController;
     } else {
         firstview = [[SideMenuViewController alloc] initByItSelf];
+        self.window.rootViewController = firstview;
     }
     
-    self.navController = [[UINavigationController alloc] initWithRootViewController:firstview];
     self.navController.navigationBarHidden = YES;
-    self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
   
     if([[[UIDevice currentDevice] systemVersion] floatValue] >=7){

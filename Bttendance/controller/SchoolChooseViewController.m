@@ -40,6 +40,8 @@
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    
+    [self reloadTable:[BTUserDefault getSchools]];
 }
 
 - (void)back:(UIBarButtonItem *)sender {
@@ -82,57 +84,64 @@
     self.navigationItem.titleView = self.searchbar;
     
     [BTAPIs allSchoolsAtSuccess:^(NSArray *schools) {
-        
-        NSArray *sorting = [schools sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-            NSInteger first = ((School *)a).courses_count;
-            NSInteger second = ((School *)b).courses_count;
-            if (first < second)
-                return (NSComparisonResult)NSOrderedDescending;
-            else
-                return (NSComparisonResult)NSOrderedAscending;
-        }];
-        sortedSchools = [NSMutableArray arrayWithArray:sorting];
-        
-        NSArray *userschoollist = [BTUserDefault getUser].employed_schools;
-        data0 = [[NSMutableArray alloc] init];
-        data1 = [[NSMutableArray alloc] init];
-        if (userschoollist.count != 0) {
-            for (int i = 0; i < sortedSchools.count; i++) {
-                Boolean joined = false;
-                for (int j = 0; j < userschoollist.count; j++) {
-                    NSInteger school_id = ((School *)[sortedSchools objectAtIndex:i]).id;
-                    NSInteger userschool_id = ((SimpleSchool *)[userschoollist objectAtIndex:j]).id;
-                    if (school_id == userschool_id) {
-                        joined = true;
-                        break;
-                    }
-                }
-                
-                if (joined)
-                    [data0 addObject:[sortedSchools objectAtIndex:i]];
-                else
-                    [data1 addObject:[sortedSchools objectAtIndex:i]];
-            }
-            
-            rowcount0 = data0.count;
-            rowcount1 = data1.count;
-            sectionCount = 0;
-            if (rowcount0 > 0)
-                sectionCount++;
-            if (rowcount1 > 0)
-                sectionCount++;
-            [self.tableview reloadData];
-            
-        } else {
-            data0 = nil;
-            rowcount0 = 0;
-            data1 = [NSMutableArray arrayWithArray:schools];
-            rowcount1 = data1.count;
-            sectionCount = 1;
-            [self.tableview reloadData];
-        }
+        [self reloadTable:schools];
     } failure:^(NSError *error) {
     }];
+}
+
+- (void)reloadTable:(NSArray *)schools {
+    if (schools == nil) {
+        return;
+    }
+    
+    NSArray *sorting = [schools sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSInteger first = ((School *)a).courses_count;
+        NSInteger second = ((School *)b).courses_count;
+        if (first < second)
+            return (NSComparisonResult)NSOrderedDescending;
+        else
+            return (NSComparisonResult)NSOrderedAscending;
+    }];
+    sortedSchools = [NSMutableArray arrayWithArray:sorting];
+    
+    NSArray *userschoollist = [[BTUserDefault getUser] getAllSchools];
+    data0 = [[NSMutableArray alloc] init];
+    data1 = [[NSMutableArray alloc] init];
+    if (userschoollist.count != 0) {
+        for (int i = 0; i < sortedSchools.count; i++) {
+            Boolean joined = false;
+            for (int j = 0; j < userschoollist.count; j++) {
+                NSInteger school_id = ((School *)[sortedSchools objectAtIndex:i]).id;
+                NSInteger userschool_id = ((SimpleSchool *)[userschoollist objectAtIndex:j]).id;
+                if (school_id == userschool_id) {
+                    joined = true;
+                    break;
+                }
+            }
+            
+            if (joined)
+                [data0 addObject:[sortedSchools objectAtIndex:i]];
+            else
+                [data1 addObject:[sortedSchools objectAtIndex:i]];
+        }
+        
+        rowcount0 = data0.count;
+        rowcount1 = data1.count;
+        sectionCount = 0;
+        if (rowcount0 > 0)
+            sectionCount++;
+        if (rowcount1 > 0)
+            sectionCount++;
+        [self.tableview reloadData];
+        
+    } else {
+        data0 = nil;
+        rowcount0 = 0;
+        data1 = [NSMutableArray arrayWithArray:schools];
+        rowcount1 = data1.count;
+        sectionCount = 1;
+        [self.tableview reloadData];
+    }
 }
 
 #pragma UITableViewDataSource
