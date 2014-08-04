@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateClickerViewController">
             <connections>
-                <outlet property="message" destination="tW6-Qj-G0I" id="AMl-s3-OuQ"/>
-                <outlet property="placeholder" destination="vNy-JA-h9A" id="udc-UJ-Axc"/>
+                <outlet property="loadBt" destination="cUP-JR-Bia" id="X6u-2A-DuS"/>
+                <outlet property="tableview" destination="had-xm-uLl" id="OqK-Wj-WZU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,49 +16,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Presentation#1 Page#11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNy-JA-h9A">
-                    <rect key="frame" x="86" y="17" width="159" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tW6-Qj-G0I">
-                    <rect key="frame" x="80" y="11" width="230" height="332"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="332" id="3zh-iR-yPW"/>
-                        <constraint firstAttribute="width" constant="230" id="mPP-De-yBa"/>
-                    </constraints>
-                    <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="had-xm-uLl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <outlet property="delegate" destination="-1" id="Tf2-vM-gTq"/>
+                        <outlet property="dataSource" destination="-1" id="yfJ-Ic-rlF"/>
+                        <outlet property="delegate" destination="-1" id="u2b-P6-J8z"/>
                     </connections>
-                </textView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pollicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGn-zk-41V">
-                    <rect key="frame" x="16" y="18" width="52" height="52"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUP-JR-Bia">
+                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="52" id="4hR-ce-ABA"/>
-                        <constraint firstAttribute="width" constant="52" id="VPM-yf-4pj"/>
+                        <constraint firstAttribute="height" constant="46" id="aRo-Dn-gAf"/>
                     </constraints>
-                </imageView>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Load a Saved Question">
+                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="loadQuestion:" destination="-1" eventType="touchUpInside" id="pzK-P0-KGK"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="AGn-zk-41V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="BK2-A7-NYD"/>
-                <constraint firstAttribute="trailing" secondItem="tW6-Qj-G0I" secondAttribute="trailing" constant="10" id="DMw-Od-4ks"/>
-                <constraint firstItem="tW6-Qj-G0I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="80" id="SOj-hG-9iY"/>
-                <constraint firstItem="AGn-zk-41V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="bNg-KE-EdC"/>
-                <constraint firstItem="tW6-Qj-G0I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="cka-jH-BrL"/>
+                <constraint firstItem="had-xm-uLl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C6O-CC-YyW"/>
+                <constraint firstItem="cUP-JR-Bia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DQe-Gh-d3v"/>
+                <constraint firstAttribute="trailing" secondItem="had-xm-uLl" secondAttribute="trailing" id="MBq-cU-Uf2"/>
+                <constraint firstItem="cUP-JR-Bia" firstAttribute="top" secondItem="had-xm-uLl" secondAttribute="bottom" id="gcR-m7-VbU"/>
+                <constraint firstAttribute="trailing" secondItem="cUP-JR-Bia" secondAttribute="trailing" id="oP8-L1-Ue8"/>
+                <constraint firstItem="had-xm-uLl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qDf-Ja-klT"/>
+                <constraint firstAttribute="bottom" secondItem="cUP-JR-Bia" secondAttribute="bottom" id="snC-Uu-abc"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
-    <resources>
-        <image name="pollicon.png" width="52" height="52"/>
-    </resources>
 </document>

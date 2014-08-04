@@ -19,20 +19,6 @@
 @implementation CreateClickerViewController
 @synthesize cid;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
-        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        [self.navigationItem setLeftBarButtonItem:backButtonItem];
-        self.navigationItem.leftItemsSupplementBackButton = NO;
-    }
-    return self;
-}
-
 - (void)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -40,46 +26,79 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    start = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(start_clicker)];
+    UIBarButtonItem *start = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleDone target:self action:@selector(start_clicker)];
     self.navigationItem.rightBarButtonItem = start;
     
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backButtonItem];
+    self.navigationItem.leftItemsSupplementBackButton = NO;
+    
     //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Start Clicker", @"");
+    titlelabel.text = NSLocalizedString(@"Clicker", @"");
     [titlelabel sizeToFit];
-    
-    _message.tintColor = [BTColor BT_silver:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [_message becomeFirstResponder];
+//    [_message becomeFirstResponder];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Notification Handlers
+- (void)keyboardDidShow:(NSNotification *)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    [self.view setFrame:CGRectMake(0, 64, 320, [UIScreen mainScreen].bounds.size.height - kbSize.height - 64)];
+    [self.view layoutIfNeeded];
+}
+
+- (void)keyboardWillHide:(NSNotification *)aNotification {
+    [self.view setFrame:CGRectMake(0, 64, 320, [UIScreen mainScreen].bounds.size.height - 64)];
+    [self.view layoutIfNeeded];
 }
 
 - (void)start_clicker {
-    start.enabled = NO;
-    [BTAPIs startClickerWithCourse:cid
-                           message:[self.message text]
-                       choiceCount:@"4"
-                           success:^(Post *post) {
-                               [self.navigationController popViewControllerAnimated:YES];
-                           } failure:^(NSError *error) {
-                               start.enabled = YES;
-                           }];
+//    start.enabled = NO;
+//    [BTAPIs startClickerWithCourse:cid
+//                           message:[self.message text]
+//                       choiceCount:@"4"
+//                           success:^(Post *post) {
+//                               [self.navigationController popViewControllerAnimated:YES];
+//                           } failure:^(NSError *error) {
+//                               start.enabled = YES;
+//                           }];
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
-    self.placeholder.hidden = textView.hasText;
+#pragma UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 0;
+}
+
+#pragma IBAction
+- (void)loadQuestion:(id)sender {
+    
 }
 
 @end

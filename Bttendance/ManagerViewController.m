@@ -52,7 +52,7 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = @"Add Manager";
+    titlelabel.text = NSLocalizedString(@"Add Manager", nil);
     [titlelabel sizeToFit];
 }
 
@@ -88,11 +88,11 @@
 
     switch (indexPath.row) {
         case 0: {
-            [[cell textLabel] setText:@"User ID"];
+            [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
-            [(TextInputCell *) cell textfield].placeholder = @"or Email Address";
+            [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
             [(TextInputCell *) cell textfield].delegate = self;
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
@@ -112,7 +112,7 @@
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
 
-            [cell_new.button setTitle:@"ADD" forState:UIControlStateNormal];
+            [cell_new.button setTitle:NSLocalizedString(@"ADD", nil) forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
@@ -141,8 +141,8 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Searching User";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Searching User", nil);
     hud.yOffset = -40.0f;
     
     NSString *search = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:searchField]).textfield text];
@@ -150,12 +150,12 @@
                success:^(User *user) {
                    [hud hide:YES];
                    managerFullName = user.full_name;
-                   NSString *message = [NSString stringWithFormat:@"Would you like to add %@ as a manager of course %@", user.full_name, courseName];
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add Manager"
+                   NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Would you like to add %@ as a manager of course %@", nil), user.full_name, courseName];
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Manager", nil)
                                                                    message:message
                                                                   delegate:self
-                                                         cancelButtonTitle:@"Confirm"
-                                                         otherButtonTitles:@"Cancel", nil];
+                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                         otherButtonTitles:NSLocalizedString(@"Confirm", nil), nil];
                    alert.tag = 200;
                    [alert show];
                } failure:^(NSError *error) {
@@ -164,24 +164,24 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0 && alertView.tag == 200) {
+    if (buttonIndex == 1 && alertView.tag == 200) {
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [BTColor BT_navy:0.7];
-        hud.labelText = @"Loading";
-        hud.detailsLabelText = @"Adding Manager";
+        hud.labelText = NSLocalizedString(@"Loading", nil);
+        hud.detailsLabelText = NSLocalizedString(@"Adding Manager", nil);
         hud.yOffset = -40.0f;
         
         [BTAPIs addManagerWithCourse:courseId
                              manager:managerName
                              success:^(Course *course) {
                                  [hud hide:YES];
-                                 NSString *message = [NSString stringWithFormat:@"%@ is now manager of %@.", managerFullName, courseName];
-                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Manager Added"
+                                 NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is now manager of %@.", nil), managerFullName, courseName];
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Manager Added", nil)
                                                                                  message:message
                                                                                 delegate:nil
-                                                                       cancelButtonTitle:@"OK"
-                                                                       otherButtonTitles:nil, nil];
+                                                                       cancelButtonTitle:nil
+                                                                       otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
                                  [alert show];
                                  [self.navigationController popViewControllerAnimated:YES];
                              } failure:^(NSError *error) {

@@ -126,6 +126,12 @@
 		D485A0A718783F2600F9561B /* AttdStatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A418783F2600F9561B /* AttdStatViewController.m */; };
 		D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A0A818784C9C00F9561B /* UserInfoCell.xib */; };
 		D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A0A918784C9C00F9561B /* UserInfoCell.m */; };
+		D4871030198EAB2F0094FBEB /* EditQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D487102E198EAB2F0094FBEB /* EditQuestionViewController.m */; };
+		D4871031198EAB2F0094FBEB /* EditQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487102F198EAB2F0094FBEB /* EditQuestionViewController.xib */; };
+		D487103B198EAB620094FBEB /* AddQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4871039198EAB620094FBEB /* AddQuestionViewController.m */; };
+		D487103C198EAB620094FBEB /* AddQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487103A198EAB620094FBEB /* AddQuestionViewController.xib */; };
+		D4871040198EBE2C0094FBEB /* ChooseCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D487103E198EBE2C0094FBEB /* ChooseCountCell.m */; };
+		D4871041198EBE2C0094FBEB /* ChooseCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */; };
 		D4AD9CCD196A5FB800B88020 /* GuidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9CCB196A5FB800B88020 /* GuidePageViewController.m */; };
 		D4AD9CCE196A5FB800B88020 /* GuidePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9CCC196A5FB800B88020 /* GuidePageViewController.xib */; };
 		D4AD9CF9196BC76500B88020 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9CF7196BC76500B88020 /* LeftMenuViewController.m */; };
@@ -173,6 +179,10 @@
 		D4BAA505190FADC200E414CC /* CreateClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */; };
 		D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC05018B3F72900551565 /* ManagerViewController.m */; };
 		D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BBC05118B3F72900551565 /* ManagerViewController.xib */; };
+		D4C4E4DF198B9C3E00D594B7 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4E4DD198B9C3E00D594B7 /* QuestionCell.m */; };
+		D4C4E4E0198B9C3E00D594B7 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4E4DE198B9C3E00D594B7 /* QuestionCell.xib */; };
+		D4C4E4E9198CBFA200D594B7 /* ClickerQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4E4E7198CBFA200D594B7 /* ClickerQuestionViewController.m */; };
+		D4C4E4EA198CBFA200D594B7 /* ClickerQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4E4E8198CBFA200D594B7 /* ClickerQuestionViewController.xib */; };
 		D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D61974E2BD00F6D018 /* attendance_bg@2x.png */; };
 		D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D71974E2BD00F6D018 /* attendanceicon_gd@2x.png */; };
 		D4CD98E11974E2BD00F6D018 /* notice_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CD98D81974E2BD00F6D018 /* notice_bg@2x.png */; };
@@ -386,6 +396,15 @@
 		D485A0A818784C9C00F9561B /* UserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
 		D485A0A918784C9C00F9561B /* UserInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoCell.m; sourceTree = "<group>"; };
 		D485A0AA18784C9C00F9561B /* UserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoCell.h; sourceTree = "<group>"; };
+		D487102D198EAB2F0094FBEB /* EditQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditQuestionViewController.h; sourceTree = "<group>"; };
+		D487102E198EAB2F0094FBEB /* EditQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditQuestionViewController.m; sourceTree = "<group>"; };
+		D487102F198EAB2F0094FBEB /* EditQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditQuestionViewController.xib; sourceTree = "<group>"; };
+		D4871038198EAB620094FBEB /* AddQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddQuestionViewController.h; sourceTree = "<group>"; };
+		D4871039198EAB620094FBEB /* AddQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddQuestionViewController.m; sourceTree = "<group>"; };
+		D487103A198EAB620094FBEB /* AddQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddQuestionViewController.xib; sourceTree = "<group>"; };
+		D487103D198EBE2C0094FBEB /* ChooseCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCountCell.h; sourceTree = "<group>"; };
+		D487103E198EBE2C0094FBEB /* ChooseCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCountCell.m; sourceTree = "<group>"; };
+		D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseCountCell.xib; sourceTree = "<group>"; };
 		D4AD9CCA196A5FB800B88020 /* GuidePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidePageViewController.h; sourceTree = "<group>"; };
 		D4AD9CCB196A5FB800B88020 /* GuidePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidePageViewController.m; sourceTree = "<group>"; };
 		D4AD9CCC196A5FB800B88020 /* GuidePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuidePageViewController.xib; sourceTree = "<group>"; };
@@ -449,6 +468,12 @@
 		D4BBC04F18B3F72900551565 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		D4BBC05018B3F72900551565 /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		D4BBC05118B3F72900551565 /* ManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerViewController.xib; sourceTree = "<group>"; };
+		D4C4E4DC198B9C3E00D594B7 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
+		D4C4E4DD198B9C3E00D594B7 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
+		D4C4E4DE198B9C3E00D594B7 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
+		D4C4E4E6198CBFA200D594B7 /* ClickerQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerQuestionViewController.h; sourceTree = "<group>"; };
+		D4C4E4E7198CBFA200D594B7 /* ClickerQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerQuestionViewController.m; sourceTree = "<group>"; };
+		D4C4E4E8198CBFA200D594B7 /* ClickerQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClickerQuestionViewController.xib; sourceTree = "<group>"; };
 		D4CD98D61974E2BD00F6D018 /* attendance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance_bg@2x.png"; sourceTree = "<group>"; };
 		D4CD98D71974E2BD00F6D018 /* attendanceicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendanceicon_gd@2x.png"; sourceTree = "<group>"; };
 		D4CD98D81974E2BD00F6D018 /* notice_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice_bg@2x.png"; sourceTree = "<group>"; };
@@ -639,7 +664,7 @@
 				D41DF93D18ACCCF00019C3AB /* SideItemViewController */,
 				D4B5600A196BE45D005CFE30 /* CourseDetailViewController */,
 				D4B56008196BE428005CFE30 /* AttendanceViewController */,
-				D4B56009196BE441005CFE30 /* PollViewController */,
+				D4B56009196BE441005CFE30 /* ClickerViewController */,
 				D4B5600B196BE480005CFE30 /* NoticeViewController */,
 				D481EBBC198B30DE001CAA8E /* QuestionController */,
 				D485A09D1878343A00F9561B /* ProfileEditViewController */,
@@ -714,6 +739,12 @@
 				D481EBAC19873C1A001CAA8E /* ChooseTypeCell.h */,
 				D481EBAD19873C1A001CAA8E /* ChooseTypeCell.m */,
 				D481EBAE19873C1A001CAA8E /* ChooseTypeCell.xib */,
+				D4C4E4DC198B9C3E00D594B7 /* QuestionCell.h */,
+				D4C4E4DD198B9C3E00D594B7 /* QuestionCell.m */,
+				D4C4E4DE198B9C3E00D594B7 /* QuestionCell.xib */,
+				D487103D198EBE2C0094FBEB /* ChooseCountCell.h */,
+				D487103E198EBE2C0094FBEB /* ChooseCountCell.m */,
+				D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -844,6 +875,12 @@
 				D481EBBD198B3698001CAA8E /* QuestionListViewController.h */,
 				D481EBBE198B3698001CAA8E /* QuestionListViewController.m */,
 				D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */,
+				D487102D198EAB2F0094FBEB /* EditQuestionViewController.h */,
+				D487102E198EAB2F0094FBEB /* EditQuestionViewController.m */,
+				D487102F198EAB2F0094FBEB /* EditQuestionViewController.xib */,
+				D4871038198EAB620094FBEB /* AddQuestionViewController.h */,
+				D4871039198EAB620094FBEB /* AddQuestionViewController.m */,
+				D487103A198EAB620094FBEB /* AddQuestionViewController.xib */,
 			);
 			name = QuestionController;
 			sourceTree = "<group>";
@@ -973,7 +1010,7 @@
 			name = AttendanceViewController;
 			sourceTree = "<group>";
 		};
-		D4B56009196BE441005CFE30 /* PollViewController */ = {
+		D4B56009196BE441005CFE30 /* ClickerViewController */ = {
 			isa = PBXGroup;
 			children = (
 				D4B466FE1912760A00AB6486 /* ClickerDetailViewController.h */,
@@ -982,8 +1019,11 @@
 				D4BAA501190FADC200E414CC /* CreateClickerViewController.h */,
 				D4BAA502190FADC200E414CC /* CreateClickerViewController.m */,
 				D4BAA503190FADC200E414CC /* CreateClickerViewController.xib */,
+				D4C4E4E6198CBFA200D594B7 /* ClickerQuestionViewController.h */,
+				D4C4E4E7198CBFA200D594B7 /* ClickerQuestionViewController.m */,
+				D4C4E4E8198CBFA200D594B7 /* ClickerQuestionViewController.xib */,
 			);
-			name = PollViewController;
+			name = ClickerViewController;
 			sourceTree = "<group>";
 		};
 		D4B5600A196BE45D005CFE30 /* CourseDetailViewController */ = {
@@ -1096,7 +1136,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1121,6 +1161,7 @@
 			files = (
 				D4CD98FE1976715B00F6D018 /* SideCourseInfoCell.xib in Resources */,
 				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
+				D4871041198EBE2C0094FBEB /* ChooseCountCell.xib in Resources */,
 				D407B26F18AD803E009BCF8C /* CourseCreateViewController.xib in Resources */,
 				D46D893418AFED7C0051F291 /* ForgotPassViewController.xib in Resources */,
 				D481EBB5198744D0001CAA8E /* attendance_grey@2x.png in Resources */,
@@ -1144,6 +1185,7 @@
 				D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */,
 				D4B56002196BE3F1005CFE30 /* SettingViewController.xib in Resources */,
 				21B599E81876AE990063D7C4 /* addcoursebutton@2x.png in Resources */,
+				D4C4E4E0198B9C3E00D594B7 /* QuestionCell.xib in Resources */,
 				D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseViewController.xib in Resources */,
@@ -1175,6 +1217,7 @@
 				D4CD98E51974E2BD00F6D018 /* welcome_bg@2x.png in Resources */,
 				2131F5181897D6E00096404D /* GradeCell.xib in Resources */,
 				21B599E41876A7500063D7C4 /* ButtonCell.xib in Resources */,
+				D487103C198EAB620094FBEB /* AddQuestionViewController.xib in Resources */,
 				D4B4BFDA18F63B3C002DE88C /* back@2x.png in Resources */,
 				217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */,
 				D4CD98E31974E2BD00F6D018 /* poll_bg@2x.png in Resources */,
@@ -1193,6 +1236,7 @@
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
 				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
 				D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */,
+				D4C4E4EA198CBFA200D594B7 /* ClickerQuestionViewController.xib in Resources */,
 				2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */,
 				D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */,
 				D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */,
@@ -1209,6 +1253,7 @@
 				D42FAB15197E77870008945E /* x@2x.png in Resources */,
 				D4B5067718B4E7790075E2F8 /* grade_bg@2x.png in Resources */,
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
+				D4871031198EAB2F0094FBEB /* EditQuestionViewController.xib in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D4B56007196BE415005CFE30 /* ProfileIdentityEditViewController.xib in Resources */,
 				D44AA0211982760100743C8A /* CourseAttendViewController.xib in Resources */,
@@ -1277,6 +1322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4871030198EAB2F0094FBEB /* EditQuestionViewController.m in Sources */,
 				D42FAB11197E4EE80008945E /* Setting.m in Sources */,
 				D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */,
 				D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */,
@@ -1315,11 +1361,14 @@
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
 				21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */,
 				D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */,
+				D4C4E4E9198CBFA200D594B7 /* ClickerQuestionViewController.m in Sources */,
 				D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */,
 				D4B56006196BE415005CFE30 /* ProfileIdentityEditViewController.m in Sources */,
+				D487103B198EAB620094FBEB /* AddQuestionViewController.m in Sources */,
 				21C48E2E183D08E800C8D772 /* SignInViewController.m in Sources */,
 				218D9B12188ED28C00E8BAD0 /* ProfileNameEditViewController.m in Sources */,
 				D472230D1909178500CE7015 /* BTUUID.m in Sources */,
+				D4C4E4DF198B9C3E00D594B7 /* QuestionCell.m in Sources */,
 				21FCDB3D182F341D00F3A759 /* KeychainItemWrapper.m in Sources */,
 				D4BAA504190FADC200E414CC /* CreateClickerViewController.m in Sources */,
 				D4CD98EA19751A4E00F6D018 /* TextCommentCell.m in Sources */,
@@ -1343,6 +1392,7 @@
 				D47223041908E54D00CE7015 /* Email.m in Sources */,
 				D4B56001196BE3F1005CFE30 /* SettingViewController.m in Sources */,
 				D481EBAF19873C1A001CAA8E /* ChooseTypeCell.m in Sources */,
+				D4871040198EBE2C0094FBEB /* ChooseCountCell.m in Sources */,
 				D4FD44BD19081F8800FB52A5 /* Course.m in Sources */,
 				215D4A5318461B30004C1947 /* TextInputCell.m in Sources */,
 				21EE90F3189159D2000C9CAB /* SchoolChooseViewController.m in Sources */,
@@ -1586,7 +1636,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

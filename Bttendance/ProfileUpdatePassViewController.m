@@ -45,7 +45,6 @@
     self.navigationItem.rightBarButtonItem = save;
     
     //Navigation title
-    //set title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
@@ -54,8 +53,6 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Update Password", @"");
     [titlelabel sizeToFit];
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -72,7 +69,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"updating password", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Updating Password", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs updatePasswordWithOldOne:old_pass

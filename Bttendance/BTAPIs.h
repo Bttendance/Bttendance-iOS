@@ -93,6 +93,12 @@
                           success:(void (^)(Question *question))success
                           failure:(void (^)(NSError *error))failure;
 
++ (void)updateQuestion:(NSString *)question_id
+           WithMessage:(NSString *)message
+        andChoiceCount:(NSString *)choice_count
+               success:(void (^)(Question *question))success
+               failure:(void (^)(NSError *error))failure;
+
 + (void)removeQuestionWithId:(NSString *)question_id
                      success:(void (^)(Question *question))success
                      failure:(void (^)(NSError *error))failure;

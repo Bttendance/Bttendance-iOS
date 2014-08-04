@@ -55,7 +55,7 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Bttendance", @"Service name Bttendance");
+    titlelabel.text = NSLocalizedString(@"Bttendance", nil);
 }
 
 - (void)viewDidUnload {

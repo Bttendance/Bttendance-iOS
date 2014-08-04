@@ -16,6 +16,6 @@
 
 + (SocketAgent *)sharedInstance;
 
-- (void)socketConnet;
+- (void)socketConnect;
 
 @end

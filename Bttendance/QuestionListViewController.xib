@@ -22,7 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="8T1-yp-0UC"/>
                     </constraints>
-                    <state key="normal" title="Add Question">
+                    <state key="normal" title="Add a Question">
                         <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
@@ -30,10 +30,10 @@
                         <action selector="create:" destination="-1" eventType="touchUpInside" id="PHx-go-TEp"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="u4T-On-wu1">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="u4T-On-wu1">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WNn-ox-W4J"/>
                         <outlet property="delegate" destination="-1" id="hye-fm-bcH"/>

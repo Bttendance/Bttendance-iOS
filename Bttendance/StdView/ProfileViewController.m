@@ -11,6 +11,7 @@
 #import "BTUserDefault.h"
 #import "ProfileNameEditViewController.h"
 #import "ProfileEmailEditViewController.h"
+#import "QuestionListViewController.h"
 #import "ProfileIdentityEditViewController.h"
 #import "CourseDetailViewController.h"
 #import "ProfileUpdatePassViewController.h"
@@ -71,7 +72,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.user getClosedCourses] count] + [self.user.employed_schools count] + [self.user.enrolled_schools count] + 7;
+    return [[self.user getClosedCourses] count] + [self.user.employed_schools count] + [self.user.enrolled_schools count] + 9;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -82,20 +83,22 @@
     
     if (indexPath.row == 0
         || indexPath.row == 1
-        || indexPath.row == closedCourses + employedSchools + enrolledSchools + 5)
+        || indexPath.row == 3
+        || indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
         return 47;
     
     if (indexPath.row == 2
-        || indexPath.row == closedCourses + 3)
+        || indexPath.row == 4
+        || indexPath.row == closedCourses + 5)
         return 60;
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 4)
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6)
         return 55;
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6)
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8)
         return 33;
     
-    if (indexPath.row < closedCourses + employedSchools + enrolledSchools + 4)
+    if (indexPath.row < closedCourses + employedSchools + enrolledSchools + 6)
         return 74;
     
     return 0;
@@ -134,6 +137,32 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
+        title.text = NSLocalizedString(@"CLICKER", nil);
+        title.font = [UIFont boldSystemFontOfSize:12];
+        title.textColor = [BTColor BT_silver:1.0];
+        [cell addSubview:title];
+        return cell;
+    }
+    
+    else if (indexPath.row == 3) {
+        static NSString *CellIdentifier = @"PasswordCell";
+        PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.password.text = [NSString stringWithFormat:NSLocalizedString(@"%ld Saved Clicker Questions", nil), (long) self.user.questions_count];
+        cell.password.textColor = [BTColor BT_navy:1.0];
+        return cell;
+    }
+    
+    else if (indexPath.row == 4) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         title.text = NSLocalizedString(@"CLOSED LECTURES", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
         title.textColor = [BTColor BT_silver:1.0];
@@ -141,7 +170,7 @@
         return cell;
     }
     
-    else if (indexPath.row > 2 && indexPath.row < closedCourses + 3) {
+    else if (indexPath.row > 4 && indexPath.row < closedCourses + 5) {
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -152,14 +181,14 @@
         cell.Info_SchoolName.textColor = [BTColor BT_cyan:1.0];
         
         NSArray *closedCourses = [self.user getClosedCourses];
-        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 3];
+        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 5];
         cell.Info_SchoolName.text = course.name;
         cell.Info_SchoolID.text = [self.user getSchoolNameFromId:course.school];
         cell.arrow.hidden = NO;
         return  cell;
     }
     
-    else if (indexPath.row == closedCourses + 3) {
+    else if (indexPath.row == closedCourses + 5) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
@@ -171,7 +200,7 @@
         return cell;
     }
     
-    else if (indexPath.row > closedCourses + 3 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 4) {
+    else if (indexPath.row > closedCourses + 5 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 6) {
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -181,7 +210,7 @@
         }
         cell.Info_SchoolName.textColor = [BTColor BT_navy:1.0];
         
-        NSInteger index = indexPath.row - closedCourses - 4;
+        NSInteger index = indexPath.row - closedCourses - 6;
         if (index < employedSchools) {
             cell.simpleSchool = self.user.employed_schools[index];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
@@ -202,14 +231,14 @@
         return  cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 4) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
         return cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 5) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -223,7 +252,7 @@
         return cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
@@ -253,19 +282,22 @@
     if (indexPath.row == 1)
         [self editEmail];
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 5)
+    if (indexPath.row == 3)
+        [self questions];
+    
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
         [self updatePass];
     
     
-    else if (indexPath.row > 2 && indexPath.row < closedCourses + 3) {
+    else if (indexPath.row > 4 && indexPath.row < closedCourses + 5) {
         NSArray *closedCourses = [self.user getClosedCourses];
         CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-        courseDetail.simpleCourse = [closedCourses objectAtIndex:indexPath.row - 3];
+        courseDetail.simpleCourse = [closedCourses objectAtIndex:indexPath.row - 5];
         [self.navigationController pushViewController:courseDetail animated:YES];
     }
     
-    else if (indexPath.row > closedCourses + employedSchools + 3 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 4) {
-        NSInteger index = indexPath.row - closedCourses - employedSchools - 4;
+    else if (indexPath.row > closedCourses + employedSchools + 5 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 6) {
+        NSInteger index = indexPath.row - closedCourses - employedSchools - 6;
         SimpleSchool *school = self.user.enrolled_schools[index];
         for (int j = 0; j < [self.user.identifications count]; j++)
             if (((SimpleIdentification *)self.user.identifications[j]).school == school.id)
@@ -284,6 +316,11 @@
     ProfileEmailEditViewController *profileEmailEditView = [[ProfileEmailEditViewController alloc] init];
     profileEmailEditView.email = self.user.email;
     [self.navigationController pushViewController:profileEmailEditView animated:YES];
+}
+
+- (void)questions {
+    QuestionListViewController *questionListView = [[QuestionListViewController alloc] init];
+    [self.navigationController pushViewController:questionListView animated:YES];
 }
 
 - (void)editIdentity:(SimpleIdentification *)identification {

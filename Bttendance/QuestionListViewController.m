@@ -10,6 +10,9 @@
 #import "BTColor.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
+#import "QuestionCell.h"
+#import "EditQuestionViewController.h"
+#import "AddQuestionViewController.h"
 
 @interface QuestionListViewController ()
 
@@ -36,14 +39,43 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [BTColor BT_white:1.0];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Edit Email", @"");
+    titlelabel.text = NSLocalizedString(@"Clicker Questions", @"");
     [titlelabel sizeToFit];
     
     self.questions = [BTUserDefault getQuestions];
+    
+    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
+    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
+    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    
+    self.createBt.titleLabel.text = NSLocalizedString(@"Add a Question", nil);
+    [self.createBt.titleLabel sizeToFit];
+    
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.questions = [BTUserDefault getQuestions];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self.tableview reloadData];
+        });
+    });
+    
+    self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
+    self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
 }
 
 - (void)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableview reloadData];
+    
+    [BTAPIs myQuestionsInSuccess:^(NSArray *questions) {
+        self.questions = questions;
+        [self.tableview reloadData];
+    } failure:^(NSError *error) {
+    }];
 }
 
 #pragma UITableViewDataSource
@@ -59,7 +91,54 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    UIFont *cellfont = [UIFont boldSystemFontOfSize:13];
+    NSString *rawmessage = ((Question *)[self.questions objectAtIndex:indexPath.row]).message;
+    NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
+    CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){196, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    
+    return MAX(102, 42 + MessageLabelSize.size.height);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"QuestionCell";
+    QuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.message.frame = CGRectMake(25, 21, 196, 60);
+    cell.message.text = ((Question *)[self.questions objectAtIndex:indexPath.row]).message;
+    cell.message.numberOfLines = 0;
+    [cell.message sizeToFit];
+    
+    cell.choice.text = [NSString stringWithFormat:@"%ld", (long)((Question *)[self.questions objectAtIndex:indexPath.row]).choice_count];
+    
+    NSInteger height = MAX(102, 42 + cell.message.frame.size.height);
+    cell.background_bg.frame = CGRectMake(11, 7, 298, height - 14);
+    cell.selected_bg.frame = CGRectMake(11, 7, 298, height - 14);
+    cell.choice_bg.frame = CGRectMake(239, 25 + (height - 102)/2, 52, 52);
+    cell.choice_inner_bg.frame = CGRectMake(241, 27 + (height - 102)/2, 48, 48);
+    cell.choice.frame = CGRectMake(241, 27 + (height - 102)/2, 48, 48);
+    
+    return cell;
+}
+
+#pragma UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    Question *question = [self.questions objectAtIndex:indexPath.row];
+    EditQuestionViewController *editQuestion = [[EditQuestionViewController alloc] initWithNibName:@"EditQuestionViewController" bundle:nil];
+    editQuestion.question = question;
+    [self.navigationController pushViewController:editQuestion animated:YES];
+}
+
+#pragma IBAction
+-(IBAction)create:(id)sender {
+    AddQuestionViewController *addQuestion = [[AddQuestionViewController alloc] initWithNibName:@"AddQuestionViewController" bundle:nil];
+    [self.navigationController pushViewController:addQuestion animated:YES];
 }
 
 @end

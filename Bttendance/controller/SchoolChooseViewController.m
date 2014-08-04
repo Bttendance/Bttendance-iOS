@@ -40,8 +40,14 @@
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
     [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    self.createSchoolBt.titleLabel.text = NSLocalizedString(@"찾고있는 학교나 단체가 목록에 없나요?", nil);
     
-    [self reloadTable:[BTUserDefault getSchools]];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *schools = [BTUserDefault getSchools];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self reloadTable:schools];
+        });
+    });
 }
 
 - (void)back:(UIBarButtonItem *)sender {

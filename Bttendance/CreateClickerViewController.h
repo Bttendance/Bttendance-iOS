@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateClickerViewController : UIViewController <UITextViewDelegate> {
-    UIBarButtonItem *start;
-}
+@interface CreateClickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@property(weak, nonatomic) IBOutlet UIButton *loadBt;
 
 @property(retain, nonatomic) NSString *cid;
-@property(weak, nonatomic) IBOutlet UITextView *message;
-@property(weak, nonatomic) IBOutlet UILabel *placeholder;
 
 - (void)start_clicker;
-
+-(IBAction)loadQuestion:(id)sender;
 
 @end

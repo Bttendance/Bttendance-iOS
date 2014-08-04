@@ -53,16 +53,16 @@
             alert = [[UIAlertView alloc] initWithTitle:courseName
                                                message:NSLocalizedString(@"Do you want to start attendance check?", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"Start", nil)
-                                     otherButtonTitles:NSLocalizedString(@"Cancel", nil), nil];
+                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                     otherButtonTitles:NSLocalizedString(@"Start", nil), nil];
             alert.tag = 200;
             break;
         case CBCentralManagerStatePoweredOff: //powered off
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
                                                message:NSLocalizedString(@"Your bluetooth is powered off. Before start Attedance check turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                     otherButtonTitles:nil, nil];
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             alert.tag = 400;
             break;
         case CBCentralManagerStateUnknown: //Unknown state
@@ -72,8 +72,8 @@
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Unsupported", nil)
                                                message:NSLocalizedString(@"Your device doesn't support proper bluetooth version.", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                     otherButtonTitles:nil, nil];
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             break;
     }
     [alert show];
@@ -98,8 +98,8 @@
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
                                                message:NSLocalizedString(@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                     otherButtonTitles:nil, nil];
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             alert.tag = 400;
             [alert show];
             break;
@@ -110,8 +110,8 @@
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Check Bluetooth Status", nil)
                                                message:NSLocalizedString(@"Go to Setting -> Bluetooth and turn on bluetooth.", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                     otherButtonTitles:nil, nil];
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             alert.tag = 500;
             [alert show];
             break;
@@ -141,8 +141,8 @@
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
                                                message:NSLocalizedString(@"Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on.", nil)
                                               delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                     otherButtonTitles:nil, nil];
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             alert.tag = 400;
             [alert show];
             break;
@@ -180,7 +180,7 @@
 
 #pragma UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 200 && buttonIndex == 0)
+    if (alertView.tag == 200 && buttonIndex == 1)
         [self startAttdCheckWithCourse];
     
     if (alertView.tag == 400)

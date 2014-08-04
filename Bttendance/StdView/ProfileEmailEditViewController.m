@@ -65,7 +65,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"updating email", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Updating Email", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs updateEmail:email

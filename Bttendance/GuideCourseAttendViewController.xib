@@ -41,7 +41,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="vsb-Wt-Kbe" secondAttribute="trailing" id="38E-uh-7Cd"/>
                 <constraint firstAttribute="bottom" secondItem="vsb-Wt-Kbe" secondAttribute="bottom" id="Cfb-mj-CiN"/>

@@ -48,6 +48,10 @@
     return [self imageWithColor:[self BT_black:_alpha]];
 }
 
++ (UIImage *)imageWithRedColor:(CGFloat)_alpha {
+    return [self imageWithColor:[self BT_red:_alpha]];
+}
+
 + (UIColor *)BT_navy:(CGFloat)_alpha {
     return [UIColor colorWithRed:0 green:0.447 blue:0.69 alpha:_alpha];
 }

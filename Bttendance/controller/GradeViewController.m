@@ -48,7 +48,7 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = @"Grades";
+    titlelabel.text = NSLocalizedString(@"Grades", nil);
     [titlelabel sizeToFit];
     
     [BTAPIs attendanceGradesWithCourse:cid success:^(NSArray *simpleUsers) {

@@ -51,7 +51,7 @@
         self.password = [dictionary objectForKey:@"password"];
         self.full_name = [dictionary objectForKey:@"full_name"];
         self.device = [[SimpleDevice alloc] initWithDictionary:[dictionary objectForKey:@"device"]];
-        self.setting = [[SimpleSetting alloc] initWithDictionary:[dictionary objectForKey:@"notification"]];
+        self.setting = [[SimpleSetting alloc] initWithDictionary:[dictionary objectForKey:@"setting"]];
         
         NSMutableArray *supervising_courses = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"supervising_courses"]) {

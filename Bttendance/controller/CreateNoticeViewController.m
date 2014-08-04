@@ -39,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     post = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice)];
     self.navigationItem.rightBarButtonItem = post;
 
@@ -51,7 +50,7 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Post Notice", @"");
+    titlelabel.text = NSLocalizedString(@"Notice", @"");
     [titlelabel sizeToFit];
 
     _message.tintColor = [BTColor BT_silver:1];

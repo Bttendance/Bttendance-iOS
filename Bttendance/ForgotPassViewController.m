@@ -41,7 +41,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -190,8 +189,8 @@
                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password Recovery Success", nil)
                                                                                 message:message
                                                                                delegate:self
-                                                                      cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                                      otherButtonTitles:nil];
+                                                                      cancelButtonTitle:nil
+                                                                      otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
                                 [alert show];
                             } failure:^(NSError *error) {
                                 [hud hide:YES];

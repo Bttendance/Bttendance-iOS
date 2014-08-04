@@ -24,6 +24,8 @@
 
 + (UIImage *)imageWithBlackColor:(CGFloat)_alpha;
 
++ (UIImage *)imageWithRedColor:(CGFloat)_alpha;
+
 + (UIColor *)BT_navy:(CGFloat)_alpha;
 
 + (UIColor *)BT_cyan:(CGFloat)_alpha;

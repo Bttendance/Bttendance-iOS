@@ -82,7 +82,7 @@
     } failure:^(NSError *error) {
     }];
     
-    [[SocketAgent sharedInstance] socketConnet];
+    [[SocketAgent sharedInstance] socketConnect];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openCourse:) name:OpenCourse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenPost object:nil];

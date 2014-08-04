@@ -163,11 +163,11 @@
         case 3: {
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             
             if (cell_new == nil) {
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
                 cell_new = [topLevelObjects objectAtIndex:0];
+                cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
             [cell_new.button setTitle:NSLocalizedString(@"Create School", nil) forState:UIControlStateNormal];

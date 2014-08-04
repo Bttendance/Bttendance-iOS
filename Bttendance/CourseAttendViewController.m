@@ -213,8 +213,8 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
                                                            delegate:self
-                                                  cancelButtonTitle:@"Confirm"
-                                                  otherButtonTitles:@"Cancel", Nil];
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Confirm", Nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
             [alert show];
         }
@@ -230,9 +230,8 @@
     if (self.attendingCourse == nil)
         return;
     
-    if (buttonIndex == 1) {//cancel
+    if (buttonIndex == 0) //cancel
         return;
-    }
     
     if ([alertView alertViewStyle] == UIAlertViewStyleDefault) {
         [self attendCourse];

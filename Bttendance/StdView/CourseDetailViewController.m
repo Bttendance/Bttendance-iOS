@@ -44,23 +44,27 @@
     if (auth && [self opened]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                   destructiveButtonTitle:@"Close Course"
-                                                        otherButtonTitles:@"Add Manager", @"Show Grades", @"Export Grades", @"Attendance Grades", @"Clicker Grades", nil];
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                   destructiveButtonTitle:NSLocalizedString(@"Close Course", nil)
+                                                        otherButtonTitles:NSLocalizedString(@"Add Manager", nil),
+                                      NSLocalizedString(@"Show Grades", nil),
+                                      NSLocalizedString(@"Export Grades", nil),
+                                      NSLocalizedString(@"Attendance Grades", nil),
+                                      NSLocalizedString(@"Clicker Grades", nil), nil];
         [actionSheet showInView:self.view];
     } else if (auth && ![self opened]) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Open Course", nil];
+                                                        otherButtonTitles:NSLocalizedString(@"Open Course", nil), nil];
         [actionSheet showInView:self.view];
     } else {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
-                                                        cancelButtonTitle:@"Cancel"
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"Unjoin Course", nil];
+                                                        otherButtonTitles:NSLocalizedString(@"Unjoin Course", nil), nil];
         [actionSheet showInView:self.view];
     }
 }
@@ -111,7 +115,15 @@
     [self refreshHeader:nil];
     
     user = [BTUserDefault getUser];
-    data = [BTUserDefault getPostsOfArray:[self courseId]];
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        data = [BTUserDefault getPostsOfArray:[self courseId]];
+        rowcount = data.count;
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self.tableview reloadData];
+        });
+    });
+    
     rowcount = data.count;
     auth = simpleCourse.opened && [user supervising:simpleCourse.id];
 
@@ -693,7 +705,7 @@
 
 #pragma UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0 && alertView.tag == 200)
+    if (alertView.tag == 200 && buttonIndex == 1)
         [self dettend_course];
 }
 
@@ -704,12 +716,12 @@
             if (auth)
                 [self show_grades];
             else {
-                NSString *message = [NSString stringWithFormat:@"Do you really wish to unjoin from course %@?", [self courseName]];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UnJoin Course"
+                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Do you really wish to unjoin from course %@?", nil), [self courseName]];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UnJoin Course", nil)
                                                                 message:message
                                                                delegate:self
-                                                      cancelButtonTitle:@"UnJoin"
-                                                      otherButtonTitles:@"Cancel", nil];
+                                                      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                      otherButtonTitles:NSLocalizedString(@"Un Join", nil), nil];
                 alert.tag = 200;
                 [alert show];
             }
@@ -762,19 +774,19 @@
 - (void)export_grades {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Exporting Grades";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Exporting Grades", nil);
     hud.yOffset = -40.0f;
     
     [BTAPIs exportGradesWithCourse:[self courseId]
                            success:^(Email *email) {
                                [hud hide:YES];
-                               NSString *message = [NSString stringWithFormat:@"Exporting Grades has been finished.\nPlease check your email.\n%@", email.email];
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Exporting Grades"
+                               NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Exporting Grades has been finished.\nPlease check your email.\n%@", nil), email.email];
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Exporting Grades", nil)
                                                                                message:message
                                                                               delegate:self
-                                                                     cancelButtonTitle:@"OK"
-                                                                     otherButtonTitles:nil];
+                                                                     cancelButtonTitle:nil
+                                                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
                                [alert show];
                            } failure:^(NSError *error) {
                                [hud hide:YES];
@@ -784,8 +796,8 @@
 - (void)dettend_course {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = @"Loading";
-    hud.detailsLabelText = @"Unjoining Course";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Unjoining Course", nil);
     hud.yOffset = -40.0f;
     [BTAPIs dettendCourse:[self courseId]
                   success:^(User *user) {

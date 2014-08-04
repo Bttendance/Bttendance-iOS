@@ -16,7 +16,7 @@
 - (void)chosenSchool:(School *)chosen;
 @end
 
-@interface SchoolChooseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UISearchBarDelegate, SchoolCreateViewControllerDelegate> {
+@interface SchoolChooseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SchoolCreateViewControllerDelegate> {
     
     NSUInteger sectionCount;
     NSUInteger rowcount0;

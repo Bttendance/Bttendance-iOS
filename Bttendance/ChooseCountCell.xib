@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ChooseCountCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahk-RA-UwM">
+                        <rect key="frame" x="14" y="14" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-pS-wR5">
+                        <rect key="frame" x="16" y="16" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jw-5U-3eH">
+                        <rect key="frame" x="58" y="23" width="102" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07A-Rt-QWB">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="chooseType2:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hce-AB-0Yv"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDj-a7-zH0">
+                        <rect key="frame" x="174" y="14" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPQ-RM-pQm">
+                        <rect key="frame" x="176" y="16" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWL-BP-HZV">
+                        <rect key="frame" x="218" y="23" width="102" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbn-Zd-6Jc">
+                        <rect key="frame" x="160" y="0.0" width="160" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="chooseType3:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lDH-Va-SVg"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j0n-gB-iP6">
+                        <rect key="frame" x="14" y="70" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Uz-XzV">
+                        <rect key="frame" x="16" y="72" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVg-AD-N00">
+                        <rect key="frame" x="58" y="78" width="102" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iP8-MA-qeI">
+                        <rect key="frame" x="0.0" y="60" width="160" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="chooseType4:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1qy-1K-Yp1"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-wI-Lvk">
+                        <rect key="frame" x="174" y="70" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fv8-HE-Nq9">
+                        <rect key="frame" x="176" y="72" width="32" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choices" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGT-Qa-tvr">
+                        <rect key="frame" x="218" y="78" width="102" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ay-fU-Zbb">
+                        <rect key="frame" x="160" y="60" width="160" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="chooseType5:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PiA-yq-fTA"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="bg2" destination="ahk-RA-UwM" id="oWD-EJ-uN5"/>
+                <outlet property="bg3" destination="UDj-a7-zH0" id="ngS-vk-ggR"/>
+                <outlet property="bg4" destination="j0n-gB-iP6" id="AcY-Oj-dpT"/>
+                <outlet property="bg5" destination="O1U-wI-Lvk" id="8lM-B2-qaX"/>
+                <outlet property="typeButton2" destination="07A-Rt-QWB" id="v1E-Gh-fGQ"/>
+                <outlet property="typeButton3" destination="Hbn-Zd-6Jc" id="QUh-IO-6jN"/>
+                <outlet property="typeButton4" destination="iP8-MA-qeI" id="My7-PQ-SfK"/>
+                <outlet property="typeButton5" destination="5ay-fU-Zbb" id="fCK-b0-jbE"/>
+                <outlet property="typeLable2" destination="YEG-pS-wR5" id="dhZ-wo-Qa6"/>
+                <outlet property="typeLable3" destination="tPQ-RM-pQm" id="VjD-GO-evP"/>
+                <outlet property="typeLable4" destination="Yyb-Uz-XzV" id="67w-YO-kuo"/>
+                <outlet property="typeLable5" destination="fv8-HE-Nq9" id="09t-Lt-X56"/>
+                <outlet property="typeMessage2" destination="2jw-5U-3eH" id="1X4-Wc-Efj"/>
+                <outlet property="typeMessage3" destination="aWL-BP-HZV" id="MQR-Zu-jzu"/>
+                <outlet property="typeMessage4" destination="CVg-AD-N00" id="8Br-Gb-yGU"/>
+                <outlet property="typeMessage5" destination="gGT-Qa-tvr" id="04q-fm-z6D"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

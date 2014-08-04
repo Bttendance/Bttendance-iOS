@@ -51,7 +51,10 @@
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [defaults setObject:jsonString forKey:UserJSONKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
+    });
 }
 
 + (NSArray *)getCourses {

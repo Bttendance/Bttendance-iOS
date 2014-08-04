@@ -36,7 +36,14 @@
     [super viewDidLoad];
     
     self.user = [BTUserDefault getUser];
-    self.courses = [BTUserDefault getCourses];
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.courses = [BTUserDefault getCourses];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [self.tableview reloadData];
+        });
+    });
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
 }
