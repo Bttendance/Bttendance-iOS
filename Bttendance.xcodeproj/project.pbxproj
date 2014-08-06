@@ -19,7 +19,6 @@
 		2135C39C182BDD4E002C45DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135C39B182BDD4E002C45DB /* CoreGraphics.framework */; };
 		2135C39E182BDD4E002C45DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135C39D182BDD4E002C45DB /* UIKit.framework */; };
 		2135C3A0182BDD4E002C45DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2135C39F182BDD4E002C45DB /* CoreData.framework */; };
-		2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2135C3A4182BDD4E002C45DB /* InfoPlist.strings */; };
 		2135C3A8182BDD4E002C45DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2135C3A7182BDD4E002C45DB /* main.m */; };
 		2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2135C3AB182BDD4E002C45DB /* AppDelegate.m */; };
 		2135C3AF182BDD4E002C45DB /* Bttendance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2135C3AD182BDD4E002C45DB /* Bttendance.xcdatamodeld */; };
@@ -76,6 +75,11 @@
 		D407B26F18AD803E009BCF8C /* CourseCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D485A09E1878347500F9561B /* CourseCreateViewController.xib */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D41EDC851990AC48004F6E44 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC841990AC48004F6E44 /* SignUpViewController.xib */; };
+		D41EDC881990AC87004F6E44 /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC861990AC87004F6E44 /* CourseDetailViewController.xib */; };
+		D41EDC891990AC87004F6E44 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC871990AC87004F6E44 /* ProfileViewController.xib */; };
+		D41EDC8D1990AD2F004F6E44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */; };
+		D41EDC901990AF47004F6E44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC921990AF47004F6E44 /* Localizable.strings */; };
 		D42FAB0B197E4B330008945E /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0A197E4B330008945E /* Notice.m */; };
 		D42FAB0E197E4D6A0008945E /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB0D197E4D6A0008945E /* PushNoti.m */; };
 		D42FAB11197E4EE80008945E /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D42FAB10197E4EE80008945E /* Setting.m */; };
@@ -117,8 +121,6 @@
 		D481EBBB198A89E5001CAA8E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBBA198A89E5001CAA8E /* Question.m */; };
 		D481EBC0198B3698001CAA8E /* QuestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D481EBBE198B3698001CAA8E /* QuestionListViewController.m */; };
 		D481EBC1198B3698001CAA8E /* QuestionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */; };
-		D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D48219FF196D607700A88ABC /* ProfileViewController.xib */; };
-		D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */; };
 		D4821A0A196D677700A88ABC /* CatchPointViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4821A09196D677700A88ABC /* CatchPointViewController.xib */; };
 		D4821A0D196D6C4A00A88ABC /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4821A0C196D6C4A00A88ABC /* TutorialViewController.m */; };
 		D485A0A21878347500F9561B /* CourseCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D485A09F1878347500F9561B /* CourseCreateViewController.m */; };
@@ -132,6 +134,8 @@
 		D487103C198EAB620094FBEB /* AddQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487103A198EAB620094FBEB /* AddQuestionViewController.xib */; };
 		D4871040198EBE2C0094FBEB /* ChooseCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D487103E198EBE2C0094FBEB /* ChooseCountCell.m */; };
 		D4871041198EBE2C0094FBEB /* ChooseCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */; };
+		D4871050198FA4CB0094FBEB /* ClickerTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D487104E198FA4CB0094FBEB /* ClickerTextViewCell.m */; };
+		D4871051198FA4CB0094FBEB /* ClickerTextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D487104F198FA4CB0094FBEB /* ClickerTextViewCell.xib */; };
 		D4AD9CCD196A5FB800B88020 /* GuidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9CCB196A5FB800B88020 /* GuidePageViewController.m */; };
 		D4AD9CCE196A5FB800B88020 /* GuidePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9CCC196A5FB800B88020 /* GuidePageViewController.xib */; };
 		D4AD9CF9196BC76500B88020 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9CF7196BC76500B88020 /* LeftMenuViewController.m */; };
@@ -142,7 +146,6 @@
 		D4AD9D04196BC9CF00B88020 /* GuideCourseCreateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9D02196BC9CF00B88020 /* GuideCourseCreateViewController.xib */; };
 		D4AD9D08196BC9EB00B88020 /* GuideCourseAttendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9D06196BC9EB00B88020 /* GuideCourseAttendViewController.m */; };
 		D4AD9D09196BC9EB00B88020 /* GuideCourseAttendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9D07196BC9EB00B88020 /* GuideCourseAttendViewController.xib */; };
-		D4AD9D0A196BE2BB00B88020 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9D0C196BE2BB00B88020 /* SignUpViewController.xib */; };
 		D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */; };
 		D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B466F41912121500AB6486 /* notice_small@2x.png */; };
 		D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B466FA1912370A00AB6486 /* BTNotification.m */; };
@@ -244,7 +247,6 @@
 		2135C39D182BDD4E002C45DB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2135C39F182BDD4E002C45DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2135C3A3182BDD4E002C45DB /* Bttendance-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Bttendance-Info.plist"; sourceTree = "<group>"; };
-		2135C3A5182BDD4E002C45DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2135C3A7182BDD4E002C45DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2135C3A9182BDD4E002C45DB /* Bttendance-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bttendance-Prefix.pch"; sourceTree = "<group>"; };
 		2135C3AA182BDD4E002C45DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -321,6 +323,12 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D41EDC841990AC48004F6E44 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpViewController.xib; path = SignupProcess/SignUpViewController.xib; sourceTree = "<group>"; };
+		D41EDC861990AC87004F6E44 /* CourseDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseDetailViewController.xib; path = StdView/CourseDetailViewController.xib; sourceTree = "<group>"; };
+		D41EDC871990AC87004F6E44 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = StdView/ProfileViewController.xib; sourceTree = "<group>"; };
+		D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		D41EDC911990AF47004F6E44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D41EDC931990AF48004F6E44 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D42FAB09197E4B330008945E /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		D42FAB0A197E4B330008945E /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		D42FAB0C197E4D6A0008945E /* PushNoti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoti.h; sourceTree = "<group>"; };
@@ -382,8 +390,6 @@
 		D481EBBD198B3698001CAA8E /* QuestionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionListViewController.h; sourceTree = "<group>"; };
 		D481EBBE198B3698001CAA8E /* QuestionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionListViewController.m; sourceTree = "<group>"; };
 		D481EBBF198B3698001CAA8E /* QuestionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionListViewController.xib; sourceTree = "<group>"; };
-		D48219FE196D607700A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProfileViewController.xib; sourceTree = "<group>"; };
-		D4821A01196D60DD00A88ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CourseDetailViewController.xib; sourceTree = "<group>"; };
 		D4821A09196D677700A88ABC /* CatchPointViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CatchPointViewController.xib; path = controller/CatchPointViewController.xib; sourceTree = "<group>"; };
 		D4821A0B196D6C4A00A88ABC /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		D4821A0C196D6C4A00A88ABC /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
@@ -405,6 +411,9 @@
 		D487103D198EBE2C0094FBEB /* ChooseCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCountCell.h; sourceTree = "<group>"; };
 		D487103E198EBE2C0094FBEB /* ChooseCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCountCell.m; sourceTree = "<group>"; };
 		D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseCountCell.xib; sourceTree = "<group>"; };
+		D487104D198FA4CB0094FBEB /* ClickerTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerTextViewCell.h; sourceTree = "<group>"; };
+		D487104E198FA4CB0094FBEB /* ClickerTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerTextViewCell.m; sourceTree = "<group>"; };
+		D487104F198FA4CB0094FBEB /* ClickerTextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClickerTextViewCell.xib; sourceTree = "<group>"; };
 		D4AD9CCA196A5FB800B88020 /* GuidePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidePageViewController.h; sourceTree = "<group>"; };
 		D4AD9CCB196A5FB800B88020 /* GuidePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidePageViewController.m; sourceTree = "<group>"; };
 		D4AD9CCC196A5FB800B88020 /* GuidePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuidePageViewController.xib; sourceTree = "<group>"; };
@@ -420,7 +429,6 @@
 		D4AD9D05196BC9EB00B88020 /* GuideCourseAttendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideCourseAttendViewController.h; sourceTree = "<group>"; };
 		D4AD9D06196BC9EB00B88020 /* GuideCourseAttendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideCourseAttendViewController.m; sourceTree = "<group>"; };
 		D4AD9D07196BC9EB00B88020 /* GuideCourseAttendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideCourseAttendViewController.xib; sourceTree = "<group>"; };
-		D4AD9D0B196BE2BB00B88020 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SignUpViewController.xib; sourceTree = "<group>"; };
 		D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
 		D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
 		D4B466F41912121500AB6486 /* notice_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice_small@2x.png"; sourceTree = "<group>"; };
@@ -563,7 +571,7 @@
 				D4821A09196D677700A88ABC /* CatchPointViewController.xib */,
 				212C05B6183B73E000AD6654 /* SignUpViewController.h */,
 				212C05B7183B73E000AD6654 /* SignUpViewController.m */,
-				D4AD9D0C196BE2BB00B88020 /* SignUpViewController.xib */,
+				D41EDC841990AC48004F6E44 /* SignUpViewController.xib */,
 				21C48E2B183D08E800C8D772 /* SignInViewController.h */,
 				21C48E2C183D08E800C8D772 /* SignInViewController.m */,
 				21C48E2D183D08E800C8D772 /* SignInViewController.xib */,
@@ -641,8 +649,8 @@
 		2135C3A2182BDD4E002C45DB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D4821A03196D618400A88ABC /* ko.lproj */,
-				D48219FB196D5FD400A88ABC /* en.lproj */,
+				D41EDC921990AF47004F6E44 /* Localizable.strings */,
+				D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */,
 				21C48E401841F53800C8D772 /* Images.xcassets */,
 				2135C3A3182BDD4E002C45DB /* Bttendance-Info.plist */,
 				2135C3A7182BDD4E002C45DB /* main.m */,
@@ -660,8 +668,8 @@
 				D4AD9CF6196BC76500B88020 /* LeftMenuViewController.h */,
 				D4AD9CF7196BC76500B88020 /* LeftMenuViewController.m */,
 				D4AD9CF8196BC76500B88020 /* LeftMenuViewController.xib */,
-				D4AD9CF0196BC11400B88020 /* AddCourseViewController */,
 				D41DF93D18ACCCF00019C3AB /* SideItemViewController */,
+				D4AD9CF0196BC11400B88020 /* AddCourseViewController */,
 				D4B5600A196BE45D005CFE30 /* CourseDetailViewController */,
 				D4B56008196BE428005CFE30 /* AttendanceViewController */,
 				D4B56009196BE441005CFE30 /* ClickerViewController */,
@@ -745,6 +753,9 @@
 				D487103D198EBE2C0094FBEB /* ChooseCountCell.h */,
 				D487103E198EBE2C0094FBEB /* ChooseCountCell.m */,
 				D487103F198EBE2C0094FBEB /* ChooseCountCell.xib */,
+				D487104D198FA4CB0094FBEB /* ClickerTextViewCell.h */,
+				D487104E198FA4CB0094FBEB /* ClickerTextViewCell.m */,
+				D487104F198FA4CB0094FBEB /* ClickerTextViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -819,10 +830,10 @@
 			children = (
 				218D9AF41886AE2600E8BAD0 /* ProfileViewController.h */,
 				218D9AF51886AE2600E8BAD0 /* ProfileViewController.m */,
-				D48219FF196D607700A88ABC /* ProfileViewController.xib */,
+				D41EDC871990AC87004F6E44 /* ProfileViewController.xib */,
 				21469A4218929E3C005D4FF2 /* CourseDetailViewController.h */,
 				21469A4318929E3C005D4FF2 /* CourseDetailViewController.m */,
-				D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */,
+				D41EDC861990AC87004F6E44 /* CourseDetailViewController.xib */,
 				D4B55FFE196BE3F1005CFE30 /* SettingViewController.h */,
 				D4B55FFF196BE3F1005CFE30 /* SettingViewController.m */,
 				D4B56000196BE3F1005CFE30 /* SettingViewController.xib */,
@@ -883,21 +894,6 @@
 				D487103A198EAB620094FBEB /* AddQuestionViewController.xib */,
 			);
 			name = QuestionController;
-			sourceTree = "<group>";
-		};
-		D48219FB196D5FD400A88ABC /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				2135C3A4182BDD4E002C45DB /* InfoPlist.strings */,
-			);
-			name = en.lproj;
-			sourceTree = "<group>";
-		};
-		D4821A03196D618400A88ABC /* ko.lproj */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ko.lproj;
 			sourceTree = "<group>";
 		};
 		D485A09D1878343A00F9561B /* ProfileEditViewController */ = {
@@ -1136,12 +1132,14 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				kr,
+				ko,
 			);
 			mainGroup = 2135C38D182BDD4E002C45DB;
 			productRefGroup = 2135C397182BDD4E002C45DB /* Products */;
@@ -1189,17 +1187,17 @@
 				D4CD98E41974E2BD00F6D018 /* pollicon_gd@2x.png in Resources */,
 				21EE90F918915DB6000C9CAB /* SchoolInfoCell.xib in Resources */,
 				21EE90F4189159D2000C9CAB /* SchoolChooseViewController.xib in Resources */,
-				D4821A00196D60DD00A88ABC /* CourseDetailViewController.xib in Resources */,
 				D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */,
 				D42FAB1A197E7BB50008945E /* start_icon@2x.png in Resources */,
+				D4871051198FA4CB0094FBEB /* ClickerTextViewCell.xib in Resources */,
 				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
 				D44AA01C19823C3B00743C8A /* side_plus@2x.png in Resources */,
 				D481EBC1198B3698001CAA8E /* QuestionListViewController.xib in Resources */,
+				D41EDC851990AC48004F6E44 /* SignUpViewController.xib in Resources */,
 				213B6C12188FE62F00B3DF7B /* ProfileCell.xib in Resources */,
 				D481EBB6198744D0001CAA8E /* attendance_silver@2x.png in Resources */,
-				2135C3A6182BDD4E002C45DB /* InfoPlist.strings in Resources */,
 				D4AD9CCE196A5FB800B88020 /* GuidePageViewController.xib in Resources */,
 				D4AD9CFA196BC76500B88020 /* LeftMenuViewController.xib in Resources */,
 				D44AA02619827EEF00743C8A /* CourseSettingViewController.xib in Resources */,
@@ -1212,7 +1210,6 @@
 				D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */,
 				D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */,
 				D4B4BFD818F63B10002DE88C /* setting@2x.png in Resources */,
-				D48219FD196D607700A88ABC /* ProfileViewController.xib in Resources */,
 				21532F2C18773B140065EB3C /* SignButtonCell.xib in Resources */,
 				D4CD98E51974E2BD00F6D018 /* welcome_bg@2x.png in Resources */,
 				2131F5181897D6E00096404D /* GradeCell.xib in Resources */,
@@ -1225,6 +1222,7 @@
 				D4B467021912760A00AB6486 /* ClickerDetailViewController.xib in Resources */,
 				D4CD98EF197663A000F6D018 /* SideHeaderViewCell.xib in Resources */,
 				D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */,
+				D41EDC891990AC87004F6E44 /* ProfileViewController.xib in Resources */,
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInViewController.xib in Resources */,
 				D44AA01A19822B8800743C8A /* profile@2x.png in Resources */,
@@ -1232,7 +1230,9 @@
 				D4AD9D04196BC9CF00B88020 /* GuideCourseCreateViewController.xib in Resources */,
 				D4FB95881976A03300ADB9FA /* PasswordCell.xib in Resources */,
 				218D9B18188FD2C800E8BAD0 /* ProfileEmailEditViewController.xib in Resources */,
+				D41EDC8D1990AD2F004F6E44 /* InfoPlist.strings in Resources */,
 				D44AA01819821FE900743C8A /* menu@2x.png in Resources */,
+				D41EDC881990AC87004F6E44 /* CourseDetailViewController.xib in Resources */,
 				D485A0AB18784C9C00F9561B /* UserInfoCell.xib in Resources */,
 				D4B5067118B4CEDB0075E2F8 /* attendancecheckcyanbig@2x.png in Resources */,
 				D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */,
@@ -1242,10 +1242,10 @@
 				D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */,
 				D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */,
 				D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */,
+				D41EDC901990AF47004F6E44 /* Localizable.strings in Resources */,
 				D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */,
 				D481EBB019873C1A001CAA8E /* ChooseTypeCell.xib in Resources */,
 				D4AD9D09196BC9EB00B88020 /* GuideCourseAttendViewController.xib in Resources */,
-				D4AD9D0A196BE2BB00B88020 /* SignUpViewController.xib in Resources */,
 				D4380EA81918A3FF008F8A78 /* c_clicked@2x.png in Resources */,
 				D4380EA91918A3FF008F8A78 /* d_clicked@2x.png in Resources */,
 				D42FAB1B197E7BB50008945E /* welcome_icon@2x.png in Resources */,
@@ -1361,6 +1361,7 @@
 				2131F5171897D6E00096404D /* GradeCell.m in Sources */,
 				21532F2B18773B140065EB3C /* SignButtonCell.m in Sources */,
 				D4BBC05218B3F72900551565 /* ManagerViewController.m in Sources */,
+				D4871050198FA4CB0094FBEB /* ClickerTextViewCell.m in Sources */,
 				D4C4E4E9198CBFA200D594B7 /* ClickerQuestionViewController.m in Sources */,
 				D47DB52718AF85BC007C23A3 /* BVUnderlineButton.m in Sources */,
 				D4B56006196BE415005CFE30 /* ProfileIdentityEditViewController.m in Sources */,
@@ -1429,39 +1430,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2135C3A4182BDD4E002C45DB /* InfoPlist.strings */ = {
+		D41EDC921990AF47004F6E44 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2135C3A5182BDD4E002C45DB /* en */,
+				D41EDC911990AF47004F6E44 /* en */,
+				D41EDC931990AF48004F6E44 /* ko */,
 			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D48219FF196D607700A88ABC /* ProfileViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48219FE196D607700A88ABC /* en */,
-			);
-			name = ProfileViewController.xib;
-			path = StdView;
-			sourceTree = "<group>";
-		};
-		D4821A02196D60DD00A88ABC /* CourseDetailViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4821A01196D60DD00A88ABC /* en */,
-			);
-			name = CourseDetailViewController.xib;
-			path = StdView;
-			sourceTree = "<group>";
-		};
-		D4AD9D0C196BE2BB00B88020 /* SignUpViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4AD9D0B196BE2BB00B88020 /* en */,
-			);
-			name = SignUpViewController.xib;
-			path = SignupProcess;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1636,7 +1611,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

@@ -49,6 +49,7 @@
         self.updatedAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.email = [dictionary objectForKey:@"email"];
         self.password = [dictionary objectForKey:@"password"];
+        self.locale = [dictionary objectForKey:@"locale"];
         self.full_name = [dictionary objectForKey:@"full_name"];
         self.device = [[SimpleDevice alloc] initWithDictionary:[dictionary objectForKey:@"device"]];
         self.setting = [[SimpleSetting alloc] initWithDictionary:[dictionary objectForKey:@"setting"]];

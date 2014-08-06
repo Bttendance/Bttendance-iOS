@@ -72,6 +72,7 @@
     self.message4.textColor = [BTColor BT_black:1.0];
     [self.message4 sizeToFit];
     
+    [self.nextBt setTitle:NSLocalizedString(@"시작하기", nil) forState:UIControlStateNormal];
     [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
     [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
     [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];

@@ -141,12 +141,10 @@
     
     if (chooseCountCell.choice < 2 || chooseCountCell.choice > 5) {
         [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
-        [self.tableview cellForRowAtIndexPath:self.labelviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
         self.label.textColor = [BTColor BT_red:1.0];
         pass = NO;
     } else {
         [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [UIColor clearColor];
-        [self.tableview cellForRowAtIndexPath:self.labelviewIndex].contentView.backgroundColor = [UIColor clearColor];
         self.label.textColor = [BTColor BT_silver:1.0];
     }
     

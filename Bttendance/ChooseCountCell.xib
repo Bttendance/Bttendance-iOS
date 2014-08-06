@@ -27,7 +27,7 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEG-pS-wR5">
                         <rect key="frame" x="16" y="16" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,7 +69,7 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPQ-RM-pQm">
                         <rect key="frame" x="176" y="16" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,7 +111,7 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyb-Uz-XzV">
                         <rect key="frame" x="16" y="72" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,7 +153,7 @@
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fv8-HE-Nq9">
                         <rect key="frame" x="176" y="72" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -183,7 +183,7 @@
                     </button>
                 </subviews>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="bg2" destination="ahk-RA-UwM" id="oWD-EJ-uN5"/>
                 <outlet property="bg3" destination="UDj-a7-zH0" id="ngS-vk-ggR"/>

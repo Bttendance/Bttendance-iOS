@@ -10,6 +10,7 @@
 
 // For User update
 #define UserUpdated @"user_updated"
+#define CoursesUpdated @"courses_updated"
 
 // For refresh
 #define FeedRefresh @"feed_refresh"
@@ -26,7 +27,6 @@
 #define ModalViewAnim @"modal_view_anim"
 
 // For Socket
-#define CourseUpdated @"course_updated"
 #define AttendanceUpdated @"attendance_updated"
 #define ClickerUpdated @"clicker_updated"
 #define NoticeUpdated @"notice_updated"

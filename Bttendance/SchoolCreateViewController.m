@@ -139,8 +139,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             cell.typeLable1.text = NSLocalizedString(@"University", nil);
-            cell.typeLable2.text = NSLocalizedString(@"School", nil);
-            cell.typeLable3.text = NSLocalizedString(@"Institute", nil);
+            cell.typeLable2.text = NSLocalizedString(@"School for school create", nil);
+            cell.typeLable3.text = NSLocalizedString(@"Institute for school create", nil);
             cell.typeLable4.text = NSLocalizedString(@"Etc.", nil);
             
             return cell;
@@ -204,7 +204,7 @@
         pass = NO;
     }
     
-    NSString *nameRegex = @"[A-Za-z0-9 ]+";
+    NSString *nameRegex = @"[A-Za-z0-9 .,]+";
     NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
     
     if(![nameTest evaluateWithObject:name]){

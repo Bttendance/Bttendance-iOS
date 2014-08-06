@@ -91,7 +91,8 @@
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
             [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
-
+            
+            [(TextInputCell *) cell textfield].frame = CGRectMake(68, 1, 222, 40);
             [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
             [(TextInputCell *) cell textfield].delegate = self;
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
@@ -150,7 +151,7 @@
                success:^(User *user) {
                    [hud hide:YES];
                    managerFullName = user.full_name;
-                   NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Would you like to add %@ as a manager of course %@", nil), user.full_name, courseName];
+                   NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Would you like to add %1$@ as a manager of course %2$@", nil), user.full_name, courseName];
                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Manager", nil)
                                                                    message:message
                                                                   delegate:self

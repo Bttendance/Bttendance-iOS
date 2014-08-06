@@ -12,10 +12,10 @@
 
     NSArray *data;
     NSInteger rowcount;
-
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(weak, nonatomic) NSString *cid;
+@property(weak, nonatomic) NSString *type;
 
 @end

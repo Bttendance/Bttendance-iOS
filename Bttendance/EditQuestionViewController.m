@@ -10,6 +10,7 @@
 #import "BTAPIs.h"
 #import "BTColor.h"
 #import "ChooseCountCell.h"
+#import "SignButtonCell.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AudioToolbox/AudioServices.h>
 
@@ -47,13 +48,6 @@
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Edit Question", @"");
     [titlelabel sizeToFit];
-    
-    [self.removeBt setBackgroundImage:[BTColor imageWithRedColor:0.8] forState:UIControlStateNormal];
-    [self.removeBt setBackgroundImage:[BTColor imageWithRedColor:0.75] forState:UIControlStateHighlighted];
-    [self.removeBt setBackgroundImage:[BTColor imageWithRedColor:0.75] forState:UIControlStateSelected];
-    
-    self.removeBt.titleLabel.text = NSLocalizedString(@"Delete", nil);
-    [self.removeBt.titleLabel sizeToFit];
     
     self.textviewIndex = [NSIndexPath indexPathForRow:0 inSection:0];
     self.choiceviewIndex = [NSIndexPath indexPathForRow:1 inSection:0];
@@ -102,7 +96,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,7 +121,7 @@
         cell.backgroundColor = [UIColor clearColor];
         [cell addSubview:self.textview];
         return cell;
-    } else {
+    } else if (indexPath.row == 1) {
         static NSString *CellIdentifier1 = @"ChooseCountCell";
         ChooseCountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
         
@@ -160,12 +154,37 @@
         cell.typeMessage5.text = NSLocalizedString(@"Choices", nil);
         
         return cell;
+    } else {
+        static NSString *CellIdentifier1 = @"SignButtonCell";
+        SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        
+        if (cell_new == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
+            cell_new = [topLevelObjects objectAtIndex:0];
+            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        [cell_new.button setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+        [cell_new.button setBackgroundImage:[BTColor imageWithRedColor:0.8] forState:UIControlStateNormal];
+        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateHighlighted];
+        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateSelected];
+        
+        cell_new.contentView.backgroundColor = [BTColor BT_white:1.0];
+        cell_new.button.frame = CGRectMake(9, 12, 302, 43);
+        
+        [cell_new.button addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell_new;
     }
 }
 
 #pragma UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView {
+    [self.tableview beginUpdates];
     self.message = textView.text;
+    [self.textview sizeToFit];
+    self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
+    [self.tableview endUpdates];
 }
 
 #pragma NavigationBarAction
@@ -212,8 +231,8 @@
                    }];
 }
 
-#pragma IBAction
--(IBAction)remove:(id)sender {
+#pragma Action
+-(void)remove {
     NSString *message = NSLocalizedString(@"Do you want to delete current question?", nil);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete Question", nil)
                                                     message:message
@@ -226,7 +245,6 @@
 #pragma UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [BTColor BT_navy:0.7];
         hud.labelText = NSLocalizedString(@"Loading", nil);

@@ -36,7 +36,7 @@
     
     UINavigationController *navigationController;
     
-    if ([BTUserDefault getLastSeenCourse] == 0) {
+    if ([BTUserDefault getLastSeenCourse] == 0 || [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]] == nil) {
         NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
     } else {
@@ -71,6 +71,7 @@
     self.parallaxEnabled = NO;
     self.bouncesHorizontally = YES;
     self.menuPrefersStatusBarHidden = YES;
+    self.animationDuration = 0.3f;
     self.delegate = self;
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
@@ -132,6 +133,12 @@
     NSDictionary *dict = [aNotification userInfo];
     self.popupController = [dict objectForKey:ModalViewController];
     self.anim = [[dict objectForKey:ModalViewAnim] boolValue];
+}
+
+#pragma Override RESideMenu
+- (void)hideMenuViewController {
+    [super hideMenuViewController];
+    self.contentViewController.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
 }
 
 #pragma mark RESideMenu Delegate

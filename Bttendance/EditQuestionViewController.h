@@ -13,8 +13,5 @@
 
 @property (strong) Question *question;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-@property (weak, nonatomic) IBOutlet UIButton *removeBt;
-
-- (IBAction)remove:(id)sender;
 
 @end

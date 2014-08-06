@@ -185,7 +185,7 @@
     hud.detailsLabelText = NSLocalizedString(@"Searching Course", nil);
     hud.yOffset = -40.0f;
     
-    [BTAPIs searchCourseWithCode:code orId:@"" success:^(Course *course) {
+    [BTAPIs searchCourseWithCode:code orId:@"0" success:^(Course *course) {
         [hud hide:YES];
         
         self.attendingCourse = course;
@@ -197,11 +197,11 @@
             NSString *message;
             
             if ([course.school.type isEqualToString:@"university"]) {
-                title = NSLocalizedString(@"Student Number", @"for univ");
-                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number", @"for univ"), self.attendingCourse.name];
+                title = NSLocalizedString(@"Student Number for univ", nil);
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number for univ", nil), self.attendingCourse.name];
             } else if ([course.school.type isEqualToString:@"school"]) {
-                title = NSLocalizedString(@"Student Number", @"for school");
-                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number", @"for school"), self.attendingCourse.name];
+                title = NSLocalizedString(@"Student Number for school", nil);
+                message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your student number for school", nil), self.attendingCourse.name];
             } else if ([course.school.type isEqualToString:@"institute"]) {
                 title = NSLocalizedString(@"Phone Number", nil);
                 message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your phone number", nil), self.attendingCourse.name];
@@ -213,8 +213,8 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
                                                            delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Confirm", Nil];
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Confirm", nil), Nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
             [alert show];
         }

@@ -21,7 +21,6 @@
 #import "BTAPIs.h"
 #import "BTColor.h"
 #import "PushNoti.h"
-#import "SocketAgent.h"
 #import "BTNotification.h"
 
 @implementation AppDelegate
@@ -68,8 +67,6 @@
         [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
         application.applicationIconBadgeNumber = 0;
     }
-    
-    [[SocketAgent sharedInstance] socketConnect];
     
     return YES;
 }

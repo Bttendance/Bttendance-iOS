@@ -73,7 +73,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0)
-        return 133;
+        return 155;
     else if (indexPath.row == 1)
         return 62.5;
     else if (indexPath.row <= [[self.user getOpenedCourses] count] + 1)
@@ -106,16 +106,9 @@
         else
             type = NSLocalizedString(@"STUDENT", nil);
         
-        if ([self.user.full_name rangeOfString:type].length == 0) {
-            NSString *title = [NSString stringWithFormat:@"%@  %@", self.user.full_name, type];
-            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:title];
-            [str addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[title rangeOfString:type]];
-            [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[title rangeOfString:type]];
-            cell.name.attributedText = str;
-        } else
-            cell.name.text = self.user.full_name;
-        
-        cell.line.frame = CGRectMake(14, 132.3, 242, 0.7);
+        cell.type.text = type;
+        cell.name.text = self.user.full_name;
+        cell.line.frame = CGRectMake(14, 154.3, 242, 0.7);
         
         return cell;
     }
@@ -161,7 +154,7 @@
             }
         }
         
-        cell.message1.text = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %@%%  출석률 %@%%", nil), clicker_rate ,attendance_rate];
+        cell.message1.text = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %1$@%%  출석률 %2$@%%", nil), clicker_rate ,attendance_rate];
         
         if ([self.user supervising:openedCourse.id])
             cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽지 않은 학생 수 %@", nil), notice_unseen];

@@ -34,8 +34,8 @@
     [self.gradient.layer insertSublayer:layer atIndex:0];
 
     //button localization
-    self.Signup.titleLabel.text = NSLocalizedString(@"Sign Up", nil);
-    self.Signin.titleLabel.text = NSLocalizedString(@"Log In", nil);
+    [self.Signup setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
+    [self.Signin setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
     self.btdtitle.text = NSLocalizedString(@"BTTENDANCE", nil);
     self.subtitle.text = NSLocalizedString(@"Welcome to Bttendance", nil);
 

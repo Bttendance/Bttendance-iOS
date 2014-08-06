@@ -48,7 +48,7 @@
     [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
     [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
     
-    self.createBt.titleLabel.text = NSLocalizedString(@"Add a Question", nil);
+    [self.createBt setTitle:NSLocalizedString(@"Add a Question", nil) forState:UIControlStateNormal];
     [self.createBt.titleLabel sizeToFit];
     
     
@@ -69,7 +69,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableview reloadData];
     
     [BTAPIs myQuestionsInSuccess:^(NSArray *questions) {
         self.questions = questions;

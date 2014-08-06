@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditQuestionViewController">
             <connections>
-                <outlet property="removeBt" destination="BZ3-5H-xfU" id="BDA-R7-7Fw"/>
                 <outlet property="tableview" destination="NYP-Ly-dFR" id="gtc-x2-Fca"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="YpB-te-GXJ"/>
             </connections>
@@ -17,43 +16,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NYP-Ly-dFR">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="8Vs-Mg-Dte"/>
                         <outlet property="delegate" destination="-1" id="J7g-MZ-uq2"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ3-5H-xfU">
-                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="4tI-jt-3Kj"/>
-                        <constraint firstAttribute="height" constant="46" id="urY-5d-AQX"/>
-                    </constraints>
-                    <state key="normal" title="Delete">
-                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="remove:" destination="-1" eventType="touchUpInside" id="mzS-Qr-BYm"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="BZ3-5H-xfU" firstAttribute="top" secondItem="NYP-Ly-dFR" secondAttribute="bottom" id="2QK-mc-gkX"/>
-                <constraint firstItem="BZ3-5H-xfU" firstAttribute="top" secondItem="NYP-Ly-dFR" secondAttribute="bottom" id="88X-Bw-nAZ"/>
-                <constraint firstAttribute="bottom" secondItem="BZ3-5H-xfU" secondAttribute="bottom" id="BeY-16-nDc"/>
-                <constraint firstAttribute="trailing" secondItem="BZ3-5H-xfU" secondAttribute="trailing" id="T7Q-no-1FS"/>
-                <constraint firstAttribute="trailing" secondItem="NYP-Ly-dFR" secondAttribute="trailing" id="cyY-jo-znj"/>
-                <constraint firstItem="BZ3-5H-xfU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fLt-8X-Fxy"/>
-                <constraint firstItem="NYP-Ly-dFR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hbY-NK-vIJ"/>
-                <constraint firstItem="NYP-Ly-dFR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jyr-S6-MyO"/>
-                <constraint firstAttribute="trailing" secondItem="BZ3-5H-xfU" secondAttribute="trailing" id="q9H-Qv-AmD"/>
-                <constraint firstAttribute="bottom" secondItem="BZ3-5H-xfU" secondAttribute="bottom" id="xAd-yE-o37"/>
-                <constraint firstItem="BZ3-5H-xfU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ysA-T4-ehw"/>
+                <constraint firstItem="NYP-Ly-dFR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Zg-VW-ar3"/>
+                <constraint firstAttribute="bottom" secondItem="NYP-Ly-dFR" secondAttribute="bottom" id="CKL-I7-7ob"/>
+                <constraint firstItem="NYP-Ly-dFR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="u1K-nI-5og"/>
+                <constraint firstAttribute="trailing" secondItem="NYP-Ly-dFR" secondAttribute="trailing" id="ucL-Kb-s99"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

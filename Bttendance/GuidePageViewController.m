@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    self.nextBt.titleLabel.text = NSLocalizedString(@"Next", nil);
+    [self.nextBt setTitle:NSLocalizedString(@"Next", nil) forState:UIControlStateNormal];
     
     self.guideFirstBG = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
     self.guidePollBG = [[UIImageView alloc] initWithFrame:[[self view] bounds]];
@@ -65,7 +65,7 @@
     self.gdPollTitle.text = NSLocalizedString(@"설문하기", nil);
     self.gdPollMsg1.text = NSLocalizedString(@"찬반 의견부터 간단한 객관식 답변까지", nil);
     self.gdPollMsg2.text = NSLocalizedString(@"학생들의 반응을 쉽게 파악하세요!", nil);
-    self.gdPollMsg3.text = NSLocalizedString(@"", nil);
+//    self.gdPollMsg3.text = NSLocalizedString(@"", nil);
     
     self.gdAttdTitle.text = NSLocalizedString(@"출석체크", nil);
     self.gdAttdMsg1.text = NSLocalizedString(@"학생수가 많아 일일이 이름 부르기", nil);
@@ -77,7 +77,7 @@
     self.gdNoticeMsg2.text = NSLocalizedString(@"중요한 사항을 알리시고,", nil);
     self.gdNoticeMsg3.text = NSLocalizedString(@"누가 읽지 않았는지도 확인하세요!", nil);
     
-    self.showMorePoll.titleLabel.text = NSLocalizedString(@"더 알아보기", nil);
+    [self.showMorePoll setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMorePoll.layer.cornerRadius = 3.0;
     self.showMorePoll.layer.borderWidth = 1.2;
     self.showMorePoll.layer.borderColor = [BTColor BT_white:1.0].CGColor;
@@ -85,7 +85,7 @@
     [self.showMorePoll setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
     self.showMorePoll.layer.masksToBounds = YES;
     
-    self.showMoreAttd.titleLabel.text = NSLocalizedString(@"더 알아보기", nil);
+    [self.showMoreAttd setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMoreAttd.layer.cornerRadius = 3.0;
     self.showMoreAttd.layer.borderWidth = 1.2;
     self.showMoreAttd.layer.borderColor = [BTColor BT_white:1.0].CGColor;
@@ -93,7 +93,7 @@
     [self.showMoreAttd setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
     self.showMoreAttd.layer.masksToBounds = YES;
     
-    self.showMoreNotice.titleLabel.text = NSLocalizedString(@"더 알아보기", nil);
+    [self.showMoreNotice setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMoreNotice.layer.cornerRadius = 3.0;
     self.showMoreNotice.layer.borderWidth = 1.2;
     self.showMoreNotice.layer.borderColor = [BTColor BT_white:1.0].CGColor;

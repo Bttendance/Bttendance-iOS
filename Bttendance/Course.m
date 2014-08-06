@@ -46,7 +46,13 @@
         self.name = [dictionary objectForKey:@"name"];
         self.professor_name = [dictionary objectForKey:@"professor_name"];
         self.school = [[SimpleSchool alloc] initWithDictionary:[dictionary objectForKey:@"school"]];
-        self.managers_count = [[dictionary objectForKey:@"managers_count"] integerValue];
+
+        NSMutableArray *managers = [NSMutableArray array];
+        for (NSDictionary *dic in [dictionary objectForKey:@"managers"]) {
+            SimpleUser *manager = [[SimpleUser alloc] initWithDictionary:dic];
+            [managers addObject:manager];
+        }
+        
         self.students_count = [[dictionary objectForKey:@"students_count"] integerValue];
         self.posts_count = [[dictionary objectForKey:@"posts_count"] integerValue];
         self.code = [dictionary objectForKey:@"code"];

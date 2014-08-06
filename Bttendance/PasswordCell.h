@@ -14,5 +14,6 @@
 
 @property(weak, nonatomic) IBOutlet UILabel *password;
 @property(weak, nonatomic) IBOutlet UIView *selected_bg;
+@property(weak, nonatomic) IBOutlet UIImageView *arrow;
 
 @end

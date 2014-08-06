@@ -36,6 +36,7 @@
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *email;
 @property(strong, nonatomic) NSString  *password;
+@property(strong, nonatomic) NSString  *locale;
 @property(strong, nonatomic) NSString  *full_name;
 @property(strong, nonatomic) SimpleDevice  *device;
 @property(strong, nonatomic) SimpleSetting  *setting;

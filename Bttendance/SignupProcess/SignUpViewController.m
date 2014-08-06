@@ -174,12 +174,11 @@ NSString *signupRequest;
         case 3: {
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             if (cell_new == nil) {
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
                 cell_new = [topLevelObjects objectAtIndex:0];
+                cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Sign Up", nil) forState:UIControlStateNormal];
@@ -195,10 +194,19 @@ NSString *signupRequest;
             NIAttributedLabel *label = [[NIAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
             label.backgroundColor = [UIColor clearColor];
             label.text = NSLocalizedString(@"By tapping \"Sign Up\" above, you are agreeing to the Terms of Service and Privacy Policy.", nil);
-            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
-                     range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
-            [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
-                     range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+            
+            NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+            if ([locale isEqualToString:@"kr"]) {
+                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
+                         range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
+                         range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+            } else {
+                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms-en"]
+                         range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy-en"]
+                         range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+            }
             label.textAlignment = NSTextAlignmentCenter;
             label.linkColor = [BTColor BT_navy:1];
             label.linksHaveUnderlines = YES;
@@ -286,7 +294,8 @@ NSString *signupRequest;
     [BTAPIs signUpWithFullName:fullname email:email password:password success:^(User *user) {
         [hud hide:YES];
         SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
-        [self.navigationController pushViewController:sideMenu animated:NO];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
     } failure:^(NSError *error) {
         [hud hide:YES];
         button.enabled = YES;

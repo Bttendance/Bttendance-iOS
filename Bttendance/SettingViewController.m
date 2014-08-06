@@ -88,8 +88,8 @@
         if (cell == nil) {
             [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         switch (indexPath.row) {
             case 0:

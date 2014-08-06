@@ -158,12 +158,11 @@ NSString *signinRequest;
         case 2: {
             static NSString *CellIdentifier1 = @"SignButtonCell";
             SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             if (cell_new == nil) {
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
                 cell_new = [topLevelObjects objectAtIndex:0];
+                cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
@@ -250,7 +249,8 @@ NSString *signinRequest;
     [BTAPIs signInWithEmail:email password:password success:^(User *user) {
         [hud hide:YES];
         SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
-        [self.navigationController pushViewController:sideMenu animated:NO];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
     } failure:^(NSError *error) {
         [hud hide:YES];
         button.enabled = YES;

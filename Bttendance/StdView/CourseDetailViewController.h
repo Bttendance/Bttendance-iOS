@@ -14,11 +14,9 @@
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
 
-    NSInteger rowcount;
     NSArray *data;
 
     NSString *my_id;
-    Boolean auth;
     
     User *user;
     NSTimer *refreshTimer;
@@ -27,9 +25,6 @@
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-
-@property(retain, nonatomic) Course *course;
 @property(retain, nonatomic) SimpleCourse *simpleCourse;
-@property(nonatomic) Boolean auth;
 
 @end

@@ -51,12 +51,21 @@
     titlelabel.text = NSLocalizedString(@"Grades", nil);
     [titlelabel sizeToFit];
     
-    [BTAPIs attendanceGradesWithCourse:cid success:^(NSArray *simpleUsers) {
-        data = simpleUsers;
-        rowcount = data.count;
-        [self.tableview reloadData];
-    } failure:^(NSError *error) {
-    }];
+    if([self.type isEqualToString:@"attendance"]) {
+        [BTAPIs attendanceGradesWithCourse:cid success:^(NSArray *simpleUsers) {
+            data = simpleUsers;
+            rowcount = data.count;
+            [self.tableview reloadData];
+        } failure:^(NSError *error) {
+        }];
+    } else {
+        [BTAPIs clickerGradesWithCourse:cid success:^(NSArray *simpleUsers) {
+            data = simpleUsers;
+            rowcount = data.count;
+            [self.tableview reloadData];
+        } failure:^(NSError *error) {
+        }];
+    }
 
 };
 

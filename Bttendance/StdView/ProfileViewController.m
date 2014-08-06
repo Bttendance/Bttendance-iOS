@@ -87,10 +87,23 @@
         || indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
         return 47;
     
-    if (indexPath.row == 2
-        || indexPath.row == 4
-        || indexPath.row == closedCourses + 5)
+    if (indexPath.row == 2)
         return 60;
+    
+    if (indexPath.row == 4) {
+        if (closedCourses == 0)
+            return 0;
+        else
+            return 60;
+    }
+    
+    if (indexPath.row == closedCourses + 5) {
+        if (employedSchools + enrolledSchools == 0)
+            return 0;
+        else
+            return 60;
+    }
+    
     
     if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6)
         return 55;
@@ -163,7 +176,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
-        title.text = NSLocalizedString(@"CLOSED LECTURES", nil);
+        if (closedCourses > 0)
+            title.text = NSLocalizedString(@"CLOSED LECTURES", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
         title.textColor = [BTColor BT_silver:1.0];
         [cell addSubview:title];
@@ -193,7 +207,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
-        title.text = NSLocalizedString(@"SCHOOL", nil);
+        if (employedSchools + enrolledSchools > 0)
+            title.text = NSLocalizedString(@"SCHOOL", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
         title.textColor = [BTColor BT_silver:1.0];
         [cell addSubview:title];
@@ -214,7 +229,7 @@
         if (index < employedSchools) {
             cell.simpleSchool = self.user.employed_schools[index];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
-            cell.Info_SchoolID.text = NSLocalizedString(@"Professor", nil);
+            cell.Info_SchoolID.text = NSLocalizedString(@"Professor for profile", nil);
             cell.arrow.hidden = YES;
             cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.0];
         } else {

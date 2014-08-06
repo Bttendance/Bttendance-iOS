@@ -62,6 +62,9 @@
     self.line.frame = CGRectMake(47, 279, 226, 0.7);
     self.line.backgroundColor = [BTColor BT_silver:0.7];
     
+    [self.button1 setTitle:NSLocalizedString(@"과목 추가하기", nil) forState:UIControlStateNormal];
+    [self.button2 setTitle:NSLocalizedString(@"가이드 보기", nil) forState:UIControlStateNormal];
+    
     [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
     [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
     [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];

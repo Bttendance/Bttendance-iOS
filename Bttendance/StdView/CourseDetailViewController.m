@@ -28,31 +28,27 @@
 #import "ClickerCell.h"
 #import "BTBlink.h"
 #import "ClickerDetailViewController.h"
+#import "CourseSettingViewController.h"
 
 @interface CourseDetailViewController ()
+
+@property (assign) BOOL auth;
 
 @end
 
 @implementation CourseDetailViewController
-@synthesize course, simpleCourse, auth;
+@synthesize simpleCourse;
 
 - (void)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setting:(id)sender {
-    if (auth && [self opened]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
-                                                                 delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                                   destructiveButtonTitle:NSLocalizedString(@"Close Course", nil)
-                                                        otherButtonTitles:NSLocalizedString(@"Add Manager", nil),
-                                      NSLocalizedString(@"Show Grades", nil),
-                                      NSLocalizedString(@"Export Grades", nil),
-                                      NSLocalizedString(@"Attendance Grades", nil),
-                                      NSLocalizedString(@"Clicker Grades", nil), nil];
-        [actionSheet showInView:self.view];
-    } else if (auth && ![self opened]) {
+    if (self.auth && simpleCourse.opened) {
+        CourseSettingViewController *courseSetting = [[CourseSettingViewController alloc] initWithNibName:@"CourseSettingViewController" bundle:nil];
+        courseSetting.simpleCourse = simpleCourse;
+        [self.navigationController pushViewController:courseSetting animated:YES];
+    } else if (self.auth && !simpleCourse.opened) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
@@ -79,21 +75,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeader:) name:CourseUpdated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
-    NSString *title = [self courseName];
+    NSString *title = simpleCourse.name;
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(title, @"");
+    titlelabel.text = title;
     [titlelabel sizeToFit];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -108,35 +98,18 @@
     self.view.backgroundColor = [BTColor BT_grey:1];
     [self tableview].backgroundColor = [BTColor BT_grey:1];
 
-    //set header view
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
-    coursedetailheaderview = [topLevelObjects objectAtIndex:0];
-    
-    [self refreshHeader:nil];
-    
     user = [BTUserDefault getUser];
+    data = [NSMutableArray array];
+    self.auth = [user supervising:simpleCourse.id];
+    if (self.simpleCourse.opened)
+        [BTUserDefault setLastSeenCourse:simpleCourse.id];
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [BTUserDefault getPostsOfArray:[self courseId]];
-        rowcount = data.count;
+        data = [BTUserDefault getPostsOfArray:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]];
         dispatch_async( dispatch_get_main_queue(), ^{
             [self.tableview reloadData];
         });
     });
-    
-    rowcount = data.count;
-    auth = simpleCourse.opened && [user supervising:simpleCourse.id];
-
-    if (!auth) {
-        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 178)];
-        [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 161)];
-        coursedetailheaderview.clickerBt.hidden = YES;
-        coursedetailheaderview.attendanceBt.hidden = YES;
-        coursedetailheaderview.noticeBt.hidden = YES;
-        coursedetailheaderview.clickerView.hidden = YES;
-        coursedetailheaderview.attendanceView.hidden = YES;
-        coursedetailheaderview.noticeView.hidden = YES;
-    }
     
     if (!simpleCourse.opened) {
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -147,29 +120,47 @@
         self.navigationItem.leftItemsSupplementBackButton = NO;
     }
     
-    if (simpleCourse.opened || auth) {
+    if (simpleCourse.opened || self.auth) {
         UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
         [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
         UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
         [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
-
-    CGRect frame = coursedetailheaderview.grade.frame;
-//    frame.size.height = 94.0f * (100.0f - [[self grade] intValue]) / 100.0f;
-    [coursedetailheaderview.grade setFrame:frame];
+    
+    // Course Header View
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
+    coursedetailheaderview = [topLevelObjects objectAtIndex:0];
+    
+    if (!self.auth) {
+        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 178)];
+        [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 161)];
+        coursedetailheaderview.clickerBt.hidden = YES;
+        coursedetailheaderview.attendanceBt.hidden = YES;
+        coursedetailheaderview.noticeBt.hidden = YES;
+        coursedetailheaderview.clickerView.hidden = YES;
+        coursedetailheaderview.attendanceView.hidden = YES;
+        coursedetailheaderview.noticeView.hidden = YES;
+    }
+    
     self.tableview.tableHeaderView = coursedetailheaderview;
+    [self refreshHeader:nil];
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
     self.tableview.tableFooterView = footer;
+    
+    // NotificationCenter
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCourse:) name:CoursesUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAttendance:) name:AttendanceUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotice:) name:NoticeUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)refreshHeader:(id)sender {
-    NSNotification *notification = sender;
-    if ([notification object] != nil)
-        course = [notification object];
-
-    coursedetailheaderview.profname.text = [self profName];
+    coursedetailheaderview.profname.text = simpleCourse.professor_name;
     coursedetailheaderview.schoolname.text = [self schoolName];
     coursedetailheaderview.background.layer.cornerRadius = 52.5f;
     coursedetailheaderview.background.layer.masksToBounds = YES;
@@ -188,11 +179,10 @@
 }
 
 - (void)refreshFeed:(id)sender {
-    [BTAPIs feedForCourse:[self courseId]
+    [BTAPIs feedForCourse:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]
                      page:0
                   success:^(NSArray *posts) {
                      data = [NSMutableArray arrayWithArray:posts];
-                     rowcount = data.count;
                      [self.tableview reloadData];
                      [self checkAttendanceScan];
                      [self checkClickerScan];
@@ -201,7 +191,9 @@
                   }];
 }
 
-// UpdateClicker Notification Event
+#pragma NSNotification
+- (void)updateCourse:(NSNotification *)notification {
+}
 - (void)updateClicker:(NSNotification *)notification {
     if ([notification object] == nil || data.count == 0)
         return;
@@ -212,6 +204,38 @@
         Post *post = data[i];
         if ([post.type isEqualToString:@"clicker"] && clicker.id == post.clicker.id) {
             [post.clicker copyDataFromClicker:clicker];
+            found = YES;
+        }
+    }
+    if (found)
+        [self.tableview reloadData];
+}
+- (void)updateAttendance:(NSNotification *)notification {
+    if ([notification object] == nil || data.count == 0)
+        return;
+    
+    Attendance *attendance = [notification object];
+    Boolean found = NO;
+    for (int i = 0; i < data.count; i++) {
+        Post *post = data[i];
+        if ([post.type isEqualToString:@"attendance"] && attendance.id == post.attendance.id) {
+            [post.clicker copyDataFromClicker:attendance];
+            found = YES;
+        }
+    }
+    if (found)
+        [self.tableview reloadData];
+}
+- (void)updateNotice:(NSNotification *)notification {
+    if ([notification object] == nil || data.count == 0)
+        return;
+    
+    Notice *notice = [notification object];
+    Boolean found = NO;
+    for (int i = 0; i < data.count; i++) {
+        Post *post = data[i];
+        if ([post.type isEqualToString:@"notice"] && notice.id == post.notice.id) {
+            [post.clicker copyDataFromClicker:notice];
             found = YES;
         }
     }
@@ -281,7 +305,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return rowcount;
+    return data.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -707,90 +731,52 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 200 && buttonIndex == 1)
         [self dettend_course];
+    if (alertView.tag == 100 && buttonIndex == 1)
+        [self open_course];
 }
 
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 0:
-            if (auth)
-                [self show_grades];
-            else {
-                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Do you really wish to unjoin from course %@?", nil), [self courseName]];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UnJoin Course", nil)
-                                                                message:message
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                      otherButtonTitles:NSLocalizedString(@"Un Join", nil), nil];
-                alert.tag = 200;
-                [alert show];
-            }
-            break;
-        case 1:
-            if (auth)
-                [self export_grades];
-            break;
-        case 2:
-            if (auth)
-                [self add_manager];
-            break;
-        default:
-            break;
+    if (buttonIndex == 0) {
+        if (self.auth) {
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Would you like to open %@?", nil), simpleCourse.name];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Open Course", nil)
+                                                            message:message
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Open", nil), nil];
+            alert.tag = 100;
+            [alert show];
+        } else {
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Do you really wish to unjoin from course %@?", nil), simpleCourse.name];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"UnJoin Course", nil)
+                                                            message:message
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Un Join", nil), nil];
+            alert.tag = 200;
+            [alert show];
+        }
     }
 }
 
 #pragma Actions
 - (void)start_clicker {
     CreateClickerViewController *clickerView = [[CreateClickerViewController alloc] initWithNibName:@"CreateClickerViewController" bundle:nil];
-    clickerView.cid = [self courseId];
+    clickerView.cid = [NSString stringWithFormat:@"%ld", (long)simpleCourse.id];
     [self.navigationController pushViewController:clickerView animated:YES];
 }
 
 - (void)start_attendance {
-    NSString *courseName = [self courseName];
-    NSString *courseID = [self courseId];
+    NSString *courseName = simpleCourse.name;
+    NSString *courseID = [NSString stringWithFormat:@"%ld", (long)simpleCourse.id];
     [[AttendanceAgent sharedInstance] startAttdWithCourseName:courseName andID:courseID];
 }
 
 - (void)create_notice {
     CreateNoticeViewController *noticeView = [[CreateNoticeViewController alloc] initWithNibName:@"CreateNoticeViewController" bundle:nil];
-    noticeView.cid = [self courseId];
+    noticeView.cid = [NSString stringWithFormat:@"%ld", (long)simpleCourse.id];
     [self.navigationController pushViewController:noticeView animated:YES];
-}
-
-- (void)add_manager {
-    ManagerViewController *managerView = [[ManagerViewController alloc] initWithNibName:@"ManagerViewController" bundle:nil];
-    managerView.courseId = [self courseId];
-    managerView.courseName = [self courseName];
-    [self.navigationController pushViewController:managerView animated:YES];
-}
-
-- (void)show_grades {
-    GradeViewController *gradeView = [[GradeViewController alloc] initWithNibName:@"GradeViewController" bundle:nil];
-    gradeView.cid = [self courseId];
-    [self.navigationController pushViewController:gradeView animated:YES];
-}
-
-- (void)export_grades {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
-    hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"Exporting Grades", nil);
-    hud.yOffset = -40.0f;
-    
-    [BTAPIs exportGradesWithCourse:[self courseId]
-                           success:^(Email *email) {
-                               [hud hide:YES];
-                               NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Exporting Grades has been finished.\nPlease check your email.\n%@", nil), email.email];
-                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Exporting Grades", nil)
-                                                                               message:message
-                                                                              delegate:self
-                                                                     cancelButtonTitle:nil
-                                                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-                               [alert show];
-                           } failure:^(NSError *error) {
-                               [hud hide:YES];
-                           }];
 }
 
 - (void)dettend_course {
@@ -799,7 +785,7 @@
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Unjoining Course", nil);
     hud.yOffset = -40.0f;
-    [BTAPIs dettendCourse:[self courseId]
+    [BTAPIs dettendCourse:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]
                   success:^(User *user) {
                       [hud hide:YES];
                       [self.navigationController popViewControllerAnimated:YES];
@@ -808,37 +794,24 @@
                   }];
 }
 
+- (void)open_course {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [BTColor BT_navy:0.7];
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Opening Course", nil);
+    hud.yOffset = -40.0f;
+    [BTAPIs openCourse:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]
+                  success:^(User *user) {
+                      [hud hide:YES];
+                      //Go To Course
+                  } failure:^(NSError *error) {
+                      [hud hide:YES];
+                  }];
+}
+
 #pragma Helpers
--(NSString *)courseId {
-    NSInteger courseId = course.id;
-    if (courseId == 0)
-        courseId = simpleCourse.id;
-    return [NSString stringWithFormat:@"%d", (int)courseId];
-}
-
--(BOOL)opened {
-    BOOL opened = course.opened;
-    if (course == nil)
-        opened = simpleCourse.opened;
-    return opened;
-}
-
--(NSString *)courseName {
-    NSString *courseName = course.name;
-    if (courseName == nil)
-        courseName = simpleCourse.name;
-    return courseName;
-}
-
--(NSString *)profName {
-    NSString *profName = course.professor_name;
-    if (profName == nil)
-        profName = simpleCourse.professor_name;
-    return profName;
-}
-
 -(NSString *)schoolName {
-    NSString *schoolName = course.school.name;
+    NSString *schoolName;
     if (schoolName == nil) {
         user = [BTUserDefault getUser];
         for (int i = 0; i < [user.enrolled_schools count]; i++)
@@ -851,25 +824,25 @@
     return schoolName;
 }
 
--(NSString *)attendanceRate {
-    NSString *grade = course.attendance_rate;
-    if (grade == nil)
-        grade = @"0";
-    return grade;
-}
-
--(NSString *)clickerRate {
-    NSString *grade = course.clicker_rate;
-    if (grade == nil)
-        grade = @"0";
-    return grade;
-}
-
--(NSString *)noticeUnseen {
-    NSString *grade = course.notice_unseen;
-    if (grade == nil)
-        grade = @"0";
-    return grade;
-}
+//-(NSString *)attendanceRate {
+//    NSString *grade = course.attendance_rate;
+//    if (grade == nil)
+//        grade = @"0";
+//    return grade;
+//}
+//
+//-(NSString *)clickerRate {
+//    NSString *grade = course.clicker_rate;
+//    if (grade == nil)
+//        grade = @"0";
+//    return grade;
+//}
+//
+//-(NSString *)noticeUnseen {
+//    NSString *grade = course.notice_unseen;
+//    if (grade == nil)
+//        grade = @"0";
+//    return grade;
+//}
 
 @end

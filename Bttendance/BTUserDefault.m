@@ -49,10 +49,10 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [defaults setObject:jsonString forKey:UserJSONKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     dispatch_async( dispatch_get_main_queue(), ^{
+        [defaults setObject:jsonString forKey:UserJSONKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
     });
 }
@@ -99,8 +99,12 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [defaults setObject:jsonString forKey:CoursesJSONKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [defaults setObject:jsonString forKey:CoursesJSONKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CoursesUpdated object:nil];
+    });
 }
 
 + (NSArray *)getPostsOfArray:(NSString *)courseId {
@@ -126,8 +130,11 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    [defaults setObject:jsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [defaults setObject:jsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    });
 }
 
 + (NSArray *)getSchools {

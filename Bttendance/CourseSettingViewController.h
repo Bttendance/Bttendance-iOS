@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Course.h"
 
-@interface CourseSettingViewController : UIViewController
+@interface CourseSettingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+
+@property(retain, nonatomic) SimpleCourse *simpleCourse;
+@property(weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
