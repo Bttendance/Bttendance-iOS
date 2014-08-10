@@ -9,6 +9,7 @@
 #import "CourseSettingViewController.h"
 #import "ManagerViewController.h"
 #import "GradeViewController.h"
+#import "StudentListViewController.h"
 #import "Course.h"
 #import "BTUserDefault.h"
 #import "PasswordCell.h"
@@ -56,17 +57,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9 + self.course.managers.count;
+    return 11 + self.course.managers.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         
     if (indexPath.row == self.course.managers.count + 2
-        || indexPath.row == self.course.managers.count + 6)
+        || indexPath.row == self.course.managers.count + 4
+        || indexPath.row == self.course.managers.count + 8)
         return 60;
     
     if (indexPath.row == 0
-        ||indexPath.row == self.course.managers.count + 8)
+        ||indexPath.row == self.course.managers.count + 10)
         return 45;
     
     return 47;
@@ -100,13 +102,39 @@
             cell.password.text = NSLocalizedString(@"Add Manager", nil);
             cell.arrow.hidden = NO;
         } else {
-            cell.password.text = ((SimpleUser *)self.course.managers[indexPath.row - 1]).full_name;
+            cell.password.text = [NSString stringWithFormat:@"%@ - %@", ((SimpleUser *)self.course.managers[indexPath.row - 1]).full_name, ((SimpleUser *)self.course.managers[indexPath.row - 1]).email];
             cell.arrow.hidden = YES;
         }
         return cell;
     }
     
     else if (indexPath.row == 2 + self.course.managers.count) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
+        title.text = NSLocalizedString(@"STUDENTS", nil);
+        title.font = [UIFont boldSystemFontOfSize:12];
+        title.textColor = [BTColor BT_silver:1.0];
+        [cell addSubview:title];
+        return cell;
+    }
+    
+    else if (indexPath.row == 3 + self.course.managers.count) {
+        static NSString *CellIdentifier = @"PasswordCell";
+        PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.arrow.hidden = NO;
+        cell.password.text = NSLocalizedString(@"학생 리스트 보기", nil);
+        return cell;
+    }
+    
+    else if (indexPath.row == 4 + self.course.managers.count) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
@@ -118,7 +146,7 @@
         return cell;
     }
     
-    else if (indexPath.row > 2 + self.course.managers.count && indexPath.row < 6 + self.course.managers.count) {
+    else if (indexPath.row > 4 + self.course.managers.count && indexPath.row < 8 + self.course.managers.count) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -130,13 +158,13 @@
         cell.arrow.hidden = NO;
         
         switch (indexPath.row - self.course.managers.count) {
-            case 3:
+            case 5:
                 cell.password.text = NSLocalizedString(@"Export Grades", nil);
                 break;
-            case 4:
+            case 6:
                 cell.password.text = NSLocalizedString(@"Clicker Grades", nil);
                 break;
-            case 5:
+            case 7:
             default:
                 cell.password.text = NSLocalizedString(@"Attendance Grades", nil);
                 break;
@@ -144,7 +172,7 @@
         return cell;
     }
     
-    else if (indexPath.row == self.course.managers.count + 7) {
+    else if (indexPath.row == self.course.managers.count + 9) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -158,7 +186,7 @@
         return cell;
     }
     
-    else if (indexPath.row == self.course.managers.count + 8) {
+    else if (indexPath.row == self.course.managers.count + 10) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
@@ -181,22 +209,26 @@
     if (indexPath.row == 1 + self.course.managers.count) {
         [self addManager];
     }
+    
+    if (indexPath.row == 3 + self.course.managers.count) {
+        [self students];
+    }
         
     switch (indexPath.row - self.course.managers.count) {
-        case 3:
+        case 5:
             [self exportGrades];
             break;
-        case 4:
+        case 6:
             [self showClickerGrades];
             break;
-        case 5:
+        case 7:
             [self showAttendanceGrades];
             break;
         default:
             break;
     }
     
-    if (indexPath.row == self.course.managers.count + 7) {
+    if (indexPath.row == self.course.managers.count + 9) {
         [self closeCourse];
     }
 }
@@ -207,6 +239,12 @@
     managerView.courseId = [NSString stringWithFormat:@"%ld", (long)self.simpleCourse.id];
     managerView.courseName = self.simpleCourse.name;
     [self.navigationController pushViewController:managerView animated:YES];
+}
+
+- (void)students {
+    StudentListViewController *studentListView = [[StudentListViewController alloc] initWithNibName:@"StudentListViewController" bundle:nil];
+    studentListView.course = self.course;
+    [self.navigationController pushViewController:studentListView animated:YES];
 }
 
 - (void)exportGrades {
@@ -266,6 +304,7 @@
         
         [BTAPIs closeCourse:[NSString stringWithFormat:@"%ld", (long)self.simpleCourse.id]
                     success:^(User *user) {
+                        [self.navigationController popViewControllerAnimated:YES];
                         [hud hide:YES];
                     } failure:^(NSError *error) {
                         [hud hide:YES];

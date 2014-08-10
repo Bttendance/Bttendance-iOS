@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddQuestionViewController : UIViewController
+@interface AddQuestionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 

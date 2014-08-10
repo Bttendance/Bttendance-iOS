@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GradeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-
     NSArray *data;
     NSInteger rowcount;
 }

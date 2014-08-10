@@ -179,6 +179,7 @@
 
 #pragma Posts APIs
 + (void)startAttendanceWithCourse:(NSString *)course_id
+                          andType:(NSString *)type
                           success:(void (^)(Post *post))success
                           failure:(void (^)(NSError *error))failure;
 

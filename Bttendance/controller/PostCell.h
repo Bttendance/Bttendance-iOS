@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 
-@interface PostCell : UITableViewCell {
-}
+@interface PostCell : UITableViewCell
 
 + (PostCell *)cellFromNibNamed:(NSString *)nibName;
 
@@ -26,5 +25,12 @@
 
 @property(retain, nonatomic) Post *post;
 @property(assign, nonatomic) NSInteger gap;
+
+@property(weak, nonatomic) IBOutlet UIView *selected_bg;
+
+@property(strong, nonatomic) NSTimer *timer;
+
+- (void)startTimerAsAttendance;
+- (void)startTimerAsClicker;
 
 @end

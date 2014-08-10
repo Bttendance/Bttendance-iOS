@@ -26,6 +26,10 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 - (void)copyDataFromClicker:(id)object;
 - (NSString *)detailText;
+- (NSString *)participation;
+- (NSString *)percent:(NSInteger)choice;
+- (NSString *)choice:(NSInteger)userId;
+- (NSInteger)choiceInt:(NSInteger)userId;
 
 @end
 

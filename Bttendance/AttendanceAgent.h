@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "Post.h"
 
 @interface AttendanceAgent : NSObject<UIAlertViewDelegate, CBCentralManagerDelegate, CBPeripheralManagerDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate> {
     
@@ -25,7 +26,13 @@
 
 + (AttendanceAgent *)sharedInstance;
 
-- (void)startAttdWithCourseName:(NSString *)courseName andID:(NSString *)courseID;
+
+- (void)startAttendanceWithCourse:(NSString *)course_id
+                    andCourseName:(NSString *)courseName
+                          andType:(NSString *)type
+                          success:(void (^)(Post *post))success
+                          failure:(void (^)(NSError *error))failure;
+
 - (void)startAttdScanWithCourseIDs:(NSArray *)courseIDs;
 - (void)startAttdScanWithAttendanceIDs:(NSArray *)attendanceIDs;
 

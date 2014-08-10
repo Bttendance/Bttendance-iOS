@@ -52,6 +52,7 @@
             SimpleUser *manager = [[SimpleUser alloc] initWithDictionary:dic];
             [managers addObject:manager];
         }
+        self.managers = managers;
         
         self.students_count = [[dictionary objectForKey:@"students_count"] integerValue];
         self.posts_count = [[dictionary objectForKey:@"posts_count"] integerValue];

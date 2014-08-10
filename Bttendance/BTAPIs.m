@@ -140,8 +140,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/users/signup"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             [BTUserDefault setUser:responseObject];
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                 [BTUserDefault setUser:responseObject];
                                  User *user = [[User alloc] initWithDictionary:responseObject];
                                  dispatch_async( dispatch_get_main_queue(), ^{
                                      success(user);
@@ -168,8 +168,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/auto/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -197,8 +197,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -244,8 +244,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/password"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -270,8 +270,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/full_name"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -296,8 +296,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/email"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -341,8 +341,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/courses"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setCourses:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setCourses:responseObject];
                                 NSMutableArray *courses = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
                                     Course *course = [[Course alloc] initWithDictionary:dic];
@@ -373,8 +373,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/devices/update/notification_key"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -400,8 +400,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/attendance"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -426,8 +426,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -452,8 +452,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/notice"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -576,8 +576,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/identifications/update/identity"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -653,8 +653,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/schools/enroll"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -684,8 +684,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create/instant"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             [BTUserDefault setUser:responseObject];
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                 [BTUserDefault setUser:responseObject];
                                  User *user = [[User alloc] initWithDictionary:responseObject];
                                  dispatch_async( dispatch_get_main_queue(), ^{
                                      success(user);
@@ -734,8 +734,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/attend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setUser:responseObject];
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(user);
@@ -785,8 +785,8 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/feed"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setPostsArray:responseObject ofCourse:course_id];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                [BTUserDefault setPostArray:responseObject ofCourse:course_id];
                                 NSMutableArray *posts = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
                                     Post *post = [[Post alloc] initWithDictionary:dic];
@@ -882,6 +882,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/students"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setStudentsArray:responseObject ofCourse:course_id];
                             NSMutableArray *simpleUsers = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
                                 SimpleUser *simpleUser = [[SimpleUser alloc] initWithDictionary:dic];
@@ -965,6 +966,7 @@ static UIAlertView *Ooooppss;
 
 #pragma Posts APIs
 + (void)startAttendanceWithCourse:(NSString *)course_id
+                          andType:(NSString *)type
                           success:(void (^)(Post *post))success
                           failure:(void (^)(NSError *error))failure {
     
@@ -972,7 +974,8 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"course_id" : course_id,
+                             @"type" : type};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/attendance"]
                       parameters:params

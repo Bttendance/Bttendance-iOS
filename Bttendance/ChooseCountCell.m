@@ -33,9 +33,9 @@
     self.bg5.backgroundColor = [BTColor BT_silver:1.0];
     
     self.typeLable2.backgroundColor = [BTColor BT_navy:1.0];
-    self.typeLable3.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable4.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable5.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable3.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable4.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable5.backgroundColor = [BTColor BT_white:1.0];
     
     self.typeLable2.textColor = [BTColor BT_cyan:1.0];
     self.typeLable3.textColor = [BTColor BT_silver:1.0];
@@ -57,10 +57,10 @@
     self.bg4.backgroundColor = [BTColor BT_silver:1.0];
     self.bg5.backgroundColor = [BTColor BT_silver:1.0];
     
-    self.typeLable2.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable2.backgroundColor = [BTColor BT_white:1.0];
     self.typeLable3.backgroundColor = [BTColor BT_navy:1.0];
-    self.typeLable4.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable5.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable4.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable5.backgroundColor = [BTColor BT_white:1.0];
     
     self.typeLable2.textColor = [BTColor BT_silver:1.0];
     self.typeLable3.textColor = [BTColor BT_cyan:1.0];
@@ -82,10 +82,10 @@
     self.bg4.backgroundColor = [BTColor BT_cyan:1.0];
     self.bg5.backgroundColor = [BTColor BT_silver:1.0];
     
-    self.typeLable2.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable3.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable2.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable3.backgroundColor = [BTColor BT_white:1.0];
     self.typeLable4.backgroundColor = [BTColor BT_navy:1.0];
-    self.typeLable5.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable5.backgroundColor = [BTColor BT_white:1.0];
     
     self.typeLable2.textColor = [BTColor BT_silver:1.0];
     self.typeLable3.textColor = [BTColor BT_silver:1.0];
@@ -107,9 +107,9 @@
     self.bg4.backgroundColor = [BTColor BT_silver:1.0];
     self.bg5.backgroundColor = [BTColor BT_cyan:1.0];
     
-    self.typeLable2.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable3.backgroundColor = [BTColor BT_grey:1.0];
-    self.typeLable4.backgroundColor = [BTColor BT_grey:1.0];
+    self.typeLable2.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable3.backgroundColor = [BTColor BT_white:1.0];
+    self.typeLable4.backgroundColor = [BTColor BT_white:1.0];
     self.typeLable5.backgroundColor = [BTColor BT_navy:1.0];
     
     self.typeLable2.textColor = [BTColor BT_silver:1.0];

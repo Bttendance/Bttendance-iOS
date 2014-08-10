@@ -18,6 +18,8 @@
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)copyDataFromNotice:(id)object;
+- (BOOL)seen:(NSInteger)userId;
 
 @end
 

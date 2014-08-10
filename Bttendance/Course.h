@@ -32,7 +32,7 @@
 @property(strong, nonatomic) NSString  *name;
 @property(strong, nonatomic) NSString  *professor_name;
 @property(strong, nonatomic) SimpleSchool  *school;
-@property(assign) NSArray  *managers;
+@property(strong, nonatomic) NSArray  *managers;
 @property(assign) NSInteger  students_count;
 @property(assign) NSInteger  posts_count;
 @property(strong, nonatomic) NSString  *code;

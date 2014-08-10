@@ -18,4 +18,10 @@
 
 + (NSString *)stringFromDate:(NSDate *)date;
 
++ (NSString *)detailedStringFromDate:(NSDate *)date;
+
++ (NSString *)dateStringFromDate:(NSDate *)date;
+
++ (NSString *)timeStringFromDate:(NSDate *)date;
+
 @end

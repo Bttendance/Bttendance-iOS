@@ -12,7 +12,7 @@
     NSString *courseId;
     NSString *courseName;
     NSIndexPath *searchField;
-    NSString *managerName;
+    NSString *managerEmail;
     NSString *managerFullName;
 }
 

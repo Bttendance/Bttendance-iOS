@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Question.h"
 
-@interface ClickerQuestionViewController : UIViewController
+@protocol ClickerQuestionViewControllerDelegate <NSObject>
+
+@required
+- (void)chosenQuestion:(Question *)chosen;
+@end
+
+@interface ClickerQuestionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (nonatomic, weak) id<ClickerQuestionViewControllerDelegate> delegate;
 
 @end

@@ -20,6 +20,8 @@
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)copyDataFromAttendance:(id)object;
+- (NSInteger)stateInt:(NSInteger)userId;
 
 @end
 

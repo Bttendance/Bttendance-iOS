@@ -27,6 +27,24 @@
     return self;
 }
 
+- (void)copyDataFromAttendance:(id)object {
+    Attendance *attendance = (Attendance *)object;
+    self.checked_students = attendance.checked_students;
+    self.late_students = attendance.late_students;
+}
+
+- (NSInteger)stateInt:(NSInteger)userId {
+    for (int i = 0; i < self.checked_students.count; i++)
+        if([self.checked_students[i] integerValue] == userId)
+            return 1;
+    
+    for (int i = 0; i < self.late_students.count; i++)
+        if([self.late_students[i] integerValue] == userId)
+            return 2;
+    
+    return 0;
+}
+
 @end
 
 

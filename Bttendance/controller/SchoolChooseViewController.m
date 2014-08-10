@@ -143,7 +143,7 @@
     } else {
         data0 = nil;
         rowcount0 = 0;
-        data1 = [NSMutableArray arrayWithArray:schools];
+        data1 = [NSMutableArray arrayWithArray:sortedSchools];
         rowcount1 = data1.count;
         sectionCount = 1;
         [self.tableview reloadData];

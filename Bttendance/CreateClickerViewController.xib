@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateClickerViewController">
             <connections>
-                <outlet property="loadBt" destination="cUP-JR-Bia" id="X6u-2A-DuS"/>
                 <outlet property="tableview" destination="had-xm-uLl" id="OqK-Wj-WZU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="had-xm-uLl">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="had-xm-uLl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -25,31 +24,12 @@
                         <outlet property="delegate" destination="-1" id="u2b-P6-J8z"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUP-JR-Bia">
-                    <rect key="frame" x="0.0" y="522" width="320" height="46"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="46" id="aRo-Dn-gAf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="Load a Saved Question">
-                        <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="loadQuestion:" destination="-1" eventType="touchUpInside" id="pzK-P0-KGK"/>
-                    </connections>
-                </button>
             </subviews>
-            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="had-xm-uLl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C6O-CC-YyW"/>
-                <constraint firstItem="cUP-JR-Bia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DQe-Gh-d3v"/>
-                <constraint firstAttribute="trailing" secondItem="had-xm-uLl" secondAttribute="trailing" id="MBq-cU-Uf2"/>
-                <constraint firstItem="cUP-JR-Bia" firstAttribute="top" secondItem="had-xm-uLl" secondAttribute="bottom" id="gcR-m7-VbU"/>
-                <constraint firstAttribute="trailing" secondItem="cUP-JR-Bia" secondAttribute="trailing" id="oP8-L1-Ue8"/>
-                <constraint firstItem="had-xm-uLl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qDf-Ja-klT"/>
-                <constraint firstAttribute="bottom" secondItem="cUP-JR-Bia" secondAttribute="bottom" id="snC-Uu-abc"/>
+                <constraint firstItem="had-xm-uLl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DHJ-iL-1i3"/>
+                <constraint firstAttribute="bottom" secondItem="had-xm-uLl" secondAttribute="bottom" id="DQp-5w-R9J"/>
+                <constraint firstItem="had-xm-uLl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GkT-io-YcD"/>
+                <constraint firstAttribute="trailing" secondItem="had-xm-uLl" secondAttribute="trailing" id="IdR-kI-cff"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

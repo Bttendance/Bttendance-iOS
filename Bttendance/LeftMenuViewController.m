@@ -142,14 +142,16 @@
         
         NSString *attendance_rate = @"";
         NSString *clicker_rate = @"";
-        NSString *notice_unseen = @"";
+        NSInteger notice_unseen = 0;
+        NSInteger students_count = 0;
         
         if (self.courses != nil && [self.courses count] != 0) {
             for (Course *course in self.courses) {
                 if (course.id == openedCourse.id) {
                     attendance_rate = course.attendance_rate;
                     clicker_rate = course.clicker_rate;
-                    notice_unseen = course.notice_unseen;
+                    notice_unseen = [course.notice_unseen integerValue];
+                    students_count = course.students_count;
                 }
             }
         }
@@ -157,9 +159,9 @@
         cell.message1.text = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %1$@%%  출석률 %2$@%%", nil), clicker_rate ,attendance_rate];
         
         if ([self.user supervising:openedCourse.id])
-            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽지 않은 학생 수 %@", nil), notice_unseen];
+            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽은 학생 수 %ld/%ld", nil), (long)(students_count - notice_unseen), (long)students_count];
         else
-            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %@", nil), notice_unseen];
+            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %ld", nil), (long)notice_unseen];
         
         return cell;
     }

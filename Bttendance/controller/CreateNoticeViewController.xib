@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateNoticeViewController">
             <connections>
+                <outlet property="information" destination="OsN-ia-oEd" id="De9-a4-Yec"/>
                 <outlet property="message" destination="4hS-vL-RpS" id="gxt-Gv-S5W"/>
                 <outlet property="placeholder" destination="32J-4R-vFL" id="Ik2-wf-aGl"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -17,19 +18,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write an announcement." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32J-4R-vFL">
-                    <rect key="frame" x="86" y="17" width="159" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write an announcement." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32J-4R-vFL">
+                    <rect key="frame" x="86" y="67" width="159" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hS-vL-RpS">
-                    <rect key="frame" x="80" y="11" width="230" height="332"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4hS-vL-RpS">
+                    <rect key="frame" x="80" y="61" width="230" height="332"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="332" id="bhz-5n-zLp"/>
-                    </constraints>
                     <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -37,23 +35,24 @@
                         <outlet property="delegate" destination="-1" id="hH4-Mr-qpj"/>
                     </connections>
                 </textView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="notice.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-o6-fOg">
-                    <rect key="frame" x="16" y="18" width="52" height="52"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="notice.png" id="Qnz-o6-fOg">
+                    <rect key="frame" x="16" y="68" width="52" height="52"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="52" id="Fdy-rr-Cff"/>
-                        <constraint firstAttribute="height" constant="52" id="pnc-Hq-fXL"/>
-                    </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" id="gAK-fR-str">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OsN-ia-oEd">
+                    <rect key="frame" x="16" y="13" width="288" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="Qnz-o6-fOg" firstAttribute="top" secondItem="1" secondAttribute="top" constant="18" id="38p-jc-zCl"/>
-                <constraint firstItem="4hS-vL-RpS" firstAttribute="top" secondItem="1" secondAttribute="top" constant="11" id="B5k-vP-vAL"/>
-                <constraint firstItem="Qnz-o6-fOg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="Rvp-3R-XYh"/>
-                <constraint firstItem="4hS-vL-RpS" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="80" id="X9B-JV-WCm"/>
-                <constraint firstAttribute="trailing" secondItem="4hS-vL-RpS" secondAttribute="trailing" constant="10" id="dqy-RL-J8l"/>
-            </constraints>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

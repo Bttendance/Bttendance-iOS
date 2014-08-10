@@ -77,6 +77,11 @@
         Notice *notice = [[Notice alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:NoticeUpdated object:notice];
     }
+    
+    if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"post"]) {
+        Post *post = [[Post alloc] initWithDictionary:[data objectForKey:@"args"][0]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PostUpdated object:post];
+    }
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet {

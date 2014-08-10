@@ -50,4 +50,37 @@
     return [dateformatter stringFromDate:date];
 }
 
++ (NSString *)detailedStringFromDate:(NSDate *)date {
+    if (date == nil)
+        return nil;
+    
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
+    [dateformatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+    
+    return [dateformatter stringFromDate:date];
+}
+
++ (NSString *)dateStringFromDate:(NSDate *)date {
+    if (date == nil)
+        return nil;
+    
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
+    [dateformatter setDateFormat:@"yyyy/MM/dd"];
+    
+    return [dateformatter stringFromDate:date];
+}
+
++ (NSString *)timeStringFromDate:(NSDate *)date {
+    if (date == nil)
+        return nil;
+    
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
+    [dateformatter setDateFormat:@"HH:mm"];
+    
+    return [dateformatter stringFromDate:date];
+}
+
 @end

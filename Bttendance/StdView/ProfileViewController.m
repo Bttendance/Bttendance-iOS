@@ -134,7 +134,7 @@
         
         switch (indexPath.row) {
             case 0:
-                cell.title.text = NSLocalizedString(@"Name", nil);
+                cell.title.text = NSLocalizedString(@"Name for profile", nil);
                 cell.data.text = self.user.full_name;
                 return cell;
             case 1:

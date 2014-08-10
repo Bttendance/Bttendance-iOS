@@ -14,7 +14,7 @@
 
 @interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
 
-    NSArray *data;
+    NSMutableArray *data;
 
     NSString *my_id;
     
@@ -25,6 +25,6 @@
 }
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-@property(retain, nonatomic) SimpleCourse *simpleCourse;
+@property(strong, nonatomic) SimpleCourse *simpleCourse;
 
 @end

@@ -7,15 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClickerQuestionViewController.h"
 
-@interface CreateClickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CreateClickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, ClickerQuestionViewControllerDelegate>
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
-@property(weak, nonatomic) IBOutlet UIButton *loadBt;
-
 @property(retain, nonatomic) NSString *cid;
-
-- (void)start_clicker;
--(IBAction)loadQuestion:(id)sender;
 
 @end

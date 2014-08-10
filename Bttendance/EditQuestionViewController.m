@@ -101,22 +101,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        UIFont *cellfont = [UIFont boldSystemFontOfSize:14];
-        NSString *rawmessage = self.message;
-        NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
-        CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){196, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-        return MAX(100, ceil(MessageLabelSize.size.height) + 16);
+        self.textview.text = self.message;
+        [self.textview sizeToFit];
+        self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
+        return MAX(70, ceil(self.textview.frame.size.height));
     } else
         return 120;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        UIFont *cellfont = [UIFont boldSystemFontOfSize:14];
-        NSString *rawmessage = self.message;
-        NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
-        CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){196, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, MAX(100, ceil(MessageLabelSize.size.height) + 16))];
+        self.textview.text = self.message;
+        [self.textview sizeToFit];
+        self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, MAX(70, ceil(self.textview.frame.size.height)))];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         [cell addSubview:self.textview];
@@ -136,13 +134,13 @@
                 [cell chooseType2:nil];
                 break;
             case 3:
-                [cell chooseType2:nil];
+                [cell chooseType3:nil];
                 break;
             case 4:
-                [cell chooseType2:nil];
+                [cell chooseType4:nil];
                 break;
             case 5:
-                [cell chooseType2:nil];
+                [cell chooseType5:nil];
                 break;
             default:
                 break;
@@ -152,6 +150,29 @@
         cell.typeMessage3.text = NSLocalizedString(@"Choices", nil);
         cell.typeMessage4.text = NSLocalizedString(@"Choices", nil);
         cell.typeMessage5.text = NSLocalizedString(@"Choices", nil);
+        
+        [cell.typeMessage2 sizeToFit];
+        [cell.typeMessage3 sizeToFit];
+        [cell.typeMessage4 sizeToFit];
+        [cell.typeMessage5 sizeToFit];
+        
+        CGFloat width = cell.typeMessage2.frame.size.width + 8 + 36;
+        CGFloat margin = (160 - width) / 2 - 5; //margin보다 조금 왼쪽으로 옮김
+        
+        cell.bg2.frame = CGRectMake(margin, 14, 36, 36);
+        cell.bg3.frame = CGRectMake(160 + margin, 14, 36, 36);
+        cell.bg4.frame = CGRectMake(margin, 70, 36, 36);
+        cell.bg5.frame = CGRectMake(160 + margin, 70, 36, 36);
+        
+        cell.typeLable2.frame = CGRectMake(margin + 2, 16, 32, 32);
+        cell.typeLable3.frame = CGRectMake(162 + margin, 16, 32, 32);
+        cell.typeLable4.frame = CGRectMake(margin + 2, 72, 32, 32);
+        cell.typeLable5.frame = CGRectMake(162 + margin, 72, 32, 32);
+        
+        cell.typeMessage2.frame = CGRectMake(44 + margin, 23, width - 8 - 36, 20);
+        cell.typeMessage3.frame = CGRectMake(204 + margin, 23, width - 8 - 36, 20);
+        cell.typeMessage4.frame = CGRectMake(44 + margin, 78, width - 8 - 36, 20);
+        cell.typeMessage5.frame = CGRectMake(204 + margin, 78, width - 8 - 36, 20);
         
         return cell;
     } else {
@@ -164,12 +185,13 @@
             cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
+        cell_new.contentView.backgroundColor = [BTColor BT_white:1.0];
+        
         [cell_new.button setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
         [cell_new.button setBackgroundImage:[BTColor imageWithRedColor:0.8] forState:UIControlStateNormal];
         [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateHighlighted];
         [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateSelected];
         
-        cell_new.contentView.backgroundColor = [BTColor BT_white:1.0];
         cell_new.button.frame = CGRectMake(9, 12, 302, 43);
         
         [cell_new.button addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];

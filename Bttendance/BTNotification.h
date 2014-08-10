@@ -30,6 +30,7 @@
 #define AttendanceUpdated @"attendance_updated"
 #define ClickerUpdated @"clicker_updated"
 #define NoticeUpdated @"notice_updated"
+#define PostUpdated @"post_updated"
 
 @interface BTNotification : NSObject
 

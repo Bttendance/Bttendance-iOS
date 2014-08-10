@@ -74,6 +74,8 @@
     self.animationDuration = 0.3f;
     self.delegate = self;
     
+    self.contentViewController.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20);
+    
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
     [AttendanceAgent sharedInstance];

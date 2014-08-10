@@ -151,6 +151,7 @@
                success:^(User *user) {
                    [hud hide:YES];
                    managerFullName = user.full_name;
+                   managerEmail = user.email;
                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"Would you like to add %1$@ as a manager of course %2$@", nil), user.full_name, courseName];
                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Manager", nil)
                                                                    message:message
@@ -174,7 +175,7 @@
         hud.yOffset = -40.0f;
         
         [BTAPIs addManagerWithCourse:courseId
-                             manager:managerName
+                             manager:managerEmail
                              success:^(Course *course) {
                                  [hud hide:YES];
                                  NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ is now manager of %@.", nil), managerFullName, courseName];

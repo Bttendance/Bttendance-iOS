@@ -15,6 +15,7 @@
 @property(retain, nonatomic) NSString *cid;
 @property(weak, nonatomic) IBOutlet UITextView *message;
 @property(weak, nonatomic) IBOutlet UILabel *placeholder;
+@property(weak, nonatomic) IBOutlet UILabel *information;
 
 - (void)post_Notice;
 

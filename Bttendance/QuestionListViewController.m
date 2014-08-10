@@ -42,7 +42,7 @@
     titlelabel.text = NSLocalizedString(@"Clicker Questions", @"");
     [titlelabel sizeToFit];
     
-    self.questions = [BTUserDefault getQuestions];
+    self.questions = [NSArray array];
     
     [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
     [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];

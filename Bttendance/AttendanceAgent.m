@@ -45,19 +45,29 @@
 }
 
 #pragma Attendance Start Actions
-- (void)startAttdWithCourseName:(NSString *)courseName andID:(NSString *)courseID {
+
+- (void)startAttendanceWithCourse:(NSString *)courseID
+                    andCourseName:(NSString *)courseName
+                          andType:(NSString *)type
+                          success:(void (^)(Post *post))success
+                          failure:(void (^)(NSError *error))failure {
+    
     attdStartingCourseID = [NSString stringWithFormat:@"%@", courseID];
     UIAlertView *alert;
     switch ([myCmanager state]) {
-        case CBCentralManagerStatePoweredOn: //power-on
-            alert = [[UIAlertView alloc] initWithTitle:courseName
-                                               message:NSLocalizedString(@"Do you want to start attendance check?", nil)
-                                              delegate:self
-                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                     otherButtonTitles:NSLocalizedString(@"Start", nil), nil];
-            alert.tag = 200;
+        case CBCentralManagerStatePoweredOn: { //powered on
+            
+            [BTAPIs startAttendanceWithCourse:attdStartingCourseID
+                                      andType:type
+                                      success:^(Post *post) {
+                                          success(post);
+                                      } failure:^(NSError *error) {
+                                          failure(nil);
+                                      }];
             break;
+        }
         case CBCentralManagerStatePoweredOff: //powered off
+            failure(nil);
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Turn On Bluetooth", nil)
                                                message:NSLocalizedString(@"Your bluetooth is powered off. Before start Attedance check turn your bluetooth on.", nil)
                                               delegate:self
@@ -69,6 +79,7 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
+            failure(nil);
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Unsupported", nil)
                                                message:NSLocalizedString(@"Your device doesn't support proper bluetooth version.", nil)
                                               delegate:self
@@ -77,13 +88,6 @@
             break;
     }
     [alert show];
-}
-
-- (void)startAttdCheckWithCourse {
-    [BTAPIs startAttendanceWithCourse:attdStartingCourseID
-                              success:^(Post *post) {
-                              } failure:^(NSError *error) {
-                              }];
 }
 
 #pragma Attendance Scan Courses Actions
@@ -180,8 +184,6 @@
 
 #pragma UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 200 && buttonIndex == 1)
-        [self startAttdCheckWithCourse];
     
     if (alertView.tag == 400)
         myPmanager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];

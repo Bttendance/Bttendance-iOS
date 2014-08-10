@@ -64,6 +64,85 @@
     return clickerMessage;
 }
 
+- (NSString *)participation {
+    return [NSString stringWithFormat:@"%ld", (long) (self.a_students.count + self.b_students.count + self.c_students.count + self.d_students.count + self.e_students.count)];
+}
+
+- (NSString *)choice:(NSInteger)userId {
+    
+    for (int i = 0; i < self.a_students.count; i++)
+        if([self.a_students[i] integerValue] == userId)
+            return @"A";
+    
+    for (int i = 0; i < self.b_students.count; i++)
+        if([self.b_students[i] integerValue] == userId)
+            return @"B";
+    
+    for (int i = 0; i < self.c_students.count; i++)
+        if([self.c_students[i] integerValue] == userId)
+            return @"C";
+    
+    for (int i = 0; i < self.d_students.count; i++)
+        if([self.d_students[i] integerValue] == userId)
+            return @"D";
+    
+    for (int i = 0; i < self.e_students.count; i++)
+        if([self.e_students[i] integerValue] == userId)
+            return @"E";
+    
+    return nil;
+}
+- (NSInteger)choiceInt:(NSInteger)userId {
+    
+    for (int i = 0; i < self.a_students.count; i++)
+        if([self.a_students[i] integerValue] == userId)
+            return 1;
+    
+    for (int i = 0; i < self.b_students.count; i++)
+        if([self.b_students[i] integerValue] == userId)
+            return 2;
+    
+    for (int i = 0; i < self.c_students.count; i++)
+        if([self.c_students[i] integerValue] == userId)
+            return 3;
+    
+    for (int i = 0; i < self.d_students.count; i++)
+        if([self.d_students[i] integerValue] == userId)
+            return 4;
+    
+    for (int i = 0; i < self.e_students.count; i++)
+        if([self.e_students[i] integerValue] == userId)
+            return 5;
+    
+    return 6;
+}
+
+- (NSString *)percent:(NSInteger)choice {
+    float participatedStudents = self.a_students.count + self.b_students.count + self.c_students.count + self.d_students.count + self.e_students.count;
+    NSInteger a=0, b=0, c=0, d=0, e=0;
+    if (participatedStudents != 0) {
+        b = floor((float)self.b_students.count * 100.0 / participatedStudents + 0.5);
+        c = floor((float)self.c_students.count * 100.0 / participatedStudents + 0.5);
+        d = floor((float)self.d_students.count * 100.0 / participatedStudents + 0.5);
+        e = floor((float)self.e_students.count * 100.0 / participatedStudents + 0.5);
+        a = 100 - b - c - d - e;
+    }
+    
+    switch (choice) {
+        case 1:
+            return [NSString stringWithFormat:@"%ld", (long)a];
+        case 2:
+            return [NSString stringWithFormat:@"%ld", (long)b];
+        case 3:
+            return [NSString stringWithFormat:@"%ld", (long)c];
+        case 4:
+            return [NSString stringWithFormat:@"%ld", (long)d];
+        case 5:
+        default:
+            return [NSString stringWithFormat:@"%ld", (long)e];
+    }
+}
+
 - (NSUInteger)numberOfSlicesInPieChart:(XYPieChart *)pieChart {
     return self.choice_count;
 }
