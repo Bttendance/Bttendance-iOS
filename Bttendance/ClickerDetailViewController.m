@@ -144,7 +144,14 @@
         }
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
-            NSString *rawmessage = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [BTDateFormatter detailedStringFromDate:post.createdAt]];
+            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [BTDateFormatter detailedStringFromDate:post.createdAt]];
+            NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+            NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
+            NSString *rawmessage;
+            if (left >= 0)
+                rawmessage = [NSString stringWithFormat:@"%@\n%@", rawmessage1, rawmessage2];
+            else
+                rawmessage = rawmessage1;
             NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
             CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
             return ceil(MessageLabelSize.size.height) + 3;
@@ -198,7 +205,15 @@
         }
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
-            NSString *rawmessage = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [BTDateFormatter detailedStringFromDate:post.createdAt]];
+            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [BTDateFormatter detailedStringFromDate:post.createdAt]];
+            NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+            NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
+            NSString *rawmessage;
+            if (left >= 0) {
+                rawmessage = [NSString stringWithFormat:@"%@\n%@", rawmessage1, rawmessage2];
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clickerTimer) userInfo:nil repeats:YES];
+            } else
+                rawmessage = rawmessage1;
             NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
             CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
             
@@ -415,6 +430,21 @@
             cell.backgroundColor = [BTColor BT_white:1];
             return cell;
         }
+    }
+}
+
+#pragma NSTimer Action
+- (void)clickerTimer {
+    NSInteger leftTime = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+    NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [BTDateFormatter detailedStringFromDate:post.createdAt]];
+    NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), leftTime];
+    NSString *rawmessage;
+    rawmessage = [NSString stringWithFormat:@"%@\n%@", rawmessage1, rawmessage2];
+    messageLabel.text = rawmessage;
+    if (leftTime <= 0) {
+        [self.timer invalidate];
+        self.timer = nil;
+        [self.tableview reloadData];
     }
 }
 

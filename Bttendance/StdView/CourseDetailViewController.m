@@ -155,7 +155,7 @@
     }
     
     self.tableview.tableHeaderView = coursedetailheaderview;
-    [self refreshHeader:nil];
+    [self refreshHeader];
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
     self.tableview.tableFooterView = footer;
@@ -171,7 +171,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
-- (void)refreshHeader:(id)sender {
+- (void)refreshHeader {
     coursedetailheaderview.profname.text = simpleCourse.professor_name;
     coursedetailheaderview.schoolname.text = [self schoolName];
     coursedetailheaderview.background.layer.cornerRadius = 52.5f;
@@ -197,7 +197,6 @@
                      data = [NSMutableArray arrayWithArray:posts];
                      [self.tableview reloadData];
                      [self checkAttendanceScan];
-                     [self checkClickerScan];
                      [self refreshCheck];
                   } failure:^(NSError *error) {
                   }];
@@ -205,6 +204,9 @@
 
 #pragma NSNotification
 - (void)updateCourse:(NSNotification *)notification {
+    self.course = [BTUserDefault getCourse:simpleCourse.id];
+    [self refreshHeader];
+    [self.tableview reloadData];
 }
 
 - (void)updateClicker:(NSNotification *)notification {
@@ -289,15 +291,6 @@
         [agent startAttdScanWithAttendanceIDs:array];
     }
 }
-// Check is any clicker is on-going
-- (void)checkClickerScan {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (Post *post in data) {
-        double gap = [post.createdAt timeIntervalSinceNow];
-        if (65.0f + gap > 0.0f && [post.type isEqualToString:@"clicker"])
-            [array addObject:[NSString stringWithFormat:@"%d", (int)post.clicker.id]];
-    }
-}
 
 // Check when to refresh feed
 - (void)refreshCheck {
@@ -332,6 +325,7 @@
     }
 }
 
+#pragma UITableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -346,6 +340,11 @@
         return 102;
     
     Post *post = [data objectAtIndex:indexPath.row];
+    
+    if (![post.type isEqualToString:@"clicker"]
+        && ![post.type isEqualToString:@"attendance"]
+        && ![post.type isEqualToString:@"notice"])
+        return 102;
     
     if ([post.type isEqualToString:@"clicker"]) {
         
@@ -401,8 +400,10 @@
         return [self clickerCellWith:tableView with:post];
     } else if ([post.type isEqualToString:@"attendance"]) {
         return [self attendanceCellWith:tableView with:post];
-    } else {
+    } else if ([post.type isEqualToString:@"notice"]) {
         return [self noticeCellWith:tableView with:post];
+    } else {
+        return [self updateAppCellWith:tableView];
     }
 }
 
@@ -662,7 +663,7 @@
             [view removeFromSuperview];
     
     cell.post = post;
-    cell.Title.text = NSLocalizedString(@"Attendance", nil);
+    cell.Title.text = NSLocalizedString(@"Attendance Check", nil);
     cell.Title.textColor = [BTColor BT_silver:1];
     cell.Message.text = post.message;
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
@@ -690,7 +691,9 @@
     
     if (self.auth) {
         if (65.0f + cell.gap > 0.0f) {
-            [self startAttdAnimation:cell];
+            CGFloat grade = ((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count;
+            cell.background.frame = CGRectMake(29, 75 - grade * 50, 50, grade * 50);
+            
             NSInteger count = 65 + cell.gap;
             BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
             [[BTBlink sharedInstance] addBlinkView:blinkView];
@@ -779,6 +782,32 @@
     [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
     cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
     [cell.check_overlay setImage:nil];
+    return cell;
+}
+
+// UpdateAppCell
+- (UITableViewCell *)updateAppCellWith:(UITableView *)tableView {
+    
+    static NSString *CellIdentifier = @"GuidePostCell";
+    GuidePostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 5;
+    NSString *string = NSLocalizedString(@"이 게시물은 현재 버전의 앱에서 읽을 수 없습니다. 앱을 업데이트 해주세요.", nil);
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
+    [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
+    cell.Message.attributedText = str;
+    cell.Message.numberOfLines = 0;
+    [cell.Message sizeToFit];
+    cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
+    [cell.check_icon setImage:[UIImage imageNamed:@"bttendance_icon@2x.png"]];
+    [cell.check_overlay setImage:nil];
+    
     return cell;
 }
 

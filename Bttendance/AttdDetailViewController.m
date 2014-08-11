@@ -465,7 +465,7 @@
 - (void)attendanceTimer {
     NSInteger leftTime = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
     messageLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d초 남았습니다.", nil), leftTime];
-    if (leftTime == 0) {
+    if (leftTime <= 0) {
         [self.timer invalidate];
         self.timer = nil;
         [self.tableview reloadData];

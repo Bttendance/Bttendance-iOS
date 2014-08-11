@@ -136,7 +136,7 @@
             NSInteger rate = (int) ceil(((float)self.post.notice.seen_students.count/(float)self.course.students_count) * 100);
             NSString *rawmessage;
             if (self.auth)
-                rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld(%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];
+                rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld (%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];
             else if ([self.post.notice seen:self.user.id])
                 rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* 공지를 읽었습니다.", nil), date, seen, total, rate];
             else
@@ -169,7 +169,7 @@
             NSInteger rate = (int) ceil(((float)self.post.notice.seen_students.count/(float)self.course.students_count) * 100);
             NSString *rawmessage;
             if (self.auth)
-                rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld(%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];
+                rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld (%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];
             else if ([self.post.notice seen:self.user.id])
                 rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* 공지를 읽었습니다.", nil), date, seen, total, rate];
             else

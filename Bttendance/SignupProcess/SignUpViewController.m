@@ -196,7 +196,7 @@ NSString *signupRequest;
             label.text = NSLocalizedString(@"By tapping \"Sign Up\" above, you are agreeing to the Terms of Service and Privacy Policy.", nil);
             
             NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-            if ([locale isEqualToString:@"kr"]) {
+            if ([locale isEqualToString:@"ko"]) {
                 [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
                          range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
                 [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]

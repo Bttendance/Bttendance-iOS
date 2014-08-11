@@ -53,19 +53,34 @@
     NSString *bluetoothStr2 = NSLocalizedString(@"(예상시간: 1분)", nil);
     NSString *bluetoothTitle = [NSString stringWithFormat:@"%@\n%@", bluetoothStr1, bluetoothStr2];
     NSMutableAttributedString *bluetoothStr = [[NSMutableAttributedString alloc] initWithString:bluetoothTitle];
-    [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[bluetoothTitle rangeOfString:bluetoothStr1]];
-    [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[bluetoothTitle rangeOfString:bluetoothStr2]];
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([locale isEqualToString:@"ko"]) {
+        [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[bluetoothTitle rangeOfString:bluetoothStr1]];
+        [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[bluetoothTitle rangeOfString:bluetoothStr2]];
+    } else {
+        [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0] range:[bluetoothTitle rangeOfString:bluetoothStr1]];
+        [bluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[bluetoothTitle rangeOfString:bluetoothStr2]];
+    }
+    
     self.bluetooth.attributedText = bluetoothStr;
     self.bluetooth.numberOfLines = 0;
     
     NSString *nobluetoothStr1 = NSLocalizedString(@"이름 부르면서\n출석체크하기", nil);
     NSString *nobluetoothStr2 = NSLocalizedString(@"(예상시간: 3~5분)", nil);
     NSString *nobluetoothTitle = [NSString stringWithFormat:@"%@\n%@", nobluetoothStr1, nobluetoothStr2];
+    
     NSMutableAttributedString *nobluetoothStr = [[NSMutableAttributedString alloc] initWithString:nobluetoothTitle];
-    [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr1]];
-    [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr2]];
+    if ([locale isEqualToString:@"ko"]) {
+        [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr1]];
+        [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr2]];
+    } else {
+        [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr1]];
+        [nobluetoothStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:[nobluetoothTitle rangeOfString:nobluetoothStr2]];
+    }
     self.nobluetooth.attributedText = nobluetoothStr;
     self.nobluetooth.numberOfLines = 0;
+    
 }
 
 #pragma NavigationBarAction

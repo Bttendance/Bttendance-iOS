@@ -48,9 +48,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    if([BTUserDefault getEmail] == nil
-       || [BTUserDefault getPassword] == nil
-       || [BTUserDefault getUUID] == nil) {
+    User *user = [BTUserDefault getUser];
+    if(user == nil
+       || user.email == nil
+       || user.password == nil) {
         [BTUserDefault clear];
         firstview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
         self.navController = [[UINavigationController alloc] initWithRootViewController:firstview];
@@ -90,7 +91,15 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
-    AudioServicesPlaySystemSound(1007);
+    User *user = [BTUserDefault getUser];
+    if(user == nil
+       || user.email == nil
+       || user.password == nil)
+        return;
+    
+    if (application.applicationState == UIApplicationStateActive
+        || application.applicationState == UIApplicationStateBackground)
+        AudioServicesPlaySystemSound(1007);
     
     //attendance_started, attendance_on_going, attendance_checked, clicker_started, notice, added_as_manager, course_created
     PushNoti *noti = [[PushNoti alloc] initWithDictionary:userInfo];
@@ -108,7 +117,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
     } else if([noti.type isEqualToString:@"added_as_manager"]) {
         [BTAPIs autoSignInInSuccess:^(User *user) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
         } failure:^(NSError *error) {
         }];
     }

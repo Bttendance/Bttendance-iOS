@@ -11,6 +11,7 @@
 #import "BTColor.h"
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
+#import "BTNotification.h"
 
 @interface ClickerDetailListViewController ()
 
@@ -73,7 +74,35 @@
                                 [self.tableview reloadData];
                             } failure:^(NSError *error) {
                             }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
 };
+
+#pragma NSNotificationCenter
+- (void)updateClicker:(NSNotification *)notification {
+    if ([notification object] == nil)
+        return;
+    
+    Clicker *clicker = [notification object];
+    if (self.post.clicker.id != clicker.id)
+        return;
+    
+    [self.post.clicker copyDataFromClicker:clicker];
+    [self.tableview reloadData];
+}
+
+- (void)updatePost:(NSNotification *)notification {
+    if ([notification object] == nil)
+        return;
+    
+    Post *newPost = [notification object];
+    if (self.post.id != newPost.id)
+        return;
+    
+    self.post = newPost;
+    [self.tableview reloadData];
+}
 
 #pragma UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -98,6 +127,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = simpleUser.full_name;
     cell.idnumber.text = simpleUser.student_id;
+    cell.detail.text = @"";
     switch ([self.post.clicker choiceInt:simpleUser.id]) {
         case 1:
             [cell.icon setImage:[UIImage imageNamed:@"s_A.png"]];

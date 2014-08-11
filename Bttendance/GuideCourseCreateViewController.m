@@ -166,13 +166,22 @@
             
             UILabel *message = [[UILabel alloc]initWithFrame:CGRectMake(150, 27, 143, 140)];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.lineSpacing = 7;
+            
+            NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+            if ([locale isEqualToString:@"ko"]) {
+                message.font = [UIFont systemFontOfSize:14];
+                paragraphStyle.lineSpacing = 7;
+            } else {
+                message.font = [UIFont systemFontOfSize:12];
+                paragraphStyle.lineSpacing = 5;
+            }
+            
             NSString *string = NSLocalizedString(@"학생들에게 좌측의 클래스코드를 알려주세요. 학생들은 클래스코드를 입력해서 개설된 강의에 쉽게 등록할 수 있습니다.", nil);
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
             [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
             message.attributedText = str;
             message.numberOfLines = 0;
-            message.font = [UIFont systemFontOfSize:14];
+            
             message.textColor = [BTColor BT_silver:1.0];
             [message sizeToFit];
             [cell addSubview:message];

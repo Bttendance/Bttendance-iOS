@@ -70,7 +70,7 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [BTColor BT_navy:0.7];
         hud.yOffset = -40.0f;
-        dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 2.2 * NSEC_PER_SEC);
+        dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 1.7 * NSEC_PER_SEC);
         dispatch_after(dismissTime, dispatch_get_main_queue(), ^(void){
             [hud hide:YES];
         });

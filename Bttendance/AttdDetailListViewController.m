@@ -191,7 +191,7 @@
     
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row - 1];
     [BTAPIs toggleManuallyWithAttendance:[NSString stringWithFormat:@"%ld", (long)self.post.attendance.id]
-                                    user:[NSString stringWithFormat:@"%ld", simpleUser.id]
+                                    user:[NSString stringWithFormat:@"%ld", (long)simpleUser.id]
                                  success:^(Attendance *attendance) {
                                      [self.post.attendance copyDataFromAttendance:attendance];
                                      [self.tableview reloadData];

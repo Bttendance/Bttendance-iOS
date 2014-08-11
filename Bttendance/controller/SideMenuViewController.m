@@ -88,7 +88,6 @@
     [[SocketAgent sharedInstance] socketConnect];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openCourse:) name:OpenCourse object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenPost object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setModalView:) name:OpenModalView object:nil];
     
     if (![BTUserDefault getSeenGuide]) {
@@ -116,19 +115,6 @@
     courseDetail.simpleCourse = course;
     [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
     [self hideMenuViewController];
-}
-
-- (void)openPost:(NSNotification *)aNotification {
-//    NSDictionary *dict = [aNotification userInfo];
-//    NSString *courseId = [dict objectForKey:CourseId];
-//    SimpleCourse *course = [[BTUserDefault getUser] getCourse:[courseId integerValue]];
-//    if (course == nil)
-//        return;
-//    
-//    CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-//    courseDetail.simpleCourse = course;
-//    [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
-//    [self hideMenuViewController];
 }
 
 - (void)setModalView:(NSNotification *)aNotification {

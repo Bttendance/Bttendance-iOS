@@ -11,6 +11,7 @@
 #import "BTColor.h"
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
+#import "BTNotification.h"
 
 @interface NoticeDetailListViewController ()
 
@@ -73,7 +74,35 @@
                           [self.tableview reloadData];
                       } failure:^(NSError *error) {
                       }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotice:) name:NoticeUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
 };
+
+#pragma NSNotificationCenter
+- (void)updateNotice:(NSNotification *)notification {
+    if ([notification object] == nil)
+        return;
+    
+    Notice *notice = [notification object];
+    if (self.post.notice.id != notice.id)
+        return;
+    
+    [self.post.notice copyDataFromNotice:notice];
+    [self.tableview reloadData];
+}
+
+- (void)updatePost:(NSNotification *)notification {
+    if ([notification object] == nil)
+        return;
+    
+    Post *newPost = [notification object];
+    if (self.post.id != newPost.id)
+        return;
+    
+    self.post = newPost;
+    [self.tableview reloadData];
+}
 
 #pragma UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

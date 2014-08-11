@@ -18,7 +18,6 @@
 
 // For open course/post/modalview
 #define OpenCourse @"open_course"
-#define OpenPost @"open_post"
 #define OpenModalView @"modal_view"
 
 // USERINFO
