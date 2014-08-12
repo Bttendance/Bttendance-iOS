@@ -213,16 +213,6 @@
                           success:(void (^)(Attendance *attendance))success
                           failure:(void (^)(NSError *error))failure;
 
-+ (void)checkManuallyWithAttendance:(NSString *)attendance_id
-                               user:(NSString *)user_id
-                            success:(void (^)(Attendance *attendance))success
-                            failure:(void (^)(NSError *error))failure;
-
-+ (void)uncheckManuallyWithAttendance:(NSString *)attendance_id
-                                 user:(NSString *)user_id
-                              success:(void (^)(Attendance *attendance))success
-                              failure:(void (^)(NSError *error))failure;
-
 + (void)toggleManuallyWithAttendance:(NSString *)attendance_id
                                 user:(NSString *)user_id
                              success:(void (^)(Attendance *attendance))success

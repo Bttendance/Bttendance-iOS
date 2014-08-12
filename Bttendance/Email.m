@@ -14,7 +14,6 @@
     self = [super init];
     if (self) {
         self.email = [dictionary objectForKey:@"email"];
-        self.sent = [dictionary objectForKey:@"sent"];
     }
     return self;
 }

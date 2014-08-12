@@ -11,7 +11,6 @@
 @interface Email : NSObject
 
 @property(strong, nonatomic) NSString  *email;
-@property(strong, nonatomic) NSString  *sent;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

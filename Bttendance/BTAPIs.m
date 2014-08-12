@@ -1127,52 +1127,6 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)checkManuallyWithAttendance:(NSString *)attendance_id
-                               user:(NSString *)user_id
-                            success:(void (^)(Attendance *attendance))success
-                            failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"attendance_id" : attendance_id,
-                             @"user_id" : user_id};
-    
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/check/manually"]
-                     parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
-                            success(attendance);
-                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
-                            [self failureHandleWithError:error];
-                            failure(error);
-                        }];
-}
-
-+ (void)uncheckManuallyWithAttendance:(NSString *)attendance_id
-                                 user:(NSString *)user_id
-                              success:(void (^)(Attendance *attendance))success
-                              failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"attendance_id" : attendance_id,
-                             @"user_id" : user_id};
-    
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/uncheck/manually"]
-                     parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
-                            success(attendance);
-                        } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
-                            [self failureHandleWithError:error];
-                            failure(error);
-                        }];
-}
-
 + (void)toggleManuallyWithAttendance:(NSString *)attendance_id
                                 user:(NSString *)user_id
                              success:(void (^)(Attendance *attendance))success
