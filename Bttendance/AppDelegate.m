@@ -105,21 +105,174 @@
     PushNoti *noti = [[PushNoti alloc] initWithDictionary:userInfo];
     if([noti.type isEqualToString:@"attendance_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"attendance_on_going"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"attendance_checked"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"clicker_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"clicker_on_going"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"notice"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        User *user = [BTUserDefault getUser];
+        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+        if(course == nil || [user supervising:course.id])
+            return;
+        
+        if (application.applicationState == UIApplicationStateInactive) {
+            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+            return;
+        }
+        
+        UIAlertView *alert;
+        alert = [[UIAlertView alloc] initWithTitle:course.name
+                                           message:noti.message
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        alert.tag = course.id;
+        [alert show];
+        
     } else if([noti.type isEqualToString:@"added_as_manager"]) {
         [BTAPIs autoSignInInSuccess:^(User *user) {
+            
+            SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
+            if(course == nil)
+                return;
+            
+            if (application.applicationState == UIApplicationStateInactive) {
+                NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+                return;
+            }
+            
+            UIAlertView *alert;
+            alert = [[UIAlertView alloc] initWithTitle:course.name
+                                               message:noti.message
+                                              delegate:self
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+            alert.tag = course.id;
+            [alert show];
+            
         } failure:^(NSError *error) {
         }];
     }
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    SimpleCourse *course = [[BTUserDefault getUser] getCourse:alertView.tag];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:course, SimpleCourseInfo, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
 }
 
 #pragma StatusBar

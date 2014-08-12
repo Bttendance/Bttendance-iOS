@@ -13,12 +13,15 @@
 #import "BTColor.h"
 #import "ChooseCountCell.h"
 #import "SignButtonCell.h"
+#import "BTNotification.h"
+#import "BTDateFormatter.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AudioToolbox/AudioServices.h>
 
 @interface CreateClickerViewController ()
 
 @property (strong, nonatomic) UITextView *textview;
+@property (strong, nonatomic) UILabel *placeholder;
 @property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) UILabel *label;
 @property (assign) NSInteger choice;
@@ -67,6 +70,13 @@
     self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
     self.textview.delegate = self;
     
+    self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(19, 16, 292, 20)];
+    self.placeholder.font = [UIFont systemFontOfSize:14];
+    self.placeholder.textColor = [BTColor BT_silver:1.0];
+    self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [BTDateFormatter detailedStringFromDate:[NSDate date]]];
+    self.placeholder.numberOfLines = 0;
+    [self.placeholder sizeToFit];
+    
     self.message = @"";
     self.choice = 0;
 }
@@ -80,6 +90,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.textview.text == nil || self.textview.text.length == 0)
+        self.placeholder.hidden = NO;
+    else
+        self.placeholder.hidden = YES;
 }
 
 #pragma mark - Notification Handlers
@@ -139,6 +156,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         [cell addSubview:self.textview];
+        [cell addSubview:self.placeholder];
         return cell;
     } else if (indexPath.row == 2) {
         static NSString *CellIdentifier1 = @"ChooseCountCell";
@@ -237,6 +255,12 @@
 #pragma UITextViewDelegate
 -(void)textViewDidChange:(UITextView *)textView {
     [self.tableview beginUpdates];
+    
+    if (textView.text == nil || textView.text.length == 0)
+        self.placeholder.hidden = NO;
+    else
+        self.placeholder.hidden = YES;
+    
     self.message = textView.text;
     [self.textview sizeToFit];
     self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
@@ -257,13 +281,6 @@
     ChooseCountCell *chooseCountCell = (ChooseCountCell *)[self.tableview cellForRowAtIndexPath:self.choiceviewIndex];
     
     BOOL pass = YES;
-    
-    if (self.textview.text == nil || self.textview.text.length == 0) {
-        [self.tableview cellForRowAtIndexPath:self.textviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
-        pass = NO;
-    } else {
-        [self.tableview cellForRowAtIndexPath:self.textviewIndex].contentView.backgroundColor = [UIColor clearColor];
-    }
     
     if (chooseCountCell.choice < 2 || chooseCountCell.choice > 5) {
         [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
@@ -286,13 +303,18 @@
     hud.detailsLabelText = NSLocalizedString(@"Starting Clicker", nil);
     hud.yOffset = -40.0f;
     
+    NSString *message = self.textview.text;
+    if (message == nil || message.length == 0)
+        message = self.placeholder.text;
+    
     [BTAPIs startClickerWithCourse:cid
-                           message:self.textview.text
+                           message:message
                        choiceCount:[NSString stringWithFormat:@"%ld", (long)self.choice]
                            success:^(Post *post) {
                                [hud hide:YES];
-                               sender.enabled = YES;
-                               [self.navigationController popViewControllerAnimated:YES];
+                               NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:post, PostInfo, nil];
+                               [[NSNotificationCenter defaultCenter] postNotificationName:OpenNewPost object:nil userInfo:data];
+                               [self.navigationController popViewControllerAnimated:NO];
                            } failure:^(NSError *error) {
                                [hud hide:YES];
                                sender.enabled = YES;

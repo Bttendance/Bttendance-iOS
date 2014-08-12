@@ -35,6 +35,7 @@
 
 #import "ClickerDetailViewController.h"
 #import "AttdDetailViewController.h"
+#import "AttdDetailListViewController.h"
 #import "NoticeDetailViewController.h"
 
 #import "CourseSettingViewController.h"
@@ -43,6 +44,7 @@
 
 @property (assign) BOOL auth;
 @property (strong, nonatomic) Course *course;
+@property (strong, nonatomic) Post *openingPost;
 
 @end
 
@@ -77,6 +79,7 @@
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
     [self.tableview reloadData];
+    [self refreshFeed:nil];
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
@@ -161,6 +164,7 @@
     self.tableview.tableFooterView = footer;
     
     // NotificationCenter
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenNewPost object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCourse:) name:CoursesUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
@@ -184,6 +188,35 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
+    if (self.openingPost != nil) {
+        if ([self.openingPost.type isEqualToString:@"attendance"]) {
+            if ([self.openingPost.attendance.type isEqualToString:@"auto"]) {
+                AttdDetailViewController *attendanceView = [[AttdDetailViewController alloc] initWithNibName:@"AttdDetailViewController" bundle:nil];
+                attendanceView.post = self.openingPost;
+                [self.navigationController pushViewController:attendanceView animated:NO];
+            } else {
+                AttdDetailListViewController *attendanceView = [[AttdDetailListViewController alloc] initWithNibName:@"AttdDetailListViewController" bundle:nil];
+                attendanceView.post = self.openingPost;
+                attendanceView.start = YES;
+                [self.navigationController pushViewController:attendanceView animated:NO];
+            }
+        }
+        
+        if ([self.openingPost.type isEqualToString:@"clicker"]) {
+            ClickerDetailViewController *clickerView = [[ClickerDetailViewController alloc] initWithNibName:@"ClickerDetailViewController" bundle:nil];
+            clickerView.post = self.openingPost;
+            [self.navigationController pushViewController:clickerView animated:NO];
+        }
+        
+        if ([self.openingPost.type isEqualToString:@"notice"]) {
+            NoticeDetailViewController *noticeView = [[NoticeDetailViewController alloc] initWithNibName:@"NoticeDetailViewController" bundle:nil];
+            noticeView.post = self.openingPost;
+            [self.navigationController pushViewController:noticeView animated:NO];
+        }
+        self.openingPost = nil;
+    }
+    
     user = [BTUserDefault getUser];
     [self.tableview reloadData];
     [self refreshFeed:nil];
@@ -203,6 +236,11 @@
 }
 
 #pragma NSNotification
+- (void)openPost:(NSNotification *)aNotification {
+    NSDictionary *dict = [aNotification userInfo];
+    self.openingPost = (Post*) [dict objectForKey:PostInfo];
+}
+
 - (void)updateCourse:(NSNotification *)notification {
     self.course = [BTUserDefault getCourse:simpleCourse.id];
     [self refreshHeader];
@@ -671,7 +709,7 @@
     
     [cell.timer invalidate];
     cell.timer = nil;
-    if (65.0f + cell.gap > 0.0f && (self.auth || [post.attendance stateInt:user.id] == 0))
+    if (65.0f + cell.gap > 0.0f && (self.auth || [post.attendance stateInt:user.id] == 0) && [post.attendance.type isEqualToString:@"auto"])
         [cell startTimerAsAttendance];
     
     cell.Message.frame = CGRectMake(93, 49, 200, 15);
@@ -690,6 +728,8 @@
     [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha@2x.png"]];
     
     if (self.auth) {
+        NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
+        NSInteger total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
         if (65.0f + cell.gap > 0.0f) {
             CGFloat grade = ((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count;
             cell.background.frame = CGRectMake(29, 75 - grade * 50, 50, grade * 50);
@@ -699,12 +739,17 @@
             [[BTBlink sharedInstance] addBlinkView:blinkView];
         } else {
             [[BTBlink sharedInstance] removeView:cell.check_icon];
-            int grade =  [cell.post.grade intValue];
-            [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
+            [cell.background setFrame:CGRectMake(29, 75 - total_grade / 2, 50, total_grade / 2)];
         }
+        cell.Message.text = [NSString stringWithFormat:NSLocalizedString(@"%ld/%ld (%ld%%) students has been attended.", nil), (long)total, (long)self.course.students_count, (long)total_grade];
     } else {
+        
+        NSString *message1 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
+        NSString *message2 = NSLocalizedString(@"결석으로 처리되었습니다.", nil);
+        NSString *message3 = NSLocalizedString(@"지각으로 처리되었습니다.", nil);
+        
         if ([post.attendance stateInt:user.id] == 0) {
-            if (65.0f + cell.gap > 0.0f) {
+            if (65.0f + cell.gap > 0.0f && [post.attendance.type isEqualToString:@"auto"]) {
                 [self startAttdAnimation:cell];
                 NSInteger count = 65 + cell.gap;
                 BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
@@ -714,17 +759,20 @@
                 [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
                 [cell.check_overlay setImage:nil];
                 [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
+                cell.Message.text = message2;
             }
         } else if ([post.attendance stateInt:user.id] == 1){
             [[BTBlink sharedInstance] removeView:cell.check_icon];
             [cell.check_icon setImage:[UIImage imageNamed:@"attended@2x.png"]];
             [cell.check_overlay setImage:nil];
             [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
+            cell.Message.text = message1;
         } else {
             [[BTBlink sharedInstance] removeView:cell.check_icon];
             [cell.check_icon setImage:[UIImage imageNamed:@"attendlate@2x.png"]];
             [cell.check_overlay setImage:nil];
             [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
+            cell.Message.text = message3;
         }
     }
     return cell;

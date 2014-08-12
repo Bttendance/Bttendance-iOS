@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         self.type = [dictionary objectForKey:@"type"];
+        self.course_id = [dictionary objectForKey:@"course_id"];
         self.title = [dictionary objectForKey:@"title"];
         self.message = [dictionary objectForKey:@"message"];
     }

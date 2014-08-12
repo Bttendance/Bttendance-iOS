@@ -147,6 +147,135 @@
     });
 }
 
++ (void)updateClicker:(Clicker *)clicker ofCourse:(NSString *)courseId {
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        if (jsonString == nil)
+            return;
+        
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSMutableArray *posts = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Post *post = [[Post alloc] initWithDictionary:dic];
+            if (post.id == clicker.post.id)
+                [post.clicker copyDataFromClicker:clicker];
+            [posts addObject:post];
+        }
+        
+        NSMutableArray *postsObjects = [NSMutableArray array];
+        for (Post *post in posts) {
+            [postsObjects addObject:[Post toDictionary:post]];
+        }
+        
+        NSData *newData = [NSJSONSerialization dataWithJSONObject:postsObjects options:0 error:nil];
+        NSString *newJsonString = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:newJsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    });
+}
+
++ (void)updateAttendance:(Attendance *)attendance ofCourse:(NSString *)courseId {
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+        NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        if (jsonString == nil)
+            return;
+        
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSMutableArray *posts = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Post *post = [[Post alloc] initWithDictionary:dic];
+            if (post.id == attendance.post.id)
+                [post.attendance copyDataFromAttendance:attendance];
+            [posts addObject:post];
+        }
+        
+        NSMutableArray *postsObjects = [NSMutableArray array];
+        for (Post *post in posts) {
+            [postsObjects addObject:[Post toDictionary:post]];
+        }
+        
+        NSData *newData = [NSJSONSerialization dataWithJSONObject:postsObjects options:0 error:nil];
+        NSString *newJsonString = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:newJsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    });
+}
+
++ (void)updateNotice:(Notice *)notice ofCourse:(NSString *)courseId {
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        if (jsonString == nil)
+            return;
+        
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSMutableArray *posts = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Post *post = [[Post alloc] initWithDictionary:dic];
+            if (post.id == notice.post.id)
+                [post.notice copyDataFromNotice:notice];
+            [posts addObject:post];
+        }
+        
+        NSMutableArray *postsObjects = [NSMutableArray array];
+        for (Post *post in posts) {
+            [postsObjects addObject:[Post toDictionary:post]];
+        }
+        
+        NSData *newData = [NSJSONSerialization dataWithJSONObject:postsObjects options:0 error:nil];
+        NSString *newJsonString = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:newJsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    });
+}
+
++ (void)updatePost:(Post *)newPost ofCourse:(NSString *)courseId {
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        if (jsonString == nil)
+            return;
+        
+        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSMutableArray *posts = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Post *post = [[Post alloc] initWithDictionary:dic];
+            if (post.id == newPost.id)
+                [posts addObject:newPost];
+            else
+                [posts addObject:post];
+        }
+        
+        NSMutableArray *postsObjects = [NSMutableArray array];
+        for (Post *post in posts) {
+            [postsObjects addObject:[Post toDictionary:post]];
+        }
+        
+        NSData *newData = [NSJSONSerialization dataWithJSONObject:postsObjects options:0 error:nil];
+        NSString *newJsonString = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:newJsonString forKey:[NSString stringWithFormat:@"%@_%@", PostJSONArrayOfCourseKey, courseId]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    });
+}
+
 + (NSArray *)getSchools {
     NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:SchoolsJSONKey];
     if (jsonString == nil)

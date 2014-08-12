@@ -29,6 +29,30 @@
     return self;
 }
 
++ (NSDictionary *)toDictionary:(SimpleCourse *)course {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    if (course.name != nil)
+        [keys addObject:@"name"];
+    if (course.professor_name != nil)
+        [keys addObject:@"professor_name"];
+    [keys addObject:@"school"];
+    [keys addObject:@"opened"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)course.id]];
+    if (course.name != nil)
+        [objects addObject:course.name];
+    if (course.professor_name != nil)
+        [objects addObject:course.professor_name];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)course.school]];
+    [objects addObject:course.opened? @"true" : @"false"];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
+}
+
 @end
 
 

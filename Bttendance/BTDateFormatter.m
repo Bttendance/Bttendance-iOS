@@ -21,6 +21,17 @@
     return [dateformatter dateFromString:dateString];
 }
 
++ (NSString *)serializedStringFromDate:(NSDate *)date {
+    if (date == nil)
+        return nil;
+    
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    
+    return [dateformatter stringFromDate:date];
+}
+
 + (NSString *)stringFromString:(NSString *)dateString {
     if (dateString == (NSString *) [NSNull null])
         return nil;

@@ -155,8 +155,8 @@
 "설문하기" = "Clicker";
 "소개할게요." = "BTTENDANCE.";
 "수강하기" = "Attend course";
-"수업 참여율 %1$@%%  출석률 %2$@%%" = "Clicker answer rate %1$@%%  Attendance rate %2$@%%";
-"최근 공지를 읽은 학생 수 %ld/%ld" = "%ld out of %ld students have read recent notice";
+"수업 참여율 %1$@%%  출석률 %2$@%%" = "Clicker rate %1$@%%  Attendance %2$@%%";
+"최근 공지를 읽은 학생 수 %ld/%ld" = "%ld/%ld students have read recent notice";
 "읽지 않은 공지 수 %ld" = "%ld unread notices";
 "수업시간 중에는 BTTENDANCE 외에 다른 용도로 스마트폰을 쓰는 걸 자제해주세요 ㅜㅜ" = "Please refrain from using the smartphone for functions other than BTTENDANCE during class!";
 "시작해보세요." = "";
@@ -271,3 +271,7 @@
 "Attendance Ongoing (%ld sec left)" = "Attendance Ongoing (%ld sec left)";
 "Clicker Ongoing (%ld sec left)" = "Clicker Ongoing (%ld sec left)";
 "이 게시물은 현재 버전의 앱에서 읽을 수 없습니다. 앱을 업데이트 해주세요." = "You cannot read this post in the current version. Please update to the lastest version.";
+"%@에 진행된 설문입니다." = "This clicker has been created at %@";
+"%ld/%ld (%ld%%) students has been attended." = "%ld/%ld (%ld%%) students has been attended.";
+
+

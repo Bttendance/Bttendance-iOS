@@ -48,5 +48,6 @@
 @property(strong, nonatomic) NSString  *grade;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
++ (NSDictionary *)toDictionary:(Post *)post;
 
 @end

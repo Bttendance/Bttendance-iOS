@@ -87,12 +87,18 @@
         self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
     }
     
+    self.chart = [[XYPieChart alloc] initWithFrame:CGRectMake(63, 3, 194, 194)];
+    self.chart.showLabel = NO;
+    self.chart.pieRadius = 97;
+    self.chart.userInteractionEnabled = NO;
+    [self.chart setDataSource:post.clicker];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [chart reloadData];
+    [self.chart reloadData];
 }
 
 #pragma NSNotificationCenter
@@ -105,7 +111,7 @@
         return;
     
     [post.clicker copyDataFromClicker:clicker];
-    [chart reloadData];
+    [self.chart reloadData];
     [self.tableview reloadData];
 }
 
@@ -118,6 +124,7 @@
         return;
     
     post = newPost;
+    [self.chart reloadData];
     [self.tableview reloadData];
 }
 
@@ -199,7 +206,7 @@
             [label sizeToFit];
             label.frame = CGRectMake(20, 0, 280, ceil(MessageLabelSize.size.height));
             label.textAlignment = NSTextAlignmentCenter;
-            [cell.contentView addSubview:label];
+            [cell addSubview:label];
             
             return cell;
         }
@@ -229,7 +236,7 @@
             [messageLabel sizeToFit];
             messageLabel.frame = CGRectMake(20, 3, 280, ceil(MessageLabelSize.size.height));
             messageLabel.textAlignment = NSTextAlignmentCenter;
-            [cell.contentView addSubview:messageLabel];
+            [cell addSubview:messageLabel];
             
             return cell;
         }
@@ -248,14 +255,8 @@
             image.backgroundColor = [BTColor BT_navy:1];
             image.layer.cornerRadius = 100;
             image.clipsToBounds = YES;
-            [cell.contentView addSubview:image];
-            
-            chart = [[XYPieChart alloc] initWithFrame:CGRectMake(63, 3, 194, 194)];
-            chart.showLabel = NO;
-            chart.pieRadius = 97;
-            chart.userInteractionEnabled = NO;
-            [chart setDataSource:post.clicker];
-            [cell.contentView addSubview:chart];
+            [cell addSubview:image];
+            [cell addSubview:self.chart];
             
             return cell;
         }

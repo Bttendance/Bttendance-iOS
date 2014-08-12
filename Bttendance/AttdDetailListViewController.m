@@ -50,7 +50,10 @@
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]]];
-        [self right:nil];
+        if (self.start)
+            [self center: nil];
+        else
+            [self right:nil];
         dispatch_async( dispatch_get_main_queue(), ^{
             [self.tableview reloadData];
         });

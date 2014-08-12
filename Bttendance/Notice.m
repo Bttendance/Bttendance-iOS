@@ -25,6 +25,24 @@
     return self;
 }
 
++ (NSDictionary *)toDictionary:(SimpleNotice *)notice {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    if (notice.seen_students != nil)
+        [keys addObject:@"seen_students"];
+    [keys addObject:@"post"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)notice.id]];
+    if (notice.seen_students != nil)
+        [objects addObject:notice.seen_students];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)notice.post]];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
+}
+
 - (void)copyDataFromNotice:(id)object {
     Notice *notice = (Notice *)object;
     self.seen_students = notice.seen_students;

@@ -24,6 +24,7 @@
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
++ (NSDictionary *)toDictionary:(SimpleClicker *)clicker;
 - (void)copyDataFromClicker:(id)object;
 - (NSString *)detailText;
 - (NSString *)participation;

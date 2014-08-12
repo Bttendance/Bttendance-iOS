@@ -54,4 +54,46 @@
     return self;
 }
 
++ (NSDictionary *)toDictionary:(Post *)post {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    [keys addObject:@"createdAt"];
+    [keys addObject:@"updatedAt"];
+    [keys addObject:@"type"];
+    [keys addObject:@"message"];
+    [keys addObject:@"author"];
+    [keys addObject:@"course"];
+    
+    if (post.attendance != nil && post.attendance.id != 0)
+        [keys addObject:@"attendance"];
+    if (post.clicker != nil && post.clicker.id != 0)
+        [keys addObject:@"clicker"];
+    if (post.notice != nil && post.notice.id != 0)
+        [keys addObject:@"notice"];
+    if (post.grade != nil)
+        [keys addObject:@"grade"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)post.id]];
+    [objects addObject:[BTDateFormatter serializedStringFromDate:post.createdAt]];
+    [objects addObject:[BTDateFormatter serializedStringFromDate:post.updatedAt]];
+    [objects addObject:post.type];
+    [objects addObject:post.message];
+    [objects addObject:[SimpleUser toDictionary:post.author]];
+    [objects addObject:[SimpleCourse toDictionary:post.course]];
+    
+    if (post.attendance != nil && post.attendance.id != 0)
+        [objects addObject:[SimpleAttendance toDictionary:post.attendance]];
+    if (post.clicker != nil && post.clicker.id != 0)
+        [objects addObject:[SimpleClicker toDictionary:post.clicker]];
+    if (post.notice != nil && post.notice.id != 0)
+        [objects addObject:[SimpleNotice toDictionary:post.notice]];
+    if (post.grade != nil)
+        [objects addObject:post.grade];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
+}
+
 @end

@@ -271,3 +271,6 @@
 "Attendance Ongoing (%ld sec left)" = "출석체크 진행 중 (%ld sec left)";
 "Clicker Ongoing (%ld sec left)" = "설문하기 진행 중 (%ld sec left)";
 "이 게시물은 현재 버전의 앱에서 읽을 수 없습니다. 앱을 업데이트 해주세요." = "이 게시물은 현재 버전의 앱에서 읽을 수 없습니다. 앱을 업데이트 해주세요.";
+"%@에 진행된 설문입니다." = "%@에 진행된 설문입니다.";
+"%ld/%ld (%ld%%) students has been attended." = "%ld/%ld (%ld%%) 학생들이 출석하였습니다.";
+

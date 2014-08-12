@@ -96,6 +96,10 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[SocketAgent sharedInstance] socketConnect];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     if (self.popupController != nil) {
         [self presentViewController:self.popupController animated:self.anim completion:nil];
@@ -111,9 +115,13 @@
     if (course == nil)
         return;
     
+    if ([self.contentViewController.childViewControllers[0] isKindOfClass:[CourseDetailViewController class]]
+         && ((CourseDetailViewController*) self.contentViewController.childViewControllers[0]).simpleCourse.id == course.id)
+         return;
+    
     CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
     courseDetail.simpleCourse = course;
-    [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail]];
+    [self setContentViewController:[[UINavigationController alloc] initWithRootViewController:courseDetail] animated:YES];
     [self hideMenuViewController];
 }
 
@@ -139,6 +147,7 @@
 - (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
 {
     self.panGestureEnabled = NO;
+    [[SocketAgent sharedInstance] socketConnect];
 }
 
 @end

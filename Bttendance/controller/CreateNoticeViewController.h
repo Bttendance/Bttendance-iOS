@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateNoticeViewController : UIViewController <UITextViewDelegate> {
-    UIBarButtonItem *post;
-}
+@interface CreateNoticeViewController : UIViewController <UITextViewDelegate>
 
 @property(retain, nonatomic) NSString *cid;
 @property(weak, nonatomic) IBOutlet UITextView *message;

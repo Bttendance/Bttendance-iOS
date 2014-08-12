@@ -10,11 +10,10 @@
 #import "Clicker.h"
 #import "Post.h"
 
-@interface ClickerDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
-    XYPieChart *chart;
-}
+@interface ClickerDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 
-@property(retain, nonatomic) Post *post;
+@property(strong, nonatomic) XYPieChart *chart;
+@property(strong, nonatomic) Post *post;
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(weak, nonatomic) IBOutlet UIButton *detailBt;
 @property(strong, nonatomic) NSTimer *timer;

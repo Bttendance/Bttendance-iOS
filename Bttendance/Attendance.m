@@ -16,7 +16,7 @@
     
     dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
     self = [super init];
-
+    
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.type = [dictionary objectForKey:@"type"];
@@ -25,6 +25,32 @@
         self.post = [[dictionary objectForKey:@"post"] integerValue];
     }
     return self;
+}
+
++ (NSDictionary *)toDictionary:(SimpleAttendance *)attendance {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    if (attendance.type != nil)
+        [keys addObject:@"type"];
+    if (attendance.checked_students != nil)
+        [keys addObject:@"checked_students"];
+    if (attendance.late_students != nil)
+        [keys addObject:@"late_students"];
+    [keys addObject:@"post"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)attendance.id]];
+    if (attendance.type != nil)
+        [objects addObject:attendance.type];
+    if (attendance.checked_students != nil)
+        [objects addObject:attendance.checked_students];
+    if (attendance.late_students != nil)
+        [objects addObject:attendance.late_students];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)attendance.post]];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
 }
 
 - (void)copyDataFromAttendance:(id)object {
@@ -54,7 +80,7 @@
     
     dictionary = [dictionary dictionaryByReplacingNullsWithStrings];
     self = [super init];
-
+    
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.createdAt = [BTDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];

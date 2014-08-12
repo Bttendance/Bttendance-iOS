@@ -28,12 +28,13 @@
 - (id)init {
     self = [super init];
     socketIO = [[SocketIO alloc] initWithDelegate:self];
+    reconnectTry = 0;
     return self;
 }
 
 #pragma Socket.id
 - (void)socketConnect {
-    if (!socketIO.isConnecting)
+    if (!socketIO.isConnecting && !socketIO.isConnected)
         [socketIO connectToHost:BTSOCKET onPort:0];
 }
 
@@ -52,6 +53,13 @@
 
 - (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
     NSLog(@"Disconnected : %@", socket.host);
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, reconnectTry * 5 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self socketConnect];
+    });
+    
+    reconnectTry ++;
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
@@ -66,21 +74,25 @@
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clicker"]) {
         Clicker *clicker = [[Clicker alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:ClickerUpdated object:clicker];
+        [BTUserDefault updateClicker:clicker ofCourse:[NSString stringWithFormat:@"%ld", (long)clicker.post.course]];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"attendance"]) {
         Attendance *attendance = [[Attendance alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:AttendanceUpdated object:attendance];
+        [BTUserDefault updateAttendance:attendance ofCourse:[NSString stringWithFormat:@"%ld", (long)attendance.post.course]];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"notice"]) {
         Notice *notice = [[Notice alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:NoticeUpdated object:notice];
+        [BTUserDefault updateNotice:notice ofCourse:[NSString stringWithFormat:@"%ld", (long)notice.post.course]];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"post"]) {
         Post *post = [[Post alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:PostUpdated object:post];
+        [BTUserDefault updatePost:post ofCourse:[NSString stringWithFormat:@"%ld", (long)post.course.id]];
     }
 }
 

@@ -19,9 +19,11 @@
 // For open course/post/modalview
 #define OpenCourse @"open_course"
 #define OpenModalView @"modal_view"
+#define OpenNewPost @"open_new_post"
 
 // USERINFO
 #define SimpleCourseInfo @"simple_course_info"
+#define PostInfo @"post_info"
 #define ModalViewController @"modal_view_controller"
 #define ModalViewAnim @"modal_view_anim"
 

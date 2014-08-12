@@ -7,6 +7,9 @@
 //
 #import "User.h"
 #import "Course.h"
+#import "Attendance.h"
+#import "Clicker.h"
+#import "Notice.h"
 
 #define UserJSONKey @"btd_user_json"
 #define CoursesJSONKey @"btd_courses_json"
@@ -17,9 +20,7 @@
 #define SeenGuideKey @"btd_seen_guide"
 #define LastSeenCourseKey @"btd_last_seen_course"
 
-@interface BTUserDefault : NSObject {
-
-}
+@interface BTUserDefault : NSObject
 
 + (NSString *)getEmail;
 
@@ -42,6 +43,14 @@
 + (NSArray *)getPostsOfArray:(NSString *)courseId;
 
 + (void)setPostsArray:(id)responseObject ofCourse:(NSString *)courseId;
+
++ (void)updateClicker:(Clicker *)clicker ofCourse:(NSString *)courseId;
+
++ (void)updateAttendance:(Attendance *)attendance ofCourse:(NSString *)courseId;
+
++ (void)updateNotice:(Notice *)notice ofCourse:(NSString *)courseId;
+
++ (void)updatePost:(Post *)newPost ofCourse:(NSString *)courseId;
 
 + (NSArray *)getSchools;
 

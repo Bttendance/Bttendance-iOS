@@ -25,6 +25,7 @@
 @property(strong, nonatomic) NSString  *student_id;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
++ (NSDictionary *)toDictionary:(SimpleUser *)user;
 
 @end
 

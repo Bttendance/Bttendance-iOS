@@ -32,6 +32,34 @@
     return self;
 }
 
++ (NSDictionary *)toDictionary:(SimpleUser *)user {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    if (user.email != nil)
+            [keys addObject:@"email"];
+    if (user.full_name != nil)
+        [keys addObject:@"full_name"];
+    if (user.grade != nil)
+        [keys addObject:@"grade"];
+    if (user.student_id != nil)
+        [keys addObject:@"student_id"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)user.id]];
+    if (user.email != nil)
+        [objects addObject:user.email];
+    if (user.full_name != nil)
+        [objects addObject:user.full_name];
+    if (user.grade != nil)
+        [objects addObject:user.grade];
+    if (user.student_id != nil)
+        [objects addObject:user.student_id];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
+}
+
 @end
 
 

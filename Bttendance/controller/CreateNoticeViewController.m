@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
 #import "BTColor.h"
+#import "BTNotification.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AudioToolbox/AudioServices.h>
 
@@ -41,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    post = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Post", nil) style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice)];
+    UIBarButtonItem *post = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Post", nil) style:UIBarButtonItemStyleDone target:self action:@selector(post_Notice:)];
     self.navigationItem.rightBarButtonItem = post;
 
     //Navigation title
@@ -74,8 +75,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)post_Notice {
-    post.enabled = NO;
+- (void)post_Notice:(UIBarButtonItem *)sender  {
+    sender.enabled = NO;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [BTColor BT_navy:0.7];
@@ -86,10 +87,12 @@
     [BTAPIs createNoticeWithCourse:cid
                            message:[self.message text] success:^(Post *post) {
                                [hud hide:YES];
-                               [self.navigationController popViewControllerAnimated:YES];
+                               NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:post, PostInfo, nil];
+                               [[NSNotificationCenter defaultCenter] postNotificationName:OpenNewPost object:nil userInfo:data];
+                               [self.navigationController popViewControllerAnimated:NO];
                            } failure:^(NSError *error) {
                                [hud hide:YES];
-                               post.enabled = YES;
+                               sender.enabled = YES;
                            }];
 }
 

@@ -9,6 +9,7 @@
 #import "CreateAttdViewController.h"
 #import "BTColor.h"
 #import "AttendanceAgent.h"
+#import "BTNotification.h"
 #import <AudioToolbox/AudioServices.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -122,7 +123,9 @@
                                                         andType:type
                                                         success:^(Post *post) {
                                                             [hud hide:YES];
-                                                            [self.navigationController popViewControllerAnimated:YES];
+                                                            NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:post, PostInfo, nil];
+                                                            [[NSNotificationCenter defaultCenter] postNotificationName:OpenNewPost object:nil userInfo:data];
+                                                            [self.navigationController popViewControllerAnimated:NO];
                                                         } failure:^(NSError *error) {
                                                             [hud hide:YES];
                                                             sender.enabled = YES;

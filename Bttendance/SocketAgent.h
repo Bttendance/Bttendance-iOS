@@ -12,6 +12,7 @@
 @interface SocketAgent : NSObject <SocketIODelegate> {
     SocketIO *socketIO;
     NSString *socketID;
+    NSInteger reconnectTry;
 }
 
 + (SocketAgent *)sharedInstance;

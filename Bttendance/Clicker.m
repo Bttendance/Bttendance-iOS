@@ -31,6 +31,42 @@
     return self;
 }
 
++ (NSDictionary *)toDictionary:(SimpleClicker *)clicker {
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    [keys addObject:@"id"];
+    [keys addObject:@"choice_count"];
+    if (clicker.a_students != nil)
+        [keys addObject:@"a_students"];
+    if (clicker.b_students != nil)
+        [keys addObject:@"b_students"];
+    if (clicker.c_students != nil)
+        [keys addObject:@"c_students"];
+    if (clicker.d_students != nil)
+        [keys addObject:@"d_students"];
+    if (clicker.e_students != nil)
+        [keys addObject:@"e_students"];
+    [keys addObject:@"post"];
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.id]];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.choice_count]];
+    if (clicker.a_students != nil)
+        [objects addObject:clicker.a_students];
+    if (clicker.b_students != nil)
+        [objects addObject:clicker.b_students];
+    if (clicker.c_students != nil)
+        [objects addObject:clicker.c_students];
+    if (clicker.d_students != nil)
+        [objects addObject:clicker.d_students];
+    if (clicker.e_students != nil)
+        [objects addObject:clicker.e_students];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.post]];
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+    return dictionary;
+}
+
 - (void)copyDataFromClicker:(id)object {
     Clicker *clicker = (Clicker *)object;
     self.choice_count = clicker.choice_count;

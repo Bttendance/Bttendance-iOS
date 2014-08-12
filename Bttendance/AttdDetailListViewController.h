@@ -24,5 +24,6 @@
 - (IBAction)right:(id)sender;
 
 @property(strong, nonatomic) Post *post;
+@property(assign, nonatomic) BOOL start;
 
 @end

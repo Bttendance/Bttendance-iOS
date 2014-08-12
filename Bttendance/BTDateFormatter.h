@@ -12,6 +12,8 @@
 
 + (NSDate *)dateFromString:(NSString *)dateString;
 
++ (NSString *)serializedStringFromDate:(NSDate *)date;
+
 + (NSString *)stringFromString:(NSString *)dateString;
 
 + (NSTimeInterval)intervalFromString:(NSString *)dateString;

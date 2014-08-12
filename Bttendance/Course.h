@@ -20,6 +20,7 @@
 @property(assign) BOOL opened;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
++ (NSDictionary *)toDictionary:(SimpleCourse *)course;
 
 @end
 
