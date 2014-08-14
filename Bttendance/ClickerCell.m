@@ -28,4 +28,21 @@
     return cell;
 }
 
+- (void)startTimerAsClicker {
+    NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+    self.courseName.text = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clickerTimer) userInfo:nil repeats:YES];
+}
+
+- (void)clickerTimer {
+    NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+    self.courseName.text = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
+    if (left == 0) {
+        [self.timer invalidate];
+        self.timer = nil;
+        self.courseName.text = NSLocalizedString(@"Clicker", nil);
+        return;
+    }
+}
+
 @end

@@ -239,6 +239,7 @@
 "Do you really wish to delete current attendance record?" = "정말로 이 출석 기록을 삭제하실 건가요?";
 "Delete Attendance" = "출석 기록 삭제하기";
 "Deleting Attendance" = "출석 기록을 삭제하는 중";
+"Attendance Check is Ongoing" = "출석 체크가 진행 중입니다.";
 "자동 출석체크 완료!" = "자동 출석체크 완료!";
 "출석체크 진행중" = "자동 출석체크 진행중";
 "수동 출석체크" = "수동 출석체크";

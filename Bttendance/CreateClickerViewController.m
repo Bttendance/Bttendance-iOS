@@ -72,7 +72,7 @@
     
     self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(19, 16, 292, 20)];
     self.placeholder.font = [UIFont systemFontOfSize:14];
-    self.placeholder.textColor = [BTColor BT_silver:1.0];
+    self.placeholder.textColor = [BTColor BT_silver:0.5];
     self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [BTDateFormatter detailedStringFromDate:[NSDate date]]];
     self.placeholder.numberOfLines = 0;
     [self.placeholder sizeToFit];

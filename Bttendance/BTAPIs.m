@@ -25,6 +25,7 @@
 #import "AppDelegate.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "BTColor.h"
+#import "SocketAgent.h"
 
 @implementation BTAPIs
 
@@ -82,14 +83,12 @@ static UIAlertView *Ooooppss;
             NSLog(@"Error : %@", errorJson.message);
         } else if ([errorJson.type isEqualToString:@"toast"]) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            NSArray *viewControllers = [appDelegate.navController viewControllers];
-            UIViewController *currentViewController = viewControllers[[viewControllers count] - 1];
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:currentViewController.view animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.topController.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.color = [BTColor BT_cyan:0.7];
             hud.detailsLabelText = errorJson.message;
             hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
-            hud.yOffset = - currentViewController.view.frame.size.height / 2 + 104;
+            hud.yOffset = - appDelegate.topController.view.frame.size.height / 2 + 104;
             hud.margin = 14.0f;
             [hud hide:YES afterDelay:1.5];
         } else if ([errorJson.type isEqualToString:@"alert"]) {
@@ -112,7 +111,7 @@ static UIAlertView *Ooooppss;
         [BTUserDefault clear];
         CatchPointViewController *catchView = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [appDelegate.navController pushViewController:catchView animated:NO];
+        [appDelegate.topController presentViewController:[[UINavigationController alloc] initWithRootViewController:catchView] animated:NO completion:nil];
     }
     
     if (alertView.tag == 442 || (alertView.tag == 441 && buttonIndex == 1)) {
@@ -685,6 +684,7 @@ static UIAlertView *Ooooppss;
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              [BTUserDefault setUser:responseObject];
+                             [[SocketAgent sharedInstance] socketConnectToServer];
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                  User *user = [[User alloc] initWithDictionary:responseObject];
                                  dispatch_async( dispatch_get_main_queue(), ^{
@@ -735,6 +735,7 @@ static UIAlertView *Ooooppss;
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
+                            [[SocketAgent sharedInstance] socketConnectToServer];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{

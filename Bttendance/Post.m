@@ -47,9 +47,6 @@
         self.attendance = [[SimpleAttendance alloc] initWithDictionary:[dictionary objectForKey:@"attendance"]];
         self.clicker = [[SimpleClicker alloc] initWithDictionary:[dictionary objectForKey:@"clicker"]];
         self.notice = [[SimpleNotice alloc] initWithDictionary:[dictionary objectForKey:@"notice"]];
-        
-        //Added by APIs
-        self.grade = [dictionary objectForKey:@"grade"];
     }
     return self;
 }
@@ -71,8 +68,6 @@
         [keys addObject:@"clicker"];
     if (post.notice != nil && post.notice.id != 0)
         [keys addObject:@"notice"];
-    if (post.grade != nil)
-        [keys addObject:@"grade"];
     
     NSMutableArray *objects = [NSMutableArray array];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)post.id]];
@@ -89,8 +84,6 @@
         [objects addObject:[SimpleClicker toDictionary:post.clicker]];
     if (post.notice != nil && post.notice.id != 0)
         [objects addObject:[SimpleNotice toDictionary:post.notice]];
-    if (post.grade != nil)
-        [objects addObject:post.grade];
     
     NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
     return dictionary;

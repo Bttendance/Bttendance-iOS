@@ -44,9 +44,6 @@
 @property(strong, nonatomic) SimpleClicker  *clicker;
 @property(strong, nonatomic) SimpleNotice  *notice;
 
-//Added by APIs
-@property(strong, nonatomic) NSString  *grade;
-
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(Post *)post;
 

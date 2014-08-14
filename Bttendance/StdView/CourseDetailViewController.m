@@ -421,6 +421,33 @@
     NSString *rawmessage = post.message;
     if ([post.type isEqualToString:@"clicker"])
         rawmessage = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
+    
+    if ([post.type isEqualToString:@"attendance"]) {
+        if (self.auth) {
+            NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
+            NSInteger total_grade = 0;
+            if (self.course.students_count != 0)
+                total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
+            rawmessage = [NSString stringWithFormat:NSLocalizedString(@"%ld/%ld (%ld%%) students has been attended.", nil), (long)total, (long)self.course.students_count, (long)total_grade];
+        } else {
+            NSString *message1 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
+            NSString *message2 = NSLocalizedString(@"결석으로 처리되었습니다.", nil);
+            NSString *message3 = NSLocalizedString(@"지각으로 처리되었습니다.", nil);
+            NSString *message4 = NSLocalizedString(@"Attendance Check is Ongoing", nil);
+            
+            if ([post.attendance stateInt:user.id] == 0) {
+                if (65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
+                    rawmessage = message4;
+                else
+                    rawmessage = message2;
+            } else if ([post.attendance stateInt:user.id] == 1){
+                rawmessage = message1;
+            } else {
+                rawmessage = message3;
+            }
+        }
+    }
+    
     NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
     CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     
@@ -550,7 +577,7 @@
         }
         
         cell.post = post;
-        cell.courseName.text = NSLocalizedString(@"Clicker", nil);
+        [cell startTimerAsClicker];
         cell.message.text = cell.post.message;
         cell.date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
         
@@ -703,7 +730,6 @@
     cell.post = post;
     cell.Title.text = NSLocalizedString(@"Attendance Check", nil);
     cell.Title.textColor = [BTColor BT_silver:1];
-    cell.Message.text = post.message;
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
     cell.gap = [cell.post.createdAt timeIntervalSinceNow];
     
@@ -729,17 +755,17 @@
     
     if (self.auth) {
         NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
-        NSInteger total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
-        if (65.0f + cell.gap > 0.0f) {
-            CGFloat grade = ((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count;
-            cell.background.frame = CGRectMake(29, 75 - grade * 50, 50, grade * 50);
-            
+        NSInteger total_grade = 0;
+        if (self.course.students_count != 0)
+            total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
+        [cell.background setFrame:CGRectMake(29, 75 - total_grade / 2, 50, total_grade / 2)];
+        
+        if (65.0f + cell.gap > 0.0f && [post.attendance.type isEqualToString:@"auto"]) {
             NSInteger count = 65 + cell.gap;
             BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
             [[BTBlink sharedInstance] addBlinkView:blinkView];
         } else {
             [[BTBlink sharedInstance] removeView:cell.check_icon];
-            [cell.background setFrame:CGRectMake(29, 75 - total_grade / 2, 50, total_grade / 2)];
         }
         cell.Message.text = [NSString stringWithFormat:NSLocalizedString(@"%ld/%ld (%ld%%) students has been attended.", nil), (long)total, (long)self.course.students_count, (long)total_grade];
     } else {
@@ -747,6 +773,7 @@
         NSString *message1 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
         NSString *message2 = NSLocalizedString(@"결석으로 처리되었습니다.", nil);
         NSString *message3 = NSLocalizedString(@"지각으로 처리되었습니다.", nil);
+        NSString *message4 = NSLocalizedString(@"Attendance Check is Ongoing", nil);
         
         if ([post.attendance stateInt:user.id] == 0) {
             if (65.0f + cell.gap > 0.0f && [post.attendance.type isEqualToString:@"auto"]) {
@@ -754,6 +781,7 @@
                 NSInteger count = 65 + cell.gap;
                 BlinkView *blinkView = [[BlinkView alloc] initWithView:cell.check_icon andCount:count];
                 [[BTBlink sharedInstance] addBlinkView:blinkView];
+                cell.Message.text = message4;
             } else {
                 [[BTBlink sharedInstance] removeView:cell.check_icon];
                 [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];

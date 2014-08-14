@@ -53,15 +53,17 @@
        || user.email == nil
        || user.password == nil) {
         [BTUserDefault clear];
-        firstview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
-        self.navController = [[UINavigationController alloc] initWithRootViewController:firstview];
-        self.window.rootViewController = self.navController;
+        CatchPointViewController *catchview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
+        self.topController = catchview;
+        UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:catchview];
+        navcontroller.navigationBarHidden = YES;
+        self.window.rootViewController = navcontroller;
     } else {
-        firstview = [[SideMenuViewController alloc] initByItSelf];
-        self.window.rootViewController = firstview;
+        SideMenuViewController *sideview = [[SideMenuViewController alloc] initByItSelf];
+        self.topController = sideview;
+        self.window.rootViewController = sideview;
     }
     
-    self.navController.navigationBarHidden = YES;
     [self.window makeKeyAndVisible];
   
     if([[[UIDevice currentDevice] systemVersion] floatValue] >=7){
@@ -324,7 +326,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     application.applicationIconBadgeNumber = 0;
-    [firstview viewWillAppear:YES];
+    [self.topController viewWillAppear:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

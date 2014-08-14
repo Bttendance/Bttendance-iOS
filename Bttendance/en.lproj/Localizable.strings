@@ -150,11 +150,11 @@
 "기능 사용에 어려움을 느끼신다면 언제든지 가이드를 확인해주세요!" = "Please check the guide and the tutorial anytime when you have difficulty using the features of BTTENDANCE!";
 "더 알아보기" = "See More";
 "비텐던스 공식 블로그" = "Blog";
-"비텐던스 페이스북 페이지" = "Facebook page";
+"비텐던스 페이스북 페이지" = "Facebook Page";
 "설문조사 알림" = "Clicker Notification";
 "설문하기" = "Clicker";
 "소개할게요." = "BTTENDANCE.";
-"수강하기" = "Attend course";
+"수강하기" = "Attend Course";
 "수업 참여율 %1$@%%  출석률 %2$@%%" = "Clicker rate %1$@%%  Attendance %2$@%%";
 "최근 공지를 읽은 학생 수 %ld/%ld" = "%ld/%ld students have read recent notice";
 "읽지 않은 공지 수 %ld" = "%ld unread notices";
@@ -239,6 +239,7 @@
 "Do you really wish to delete current attendance record?" = "Do you really wish to delete this attendance record?";
 "Delete Attendance" = "Delete Attendance";
 "Deleting Attendance" = "Deleting Attendance";
+"Attendance Check is Ongoing" = "Attendance Check is Ongoing";
 "자동 출석체크 완료!" = "Check Complete!";
 "출석체크 진행중" = "Check Ongoing ";
 "수동 출석체크" = "Manual Check";

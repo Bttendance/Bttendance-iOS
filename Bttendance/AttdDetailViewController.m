@@ -318,7 +318,9 @@
                     [[BTBlink sharedInstance] addBlinkView:blinkView];
                 }
             
-                CGFloat grade = ((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count;
+                CGFloat grade = 0;
+                if (self.course.students_count != 0)
+                    grade = ((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count;
                 UIView *top = [[UIView alloc] initWithFrame:CGRectMake(69, 9, 182, 182 * (1-grade))];
                 top.backgroundColor = [BTColor BT_white:1];
                 [cell addSubview:top];

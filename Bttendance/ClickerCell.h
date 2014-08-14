@@ -36,4 +36,8 @@
 
 @property(retain, nonatomic) Post *post;
 
+@property(strong, nonatomic) NSTimer *timer;
+
+- (void)startTimerAsClicker;
+
 @end

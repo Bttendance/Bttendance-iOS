@@ -38,17 +38,23 @@
         [socketIO connectToHost:BTSOCKET onPort:0];
 }
 
+- (void)socketConnectToServer {
+    if (socketIO.isConnected) {
+        NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+        NSString *url = [NSString stringWithFormat:@"/api/sockets/connect?email=%@&password=%@&locale=%@",
+                         [BTUserDefault getEmail],
+                         [BTUserDefault getPassword],
+                         locale];
+        NSDictionary *params = @{@"url" : url};
+        [socketIO sendEvent:@"put" withData:params];
+    } else
+        [self socketConnect];
+}
+
 #pragma Socket.io Delegate
 - (void)socketIODidConnect:(SocketIO *)socket {
     NSLog(@"Connected to %@", socket.host);
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSString *url = [NSString stringWithFormat:@"/api/sockets/connect?email=%@&password=%@&locale=%@",
-                     [BTUserDefault getEmail],
-                     [BTUserDefault getPassword],
-                     locale];
-    NSDictionary *params = @{@"url" : url};
-    [socket sendEvent:@"put" withData:params];
+    [self socketConnectToServer];
 }
 
 - (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
