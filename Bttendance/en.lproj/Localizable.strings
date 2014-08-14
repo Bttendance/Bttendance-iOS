@@ -206,7 +206,7 @@
 "Name for profile" = "Name";
 
 "Write an announcement." = "Write an announcement.";
-"* %d명의 학생이 공지를 받게 됩니다.\n* 어떤 학생이 읽지 않았는지 확인할 수 있습니다." = "* %d student(s) will receive this notice.\n* You may check how many students view it so far.";
+"* %d명의 학생이 공지를 받게 됩니다.\n* 어떤 학생이 읽지 않았는지 확인할 수 있습니다." = "* %d student(s) will receive this notice.\n* You may check how many students read it so far.";
 "Post" = "Post";
 "Posting Notice" = "Posting Notice";
 "* 설문이 시작되면 60초간 답변을 수집합니다." = "* Responses will be collected for 60 seconds.";
@@ -260,10 +260,10 @@
 "출석" = "Present";
 "지각" = "Tardy";
 "결석" = "Absent";
-"학생의 이름을 누르면 학생의 출결 상황이 결석 -> 출석 -> 지각 -> 결석 순으로 바뀝니다." = "Click on the student’s name to toggle the student’s attendance status in the order of Absent -> Present -> Tardy -> Absent.";
+"학생의 이름을 누르면 학생의 출결 상황이 결석 -> 출석 -> 지각 -> 결석 순으로 바뀝니다." = "Click on the student’s name to toggle the student’s attendance status in the order of Absent ➜ Present ➜ Tardy ➜ Absent.";
 "읽음" = "Read";
 "읽지 않음" = "Unread";
-"BTTENDANCE를 잘 사용하는 법을 다시 보려면 여기를 누르세요!" = "Click here to see Tips for Using BTTENDANCE once more!";
+"BTTENDANCE를 잘 사용하는 법을 다시 보려면 여기를 누르세요!" = "Click here to see the Tips for Using BTTENDANCE!";
 "설문하기 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요." = "Click here to see how to use Clicker.";
 "출석체크 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요." = "Click here to see how to use Attendance.";
 "공지하기 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요." = "Click here to see how to use Notice.";
@@ -274,5 +274,7 @@
 "이 게시물은 현재 버전의 앱에서 읽을 수 없습니다. 앱을 업데이트 해주세요." = "You cannot read this post in the current version. Please update to the lastest version.";
 "%@에 진행된 설문입니다." = "This clicker has been created at %@";
 "%ld/%ld (%ld%%) students has been attended." = "%ld/%ld (%ld%%) students has been attended.";
+"확인순" = "Read";
+"%d Student(s)" = "%d Students";
 
 

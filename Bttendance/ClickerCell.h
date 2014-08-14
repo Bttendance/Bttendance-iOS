@@ -23,16 +23,19 @@
 @property(weak, nonatomic) IBOutlet UIView *bg_b;
 @property(weak, nonatomic) IBOutlet UIView *bg_c;
 @property(weak, nonatomic) IBOutlet UIView *bg_d;
+@property(weak, nonatomic) IBOutlet UIView *bg_e;
 
 @property(weak, nonatomic) IBOutlet UIButton *ring_a;
 @property(weak, nonatomic) IBOutlet UIButton *ring_b;
 @property(weak, nonatomic) IBOutlet UIButton *ring_c;
 @property(weak, nonatomic) IBOutlet UIButton *ring_d;
+@property(weak, nonatomic) IBOutlet UIButton *ring_e;
 
 @property(weak, nonatomic) IBOutlet UIImageView *blink_a;
 @property(weak, nonatomic) IBOutlet UIImageView *blink_b;
 @property(weak, nonatomic) IBOutlet UIImageView *blink_c;
 @property(weak, nonatomic) IBOutlet UIImageView *blink_d;
+@property(weak, nonatomic) IBOutlet UIImageView *blink_e;
 
 @property(retain, nonatomic) Post *post;
 

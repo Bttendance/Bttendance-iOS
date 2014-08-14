@@ -85,20 +85,22 @@
 }
 
 + (UIColor *)BT_clicker_b:(CGFloat)_alpha {
-    return [UIColor colorWithRed:0.125 green:0.576 blue:0.796 alpha:_alpha];
+    return [UIColor colorWithRed:0.173 green:0.557 blue:0.808 alpha:_alpha];
 }
 
 + (UIColor *)BT_clicker_c:(CGFloat)_alpha {
-    return [UIColor colorWithRed:0.498 green:0.788 blue:0.937 alpha:_alpha];
+    return [UIColor colorWithRed:0.455 green:0.757 blue:0.925 alpha:_alpha];
 }
 
 + (UIColor *)BT_clicker_d:(CGFloat)_alpha {
-    return [UIColor colorWithRed:0.776 green:0.886 blue:0.976 alpha:_alpha];
+    return [UIColor colorWithRed:0.663 green:0.855 blue:0.965 alpha:_alpha];
 }
 
 + (UIColor *)BT_clicker_e:(CGFloat)_alpha {
-    return [UIColor colorWithRed:0.914 green:0.914 blue:0.969 alpha:_alpha];
+    return [UIColor colorWithRed:0.820 green:0.914 blue:0.976 alpha:_alpha];
 }
+
+
 
 @end
 
@@ -115,3 +117,11 @@
 //BT_clicker_c 0.498, 0.788, 0.937
 //BT_clicker_d 0.776, 0.886, 0.976
 //BT_clicker_e 0.914, 0.914, 0.969
+
+
+//A - #0072B0        0, 144, 176,         0, 0.447, 0.69 (BT NAVY)
+//B - #2C8ECE     44, 142, 206         0.173, 0.557, 0.808
+//C - #74C1EC   116, 193, 236        0.455, 0.757, 0.925
+//D - #A9DAF6  169, 218, 246        0.663, 0.855, 0.965
+//E - #D1E9F9   209, 233, 249        0.820, 0.914, 0.976
+

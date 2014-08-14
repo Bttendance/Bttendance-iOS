@@ -140,7 +140,7 @@
     
     switch (indexPath.row) {
         case 0:
-            return 20;
+            return 35;
         case 1:
         {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:14];
@@ -164,7 +164,7 @@
             return ceil(MessageLabelSize.size.height) + 3;
         }
         case 3:
-            return 30;
+            return 35;
         case 4:
             return 200;
         case 5:
@@ -183,7 +183,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0: {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1];
             return cell;
@@ -199,7 +199,7 @@
             cell.backgroundColor = [BTColor BT_white:1];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, ceil(MessageLabelSize.size.height))];
-            label.font = [UIFont systemFontOfSize:14];
+            label.font = [UIFont boldSystemFontOfSize:14];
             label.text = post.message;
             label.textColor = [BTColor BT_navy:1];
             label.numberOfLines = 0;
@@ -241,7 +241,7 @@
             return cell;
         }
         case 3: {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1];
             return cell;
@@ -332,7 +332,7 @@
             eLabel.textAlignment = NSTextAlignmentCenter;
             eLabel.attributedText = eStr;
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(left, 64, width, 1)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(left, 64, width, 0.7)];
             line.backgroundColor = [BTColor BT_navy:1];
             
             UILabel *aLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(left, 73, 36, 14)];

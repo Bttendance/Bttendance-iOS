@@ -129,7 +129,7 @@
     
     switch (indexPath.row) {
         case 0:
-            return 20;
+            return 35;
         case 1:
             return 38;
         case 2:
@@ -164,7 +164,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0: {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [BTColor BT_white:1];
             return cell;
@@ -185,7 +185,7 @@
             
             UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
             timeLabel.text = time;
-            timeLabel.font = [UIFont boldSystemFontOfSize:29];
+            timeLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:29];
             timeLabel.textColor = [BTColor BT_navy:1];
             [timeLabel sizeToFit];
             
@@ -262,7 +262,7 @@
             messageLabel.textAlignment = NSTextAlignmentLeft;
             
             dateLabel.frame = CGRectMake(160 - width/2, 0, max1, dateLabel.frame.size.height);
-            timeLabel.frame = CGRectMake(160 - width/2 + 2, 10, max1, timeLabel.frame.size.height);
+            timeLabel.frame = CGRectMake(160 - width/2 + 1, 10, max1, timeLabel.frame.size.height);
             titleLabel.frame = CGRectMake(160 - width/2 + 21 + max1, 1, max2, titleLabel.frame.size.height);
             messageLabel.frame = CGRectMake(160 - width/2 + 20 + max1, 21, max2, messageLabel.frame.size.height);
             

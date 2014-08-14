@@ -80,6 +80,14 @@
 		D408BDC61996B23500DE0A95 /* bttendance_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D408BDC51996B23500DE0A95 /* bttendance_icon@2x.png */; };
 		D41C62DB18731E02005A4CF9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41C62D918731E02005A4CF9 /* PostCell.m */; };
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
+		D41D9741199CB6DB00D5A14B /* e@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D973F199CB6DB00D5A14B /* e@2x.png */; };
+		D41D9742199CB6DB00D5A14B /* e_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D9740199CB6DB00D5A14B /* e_clicked@2x.png */; };
+		D41D9746199CBCEA00D5A14B /* b_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D9743199CBCEA00D5A14B /* b_clicked@2x.png */; };
+		D41D9747199CBCEA00D5A14B /* c_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D9744199CBCEA00D5A14B /* c_clicked@2x.png */; };
+		D41D9748199CBCEA00D5A14B /* d_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D9745199CBCEA00D5A14B /* d_clicked@2x.png */; };
+		D41D974C199CC05C00D5A14B /* small_attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D9749199CC05C00D5A14B /* small_attendance@2x.png */; };
+		D41D974D199CC05C00D5A14B /* small_clicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D974A199CC05C00D5A14B /* small_clicker@2x.png */; };
+		D41D974E199CC05C00D5A14B /* small_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D41D974B199CC05C00D5A14B /* small_notice@2x.png */; };
 		D41EDC851990AC48004F6E44 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC841990AC48004F6E44 /* SignUpViewController.xib */; };
 		D41EDC881990AC87004F6E44 /* CourseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC861990AC87004F6E44 /* CourseDetailViewController.xib */; };
 		D41EDC891990AC87004F6E44 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC871990AC87004F6E44 /* ProfileViewController.xib */; };
@@ -99,9 +107,6 @@
 		D42FAB1B197E7BB50008945E /* welcome_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D42FAB19197E7BB50008945E /* welcome_icon@2x.png */; };
 		D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380E9B1916DF4D008F8A78 /* BTBlink.m */; };
 		D4380EA61918A3FF008F8A78 /* a_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */; };
-		D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */; };
-		D4380EA81918A3FF008F8A78 /* c_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA41918A3FF008F8A78 /* c_clicked@2x.png */; };
-		D4380EA91918A3FF008F8A78 /* d_clicked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4380EA51918A3FF008F8A78 /* d_clicked@2x.png */; };
 		D4380EAC1918B395008F8A78 /* SocketAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4380EAB1918B395008F8A78 /* SocketAgent.m */; };
 		D44224D918B5F06A0028B048 /* BTDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D44224D818B5F06A0028B048 /* BTDateFormatter.m */; };
 		D44AA0111982031300743C8A /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D44AA00F1982031300743C8A /* NotificationCell.m */; };
@@ -191,7 +196,6 @@
 		D4AD9D08196BC9EB00B88020 /* GuideCourseAttendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD9D06196BC9EB00B88020 /* GuideCourseAttendViewController.m */; };
 		D4AD9D09196BC9EB00B88020 /* GuideCourseAttendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4AD9D07196BC9EB00B88020 /* GuideCourseAttendViewController.xib */; };
 		D4AFCA5E1909588500FA62A9 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */; };
-		D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B466F41912121500AB6486 /* notice_small@2x.png */; };
 		D4B466FB1912370A00AB6486 /* BTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B466FA1912370A00AB6486 /* BTNotification.m */; };
 		D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B466FC1912527A00AB6486 /* clickerring@2x.png */; };
 		D4B467011912760A00AB6486 /* ClickerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B466FF1912760A00AB6486 /* ClickerDetailViewController.m */; };
@@ -200,10 +204,8 @@
 		D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B467051913504B00AB6486 /* ClickerCell.xib */; };
 		D4B4BFC018F639B7002DE88C /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4BFBF18F639B7002DE88C /* XYPieChart.m */; };
 		D4B4BFCD18F63B10002DE88C /* a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC118F63B0F002DE88C /* a@2x.png */; };
-		D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC218F63B0F002DE88C /* attendance@2x.png */; };
 		D4B4BFCF18F63B10002DE88C /* b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC318F63B0F002DE88C /* b@2x.png */; };
 		D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC518F63B0F002DE88C /* c@2x.png */; };
-		D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC618F63B0F002DE88C /* clicker@2x.png */; };
 		D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC718F63B0F002DE88C /* d@2x.png */; };
 		D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFC918F63B10002DE88C /* plus@2x.png */; };
 		D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B4BFCA18F63B10002DE88C /* polledge@2x.png */; };
@@ -373,6 +375,14 @@
 		D41C62D818731E02005A4CF9 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostCell.h; path = controller/PostCell.h; sourceTree = "<group>"; };
 		D41C62D918731E02005A4CF9 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostCell.m; path = controller/PostCell.m; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D41D973F199CB6DB00D5A14B /* e@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "e@2x.png"; sourceTree = "<group>"; };
+		D41D9740199CB6DB00D5A14B /* e_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "e_clicked@2x.png"; sourceTree = "<group>"; };
+		D41D9743199CBCEA00D5A14B /* b_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b_clicked@2x.png"; sourceTree = "<group>"; };
+		D41D9744199CBCEA00D5A14B /* c_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c_clicked@2x.png"; sourceTree = "<group>"; };
+		D41D9745199CBCEA00D5A14B /* d_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "d_clicked@2x.png"; sourceTree = "<group>"; };
+		D41D9749199CC05C00D5A14B /* small_attendance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_attendance@2x.png"; sourceTree = "<group>"; };
+		D41D974A199CC05C00D5A14B /* small_clicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_clicker@2x.png"; sourceTree = "<group>"; };
+		D41D974B199CC05C00D5A14B /* small_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_notice@2x.png"; sourceTree = "<group>"; };
 		D41EDC841990AC48004F6E44 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignUpViewController.xib; path = SignupProcess/SignUpViewController.xib; sourceTree = "<group>"; };
 		D41EDC861990AC87004F6E44 /* CourseDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseDetailViewController.xib; path = StdView/CourseDetailViewController.xib; sourceTree = "<group>"; };
 		D41EDC871990AC87004F6E44 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = StdView/ProfileViewController.xib; sourceTree = "<group>"; };
@@ -397,9 +407,6 @@
 		D4380E9A1916DF4D008F8A78 /* BTBlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlink.h; sourceTree = "<group>"; };
 		D4380E9B1916DF4D008F8A78 /* BTBlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlink.m; sourceTree = "<group>"; };
 		D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_clicked@2x.png"; sourceTree = "<group>"; };
-		D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b_clicked@2x.png"; sourceTree = "<group>"; };
-		D4380EA41918A3FF008F8A78 /* c_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c_clicked@2x.png"; sourceTree = "<group>"; };
-		D4380EA51918A3FF008F8A78 /* d_clicked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "d_clicked@2x.png"; sourceTree = "<group>"; };
 		D4380EAA1918B395008F8A78 /* SocketAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketAgent.h; sourceTree = "<group>"; };
 		D4380EAB1918B395008F8A78 /* SocketAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketAgent.m; sourceTree = "<group>"; };
 		D44224D718B5F06A0028B048 /* BTDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDateFormatter.h; sourceTree = "<group>"; };
@@ -528,7 +535,6 @@
 		D4AD9D07196BC9EB00B88020 /* GuideCourseAttendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideCourseAttendViewController.xib; sourceTree = "<group>"; };
 		D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
 		D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
-		D4B466F41912121500AB6486 /* notice_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice_small@2x.png"; sourceTree = "<group>"; };
 		D4B466F91912370A00AB6486 /* BTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTNotification.h; sourceTree = "<group>"; };
 		D4B466FA1912370A00AB6486 /* BTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTNotification.m; sourceTree = "<group>"; };
 		D4B466FC1912527A00AB6486 /* clickerring@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clickerring@2x.png"; sourceTree = "<group>"; };
@@ -541,10 +547,8 @@
 		D4B4BFBE18F639B7002DE88C /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYPieChart.h; path = ../XYPieChart/XYPieChart.h; sourceTree = "<group>"; };
 		D4B4BFBF18F639B7002DE88C /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYPieChart.m; path = ../XYPieChart/XYPieChart.m; sourceTree = "<group>"; };
 		D4B4BFC118F63B0F002DE88C /* a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a@2x.png"; sourceTree = "<group>"; };
-		D4B4BFC218F63B0F002DE88C /* attendance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendance@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC318F63B0F002DE88C /* b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC518F63B0F002DE88C /* c@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c@2x.png"; sourceTree = "<group>"; };
-		D4B4BFC618F63B0F002DE88C /* clicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clicker@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC718F63B0F002DE88C /* d@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "d@2x.png"; sourceTree = "<group>"; };
 		D4B4BFC918F63B10002DE88C /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		D4B4BFCA18F63B10002DE88C /* polledge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polledge@2x.png"; sourceTree = "<group>"; };
@@ -866,6 +870,11 @@
 		219179121871293600799CC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D41D9743199CBCEA00D5A14B /* b_clicked@2x.png */,
+				D41D9744199CBCEA00D5A14B /* c_clicked@2x.png */,
+				D41D9745199CBCEA00D5A14B /* d_clicked@2x.png */,
+				D41D973F199CB6DB00D5A14B /* e@2x.png */,
+				D41D9740199CB6DB00D5A14B /* e_clicked@2x.png */,
 				D42212BD1997ACFB00F28596 /* attendance_check_navy@2x.png */,
 				D42212BF1997AD2E00F28596 /* attendance_check@2x.png */,
 				D408BDC51996B23500DE0A95 /* bttendance_icon@2x.png */,
@@ -893,25 +902,22 @@
 				D481EBB719874626001CAA8E /* attendance_cyan@2x.png */,
 				D481EBB3198744D0001CAA8E /* attendance_grey@2x.png */,
 				D481EBB4198744D0001CAA8E /* attendance_silver@2x.png */,
+				D41D9749199CC05C00D5A14B /* small_attendance@2x.png */,
+				D41D974A199CC05C00D5A14B /* small_clicker@2x.png */,
+				D41D974B199CC05C00D5A14B /* small_notice@2x.png */,
 				D44AA01B19823C3B00743C8A /* side_plus@2x.png */,
 				D42212C21997B15D00F28596 /* attended@2x.png */,
 				D44AA01919822B8800743C8A /* profile@2x.png */,
 				D44AA01719821FE900743C8A /* menu@2x.png */,
 				D4FB95821976952200ADB9FA /* arrow@2x.png */,
 				D4380EA21918A3FF008F8A78 /* a_clicked@2x.png */,
-				D4380EA31918A3FF008F8A78 /* b_clicked@2x.png */,
-				D4380EA41918A3FF008F8A78 /* c_clicked@2x.png */,
 				D42212C51997B1AA00F28596 /* attendlate@2x.png */,
-				D4380EA51918A3FF008F8A78 /* d_clicked@2x.png */,
 				D4B466FC1912527A00AB6486 /* clickerring@2x.png */,
 				D4B4BFD918F63B3C002DE88C /* back@2x.png */,
 				D4B4BFC118F63B0F002DE88C /* a@2x.png */,
-				D4B4BFC218F63B0F002DE88C /* attendance@2x.png */,
 				D4B4BFC318F63B0F002DE88C /* b@2x.png */,
 				D4B4BFC518F63B0F002DE88C /* c@2x.png */,
-				D4B4BFC618F63B0F002DE88C /* clicker@2x.png */,
 				D4B4BFC718F63B0F002DE88C /* d@2x.png */,
-				D4B466F41912121500AB6486 /* notice_small@2x.png */,
 				D4B4BFC918F63B10002DE88C /* plus@2x.png */,
 				D4B4BFCA18F63B10002DE88C /* polledge@2x.png */,
 				D4B4BFCB18F63B10002DE88C /* pollicon@2x.png */,
@@ -1263,7 +1269,7 @@
 		2135C38E182BDD4E002C45DB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Bttendance;
 				TargetAttributes = {
 					2135C395182BDD4E002C45DB = {
@@ -1308,6 +1314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A22663199322F400AAFC97 /* s_A@2x.png in Resources */,
+				D41D974C199CC05C00D5A14B /* small_attendance@2x.png in Resources */,
 				D4CD98FE1976715B00F6D018 /* SideCourseInfoCell.xib in Resources */,
 				D4B5067818B4F06B0075E2F8 /* GradeViewController.xib in Resources */,
 				D4871041198EBE2C0094FBEB /* ChooseCountCell.xib in Resources */,
@@ -1325,11 +1332,11 @@
 				D4CD98E11974E2BD00F6D018 /* notice_bg@2x.png in Resources */,
 				D408BDC61996B23500DE0A95 /* bttendance_icon@2x.png in Resources */,
 				21C48E411841F53800C8D772 /* Images.xcassets in Resources */,
-				D4380EA71918A3FF008F8A78 /* b_clicked@2x.png in Resources */,
 				D42212BE1997ACFB00F28596 /* attendance_check_navy@2x.png in Resources */,
 				D44AA0121982031300743C8A /* NotificationCell.xib in Resources */,
 				D42212BA1997A85C00F28596 /* attendance_late@2x.png in Resources */,
 				D4B5067018B4CEDB0075E2F8 /* attendanceringnonalphabig@2x.png in Resources */,
+				D41D9747199CBCEA00D5A14B /* c_clicked@2x.png in Resources */,
 				2191793218724EC600799CC0 /* attendancecheckcyan@2x.png in Resources */,
 				D4A226711993249E00AAFC97 /* checked@2x.png in Resources */,
 				D4B4BFD318F63B10002DE88C /* d@2x.png in Resources */,
@@ -1350,8 +1357,8 @@
 				D4CD98E01974E2BD00F6D018 /* attendanceicon_gd@2x.png in Resources */,
 				D42FAB1A197E7BB50008945E /* start_icon@2x.png in Resources */,
 				D4871051198FA4CB0094FBEB /* ClickerTextViewCell.xib in Resources */,
-				D4B466F51912121500AB6486 /* notice_small@2x.png in Resources */,
 				D4A2267A1993871900AAFC97 /* r_D@2x.png in Resources */,
+				D41D9746199CBCEA00D5A14B /* b_clicked@2x.png in Resources */,
 				D4B4BFD518F63B10002DE88C /* plus@2x.png in Resources */,
 				D42212C41997B15D00F28596 /* attended@2x.png in Resources */,
 				D4AD9CFF196BC9B600B88020 /* NoCourseViewController.xib in Resources */,
@@ -1373,6 +1380,7 @@
 				D4B4BFD618F63B10002DE88C /* polledge@2x.png in Resources */,
 				D408BDBC1995721500DE0A95 /* attendance_ring@2x.png in Resources */,
 				D481EBB819874626001CAA8E /* attendance_cyan@2x.png in Resources */,
+				D41D9741199CB6DB00D5A14B /* e@2x.png in Resources */,
 				D4B467071913504B00AB6486 /* ClickerCell.xib in Resources */,
 				D4A93B241995587200813E26 /* attendance_abscent@2x.png in Resources */,
 				D4CD98DF1974E2BD00F6D018 /* attendance_bg@2x.png in Resources */,
@@ -1395,6 +1403,7 @@
 				218D9B13188ED28C00E8BAD0 /* ProfileNameEditViewController.xib in Resources */,
 				D4A22666199322F400AAFC97 /* s_D@2x.png in Resources */,
 				21C48E2F183D08E800C8D772 /* SignInViewController.xib in Resources */,
+				D41D9748199CBCEA00D5A14B /* d_clicked@2x.png in Resources */,
 				D4A22665199322F400AAFC97 /* s_C@2x.png in Resources */,
 				D44AA01A19822B8800743C8A /* profile@2x.png in Resources */,
 				D408BDC41996AD7800DE0A95 /* GuidePostCell.xib in Resources */,
@@ -1413,11 +1422,11 @@
 				D4B4BFD718F63B10002DE88C /* pollicon@2x.png in Resources */,
 				D4C4E4EA198CBFA200D594B7 /* ClickerQuestionViewController.xib in Resources */,
 				2191792C18724AEA00799CC0 /* enrollconfirm@2x.png in Resources */,
-				D4B4BFCE18F63B10002DE88C /* attendance@2x.png in Resources */,
 				D4B466FD1912527A00AB6486 /* clickerring@2x.png in Resources */,
 				D4A226701993249E00AAFC97 /* absent@2x.png in Resources */,
 				D4B4BFD118F63B10002DE88C /* c@2x.png in Resources */,
 				D4A2265D1992502800AAFC97 /* AttdDetailViewController.xib in Resources */,
+				D41D974E199CC05C00D5A14B /* small_notice@2x.png in Resources */,
 				D4BBC05318B3F72900551565 /* ManagerViewController.xib in Resources */,
 				D4A226821993A30A00AAFC97 /* EditClickerViewController.xib in Resources */,
 				D41EDC901990AF47004F6E44 /* Localizable.strings in Resources */,
@@ -1426,11 +1435,9 @@
 				D4AD9D09196BC9EB00B88020 /* GuideCourseAttendViewController.xib in Resources */,
 				D408BDBE1996227C00DE0A95 /* close_eye@2x.png in Resources */,
 				D42212C61997B1AA00F28596 /* attendlate@2x.png in Resources */,
-				D4380EA81918A3FF008F8A78 /* c_clicked@2x.png in Resources */,
 				D4A2268C1994771F00AAFC97 /* StudentInfoCell.xib in Resources */,
 				D4A226791993871900AAFC97 /* r_E@2x.png in Resources */,
 				D4A226961994D29D00AAFC97 /* AttdDetailListViewController.xib in Resources */,
-				D4380EA91918A3FF008F8A78 /* d_clicked@2x.png in Resources */,
 				D42FAB1B197E7BB50008945E /* welcome_icon@2x.png in Resources */,
 				2131F50E189781650096404D /* CreateNoticeViewController.xib in Resources */,
 				D42FAB15197E77870008945E /* x@2x.png in Resources */,
@@ -1438,10 +1445,11 @@
 				21469A4B18929ED7005D4FF2 /* CourseDetailHeaderView.xib in Resources */,
 				D4871031198EAB2F0094FBEB /* EditQuestionViewController.xib in Resources */,
 				D4A226911994C82F00AAFC97 /* StudentListViewController.xib in Resources */,
+				D41D9742199CB6DB00D5A14B /* e_clicked@2x.png in Resources */,
+				D41D974D199CC05C00D5A14B /* small_clicker@2x.png in Resources */,
 				D478DF031873ADFE00BA9BE7 /* PostCell.xib in Resources */,
 				D4B56007196BE415005CFE30 /* ProfileIdentityEditViewController.xib in Resources */,
 				D44AA0211982760100743C8A /* CourseAttendViewController.xib in Resources */,
-				D4B4BFD218F63B10002DE88C /* clicker@2x.png in Resources */,
 				D4FB95831976952200ADB9FA /* arrow@2x.png in Resources */,
 				D4A2266D1993232600AAFC97 /* late@2x.png in Resources */,
 			);
@@ -1640,7 +1648,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1680,7 +1687,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1763,7 +1769,6 @@
 		2135C3CC182BDD4E002C45DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bttendance.app/Bttendance";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1786,7 +1791,6 @@
 		2135C3CD182BDD4E002C45DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Bttendance.app/Bttendance";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

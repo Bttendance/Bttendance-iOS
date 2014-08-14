@@ -45,7 +45,6 @@
 }
 
 #pragma Attendance Start Actions
-
 - (void)startAttendanceWithCourse:(NSString *)courseID
                     andCourseName:(NSString *)courseName
                           andType:(NSString *)type
@@ -55,7 +54,10 @@
     attdStartingCourseID = [NSString stringWithFormat:@"%@", courseID];
     UIAlertView *alert;
     switch ([myCmanager state]) {
-        case CBCentralManagerStatePoweredOn: { //powered on
+        case CBCentralManagerStatePoweredOn: //powered on
+        case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
+        case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
+        {
             
             [BTAPIs startAttendanceWithCourse:attdStartingCourseID
                                       andType:type
@@ -76,8 +78,6 @@
             alert.tag = 400;
             break;
         case CBCentralManagerStateUnknown: //Unknown state
-        case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
-        case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
             failure(nil);
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Unsupported", nil)
@@ -154,6 +154,13 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Check Bluetooth Status", nil)
+                                               message:NSLocalizedString(@"Go to Setting -> Bluetooth and turn on bluetooth.", nil)
+                                              delegate:self
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+            alert.tag = 500;
+            [alert show];
             break;
     }
 }

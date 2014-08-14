@@ -279,6 +279,7 @@
     sender.enabled = NO;
     
     ChooseCountCell *chooseCountCell = (ChooseCountCell *)[self.tableview cellForRowAtIndexPath:self.choiceviewIndex];
+    self.choice = chooseCountCell.choice;
     
     BOOL pass = YES;
     

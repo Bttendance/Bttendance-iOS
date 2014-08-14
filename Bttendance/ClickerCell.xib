@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -52,17 +52,22 @@
                     <view contentMode="scaleToFill" id="s6I-Am-8r0">
                         <rect key="frame" x="99" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.12549019607843137" green="0.57647058823529407" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.17254901960784313" green="0.55686274509803924" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" id="Uab-UF-QYV">
                         <rect key="frame" x="169" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.49803921568627452" green="0.78823529411764703" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.45490196078431372" green="0.75686274509803919" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" id="kS2-eO-MAh">
                         <rect key="frame" x="239" y="131" width="52" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.77647058823529413" green="0.88627450980392153" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.66274509803921566" green="0.85490196078431369" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="NHa-p2-WGV">
+                        <rect key="frame" x="134" y="89" width="52" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.81960784313725488" green="0.9137254901960784" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="a.png" id="wge-bf-Tn6">
                         <rect key="frame" x="29" y="79" width="52" height="52"/>
@@ -78,6 +83,10 @@
                     </imageView>
                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="d.png" id="xU5-eu-KH2">
                         <rect key="frame" x="239" y="79" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="e.png" id="Ihs-Zw-DVf">
+                        <rect key="frame" x="134" y="63" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="agl-M7-CWR">
@@ -108,6 +117,13 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Mi-Gw-cU1">
+                        <rect key="frame" x="134" y="63" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="attendanceringnonalpha.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
@@ -117,10 +133,12 @@
                 <outlet property="bg_b" destination="s6I-Am-8r0" id="Frv-NY-7PI"/>
                 <outlet property="bg_c" destination="Uab-UF-QYV" id="tuB-bW-d4M"/>
                 <outlet property="bg_d" destination="kS2-eO-MAh" id="8mp-Wp-2s3"/>
+                <outlet property="bg_e" destination="NHa-p2-WGV" id="slt-MA-ple"/>
                 <outlet property="blink_a" destination="wge-bf-Tn6" id="L3w-Sw-snr"/>
                 <outlet property="blink_b" destination="FWk-Xu-cL9" id="dlL-I0-3Bj"/>
                 <outlet property="blink_c" destination="vq2-wd-h3a" id="UZK-Wi-4l1"/>
                 <outlet property="blink_d" destination="xU5-eu-KH2" id="JGU-OL-Lq8"/>
+                <outlet property="blink_e" destination="Ihs-Zw-DVf" id="qJ8-55-DJY"/>
                 <outlet property="courseName" destination="0v0-y0-tH2" id="2o4-ZG-zhi"/>
                 <outlet property="date" destination="5qa-5z-K2U" id="S4G-jb-hdO"/>
                 <outlet property="message" destination="lzX-mm-n38" id="oHn-kF-l6E"/>
@@ -128,6 +146,7 @@
                 <outlet property="ring_b" destination="Yzv-2j-0zw" id="sZq-fx-vhW"/>
                 <outlet property="ring_c" destination="RCF-oq-zWc" id="Jqi-VU-6Mh"/>
                 <outlet property="ring_d" destination="Pnc-gT-wud" id="Izz-eR-clg"/>
+                <outlet property="ring_e" destination="9Mi-Gw-cU1" id="gFz-VU-ytY"/>
             </connections>
         </tableViewCell>
     </objects>
@@ -137,5 +156,6 @@
         <image name="b.png" width="52" height="52"/>
         <image name="c.png" width="52" height="52"/>
         <image name="d.png" width="52" height="52"/>
+        <image name="e.png" width="52" height="52"/>
     </resources>
 </document>

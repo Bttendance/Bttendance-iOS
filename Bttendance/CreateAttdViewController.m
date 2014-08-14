@@ -137,11 +137,13 @@
     self.bluetoothBt.backgroundColor = [BTColor BT_cyan:0.2];
     self.nobluetoothBt.backgroundColor = [BTColor BT_cyan:0.0];
     self.bt = YES;
+    self.btno = NO;
 }
 
 - (IBAction)nobluetooth:(id)sender {
     self.bluetoothBt.backgroundColor = [BTColor BT_cyan:0.0];
     self.nobluetoothBt.backgroundColor = [BTColor BT_cyan:0.2];
+    self.bt = NO;
     self.btno = YES;
 }
 

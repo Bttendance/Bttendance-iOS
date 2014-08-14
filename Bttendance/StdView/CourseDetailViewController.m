@@ -146,19 +146,27 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
     coursedetailheaderview = [topLevelObjects objectAtIndex:0];
     
-    if (!self.auth || !self.simpleCourse.opened) {
-        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 178)];
-        [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 161)];
-        coursedetailheaderview.clickerBt.hidden = YES;
-        coursedetailheaderview.attendanceBt.hidden = YES;
-        coursedetailheaderview.noticeBt.hidden = YES;
-        coursedetailheaderview.clickerView.hidden = YES;
-        coursedetailheaderview.attendanceView.hidden = YES;
-        coursedetailheaderview.noticeView.hidden = YES;
-    }
+    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
+    [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
+    [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
+    
+    coursedetailheaderview.clickerLabel.text = NSLocalizedString(@"Clicker", nil);
+    coursedetailheaderview.attendanceLabel.text = NSLocalizedString(@"Attendance Check", nil);
+    coursedetailheaderview.noticeLabel.text = NSLocalizedString(@"Notice", nil);
+    coursedetailheaderview.classcode.text = NSLocalizedString(@"클래스 코드", nil);
+    
+    [self refreshHeader];
     
     self.tableview.tableHeaderView = coursedetailheaderview;
-    [self refreshHeader];
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
     self.tableview.tableFooterView = footer;
@@ -176,14 +184,99 @@
 }
 
 - (void)refreshHeader {
-    coursedetailheaderview.profname.text = simpleCourse.professor_name;
-    coursedetailheaderview.schoolname.text = [self schoolName];
-    coursedetailheaderview.background.layer.cornerRadius = 52.5f;
-    coursedetailheaderview.background.layer.masksToBounds = YES;
     
-    [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
-    [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
-    [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
+    if (!self.auth || !self.simpleCourse.opened) {
+        coursedetailheaderview.clickerBg.hidden = YES;
+        coursedetailheaderview.attendanceBg.hidden = YES;
+        coursedetailheaderview.noticeBg.hidden = YES;
+        coursedetailheaderview.clickerBt.hidden = YES;
+        coursedetailheaderview.attendanceBt.hidden = YES;
+        coursedetailheaderview.noticeBt.hidden = YES;
+        coursedetailheaderview.clickerView.hidden = YES;
+        coursedetailheaderview.attendanceView.hidden = YES;
+        coursedetailheaderview.noticeView.hidden = YES;
+        coursedetailheaderview.clickerLabel.hidden = YES;
+        coursedetailheaderview.attendanceLabel.hidden = YES;
+        coursedetailheaderview.noticeLabel.hidden = YES;
+    }
+    
+    NSString *courseName = self.simpleCourse.name;
+    
+    NSString *profName = self.simpleCourse.professor_name;
+    NSString *schoolName = [user getSchoolNameFromId:self.simpleCourse.school];
+    NSString *studentCount = [NSString stringWithFormat:NSLocalizedString(@"%d Student(s)", nil), self.course.students_count];
+    
+    NSAttributedString *courseMessage = [[NSAttributedString alloc] initWithString:courseName attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
+    CGRect courseMessageLabelSize = [courseMessage boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    CGFloat courseHeight = ceil(courseMessageLabelSize.size.height);
+    
+    NSString *detail = [NSString stringWithFormat:@"%@ | %@ | %@", profName, schoolName, studentCount];
+    NSAttributedString *detailMessage = [[NSAttributedString alloc] initWithString:detail attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
+    CGRect detailMessageLabelSize = [detailMessage boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    CGFloat detailHeight = ceil(detailMessageLabelSize.size.height);
+    
+    if (detailHeight > 18) {
+        detail = [NSString stringWithFormat:@"%@\n%@ | %@", profName, schoolName, studentCount];
+        
+        NSString *detail2 = [NSString stringWithFormat:@"%@ | %@", schoolName, studentCount];
+        NSAttributedString *detailMessage2 = [[NSAttributedString alloc] initWithString:detail2 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
+        CGRect detailMessageLabelSize2 = [detailMessage2 boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+        CGFloat detailHeight2 = ceil(detailMessageLabelSize2.size.height);
+        
+        if (detailHeight2 > 18) {
+            detail = [NSString stringWithFormat:@"%@\n%@\n%@", profName, schoolName, studentCount];
+        }
+    }
+    
+    detailMessage = [[NSAttributedString alloc] initWithString:detail attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
+    detailMessageLabelSize = [detailMessage boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    detailHeight = ceil(detailMessageLabelSize.size.height);
+    
+    coursedetailheaderview.frame = CGRectMake(0, 0, 320, 204 + courseHeight + detailHeight);
+    coursedetailheaderview.bg.frame = CGRectMake(10, 10, 300, 119 + courseHeight + detailHeight);
+    
+    if (!self.auth || !self.simpleCourse.opened) {
+        [coursedetailheaderview setFrame:CGRectMake(0, 0, 320, 134 + courseHeight + detailHeight)];
+        [coursedetailheaderview.bg setFrame:CGRectMake(10, 10, 300, 119 + courseHeight + detailHeight)];
+    }
+    
+    coursedetailheaderview.coursename.text = courseName;
+    coursedetailheaderview.coursename.numberOfLines = 0;
+    [coursedetailheaderview.coursename sizeToFit];
+    coursedetailheaderview.coursename.textAlignment = NSTextAlignmentCenter;
+    coursedetailheaderview.coursename.frame = CGRectMake(20, 102, 280, courseHeight);
+    
+    coursedetailheaderview.detail.text = detail;
+    coursedetailheaderview.detail.numberOfLines = 0;
+    [coursedetailheaderview.detail sizeToFit];
+    coursedetailheaderview.detail.textAlignment = NSTextAlignmentCenter;
+    coursedetailheaderview.detail.frame = CGRectMake(20, 103 + courseHeight, 280, detailHeight);
+    
+    coursedetailheaderview.clickerBg.frame = CGRectMake(10, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.attendanceBg.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.noticeBg.frame = CGRectMake(211, 131 + courseHeight + detailHeight, 99, 68);
+    
+    coursedetailheaderview.clickerBt.frame = CGRectMake(10, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.attendanceBt.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.noticeBt.frame = CGRectMake(211, 131 + courseHeight + detailHeight, 99, 68);
+    
+    coursedetailheaderview.clickerView.frame = CGRectMake(47, 143 + courseHeight + detailHeight, 25, 25);
+    coursedetailheaderview.attendanceView.frame = CGRectMake(148, 143 + courseHeight + detailHeight, 25, 25);
+    coursedetailheaderview.noticeView.frame = CGRectMake(248, 143 + courseHeight + detailHeight, 25, 25);
+    
+    coursedetailheaderview.clickerLabel.frame = CGRectMake(15, 173 + courseHeight + detailHeight, 88, 21);
+    coursedetailheaderview.attendanceLabel.frame = CGRectMake(116, 173 + courseHeight + detailHeight, 88, 21);
+    coursedetailheaderview.noticeLabel.frame = CGRectMake(216, 173 + courseHeight + detailHeight, 88, 21);
+    
+    coursedetailheaderview.classBg.frame = CGRectMake(132, 31, 56, 57);
+    coursedetailheaderview.classHeader.frame = CGRectMake(132, 31, 56, 30);
+    coursedetailheaderview.classFooter.frame = CGRectMake(132, 49, 56, 30);
+    
+    coursedetailheaderview.classcode.frame = CGRectMake(132, 35, 56, 10);
+    coursedetailheaderview.code.frame = CGRectMake(132, 57, 56, 20);
+    
+    if (self.course != nil)
+        coursedetailheaderview.code.text = [self.course.code uppercaseString];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -320,7 +413,7 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (Post *post in data) {
         double gap = [post.createdAt timeIntervalSinceNow];
-        if (65.0f + gap > 0.0f && [post.type isEqualToString:@"attendance"])
+        if (65.0f + gap > 0.0f && [post.type isEqualToString:@"attendance"] && [post.attendance.type isEqualToString:@"auto"])
             [array addObject:[NSString stringWithFormat:@"%d", (int)post.attendance.id]];
     }
     
@@ -338,6 +431,7 @@
         float interval = [post.createdAt timeIntervalSinceNow];
         
         if ([post.type isEqualToString:@"attendance"]
+            && [post.attendance.type isEqualToString:@"auto"]
             && interval > -65.0f
             && gap > 65.0f + interval) {
             gap = 65.0f + interval;
@@ -413,7 +507,10 @@
             NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
             CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
             
-            return 179 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
+            if (post.clicker.choice_count == 5)
+                return 224 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
+            else
+                return 179 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
         }
     }
     
@@ -589,6 +686,22 @@
         cell.message.frame = CGRectMake(20, 46, 280, height);
         [cell.date setFrame:CGRectMake(97, 133 + height, 200, 21)];
         
+        cell.blink_e.hidden = NO;
+        cell.bg_e.hidden = NO;
+        cell.ring_e.hidden = NO;
+        cell.blink_d.hidden = NO;
+        cell.bg_d.hidden = NO;
+        cell.ring_d.hidden = NO;
+        cell.blink_c.hidden = NO;
+        cell.bg_c.hidden = NO;
+        cell.ring_c.hidden = NO;
+        
+        if (cell.post.clicker.choice_count < 5) {
+            cell.blink_e.hidden = YES;
+            cell.bg_e.hidden = YES;
+            cell.ring_e.hidden = YES;
+        }
+        
         if (cell.post.clicker.choice_count < 4) {
             cell.blink_d.hidden = YES;
             cell.bg_d.hidden = YES;
@@ -601,29 +714,106 @@
             cell.ring_c.hidden = YES;
         }
         
-        [cell.blink_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
-        [cell.blink_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
-        [cell.blink_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
-        [cell.blink_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
-        
-        [cell.ring_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
-        [cell.ring_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
-        [cell.ring_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
-        [cell.ring_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
+        [cell.date setFrame:CGRectMake(97, 148, 200, 21)];
         
         double progress = MIN(52.0f * -gap / 65.0f, 52);
-        cell.bg_a.frame = CGRectMake(29, 64 + height + progress, 52, 52 - progress);
-        cell.bg_b.frame = CGRectMake(99, 64 + height + progress, 52, 52 - progress);
-        cell.bg_c.frame = CGRectMake(169, 64 + height + progress, 52, 52 - progress);
-        cell.bg_d.frame = CGRectMake(239, 64 + height + progress, 52, 52 - progress);
-        
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:65.0f + gap];
-        cell.bg_a.frame = CGRectMake(29, 116 + height, 52, 0);
-        cell.bg_b.frame = CGRectMake(99, 116 + height, 52, 0);
-        cell.bg_c.frame = CGRectMake(169, 116 + height, 52, 0);
-        cell.bg_d.frame = CGRectMake(239, 116 + height, 52, 0);
-        [UIView commitAnimations];
+        switch (cell.post.clicker.choice_count) {
+            case 2: {
+                [cell.blink_a setFrame:CGRectMake(89, 64 + height, 52, 52)];
+                [cell.blink_b setFrame:CGRectMake(179, 64 + height, 52, 52)];
+                
+                [cell.ring_a setFrame:CGRectMake(89, 64 + height, 52, 52)];
+                [cell.ring_b setFrame:CGRectMake(179, 64 + height, 52, 52)];
+                
+                cell.bg_a.frame = CGRectMake(89, 64 + height + progress, 52, 52 - progress);
+                cell.bg_b.frame = CGRectMake(179, 64 + height + progress, 52, 52 - progress);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:65.0f + gap];
+                cell.bg_a.frame = CGRectMake(89, 116 + height, 52, 0);
+                cell.bg_b.frame = CGRectMake(179, 116 + height, 52, 0);
+                [UIView commitAnimations];
+                break;
+            }
+            case 3: {
+                [cell.blink_a setFrame:CGRectMake(59, 64 + height, 52, 52)];
+                [cell.blink_b setFrame:CGRectMake(134, 64 + height, 52, 52)];
+                [cell.blink_c setFrame:CGRectMake(209, 64 + height, 52, 52)];
+                
+                [cell.ring_a setFrame:CGRectMake(59, 64 + height, 52, 52)];
+                [cell.ring_b setFrame:CGRectMake(134, 64 + height, 52, 52)];
+                [cell.ring_c setFrame:CGRectMake(209, 64 + height, 52, 52)];
+                
+                cell.bg_a.frame = CGRectMake(59, 64 + height + progress, 52, 52 - progress);
+                cell.bg_b.frame = CGRectMake(134, 64 + height + progress, 52, 52 - progress);
+                cell.bg_c.frame = CGRectMake(209, 64 + height + progress, 52, 52 - progress);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:65.0f + gap];
+                cell.bg_a.frame = CGRectMake(59, 116 + height, 52, 0);
+                cell.bg_b.frame = CGRectMake(134, 116 + height, 52, 0);
+                cell.bg_c.frame = CGRectMake(209, 116 + height, 52, 0);
+                [UIView commitAnimations];
+                break;
+            }
+            case 4: {
+                [cell.blink_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
+                [cell.blink_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
+                [cell.blink_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
+                [cell.blink_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
+                
+                [cell.ring_a setFrame:CGRectMake(29, 64 + height, 52, 52)];
+                [cell.ring_b setFrame:CGRectMake(99, 64 + height, 52, 52)];
+                [cell.ring_c setFrame:CGRectMake(169, 64 + height, 52, 52)];
+                [cell.ring_d setFrame:CGRectMake(239, 64 + height, 52, 52)];
+                
+                cell.bg_a.frame = CGRectMake(29, 64 + height + progress, 52, 52 - progress);
+                cell.bg_b.frame = CGRectMake(99, 64 + height + progress, 52, 52 - progress);
+                cell.bg_c.frame = CGRectMake(169, 64 + height + progress, 52, 52 - progress);
+                cell.bg_d.frame = CGRectMake(239, 64 + height + progress, 52, 52 - progress);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:65.0f + gap];
+                cell.bg_a.frame = CGRectMake(29, 116 + height, 52, 0);
+                cell.bg_b.frame = CGRectMake(99, 116 + height, 52, 0);
+                cell.bg_c.frame = CGRectMake(169, 116 + height, 52, 0);
+                cell.bg_d.frame = CGRectMake(239, 116 + height, 52, 0);
+                [UIView commitAnimations];
+                break;
+            }
+            case 5:
+            default: {
+                [cell.blink_a setFrame:CGRectMake(99, 64 + height, 52, 52)];
+                [cell.blink_b setFrame:CGRectMake(169, 64 + height, 52, 52)];
+                [cell.blink_c setFrame:CGRectMake(64, 124 + height, 52, 52)];
+                [cell.blink_d setFrame:CGRectMake(134, 124 + height, 52, 52)];
+                [cell.blink_e setFrame:CGRectMake(204, 124 + height, 52, 52)];
+                
+                [cell.ring_a setFrame:CGRectMake(99, 64 + height, 52, 52)];
+                [cell.ring_b setFrame:CGRectMake(169, 64 + height, 52, 52)];
+                [cell.ring_c setFrame:CGRectMake(64, 124 + height, 52, 52)];
+                [cell.ring_d setFrame:CGRectMake(134, 124 + height, 52, 52)];
+                [cell.ring_e setFrame:CGRectMake(204, 124 + height, 52, 52)];
+                
+                cell.bg_a.frame = CGRectMake(99, 64 + height + progress, 52, 52 - progress);
+                cell.bg_b.frame = CGRectMake(169, 64 + height + progress, 52, 52 - progress);
+                cell.bg_c.frame = CGRectMake(64, 124 + height + progress, 52, 52 - progress);
+                cell.bg_d.frame = CGRectMake(134, 124 + height + progress, 52, 52 - progress);
+                cell.bg_e.frame = CGRectMake(204, 124 + height + progress, 52, 52 - progress);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:65.0f + gap];
+                cell.bg_a.frame = CGRectMake(99, 116 + height, 52, 0);
+                cell.bg_b.frame = CGRectMake(169, 116 + height, 52, 0);
+                cell.bg_c.frame = CGRectMake(64, 176 + height, 52, 0);
+                cell.bg_d.frame = CGRectMake(134, 176 + height, 52, 0);
+                cell.bg_e.frame = CGRectMake(204, 176 + height, 52, 0);
+                [UIView commitAnimations];
+                
+                [cell.date setFrame:CGRectMake(97, 208, 200, 21)];
+                break;
+            }
+        }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -636,16 +826,20 @@
         [[BTBlink sharedInstance] addBlinkView:blinkView_c];
         BlinkView *blinkView_d = [[BlinkView alloc] initWithView:cell.blink_d andCount:count];
         [[BTBlink sharedInstance] addBlinkView:blinkView_d];
+        BlinkView *blinkView_e = [[BlinkView alloc] initWithView:cell.blink_e andCount:count];
+        [[BTBlink sharedInstance] addBlinkView:blinkView_e];
         
         [cell.ring_a setImage:[UIImage imageNamed:@"a_clicked@2x.png"] forState:UIControlStateHighlighted];
         [cell.ring_b setImage:[UIImage imageNamed:@"b_clicked@2x.png"] forState:UIControlStateHighlighted];
         [cell.ring_c setImage:[UIImage imageNamed:@"c_clicked@2x.png"] forState:UIControlStateHighlighted];
         [cell.ring_d setImage:[UIImage imageNamed:@"d_clicked@2x.png"] forState:UIControlStateHighlighted];
+        [cell.ring_e setImage:[UIImage imageNamed:@"e_clicked@2x.png"] forState:UIControlStateHighlighted];
         
         [cell.ring_a addTarget:self action:@selector(click_a:) forControlEvents:UIControlEventTouchUpInside];
         [cell.ring_b addTarget:self action:@selector(click_b:) forControlEvents:UIControlEventTouchUpInside];
         [cell.ring_c addTarget:self action:@selector(click_c:) forControlEvents:UIControlEventTouchUpInside];
         [cell.ring_d addTarget:self action:@selector(click_d:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.ring_e addTarget:self action:@selector(click_e:) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
     } else { // Clicker Normal
@@ -741,7 +935,6 @@
     cell.Message.frame = CGRectMake(93, 49, 200, 15);
     cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
     cell.Message.numberOfLines = 0;
-    [cell.Message sizeToFit];
     NSInteger height = MAX(cell.Message.frame.size.height, 15);
     [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
     [cell.selected_bg setFrame:CGRectMake(11, 7, 298, 73 + height)];
@@ -803,6 +996,7 @@
             cell.Message.text = message3;
         }
     }
+    [cell.Message sizeToFit];
     return cell;
 }
 
@@ -856,7 +1050,10 @@
     
     [[BTBlink sharedInstance] removeView:cell.check_icon];
     [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
-    cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
+    if (height > 17)
+        cell.check_icon.frame = CGRectMake(29, 32, 52, 52);
+    else
+        cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
     [cell.check_overlay setImage:nil];
     return cell;
 }

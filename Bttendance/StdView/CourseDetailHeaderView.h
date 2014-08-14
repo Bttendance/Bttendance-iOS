@@ -14,15 +14,12 @@
 
 @property(weak, nonatomic) IBOutlet UIView *bg;
 
-@property(weak, nonatomic) IBOutlet UILabel *profname;
-@property(weak, nonatomic) IBOutlet UILabel *schoolname;
-@property(weak, nonatomic) IBOutlet UILabel *studentNumber;
-@property(weak, nonatomic) IBOutlet UILabel *attendanceGrade;
-@property(weak, nonatomic) IBOutlet UILabel *clickerUsage;
-@property(weak, nonatomic) IBOutlet UILabel *noticeUsage;
-@property(weak, nonatomic) IBOutlet UIView *background;
-@property(weak, nonatomic) IBOutlet UIView *grade;
-@property(weak, nonatomic) IBOutlet UIImageView *BTicon;
+@property(weak, nonatomic) IBOutlet UILabel *coursename;
+@property(weak, nonatomic) IBOutlet UILabel *detail;
+
+@property(weak, nonatomic) IBOutlet UIView *clickerBg;
+@property(weak, nonatomic) IBOutlet UIView *attendanceBg;
+@property(weak, nonatomic) IBOutlet UIView *noticeBg;
 
 @property(weak, nonatomic) IBOutlet UIButton *clickerBt;
 @property(weak, nonatomic) IBOutlet UIButton *attendanceBt;
@@ -31,5 +28,16 @@
 @property(weak, nonatomic) IBOutlet UIImageView *clickerView;
 @property(weak, nonatomic) IBOutlet UIImageView *attendanceView;
 @property(weak, nonatomic) IBOutlet UIImageView *noticeView;
+
+@property(weak, nonatomic) IBOutlet UILabel *clickerLabel;
+@property(weak, nonatomic) IBOutlet UILabel *attendanceLabel;
+@property(weak, nonatomic) IBOutlet UILabel *noticeLabel;
+
+@property(weak, nonatomic) IBOutlet UIView *classBg;
+@property(weak, nonatomic) IBOutlet UIView *classHeader;
+@property(weak, nonatomic) IBOutlet UIView *classFooter;
+
+@property(weak, nonatomic) IBOutlet UILabel *classcode;
+@property(weak, nonatomic) IBOutlet UILabel *code;
 
 @end
