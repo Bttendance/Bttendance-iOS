@@ -12,6 +12,7 @@
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"
+#import "SocketAgent.h"
 
 @interface AttdDetailListViewController ()
 
@@ -81,6 +82,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAttendance:) name:AttendanceUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
+    
+    [[SocketAgent sharedInstance] socketConnect];
 };
 
 #pragma NSNotificationCenter
@@ -193,11 +196,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row - 1];
+    [self.post.attendance toggleStatus:simpleUser.id];
+    [self.tableview reloadData];
+    
     [BTAPIs toggleManuallyWithAttendance:[NSString stringWithFormat:@"%ld", (long)self.post.attendance.id]
                                     user:[NSString stringWithFormat:@"%ld", (long)simpleUser.id]
                                  success:^(Attendance *attendance) {
-                                     [self.post.attendance copyDataFromAttendance:attendance];
-                                     [self.tableview reloadData];
                                  } failure:^(NSError *error) {
                                  }];
 }

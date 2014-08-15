@@ -300,4 +300,15 @@
                  }];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:index]).textfield resignFirstResponder];
+        [self attendButton:nil];
+    }
+    
+    return NO;
+}
+
 @end

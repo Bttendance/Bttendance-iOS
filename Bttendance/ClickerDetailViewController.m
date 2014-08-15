@@ -16,6 +16,7 @@
 #import "EditClickerViewController.h"
 #import "ClickerDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "SocketAgent.h"
 
 @interface ClickerDetailViewController ()
 
@@ -95,6 +96,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
+    
+    [[SocketAgent sharedInstance] socketConnect];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

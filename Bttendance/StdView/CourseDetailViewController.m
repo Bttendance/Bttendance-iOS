@@ -1313,39 +1313,6 @@
     return schoolName;
 }
 
--(NSString *)attendanceRate {
-    if (self.course == nil)
-        self.course = [BTUserDefault getCourse:self.simpleCourse.id];
-    
-    NSString *grade = self.course.attendance_rate;
-    if (grade == nil)
-        grade = @"0";
-    
-    return grade;
-}
-
--(NSString *)clickerRate {
-    if (self.course == nil)
-        self.course = [BTUserDefault getCourse:self.simpleCourse.id];
-    
-    NSString *grade = self.course.clicker_rate;
-    if (grade == nil)
-        grade = @"0";
-    
-    return grade;
-}
-
--(NSString *)noticeUnseen {
-    if (self.course == nil)
-        self.course = [BTUserDefault getCourse:self.simpleCourse.id];
-    
-    NSString *grade = self.course.notice_unseen;
-    if (grade == nil)
-        grade = @"0";
-    
-    return grade;
-}
-
 -(NSString *)classcode {
     if (self.course == nil)
         self.course = [BTUserDefault getCourse:self.simpleCourse.id];

@@ -148,20 +148,35 @@
         if (self.courses != nil && [self.courses count] != 0) {
             for (Course *course in self.courses) {
                 if (course.id == openedCourse.id) {
-                    attendance_rate = course.attendance_rate;
-                    clicker_rate = course.clicker_rate;
-                    notice_unseen = [course.notice_unseen integerValue];
+                    attendance_rate = [NSString stringWithFormat:@"%ld", (long)course.attendance_rate];
+                    clicker_rate = [NSString stringWithFormat:@"%ld", (long)course.clicker_rate];
+                    notice_unseen = course.notice_unseen;
                     students_count = course.students_count;
                 }
             }
         }
         
-        cell.message1.text = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %1$@%%  출석률 %2$@%%", nil), clicker_rate ,attendance_rate];
+        NSString *message1 = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %1$@%%  출석률 %2$@%%", nil), clicker_rate ,attendance_rate];
+        NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:message1];
+        [str1 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", clicker_rate]]];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", clicker_rate]]];
+        [str1 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", attendance_rate] options:NSBackwardsSearch]];
+        [str1 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", attendance_rate] options:NSBackwardsSearch]];
+        cell.message1.attributedText = str1;
         
-        if ([self.user supervising:openedCourse.id])
-            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽은 학생 수 %ld/%ld", nil), (long)(students_count - notice_unseen), (long)students_count];
-        else
-            cell.message2.text = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %ld", nil), (long)notice_unseen];
+        if ([self.user supervising:openedCourse.id]) {
+            NSString *message2 = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽은 학생 수 %ld/%ld", nil), (long)(students_count - notice_unseen), (long)students_count];
+            NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:message2];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld/%ld", (long)(students_count - notice_unseen), (long)students_count]]];
+            [str2 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld/%ld", (long)(students_count - notice_unseen), (long)students_count]]];
+            cell.message2.attributedText = str2;
+        } else {
+            NSString *message2 = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %ld", nil), (long)notice_unseen];
+            NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:message2];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)notice_unseen]]];
+            [str2 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)notice_unseen]]];
+            cell.message2.attributedText = str2;
+        }
         
         return cell;
     }

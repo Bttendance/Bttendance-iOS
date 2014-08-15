@@ -111,13 +111,6 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Check Bluetooth Status", nil)
-                                               message:NSLocalizedString(@"Go to Setting -> Bluetooth and turn on bluetooth.", nil)
-                                              delegate:self
-                                     cancelButtonTitle:nil
-                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-            alert.tag = 500;
-            [alert show];
             break;
     }
 }
@@ -154,6 +147,20 @@
         case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
         case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
         default: //default
+            break;
+    }
+}
+
+- (void)alertForClassicBT {
+    switch ([myCmanager state]) {
+        case CBCentralManagerStatePoweredOn: //power-on
+        case CBCentralManagerStatePoweredOff: //powered off
+        case CBCentralManagerStateUnknown: //Unknown state
+            break;
+        case CBCentralManagerStateUnsupported: //Bluetooth Low Energy not supported
+        case CBCentralManagerStateUnauthorized: //Bluetooth Low Energy not authorized
+        {
+            UIAlertView *alert;
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Check Bluetooth Status", nil)
                                                message:NSLocalizedString(@"Go to Setting -> Bluetooth and turn on bluetooth.", nil)
                                               delegate:self
@@ -161,6 +168,9 @@
                                      otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
             alert.tag = 500;
             [alert show];
+            break;
+        }
+        default: //default
             break;
     }
 }

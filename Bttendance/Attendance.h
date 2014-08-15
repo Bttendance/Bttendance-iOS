@@ -23,6 +23,7 @@
 + (NSDictionary *)toDictionary:(SimpleAttendance *)attendance;
 - (void)copyDataFromAttendance:(id)object;
 - (NSInteger)stateInt:(NSInteger)userId;
+- (void)toggleStatus:(NSInteger)userId;
 
 @end
 

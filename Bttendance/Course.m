@@ -84,9 +84,9 @@
         self.opened = [[dictionary objectForKey:@"opened"] boolValue];
         
         //Added by APIs
-        self.attendance_rate = [dictionary objectForKey:@"attendance_rate"];
-        self.clicker_rate = [dictionary objectForKey:@"clicker_rate"];
-        self.notice_unseen = [dictionary objectForKey:@"notice_unseen"];
+        self.attendance_rate = [[dictionary objectForKey:@"attendance_rate"] integerValue];
+        self.clicker_rate = [[dictionary objectForKey:@"clicker_rate"] integerValue];
+        self.notice_unseen = [[dictionary objectForKey:@"notice_unseen"] integerValue];
     }
     return self;
 }

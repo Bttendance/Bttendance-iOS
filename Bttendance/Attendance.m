@@ -71,6 +71,40 @@
     return 0;
 }
 
+- (void)toggleStatus:(NSInteger)userId {
+    
+    NSMutableArray *checked = [NSMutableArray array];
+    NSMutableArray *lated = [NSMutableArray array];
+    
+    BOOL check = NO;
+    BOOL late = NO;
+    
+    for (int i = 0; i < self.checked_students.count; i++) {
+        if([self.checked_students[i] integerValue] == userId) {
+            check = YES;
+        } else {
+            [checked addObject:self.checked_students[i]];
+        }
+    }
+    
+    for (int i = 0; i < self.late_students.count; i++) {
+        if([self.late_students[i] integerValue] == userId) {
+            late = YES;
+        } else {
+            [lated addObject:self.late_students[i]];
+        }
+    }
+    
+    if (check) {
+        [lated addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
+    } else if (!late) {
+        [checked addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
+    }
+    
+    self.checked_students = checked;
+    self.late_students = lated;
+}
+
 @end
 
 

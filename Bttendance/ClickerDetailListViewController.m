@@ -12,6 +12,7 @@
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"
+#import "SocketAgent.h"
 
 @interface ClickerDetailListViewController ()
 
@@ -77,6 +78,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
+    
+    [[SocketAgent sharedInstance] socketConnect];
 };
 
 #pragma NSNotificationCenter

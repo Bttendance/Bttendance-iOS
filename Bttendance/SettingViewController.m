@@ -54,6 +54,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.user = [BTUserDefault getUser];
+    [BTAPIs autoSignInInSuccess:^(User *user) {
+    } failure:^(NSError *error) {
+    }];
 }
 
 - (void)reloadTableView:(NSNotification *)noti {

@@ -40,9 +40,9 @@
 @property(assign) BOOL opened;
 
 //Added by APIs
-@property(strong, nonatomic) NSString  *attendance_rate;
-@property(strong, nonatomic) NSString  *clicker_rate;
-@property(strong, nonatomic) NSString  *notice_unseen;
+@property(assign) NSInteger attendance_rate;
+@property(assign) NSInteger clicker_rate;
+@property(assign) NSInteger notice_unseen;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

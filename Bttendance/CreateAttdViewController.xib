@@ -36,7 +36,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEC-bM-vnL">
-                    <rect key="frame" x="0.0" y="112" width="320" height="231"/>
+                    <rect key="frame" x="0.0" y="132" width="320" height="231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NL5-yW-wI0">
@@ -185,7 +185,7 @@
                 <constraint firstItem="fJe-dX-UMg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="ROb-kb-wu0"/>
                 <constraint firstAttribute="bottom" secondItem="fJe-dX-UMg" secondAttribute="bottom" constant="34" id="URA-Mw-Ep2"/>
                 <constraint firstAttribute="trailing" secondItem="fJe-dX-UMg" secondAttribute="trailing" constant="20" id="Xh3-uO-bUI"/>
-                <constraint firstAttribute="centerY" secondItem="VEC-bM-vnL" secondAttribute="centerY" constant="56.5" id="b3g-WW-bah"/>
+                <constraint firstAttribute="centerY" secondItem="VEC-bM-vnL" secondAttribute="centerY" constant="36" id="b3g-WW-bah"/>
                 <constraint firstAttribute="trailing" secondItem="6aJ-O7-Lji" secondAttribute="trailing" constant="20" id="bFO-j3-p24"/>
                 <constraint firstItem="cdK-Av-RSq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iCr-Wm-82X"/>
                 <constraint firstItem="6aJ-O7-Lji" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="iD7-Ud-SDk"/>

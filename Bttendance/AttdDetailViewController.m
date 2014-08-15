@@ -15,6 +15,7 @@
 #import "BTBlink.h"
 #import "AttdDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "SocketAgent.h"
 
 @interface AttdDetailViewController ()
 
@@ -88,6 +89,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAttendance:) name:AttendanceUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
+    
+    [[SocketAgent sharedInstance] socketConnect];
 }
 
 #pragma NSNotificationCenter

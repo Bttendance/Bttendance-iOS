@@ -26,7 +26,6 @@
 
 + (AttendanceAgent *)sharedInstance;
 
-
 - (void)startAttendanceWithCourse:(NSString *)course_id
                     andCourseName:(NSString *)courseName
                           andType:(NSString *)type
@@ -35,5 +34,6 @@
 
 - (void)startAttdScanWithCourseIDs:(NSArray *)courseIDs;
 - (void)startAttdScanWithAttendanceIDs:(NSArray *)attendanceIDs;
+- (void)alertForClassicBT;
 
 @end

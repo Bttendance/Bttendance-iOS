@@ -23,6 +23,7 @@
 #import "PushNoti.h"
 #import "BTNotification.h"
 #import "AttendanceAgent.h"
+#import "SocketAgent.h"
 
 @implementation AppDelegate
 
@@ -109,6 +110,9 @@
     if([noti.type isEqualToString:@"attendance_started"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
         
+        [[AttendanceAgent sharedInstance] startAttdScanWithCourseIDs:[NSArray arrayWithObject:noti.course_id]];
+        [[AttendanceAgent sharedInstance] alertForClassicBT];
+        
         User *user = [BTUserDefault getUser];
         SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
         if(course == nil || [user supervising:course.id])
@@ -119,8 +123,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
             return;
         }
-        
-        [[AttendanceAgent sharedInstance] startAttdScanWithCourseIDs:[NSArray arrayWithObject:[NSString stringWithFormat:@"%ld", (long)course.id]]];
         
         UIAlertView *alert;
         alert = [[UIAlertView alloc] initWithTitle:course.name
@@ -133,6 +135,9 @@
         
     } else if([noti.type isEqualToString:@"attendance_on_going"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:FeedRefresh object:nil];
+        
+        [[AttendanceAgent sharedInstance] startAttdScanWithCourseIDs:[NSArray arrayWithObject:noti.course_id]];
+        [[AttendanceAgent sharedInstance] alertForClassicBT];
         
 //        User *user = [BTUserDefault getUser];
 //        SimpleCourse *course = [user getCourse:[noti.course_id integerValue]];
@@ -258,6 +263,8 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
                 return;
             }
+            
+            [[SocketAgent sharedInstance] socketConnectToServer];
             
             UIAlertView *alert;
             alert = [[UIAlertView alloc] initWithTitle:course.name

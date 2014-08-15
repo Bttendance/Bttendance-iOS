@@ -123,6 +123,7 @@
                                                         andType:type
                                                         success:^(Post *post) {
                                                             [hud hide:YES];
+                                                            [[AttendanceAgent sharedInstance] startAttdScanWithAttendanceIDs:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%ld", (long)post.attendance.id], nil]];
                                                             NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:post, PostInfo, nil];
                                                             [[NSNotificationCenter defaultCenter] postNotificationName:OpenNewPost object:nil userInfo:data];
                                                             [self.navigationController popViewControllerAnimated:NO];
