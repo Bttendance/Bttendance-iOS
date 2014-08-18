@@ -92,7 +92,7 @@
 "Password recovery has been succeeded.\nPlease check your email.\n%@" = "Password recovery has been succeeded.\nPlease check your email.\n%@";
 "Password Recovery Success" = "Password Recovery Success";
 "Phone Number" = "Phone Number";
-"Please choose a school." = "Please choose a institution.";
+"Please choose a school." = "Choose an institution.";
 "Privacy Policy" = "Privacy Policy";
 "PROFESSOR" = "PROFESSOR";
 "Professor" = "Professor";
@@ -131,7 +131,7 @@
 "Updating Name" = "Updating Name";
 "Updating Password" = "Updating Password";
 "Updating Question" = "Updating Question";
-"Welcome to Bttendance" = "Make your lecture interactive!";
+"Welcome to Bttendance" = "Make Your Lecture Interactive!";
 "Would you like to add %1$@ as a manager of course %2$@" = "Would you like to add %1$@ as a manager of course %2$@";
 "Your bluetooth is powered off. Before start Attedance check turn your bluetooth on." = "Your bluetooth is powered off. Before start Attedance check turn your bluetooth on.";
 "Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on." = "Your bluetooth is powered off. Currently, attedance check is in progress. Please turn your bluetooth on.";
