@@ -152,6 +152,11 @@
                     clicker_rate = [NSString stringWithFormat:@"%ld", (long)course.clicker_rate];
                     notice_unseen = course.notice_unseen;
                     students_count = course.students_count;
+                    
+                    attendance_rate = @"80";
+                    clicker_rate = @"100";
+                    notice_unseen = 7;
+                    students_count = 20;
                 }
             }
         }

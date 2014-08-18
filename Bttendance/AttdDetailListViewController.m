@@ -62,6 +62,108 @@
     
     [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]
                       success:^(NSArray *simpleUsers) {
+                          
+                          SimpleUser *user1 = [[SimpleUser alloc] init];
+                          user1.id = 1;
+                          user1.full_name = @"Ashley";
+                          user1.student_id = @"20140005";
+                          
+                          SimpleUser *user2 = [[SimpleUser alloc] init];
+                          user2.id = 2;
+                          user2.full_name = @"William";
+                          user2.student_id = @"20140014";
+                          
+                          SimpleUser *user3 = [[SimpleUser alloc] init];
+                          user3.id = 3;
+                          user3.full_name = @"Victoria";
+                          user3.student_id = @"20140003";
+                          
+                          SimpleUser *user4 = [[SimpleUser alloc] init];
+                          user4.id = 4;
+                          user4.full_name = @"Francois";
+                          user4.student_id = @"20140012";
+                          
+                          SimpleUser *user5 = [[SimpleUser alloc] init];
+                          user5.id = 5;
+                          user5.full_name = @"Tae Hwan";
+                          user5.student_id = @"20140001";
+                          
+                          SimpleUser *user6 = [[SimpleUser alloc] init];
+                          user6.id = 6;
+                          user6.full_name = @"Xiao Long";
+                          user6.student_id = @"20140015";
+                          
+                          SimpleUser *user7 = [[SimpleUser alloc] init];
+                          user7.id = 7;
+                          user7.full_name = @"Ichiro";
+                          user7.student_id = @"20140004";
+                          
+                          SimpleUser *user8 = [[SimpleUser alloc] init];
+                          user8.id = 8;
+                          user8.full_name = @"Muhammad";
+                          user8.student_id = @"20140013";
+                          
+                          SimpleUser *user9 = [[SimpleUser alloc] init];
+                          user9.id = 9;
+                          user9.full_name = @"Hee Hwan";
+                          user9.student_id = @"20140002";
+                          
+                          SimpleUser *user10 = [[SimpleUser alloc] init];
+                          user10.id = 10;
+                          user10.full_name = @"Runfa";
+                          user10.student_id = @"20140011";
+                          
+                          SimpleUser *user11 = [[SimpleUser alloc] init];
+                          user11.id = 11;
+                          user11.full_name = @"Arthur";
+                          user11.student_id = @"20140010";
+                          
+                          SimpleUser *user12 = [[SimpleUser alloc] init];
+                          user12.id = 12;
+                          user12.full_name = @"Lancelot";
+                          user12.student_id = @"20140019";
+                          
+                          SimpleUser *user13 = [[SimpleUser alloc] init];
+                          user13.id = 13;
+                          user13.full_name = @"Roland";
+                          user13.student_id = @"20140008";
+                          
+                          SimpleUser *user14 = [[SimpleUser alloc] init];
+                          user14.id = 14;
+                          user14.full_name = @"Harry Potter";
+                          user14.student_id = @"20140017";
+                          
+                          SimpleUser *user15 = [[SimpleUser alloc] init];
+                          user15.id = 15;
+                          user15.full_name = @"Mario";
+                          user15.student_id = @"20140006";
+                          
+                          SimpleUser *user16 = [[SimpleUser alloc] init];
+                          user16.id = 16;
+                          user16.full_name = @"Alberto";
+                          user16.student_id = @"20140020";
+                          
+                          SimpleUser *user17 = [[SimpleUser alloc] init];
+                          user17.id = 17;
+                          user17.full_name = @"Mustapa";
+                          user17.student_id = @"20140009";
+                          
+                          SimpleUser *user18 = [[SimpleUser alloc] init];
+                          user18.id = 18;
+                          user18.full_name = @"Diego";
+                          user18.student_id = @"20140018";
+                          
+                          SimpleUser *user19 = [[SimpleUser alloc] init];
+                          user19.id = 19;
+                          user19.full_name = @"Su Hyang";
+                          user19.student_id = @"20140007";
+                          
+                          SimpleUser *user20 = [[SimpleUser alloc] init];
+                          user20.id = 20;
+                          user20.full_name = @"Goku";
+                          user20.student_id = @"20140016";
+                          
+                          simpleUsers = [NSArray arrayWithObjects:user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16, user17, user18, user19, user20, nil];
                           data = simpleUsers;
                           switch (self.segmentcontrol.selectedSegmentIndex) {
                               case 0:

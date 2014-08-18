@@ -132,6 +132,7 @@
             UIFont *cellfont = [UIFont systemFontOfSize:12];
             NSString *date = [BTDateFormatter detailedStringFromDate:self.post.createdAt];
             NSInteger seen = self.post.notice.seen_students.count;
+            self.course.students_count = 20;
             NSInteger total = self.course.students_count;
             NSInteger rate = (int) ceil(((float)self.post.notice.seen_students.count/(float)self.course.students_count) * 100);
             NSString *rawmessage;

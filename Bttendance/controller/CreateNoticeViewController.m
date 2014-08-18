@@ -59,7 +59,7 @@
     _message.tintColor = [BTColor BT_silver:1];
     
     Course *course = [BTUserDefault getCourse:[cid integerValue]];
-    self.information.text = [NSString stringWithFormat:NSLocalizedString(@"* %d명의 학생이 공지를 받게 됩니다.\n* 어떤 학생이 읽지 않았는지 확인할 수 있습니다.", nil), course.students_count];
+    self.information.text = [NSString stringWithFormat:NSLocalizedString(@"* %d명의 학생이 공지를 받게 됩니다.\n* 어떤 학생이 읽지 않았는지 확인할 수 있습니다.", nil), 20];
     self.information.numberOfLines = 0;
     [self.information sizeToFit];
 

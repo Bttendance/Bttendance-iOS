@@ -50,6 +50,7 @@
     
     self.user = [BTUserDefault getUser];
     self.course = [BTUserDefault getCourse:post.course.id];
+    self.course.students_count = 20;
     self.auth = [self.user supervising:post.course.id];
     
     self.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20);

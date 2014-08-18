@@ -117,6 +117,7 @@
     if (self.simpleCourse.opened)
         [BTUserDefault setLastSeenCourse:simpleCourse.id];
     self.course = [BTUserDefault getCourse:simpleCourse.id];
+    self.course.students_count = 20;
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         data = [NSMutableArray arrayWithArray:[BTUserDefault getPostsOfArray:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]]];
@@ -204,7 +205,7 @@
     
     NSString *profName = self.simpleCourse.professor_name;
     NSString *schoolName = [user getSchoolNameFromId:self.simpleCourse.school];
-    NSString *studentCount = [NSString stringWithFormat:NSLocalizedString(@"%d Student(s)", nil), self.course.students_count];
+    NSString *studentCount = [NSString stringWithFormat:NSLocalizedString(@"%d Student(s)", nil), 20];
     
     NSAttributedString *courseMessage = [[NSAttributedString alloc] initWithString:courseName attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]}];
     CGRect courseMessageLabelSize = [courseMessage boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
@@ -336,6 +337,7 @@
 
 - (void)updateCourse:(NSNotification *)notification {
     self.course = [BTUserDefault getCourse:simpleCourse.id];
+    self.course.students_count = 20;
     [self refreshHeader];
     [self.tableview reloadData];
 }
@@ -473,6 +475,22 @@
     
     Post *post = [data objectAtIndex:indexPath.row];
     
+    if ([post.type isEqualToString:@"clicker"]) {
+        post.clicker.a_students = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", nil];
+        post.clicker.b_students = [NSArray arrayWithObjects:@"7", nil];
+        post.clicker.c_students = [NSArray arrayWithObjects:@"8", @"9", @"10", @"11", @"12", nil];
+        post.clicker.d_students = [NSArray arrayWithObjects:@"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20", nil];
+    }
+    
+    if ([post.type isEqualToString:@"notice"]) {
+        post.notice.seen_students = [NSArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", nil];
+    }
+    
+    if ([post.type isEqualToString:@"attendance"]) {
+        post.attendance.checked_students = [NSArray arrayWithObjects:@"20", @"2", @"3", @"4", @"5", @"19", @"7", @"18", @"9", @"17", @"11", @"12",  nil];
+        post.attendance.late_students = [NSArray arrayWithObjects:@"13", @"14", @"15", @"16", nil];
+    }
+    
     if (![post.type isEqualToString:@"clicker"]
         && ![post.type isEqualToString:@"attendance"]
         && ![post.type isEqualToString:@"notice"])
@@ -499,6 +517,9 @@
                 check = true;
         
         double gap = [post.createdAt timeIntervalSinceNow];
+//        gap = 0;
+//        check = NO;
+//        manager = NO;
         
         if (65.0f + gap > 0.0f && !check && !manager) {
             
@@ -662,6 +683,9 @@
             check = true;
     
     double gap = [post.createdAt timeIntervalSinceNow];
+//    gap = 0;
+//    check = NO;
+//    manager = NO;
     
     // Clicker Choice
     if (65.0f + gap > 0.0f && !check && !manager) {
@@ -1022,10 +1046,11 @@
     if (self.auth) {
         NSInteger seen = post.notice.seen_students.count;
         NSInteger total = self.course.students_count;
+        total = 20;
         cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld 읽음)", nil), seen, total];
     } else if (![post.notice seen:user.id]) {
-        cell.Title.text = NSLocalizedString(@"Unread Notice", nil);
-        cell.Title.textColor = [BTColor BT_red:1];
+//        cell.Title.text = NSLocalizedString(@"Unread Notice", nil);
+//        cell.Title.textColor = [BTColor BT_red:1];
     }
     
     cell.Message.text = cell.post.message;
