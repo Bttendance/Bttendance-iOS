@@ -113,7 +113,7 @@
 "Start" = "Start";
 "STUDENT" = "STUDENT";
 "Student - %@" = "Student - %@";
-"Student Number" = "Student Number";
+"Student Number for univ" = "Student Number";
 "Student Number for school" = "Student Number";
 "Submit" = "Submit";
 "Terms of Service" = "Terms of Service";
@@ -215,7 +215,7 @@
 "Edit Message" = "Edit Message";
 "Delete" = "Delete";
 "Do you really wish to delete current clicker?" = "Do you really wish to delete this notice?";
-"상세보기" = "Show details";
+"상세보기" = "Show Details";
 "%ld명" = "%ld";
 "%1$@/%2$ld명 참여, %3$@" = "%1$@ out of %2$ld participated, %3$@";
 "답변을 선택하지 않으셨습니다." = "You have not chosen a response.";
