@@ -129,11 +129,24 @@
         NSMutableArray *identifications = [NSMutableArray array];
         for (NSDictionary *dic in [dictionary objectForKey:@"identifications"]) {
             SimpleIdentification *identification = [[SimpleIdentification alloc] initWithDictionary:dic];
+            identification.school = 15;
+            identification.identity = @"20140123";
             [identifications addObject:identification];
         }
         self.identifications = identifications;
         
         self.questions_count = [[dictionary objectForKey:@"questions_count"] integerValue];
+        
+        self.full_name = @"Victoria";
+        self.attending_courses = [NSArray arrayWithArray:self.supervising_courses];
+        self.supervising_courses = [NSArray array];
+        self.employed_schools = [NSArray array];
+        SimpleSchool *school = [[SimpleSchool alloc] init];
+        school.id = 15;
+        school.name = @"University of Cambridge";
+        school.type = @"university";
+        self.enrolled_schools = [NSArray arrayWithObject:school];
+        self.questions_count = 0;
     }
     return self;
 }

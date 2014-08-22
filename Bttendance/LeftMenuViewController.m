@@ -155,7 +155,7 @@
                     
                     attendance_rate = @"80";
                     clicker_rate = @"100";
-                    notice_unseen = 7;
+                    notice_unseen = 0;
                     students_count = 20;
                 }
             }
