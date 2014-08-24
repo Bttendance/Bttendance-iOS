@@ -241,7 +241,7 @@
 "Deleting Attendance" = "Deleting Attendance";
 "Attendance Check is Ongoing" = "Attendance Check is Ongoing";
 "자동 출석체크 완료!" = "Check Complete!";
-"출석체크 진행중" = "Check Ongoing ";
+"출석체크 진행중" = "Check Ongoing";
 "수동 출석체크" = "Manual Check";
 "%d초 남았습니다." = "%d sec remaining.";
 "출석 현황 입니다." = "Attendance Status";
