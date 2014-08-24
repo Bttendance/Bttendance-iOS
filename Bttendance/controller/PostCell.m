@@ -53,7 +53,7 @@
     if (left == 0) {
         [self.timer invalidate];
         self.timer = nil;
-        self.Title.text = NSLocalizedString(@"Attendance", nil);
+        self.Title.text = NSLocalizedString(@"Attendance Check", nil);
         return;
     }
 }

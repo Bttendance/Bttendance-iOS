@@ -68,6 +68,10 @@
     reconnectTry ++;
 }
 
+- (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
+    
+}
+
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
     id data = [packet dataAsJSON];
     NSLog(@"didReceiveEvent : %@", data);

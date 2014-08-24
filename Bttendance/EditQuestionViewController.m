@@ -189,8 +189,8 @@
         
         [cell_new.button setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
         [cell_new.button setBackgroundImage:[BTColor imageWithRedColor:0.8] forState:UIControlStateNormal];
-        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateHighlighted];
-        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.75] forState:UIControlStateSelected];
+        [cell_new.button setBackgroundImage:[BTColor imageWithRedColor:0.75] forState:UIControlStateHighlighted];
+        [cell_new.button setBackgroundImage:[BTColor imageWithRedColor:0.75] forState:UIControlStateSelected];
         
         cell_new.button.frame = CGRectMake(9, 12, 302, 43);
         
