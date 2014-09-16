@@ -15,6 +15,9 @@
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSString  *message;
 @property(assign) NSInteger  choice_count;
+@property(assign) NSInteger progress_time;
+@property(assign) BOOL show_info_on_select;
+@property(strong, nonatomic) NSString *detail_privacy;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -28,6 +31,9 @@
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *message;
 @property(assign) NSInteger  choice_count;
+@property(assign) NSInteger progress_time;
+@property(assign) BOOL show_info_on_select;
+@property(strong, nonatomic) NSString *detail_privacy;
 @property(strong, nonatomic) SimpleUser  *owner;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

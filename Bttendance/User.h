@@ -52,6 +52,8 @@
 
 - (BOOL)supervising:(NSInteger)course_id;
 
+- (BOOL)attending:(NSInteger)course_id;
+
 - (BOOL)enrolled:(NSInteger)school_id;
 
 - (NSArray *)getAllSchools;

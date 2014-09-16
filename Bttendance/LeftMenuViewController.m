@@ -44,6 +44,8 @@
         });
     });
     
+    self.tableview.scrollsToTop = NO;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
 }

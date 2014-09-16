@@ -165,19 +165,19 @@
         switch ([self.post.attendance stateInt:simpleUser.id]) {
             case 1:
                 cell.detail.text = NSLocalizedString(@"출석", nil);
-                [cell.icon setImage:[UIImage imageNamed:@"checked.png"]];
+                [cell.icon setImage:[UIImage imageNamed:@"small_attended.png"]];
                 cell.background_bg.backgroundColor = [BTColor BT_navy:0.1];
                 cell.selected_bg.backgroundColor = [BTColor BT_navy:0.15];
                 break;
             case 2:
                 cell.detail.text = NSLocalizedString(@"지각", nil);
-                [cell.icon setImage:[UIImage imageNamed:@"late.png"]];
+                [cell.icon setImage:[UIImage imageNamed:@"small_late.png"]];
                 cell.background_bg.backgroundColor = [BTColor BT_cyan:0.1];
                 cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.15];
                 break;
             default:
                 cell.detail.text = NSLocalizedString(@"결석", nil);
-                [cell.icon setImage:[UIImage imageNamed:@"absent.png"]];
+                [cell.icon setImage:[UIImage imageNamed:@"small_absent.png"]];
                 cell.background_bg.backgroundColor = [BTColor BT_silver:0.1];
                 cell.selected_bg.backgroundColor = [BTColor BT_silver:0.15];
                 break;

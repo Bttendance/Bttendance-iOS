@@ -42,11 +42,6 @@
     self.typeLable4.textColor = [BTColor BT_silver:1.0];
     self.typeLable5.textColor = [BTColor BT_silver:1.0];
     
-    self.typeMessage2.textColor = [BTColor BT_navy:1.0];
-    self.typeMessage3.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage4.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage5.textColor = [BTColor BT_silver:1.0];
-    
     self.choice = 2;
 }
 
@@ -66,11 +61,6 @@
     self.typeLable3.textColor = [BTColor BT_cyan:1.0];
     self.typeLable4.textColor = [BTColor BT_silver:1.0];
     self.typeLable5.textColor = [BTColor BT_silver:1.0];
-    
-    self.typeMessage2.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage3.textColor = [BTColor BT_navy:1.0];
-    self.typeMessage4.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage5.textColor = [BTColor BT_silver:1.0];
     
     self.choice = 3;
 }
@@ -92,11 +82,6 @@
     self.typeLable4.textColor = [BTColor BT_cyan:1.0];
     self.typeLable5.textColor = [BTColor BT_silver:1.0];
     
-    self.typeMessage2.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage3.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage4.textColor = [BTColor BT_navy:1.0];
-    self.typeMessage5.textColor = [BTColor BT_silver:1.0];
-    
     self.choice = 4;
 }
 
@@ -116,11 +101,6 @@
     self.typeLable3.textColor = [BTColor BT_silver:1.0];
     self.typeLable4.textColor = [BTColor BT_silver:1.0];
     self.typeLable5.textColor = [BTColor BT_cyan:1.0];
-    
-    self.typeMessage2.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage3.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage4.textColor = [BTColor BT_silver:1.0];
-    self.typeMessage5.textColor = [BTColor BT_navy:1.0];
     
     self.choice = 5;
 }

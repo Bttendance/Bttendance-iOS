@@ -167,6 +167,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/auto/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [self coursesInSuccess:nil failure:nil];
                             [BTUserDefault setUser:responseObject];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 User *user = [[User alloc] initWithDictionary:responseObject];
@@ -348,7 +349,9 @@ static UIAlertView *Ooooppss;
                                     [courses addObject:course];
                                 }
                                 dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(courses);
+                                    if (success != nil) {
+                                        success(courses);
+                                    }
                                 });
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -464,6 +467,37 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
+
++ (void)updateClickerDefaultsWithTime:(NSString *)progress_time
+                            andSelect:(BOOL)show_info_on_select
+                           andPrivacy:(NSString *)detail_privacy
+                              success:(void (^)(User *user))success
+                              failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"progress_time" : progress_time,
+                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"detail_privacy" : detail_privacy};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker/defaults"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                User *user = [[User alloc] initWithDictionary:responseObject];
+                                dispatch_async( dispatch_get_main_queue(), ^{
+                                    success(user);
+                                });
+                            });
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            failure(error);
+                        }];
+}
+
 #pragma Questions APIs
 + (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
                      failure:(void (^)(NSError *error))failure {
@@ -492,6 +526,9 @@ static UIAlertView *Ooooppss;
 
 + (void)createQuestionWithMessage:(NSString *)message
                    andChoiceCount:(NSString *)choice_count
+                          andTime:(NSString *)progress_time
+                        andSelect:(BOOL)show_info_on_select
+                       andPrivacy:(NSString *)detail_privacy
                           success:(void (^)(Question *question))success
                           failure:(void (^)(NSError *error))failure {
     
@@ -500,7 +537,10 @@ static UIAlertView *Ooooppss;
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
                              @"message" : message,
-                             @"choice_count" : choice_count};
+                             @"choice_count" : choice_count,
+                             @"progress_time" : progress_time,
+                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/questions/create"]
                       parameters:params
@@ -516,6 +556,9 @@ static UIAlertView *Ooooppss;
 + (void)updateQuestion:(NSString *)question_id
            WithMessage:(NSString *)message
         andChoiceCount:(NSString *)choice_count
+               andTime:(NSString *)progress_time
+             andSelect:(BOOL)show_info_on_select
+            andPrivacy:(NSString *)detail_privacy
                success:(void (^)(Question *question))success
                failure:(void (^)(NSError *error))failure {
     
@@ -525,7 +568,10 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"question_id" : question_id,
                              @"message" : message,
-                             @"choice_count" : choice_count};
+                             @"choice_count" : choice_count,
+                             @"progress_time" : progress_time,
+                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/questions/edit"]
                       parameters:params
@@ -683,6 +729,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create/instant"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             [self coursesInSuccess:nil failure:nil];
                              [BTUserDefault setUser:responseObject];
                              [[SocketAgent sharedInstance] socketConnectToServer];
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -734,6 +781,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/attend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [self coursesInSuccess:nil failure:nil];
                             [BTUserDefault setUser:responseObject];
                             [[SocketAgent sharedInstance] socketConnectToServer];
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -761,9 +809,15 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/dettend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [self coursesInSuccess:nil failure:nil];
                             [BTUserDefault setUser:responseObject];
-                            User *user = [[User alloc] initWithDictionary:responseObject];
-                            success(user);
+                            [[SocketAgent sharedInstance] socketConnectToServer];
+                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                User *user = [[User alloc] initWithDictionary:responseObject];
+                                dispatch_async( dispatch_get_main_queue(), ^{
+                                    success(user);
+                                });
+                            });
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             failure(error);
@@ -993,6 +1047,9 @@ static UIAlertView *Ooooppss;
 + (void)startClickerWithCourse:(NSString *)course_id
                        message:(NSString *)message
                    choiceCount:(NSString *)choice_count
+                       andTime:(NSString *)progress_time
+                     andSelect:(BOOL)show_info_on_select
+                    andPrivacy:(NSString *)detail_privacy
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure {
     
@@ -1002,7 +1059,10 @@ static UIAlertView *Ooooppss;
                              @"locale" : locale,
                              @"course_id" : course_id,
                              @"message" : message,
-                             @"choice_count" : choice_count};
+                             @"choice_count" : choice_count,
+                             @"progress_time" : progress_time,
+                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/clicker"]
                       parameters:params

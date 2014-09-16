@@ -133,6 +133,7 @@
                 NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
                 cell_new = [topLevelObjects objectAtIndex:0];
             }
+            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             
             [cell_new.button setTitle:NSLocalizedString(@"Attend Course", nil) forState:UIControlStateNormal];
             [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];

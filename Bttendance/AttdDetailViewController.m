@@ -269,7 +269,7 @@
             titleLabel.frame = CGRectMake(160 - width/2 + 21 + max1, 1, max2, titleLabel.frame.size.height);
             messageLabel.frame = CGRectMake(160 - width/2 + 20 + max1, 21, max2, messageLabel.frame.size.height);
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(160 - width/2 + 10 + max1, 3, 1, 33.5)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(160 - width/2 + 10 + max1, 3, 1, 35)];
             line.backgroundColor = [BTColor BT_navy:1];
             [cell addSubview:line];
             
@@ -314,7 +314,7 @@
             
             //Auth
             if (self.auth) {
-                [image3 setImage:[UIImage imageNamed:@"attendance_check.png"]];
+                [image3 setImage:[UIImage imageNamed:@"big_check.png"]];
                 NSInteger count = 65 + [post.createdAt timeIntervalSinceNow];
                 if (count > 0) {
                     BlinkView *blinkView = [[BlinkView alloc] initWithView:image3 andCount:count];
@@ -329,30 +329,30 @@
                 [cell addSubview:top];
                 
                 UIImageView *image4 = [[UIImageView alloc] initWithFrame:CGRectMake(60, 0, 200, 200)];
-                [image4 setImage:[UIImage imageNamed:@"attendance_ring.png"]];
+                [image4 setImage:[UIImage imageNamed:@"big_ring.png"]];
                 [cell addSubview:image4];
             }
             //Attended
             else if ([self.post.attendance stateInt:self.user.id] == 1) {
                 image.backgroundColor = [BTColor BT_navy:1];
                 image2.backgroundColor = [BTColor BT_white:1];
-                [image3 setImage:[UIImage imageNamed:@"attendance_check_navy.png"]];
+                [image3 setImage:[UIImage imageNamed:@"big_attended.png"]];
             }
             //Late
             else if ([self.post.attendance stateInt:self.user.id] == 2) {
                 image.backgroundColor = [BTColor BT_cyan:1];
                 image2.backgroundColor = [BTColor BT_white:1];
-                [image3 setImage:[UIImage imageNamed:@"attendance_late.png"]];
+                [image3 setImage:[UIImage imageNamed:@"big_late.png"]];
             }
             //Abscent
             else if ([self.post.attendance stateInt:self.user.id] == 0 && [post.createdAt timeIntervalSinceNow] <= -65.0f) {
                 image.backgroundColor = [BTColor BT_silver:1];
                 image2.backgroundColor = [BTColor BT_white:1];
-                [image3 setImage:[UIImage imageNamed:@"attendance_abscent.png"]];
+                [image3 setImage:[UIImage imageNamed:@"big_abscent.png"]];
             }
             //Attendance on-going
             else {
-                [image3 setImage:[UIImage imageNamed:@"attendance_check.png"]];
+                [image3 setImage:[UIImage imageNamed:@"big_check.png"]];
                 NSInteger count = 65 + [post.createdAt timeIntervalSinceNow];
                 BlinkView *blinkView = [[BlinkView alloc] initWithView:image3 andCount:count];
                 [[BTBlink sharedInstance] addBlinkView:blinkView];
@@ -372,7 +372,7 @@
                                  }];
                 
                 UIImageView *image4 = [[UIImageView alloc] initWithFrame:CGRectMake(60, 0, 200, 200)];
-                [image4 setImage:[UIImage imageNamed:@"attendance_ring.png"]];
+                [image4 setImage:[UIImage imageNamed:@"big_ring.png"]];
                 [cell addSubview:image4];
             }
             

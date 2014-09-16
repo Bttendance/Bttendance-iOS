@@ -145,6 +145,13 @@
     return NO;
 }
 
+- (BOOL)attending:(NSInteger)course_id {
+    for (SimpleCourse *course in self.attending_courses)
+        if (course.id == course_id)
+            return YES;
+    return NO;
+}
+
 - (BOOL)enrolled:(NSInteger)school_id {
     for (SimpleSchool *school in self.enrolled_schools)
         if (school.id == school_id)

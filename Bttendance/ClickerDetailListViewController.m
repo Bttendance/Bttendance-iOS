@@ -148,7 +148,7 @@
             [cell.icon setImage:[UIImage imageNamed:@"s_E.png"]];
             break;
         default:
-            [cell.icon setImage:[UIImage imageNamed:@"absent.png"]];
+            [cell.icon setImage:[UIImage imageNamed:@"small_absent.png"]];
             break;
     };
     

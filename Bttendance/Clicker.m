@@ -26,6 +26,9 @@
         self.c_students = [dictionary objectForKey:@"c_students"];
         self.d_students = [dictionary objectForKey:@"d_students"];
         self.e_students = [dictionary objectForKey:@"e_students"];
+        self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
+        self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
+        self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
         self.post = [[dictionary objectForKey:@"post"] integerValue];
     }
     return self;
@@ -46,6 +49,9 @@
         [keys addObject:@"d_students"];
     if (clicker.e_students != nil)
         [keys addObject:@"e_students"];
+    [keys addObject:@"progress_time"];
+    [keys addObject:@"show_info_on_select"];
+    [keys addObject:@"detail_privacy"];
     [keys addObject:@"post"];
     
     NSMutableArray *objects = [NSMutableArray array];
@@ -61,6 +67,9 @@
         [objects addObject:clicker.d_students];
     if (clicker.e_students != nil)
         [objects addObject:clicker.e_students];
+    [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.progress_time]];
+    [objects addObject:[NSNumber numberWithBool:clicker.show_info_on_select]];
+    [objects addObject:clicker.detail_privacy];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.post]];
     
     NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
@@ -252,6 +261,9 @@
         self.c_students = [dictionary objectForKey:@"c_students"];
         self.d_students = [dictionary objectForKey:@"d_students"];
         self.e_students = [dictionary objectForKey:@"e_students"];
+        self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
+        self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
+        self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
         self.post = [[SimplePost alloc] initWithDictionary:[dictionary objectForKey:@"post"]];
     }
     return self;

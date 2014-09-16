@@ -22,10 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLable4;
 @property (weak, nonatomic) IBOutlet UILabel *typeLable5;
 
-@property (weak, nonatomic) IBOutlet UILabel *typeMessage2;
-@property (weak, nonatomic) IBOutlet UILabel *typeMessage3;
-@property (weak, nonatomic) IBOutlet UILabel *typeMessage4;
-@property (weak, nonatomic) IBOutlet UILabel *typeMessage5;
+@property (weak, nonatomic) IBOutlet UILabel *typeMessage;
 
 @property (weak, nonatomic) IBOutlet UIButton *typeButton2;
 @property (weak, nonatomic) IBOutlet UIButton *typeButton3;

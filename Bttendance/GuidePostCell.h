@@ -15,7 +15,6 @@
 @property(weak, nonatomic) IBOutlet UILabel *Message;
 
 @property(weak, nonatomic) IBOutlet UIImageView *check_icon;
-@property(weak, nonatomic) IBOutlet UIImageView *check_overlay;
 
 @property(weak, nonatomic) IBOutlet UIView *cellbackground;
 @property(weak, nonatomic) IBOutlet UIView *selected_bg;

@@ -71,8 +71,8 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:NSLocalizedString(@"Unjoin Course", nil), nil];
+                                                   destructiveButtonTitle:NSLocalizedString(@"Unjoin Course", nil)
+                                                        otherButtonTitles:nil];
         [actionSheet showInView:self.view];
     }
 }
@@ -591,8 +591,7 @@
             cell.Message.numberOfLines = 0;
             [cell.Message sizeToFit];
             cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
-            [cell.check_icon setImage:[UIImage imageNamed:@"bttendance_icon@2x.png"]];
-            [cell.check_overlay setImage:nil];
+            [cell.check_icon setImage:[UIImage imageNamed:@"bttendance.png"]];
             break;
         }
         case 1: { // clicker
@@ -605,8 +604,7 @@
             cell.Message.numberOfLines = 0;
             [cell.Message sizeToFit];
             cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
-            [cell.check_icon setImage:[UIImage imageNamed:@"pollicon@2x.png"]];
-            [cell.check_overlay setImage:nil];
+            [cell.check_icon setImage:[UIImage imageNamed:@"clicker.png"]];
             break;
         }
         case 2: { // attendance
@@ -619,6 +617,7 @@
             cell.Message.numberOfLines = 0;
             [cell.Message sizeToFit];
             cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
+            [cell.check_icon setImage:[UIImage imageNamed:@"attendance_cyan.png"]];
             break;
         }
         default: { //notice
@@ -631,8 +630,7 @@
             cell.Message.numberOfLines = 0;
             [cell.Message sizeToFit];
             cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
-            [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
-            [cell.check_overlay setImage:nil];
+            [cell.check_icon setImage:[UIImage imageNamed:@"notice.png"]];
             break;
         }
     }
@@ -932,14 +930,6 @@
     if (65.0f + cell.gap > 0.0f && (self.auth || [post.attendance stateInt:user.id] == 0) && [post.attendance.type isEqualToString:@"auto"])
         [cell startTimerAsAttendance];
     
-    cell.Message.frame = CGRectMake(93, 49, 200, 15);
-    cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.Message.numberOfLines = 0;
-    NSInteger height = MAX(cell.Message.frame.size.height, 15);
-    [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
-    [cell.selected_bg setFrame:CGRectMake(11, 7, 298, 73 + height)];
-    [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [cell.check_icon setImage:[UIImage imageNamed:@"attendancecheckcyan@2x.png"]];
@@ -977,26 +967,37 @@
                 cell.Message.text = message4;
             } else {
                 [[BTBlink sharedInstance] removeView:cell.check_icon];
-                [cell.check_icon setImage:[UIImage imageNamed:@"attendfail@2x.png"]];
+                [cell.check_icon setImage:[UIImage imageNamed:@"absent.png"]];
                 [cell.check_overlay setImage:nil];
                 [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
                 cell.Message.text = message2;
             }
         } else if ([post.attendance stateInt:user.id] == 1){
             [[BTBlink sharedInstance] removeView:cell.check_icon];
-            [cell.check_icon setImage:[UIImage imageNamed:@"attended@2x.png"]];
+            [cell.check_icon setImage:[UIImage imageNamed:@"attended.png"]];
             [cell.check_overlay setImage:nil];
             [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
             cell.Message.text = message1;
         } else {
             [[BTBlink sharedInstance] removeView:cell.check_icon];
-            [cell.check_icon setImage:[UIImage imageNamed:@"attendlate@2x.png"]];
+            [cell.check_icon setImage:[UIImage imageNamed:@"late.png"]];
             [cell.check_overlay setImage:nil];
             [cell.background setFrame:CGRectMake(29, 75 / 2, 50, 0)];
             cell.Message.text = message3;
         }
     }
+    
+    cell.Message.frame = CGRectMake(93, 49, 200, 15);
+    cell.Message.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
+    
+    NSInteger height = MAX(cell.Message.frame.size.height, 15);
+    
+    [cell.cellbackground setFrame:CGRectMake(11, 7, 298, 73 + height)];
+    [cell.selected_bg setFrame:CGRectMake(11, 7, 298, 73 + height)];
+    [cell.Date setFrame:CGRectMake(97, 56 + height, 200, 21)];
+    
     return cell;
 }
 
@@ -1078,8 +1079,7 @@
     cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
     cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
-    [cell.check_icon setImage:[UIImage imageNamed:@"bttendance_icon@2x.png"]];
-    [cell.check_overlay setImage:nil];
+    [cell.check_icon setImage:[UIImage imageNamed:@"bttendance@2x.png"]];
     
     return cell;
 }

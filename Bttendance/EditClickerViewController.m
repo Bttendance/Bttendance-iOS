@@ -145,34 +145,7 @@
             default:
                 break;
         }
-        
-        cell.typeMessage2.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage3.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage4.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage5.text = NSLocalizedString(@"Choices", nil);
-        
-        [cell.typeMessage2 sizeToFit];
-        [cell.typeMessage3 sizeToFit];
-        [cell.typeMessage4 sizeToFit];
-        [cell.typeMessage5 sizeToFit];
-        
-        CGFloat width = cell.typeMessage2.frame.size.width + 8 + 36;
-        CGFloat margin = (160 - width) / 2 - 5; //margin보다 조금 왼쪽으로 옮김
-        
-        cell.bg2.frame = CGRectMake(margin, 14, 36, 36);
-        cell.bg3.frame = CGRectMake(160 + margin, 14, 36, 36);
-        cell.bg4.frame = CGRectMake(margin, 70, 36, 36);
-        cell.bg5.frame = CGRectMake(160 + margin, 70, 36, 36);
-        
-        cell.typeLable2.frame = CGRectMake(margin + 2, 16, 32, 32);
-        cell.typeLable3.frame = CGRectMake(162 + margin, 16, 32, 32);
-        cell.typeLable4.frame = CGRectMake(margin + 2, 72, 32, 32);
-        cell.typeLable5.frame = CGRectMake(162 + margin, 72, 32, 32);
-        
-        cell.typeMessage2.frame = CGRectMake(44 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage3.frame = CGRectMake(204 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage4.frame = CGRectMake(44 + margin, 78, width - 8 - 36, 20);
-        cell.typeMessage5.frame = CGRectMake(204 + margin, 78, width - 8 - 36, 20);
+        cell.typeMessage.text = NSLocalizedString(@"Choices", nil);
         
         cell.typeButton2.enabled = NO;
         cell.typeButton3.enabled = NO;

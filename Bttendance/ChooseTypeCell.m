@@ -27,10 +27,10 @@
 
 -(IBAction)chooseType1:(id)sender
 {
-    [self.typeImage1 setImage:[UIImage imageNamed:@"attendance.png"]];
-    [self.typeImage2 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage3 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage4 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
+    [self.typeImage1 setImage:[UIImage imageNamed:@"small_attendance.png"]];
+    [self.typeImage2 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
     self.typeLable1.textColor = [BTColor BT_navy:1.0];
     self.typeLable2.textColor = [BTColor BT_silver:1.0];
@@ -46,10 +46,10 @@
 
 -(IBAction)chooseType2:(id)sender
 {
-    [self.typeImage1 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage2 setImage:[UIImage imageNamed:@"attendance.png"]];
-    [self.typeImage3 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage4 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
+    [self.typeImage1 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage2 setImage:[UIImage imageNamed:@"small_attendance.png"]];
+    [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
     self.typeLable1.textColor = [BTColor BT_silver:1.0];
     self.typeLable2.textColor = [BTColor BT_navy:1.0];
@@ -65,10 +65,10 @@
 
 -(IBAction)chooseType3:(id)sender
 {
-    [self.typeImage1 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage2 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage3 setImage:[UIImage imageNamed:@"attendance.png"]];
-    [self.typeImage4 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
+    [self.typeImage1 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage2 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance.png"]];
+    [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
     self.typeLable1.textColor = [BTColor BT_silver:1.0];
     self.typeLable2.textColor = [BTColor BT_silver:1.0];
@@ -84,10 +84,10 @@
 
 -(IBAction)chooseType4:(id)sender
 {
-    [self.typeImage1 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage2 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage3 setImage:[UIImage imageNamed:@"attendance_silver.png"]];
-    [self.typeImage4 setImage:[UIImage imageNamed:@"attendance.png"]];
+    [self.typeImage1 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage2 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
+    [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance.png"]];
     
     self.typeLable1.textColor = [BTColor BT_silver:1.0];
     self.typeLable2.textColor = [BTColor BT_silver:1.0];

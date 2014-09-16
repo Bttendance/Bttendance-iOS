@@ -23,11 +23,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendancecheckcyan.png" id="wap-Ag-7eL">
-                        <rect key="frame" x="29" y="25" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendanceringnonalpha.png" id="HM9-Qc-10R">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wap-Ag-7eL">
                         <rect key="frame" x="29" y="25" width="52" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -55,13 +51,8 @@
                 <outlet property="Message" destination="Xhr-xz-NUW" id="deo-uC-rse"/>
                 <outlet property="cellbackground" destination="hHw-LE-MaJ" id="eCL-aV-9nS"/>
                 <outlet property="check_icon" destination="wap-Ag-7eL" id="6mF-px-CNe"/>
-                <outlet property="check_overlay" destination="HM9-Qc-10R" id="U7h-FC-dNR"/>
                 <outlet property="selected_bg" destination="NhM-Lj-tFQ" id="Rdf-JW-mvm"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="attendancecheckcyan.png" width="52" height="52"/>
-        <image name="attendanceringnonalpha.png" width="52" height="52"/>
-    </resources>
 </document>

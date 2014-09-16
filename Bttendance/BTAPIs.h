@@ -84,18 +84,30 @@
                         success:(void (^)(User *user))success
                         failure:(void (^)(NSError *error))failure;
 
++ (void)updateClickerDefaultsWithTime:(NSString *)progress_time
+                            andSelect:(BOOL)show_info_on_select
+                           andPrivacy:(NSString *)detail_privacy
+                              success:(void (^)(User *user))success
+                              failure:(void (^)(NSError *error))failure;
+
 #pragma Questions APIs
 + (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
                      failure:(void (^)(NSError *error))failure;
 
 + (void)createQuestionWithMessage:(NSString *)message
                    andChoiceCount:(NSString *)choice_count
+                          andTime:(NSString *)progress_time
+                        andSelect:(BOOL)show_info_on_select
+                       andPrivacy:(NSString *)detail_privacy
                           success:(void (^)(Question *question))success
                           failure:(void (^)(NSError *error))failure;
 
 + (void)updateQuestion:(NSString *)question_id
            WithMessage:(NSString *)message
         andChoiceCount:(NSString *)choice_count
+              andTime:(NSString *)progress_time
+             andSelect:(BOOL)show_info_on_select
+            andPrivacy:(NSString *)detail_privacy
                success:(void (^)(Question *question))success
                failure:(void (^)(NSError *error))failure;
 
@@ -186,6 +198,9 @@
 + (void)startClickerWithCourse:(NSString *)course_id
                        message:(NSString *)message
                    choiceCount:(NSString *)choice_count
+                       andTime:(NSString *)progress_time
+                     andSelect:(BOOL)show_info_on_select
+                    andPrivacy:(NSString *)detail_privacy
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure;
 

@@ -21,6 +21,9 @@
 @property(strong, nonatomic) NSArray  *c_students;
 @property(strong, nonatomic) NSArray  *d_students;
 @property(strong, nonatomic) NSArray  *e_students;
+@property(assign) NSInteger progress_time;
+@property(assign) BOOL show_info_on_select;
+@property(strong, nonatomic) NSString *detail_privacy;
 @property(assign) NSInteger  post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
@@ -46,6 +49,9 @@
 @property(strong, nonatomic) NSArray  *c_students;
 @property(strong, nonatomic) NSArray  *d_students;
 @property(strong, nonatomic) NSArray  *e_students;
+@property(assign) NSInteger progress_time;
+@property(assign) BOOL show_info_on_select;
+@property(strong, nonatomic) NSString *detail_privacy;
 @property(strong, nonatomic) SimplePost  *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

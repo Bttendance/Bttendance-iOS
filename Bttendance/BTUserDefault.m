@@ -384,7 +384,7 @@
     NSInteger lastCourse = [[NSUserDefaults standardUserDefaults] integerForKey:LastSeenCourseKey];
     
     User *user = [BTUserDefault getUser];
-    if (lastCourse == 0) {
+    if (lastCourse == 0 || (![user supervising:lastCourse] && ![user attending:lastCourse])) {
         for (id course in user.supervising_courses) {
             if (((SimpleCourse *) course).opened) {
                 lastCourse = ((SimpleCourse *)course).id;
@@ -398,13 +398,6 @@
                 lastCourse = ((SimpleCourse *)course).id;
                 [self setLastSeenCourse:lastCourse];
                 return lastCourse;
-            }
-        }
-    } else {
-        for (id course in [user.supervising_courses arrayByAddingObjectsFromArray:user.attending_courses]) {
-            if (!((SimpleCourse *) course).opened && ((SimpleCourse *) course).id == lastCourse) {
-                [self setLastSeenCourse:0];
-                return 0;
             }
         }
     }

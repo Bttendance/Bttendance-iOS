@@ -120,6 +120,7 @@
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyNext;
             [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
+            [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
             [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];

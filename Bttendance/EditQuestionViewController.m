@@ -19,6 +19,9 @@
 @property (strong, nonatomic) UITextView *textview;
 @property (strong, nonatomic) NSString *message;
 @property (assign) NSInteger choice;
+@property(assign) NSInteger progressTime;
+@property(assign) BOOL showInfoOnSelect;
+@property(strong, nonatomic) NSString *detailPrivacy;
 @property (strong, nonatomic) NSIndexPath *textviewIndex;
 @property (strong, nonatomic) NSIndexPath *choiceviewIndex;
 
@@ -64,6 +67,9 @@
     
     self.message = self.question.message;
     self.choice = self.question.choice_count;
+    self.progressTime = self.question.progress_time;
+    self.showInfoOnSelect = self.question.show_info_on_select;
+    self.detailPrivacy = self.question.detail_privacy;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -146,34 +152,7 @@
                 break;
         }
         
-        cell.typeMessage2.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage3.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage4.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage5.text = NSLocalizedString(@"Choices", nil);
-        
-        [cell.typeMessage2 sizeToFit];
-        [cell.typeMessage3 sizeToFit];
-        [cell.typeMessage4 sizeToFit];
-        [cell.typeMessage5 sizeToFit];
-        
-        CGFloat width = cell.typeMessage2.frame.size.width + 8 + 36;
-        CGFloat margin = (160 - width) / 2 - 5; //margin보다 조금 왼쪽으로 옮김
-        
-        cell.bg2.frame = CGRectMake(margin, 14, 36, 36);
-        cell.bg3.frame = CGRectMake(160 + margin, 14, 36, 36);
-        cell.bg4.frame = CGRectMake(margin, 70, 36, 36);
-        cell.bg5.frame = CGRectMake(160 + margin, 70, 36, 36);
-        
-        cell.typeLable2.frame = CGRectMake(margin + 2, 16, 32, 32);
-        cell.typeLable3.frame = CGRectMake(162 + margin, 16, 32, 32);
-        cell.typeLable4.frame = CGRectMake(margin + 2, 72, 32, 32);
-        cell.typeLable5.frame = CGRectMake(162 + margin, 72, 32, 32);
-        
-        cell.typeMessage2.frame = CGRectMake(44 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage3.frame = CGRectMake(204 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage4.frame = CGRectMake(44 + margin, 78, width - 8 - 36, 20);
-        cell.typeMessage5.frame = CGRectMake(204 + margin, 78, width - 8 - 36, 20);
-        
+        cell.typeMessage.text = NSLocalizedString(@"Choices", nil);
         return cell;
     } else {
         static NSString *CellIdentifier1 = @"SignButtonCell";
@@ -243,6 +222,9 @@
     [BTAPIs updateQuestion:[NSString stringWithFormat:@"%ld", (long) self.question.id]
                WithMessage:self.textview.text
             andChoiceCount:[NSString stringWithFormat:@"%d", chooseCountCell.choice]
+                   andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
+                 andSelect:self.showInfoOnSelect
+                andPrivacy:self.detailPrivacy
                    success:^(Question *question) {
                        [hud hide:YES];
                        sender.enabled = YES;

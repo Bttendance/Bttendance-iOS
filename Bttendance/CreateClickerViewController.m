@@ -13,6 +13,7 @@
 #import "BTColor.h"
 #import "ChooseCountCell.h"
 #import "SignButtonCell.h"
+#import "PasswordCell.h"
 #import "BTNotification.h"
 #import "BTDateFormatter.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -28,6 +29,9 @@
 @property (strong, nonatomic) NSIndexPath *textviewIndex;
 @property (strong, nonatomic) NSIndexPath *choiceviewIndex;
 @property (strong, nonatomic) NSIndexPath *labelviewIndex;
+@property(assign) NSInteger progressTime;
+@property(assign) BOOL showInfoOnSelect;
+@property(strong, nonatomic) NSString *detailPrivacy;
 
 @end
 
@@ -60,14 +64,14 @@
     self.choiceviewIndex = [NSIndexPath indexPathForRow:2 inSection:0];
     self.labelviewIndex = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    self.textview = [[UITextView alloc] initWithFrame:CGRectMake(14, 10, 292, 85)];
+    self.textview = [[UITextView alloc] initWithFrame:CGRectMake(14, 10, 292, 101)];
     self.textview.backgroundColor = [UIColor clearColor];
     self.textview.font = [UIFont systemFontOfSize:14];
     self.textview.textColor = [BTColor BT_silver:1.0];
     self.textview.tintColor = [BTColor BT_silver:1.0];
     self.textview.text = @"";
     [self.textview sizeToFit];
-    self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
+    self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
     self.textview.delegate = self;
     
     self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(19, 16, 292, 20)];
@@ -118,47 +122,76 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 38;
+        return 62;
     } else if (indexPath.row == 1) {
         self.textview.text = self.message;
         [self.textview sizeToFit];
-        self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
-        return MAX(70, ceil(self.textview.frame.size.height));
+        self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
+        return MAX(86, ceil(self.textview.frame.size.height)) + 14;
     } else if (indexPath.row == 2)
-        return 120;
+        return 48;
     else if(indexPath.row == 3)
-        return 20;
+        return 60;
+    else if (indexPath.row == 4 || indexPath.row == 5)
+        return 46;
     else
-        return 78;
+        return 33;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 38)];
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 62)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [BTColor BT_grey:1.0];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 13, 288, 12)];
-        label.text = NSLocalizedString(@"* 설문이 시작되면 60초간 답변을 수집합니다.", nil);
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 11, 288, 36)];
+        NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d초간 답변을 수집합니다.", nil), self.progressTime];
+        NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
+        if (self.showInfoOnSelect)
+            showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다.", nil)];
+        else
+            showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다.", nil)];
+        if ([@"professor" isEqualToString:self.detailPrivacy])
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 상세 결과는 강의자만 볼 수 있습니다.", nil)];
+        else if ([@"all" isEqualToString:self.detailPrivacy])
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 모두 상세 결과를 볼 수 있습니다.", nil)];
+        else
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
+        
+        label.text = [NSString stringWithFormat:@"%@\n%@\n%@", progressTimeMessage, showInfoOnSelectMessage, detailPrivacyMessage];
         label.textColor = [BTColor BT_silver:1.0];
         label.font = [UIFont systemFontOfSize:12];
+        label.numberOfLines = 0;
+        [label sizeToFit];
         [cell addSubview:label];
         return cell;
     } else if (indexPath.row == 1) {
         self.textview.text = self.message;
         [self.textview sizeToFit];
-        self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, MAX(70, ceil(self.textview.frame.size.height)))];
+        self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, MAX(86, ceil(self.textview.frame.size.height)))];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [BTColor BT_white:1];
         [cell addSubview:self.textview];
         [cell addSubview:self.placeholder];
         return cell;
     } else if (indexPath.row == 2) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(14, 26, 320, 12)];
+        self.label.text = NSLocalizedString(@"Choose number of choices", nil);
+        self.label.textColor = [BTColor BT_silver:1.0];
+        self.label.font = [UIFont systemFontOfSize:12];
+        [cell addSubview:self.label];
+        
+        return cell;
+    } else if (indexPath.row == 3) {
         static NSString *CellIdentifier1 = @"ChooseCountCell";
         ChooseCountCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
         
@@ -185,70 +218,37 @@
                 break;
         }
         
-        cell.typeMessage2.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage3.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage4.text = NSLocalizedString(@"Choices", nil);
-        cell.typeMessage5.text = NSLocalizedString(@"Choices", nil);
-        
-        [cell.typeMessage2 sizeToFit];
-        [cell.typeMessage3 sizeToFit];
-        [cell.typeMessage4 sizeToFit];
-        [cell.typeMessage5 sizeToFit];
-        
-        CGFloat width = cell.typeMessage2.frame.size.width + 8 + 36;
-        CGFloat margin = (160 - width) / 2 - 5; //margin보다 조금 왼쪽으로 옮김
-        
-        cell.bg2.frame = CGRectMake(margin, 14, 36, 36);
-        cell.bg3.frame = CGRectMake(160 + margin, 14, 36, 36);
-        cell.bg4.frame = CGRectMake(margin, 70, 36, 36);
-        cell.bg5.frame = CGRectMake(160 + margin, 70, 36, 36);
-        
-        cell.typeLable2.frame = CGRectMake(margin + 2, 16, 32, 32);
-        cell.typeLable3.frame = CGRectMake(162 + margin, 16, 32, 32);
-        cell.typeLable4.frame = CGRectMake(margin + 2, 72, 32, 32);
-        cell.typeLable5.frame = CGRectMake(162 + margin, 72, 32, 32);
-        
-        cell.typeMessage2.frame = CGRectMake(44 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage3.frame = CGRectMake(204 + margin, 23, width - 8 - 36, 20);
-        cell.typeMessage4.frame = CGRectMake(44 + margin, 78, width - 8 - 36, 20);
-        cell.typeMessage5.frame = CGRectMake(204 + margin, 78, width - 8 - 36, 20);
-        
+        cell.typeMessage.text = NSLocalizedString(@"Choices", nil);
         return cell;
-    } else if (indexPath.row == 3) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
-        
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-        self.label.text = NSLocalizedString(@"Choose number of choices", nil);
-        self.label.textAlignment = NSTextAlignmentCenter;
-        self.label.textColor = [BTColor BT_silver:1.0];
-        self.label.font = [UIFont boldSystemFontOfSize:12];
-        [cell addSubview:self.label];
-        
+    } else if (indexPath.row == 4) {
+        static NSString *CellIdentifier = @"PasswordCell";
+        PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.arrow.hidden = NO;
+        cell.password.text = NSLocalizedString(@"설문 옵션", nil);
+        return cell;
+    } else if (indexPath.row ==5) {
+        static NSString *CellIdentifier = @"PasswordCell";
+        PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.arrow.hidden = NO;
+        cell.password.text = NSLocalizedString(@"저장한 질문 불러오기", nil);
         return cell;
     } else {
-        static NSString *CellIdentifier1 = @"SignButtonCell";
-        SignButtonCell *cell_new = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-        
-        if (cell_new == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SignButtonCell" owner:self options:nil];
-            cell_new = [topLevelObjects objectAtIndex:0];
-            cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        cell_new.contentView.backgroundColor = [BTColor BT_white:1.0];
-        
-        [cell_new.button setTitle:NSLocalizedString(@"Load saved question", nil) forState:UIControlStateNormal];
-        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-        [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
-        
-        cell_new.button.frame = CGRectMake(9, 12, 302, 43);
-        
-        [cell_new.button addTarget:self action:@selector(loadQuestion:) forControlEvents:UIControlEventTouchUpInside];
-        
-        return cell_new;
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [BTColor BT_grey:1.0];
+        return cell;
     }
 }
 
@@ -263,7 +263,7 @@
     
     self.message = textView.text;
     [self.textview sizeToFit];
-    self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
+    self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
     [self.tableview endUpdates];
 }
 
@@ -311,6 +311,9 @@
     [BTAPIs startClickerWithCourse:cid
                            message:message
                        choiceCount:[NSString stringWithFormat:@"%ld", (long)self.choice]
+                           andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
+                         andSelect:self.showInfoOnSelect
+                        andPrivacy:self.detailPrivacy
                            success:^(Post *post) {
                                [hud hide:YES];
                                NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:post, PostInfo, nil];
