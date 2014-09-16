@@ -24,7 +24,7 @@
 #import "CatchPointViewController.h"
 #import "AppDelegate.h"
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "SocketAgent.h"
 
 @implementation BTAPIs
@@ -85,7 +85,7 @@ static UIAlertView *Ooooppss;
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.topController.view animated:YES];
             hud.mode = MBProgressHUDModeText;
-            hud.color = [BTColor BT_cyan:0.7];
+            hud.color = [UIColor cyan:0.7];
             hud.detailsLabelText = errorJson.message;
             hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
             hud.yOffset = - appDelegate.topController.view.frame.size.height / 2 + 104;

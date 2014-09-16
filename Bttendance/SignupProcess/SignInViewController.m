@@ -14,11 +14,12 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "ForgotPassViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "BVUnderlineButton.h"
 #import "BTUUID.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AudioToolbox/AudioServices.h>
+#import "UIImage+Bttendance.h"
 
 NSString *signinRequest;
 
@@ -118,13 +119,13 @@ NSString *signinRequest;
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [UIColor white:1];
     }
 
     switch (indexPath.row) {
         case 0: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell textLabel].backgroundColor = [UIColor clearColor];
 
@@ -135,14 +136,14 @@ NSString *signinRequest;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
             [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 1: {
             [[cell textLabel] setText:NSLocalizedString(@"Password", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell textLabel].backgroundColor = [UIColor clearColor];
 
@@ -150,7 +151,7 @@ NSString *signinRequest;
             [(TextInputCell *) cell textfield].secureTextEntry = YES;
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
@@ -166,9 +167,9 @@ NSString *signinRequest;
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Log In", nil) forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
             [cell_new.button addTarget:self action:@selector(signinButton:) forControlEvents:UIControlEventTouchUpInside];
 
             return cell_new;
@@ -178,13 +179,13 @@ NSString *signinRequest;
             BVUnderlineButton *partnership = [BVUnderlineButton buttonWithType:UIButtonTypeCustom];
             partnership.backgroundColor = [UIColor clearColor];
             [partnership setTitle:NSLocalizedString(@"Forgot Password?", nil) forState:UIControlStateNormal];
-            [partnership setTitleColor:[BTColor BT_silver:1.0f] forState:UIControlStateNormal];
+            [partnership setTitleColor:[UIColor silver:1.0f] forState:UIControlStateNormal];
             partnership.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
             [partnership addTarget:self action:@selector(forgot:) forControlEvents:UIControlEventTouchUpInside];
             [partnership sizeToFit];
             partnership.center = CGPointMake(cell.frame.size.width / 2, cell.frame.size.height / 2 + 10);
             [cell addSubview:partnership];
-            [cell contentView].backgroundColor = [BTColor BT_grey:1];
+            [cell contentView].backgroundColor = [UIColor grey:1];
             [(TextInputCell *) cell textfield].hidden = YES;
             break;
         }
@@ -221,14 +222,14 @@ NSString *signinRequest;
     BOOL pass = YES;
     
     if (email == nil || email.length == 0) {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
         ((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (password == nil || password.length == 0) {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
         ((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
@@ -241,7 +242,7 @@ NSString *signinRequest;
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Loging In Bttendance", nil);
     hud.yOffset = -40.0f;

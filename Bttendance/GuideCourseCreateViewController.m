@@ -7,7 +7,8 @@
 //
 
 #import "GuideCourseCreateViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 
 @interface GuideCourseCreateViewController ()
 
@@ -32,7 +33,7 @@
     self.message1.attributedText = str1;
     self.message1.numberOfLines = 0;
     self.message1.font = [UIFont systemFontOfSize:14];
-    self.message1.textColor = [BTColor BT_black:1.0];
+    self.message1.textColor = [UIColor black:1.0];
     [self.message1 sizeToFit];
     
     self.message2 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
@@ -44,7 +45,7 @@
     self.message2.attributedText = str2;
     self.message2.numberOfLines = 0;
     self.message2.font = [UIFont systemFontOfSize:14];
-    self.message2.textColor = [BTColor BT_black:1.0];
+    self.message2.textColor = [UIColor black:1.0];
     [self.message2 sizeToFit];
     
     self.message3 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
@@ -56,13 +57,13 @@
     self.message3.attributedText = str3;
     self.message3.numberOfLines = 0;
     self.message3.font = [UIFont systemFontOfSize:14];
-    self.message3.textColor = [BTColor BT_black:1.0];
+    self.message3.textColor = [UIColor black:1.0];
     [self.message3 sizeToFit];
     
     [self.nextBt setTitle:NSLocalizedString(@"시작하기", nil) forState:UIControlStateNormal];
-    [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-    [self.nextBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    [self.nextBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+    [self.nextBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+    [self.nextBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -116,13 +117,13 @@
         case 0: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 67.5)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 25.5, 320, 20)];
             title.text = NSLocalizedString(@"강의가 성공적으로 개설되었습니다!", nil);
             title.font = [UIFont boldSystemFontOfSize:18];
             title.textAlignment = NSTextAlignmentCenter;
-            title.textColor = [BTColor BT_black:1.0];
+            title.textColor = [UIColor black:1.0];
             [cell addSubview:title];
             
             return cell;
@@ -130,38 +131,38 @@
         case 1: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 165)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_grey:1.0];
+            cell.backgroundColor = [UIColor grey:1.0];
             
             UIView *header = [[UIView alloc]initWithFrame:CGRectMake(30, 26, 107.5, 37)];
             header.layer.cornerRadius = 3;
-            header.backgroundColor = [BTColor BT_navy:1.0];
+            header.backgroundColor = [UIColor navy:1.0];
             [cell addSubview:header];
             
             UIView *header2 = [[UIView alloc]initWithFrame:CGRectMake(30, 53, 107.5, 10)];
-            header2.backgroundColor = [BTColor BT_navy:1.0];
+            header2.backgroundColor = [UIColor navy:1.0];
             [cell addSubview:header2];
             
             UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(30, 63, 107.5, 77.5)];
             footer.layer.cornerRadius = 3;
-            footer.backgroundColor = [BTColor BT_white:1.0];
+            footer.backgroundColor = [UIColor white:1.0];
             [cell addSubview:footer];
             
             UIView *footer2 = [[UIView alloc]initWithFrame:CGRectMake(30, 63, 107.5, 10)];
-            footer2.backgroundColor = [BTColor BT_white:1.0];
+            footer2.backgroundColor = [UIColor white:1.0];
             [cell addSubview:footer2];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(30, 26, 107.5, 37)];
             title.text = NSLocalizedString(@"클래스 코드", nil);
             title.font = [UIFont systemFontOfSize:14];
             title.textAlignment = NSTextAlignmentCenter;
-            title.textColor = [BTColor BT_white:1.0];
+            title.textColor = [UIColor white:1.0];
             [cell addSubview:title];
             
             UILabel *code = [[UILabel alloc]initWithFrame:CGRectMake(30, 63, 107.5, 77.5)];
             code.text = [self.courseCode uppercaseString];
             code.font = [UIFont boldSystemFontOfSize:30];
             code.textAlignment = NSTextAlignmentCenter;
-            code.textColor = [BTColor BT_navy:1.0];
+            code.textColor = [UIColor navy:1.0];
             [cell addSubview:code];
             
             UILabel *message = [[UILabel alloc]initWithFrame:CGRectMake(150, 27, 143, 140)];
@@ -182,7 +183,7 @@
             message.attributedText = str;
             message.numberOfLines = 0;
             
-            message.textColor = [BTColor BT_silver:1.0];
+            message.textColor = [UIColor silver:1.0];
             [message sizeToFit];
             [cell addSubview:message];
             
@@ -191,13 +192,13 @@
         case 2: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 28, 320, 20)];
             title.text = NSLocalizedString(@"BTTENDANCE를 잘 사용하는 법", nil);
             title.font = [UIFont boldSystemFontOfSize:18.5];
             title.textAlignment = NSTextAlignmentCenter;
-            title.textColor = [BTColor BT_navy:1.0];
+            title.textColor = [UIColor navy:1.0];
             [cell addSubview:title];
             
             return cell;
@@ -205,19 +206,19 @@
         case 3: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 24 + MAX(41, self.message1.frame.size.height))];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"1";
             number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
-            number.textColor = [BTColor BT_navy:1.0];
+            number.textColor = [UIColor navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message1];
             
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message1.frame.size.height - 6)];
-            line.backgroundColor = [BTColor BT_navy:1];
+            line.backgroundColor = [UIColor navy:1];
             [cell addSubview:line];
             
             return cell;
@@ -225,19 +226,19 @@
         case 4: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 24 + MAX(41, self.message2.frame.size.height))];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"2";
             number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
-            number.textColor = [BTColor BT_navy:1.0];
+            number.textColor = [UIColor navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message2];
             
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message2.frame.size.height - 6)];
-            line.backgroundColor = [BTColor BT_navy:1];
+            line.backgroundColor = [UIColor navy:1];
             [cell addSubview:line];
             
             return cell;
@@ -245,19 +246,19 @@
         case 5: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 24 + MAX(41, self.message3.frame.size.height))];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(30, 2, 30, 60)];
             number.text = @"3";
             number.font = [UIFont boldSystemFontOfSize:49];
             number.textAlignment = NSTextAlignmentCenter;
-            number.textColor = [BTColor BT_navy:1.0];
+            number.textColor = [UIColor navy:1.0];
             [cell addSubview:number];
             
             [cell addSubview:self.message3];
             
             UIView *line = [[UIView alloc]initWithFrame:CGRectMake(72, 15, 1.5, self.message3.frame.size.height - 6)];
-            line.backgroundColor = [BTColor BT_navy:1];
+            line.backgroundColor = [UIColor navy:1];
             [cell addSubview:line];
             
             return cell;
@@ -265,7 +266,7 @@
         default: {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1.0];
+            cell.backgroundColor = [UIColor white:1.0];
             return cell;
         }
     }

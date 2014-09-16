@@ -9,7 +9,7 @@
 #import "Clicker.h"
 #import "BTDateFormatter.h"
 #import "NSDictionary+Bttendance.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @implementation SimpleClicker
 
@@ -227,17 +227,17 @@
     
     switch (index) {
         case 0:
-            return [BTColor BT_clicker_a:1];
+            return [UIColor clicker_a:1];
         case 1:
-            return [BTColor BT_clicker_b:1];
+            return [UIColor clicker_b:1];
         case 2:
-            return [BTColor BT_clicker_c:1];
+            return [UIColor clicker_c:1];
         case 3:
-            return [BTColor BT_clicker_d:1];
+            return [UIColor clicker_d:1];
         case 4:
-            return [BTColor BT_clicker_e:1];
+            return [UIColor clicker_e:1];
         default:
-            return [BTColor BT_clicker_a:1];
+            return [UIColor clicker_a:1];
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "ProfileNameEditViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
@@ -72,7 +72,7 @@
     fullname = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Updating Name", nil);
     hud.yOffset = -40.0f;
@@ -105,16 +105,16 @@
 
     _name_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _name_field.text = fullname;
-    _name_field.textColor = [BTColor BT_black:1];
-    _name_field.tintColor = [BTColor BT_silver:1];
-    _name_field.backgroundColor = [BTColor BT_white:1];
+    _name_field.textColor = [UIColor black:1];
+    _name_field.tintColor = [UIColor silver:1];
+    _name_field.backgroundColor = [UIColor white:1];
     _name_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _name_field.keyboardType = UIKeyboardTypeDefault;
     _name_field.clearButtonMode = UITextFieldViewModeAlways;
     _name_field.returnKeyType = UIReturnKeyDone;
     _name_field.delegate = self;
 
-    cell.contentView.backgroundColor = [BTColor BT_white:1];
+    cell.contentView.backgroundColor = [UIColor white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:_name_field];
 

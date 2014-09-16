@@ -1,5 +1,5 @@
 //
-//  StdCourseDetailView.m
+//  CourseDetailViewController.m
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 1. 24..
@@ -10,7 +10,8 @@
 #import "CourseDetailHeaderView.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"
@@ -108,8 +109,8 @@
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
 
-    self.view.backgroundColor = [BTColor BT_grey:1];
-    [self tableview].backgroundColor = [BTColor BT_grey:1];
+    self.view.backgroundColor = [UIColor grey:1];
+    [self tableview].backgroundColor = [UIColor grey:1];
 
     user = [BTUserDefault getUser];
     data = [NSMutableArray array];
@@ -146,15 +147,15 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"CourseDetailHeaderView" owner:self options:nil];
     coursedetailheaderview = [topLevelObjects objectAtIndex:0];
     
-    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
-    [coursedetailheaderview.clickerBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
-    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
-    [coursedetailheaderview.attendanceBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
-    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
-    [coursedetailheaderview.noticeBt setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateSelected];
+    [coursedetailheaderview.clickerBt setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.clickerBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.clickerBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateSelected];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.attendanceBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateSelected];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
+    [coursedetailheaderview.noticeBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateSelected];
     [coursedetailheaderview.clickerBt addTarget:self action:@selector(start_clicker) forControlEvents:UIControlEventTouchUpInside];
     [coursedetailheaderview.attendanceBt addTarget:self action:@selector(start_attendance) forControlEvents:UIControlEventTouchUpInside];
     [coursedetailheaderview.noticeBt addTarget:self action:@selector(create_notice) forControlEvents:UIControlEventTouchUpInside];
@@ -873,7 +874,7 @@
         
         cell.post = post;
         cell.Title.text = NSLocalizedString(@"Clicker", nil);
-        cell.Title.textColor = [BTColor BT_silver:1];
+        cell.Title.textColor = [UIColor silver:1];
         cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
         cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
         cell.gap = [cell.post.createdAt timeIntervalSinceNow];
@@ -921,7 +922,7 @@
     
     cell.post = post;
     cell.Title.text = NSLocalizedString(@"Attendance Check", nil);
-    cell.Title.textColor = [BTColor BT_silver:1];
+    cell.Title.textColor = [UIColor silver:1];
     cell.Date.text = [BTDateFormatter stringFromDate:cell.post.createdAt];
     cell.gap = [cell.post.createdAt timeIntervalSinceNow];
     
@@ -1018,7 +1019,7 @@
     
     cell.post = post;
     cell.Title.text = NSLocalizedString(@"Notice", nil);
-    cell.Title.textColor = [BTColor BT_silver:1];
+    cell.Title.textColor = [UIColor silver:1];
     
     if (self.auth) {
         NSInteger seen = post.notice.seen_students.count;
@@ -1026,7 +1027,7 @@
         cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld 읽음)", nil), seen, total];
     } else if (![post.notice seen:user.id]) {
         cell.Title.text = NSLocalizedString(@"Unread Notice", nil);
-        cell.Title.textColor = [BTColor BT_red:1];
+        cell.Title.textColor = [UIColor red:1];
     }
     
     cell.Message.text = cell.post.message;
@@ -1270,7 +1271,7 @@
 
 - (void)dettend_course {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Unjoining Course", nil);
     hud.yOffset = -40.0f;
@@ -1285,7 +1286,7 @@
 
 - (void)open_course {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Opening Course", nil);
     hud.yOffset = -40.0f;

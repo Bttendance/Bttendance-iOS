@@ -7,7 +7,7 @@
 //
 
 #import "ChooseTypeCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @implementation ChooseTypeCell
 
@@ -32,10 +32,10 @@
     [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
-    self.typeLable1.textColor = [BTColor BT_navy:1.0];
-    self.typeLable2.textColor = [BTColor BT_silver:1.0];
-    self.typeLable3.textColor = [BTColor BT_silver:1.0];
-    self.typeLable4.textColor = [BTColor BT_silver:1.0];
+    self.typeLable1.textColor = [UIColor navy:1.0];
+    self.typeLable2.textColor = [UIColor silver:1.0];
+    self.typeLable3.textColor = [UIColor silver:1.0];
+    self.typeLable4.textColor = [UIColor silver:1.0];
     
     CGFloat width = MAX(50.0f, self.typeLable1.frame.size.width);
     self.typeSelected.frame = CGRectMake(47 - width / 2, 7, width, 70);
@@ -51,10 +51,10 @@
     [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
-    self.typeLable1.textColor = [BTColor BT_silver:1.0];
-    self.typeLable2.textColor = [BTColor BT_navy:1.0];
-    self.typeLable3.textColor = [BTColor BT_silver:1.0];
-    self.typeLable4.textColor = [BTColor BT_silver:1.0];
+    self.typeLable1.textColor = [UIColor silver:1.0];
+    self.typeLable2.textColor = [UIColor navy:1.0];
+    self.typeLable3.textColor = [UIColor silver:1.0];
+    self.typeLable4.textColor = [UIColor silver:1.0];
     
     CGFloat width = MAX(50.0f, self.typeLable2.frame.size.width);
     self.typeSelected.frame = CGRectMake(122 - width / 2, 7, width, 70);
@@ -70,10 +70,10 @@
     [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance.png"]];
     [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     
-    self.typeLable1.textColor = [BTColor BT_silver:1.0];
-    self.typeLable2.textColor = [BTColor BT_silver:1.0];
-    self.typeLable3.textColor = [BTColor BT_navy:1.0];
-    self.typeLable4.textColor = [BTColor BT_silver:1.0];
+    self.typeLable1.textColor = [UIColor silver:1.0];
+    self.typeLable2.textColor = [UIColor silver:1.0];
+    self.typeLable3.textColor = [UIColor navy:1.0];
+    self.typeLable4.textColor = [UIColor silver:1.0];
     
     CGFloat width = MAX(50.0f, self.typeLable3.frame.size.width);
     self.typeSelected.frame = CGRectMake(197 - width / 2, 7, width, 70);
@@ -89,10 +89,10 @@
     [self.typeImage3 setImage:[UIImage imageNamed:@"small_attendance_silver.png"]];
     [self.typeImage4 setImage:[UIImage imageNamed:@"small_attendance.png"]];
     
-    self.typeLable1.textColor = [BTColor BT_silver:1.0];
-    self.typeLable2.textColor = [BTColor BT_silver:1.0];
-    self.typeLable3.textColor = [BTColor BT_silver:1.0];
-    self.typeLable4.textColor = [BTColor BT_navy:1.0];
+    self.typeLable1.textColor = [UIColor silver:1.0];
+    self.typeLable2.textColor = [UIColor silver:1.0];
+    self.typeLable3.textColor = [UIColor silver:1.0];
+    self.typeLable4.textColor = [UIColor navy:1.0];
     
     CGFloat width = MAX(50.0f, self.typeLable4.frame.size.width);
     self.typeSelected.frame = CGRectMake(272 - width / 2, 7, width, 70);

@@ -14,7 +14,7 @@
 #import "ProfileViewController.h"
 #import "SettingViewController.h"
 #import "BTUserDefault.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "SideHeaderViewCell.h"
 #import "SideInfoCell.h"
 #import "SideCourseInfoCell.h"
@@ -160,22 +160,22 @@
         
         NSString *message1 = [NSString stringWithFormat:NSLocalizedString(@"수업 참여율 %1$@%%  출석률 %2$@%%", nil), clicker_rate ,attendance_rate];
         NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:message1];
-        [str1 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", clicker_rate]]];
+        [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", clicker_rate]]];
         [str1 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", clicker_rate]]];
-        [str1 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", attendance_rate] options:NSBackwardsSearch]];
+        [str1 addAttribute:NSForegroundColorAttributeName value:[UIColor silver:1.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", attendance_rate] options:NSBackwardsSearch]];
         [str1 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message1 rangeOfString:[NSString stringWithFormat:@"%@%%", attendance_rate] options:NSBackwardsSearch]];
         cell.message1.attributedText = str1;
         
         if ([self.user supervising:openedCourse.id]) {
             NSString *message2 = [NSString stringWithFormat:NSLocalizedString(@"최근 공지를 읽은 학생 수 %ld/%ld", nil), (long)(students_count - notice_unseen), (long)students_count];
             NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:message2];
-            [str2 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld/%ld", (long)(students_count - notice_unseen), (long)students_count]]];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld/%ld", (long)(students_count - notice_unseen), (long)students_count]]];
             [str2 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld/%ld", (long)(students_count - notice_unseen), (long)students_count]]];
             cell.message2.attributedText = str2;
         } else {
             NSString *message2 = [NSString stringWithFormat:NSLocalizedString(@"읽지 않은 공지 수 %ld", nil), (long)notice_unseen];
             NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:message2];
-            [str2 addAttribute:NSForegroundColorAttributeName value:[BTColor BT_silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)notice_unseen]]];
+            [str2 addAttribute:NSForegroundColorAttributeName value:[UIColor silver:1.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)notice_unseen]]];
             [str2 addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)notice_unseen]]];
             cell.message2.attributedText = str2;
         }
@@ -185,17 +185,17 @@
     
     else if (indexPath.row == [[self.user getOpenedCourses] count] + 2) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 57.5)];
-        cell.backgroundColor = [BTColor BT_white:1.0];
+        cell.backgroundColor = [UIColor white:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UILabel *bttendance = [[UILabel alloc] initWithFrame:CGRectMake(14, 33.5, 280, 14)];
         bttendance.text = NSLocalizedString(@"BTTENDANCE", nil);
         bttendance.font = [UIFont boldSystemFontOfSize:12.0];
-        bttendance.textColor = [BTColor BT_navy:1.0];
+        bttendance.textColor = [UIColor navy:1.0];
         [cell addSubview:bttendance];
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(14, 56.5, 242, 0.7)];
-        view.backgroundColor = [BTColor BT_navy:1.0];
+        view.backgroundColor = [UIColor navy:1.0];
         [cell addSubview:view];
         
         return cell;
@@ -229,14 +229,14 @@
     else if (indexPath.row == [[self.user getOpenedCourses] count] + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1.0];
+        cell.backgroundColor = [UIColor white:1.0];
         return cell;
     }
     
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1.0];
+        cell.backgroundColor = [UIColor white:1.0];
         return cell;
     }
 }
@@ -292,12 +292,12 @@
                                          guid:self.user.email];
                 [UserVoice initialize:config];
                 
-                [UVStyleSheet instance].tintColor = [BTColor BT_navy:1.0];
-                [UVStyleSheet instance].navigationBarBackgroundColor = [BTColor BT_black:1.0];
-                [UVStyleSheet instance].navigationBarTextColor = [BTColor BT_white:1.0];
-                [UVStyleSheet instance].navigationBarTintColor = [BTColor BT_white:1.0];
-                [UVStyleSheet instance].navigationBarActivityIndicatorColor = [BTColor BT_white:1.0];
-                [UVStyleSheet instance].loadingViewBackgroundColor = [BTColor BT_grey:1.0];
+                [UVStyleSheet instance].tintColor = [UIColor navy:1.0];
+                [UVStyleSheet instance].navigationBarBackgroundColor = [UIColor black:1.0];
+                [UVStyleSheet instance].navigationBarTextColor = [UIColor white:1.0];
+                [UVStyleSheet instance].navigationBarTintColor = [UIColor white:1.0];
+                [UVStyleSheet instance].navigationBarActivityIndicatorColor = [UIColor white:1.0];
+                [UVStyleSheet instance].loadingViewBackgroundColor = [UIColor grey:1.0];
                 
                 [UserVoice presentUserVoiceNewIdeaFormForParentViewController:self];
                 break;

@@ -9,7 +9,8 @@
 #import "SchoolChooseViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTUserDefault.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import "CourseCreateViewController.h"
 
@@ -37,9 +38,9 @@
     data0 = [[NSMutableArray alloc] init];
     data1 = [[NSMutableArray alloc] init];
     
-    [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-    [self.createSchoolBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    [self.createSchoolBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+    [self.createSchoolBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+    [self.createSchoolBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
     [self.createSchoolBt setTitle:NSLocalizedString(@"찾고있는 학교나 단체가 목록에 없나요?", nil) forState:UIControlStateNormal];
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -82,7 +83,7 @@
     
     self.searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 275, 44)];
     self.searchbar.keyboardType = UIKeyboardTypeAlphabet;
-    self.searchbar.barTintColor = [BTColor BT_navy:1.0];
+    self.searchbar.barTintColor = [UIColor navy:1.0];
     self.searchbar.searchTextPositionAdjustment = UIOffsetMake(0, 0);
     self.searchbar.barStyle = UIBarStyleDefault;
     self.searchbar.placeholder = NSLocalizedString(@"Search", nil);
@@ -219,7 +220,7 @@
     cell.Info_SchoolName.text = cell.school.name;
     cell.Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"%d Courses", nil)
                                , cell.school.courses_count];
-    cell.backgroundColor = [BTColor BT_white:1];
+    cell.backgroundColor = [UIColor white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.arrow.hidden = YES;
     
@@ -239,7 +240,7 @@
     cell.Info_SchoolName.text = cell.school.name;
     cell.Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"%d Courses", nil)
                                , cell.school.courses_count];
-    cell.backgroundColor = [BTColor BT_white:1];
+    cell.backgroundColor = [UIColor white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.arrow.hidden = YES;
     
@@ -259,7 +260,7 @@
     cell.Info_SchoolName.text = cell.school.name;
     cell.Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"%d Courses", nil)
                                , cell.school.courses_count];
-    cell.backgroundColor = [BTColor BT_white:1];
+    cell.backgroundColor = [UIColor white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.arrow.hidden = YES;
     
@@ -269,10 +270,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *cell = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
-    cell.backgroundColor = [BTColor BT_grey:1.0];
+    cell.backgroundColor = [UIColor grey:1.0];
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 8, 280, 14)];
     title.font = [UIFont boldSystemFontOfSize:12];
-    title.textColor = [BTColor BT_silver:1.0];
+    title.textColor = [UIColor silver:1.0];
     [cell addSubview:title];
     
     if (self.searchbar.text.length != 0)

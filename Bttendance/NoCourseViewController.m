@@ -7,7 +7,8 @@
 //
 
 #import "NoCourseViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "GuidePageViewController.h"
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
@@ -60,18 +61,18 @@
     self.message2.textAlignment = NSTextAlignmentCenter;
     
     self.line.frame = CGRectMake(47, 279, 226, 0.7);
-    self.line.backgroundColor = [BTColor BT_silver:0.7];
+    self.line.backgroundColor = [UIColor silver:0.7];
     
     [self.button1 setTitle:NSLocalizedString(@"과목 추가하기", nil) forState:UIControlStateNormal];
     [self.button2 setTitle:NSLocalizedString(@"가이드 보기", nil) forState:UIControlStateNormal];
     
-    [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-    [self.button1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    [self.button1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+    [self.button1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+    [self.button1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
     
-    [self.button2 setBackgroundImage:[BTColor imageWithSilverColor:0.65] forState:UIControlStateNormal];
-    [self.button2 setBackgroundImage:[BTColor imageWithSilverColor:0.45] forState:UIControlStateHighlighted];
-    [self.button2 setBackgroundImage:[BTColor imageWithSilverColor:0.45] forState:UIControlStateSelected];
+    [self.button2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.65]] forState:UIControlStateNormal];
+    [self.button2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.45]] forState:UIControlStateHighlighted];
+    [self.button2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.45]] forState:UIControlStateSelected];
     
     if ([[UIScreen mainScreen] bounds].size.height < 568) {
         self.title1.frame = CGRectMake(20, 28, 280, 16);

@@ -7,7 +7,7 @@
 //
 
 #import "QuestionCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @implementation QuestionCell
 
@@ -28,20 +28,20 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     if (highlighted) {
         self.selected_bg.hidden = NO;
-        self.choice.backgroundColor = [BTColor BT_cyan:0.1];
+        self.choice.backgroundColor = [UIColor cyan:0.1];
     } else {
         self.selected_bg.hidden = YES;
-        self.choice.backgroundColor = [BTColor BT_cyan:0.0];
+        self.choice.backgroundColor = [UIColor cyan:0.0];
     }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     if (selected) {
         self.selected_bg.hidden = NO;
-        self.choice.backgroundColor = [BTColor BT_cyan:0.1];
+        self.choice.backgroundColor = [UIColor cyan:0.1];
     } else {
         self.selected_bg.hidden = YES;
-        self.choice.backgroundColor = [BTColor BT_cyan:0.0];
+        self.choice.backgroundColor = [UIColor cyan:0.0];
     }
 }
 

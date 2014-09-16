@@ -19,7 +19,7 @@
 #import "SchoolInfoCell.h"
 #import "PasswordCell.h"
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "User.h"
 #import "Identification.h"
 #import "BTNotification.h"
@@ -148,11 +148,11 @@
     else if (indexPath.row == 2) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         title.text = NSLocalizedString(@"CLICKER", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -167,19 +167,19 @@
         }
         
         cell.password.text = [NSString stringWithFormat:NSLocalizedString(@"%ld Saved Clicker Questions", nil), (long) self.user.questions_count];
-        cell.password.textColor = [BTColor BT_navy:1.0];
+        cell.password.textColor = [UIColor navy:1.0];
         return cell;
     }
     
     else if (indexPath.row == 4) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         if (closedCourses > 0)
             title.text = NSLocalizedString(@"CLOSED LECTURES", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -192,7 +192,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.Info_SchoolName.textColor = [BTColor BT_cyan:1.0];
+        cell.Info_SchoolName.textColor = [UIColor cyan:1.0];
         
         NSArray *closedCourses = [self.user getClosedCourses];
         SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 5];
@@ -205,12 +205,12 @@
     else if (indexPath.row == closedCourses + 5) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         if (employedSchools + enrolledSchools > 0)
             title.text = NSLocalizedString(@"SCHOOL", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -223,7 +223,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.Info_SchoolName.textColor = [BTColor BT_navy:1.0];
+        cell.Info_SchoolName.textColor = [UIColor navy:1.0];
         
         NSInteger index = indexPath.row - closedCourses - 6;
         if (index < employedSchools) {
@@ -231,7 +231,7 @@
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
             cell.Info_SchoolID.text = NSLocalizedString(@"Professor for profile", nil);
             cell.arrow.hidden = YES;
-            cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.0];
+            cell.selected_bg.backgroundColor = [UIColor cyan:0.0];
         } else {
             cell.simpleSchool = self.user.enrolled_schools[index - employedSchools];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
@@ -241,7 +241,7 @@
                     identity = ((SimpleIdentification *)self.user.identifications[j]).identity;
             ((SchoolInfoCell *) cell).Info_SchoolID.text = [NSString stringWithFormat:NSLocalizedString(@"Student - %@", nil), identity];
             cell.arrow.hidden = NO;
-            cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.1];
+            cell.selected_bg.backgroundColor = [UIColor cyan:0.1];
         }
         return  cell;
     }
@@ -249,7 +249,7 @@
     else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
     
@@ -263,21 +263,21 @@
         }
         
         cell.password.text = NSLocalizedString(@"Update Password", nil);
-        cell.password.textColor = [BTColor BT_red:1.0];
+        cell.password.textColor = [UIColor red:1.0];
         return cell;
     }
     
     else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
     
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
 }

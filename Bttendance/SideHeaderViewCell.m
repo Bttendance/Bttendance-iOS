@@ -7,7 +7,7 @@
 //
 
 #import "SideHeaderViewCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @interface SideHeaderViewCell ()
 

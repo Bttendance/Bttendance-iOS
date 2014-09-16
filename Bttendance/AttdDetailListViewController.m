@@ -8,7 +8,7 @@
 
 #import "AttdDetailListViewController.h"
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"
@@ -136,10 +136,10 @@
         CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, ceil(MessageLabelSize.size.height) + 10)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1];
+        cell.backgroundColor = [UIColor grey:1];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 7, 280, 0)];
-        label.textColor = [BTColor BT_silver:1];
+        label.textColor = [UIColor silver:1];
         label.font = [UIFont systemFontOfSize:12];
         label.text = rawmessage;
         label.numberOfLines = 0;
@@ -166,20 +166,20 @@
             case 1:
                 cell.detail.text = NSLocalizedString(@"출석", nil);
                 [cell.icon setImage:[UIImage imageNamed:@"small_attended.png"]];
-                cell.background_bg.backgroundColor = [BTColor BT_navy:0.1];
-                cell.selected_bg.backgroundColor = [BTColor BT_navy:0.15];
+                cell.background_bg.backgroundColor = [UIColor navy:0.1];
+                cell.selected_bg.backgroundColor = [UIColor navy:0.15];
                 break;
             case 2:
                 cell.detail.text = NSLocalizedString(@"지각", nil);
                 [cell.icon setImage:[UIImage imageNamed:@"small_late.png"]];
-                cell.background_bg.backgroundColor = [BTColor BT_cyan:0.1];
-                cell.selected_bg.backgroundColor = [BTColor BT_cyan:0.15];
+                cell.background_bg.backgroundColor = [UIColor cyan:0.1];
+                cell.selected_bg.backgroundColor = [UIColor cyan:0.15];
                 break;
             default:
                 cell.detail.text = NSLocalizedString(@"결석", nil);
                 [cell.icon setImage:[UIImage imageNamed:@"small_absent.png"]];
-                cell.background_bg.backgroundColor = [BTColor BT_silver:0.1];
-                cell.selected_bg.backgroundColor = [BTColor BT_silver:0.15];
+                cell.background_bg.backgroundColor = [UIColor silver:0.1];
+                cell.selected_bg.backgroundColor = [UIColor silver:0.15];
                 break;
         };
         

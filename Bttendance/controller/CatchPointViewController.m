@@ -9,7 +9,8 @@
 #import "CatchPointViewController.h"
 #import "SignUpViewController.h"
 #import "SignInViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "SocketAgent.h"
 
 @interface CatchPointViewController ()
@@ -23,7 +24,7 @@
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 7) {
         self.navigationController.navigationBar.translucent = NO;
-        self.navigationController.navigationBar.barTintColor = [BTColor BT_navy:1];
+        self.navigationController.navigationBar.barTintColor = [UIColor navy:1];
     }
     
     //gradient layer
@@ -56,11 +57,11 @@
     self.Signin.alpha = 1;
     [UIImageView commitAnimations];
     
-    [self.Signup setBackgroundImage:[BTColor imageWithCyanColor:0.7] forState:UIControlStateNormal];
-    [self.Signup setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateHighlighted];
+    [self.Signup setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.7]] forState:UIControlStateNormal];
+    [self.Signup setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateHighlighted];
     
-    [self.Signin setBackgroundImage:[BTColor imageWithBlackColor:0.5] forState:UIControlStateNormal];
-    [self.Signin setBackgroundImage:[BTColor imageWithBlackColor:0.8] forState:UIControlStateHighlighted];
+    [self.Signin setBackgroundImage:[UIImage imageWithColor:[UIColor black:0.5]] forState:UIControlStateNormal];
+    [self.Signin setBackgroundImage:[UIImage imageWithColor:[UIColor black:0.8]] forState:UIControlStateHighlighted];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

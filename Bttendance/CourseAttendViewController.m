@@ -10,7 +10,8 @@
 #import <AFNetworking.h>
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"
@@ -102,13 +103,13 @@
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [UIColor white:1];
     }
     
     switch (indexPath.row) {
         case 0: {
             [[cell textLabel] setText:NSLocalizedString(@"Code", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell textLabel].backgroundColor = [UIColor clearColor];
             
@@ -120,7 +121,7 @@
             [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeASCIICapable;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
@@ -136,9 +137,9 @@
             cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
             
             [cell_new.button setTitle:NSLocalizedString(@"Attend Course", nil) forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
             
             [cell_new.button addTarget:self action:@selector(attendButton:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -158,8 +159,8 @@
     BOOL pass = YES;
     
     if (code == nil || code.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[BTColor BT_red:0.5]
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [UIColor red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[UIColor red:0.5]
                                                                                        forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
@@ -168,9 +169,9 @@
     NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
     
     if(![nameTest evaluateWithObject:code]){
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [UIColor red:0.1];
         ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield.text = @"";
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[BTColor BT_red:0.5]
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[UIColor red:0.5]
                                                                                        forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
@@ -181,7 +182,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Searching Course", nil);
     hud.yOffset = -40.0f;
@@ -241,7 +242,7 @@
     if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [BTColor BT_navy:0.7];
+        hud.color = [UIColor navy:0.7];
         hud.labelText = NSLocalizedString(@"Loading", nil);
         hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
         hud.yOffset = -40.0f;
@@ -263,7 +264,7 @@
         return;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
     hud.yOffset = -40.0f;

@@ -7,7 +7,7 @@
 //
 
 #import "ChooseSchoolCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @implementation ChooseSchoolCell
 @synthesize textfield, selected_bg;
@@ -17,8 +17,8 @@
     if (self) {
         UIView *left = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 44)];
         UIView *right = [[UIView alloc] initWithFrame:CGRectMake(319, 0, 1, 44)];
-        left.backgroundColor = [BTColor BT_grey:1];
-        right.backgroundColor = [BTColor BT_grey:1];
+        left.backgroundColor = [UIColor grey:1];
+        right.backgroundColor = [UIColor grey:1];
         [self addSubview:left];
         [self addSubview:right];
         
@@ -27,13 +27,13 @@
         [self addSubview:arrow];
         
         selected_bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-        selected_bg.backgroundColor = [BTColor BT_cyan:0.1];
+        selected_bg.backgroundColor = [UIColor cyan:0.1];
         [self addSubview:selected_bg];
         
         textfield = [[UITextField alloc] initWithFrame:CGRectMake(98, 1, 222, 40)];
-        textfield.tintColor = [BTColor BT_silver:1];
+        textfield.tintColor = [UIColor silver:1];
         UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
-        underline.backgroundColor = [BTColor BT_grey:1];
+        underline.backgroundColor = [UIColor grey:1];
         [self addSubview:textfield];
         [self addSubview:underline];
     }

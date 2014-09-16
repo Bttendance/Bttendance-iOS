@@ -8,7 +8,8 @@
 
 #import "ClickerDetailViewController.h"
 #import "BTDateFormatter.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import "XYPieChart.h"
 #import "BTUserDefault.h"
@@ -63,13 +64,13 @@
         [self.navigationItem setRightBarButtonItem:plusButtonItem];
         self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 46);
         self.detailBt.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 64 - 46, 320, 46);
-        [self.detailBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-        [self.detailBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-        [self.detailBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
         [self.detailBt setTitle:NSLocalizedString(@"", nil) forState:UIControlStateNormal];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        label.textColor = [BTColor BT_white:1.0];
+        label.textColor = [UIColor white:1.0];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont boldSystemFontOfSize:16];
         label.text = NSLocalizedString(@"상세보기", nil);
@@ -188,7 +189,7 @@
         case 0: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             return cell;
         }
         case 1: {
@@ -199,12 +200,12 @@
             
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, ceil(MessageLabelSize.size.height))];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, ceil(MessageLabelSize.size.height))];
             label.font = [UIFont boldSystemFontOfSize:14];
             label.text = post.message;
-            label.textColor = [BTColor BT_navy:1];
+            label.textColor = [UIColor navy:1];
             label.numberOfLines = 0;
             [label sizeToFit];
             label.frame = CGRectMake(20, 0, 280, ceil(MessageLabelSize.size.height));
@@ -229,12 +230,12 @@
             
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, ceil(MessageLabelSize.size.height) + 3)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             
             messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 3, 280, ceil(MessageLabelSize.size.height))];
             messageLabel.font = [UIFont systemFontOfSize:12];
             messageLabel.text = rawmessage;
-            messageLabel.textColor = [BTColor BT_silver:1];
+            messageLabel.textColor = [UIColor silver:1];
             messageLabel.numberOfLines = 0;
             [messageLabel sizeToFit];
             messageLabel.frame = CGRectMake(20, 3, 280, ceil(MessageLabelSize.size.height));
@@ -246,16 +247,16 @@
         case 3: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             return cell;
         }
         case 4: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             
             UIView *image = [[UIView alloc] initWithFrame:CGRectMake(60, 0, 200, 200)];
-            image.backgroundColor = [BTColor BT_navy:1];
+            image.backgroundColor = [UIColor navy:1];
             image.layer.cornerRadius = 100;
             image.clipsToBounds = YES;
             [cell addSubview:image];
@@ -266,13 +267,13 @@
         case 5: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             return cell;
         }
         case 6: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 85)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             
             CGFloat width = post.clicker.choice_count * 51.5 - 15.5;
             CGFloat left = 160 - width / 2;
@@ -299,7 +300,7 @@
             NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:aTitle];
             [aStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[aTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:1]]]];
             [aStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[aTitle rangeOfString:@"%"]];
-            aLabel.textColor = [BTColor BT_navy:1.0];
+            aLabel.textColor = [UIColor navy:1.0];
             aLabel.textAlignment = NSTextAlignmentCenter;
             aLabel.attributedText = aStr;
             
@@ -307,7 +308,7 @@
             NSMutableAttributedString *bStr = [[NSMutableAttributedString alloc] initWithString:bTitle];
             [bStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[bTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:2]]]];
             [bStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[bTitle rangeOfString:@"%"]];
-            bLabel.textColor = [BTColor BT_navy:1.0];
+            bLabel.textColor = [UIColor navy:1.0];
             bLabel.textAlignment = NSTextAlignmentCenter;
             bLabel.attributedText = bStr;
             
@@ -315,7 +316,7 @@
             NSMutableAttributedString *cStr = [[NSMutableAttributedString alloc] initWithString:cTitle];
             [cStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[cTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:3]]]];
             [cStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[cTitle rangeOfString:@"%"]];
-            cLabel.textColor = [BTColor BT_navy:1.0];
+            cLabel.textColor = [UIColor navy:1.0];
             cLabel.textAlignment = NSTextAlignmentCenter;
             cLabel.attributedText = cStr;
             
@@ -323,7 +324,7 @@
             NSMutableAttributedString *dStr = [[NSMutableAttributedString alloc] initWithString:dTitle];
             [dStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[dTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:4]]]];
             [dStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[dTitle rangeOfString:@"%"]];
-            dLabel.textColor = [BTColor BT_navy:1.0];
+            dLabel.textColor = [UIColor navy:1.0];
             dLabel.textAlignment = NSTextAlignmentCenter;
             dLabel.attributedText = dStr;
             
@@ -331,12 +332,12 @@
             NSMutableAttributedString *eStr = [[NSMutableAttributedString alloc] initWithString:eTitle];
             [eStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[eTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:5]]]];
             [eStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[eTitle rangeOfString:@"%"]];
-            eLabel.textColor = [BTColor BT_navy:1.0];
+            eLabel.textColor = [UIColor navy:1.0];
             eLabel.textAlignment = NSTextAlignmentCenter;
             eLabel.attributedText = eStr;
             
             UIView *line = [[UIView alloc] initWithFrame:CGRectMake(left, 64, width, 0.7)];
-            line.backgroundColor = [BTColor BT_navy:1];
+            line.backgroundColor = [UIColor navy:1];
             
             UILabel *aLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(left, 73, 36, 14)];
             UILabel *bLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(left + 51, 73, 36, 14)];
@@ -344,27 +345,27 @@
             UILabel *dLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(left + 51 * 3, 73, 36, 14)];
             UILabel *eLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(left + 51 * 4, 73, 36, 14)];
             
-            aLabel2.textColor = [BTColor BT_silver:1];
+            aLabel2.textColor = [UIColor silver:1];
             aLabel2.font = [UIFont systemFontOfSize:12];
             aLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.a_students.count];
             aLabel2.textAlignment = NSTextAlignmentCenter;
             
-            bLabel2.textColor = [BTColor BT_silver:1];
+            bLabel2.textColor = [UIColor silver:1];
             bLabel2.font = [UIFont systemFontOfSize:12];
             bLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.b_students.count];
             bLabel2.textAlignment = NSTextAlignmentCenter;
             
-            cLabel2.textColor = [BTColor BT_silver:1];
+            cLabel2.textColor = [UIColor silver:1];
             cLabel2.font = [UIFont systemFontOfSize:12];
             cLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.c_students.count];
             cLabel2.textAlignment = NSTextAlignmentCenter;
             
-            dLabel2.textColor = [BTColor BT_silver:1];
+            dLabel2.textColor = [UIColor silver:1];
             dLabel2.font = [UIFont systemFontOfSize:12];
             dLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.d_students.count];
             dLabel2.textAlignment = NSTextAlignmentCenter;
             
-            eLabel2.textColor = [BTColor BT_silver:1];
+            eLabel2.textColor = [UIColor silver:1];
             eLabel2.font = [UIFont systemFontOfSize:12];
             eLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.e_students.count];
             eLabel2.textAlignment = NSTextAlignmentCenter;
@@ -408,20 +409,20 @@
         case 7: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             return cell;
         }
         case 8: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 14)];
             if ([post.clicker choice:self.user.id] == nil)
                 label.text = NSLocalizedString(@"답변을 선택하지 않으셨습니다.", nil);
             else
                 label.text = [NSString stringWithFormat:NSLocalizedString(@"%@을 선택하셨습니다.", nil), [post.clicker choice:self.user.id]];
-            label.textColor = [BTColor BT_navy:1];
+            label.textColor = [UIColor navy:1];
             label.font = [UIFont boldSystemFontOfSize:14];
             label.textAlignment = NSTextAlignmentCenter;
             [cell addSubview:label];
@@ -431,7 +432,7 @@
         default: {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [BTColor BT_white:1];
+            cell.backgroundColor = [UIColor white:1];
             return cell;
         }
     }
@@ -504,7 +505,7 @@
 
 - (void)deleteClicker {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Deleting Clicker", nil);
     hud.yOffset = -40.0f;

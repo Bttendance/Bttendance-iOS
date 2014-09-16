@@ -38,7 +38,7 @@
 		217AB56718368FAE00A8F9C1 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217AB56618368FAE00A8F9C1 /* MultipeerConnectivity.framework */; };
 		217D75B61850D7C100AA0D95 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217D75B41850D7C100AA0D95 /* CourseCell.xib */; };
 		217D75B91850FA8C00AA0D95 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75B81850FA8C00AA0D95 /* CourseCell.m */; };
-		217D75C91853208400AA0D95 /* BTColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C81853208400AA0D95 /* BTColor.m */; };
+		217D75C91853208400AA0D95 /* UIColor+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 217D75C81853208400AA0D95 /* UIColor+Bttendance.m */; };
 		2182679618A87B1900F71819 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679518A87B1900F71819 /* CFNetwork.framework */; };
 		2182679B18A8803000F71819 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679A18A8803000F71819 /* libsqlite3.0.dylib */; };
 		2182679D18A8810800F71819 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2182679C18A8810800F71819 /* AdSupport.framework */; };
@@ -154,6 +154,7 @@
 		D4591B4219C838EA007F8E5C /* small_clicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591B0819C838EA007F8E5C /* small_clicker@2x.png */; };
 		D4591B4319C838EA007F8E5C /* small_late@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591B0919C838EA007F8E5C /* small_late@2x.png */; };
 		D4591B4419C838EA007F8E5C /* small_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591B0A19C838EA007F8E5C /* small_notice@2x.png */; };
+		D4591B4819C85991007F8E5C /* UIImage+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B4719C85991007F8E5C /* UIImage+Bttendance.m */; };
 		D45B5D431915F84900C8C015 /* AttendanceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B5D421915F84900C8C015 /* AttendanceAgent.m */; };
 		D46D892F18AFE88B0051F291 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D892E18AFE88B0051F291 /* WebViewController.m */; };
 		D46D893318AFED7C0051F291 /* ForgotPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D893118AFED7C0051F291 /* ForgotPassViewController.m */; };
@@ -312,8 +313,8 @@
 		217D75B41850D7C100AA0D95 /* CourseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CourseCell.xib; path = "controller/untitled folder/CourseCell.xib"; sourceTree = "<group>"; };
 		217D75B71850FA8C00AA0D95 /* CourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseCell.h; path = "controller/untitled folder/CourseCell.h"; sourceTree = "<group>"; };
 		217D75B81850FA8C00AA0D95 /* CourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseCell.m; path = "controller/untitled folder/CourseCell.m"; sourceTree = "<group>"; };
-		217D75C71853208400AA0D95 /* BTColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTColor.h; sourceTree = "<group>"; };
-		217D75C81853208400AA0D95 /* BTColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTColor.m; sourceTree = "<group>"; };
+		217D75C71853208400AA0D95 /* UIColor+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Bttendance.h"; sourceTree = "<group>"; };
+		217D75C81853208400AA0D95 /* UIColor+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Bttendance.m"; sourceTree = "<group>"; };
 		2182679518A87B1900F71819 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2182679A18A8803000F71819 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		2182679C18A8810800F71819 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -451,6 +452,8 @@
 		D4591B0819C838EA007F8E5C /* small_clicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small_clicker@2x.png"; path = "Image/Icons/small_clicker@2x.png"; sourceTree = "<group>"; };
 		D4591B0919C838EA007F8E5C /* small_late@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small_late@2x.png"; path = "Image/Icons/small_late@2x.png"; sourceTree = "<group>"; };
 		D4591B0A19C838EA007F8E5C /* small_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small_notice@2x.png"; path = "Image/Icons/small_notice@2x.png"; sourceTree = "<group>"; };
+		D4591B4619C85991007F8E5C /* UIImage+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bttendance.h"; sourceTree = "<group>"; };
+		D4591B4719C85991007F8E5C /* UIImage+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bttendance.m"; sourceTree = "<group>"; };
 		D45B5D411915F84900C8C015 /* AttendanceAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceAgent.h; sourceTree = "<group>"; };
 		D45B5D421915F84900C8C015 /* AttendanceAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceAgent.m; sourceTree = "<group>"; };
 		D46D892D18AFE88B0051F291 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -1115,8 +1118,10 @@
 		D4AFCA5B1909583800FA62A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				217D75C71853208400AA0D95 /* BTColor.h */,
-				217D75C81853208400AA0D95 /* BTColor.m */,
+				217D75C71853208400AA0D95 /* UIColor+Bttendance.h */,
+				217D75C81853208400AA0D95 /* UIColor+Bttendance.m */,
+				D4591B4619C85991007F8E5C /* UIImage+Bttendance.h */,
+				D4591B4719C85991007F8E5C /* UIImage+Bttendance.m */,
 				D4AFCA5C1909588500FA62A9 /* NSDictionary+Bttendance.h */,
 				D4AFCA5D1909588500FA62A9 /* NSDictionary+Bttendance.m */,
 			);
@@ -1491,7 +1496,7 @@
 				D4FD44C819081FD200FB52A5 /* Clicker.m in Sources */,
 				D4380E9C1916DF4D008F8A78 /* BTBlink.m in Sources */,
 				D4CD98EE197663A000F6D018 /* SideHeaderViewCell.m in Sources */,
-				217D75C91853208400AA0D95 /* BTColor.m in Sources */,
+				217D75C91853208400AA0D95 /* UIColor+Bttendance.m in Sources */,
 				D44AA0111982031300743C8A /* NotificationCell.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
 				D485A0AC18784C9C00F9561B /* UserInfoCell.m in Sources */,
@@ -1565,6 +1570,7 @@
 				21EE90F3189159D2000C9CAB /* SchoolChooseViewController.m in Sources */,
 				D4380EAC1918B395008F8A78 /* SocketAgent.m in Sources */,
 				D4AD9CF9196BC76500B88020 /* LeftMenuViewController.m in Sources */,
+				D4591B4819C85991007F8E5C /* UIImage+Bttendance.m in Sources */,
 				D4A2265C1992502800AAFC97 /* AttdDetailViewController.m in Sources */,
 				21469A4518929E3C005D4FF2 /* CourseDetailViewController.m in Sources */,
 				D4CD98FD1976715B00F6D018 /* SideCourseInfoCell.m in Sources */,

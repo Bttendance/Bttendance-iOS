@@ -1,5 +1,5 @@
 #import "TutorialViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface TutorialViewController ()
@@ -41,7 +41,7 @@
     UIWebView *webView = (UIWebView *)self.view;
     [webView setScalesPageToFit:YES];
     webView.delegate = self;
-    [webView setBackgroundColor:[BTColor BT_grey:1]];
+    [webView setBackgroundColor:[UIColor grey:1]];
     [webView setOpaque:NO];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString]]];
     
@@ -61,7 +61,7 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [BTColor BT_navy:0.7];
+        hud.color = [UIColor navy:0.7];
         hud.yOffset = -40.0f;
         dispatch_time_t dismissTime = dispatch_time(DISPATCH_TIME_NOW, 1.7 * NSEC_PER_SEC);
         dispatch_after(dismissTime, dispatch_get_main_queue(), ^(void){

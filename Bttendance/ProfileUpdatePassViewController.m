@@ -7,7 +7,7 @@
 //
 
 #import "ProfileUpdatePassViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
@@ -67,7 +67,7 @@
     NSString *new_pass = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]].contentView.subviews objectAtIndex:0]).text;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Updating Password", nil);
     hud.yOffset = -40.0f;
@@ -102,9 +102,9 @@
     switch (indexPath.section) {
         case 0:
             _password_old_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
-            _password_old_field.textColor = [BTColor BT_black:1];
-            _password_old_field.tintColor = [BTColor BT_silver:1];
-            _password_old_field.backgroundColor = [BTColor BT_white:1];
+            _password_old_field.textColor = [UIColor black:1];
+            _password_old_field.tintColor = [UIColor silver:1];
+            _password_old_field.backgroundColor = [UIColor white:1];
             _password_old_field.autocorrectionType = UITextAutocorrectionTypeNo;
             _password_old_field.keyboardType = UIKeyboardTypeDefault;
             _password_old_field.clearButtonMode = UITextFieldViewModeAlways;
@@ -112,16 +112,16 @@
             _password_old_field.secureTextEntry = YES;
             _password_old_field.delegate = self;
             
-            cell.contentView.backgroundColor = [BTColor BT_white:1];
+            cell.contentView.backgroundColor = [UIColor white:1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:_password_old_field];
             break;
         case 1:
         default:
             _password_new_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
-            _password_new_field.textColor = [BTColor BT_black:1];
-            _password_new_field.tintColor = [BTColor BT_silver:1];
-            _password_new_field.backgroundColor = [BTColor BT_white:1];
+            _password_new_field.textColor = [UIColor black:1];
+            _password_new_field.tintColor = [UIColor silver:1];
+            _password_new_field.backgroundColor = [UIColor white:1];
             _password_new_field.autocorrectionType = UITextAutocorrectionTypeNo;
             _password_new_field.keyboardType = UIKeyboardTypeDefault;
             _password_new_field.clearButtonMode = UITextFieldViewModeAlways;
@@ -129,7 +129,7 @@
             _password_new_field.secureTextEntry = YES;
             _password_new_field.delegate = self;
             
-            cell.contentView.backgroundColor = [BTColor BT_white:1];
+            cell.contentView.backgroundColor = [UIColor white:1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:_password_new_field];
             break;

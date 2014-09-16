@@ -10,7 +10,8 @@
 #import "ForgotPassViewController.h"
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -105,13 +106,13 @@
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BTColor BT_white:1];
+        [cell contentView].backgroundColor = [UIColor white:1];
     }
 
     switch (indexPath.row) {
         case 0: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
 
             [(TextInputCell *) cell textfield].placeholder = NSLocalizedString(@"john@bttendance.com", nil);
@@ -122,7 +123,7 @@
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
             [(TextInputCell *) cell textfield].keyboardType = UIKeyboardTypeEmailAddress;
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:16]];
             break;
         }
@@ -138,11 +139,11 @@
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
             [cell_new.button addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
-            cell.contentView.backgroundColor = [BTColor BT_grey:1];
+            cell.contentView.backgroundColor = [UIColor grey:1];
 
             return cell_new;
         }
@@ -178,7 +179,7 @@
 - (void)JSONForgotRequest:(NSString *)email {
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Recoverying Password", nil);
     hud.yOffset = -40.0f;

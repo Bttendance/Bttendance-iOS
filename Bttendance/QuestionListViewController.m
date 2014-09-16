@@ -7,7 +7,8 @@
 //
 
 #import "QuestionListViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "QuestionCell.h"
@@ -37,16 +38,16 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Clicker Questions", @"");
     [titlelabel sizeToFit];
     
     self.questions = [NSArray array];
     
-    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-    [self.createBt setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    [self.createBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+    [self.createBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+    [self.createBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
     
     [self.createBt setTitle:NSLocalizedString(@"Add a Question", nil) forState:UIControlStateNormal];
     [self.createBt.titleLabel sizeToFit];

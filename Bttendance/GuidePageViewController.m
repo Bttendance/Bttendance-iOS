@@ -10,7 +10,8 @@
 #import "TutorialViewController.h"
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTNotification.h"
 #import "BTUserDefault.h"
 #import "Course.h"
@@ -40,7 +41,7 @@
     self.guidePollBG.image = [UIImage imageNamed:@"poll_bg.png"];
     self.guideAttdBG.image = [UIImage imageNamed:@"attendance_bg.png"];
     self.guideNoticeBG.image = [UIImage imageNamed:@"notice_bg.png"];
-    self.guideLastBG.backgroundColor = [BTColor BT_white:1.0];
+    self.guideLastBG.backgroundColor = [UIColor white:1.0];
     
     [[self view] addSubview:self.guideFirstBG];
     [[self view] addSubview:self.guidePollBG];
@@ -80,38 +81,38 @@
     [self.showMorePoll setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMorePoll.layer.cornerRadius = 3.0;
     self.showMorePoll.layer.borderWidth = 1.2;
-    self.showMorePoll.layer.borderColor = [BTColor BT_white:1.0].CGColor;
-    [self.showMorePoll setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [self.showMorePoll setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    self.showMorePoll.layer.borderColor = [UIColor white:1.0].CGColor;
+    [self.showMorePoll setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMorePoll setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
     self.showMorePoll.layer.masksToBounds = YES;
     
     [self.showMoreAttd setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMoreAttd.layer.cornerRadius = 3.0;
     self.showMoreAttd.layer.borderWidth = 1.2;
-    self.showMoreAttd.layer.borderColor = [BTColor BT_white:1.0].CGColor;
-    [self.showMoreAttd setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [self.showMoreAttd setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    self.showMoreAttd.layer.borderColor = [UIColor white:1.0].CGColor;
+    [self.showMoreAttd setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMoreAttd setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
     self.showMoreAttd.layer.masksToBounds = YES;
     
     [self.showMoreNotice setTitle:NSLocalizedString(@"더 알아보기", nil) forState:UIControlStateNormal];
     self.showMoreNotice.layer.cornerRadius = 3.0;
     self.showMoreNotice.layer.borderWidth = 1.2;
-    self.showMoreNotice.layer.borderColor = [BTColor BT_white:1.0].CGColor;
-    [self.showMoreNotice setBackgroundImage:[BTColor imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
-    [self.showMoreNotice setBackgroundImage:[BTColor imageWithCyanColor:0.5] forState:UIControlStateHighlighted];
+    self.showMoreNotice.layer.borderColor = [UIColor white:1.0].CGColor;
+    [self.showMoreNotice setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    [self.showMoreNotice setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.5]] forState:UIControlStateHighlighted];
     self.showMoreNotice.layer.masksToBounds = YES;
     
     self.gdLastMsg1.text = NSLocalizedString(@"지금부터", nil);
     self.gdLastMsg2.text = NSLocalizedString(@"BTTENDANCE를", nil);
     self.gdLastMsg3.text = NSLocalizedString(@"시작해보세요.", nil);
     
-    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-    [self.gdLastBt1 setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+    [self.gdLastBt1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+    [self.gdLastBt1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+    [self.gdLastBt1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
     
-    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.2] forState:UIControlStateNormal];
-    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.1] forState:UIControlStateHighlighted];
-    [self.gdLastBt2 setBackgroundImage:[BTColor imageWithSilverColor:0.1] forState:UIControlStateSelected];
+    [self.gdLastBt2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.2]] forState:UIControlStateNormal];
+    [self.gdLastBt2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.1]] forState:UIControlStateHighlighted];
+    [self.gdLastBt2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.1]] forState:UIControlStateSelected];
     
     // If user already has a opened course
     BOOL hasOpenedCourse = [[BTUserDefault getUser] hasOpenedCourse];
@@ -202,8 +203,8 @@
     
     [UIImageView commitAnimations];
     
-    self.pageControl.pageIndicatorTintColor = [BTColor BT_grey:0.5];
-    self.pageControl.currentPageIndicatorTintColor = [BTColor BT_white:0.8];
+    self.pageControl.pageIndicatorTintColor = [UIColor grey:0.5];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor white:0.8];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -278,12 +279,12 @@
     
     if (swipeView.scrollOffset < 3.5) {
         [self.closeBt setImage:[UIImage imageNamed:@"x.png"] forState:UIControlStateNormal];
-        self.pageControl.pageIndicatorTintColor = [BTColor BT_white:0.5];
-        self.pageControl.currentPageIndicatorTintColor = [BTColor BT_white:0.8];
+        self.pageControl.pageIndicatorTintColor = [UIColor white:0.5];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor white:0.8];
     } else {
         [self.closeBt setImage:[UIImage imageNamed:@"x_black.png"] forState:UIControlStateNormal];
-        self.pageControl.pageIndicatorTintColor = [BTColor BT_silver:0.5];
-        self.pageControl.currentPageIndicatorTintColor = [BTColor BT_silver:0.8];
+        self.pageControl.pageIndicatorTintColor = [UIColor silver:0.5];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor silver:0.8];
     }
 }
 

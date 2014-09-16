@@ -11,13 +11,14 @@
 #import "TextInputCell.h"
 #import "ChooseSchoolCell.h"
 #import "SignButtonCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AudioToolbox/AudioServices.h>
 #import "BTNotification.h"
 #import "GuideCourseCreateViewController.h"
+#import "UIImage+Bttendance.h"
 
 @interface CourseCreateViewController ()
 @end
@@ -105,13 +106,13 @@
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [UIColor white:1];
     }
 
     switch (indexPath.row) {
         case 0: {
             [[cell textLabel] setText:NSLocalizedString(@"Name", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell textLabel].backgroundColor = [UIColor clearColor];
 
@@ -120,14 +121,14 @@
             [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
         }
         case 1: {
             [[cell textLabel] setText:NSLocalizedString(@"Professor", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell textLabel].backgroundColor = [UIColor clearColor];
 
@@ -138,7 +139,7 @@
             [(TextInputCell *) cell textfield].autocorrectionType = UITextAutocorrectionTypeNo;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             [(TextInputCell *) cell textfield].backgroundColor = [UIColor clearColor];
             break;
@@ -151,11 +152,11 @@
             if (cell_new == nil) {
                 cell_new = [[ChooseSchoolCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
                 cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell_new.backgroundColor = [BTColor BT_white:1];
+                cell_new.backgroundColor = [UIColor white:1];
             }
             
             [[cell_new textLabel] setText:NSLocalizedString(@"School", nil)];
-            [[cell_new textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell_new textLabel] setTextColor:[UIColor navy:1]];
             [[cell_new textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             [cell_new textLabel].backgroundColor = [UIColor clearColor];
 
@@ -167,7 +168,7 @@
             [(TextInputCell *) cell_new textfield].autocorrectionType = UITextAutocorrectionTypeNo;
             [(TextInputCell *) cell_new textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
 
-            [[(TextInputCell *) cell_new textfield] setTextColor:[BTColor BT_silver:1]];
+            [[(TextInputCell *) cell_new textfield] setTextColor:[UIColor silver:1]];
             [[(TextInputCell *) cell_new textfield] setFont:[UIFont systemFontOfSize:15]];
             [(TextInputCell *) cell_new textfield].backgroundColor = [UIColor clearColor];
             
@@ -185,9 +186,9 @@
             cell_new.selectionStyle = UITableViewCellSelectionStyleNone;
 
             [cell_new.button setTitle:NSLocalizedString(@"Create Course", nil) forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
             
             [cell_new.button addTarget:self action:@selector(createButton:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -224,20 +225,20 @@
     BOOL pass = YES;
     
     if (name == nil || name.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else
         ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [UIColor clearColor];
     
     if (prof == nil || prof.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:profname_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:profname_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else
         ((TextInputCell *) [self.tableView cellForRowAtIndexPath:profname_index]).contentView.backgroundColor = [UIColor clearColor];
     
     if (self.schoolId == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:school_index]).contentView.backgroundColor = [BTColor BT_red:0.1];
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:school_index]).textfield setValue:[BTColor BT_red:0.5]
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:school_index]).contentView.backgroundColor = [UIColor red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:school_index]).textfield setValue:[UIColor red:0.5]
                                                                                        forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     } else
@@ -250,7 +251,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Creating Course", nil);
     hud.yOffset = -40.0f;

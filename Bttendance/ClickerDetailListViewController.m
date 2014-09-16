@@ -8,7 +8,7 @@
 
 #import "ClickerDetailListViewController.h"
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
 #import "BTNotification.h"

@@ -19,7 +19,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "PushNoti.h"
 #import "BTNotification.h"
 #import "AttendanceAgent.h"
@@ -36,15 +36,15 @@
     [Crashlytics startWithAPIKey:@"933280081941175a775ecfe701fefa562b7f8a01"];
     
     NSDictionary* barButtonItemAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
-                                              NSForegroundColorAttributeName: [BTColor BT_white:1.0],
+                                              NSForegroundColorAttributeName: [UIColor white:1.0],
                                               };
     [[UIBarButtonItem appearanceWhenContainedIn: [UINavigationController class], nil] setTitleTextAttributes:barButtonItemAttributes
                                                                                                     forState:UIControlStateNormal];
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        [[UINavigationBar appearance] setTintColor:[BTColor BT_navy:1.0]];
+        [[UINavigationBar appearance] setTintColor:[UIColor navy:1.0]];
     } else {
-        [[UINavigationBar appearance] setBarTintColor:[BTColor BT_navy:1.0]];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor navy:1.0]];
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];

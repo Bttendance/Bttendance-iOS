@@ -8,7 +8,7 @@
 
 #import "SideMenuViewController.h"
 #import <AFNetworking/AFNetworking.h>
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "BTNotification.h"
@@ -59,9 +59,9 @@
     //status bar
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.view.backgroundColor = [BTColor BT_white:1.0];
+    self.view.backgroundColor = [UIColor white:1.0];
     self.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
-    self.contentViewShadowColor = [BTColor BT_black:1.0];
+    self.contentViewShadowColor = [UIColor black:1.0];
     self.contentViewShadowOpacity = 0.4;
     self.contentViewShadowRadius = 10;
     self.contentViewShadowEnabled = YES;

@@ -7,7 +7,7 @@
 //
 
 #import "ClickerQuestionViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "QuestionCell.h"
@@ -35,7 +35,7 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Saved Questions", @"");
     [titlelabel sizeToFit];

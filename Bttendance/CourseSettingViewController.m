@@ -13,7 +13,7 @@
 #import "Course.h"
 #import "BTUserDefault.h"
 #import "PasswordCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "BTAPIs.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
@@ -41,7 +41,7 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Course Setting", @"");
     [titlelabel sizeToFit];
@@ -79,11 +79,11 @@
     if (indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 24, 280, 14)];
         title.text = NSLocalizedString(@"MANAGERS", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -96,7 +96,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.password.textColor = [UIColor silver:1.0];
         
         if (indexPath.row == 1 + self.course.managers.count) {
             cell.password.text = NSLocalizedString(@"Add Manager", nil);
@@ -111,11 +111,11 @@
     else if (indexPath.row == 2 + self.course.managers.count) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         title.text = NSLocalizedString(@"STUDENTS", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -128,7 +128,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.password.textColor = [UIColor silver:1.0];
         cell.arrow.hidden = NO;
         cell.password.text = NSLocalizedString(@"학생 리스트 보기", nil);
         return cell;
@@ -137,11 +137,11 @@
     else if (indexPath.row == 4 + self.course.managers.count) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 39, 280, 14)];
         title.text = NSLocalizedString(@"GRADES", nil);
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [cell addSubview:title];
         return cell;
     }
@@ -154,7 +154,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.password.textColor = [UIColor silver:1.0];
         cell.arrow.hidden = NO;
         
         switch (indexPath.row - self.course.managers.count) {
@@ -180,7 +180,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_red:1.0];
+        cell.password.textColor = [UIColor red:1.0];
         cell.arrow.hidden = NO;
         cell.password.text = NSLocalizedString(@"Close Course", nil);
         return cell;
@@ -189,14 +189,14 @@
     else if (indexPath.row == self.course.managers.count + 10) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
     
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
 }
@@ -249,7 +249,7 @@
 
 - (void)exportGrades {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Exporting Grades", nil);
     hud.yOffset = -40.0f;
@@ -297,7 +297,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [BTColor BT_navy:0.7];
+        hud.color = [UIColor navy:0.7];
         hud.labelText = NSLocalizedString(@"Loading", nil);
         hud.detailsLabelText = NSLocalizedString(@"Closing Course", nil);
         hud.yOffset = -40.0f;

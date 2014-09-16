@@ -8,7 +8,7 @@
 
 #import "ProfileEmailEditViewController.h"
 #import <AFNetworking/AFNetworking.h>
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "ProfileViewController.h"
 #import "BTAPIs.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -48,7 +48,7 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Edit Email", @"");
     [titlelabel sizeToFit];
@@ -63,7 +63,7 @@
     email = ((UITextField *) [[[self tableview] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].contentView.subviews objectAtIndex:0]).text;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Updating Email", nil);
     hud.yOffset = -40.0f;
@@ -95,9 +95,9 @@
 
     _email_field = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 290, 44)];
     _email_field.text = email;
-    _email_field.textColor = [BTColor BT_black:1];
-    _email_field.tintColor = [BTColor BT_silver:1];
-    _email_field.backgroundColor = [BTColor BT_white:1];
+    _email_field.textColor = [UIColor black:1];
+    _email_field.tintColor = [UIColor silver:1];
+    _email_field.backgroundColor = [UIColor white:1];
     _email_field.autocorrectionType = UITextAutocorrectionTypeNo;
     _email_field.keyboardType = UIKeyboardTypeEmailAddress;
     _email_field.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -105,7 +105,7 @@
     _email_field.returnKeyType = UIReturnKeyDone;
     _email_field.delegate = self;
 
-    cell.contentView.backgroundColor = [BTColor BT_white:1];
+    cell.contentView.backgroundColor = [UIColor white:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.contentView addSubview:_email_field];
 

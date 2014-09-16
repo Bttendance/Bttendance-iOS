@@ -10,7 +10,7 @@
 #import "BTUserDefault.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "ChooseCountCell.h"
 #import "SignButtonCell.h"
 #import "PasswordCell.h"
@@ -67,8 +67,8 @@
     self.textview = [[UITextView alloc] initWithFrame:CGRectMake(14, 10, 292, 101)];
     self.textview.backgroundColor = [UIColor clearColor];
     self.textview.font = [UIFont systemFontOfSize:14];
-    self.textview.textColor = [BTColor BT_silver:1.0];
-    self.textview.tintColor = [BTColor BT_silver:1.0];
+    self.textview.textColor = [UIColor silver:1.0];
+    self.textview.tintColor = [UIColor silver:1.0];
     self.textview.text = @"";
     [self.textview sizeToFit];
     self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
@@ -76,7 +76,7 @@
     
     self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(19, 16, 292, 20)];
     self.placeholder.font = [UIFont systemFontOfSize:14];
-    self.placeholder.textColor = [BTColor BT_silver:0.5];
+    self.placeholder.textColor = [UIColor silver:0.5];
     self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [BTDateFormatter detailedStringFromDate:[NSDate date]]];
     self.placeholder.numberOfLines = 0;
     [self.placeholder sizeToFit];
@@ -147,7 +147,7 @@
     if (indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 62)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 11, 288, 36)];
         NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d초간 답변을 수집합니다.", nil), self.progressTime];
         NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
@@ -163,7 +163,7 @@
             detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
         
         label.text = [NSString stringWithFormat:@"%@\n%@\n%@", progressTimeMessage, showInfoOnSelectMessage, detailPrivacyMessage];
-        label.textColor = [BTColor BT_silver:1.0];
+        label.textColor = [UIColor silver:1.0];
         label.font = [UIFont systemFontOfSize:12];
         label.numberOfLines = 0;
         [label sizeToFit];
@@ -175,7 +175,7 @@
         self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, MAX(86, ceil(self.textview.frame.size.height)))];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_white:1];
+        cell.backgroundColor = [UIColor white:1];
         [cell addSubview:self.textview];
         [cell addSubview:self.placeholder];
         return cell;
@@ -186,7 +186,7 @@
         
         self.label = [[UILabel alloc] initWithFrame:CGRectMake(14, 26, 320, 12)];
         self.label.text = NSLocalizedString(@"Choose number of choices", nil);
-        self.label.textColor = [BTColor BT_silver:1.0];
+        self.label.textColor = [UIColor silver:1.0];
         self.label.font = [UIFont systemFontOfSize:12];
         [cell addSubview:self.label];
         
@@ -228,7 +228,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.password.textColor = [UIColor silver:1.0];
         cell.arrow.hidden = NO;
         cell.password.text = NSLocalizedString(@"설문 옵션", nil);
         return cell;
@@ -240,14 +240,14 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.password.textColor = [BTColor BT_silver:1.0];
+        cell.password.textColor = [UIColor silver:1.0];
         cell.arrow.hidden = NO;
         cell.password.text = NSLocalizedString(@"저장한 질문 불러오기", nil);
         return cell;
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
 }
@@ -284,12 +284,12 @@
     BOOL pass = YES;
     
     if (chooseCountCell.choice < 2 || chooseCountCell.choice > 5) {
-        [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
-        self.label.textColor = [BTColor BT_red:1.0];
+        [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [UIColor red:0.1];
+        self.label.textColor = [UIColor red:1.0];
         pass = NO;
     } else {
         [self.tableview cellForRowAtIndexPath:self.choiceviewIndex].contentView.backgroundColor = [UIColor clearColor];
-        self.label.textColor = [BTColor BT_silver:1.0];
+        self.label.textColor = [UIColor silver:1.0];
     }
     
     if (!pass) {
@@ -299,7 +299,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Starting Clicker", nil);
     hud.yOffset = -40.0f;

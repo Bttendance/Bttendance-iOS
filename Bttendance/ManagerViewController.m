@@ -12,7 +12,8 @@
 #import "SignButtonCell.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ManagerViewController ()
@@ -83,13 +84,13 @@
     if (cell == nil) {
         cell = [[TextInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell contentView].backgroundColor = [BTColor BT_white:1];
+        [cell contentView].backgroundColor = [UIColor white:1];
     }
 
     switch (indexPath.row) {
         case 0: {
             [[cell textLabel] setText:NSLocalizedString(@"Email", nil)];
-            [[cell textLabel] setTextColor:[BTColor BT_navy:1]];
+            [[cell textLabel] setTextColor:[UIColor navy:1]];
             [[cell textLabel] setFont:[UIFont boldSystemFontOfSize:15]];
             
             [(TextInputCell *) cell textfield].frame = CGRectMake(68, 1, 222, 40);
@@ -98,7 +99,7 @@
             [(TextInputCell *) cell textfield].returnKeyType = UIReturnKeyDone;
             [(TextInputCell *) cell textfield].autocapitalizationType = UITextAutocapitalizationTypeNone;//lower case keyboard setting
 
-            [[(TextInputCell *) cell textfield] setTextColor:[BTColor BT_black:1]];
+            [[(TextInputCell *) cell textfield] setTextColor:[UIColor black:1]];
             [[(TextInputCell *) cell textfield] setFont:[UIFont systemFontOfSize:15]];
             break;
         }
@@ -114,9 +115,9 @@
             }
 
             [cell_new.button setTitle:NSLocalizedString(@"ADD", nil) forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:1.0] forState:UIControlStateNormal];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateHighlighted];
-            [cell_new.button setBackgroundImage:[BTColor imageWithCyanColor:0.85] forState:UIControlStateSelected];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+            [cell_new.button setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
             
             [cell_new.button addTarget:self action:@selector(add:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -141,7 +142,7 @@
 - (IBAction)add:(id)sender {
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Searching User", nil);
     hud.yOffset = -40.0f;
@@ -169,7 +170,7 @@
     if (buttonIndex == 1 && alertView.tag == 200) {
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [BTColor BT_navy:0.7];
+        hud.color = [UIColor navy:0.7];
         hud.labelText = NSLocalizedString(@"Loading", nil);
         hud.detailsLabelText = NSLocalizedString(@"Adding Manager", nil);
         hud.yOffset = -40.0f;

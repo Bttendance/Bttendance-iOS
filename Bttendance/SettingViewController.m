@@ -7,7 +7,7 @@
 //
 
 #import "SettingViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "User.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
@@ -125,7 +125,7 @@
     else if (indexPath.row == 3) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 86)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(14, 13, 280, 70)];
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -136,7 +136,7 @@
         title.attributedText = str;
         title.numberOfLines = 0;
         title.font = [UIFont boldSystemFontOfSize:12];
-        title.textColor = [BTColor BT_silver:1.0];
+        title.textColor = [UIColor silver:1.0];
         [title sizeToFit];
         [cell addSubview:title];
         return cell;
@@ -172,14 +172,14 @@
     else if (indexPath.row == 8) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
     
     else {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [BTColor BT_grey:1.0];
+        cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import "CreateAttdViewController.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "AttendanceAgent.h"
 #import "BTNotification.h"
 #import <AudioToolbox/AudioServices.h>
@@ -39,7 +39,7 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Attendance Check", nil);
     [titlelabel sizeToFit];
@@ -99,14 +99,14 @@
     
     if (!pass) {
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-        self.selected_bg.backgroundColor = [BTColor BT_red:0.1];
-        self.detail2.textColor = [BTColor BT_red:1];
+        self.selected_bg.backgroundColor = [UIColor red:0.1];
+        self.detail2.textColor = [UIColor red:1];
         sender.enabled = YES;
         return;
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Starting Attendance", nil);
     hud.yOffset = -40.0f;
@@ -135,15 +135,15 @@
 
 #pragma IBActions
 - (IBAction)bluetooth:(id)sender {
-    self.bluetoothBt.backgroundColor = [BTColor BT_cyan:0.2];
-    self.nobluetoothBt.backgroundColor = [BTColor BT_cyan:0.0];
+    self.bluetoothBt.backgroundColor = [UIColor cyan:0.2];
+    self.nobluetoothBt.backgroundColor = [UIColor cyan:0.0];
     self.bt = YES;
     self.btno = NO;
 }
 
 - (IBAction)nobluetooth:(id)sender {
-    self.bluetoothBt.backgroundColor = [BTColor BT_cyan:0.0];
-    self.nobluetoothBt.backgroundColor = [BTColor BT_cyan:0.2];
+    self.bluetoothBt.backgroundColor = [UIColor cyan:0.0];
+    self.nobluetoothBt.backgroundColor = [UIColor cyan:0.2];
     self.bt = NO;
     self.btno = YES;
 }

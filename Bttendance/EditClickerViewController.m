@@ -8,7 +8,7 @@
 
 #import "EditClickerViewController.h"
 #import "BTAPIs.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 #import "ChooseCountCell.h"
 #import "SignButtonCell.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -44,7 +44,7 @@
     titlelabel.backgroundColor = [UIColor clearColor];
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [BTColor BT_white:1.0];
+    titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
     titlelabel.text = NSLocalizedString(@"Edit Clicker", @"");
     [titlelabel sizeToFit];
@@ -55,8 +55,8 @@
     self.textview = [[UITextView alloc] initWithFrame:CGRectMake(14, 10, 292, 85)];
     self.textview.backgroundColor = [UIColor clearColor];
     self.textview.font = [UIFont systemFontOfSize:14];
-    self.textview.textColor = [BTColor BT_silver:1.0];
-    self.textview.tintColor = [BTColor BT_silver:1.0];
+    self.textview.textColor = [UIColor silver:1.0];
+    self.textview.tintColor = [UIColor silver:1.0];
     self.textview.text = self.post.message;
     [self.textview sizeToFit];
     self.textview.frame = CGRectMake(14, 8, 292, MAX(84, ceil(self.textview.frame.size.height)));
@@ -176,7 +176,7 @@
     BOOL pass = YES;
     
     if (self.textview.text == nil || self.textview.text.length == 0) {
-        [self.tableview cellForRowAtIndexPath:self.textviewIndex].contentView.backgroundColor = [BTColor BT_red:0.1];
+        [self.tableview cellForRowAtIndexPath:self.textviewIndex].contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
         [self.tableview cellForRowAtIndexPath:self.textviewIndex].contentView.backgroundColor = [UIColor clearColor];
@@ -189,7 +189,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [BTColor BT_navy:0.7];
+    hud.color = [UIColor navy:0.7];
     hud.labelText = NSLocalizedString(@"Loading", nil);
     hud.detailsLabelText = NSLocalizedString(@"Updating Clicker", nil);
     hud.yOffset = -40.0f;

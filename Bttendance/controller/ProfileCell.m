@@ -7,7 +7,7 @@
 //
 
 #import "ProfileCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @interface ProfileCell ()
 

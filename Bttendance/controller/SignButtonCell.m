@@ -7,7 +7,7 @@
 //
 
 #import "SignButtonCell.h"
-#import "BTColor.h"
+#import "UIColor+Bttendance.h"
 
 @interface SignButtonCell ()
 
