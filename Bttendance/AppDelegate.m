@@ -14,7 +14,6 @@
 #import "LeftMenuViewController.h"
 #import "CatchPointViewController.h"
 #import "NoCourseViewController.h"
-#import "ViewController.h"
 #import "BTUserDefault.h"
 #import <Crashlytics/Crashlytics.h>
 #import <AFNetworking/AFNetworking.h>
