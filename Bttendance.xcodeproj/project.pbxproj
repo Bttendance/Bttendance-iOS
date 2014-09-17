@@ -252,6 +252,7 @@
 		D4591CEF19C869BC007F8E5C /* ManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CE619C869BC007F8E5C /* ManagerViewController.xib */; };
 		D4591CF019C869BC007F8E5C /* StudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CE819C869BC007F8E5C /* StudentListViewController.m */; };
 		D4591CF119C869BC007F8E5C /* StudentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CE919C869BC007F8E5C /* StudentListViewController.xib */; };
+		D4591CF919C93506007F8E5C /* ClickerOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -610,6 +611,8 @@
 		D4591CE719C869BC007F8E5C /* StudentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentListViewController.h; path = ViewControllers/CourseDetail/StudentListViewController.h; sourceTree = "<group>"; };
 		D4591CE819C869BC007F8E5C /* StudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentListViewController.m; path = ViewControllers/CourseDetail/StudentListViewController.m; sourceTree = "<group>"; };
 		D4591CE919C869BC007F8E5C /* StudentListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentListViewController.xib; path = ViewControllers/CourseDetail/StudentListViewController.xib; sourceTree = "<group>"; };
+		D4591CF719C93506007F8E5C /* ClickerOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClickerOptionViewController.h; path = ViewControllers/Clicker/ClickerOptionViewController.h; sourceTree = "<group>"; };
+		D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClickerOptionViewController.m; path = ViewControllers/Clicker/ClickerOptionViewController.m; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -1152,6 +1155,8 @@
 				D4591CA419C86987007F8E5C /* ClickerDetailListViewController.xib */,
 				D4591CA519C86987007F8E5C /* ClickerDetailViewController.h */,
 				D4591CA619C86987007F8E5C /* ClickerDetailViewController.m */,
+				D4591CF719C93506007F8E5C /* ClickerOptionViewController.h */,
+				D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */,
 				D4591CA719C86987007F8E5C /* ClickerDetailViewController.xib */,
 				D4591CA819C86987007F8E5C /* ClickerQuestionViewController.h */,
 				D4591CA919C86987007F8E5C /* ClickerQuestionViewController.m */,
@@ -1518,6 +1523,7 @@
 				D4591B9919C863FE007F8E5C /* AFResponseSerializer.m in Sources */,
 				D4591B9A19C863FE007F8E5C /* AttendanceAgent.m in Sources */,
 				D4591BED19C86683007F8E5C /* SideMenuViewController.m in Sources */,
+				D4591CF919C93506007F8E5C /* ClickerOptionViewController.m in Sources */,
 				D4591B5F19C8634F007F8E5C /* BTAPIs.m in Sources */,
 				D4591C6119C86907007F8E5C /* GradeCell.m in Sources */,
 				D4591C0E19C868DB007F8E5C /* ProfileNameEditViewController.m in Sources */,
