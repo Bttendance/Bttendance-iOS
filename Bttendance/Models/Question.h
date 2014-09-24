@@ -18,6 +18,11 @@
 @property(assign) NSInteger progress_time;
 @property(assign) BOOL show_info_on_select;
 @property(strong, nonatomic) NSString *detail_privacy;
+@property(strong, nonatomic) NSString *a_option_text;
+@property(strong, nonatomic) NSString *b_option_text;
+@property(strong, nonatomic) NSString *c_option_text;
+@property(strong, nonatomic) NSString *d_option_text;
+@property(strong, nonatomic) NSString *e_option_text;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -34,6 +39,11 @@
 @property(assign) NSInteger progress_time;
 @property(assign) BOOL show_info_on_select;
 @property(strong, nonatomic) NSString *detail_privacy;
+@property(strong, nonatomic) NSString *a_option_text;
+@property(strong, nonatomic) NSString *b_option_text;
+@property(strong, nonatomic) NSString *c_option_text;
+@property(strong, nonatomic) NSString *d_option_text;
+@property(strong, nonatomic) NSString *e_option_text;
 @property(strong, nonatomic) SimpleUser  *owner;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

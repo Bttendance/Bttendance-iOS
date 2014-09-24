@@ -148,7 +148,8 @@ static UIAlertView *Ooooppss;
                              });
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -177,7 +178,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -206,7 +208,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -225,7 +228,8 @@ static UIAlertView *Ooooppss;
                             success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -253,7 +257,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -279,7 +284,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -305,7 +311,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -326,7 +333,8 @@ static UIAlertView *Ooooppss;
                             success(user);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -342,6 +350,8 @@ static UIAlertView *Ooooppss;
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setCourses:responseObject];
+                            if (success == nil)
+                                return;
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *courses = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
@@ -356,7 +366,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -384,7 +395,8 @@ static UIAlertView *Ooooppss;
                             });
                         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -411,7 +423,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -437,7 +450,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -463,7 +477,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -486,6 +501,8 @@ static UIAlertView *Ooooppss;
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [BTUserDefault setUser:responseObject];
+                            if (success == nil)
+                                return;
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 User *user = [[User alloc] initWithDictionary:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
@@ -494,7 +511,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -519,7 +537,8 @@ static UIAlertView *Ooooppss;
                                success(questions);
                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                [self failureHandleWithError:error];
-                               failure(error);
+                               if (failure != nil)
+                                    failure(error);
                            }];
     
 }
@@ -549,7 +568,8 @@ static UIAlertView *Ooooppss;
                              success(question);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -580,7 +600,8 @@ static UIAlertView *Ooooppss;
                              success(question);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -601,7 +622,8 @@ static UIAlertView *Ooooppss;
                             success(question);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -630,7 +652,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -654,7 +677,8 @@ static UIAlertView *Ooooppss;
                             success(school);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
     
 }
@@ -679,7 +703,8 @@ static UIAlertView *Ooooppss;
                             success(schools);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -707,11 +732,41 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
 #pragma Courses APIs
++ (void)courseInfo:(NSString *)course_id
+           success:(void (^)(Course *course))success
+           failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"course_id" : course_id,
+                             @"locale" : locale};
+    
+    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/info"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setCourse:responseObject ofCourse:course_id];
+                            if (success == nil)
+                                return;
+                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                Course *course = [[Course alloc] initWithDictionary:responseObject];
+                                dispatch_async( dispatch_get_main_queue(), ^{
+                                    success(course);
+                                });
+                            });
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            if (failure != nil)
+                                failure(error);
+                        }];
+}
+
 + (void)createCourseInstantWithName:(NSString *)name
                              school:(NSString *)school_id
                       professorName:(NSString *)professor_name
@@ -740,7 +795,8 @@ static UIAlertView *Ooooppss;
                              });
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -763,7 +819,8 @@ static UIAlertView *Ooooppss;
                             success(course);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
     
 }
@@ -792,7 +849,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -820,7 +878,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
     
 }
@@ -853,7 +912,8 @@ static UIAlertView *Ooooppss;
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -875,7 +935,8 @@ static UIAlertView *Ooooppss;
                             success(user);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -897,7 +958,8 @@ static UIAlertView *Ooooppss;
                             success(user);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -920,7 +982,8 @@ static UIAlertView *Ooooppss;
                             success(course);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -946,7 +1009,8 @@ static UIAlertView *Ooooppss;
                             success(simpleUsers);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -970,7 +1034,8 @@ static UIAlertView *Ooooppss;
                          success(simpleUsers);
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          [self failureHandleWithError:error];
-                         failure(error);
+                         if (failure != nil)
+                            failure(error);
                      }];
 }
 
@@ -994,7 +1059,8 @@ static UIAlertView *Ooooppss;
                          success(simpleUsers);
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          [self failureHandleWithError:error];
-                         failure(error);
+                         if (failure != nil)
+                            failure(error);
                      }];
 }
 
@@ -1015,7 +1081,8 @@ static UIAlertView *Ooooppss;
                             success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -1039,7 +1106,8 @@ static UIAlertView *Ooooppss;
                              success(post);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
     
 }
@@ -1071,7 +1139,8 @@ static UIAlertView *Ooooppss;
                              success(post);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];    
 }
 
@@ -1094,7 +1163,8 @@ static UIAlertView *Ooooppss;
                              success(post);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -1117,7 +1187,8 @@ static UIAlertView *Ooooppss;
                              success(post);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -1138,7 +1209,8 @@ static UIAlertView *Ooooppss;
                              success(post);
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
-                             failure(error);
+                             if (failure != nil)
+                                failure(error);
                          }];
 }
 
@@ -1161,7 +1233,8 @@ static UIAlertView *Ooooppss;
                             success(responseObject);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -1184,7 +1257,8 @@ static UIAlertView *Ooooppss;
                             success(attendance);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -1207,7 +1281,8 @@ static UIAlertView *Ooooppss;
                             success(attendance);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -1231,7 +1306,8 @@ static UIAlertView *Ooooppss;
                             success(clicker);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 
@@ -1253,7 +1329,8 @@ static UIAlertView *Ooooppss;
                             success(notice);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
-                            failure(error);
+                            if (failure != nil)
+                                failure(error);
                         }];
 }
 

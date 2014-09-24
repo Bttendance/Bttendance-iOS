@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "ClickerOptionViewController.h"
 
-@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ClickerOptionViewControllerDelegate>
 
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoticeDetailViewController">
@@ -16,13 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnz-0t-gTI">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nnz-0t-gTI">
                     <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="4PT-M1-6hW"/>
-                        <constraint firstAttribute="height" constant="46" id="m07-mO-cnE"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <state key="normal">
                         <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,13 +29,10 @@
                         <action selector="showDetail:" destination="-1" eventType="touchUpInside" id="Mz9-9Y-QLb"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xn0-Km-rM3">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xn0-Km-rM3">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="Edc-cz-eUx"/>
-                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="670-3T-PQy"/>
                         <outlet property="delegate" destination="-1" id="ZWr-V6-BUJ"/>
@@ -46,17 +40,11 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="xn0-Km-rM3" secondAttribute="trailing" id="AKk-9K-EBu"/>
-                <constraint firstItem="xn0-Km-rM3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="P9n-fv-1Vq"/>
-                <constraint firstAttribute="trailing" secondItem="nnz-0t-gTI" secondAttribute="trailing" id="ZIE-iQ-uAl"/>
-                <constraint firstItem="xn0-Km-rM3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="df5-VU-jGO"/>
-                <constraint firstItem="nnz-0t-gTI" firstAttribute="top" secondItem="xn0-Km-rM3" secondAttribute="bottom" id="eZs-3d-3cA"/>
-                <constraint firstAttribute="bottom" secondItem="nnz-0t-gTI" secondAttribute="bottom" id="n2x-jx-t1L"/>
-                <constraint firstItem="nnz-0t-gTI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vtL-XZ-uiO"/>
-            </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

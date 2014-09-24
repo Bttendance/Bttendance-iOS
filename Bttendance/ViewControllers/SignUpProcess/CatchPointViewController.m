@@ -20,6 +20,8 @@
 @implementation CatchPointViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     //navigation bar color
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 7) {

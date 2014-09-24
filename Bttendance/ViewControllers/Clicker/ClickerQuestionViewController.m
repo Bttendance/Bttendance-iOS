@@ -8,6 +8,7 @@
 
 #import "ClickerQuestionViewController.h"
 #import "UIColor+Bttendance.h"
+#import "UIImage+Bttendance.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "QuestionCell.h"
@@ -26,7 +27,7 @@
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backButtonItem];
     self.navigationItem.leftItemsSupplementBackButton = NO;
@@ -51,6 +52,29 @@
     
     self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
+    
+    if (self.showDetailBt) {
+        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 46);
+        self.detailBt.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 64 - 46, 320, 46);
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
+        [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
+        [self.detailBt setTitle:NSLocalizedString(@"", nil) forState:UIControlStateNormal];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        label.textColor = [UIColor white:1.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont boldSystemFontOfSize:16];
+        label.text = NSLocalizedString(@"Add a Question", nil);
+        [label sizeToFit];
+        
+        CGFloat width = label.frame.size.width;
+        CGFloat height = label.frame.size.height;
+        label.frame = CGRectMake(160 - width / 2 , 24 - height / 2, width, height);
+        [self.detailBt addSubview:label];
+    } else {
+        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
+    }
 }
 
 - (void)back:(UIBarButtonItem *)sender {

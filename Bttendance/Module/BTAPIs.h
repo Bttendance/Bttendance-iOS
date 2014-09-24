@@ -136,6 +136,10 @@
              failure:(void (^)(NSError *error))failure;
 
 #pragma Courses APIs
++ (void)courseInfo:(NSString *)course_id
+           success:(void (^)(Course *course))success
+           failure:(void (^)(NSError *error))failure;
+
 + (void)createCourseInstantWithName:(NSString *)name
                              school:(NSString *)school_id
                       professorName:(NSString *)professor_name

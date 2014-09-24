@@ -11,7 +11,7 @@
 #import "BTUserDefault.h"
 #import "ProfileNameEditViewController.h"
 #import "ProfileEmailEditViewController.h"
-#import "QuestionListViewController.h"
+#import "ClickerQuestionViewController.h"
 #import "ProfileIdentityEditViewController.h"
 #import "CourseDetailViewController.h"
 #import "ProfileUpdatePassViewController.h"
@@ -52,7 +52,7 @@
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [menuButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
-    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
 }
@@ -72,7 +72,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.user getClosedCourses] count] + [self.user.employed_schools count] + [self.user.enrolled_schools count] + 9;
+    return [[self.user getClosedCourses] count] + [self.user.employed_schools count] + [self.user.enrolled_schools count] + 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,20 +84,21 @@
     if (indexPath.row == 0
         || indexPath.row == 1
         || indexPath.row == 3
-        || indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
+        || indexPath.row == 4
+        || indexPath.row == closedCourses + employedSchools + enrolledSchools + 8)
         return 46;
     
     if (indexPath.row == 2)
         return 60;
     
-    if (indexPath.row == 4) {
+    if (indexPath.row == 5) {
         if (closedCourses == 0)
             return 0;
         else
             return 60;
     }
     
-    if (indexPath.row == closedCourses + 5) {
+    if (indexPath.row == closedCourses + 6) {
         if (employedSchools + enrolledSchools == 0)
             return 0;
         else
@@ -105,13 +106,13 @@
     }
     
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6)
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
         return 55;
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8)
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 9)
         return 33;
     
-    if (indexPath.row < closedCourses + employedSchools + enrolledSchools + 6)
+    if (indexPath.row < closedCourses + employedSchools + enrolledSchools + 7)
         return 74;
     
     return 0;
@@ -172,6 +173,20 @@
     }
     
     else if (indexPath.row == 4) {
+        static NSString *CellIdentifier = @"PasswordCell";
+        PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.password.text = NSLocalizedString(@"설문 기본 옵션", nil);
+        cell.password.textColor = [UIColor navy:1.0];
+        return cell;
+    }
+    
+    else if (indexPath.row == 5) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -184,7 +199,7 @@
         return cell;
     }
     
-    else if (indexPath.row > 4 && indexPath.row < closedCourses + 5) {
+    else if (indexPath.row > 5 && indexPath.row < closedCourses + 6) {
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -195,14 +210,14 @@
         cell.Info_SchoolName.textColor = [UIColor cyan:1.0];
         
         NSArray *closedCourses = [self.user getClosedCourses];
-        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 5];
+        SimpleCourse *course = [closedCourses objectAtIndex:indexPath.row - 6];
         cell.Info_SchoolName.text = course.name;
         cell.Info_SchoolID.text = [self.user getSchoolNameFromId:course.school];
         cell.arrow.hidden = NO;
         return  cell;
     }
     
-    else if (indexPath.row == closedCourses + 5) {
+    else if (indexPath.row == closedCourses + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 60)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -215,7 +230,7 @@
         return cell;
     }
     
-    else if (indexPath.row > closedCourses + 5 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 6) {
+    else if (indexPath.row > closedCourses + 6 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 7) {
         static NSString *CellIdentifier = @"SchoolInfoCell";
         SchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -225,7 +240,7 @@
         }
         cell.Info_SchoolName.textColor = [UIColor navy:1.0];
         
-        NSInteger index = indexPath.row - closedCourses - 6;
+        NSInteger index = indexPath.row - closedCourses - 7;
         if (index < employedSchools) {
             cell.simpleSchool = self.user.employed_schools[index];
             cell.Info_SchoolName.text = ((SchoolInfoCell *) cell).simpleSchool.name;
@@ -246,14 +261,14 @@
         return  cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 6) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
         return cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -267,7 +282,7 @@
         return cell;
     }
     
-    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8) {
+    else if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 9) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -300,19 +315,22 @@
     if (indexPath.row == 3)
         [self questions];
     
-    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 7)
+    if (indexPath.row == 4)
+        [self questionOption];
+    
+    if (indexPath.row == closedCourses + employedSchools + enrolledSchools + 8)
         [self updatePass];
     
     
-    else if (indexPath.row > 4 && indexPath.row < closedCourses + 5) {
+    else if (indexPath.row > 4 && indexPath.row < closedCourses + 6) {
         NSArray *closedCourses = [self.user getClosedCourses];
         CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-        courseDetail.simpleCourse = [closedCourses objectAtIndex:indexPath.row - 5];
+        courseDetail.simpleCourse = [closedCourses objectAtIndex:indexPath.row - 6];
         [self.navigationController pushViewController:courseDetail animated:YES];
     }
     
-    else if (indexPath.row > closedCourses + employedSchools + 5 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 6) {
-        NSInteger index = indexPath.row - closedCourses - employedSchools - 6;
+    else if (indexPath.row > closedCourses + employedSchools + 6 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 7) {
+        NSInteger index = indexPath.row - closedCourses - employedSchools - 7;
         SimpleSchool *school = self.user.enrolled_schools[index];
         for (int j = 0; j < [self.user.identifications count]; j++)
             if (((SimpleIdentification *)self.user.identifications[j]).school == school.id)
@@ -334,8 +352,19 @@
 }
 
 - (void)questions {
-    QuestionListViewController *questionListView = [[QuestionListViewController alloc] init];
-    [self.navigationController pushViewController:questionListView animated:YES];
+    ClickerQuestionViewController *questionView = [[ClickerQuestionViewController alloc] init];
+    questionView.questionType = SHOW;
+    [self.navigationController pushViewController:questionView animated:YES];
+}
+
+- (void)questionOption {
+    ClickerOptionViewController *clickerOption = [[ClickerOptionViewController alloc] init];
+    User *user = [BTUserDefault getUser];
+    clickerOption.progressTime = user.setting.progress_time;
+    clickerOption.showInfoOnSelect = user.setting.show_info_on_select;
+    clickerOption.detailPrivacy = user.setting.detail_privacy;
+    clickerOption.delegate = self;
+    [self.navigationController pushViewController:clickerOption animated:YES];
 }
 
 - (void)editIdentity:(SimpleIdentification *)identification {
@@ -347,6 +376,14 @@
 - (void)updatePass {
     ProfileUpdatePassViewController *profileUpdatePassView = [[ProfileUpdatePassViewController alloc] init];
     [self.navigationController pushViewController:profileUpdatePassView animated:YES];
+}
+
+#pragma ClickerOptionViewControllerDelegate
+- (void)chosenOptionTime:(NSInteger)progressTime andOnSelect:(BOOL)showInfoOnSelect andDetail:(NSString *)detailPrivacy {
+    [BTAPIs updateClickerDefaultsWithTime:[NSString stringWithFormat:@"%ld", progressTime]
+                                andSelect:showInfoOnSelect
+                               andPrivacy:detailPrivacy
+                                  success:nil failure:nil];
 }
 
 @end

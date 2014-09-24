@@ -253,7 +253,7 @@
     }
     
     else if (indexPath.row == 1) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                    destructiveButtonTitle:nil

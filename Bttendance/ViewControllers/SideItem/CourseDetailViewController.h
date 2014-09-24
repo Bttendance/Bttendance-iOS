@@ -11,8 +11,9 @@
 #import "User.h"
 #import "CourseDetailHeaderView.h"
 #import "RESideMenu.h"
+#import "ClickerCell.h"
 
-@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
+@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate, ClickerCellDelegate> {
 
     NSMutableArray *data;
 

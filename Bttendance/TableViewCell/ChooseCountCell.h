@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SLExpandableTableView.h>
 
-@interface ChooseCountCell : UITableViewCell
+@protocol ChooseCountCellDelegate <NSObject>
+
+@required
+- (void)chosen:(NSInteger)choiceCount;
+@end
+
+@interface ChooseCountCell : UITableViewCell <UIExpandingTableViewCell>
 
 + (ChooseCountCell *)cellFromNibNamed;
+
+@property (nonatomic, weak) id<ChooseCountCellDelegate> delegate;
+
+@property (nonatomic, assign, getter = isLoading) BOOL loading;
+@property (nonatomic, readonly) UIExpansionStyle expansionStyle;
+- (void)setExpansionStyle:(UIExpansionStyle)style animated:(BOOL)animated;
 
 @property (weak, nonatomic) IBOutlet UIView *bg2;
 @property (weak, nonatomic) IBOutlet UIView *bg3;

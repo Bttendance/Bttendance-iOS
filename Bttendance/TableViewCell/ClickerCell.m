@@ -45,4 +45,24 @@
     }
 }
 
+- (IBAction)click_a:(id)sender {
+    [self.delegate chosen:1 andPostId:self.post.id];
+}
+
+- (IBAction)click_b:(id)sender {
+    [self.delegate chosen:2 andPostId:self.post.id];
+}
+
+- (IBAction)click_c:(id)sender {
+    [self.delegate chosen:3 andPostId:self.post.id];
+}
+
+- (IBAction)click_d:(id)sender {
+    [self.delegate chosen:4 andPostId:self.post.id];
+}
+
+- (IBAction)click_e:(id)sender {
+    [self.delegate chosen:5 andPostId:self.post.id];
+}
+
 @end

@@ -25,6 +25,16 @@
     return cell;
 }
 
+- (void)setExpansionStyle:(UIExpansionStyle)style animated:(BOOL)animated
+{
+    switch (self.expansionStyle) {
+        case UIExpansionStyleExpanded:
+            break;
+        case UIExpansionStyleCollapsed:
+            break;
+    }
+}
+
 -(IBAction)chooseType2:(id)sender
 {
     self.bg2.backgroundColor = [UIColor cyan:1.0];
@@ -43,6 +53,7 @@
     self.typeLable5.textColor = [UIColor silver:1.0];
     
     self.choice = 2;
+    [self.delegate chosen:2];
 }
 
 -(IBAction)chooseType3:(id)sender
@@ -63,6 +74,7 @@
     self.typeLable5.textColor = [UIColor silver:1.0];
     
     self.choice = 3;
+    [self.delegate chosen:3];
 }
 
 -(IBAction)chooseType4:(id)sender
@@ -83,6 +95,7 @@
     self.typeLable5.textColor = [UIColor silver:1.0];
     
     self.choice = 4;
+    [self.delegate chosen:4];
 }
 
 -(IBAction)chooseType5:(id)sender
@@ -103,6 +116,7 @@
     self.typeLable5.textColor = [UIColor cyan:1.0];
     
     self.choice = 5;
+    [self.delegate chosen:5];
 }
 
 @end

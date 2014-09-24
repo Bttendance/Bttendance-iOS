@@ -13,6 +13,7 @@
 
 #define UserJSONKey @"btd_user_json"
 #define CoursesJSONKey @"btd_courses_json"
+#define CourseJSONKey @"btd_course_json"
 #define PostJSONArrayOfCourseKey @"btd_post_json_array_of_course"
 #define StudentJSONArrayOfCourseKey @"btd_student_json_array_of_course"
 #define SchoolsJSONKey @"btd_schools_json"
@@ -37,6 +38,8 @@
 + (NSArray *)getCourses;
 
 + (Course *)getCourse:(NSInteger)courseId;
+
++ (void)setCourse:(id)responseObject ofCourse:(NSString *)courseId;
 
 + (void)setCourses:(id)responseObject;
 

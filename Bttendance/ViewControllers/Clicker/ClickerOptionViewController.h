@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClickerOptionViewController : TableViewController
+typedef NS_ENUM(NSInteger, OptionType) {
+    DEFAULT,
+    CLICKER,
+    QUESTION
+};
+
+@protocol ClickerOptionViewControllerDelegate <NSObject>
+
+@required
+- (void)chosenOptionTime:(NSInteger)progressTime andOnSelect:(BOOL)showInfoOnSelect andDetail:(NSString *)detailPrivacy;
+@end
+
+@interface ClickerOptionViewController : UITableViewController <UITextFieldDelegate>
+
+@property (nonatomic, weak) id<ClickerOptionViewControllerDelegate> delegate;
+@property(assign) NSInteger progressTime;
+@property(assign) BOOL showInfoOnSelect;
+@property(strong, nonatomic) NSString *detailPrivacy;
+@property(assign) OptionType optionType;
 
 @end

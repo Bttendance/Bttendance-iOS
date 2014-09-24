@@ -105,7 +105,6 @@
 		D4591B5119C861E6007F8E5C /* UIImage+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B4E19C861E6007F8E5C /* UIImage+Bttendance.m */; };
 		D4591B5819C861FA007F8E5C /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5319C861FA007F8E5C /* BVUnderlineButton.m */; };
 		D4591B5919C861FA007F8E5C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5519C861FA007F8E5C /* WebViewController.m */; };
-		D4591B5A19C861FA007F8E5C /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5719C861FA007F8E5C /* XYPieChart.m */; };
 		D4591B5F19C8634F007F8E5C /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5C19C8634F007F8E5C /* BTAPIs.m */; };
 		D4591B6019C8634F007F8E5C /* BTUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5E19C8634F007F8E5C /* BTUserDefault.m */; };
 		D4591B7D19C86376007F8E5C /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6219C86376007F8E5C /* Attendance.m */; };
@@ -208,12 +207,6 @@
 		D4591C7E19C86907007F8E5C /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C5519C86907007F8E5C /* UserInfoCell.xib */; };
 		D4591C8219C8693B007F8E5C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C8019C8693B007F8E5C /* ProfileViewController.m */; };
 		D4591C8319C8693B007F8E5C /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C8119C8693B007F8E5C /* ProfileViewController.xib */; };
-		D4591C8D19C86963007F8E5C /* AddQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C8519C86963007F8E5C /* AddQuestionViewController.m */; };
-		D4591C8E19C86963007F8E5C /* AddQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C8619C86963007F8E5C /* AddQuestionViewController.xib */; };
-		D4591C8F19C86963007F8E5C /* EditQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C8819C86963007F8E5C /* EditQuestionViewController.m */; };
-		D4591C9019C86963007F8E5C /* EditQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C8919C86963007F8E5C /* EditQuestionViewController.xib */; };
-		D4591C9119C86963007F8E5C /* QuestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C8B19C86963007F8E5C /* QuestionListViewController.m */; };
-		D4591C9219C86963007F8E5C /* QuestionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C8C19C86963007F8E5C /* QuestionListViewController.xib */; };
 		D4591C9C19C86977007F8E5C /* CreateNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C9419C86977007F8E5C /* CreateNoticeViewController.m */; };
 		D4591C9D19C86977007F8E5C /* CreateNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591C9519C86977007F8E5C /* CreateNoticeViewController.xib */; };
 		D4591C9E19C86977007F8E5C /* NoticeDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591C9719C86977007F8E5C /* NoticeDetailListViewController.m */; };
@@ -226,10 +219,6 @@
 		D4591CB419C86987007F8E5C /* ClickerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CA719C86987007F8E5C /* ClickerDetailViewController.xib */; };
 		D4591CB519C86987007F8E5C /* ClickerQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CA919C86987007F8E5C /* ClickerQuestionViewController.m */; };
 		D4591CB619C86987007F8E5C /* ClickerQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CAA19C86987007F8E5C /* ClickerQuestionViewController.xib */; };
-		D4591CB719C86987007F8E5C /* CreateClickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CAC19C86987007F8E5C /* CreateClickerViewController.m */; };
-		D4591CB819C86987007F8E5C /* CreateClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CAD19C86987007F8E5C /* CreateClickerViewController.xib */; };
-		D4591CB919C86987007F8E5C /* EditClickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CAF19C86987007F8E5C /* EditClickerViewController.m */; };
-		D4591CBA19C86987007F8E5C /* EditClickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CB019C86987007F8E5C /* EditClickerViewController.xib */; };
 		D4591CC419C8699A007F8E5C /* AttdDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CBC19C8699A007F8E5C /* AttdDetailListViewController.m */; };
 		D4591CC519C8699A007F8E5C /* AttdDetailListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CBD19C8699A007F8E5C /* AttdDetailListViewController.xib */; };
 		D4591CC619C8699A007F8E5C /* AttdDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CBF19C8699A007F8E5C /* AttdDetailViewController.m */; };
@@ -253,6 +242,13 @@
 		D4591CF019C869BC007F8E5C /* StudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CE819C869BC007F8E5C /* StudentListViewController.m */; };
 		D4591CF119C869BC007F8E5C /* StudentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CE919C869BC007F8E5C /* StudentListViewController.xib */; };
 		D4591CF919C93506007F8E5C /* ClickerOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */; };
+		D4591CFD19C946E9007F8E5C /* OptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CFB19C946E9007F8E5C /* OptionCell.m */; };
+		D4591CFE19C946E9007F8E5C /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CFC19C946E9007F8E5C /* OptionCell.xib */; };
+		D4591D0019C948AA007F8E5C /* option_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591CFF19C948AA007F8E5C /* option_check@2x.png */; };
+		D4591D0419C962C0007F8E5C /* NumberOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0219C962C0007F8E5C /* NumberOptionCell.m */; };
+		D4591D0519C962C0007F8E5C /* NumberOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */; };
+		D4591D0819C96D02007F8E5C /* NumberPadDoneBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0719C96D02007F8E5C /* NumberPadDoneBtn.m */; };
+		D4591D0E19CA80C2007F8E5C /* ClickerCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0D19CA80C2007F8E5C /* ClickerCRUDViewController.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -376,8 +372,6 @@
 		D4591B5319C861FA007F8E5C /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BVUnderlineButton.m; path = CustomView/BVUnderlineButton.m; sourceTree = "<group>"; };
 		D4591B5419C861FA007F8E5C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = CustomView/WebViewController.h; sourceTree = "<group>"; };
 		D4591B5519C861FA007F8E5C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = CustomView/WebViewController.m; sourceTree = "<group>"; };
-		D4591B5619C861FA007F8E5C /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XYPieChart.h; path = CustomView/XYPieChart.h; sourceTree = "<group>"; };
-		D4591B5719C861FA007F8E5C /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XYPieChart.m; path = CustomView/XYPieChart.m; sourceTree = "<group>"; };
 		D4591B5B19C8634F007F8E5C /* BTAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTAPIs.h; path = Module/BTAPIs.h; sourceTree = "<group>"; };
 		D4591B5C19C8634F007F8E5C /* BTAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTAPIs.m; path = Module/BTAPIs.m; sourceTree = "<group>"; };
 		D4591B5D19C8634F007F8E5C /* BTUserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserDefault.h; path = Module/BTUserDefault.h; sourceTree = "<group>"; };
@@ -545,15 +539,6 @@
 		D4591C7F19C8693B007F8E5C /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ViewControllers/SideItem/ProfileViewController.h; sourceTree = "<group>"; };
 		D4591C8019C8693B007F8E5C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ViewControllers/SideItem/ProfileViewController.m; sourceTree = "<group>"; };
 		D4591C8119C8693B007F8E5C /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileViewController.xib; path = ViewControllers/SideItem/ProfileViewController.xib; sourceTree = "<group>"; };
-		D4591C8419C86963007F8E5C /* AddQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddQuestionViewController.h; path = ViewControllers/Question/AddQuestionViewController.h; sourceTree = "<group>"; };
-		D4591C8519C86963007F8E5C /* AddQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddQuestionViewController.m; path = ViewControllers/Question/AddQuestionViewController.m; sourceTree = "<group>"; };
-		D4591C8619C86963007F8E5C /* AddQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddQuestionViewController.xib; path = ViewControllers/Question/AddQuestionViewController.xib; sourceTree = "<group>"; };
-		D4591C8719C86963007F8E5C /* EditQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditQuestionViewController.h; path = ViewControllers/Question/EditQuestionViewController.h; sourceTree = "<group>"; };
-		D4591C8819C86963007F8E5C /* EditQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditQuestionViewController.m; path = ViewControllers/Question/EditQuestionViewController.m; sourceTree = "<group>"; };
-		D4591C8919C86963007F8E5C /* EditQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditQuestionViewController.xib; path = ViewControllers/Question/EditQuestionViewController.xib; sourceTree = "<group>"; };
-		D4591C8A19C86963007F8E5C /* QuestionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionListViewController.h; path = ViewControllers/Question/QuestionListViewController.h; sourceTree = "<group>"; };
-		D4591C8B19C86963007F8E5C /* QuestionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionListViewController.m; path = ViewControllers/Question/QuestionListViewController.m; sourceTree = "<group>"; };
-		D4591C8C19C86963007F8E5C /* QuestionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionListViewController.xib; path = ViewControllers/Question/QuestionListViewController.xib; sourceTree = "<group>"; };
 		D4591C9319C86977007F8E5C /* CreateNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateNoticeViewController.h; path = ViewControllers/Notice/CreateNoticeViewController.h; sourceTree = "<group>"; };
 		D4591C9419C86977007F8E5C /* CreateNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateNoticeViewController.m; path = ViewControllers/Notice/CreateNoticeViewController.m; sourceTree = "<group>"; };
 		D4591C9519C86977007F8E5C /* CreateNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateNoticeViewController.xib; path = ViewControllers/Notice/CreateNoticeViewController.xib; sourceTree = "<group>"; };
@@ -572,12 +557,6 @@
 		D4591CA819C86987007F8E5C /* ClickerQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClickerQuestionViewController.h; path = ViewControllers/Clicker/ClickerQuestionViewController.h; sourceTree = "<group>"; };
 		D4591CA919C86987007F8E5C /* ClickerQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClickerQuestionViewController.m; path = ViewControllers/Clicker/ClickerQuestionViewController.m; sourceTree = "<group>"; };
 		D4591CAA19C86987007F8E5C /* ClickerQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClickerQuestionViewController.xib; path = ViewControllers/Clicker/ClickerQuestionViewController.xib; sourceTree = "<group>"; };
-		D4591CAB19C86987007F8E5C /* CreateClickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateClickerViewController.h; path = ViewControllers/Clicker/CreateClickerViewController.h; sourceTree = "<group>"; };
-		D4591CAC19C86987007F8E5C /* CreateClickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateClickerViewController.m; path = ViewControllers/Clicker/CreateClickerViewController.m; sourceTree = "<group>"; };
-		D4591CAD19C86987007F8E5C /* CreateClickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateClickerViewController.xib; path = ViewControllers/Clicker/CreateClickerViewController.xib; sourceTree = "<group>"; };
-		D4591CAE19C86987007F8E5C /* EditClickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditClickerViewController.h; path = ViewControllers/Clicker/EditClickerViewController.h; sourceTree = "<group>"; };
-		D4591CAF19C86987007F8E5C /* EditClickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditClickerViewController.m; path = ViewControllers/Clicker/EditClickerViewController.m; sourceTree = "<group>"; };
-		D4591CB019C86987007F8E5C /* EditClickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditClickerViewController.xib; path = ViewControllers/Clicker/EditClickerViewController.xib; sourceTree = "<group>"; };
 		D4591CBB19C8699A007F8E5C /* AttdDetailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttdDetailListViewController.h; path = ViewControllers/Attendance/AttdDetailListViewController.h; sourceTree = "<group>"; };
 		D4591CBC19C8699A007F8E5C /* AttdDetailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttdDetailListViewController.m; path = ViewControllers/Attendance/AttdDetailListViewController.m; sourceTree = "<group>"; };
 		D4591CBD19C8699A007F8E5C /* AttdDetailListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AttdDetailListViewController.xib; path = ViewControllers/Attendance/AttdDetailListViewController.xib; sourceTree = "<group>"; };
@@ -613,6 +592,17 @@
 		D4591CE919C869BC007F8E5C /* StudentListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentListViewController.xib; path = ViewControllers/CourseDetail/StudentListViewController.xib; sourceTree = "<group>"; };
 		D4591CF719C93506007F8E5C /* ClickerOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClickerOptionViewController.h; path = ViewControllers/Clicker/ClickerOptionViewController.h; sourceTree = "<group>"; };
 		D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClickerOptionViewController.m; path = ViewControllers/Clicker/ClickerOptionViewController.m; sourceTree = "<group>"; };
+		D4591CFA19C946E9007F8E5C /* OptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionCell.h; path = TableViewCell/OptionCell.h; sourceTree = "<group>"; };
+		D4591CFB19C946E9007F8E5C /* OptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionCell.m; path = TableViewCell/OptionCell.m; sourceTree = "<group>"; };
+		D4591CFC19C946E9007F8E5C /* OptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionCell.xib; path = TableViewCell/OptionCell.xib; sourceTree = "<group>"; };
+		D4591CFF19C948AA007F8E5C /* option_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "option_check@2x.png"; path = "Image/Icons/option_check@2x.png"; sourceTree = "<group>"; };
+		D4591D0119C962C0007F8E5C /* NumberOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumberOptionCell.h; path = TableViewCell/NumberOptionCell.h; sourceTree = "<group>"; };
+		D4591D0219C962C0007F8E5C /* NumberOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumberOptionCell.m; path = TableViewCell/NumberOptionCell.m; sourceTree = "<group>"; };
+		D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NumberOptionCell.xib; path = TableViewCell/NumberOptionCell.xib; sourceTree = "<group>"; };
+		D4591D0619C96D02007F8E5C /* NumberPadDoneBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumberPadDoneBtn.h; path = CustomView/NumberPadDoneBtn.h; sourceTree = "<group>"; };
+		D4591D0719C96D02007F8E5C /* NumberPadDoneBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumberPadDoneBtn.m; path = CustomView/NumberPadDoneBtn.m; sourceTree = "<group>"; };
+		D4591D0C19CA80C2007F8E5C /* ClickerCRUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClickerCRUDViewController.h; path = ViewControllers/Clicker/ClickerCRUDViewController.h; sourceTree = "<group>"; };
+		D4591D0D19CA80C2007F8E5C /* ClickerCRUDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClickerCRUDViewController.m; path = ViewControllers/Clicker/ClickerCRUDViewController.m; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -766,7 +756,6 @@
 				D4B56008196BE428005CFE30 /* Attendance */,
 				D4B56009196BE441005CFE30 /* Clicker */,
 				D4B5600B196BE480005CFE30 /* Notice */,
-				D481EBBC198B30DE001CAA8E /* Question */,
 				D485A09D1878343A00F9561B /* ProfileEdit */,
 			);
 			name = ViewControllers;
@@ -812,6 +801,12 @@
 				D4591C2E19C86907007F8E5C /* NotificationCell.h */,
 				D4591C2F19C86907007F8E5C /* NotificationCell.m */,
 				D4591C3019C86907007F8E5C /* NotificationCell.xib */,
+				D4591D0119C962C0007F8E5C /* NumberOptionCell.h */,
+				D4591D0219C962C0007F8E5C /* NumberOptionCell.m */,
+				D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */,
+				D4591CFA19C946E9007F8E5C /* OptionCell.h */,
+				D4591CFB19C946E9007F8E5C /* OptionCell.m */,
+				D4591CFC19C946E9007F8E5C /* OptionCell.xib */,
 				D4591C3119C86907007F8E5C /* PasswordCell.h */,
 				D4591C3219C86907007F8E5C /* PasswordCell.m */,
 				D4591C3319C86907007F8E5C /* PasswordCell.xib */,
@@ -970,6 +965,7 @@
 				D4591AF219C838EA007F8E5C /* more@2x.png */,
 				D4591AF319C838EA007F8E5C /* no_bluetooth@2x.png */,
 				D4591AF419C838EA007F8E5C /* notice@2x.png */,
+				D4591CFF19C948AA007F8E5C /* option_check@2x.png */,
 				D4591AF519C838EA007F8E5C /* profile@2x.png */,
 				D4591AF619C838EA007F8E5C /* r_A@2x.png */,
 				D4591AF719C838EA007F8E5C /* r_B@2x.png */,
@@ -1001,28 +997,12 @@
 			children = (
 				D4591B5219C861FA007F8E5C /* BVUnderlineButton.h */,
 				D4591B5319C861FA007F8E5C /* BVUnderlineButton.m */,
+				D4591D0619C96D02007F8E5C /* NumberPadDoneBtn.h */,
+				D4591D0719C96D02007F8E5C /* NumberPadDoneBtn.m */,
 				D4591B5419C861FA007F8E5C /* WebViewController.h */,
 				D4591B5519C861FA007F8E5C /* WebViewController.m */,
-				D4591B5619C861FA007F8E5C /* XYPieChart.h */,
-				D4591B5719C861FA007F8E5C /* XYPieChart.m */,
 			);
 			name = CustomView;
-			sourceTree = "<group>";
-		};
-		D481EBBC198B30DE001CAA8E /* Question */ = {
-			isa = PBXGroup;
-			children = (
-				D4591C8419C86963007F8E5C /* AddQuestionViewController.h */,
-				D4591C8519C86963007F8E5C /* AddQuestionViewController.m */,
-				D4591C8619C86963007F8E5C /* AddQuestionViewController.xib */,
-				D4591C8719C86963007F8E5C /* EditQuestionViewController.h */,
-				D4591C8819C86963007F8E5C /* EditQuestionViewController.m */,
-				D4591C8919C86963007F8E5C /* EditQuestionViewController.xib */,
-				D4591C8A19C86963007F8E5C /* QuestionListViewController.h */,
-				D4591C8B19C86963007F8E5C /* QuestionListViewController.m */,
-				D4591C8C19C86963007F8E5C /* QuestionListViewController.xib */,
-			);
-			name = Question;
 			sourceTree = "<group>";
 		};
 		D485A09D1878343A00F9561B /* ProfileEdit */ = {
@@ -1150,23 +1130,19 @@
 		D4B56009196BE441005CFE30 /* Clicker */ = {
 			isa = PBXGroup;
 			children = (
+				D4591D0C19CA80C2007F8E5C /* ClickerCRUDViewController.h */,
+				D4591D0D19CA80C2007F8E5C /* ClickerCRUDViewController.m */,
 				D4591CA219C86987007F8E5C /* ClickerDetailListViewController.h */,
 				D4591CA319C86987007F8E5C /* ClickerDetailListViewController.m */,
 				D4591CA419C86987007F8E5C /* ClickerDetailListViewController.xib */,
 				D4591CA519C86987007F8E5C /* ClickerDetailViewController.h */,
 				D4591CA619C86987007F8E5C /* ClickerDetailViewController.m */,
+				D4591CA719C86987007F8E5C /* ClickerDetailViewController.xib */,
 				D4591CF719C93506007F8E5C /* ClickerOptionViewController.h */,
 				D4591CF819C93506007F8E5C /* ClickerOptionViewController.m */,
-				D4591CA719C86987007F8E5C /* ClickerDetailViewController.xib */,
 				D4591CA819C86987007F8E5C /* ClickerQuestionViewController.h */,
 				D4591CA919C86987007F8E5C /* ClickerQuestionViewController.m */,
 				D4591CAA19C86987007F8E5C /* ClickerQuestionViewController.xib */,
-				D4591CAB19C86987007F8E5C /* CreateClickerViewController.h */,
-				D4591CAC19C86987007F8E5C /* CreateClickerViewController.m */,
-				D4591CAD19C86987007F8E5C /* CreateClickerViewController.xib */,
-				D4591CAE19C86987007F8E5C /* EditClickerViewController.h */,
-				D4591CAF19C86987007F8E5C /* EditClickerViewController.m */,
-				D4591CB019C86987007F8E5C /* EditClickerViewController.xib */,
 			);
 			name = Clicker;
 			sourceTree = "<group>";
@@ -1303,7 +1279,6 @@
 				D4591B2A19C838EA007F8E5C /* late@2x.png in Resources */,
 				D4591ACE19C83404007F8E5C /* x@2x.png in Resources */,
 				D4591BCD19C8663A007F8E5C /* GuideCourseCreateViewController.xib in Resources */,
-				D4591C9019C86963007F8E5C /* EditQuestionViewController.xib in Resources */,
 				D4591B3F19C838EA007F8E5C /* small_attendance_silver@2x.png in Resources */,
 				D4591AC719C83404007F8E5C /* noticeicon_gd@2x.png in Resources */,
 				D4591B1A19C838EA007F8E5C /* big_check@2x.png in Resources */,
@@ -1329,8 +1304,8 @@
 				D4591C0B19C868DB007F8E5C /* ProfileEmailEditViewController.xib in Resources */,
 				D4591B2B19C838EA007F8E5C /* menu@2x.png in Resources */,
 				D4591B2519C838EA007F8E5C /* D@2x.png in Resources */,
-				D4591C9219C86963007F8E5C /* QuestionListViewController.xib in Resources */,
 				D4591B1819C838EA007F8E5C /* big_abscent@2x.png in Resources */,
+				D4591D0519C962C0007F8E5C /* NumberOptionCell.xib in Resources */,
 				D4591C1119C868DB007F8E5C /* ProfileUpdatePassViewController.xib in Resources */,
 				D4591B3A19C838EA007F8E5C /* setting@2x.png in Resources */,
 				D4591B1319C838EA007F8E5C /* attendanceringnonalpha@2x.png in Resources */,
@@ -1351,9 +1326,9 @@
 				D4591ACA19C83404007F8E5C /* start_icon@2x.png in Resources */,
 				D4591BFD19C8688F007F8E5C /* SettingViewController.xib in Resources */,
 				D4591ACD19C83404007F8E5C /* x_black@2x.png in Resources */,
-				D4591CBA19C86987007F8E5C /* EditClickerViewController.xib in Resources */,
 				D4591CDD19C869AC007F8E5C /* SchoolCreateViewController.xib in Resources */,
 				D4591BCF19C8663A007F8E5C /* GuidePageViewController.xib in Resources */,
+				D4591CFE19C946E9007F8E5C /* OptionCell.xib in Resources */,
 				D4591B2F19C838EA007F8E5C /* profile@2x.png in Resources */,
 				D4591BE019C86645007F8E5C /* ForgotPassViewController.xib in Resources */,
 				D4591B2319C838EA007F8E5C /* close_eye@2x.png in Resources */,
@@ -1366,6 +1341,7 @@
 				D4591B0D19C838EA007F8E5C /* absent@2x.png in Resources */,
 				D4591CED19C869BC007F8E5C /* GradeViewController.xib in Resources */,
 				D4591C6819C86907007F8E5C /* PasswordCell.xib in Resources */,
+				D4591D0019C948AA007F8E5C /* option_check@2x.png in Resources */,
 				D4591B4419C838EA007F8E5C /* small_notice@2x.png in Resources */,
 				D4591B2419C838EA007F8E5C /* d_clicked@2x.png in Resources */,
 				D4591B1D19C838EA007F8E5C /* bluetooth@2x.png in Resources */,
@@ -1394,8 +1370,6 @@
 				D4591B1719C838EA007F8E5C /* back@2x.png in Resources */,
 				D4591B2019C838EA007F8E5C /* C@2x.png in Resources */,
 				D4591C1619C868F2007F8E5C /* CourseDetailHeaderView.xib in Resources */,
-				D4591C8E19C86963007F8E5C /* AddQuestionViewController.xib in Resources */,
-				D4591CB819C86987007F8E5C /* CreateClickerViewController.xib in Resources */,
 				D4591C0D19C868DB007F8E5C /* ProfileIdentityEditViewController.xib in Resources */,
 				D4591C5C19C86907007F8E5C /* ChooseTypeCell.xib in Resources */,
 				D4591AC819C83404007F8E5C /* poll_bg@2x.png in Resources */,
@@ -1496,9 +1470,7 @@
 				D4591B9E19C863FE007F8E5C /* KeychainItemWrapper.m in Sources */,
 				D4591BFA19C8688F007F8E5C /* NoCourseViewController.m in Sources */,
 				D4591C7919C86907007F8E5C /* StudentInfoCell.m in Sources */,
-				D4591CB919C86987007F8E5C /* EditClickerViewController.m in Sources */,
 				D4591CEE19C869BC007F8E5C /* ManagerViewController.m in Sources */,
-				D4591CB719C86987007F8E5C /* CreateClickerViewController.m in Sources */,
 				D4591CD619C869AC007F8E5C /* CourseAttendViewController.m in Sources */,
 				D4591C9E19C86977007F8E5C /* NoticeDetailListViewController.m in Sources */,
 				D4591C9C19C86977007F8E5C /* CreateNoticeViewController.m in Sources */,
@@ -1526,10 +1498,10 @@
 				D4591CF919C93506007F8E5C /* ClickerOptionViewController.m in Sources */,
 				D4591B5F19C8634F007F8E5C /* BTAPIs.m in Sources */,
 				D4591C6119C86907007F8E5C /* GradeCell.m in Sources */,
+				D4591CFD19C946E9007F8E5C /* OptionCell.m in Sources */,
 				D4591C0E19C868DB007F8E5C /* ProfileNameEditViewController.m in Sources */,
 				D4591C7319C86907007F8E5C /* SideHeaderViewCell.m in Sources */,
 				D4591CF019C869BC007F8E5C /* StudentListViewController.m in Sources */,
-				D4591C9119C86963007F8E5C /* QuestionListViewController.m in Sources */,
 				D4591CB519C86987007F8E5C /* ClickerQuestionViewController.m in Sources */,
 				D4591B5019C861E6007F8E5C /* UIColor+Bttendance.m in Sources */,
 				D4591C8219C8693B007F8E5C /* ProfileViewController.m in Sources */,
@@ -1556,6 +1528,7 @@
 				D4591B9F19C863FE007F8E5C /* SocketAgent.m in Sources */,
 				D4591BDF19C86645007F8E5C /* ForgotPassViewController.m in Sources */,
 				D4591BA219C8640D007F8E5C /* NSDate+Bttendance.m in Sources */,
+				D4591D0819C96D02007F8E5C /* NumberPadDoneBtn.m in Sources */,
 				D4591C6D19C86907007F8E5C /* QuestionCell.m in Sources */,
 				D4591CD819C869AC007F8E5C /* CourseCreateViewController.m in Sources */,
 				D4591C6519C86907007F8E5C /* NotificationCell.m in Sources */,
@@ -1563,21 +1536,20 @@
 				D4591C5A19C86907007F8E5C /* ChooseSchoolCell.m in Sources */,
 				D4591B8219C86376007F8E5C /* Error.m in Sources */,
 				D4591C1519C868F2007F8E5C /* CourseDetailHeaderView.m in Sources */,
-				D4591C8D19C86963007F8E5C /* AddQuestionViewController.m in Sources */,
 				D4591CB119C86987007F8E5C /* ClickerDetailListViewController.m in Sources */,
 				D4591CB319C86987007F8E5C /* ClickerDetailViewController.m in Sources */,
 				D4591B8319C86376007F8E5C /* Identification.m in Sources */,
 				D4591C7719C86907007F8E5C /* SignButtonCell.m in Sources */,
 				D4591C6F19C86907007F8E5C /* SchoolInfoCell.m in Sources */,
 				D4591B7E19C86376007F8E5C /* Clicker.m in Sources */,
+				D4591D0419C962C0007F8E5C /* NumberOptionCell.m in Sources */,
 				D4591B8819C86376007F8E5C /* School.m in Sources */,
 				D4591C7B19C86907007F8E5C /* TextCommentCell.m in Sources */,
-				D4591B5A19C861FA007F8E5C /* XYPieChart.m in Sources */,
 				D4591B9D19C863FE007F8E5C /* BTUUID.m in Sources */,
 				D4591B8619C86376007F8E5C /* PushNoti.m in Sources */,
 				D4591BDD19C86645007F8E5C /* CatchPointViewController.m in Sources */,
-				D4591C8F19C86963007F8E5C /* EditQuestionViewController.m in Sources */,
 				D4591B8019C86376007F8E5C /* Device.m in Sources */,
+				D4591D0E19CA80C2007F8E5C /* ClickerCRUDViewController.m in Sources */,
 				D4591BCE19C8663A007F8E5C /* GuidePageViewController.m in Sources */,
 				D4591C5B19C86907007F8E5C /* ChooseTypeCell.m in Sources */,
 				D4591BCC19C8663A007F8E5C /* GuideCourseCreateViewController.m in Sources */,

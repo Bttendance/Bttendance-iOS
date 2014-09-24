@@ -20,14 +20,13 @@
 #import "User.h"
 #import "NSDate+Bttendance.h"
 #import "PostCell.h"
-#import "ClickerCell.h"
 
 #import "GuidePostCell.h"
 #import "WebViewController.h"
 #import "GuideCourseCreateViewController.h"
 #import "GuideCourseAttendViewController.h"
 
-#import "CreateClickerViewController.h"
+#import "ClickerCRUDViewController.h"
 #import "CreateAttdViewController.h"
 #import "CreateNoticeViewController.h"
 
@@ -62,14 +61,14 @@
         courseSetting.simpleCourse = simpleCourse;
         [self.navigationController pushViewController:courseSetting animated:YES];
     } else if (self.auth && !simpleCourse.opened) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:NSLocalizedString(@"Open Course", nil), nil];
         [actionSheet showInView:self.view];
     } else {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                    destructiveButtonTitle:NSLocalizedString(@"Unjoin Course", nil)
@@ -105,7 +104,7 @@
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [menuButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
-    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
 
@@ -129,7 +128,7 @@
     if (!simpleCourse.opened) {
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setBackgroundImage:[UIImage imageNamed:@"back@2x.png"] forState:UIControlStateNormal];
+        [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [self.navigationItem setLeftBarButtonItem:backButtonItem];
         self.navigationItem.leftItemsSupplementBackButton = NO;
@@ -138,7 +137,7 @@
     if (simpleCourse.opened || self.auth) {
         UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
-        [settingButton setBackgroundImage:[UIImage imageNamed:@"setting@2x.png"] forState:UIControlStateNormal];
+        [settingButton setBackgroundImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
         UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
         [self.navigationItem setRightBarButtonItem:plusButtonItem];
     }
@@ -314,7 +313,7 @@
     user = [BTUserDefault getUser];
     [self.tableview reloadData];
     [self refreshFeed:nil];
-    
+    [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", self.simpleCourse.id] success:nil failure:nil];
 }
 
 - (void)refreshFeed:(id)sender {
@@ -828,17 +827,13 @@
         BlinkView *blinkView_e = [[BlinkView alloc] initWithView:cell.blink_e andCount:count];
         [[BTBlink sharedInstance] addBlinkView:blinkView_e];
         
-        [cell.ring_a setImage:[UIImage imageNamed:@"a_clicked@2x.png"] forState:UIControlStateHighlighted];
-        [cell.ring_b setImage:[UIImage imageNamed:@"b_clicked@2x.png"] forState:UIControlStateHighlighted];
-        [cell.ring_c setImage:[UIImage imageNamed:@"c_clicked@2x.png"] forState:UIControlStateHighlighted];
-        [cell.ring_d setImage:[UIImage imageNamed:@"d_clicked@2x.png"] forState:UIControlStateHighlighted];
-        [cell.ring_e setImage:[UIImage imageNamed:@"e_clicked@2x.png"] forState:UIControlStateHighlighted];
+        [cell.ring_a setImage:[UIImage imageNamed:@"a_clicked.png"] forState:UIControlStateHighlighted];
+        [cell.ring_b setImage:[UIImage imageNamed:@"b_clicked.png"] forState:UIControlStateHighlighted];
+        [cell.ring_c setImage:[UIImage imageNamed:@"c_clicked.png"] forState:UIControlStateHighlighted];
+        [cell.ring_d setImage:[UIImage imageNamed:@"d_clicked.png"] forState:UIControlStateHighlighted];
+        [cell.ring_e setImage:[UIImage imageNamed:@"e_clicked.png"] forState:UIControlStateHighlighted];
         
-        [cell.ring_a addTarget:self action:@selector(click_a:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.ring_b addTarget:self action:@selector(click_b:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.ring_c addTarget:self action:@selector(click_c:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.ring_d addTarget:self action:@selector(click_d:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.ring_e addTarget:self action:@selector(click_e:) forControlEvents:UIControlEventTouchUpInside];
+        cell.delegate = self;
         
         return cell;
     } else { // Clicker Normal
@@ -898,7 +893,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [[BTBlink sharedInstance] removeView:cell.check_icon];
-        [cell.check_icon setImage:[UIImage imageNamed:@"clickerring@2x.png"]];
+        [cell.check_icon setImage:[UIImage imageNamed:@"clickerring.png"]];
         cell.check_icon.frame = CGRectMake(29, 32, 52, 52);
         [cell.check_overlay setImage:nil];
         return cell;
@@ -933,9 +928,9 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell.check_icon setImage:[UIImage imageNamed:@"attendancecheckcyan@2x.png"]];
+    [cell.check_icon setImage:[UIImage imageNamed:@"attendancecheckcyan.png"]];
     cell.check_icon.frame = CGRectMake(29, 25, 52, 52);
-    [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha@2x.png"]];
+    [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha.png"]];
     
     if (self.auth) {
         NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
@@ -1051,7 +1046,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [[BTBlink sharedInstance] removeView:cell.check_icon];
-    [cell.check_icon setImage:[UIImage imageNamed:@"notice@2x.png"]];
+    [cell.check_icon setImage:[UIImage imageNamed:@"notice.png"]];
     if (height > 17)
         cell.check_icon.frame = CGRectMake(29, 32, 52, 52);
     else
@@ -1080,7 +1075,7 @@
     cell.Message.numberOfLines = 0;
     [cell.Message sizeToFit];
     cell.Message.frame = CGRectMake(93, 50 - cell.Message.frame.size.height / 2, 200, cell.Message.frame.size.height);
-    [cell.check_icon setImage:[UIImage imageNamed:@"bttendance@2x.png"]];
+    [cell.check_icon setImage:[UIImage imageNamed:@"bttendance.png"]];
     
     return cell;
 }
@@ -1157,47 +1152,9 @@
 }
 
 #pragma Click Event for Clicker
-- (void)click_a:(id)sender {
-    UIButton *send = (UIButton *) sender;
-    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
-                      choice:@"1"
-                     success:^(Clicker *clicker) {
-                     } failure:^(NSError *error) {
-                     }];
-}
-- (void)click_b:(id)sender {
-    UIButton *send = (UIButton *) sender;
-    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
-                      choice:@"2"
-                     success:^(Clicker *clicker) {
-                     } failure:^(NSError *error) {
-                     }];
-}
-- (void)click_c:(id)sender {
-    UIButton *send = (UIButton *) sender;
-    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
-                      choice:@"3"
-                     success:^(Clicker *clicker) {
-                     } failure:^(NSError *error) {
-                     }];
-}
-- (void)click_d:(id)sender {
-    UIButton *send = (UIButton *) sender;
-    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
-                      choice:@"4"
-                     success:^(Clicker *clicker) {
-                     } failure:^(NSError *error) {
-                     }];
-}
-- (void)click_e:(id)sender {
-    UIButton *send = (UIButton *) sender;
-    ClickerCell *cell = (ClickerCell *) send.superview.superview.superview;
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%d", (int)cell.post.clicker.id]
-                      choice:@"5"
+- (void)chosen:(NSInteger)choice andPostId:(NSInteger)post_id {
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", post_id]
+                      choice:[NSString stringWithFormat:@"%ld", choice]
                      success:^(Clicker *clicker) {
                      } failure:^(NSError *error) {
                      }];
@@ -1252,8 +1209,7 @@
 
 #pragma Actions
 - (void)start_clicker {
-    CreateClickerViewController *clickerView = [[CreateClickerViewController alloc] initWithNibName:@"CreateClickerViewController" bundle:nil];
-    clickerView.cid = [NSString stringWithFormat:@"%ld", (long)simpleCourse.id];
+    ClickerCRUDViewController *clickerView = [[ClickerCRUDViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:clickerView animated:YES];
 }
 
