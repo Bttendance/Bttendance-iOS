@@ -332,9 +332,16 @@
     else if (indexPath.row > closedCourses + employedSchools + 6 && indexPath.row < closedCourses + employedSchools + enrolledSchools + 7) {
         NSInteger index = indexPath.row - closedCourses - employedSchools - 7;
         SimpleSchool *school = self.user.enrolled_schools[index];
-        for (int j = 0; j < [self.user.identifications count]; j++)
-            if (((SimpleIdentification *)self.user.identifications[j]).school == school.id)
-                [self editIdentity:self.user.identifications[j]];
+        BOOL found = NO;
+        for (int j = 0; j < [self.user.identifications count]; j++) {
+            if (((SimpleIdentification *)self.user.identifications[j]).school == school.id) {
+                found = YES;
+                [self editIdentity:self.user.identifications[j] andSchoolID:school.id];
+            }
+        }
+        
+        if (!found)
+            [self editIdentity:nil andSchoolID:school.id];
     }
 }
 
@@ -367,9 +374,10 @@
     [self.navigationController pushViewController:clickerOption animated:YES];
 }
 
-- (void)editIdentity:(SimpleIdentification *)identification {
+- (void)editIdentity:(SimpleIdentification *)identification andSchoolID:(NSInteger)schoolID {
     ProfileIdentityEditViewController *profileIdentityEditView = [[ProfileIdentityEditViewController alloc] init];
     profileIdentityEditView.identification = identification;
+    profileIdentityEditView.schoolID = schoolID;
     [self.navigationController pushViewController:profileIdentityEditView animated:YES];
 }
 

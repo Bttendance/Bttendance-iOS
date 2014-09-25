@@ -12,6 +12,7 @@
 @interface ProfileIdentityEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property(strong, nonatomic) SimpleIdentification *identification;
+@property(assign) NSInteger schoolID;
 @property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *identity_field;
 
