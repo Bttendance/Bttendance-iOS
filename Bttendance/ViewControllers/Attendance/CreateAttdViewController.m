@@ -82,6 +82,7 @@
     self.nobluetooth.attributedText = nobluetoothStr;
     self.nobluetooth.numberOfLines = 0;
     
+    [self bluetooth:nil];
 }
 
 #pragma NavigationBarAction

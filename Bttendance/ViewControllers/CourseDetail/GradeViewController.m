@@ -49,6 +49,12 @@
         [BTAPIs attendanceGradesWithCourse:cid success:^(NSArray *simpleUsers) {
             data = simpleUsers;
             rowcount = data.count;
+            
+            NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+            }];
+            data = [NSArray arrayWithArray:sorting];
+            
             [self.tableview reloadData];
         } failure:^(NSError *error) {
         }];
@@ -59,6 +65,12 @@
         [BTAPIs clickerGradesWithCourse:cid success:^(NSArray *simpleUsers) {
             data = simpleUsers;
             rowcount = data.count;
+            
+            NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+            }];
+            data = [NSArray arrayWithArray:sorting];
+            
             [self.tableview reloadData];
         } failure:^(NSError *error) {
         }];

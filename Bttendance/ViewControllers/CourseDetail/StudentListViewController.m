@@ -52,6 +52,12 @@
     [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.course.id]
                       success:^(NSArray *simpleUsers) {
                           data = simpleUsers;
+                          
+                          NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                              return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+                          }];
+                          data = [NSArray arrayWithArray:sorting];
+                          
                           [self.tableview reloadData];
                       } failure:^(NSError *error) {
                       }];
