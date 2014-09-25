@@ -77,7 +77,7 @@
         label.frame = CGRectMake(160 - width / 2 , 24 - height / 2, width, height);
         [self.detailBt addSubview:label];
     } else {
-        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
+        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - 64);
     }
 }
 
@@ -113,7 +113,7 @@
     NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
     CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){196, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     
-    return MAX(102, 42 + MessageLabelSize.size.height);
+    return MAX(160, 100 + MessageLabelSize.size.height);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,19 +126,48 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    Question *question = [self.questions objectAtIndex:indexPath.row];
+    
+    NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d분간 답변을 수집합니다.", nil), (int)(question.progress_time/60)];
+    NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
+    if (question.show_info_on_select)
+        showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다.", nil)];
+    else
+        showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다.", nil)];
+    if ([@"professor" isEqualToString:question.detail_privacy])
+        detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 강의자만 상세 결과를 볼 수 있습니다.", nil)];
+    else if ([@"all" isEqualToString:question.detail_privacy])
+        detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 모두 상세 결과를 볼 수 있습니다.", nil)];
+    else
+        detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
+    
+    NSString *message = [NSString stringWithFormat:@"%@\n%@\n%@", detailPrivacyMessage, showInfoOnSelectMessage, progressTimeMessage];
+    NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:message];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:[NSString stringWithFormat:NSLocalizedString(@"%d분간", nil), (int)(question.progress_time/60)]]];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"진행되는 동안", nil)]];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"끝난 후에야", nil)]];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"강의자만", nil)]];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"모두", nil)]];
+    [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"아무도", nil)]];
+    
+    cell.detail.attributedText = attributed;
+    cell.detail.numberOfLines = 0;
+    
     cell.message.frame = CGRectMake(25, 21, 196, 60);
-    cell.message.text = ((Question *)[self.questions objectAtIndex:indexPath.row]).message;
+    cell.message.text = question.message;
     cell.message.numberOfLines = 0;
     [cell.message sizeToFit];
     
     cell.choice.text = [NSString stringWithFormat:@"%ld", (long)((Question *)[self.questions objectAtIndex:indexPath.row]).choice_count];
     
-    NSInteger height = MAX(102, 42 + cell.message.frame.size.height);
+    NSInteger height = MAX(160, 100 + cell.message.frame.size.height);
     cell.background_bg.frame = CGRectMake(11, 7, 298, height - 14);
     cell.selected_bg.frame = CGRectMake(11, 7, 298, height - 14);
-    cell.choice_bg.frame = CGRectMake(239, 25 + (height - 102)/2, 52, 52);
-    cell.choice_inner_bg.frame = CGRectMake(241, 27 + (height - 102)/2, 48, 48);
-    cell.choice.frame = CGRectMake(241, 27 + (height - 102)/2, 48, 48);
+    cell.choice_bg.frame = CGRectMake(239, 25 + (height - 160)/2, 52, 52);
+    cell.choice_inner_bg.frame = CGRectMake(241, 27 + (height - 160)/2, 48, 48);
+    cell.choice.frame = CGRectMake(241, 27 + (height - 160)/2, 48, 48);
+    cell.detail.frame = CGRectMake(20, 100 + height - 160, 280, 0);
+    [cell.detail sizeToFit];
     
     return cell;
 }

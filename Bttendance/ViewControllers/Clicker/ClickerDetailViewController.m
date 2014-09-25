@@ -87,7 +87,7 @@
         [self.detailBt addSubview:label];
         [self.detailBt addSubview:image];
     } else {
-        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
+        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - 64);
     }
     
     self.chart = [[XYPieChart alloc] initWithFrame:CGRectMake(63, 3, 194, 194)];

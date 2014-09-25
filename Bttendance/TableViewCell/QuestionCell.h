@@ -13,6 +13,7 @@
 + (QuestionCell *)cellFromNibNamed;
 
 @property(weak, nonatomic) IBOutlet UIView *background_bg;
+@property(weak, nonatomic) IBOutlet UILabel *detail;
 @property(weak, nonatomic) IBOutlet UILabel *message;
 @property(weak, nonatomic) IBOutlet UIView *choice_bg;
 @property(weak, nonatomic) IBOutlet UIView *choice_inner_bg;
