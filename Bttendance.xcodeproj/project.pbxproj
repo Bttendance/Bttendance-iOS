@@ -245,8 +245,6 @@
 		D4591CFD19C946E9007F8E5C /* OptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591CFB19C946E9007F8E5C /* OptionCell.m */; };
 		D4591CFE19C946E9007F8E5C /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591CFC19C946E9007F8E5C /* OptionCell.xib */; };
 		D4591D0019C948AA007F8E5C /* option_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591CFF19C948AA007F8E5C /* option_check@2x.png */; };
-		D4591D0419C962C0007F8E5C /* NumberOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0219C962C0007F8E5C /* NumberOptionCell.m */; };
-		D4591D0519C962C0007F8E5C /* NumberOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */; };
 		D4591D0819C96D02007F8E5C /* NumberPadDoneBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0719C96D02007F8E5C /* NumberPadDoneBtn.m */; };
 		D4591D0E19CA80C2007F8E5C /* ClickerCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0D19CA80C2007F8E5C /* ClickerCRUDViewController.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
@@ -596,9 +594,6 @@
 		D4591CFB19C946E9007F8E5C /* OptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionCell.m; path = TableViewCell/OptionCell.m; sourceTree = "<group>"; };
 		D4591CFC19C946E9007F8E5C /* OptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionCell.xib; path = TableViewCell/OptionCell.xib; sourceTree = "<group>"; };
 		D4591CFF19C948AA007F8E5C /* option_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "option_check@2x.png"; path = "Image/Icons/option_check@2x.png"; sourceTree = "<group>"; };
-		D4591D0119C962C0007F8E5C /* NumberOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumberOptionCell.h; path = TableViewCell/NumberOptionCell.h; sourceTree = "<group>"; };
-		D4591D0219C962C0007F8E5C /* NumberOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumberOptionCell.m; path = TableViewCell/NumberOptionCell.m; sourceTree = "<group>"; };
-		D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NumberOptionCell.xib; path = TableViewCell/NumberOptionCell.xib; sourceTree = "<group>"; };
 		D4591D0619C96D02007F8E5C /* NumberPadDoneBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumberPadDoneBtn.h; path = CustomView/NumberPadDoneBtn.h; sourceTree = "<group>"; };
 		D4591D0719C96D02007F8E5C /* NumberPadDoneBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumberPadDoneBtn.m; path = CustomView/NumberPadDoneBtn.m; sourceTree = "<group>"; };
 		D4591D0C19CA80C2007F8E5C /* ClickerCRUDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClickerCRUDViewController.h; path = ViewControllers/Clicker/ClickerCRUDViewController.h; sourceTree = "<group>"; };
@@ -801,9 +796,6 @@
 				D4591C2E19C86907007F8E5C /* NotificationCell.h */,
 				D4591C2F19C86907007F8E5C /* NotificationCell.m */,
 				D4591C3019C86907007F8E5C /* NotificationCell.xib */,
-				D4591D0119C962C0007F8E5C /* NumberOptionCell.h */,
-				D4591D0219C962C0007F8E5C /* NumberOptionCell.m */,
-				D4591D0319C962C0007F8E5C /* NumberOptionCell.xib */,
 				D4591CFA19C946E9007F8E5C /* OptionCell.h */,
 				D4591CFB19C946E9007F8E5C /* OptionCell.m */,
 				D4591CFC19C946E9007F8E5C /* OptionCell.xib */,
@@ -1305,7 +1297,6 @@
 				D4591B2B19C838EA007F8E5C /* menu@2x.png in Resources */,
 				D4591B2519C838EA007F8E5C /* D@2x.png in Resources */,
 				D4591B1819C838EA007F8E5C /* big_abscent@2x.png in Resources */,
-				D4591D0519C962C0007F8E5C /* NumberOptionCell.xib in Resources */,
 				D4591C1119C868DB007F8E5C /* ProfileUpdatePassViewController.xib in Resources */,
 				D4591B3A19C838EA007F8E5C /* setting@2x.png in Resources */,
 				D4591B1319C838EA007F8E5C /* attendanceringnonalpha@2x.png in Resources */,
@@ -1542,7 +1533,6 @@
 				D4591C7719C86907007F8E5C /* SignButtonCell.m in Sources */,
 				D4591C6F19C86907007F8E5C /* SchoolInfoCell.m in Sources */,
 				D4591B7E19C86376007F8E5C /* Clicker.m in Sources */,
-				D4591D0419C962C0007F8E5C /* NumberOptionCell.m in Sources */,
 				D4591B8819C86376007F8E5C /* School.m in Sources */,
 				D4591C7B19C86907007F8E5C /* TextCommentCell.m in Sources */,
 				D4591B9D19C863FE007F8E5C /* BTUUID.m in Sources */,

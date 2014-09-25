@@ -446,7 +446,7 @@
             label.textColor = [UIColor silver:1.0];
             label.font = [UIFont systemFontOfSize:12];
             
-            NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d초간 답변을 수집합니다.", nil), self.progressTime];
+            NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d분간 답변을 수집합니다.", nil), (int)(self.progressTime/60)];
             NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
             if (self.showInfoOnSelect)
                 showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다.", nil)];
@@ -459,9 +459,9 @@
             else
                 detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
             
-            NSString *message = [NSString stringWithFormat:@"%@\n%@\n%@", progressTimeMessage, showInfoOnSelectMessage, detailPrivacyMessage];
+            NSString *message = [NSString stringWithFormat:@"%@\n%@\n%@", detailPrivacyMessage, showInfoOnSelectMessage, progressTimeMessage];
             NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:message];
-            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:[NSString stringWithFormat:NSLocalizedString(@"%d초간", nil), self.progressTime]]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:[NSString stringWithFormat:NSLocalizedString(@"%d분간", nil), (int)(self.progressTime/60)]]];
             [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"진행되는 동안", nil)]];
             [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"끝난 후에야", nil)]];
             [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"강의자만", nil)]];
@@ -659,6 +659,9 @@
 #pragma mark - ClickerQuestionViewControllerDelegate
 - (void)chosenQuestion:(Question *)chosen {
     self.message = chosen.message;
+    self.textview.text = chosen.message;
+    if (chosen.message != nil && chosen.message.length != 0)
+        self.placeholder.hidden = YES;
     self.choiceCount = chosen.choice_count;
     self.progressTime = chosen.progress_time;
     self.showInfoOnSelect = chosen.show_info_on_select;

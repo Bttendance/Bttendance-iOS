@@ -80,7 +80,7 @@
     if (indexPath.row == 8)
         return 33;
     
-    return 46;
+    return 47;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

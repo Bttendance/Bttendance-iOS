@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, OptionType) {
 - (void)chosenOptionTime:(NSInteger)progressTime andOnSelect:(BOOL)showInfoOnSelect andDetail:(NSString *)detailPrivacy;
 @end
 
-@interface ClickerOptionViewController : UITableViewController <UITextFieldDelegate>
+@interface ClickerOptionViewController : UITableViewController
 
 @property (nonatomic, weak) id<ClickerOptionViewControllerDelegate> delegate;
 @property(assign) NSInteger progressTime;

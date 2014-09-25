@@ -86,7 +86,7 @@
         || indexPath.row == 3
         || indexPath.row == 4
         || indexPath.row == closedCourses + employedSchools + enrolledSchools + 8)
-        return 46;
+        return 47;
     
     if (indexPath.row == 2)
         return 60;

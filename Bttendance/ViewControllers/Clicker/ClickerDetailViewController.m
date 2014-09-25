@@ -56,13 +56,14 @@
     
     self.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20);
     
-    if (self.auth) {
+    if ([@"all" isEqualToString:self.post.clicker.detail_privacy]
+        || ([@"professor" isEqualToString:self.post.clicker.detail_privacy] && self.auth)) {
         UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [settingButton addTarget:self action:@selector(setting:) forControlEvents:UIControlEventTouchUpInside];
         [settingButton setBackgroundImage:[UIImage imageNamed:@"setting.png"] forState:UIControlStateNormal];
         UIBarButtonItem *plusButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
         [self.navigationItem setRightBarButtonItem:plusButtonItem];
-        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 46);
+        self.tableview.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 46 - 64);
         self.detailBt.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20 - 64 - 46, 320, 46);
         [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
         [self.detailBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateHighlighted];
@@ -135,9 +136,9 @@
 #pragma UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.auth)
-        return 8;
-    else
         return 9;
+    else
+        return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,7 +179,12 @@
         case 7:
             return 20;
         case 8:
-            return 40;
+            if (self.auth)
+                return 62;
+            else
+                return 40;
+        case 9:
+            return 62;
         default:
             return 0;
     }
@@ -412,7 +418,8 @@
             cell.backgroundColor = [UIColor white:1];
             return cell;
         }
-        case 8: {
+        case 8:
+        if (!self.auth) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor white:1];
@@ -430,9 +437,39 @@
             return cell;
         }
         default: {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 62)];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [UIColor white:1];
+            cell.backgroundColor = [UIColor grey:1.0];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 11, 288, 36)];
+            label.textColor = [UIColor silver:1.0];
+            label.font = [UIFont systemFontOfSize:12];
+            
+            NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d분간 답변을 수집합니다.", nil), (int)(self.post.clicker.progress_time/60)];
+            NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
+            if (self.post.clicker.show_info_on_select)
+                showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다.", nil)];
+            else
+                showInfoOnSelectMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다.", nil)];
+            if ([@"professor" isEqualToString:self.post.clicker.detail_privacy])
+                detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 강의자만 상세 결과를 볼 수 있습니다.", nil)];
+            else if ([@"all" isEqualToString:self.post.clicker.detail_privacy])
+                detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 모두 상세 결과를 볼 수 있습니다.", nil)];
+            else
+                detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
+            
+            NSString *message = [NSString stringWithFormat:@"%@\n%@\n%@", detailPrivacyMessage, showInfoOnSelectMessage, progressTimeMessage];
+            NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:message];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:[NSString stringWithFormat:NSLocalizedString(@"%d분간", nil), (int)(self.post.clicker.progress_time/60)]]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"진행되는 동안", nil)]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"끝난 후에야", nil)]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"강의자만", nil)]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"모두", nil)]];
+            [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[message rangeOfString:NSLocalizedString(@"아무도", nil)]];
+            
+            label.attributedText = attributed;
+            label.numberOfLines = 0;
+            [label sizeToFit];
+            [cell addSubview:label];
             return cell;
         }
     }
