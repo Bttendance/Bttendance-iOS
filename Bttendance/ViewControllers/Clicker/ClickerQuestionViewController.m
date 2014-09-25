@@ -12,6 +12,7 @@
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "QuestionCell.h"
+#import "ClickerCRUDViewController.h"
 
 @interface ClickerQuestionViewController ()
 
@@ -38,7 +39,10 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor white:1.0];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Saved Questions", @"");
+    if (self.showDetailBt)
+        titlelabel.text = NSLocalizedString(@"Clicker Questions", @"");
+    else
+        titlelabel.text = NSLocalizedString(@"Saved Questions", @"");
     [titlelabel sizeToFit];
     
     self.questions = [NSArray array];
@@ -142,8 +146,22 @@
 #pragma UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.delegate chosenQuestion:(Question *)[self.questions objectAtIndex:indexPath.row]];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.showDetailBt) {
+        ClickerCRUDViewController *clickerView = [[ClickerCRUDViewController alloc] initWithStyle:UITableViewStylePlain];
+        clickerView.clickerType = QUESTION_EDIT;
+        clickerView.question = [self.questions objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:clickerView animated:YES];
+    } else {
+        [self.delegate chosenQuestion:(Question *)[self.questions objectAtIndex:indexPath.row]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - IBAction
+-(IBAction)showDetail:(id)sender {
+    ClickerCRUDViewController *clickerView = [[ClickerCRUDViewController alloc] initWithStyle:UITableViewStylePlain];
+    clickerView.clickerType = QUESTION_CREATE;
+    [self.navigationController pushViewController:clickerView animated:YES];
 }
 
 @end

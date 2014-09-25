@@ -43,10 +43,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *typeButton5;
 
 @property (assign) int choice;
+@property (assign) BOOL editable;
 
 -(IBAction)chooseType2:(id)sender;
 -(IBAction)chooseType3:(id)sender;
 -(IBAction)chooseType4:(id)sender;
 -(IBAction)chooseType5:(id)sender;
+-(void)updateChoice;
 
 @end

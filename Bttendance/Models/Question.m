@@ -25,11 +25,6 @@
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
-        self.a_option_text = [dictionary objectForKey:@"a_option_text"];
-        self.b_option_text = [dictionary objectForKey:@"b_option_text"];
-        self.c_option_text = [dictionary objectForKey:@"c_option_text"];
-        self.d_option_text = [dictionary objectForKey:@"d_option_text"];
-        self.e_option_text = [dictionary objectForKey:@"e_option_text"];
     }
     return self;
 }
@@ -53,11 +48,6 @@
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
-        self.a_option_text = [dictionary objectForKey:@"a_option_text"];
-        self.b_option_text = [dictionary objectForKey:@"b_option_text"];
-        self.c_option_text = [dictionary objectForKey:@"c_option_text"];
-        self.d_option_text = [dictionary objectForKey:@"d_option_text"];
-        self.e_option_text = [dictionary objectForKey:@"e_option_text"];
         self.owner = [[SimpleUser alloc] initWithDictionary:[dictionary objectForKey:@"owner"]];
     }
     return self;

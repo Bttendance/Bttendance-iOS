@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, ClickerType) {
     QUESTION_EDIT
 };
 
-@interface ClickerCRUDViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, SLExpandableTableViewDatasource, SLExpandableTableViewDelegate, ChooseCountCellDelegate, ClickerOptionViewControllerDelegate, ClickerQuestionViewControllerDelegate>
+@interface ClickerCRUDViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate, SLExpandableTableViewDatasource, SLExpandableTableViewDelegate, ChooseCountCellDelegate, ClickerOptionViewControllerDelegate, ClickerQuestionViewControllerDelegate>
 
 @property (assign) ClickerType clickerType;
 @property (strong) Post *post;

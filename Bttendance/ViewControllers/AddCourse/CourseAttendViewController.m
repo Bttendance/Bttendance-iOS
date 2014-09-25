@@ -212,6 +212,10 @@
                 message = [NSString stringWithFormat:NSLocalizedString(@"Before you join course %@, you need to enter your identity", nil), self.attendingCourse.name];
             }
             
+            //iOS8 Bug
+            TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index];
+            [cell.textfield resignFirstResponder];
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
                                                            delegate:self
@@ -240,6 +244,17 @@
     }
     
     if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput) {
+        if ([[alertView textFieldAtIndex:0] text] == nil
+            || [[alertView textFieldAtIndex:0] text].length == 0) {
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertView.title
+                                                            message:alertView.message
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [UIColor navy:0.7];

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -14,11 +15,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-kg-ufV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                        <rect key="frame" x="0.0" y="1" width="320" height="47"/>
                         <color key="backgroundColor" red="0.16078431369999999" green="0.6705882353" blue="0.8862745098" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                     </view>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Option" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-Uz-RJQ">
-                        <rect key="frame" x="14" y="9" width="280" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lb-pd-E6u">
+                        <rect key="frame" x="14" y="11" width="123" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-Uz-RJQ">
+                        <rect key="frame" x="145" y="11" width="149" height="30"/>
                         <color key="tintColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -36,9 +43,11 @@
             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="check" destination="Rcd-Gf-Ohe" id="seV-ij-7MD"/>
+                <outlet property="label" destination="3lb-pd-E6u" id="A1c-zv-UM5"/>
                 <outlet property="selected_bg" destination="3oY-kg-ufV" id="GaX-nA-fRA"/>
                 <outlet property="title" destination="Yz0-Uz-RJQ" id="ILu-tE-Tbz"/>
             </connections>
+            <point key="canvasLocation" x="140" y="148.5"/>
         </tableViewCell>
     </objects>
     <resources>

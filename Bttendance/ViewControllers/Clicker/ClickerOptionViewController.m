@@ -50,7 +50,7 @@
         self.numberOptionCell = [super.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         self.numberOptionCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    self.numberOptionCell.title.text = NSLocalizedString(@"직접 설정", nil);
+    self.numberOptionCell.label.text = NSLocalizedString(@"직접 설정 (단위:초)", nil);
     self.numberPadDoneBtn = [[NumberPadDoneBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     self.numberOptionCell.title.inputAccessoryView = self.numberPadDoneBtn;
     self.numberOptionCell.title.tintColor = [UIColor silver:1.0];

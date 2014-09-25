@@ -13,6 +13,7 @@
 + (NumberOptionCell *)cellFromNibNamed;
 
 @property(weak, nonatomic) IBOutlet UITextField *title;
+@property(weak, nonatomic) IBOutlet UILabel *label;
 @property(weak, nonatomic) IBOutlet UIView *selected_bg;
 @property(weak, nonatomic) IBOutlet UIImageView *check;
 

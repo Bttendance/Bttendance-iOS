@@ -353,7 +353,7 @@
 
 - (void)questions {
     ClickerQuestionViewController *questionView = [[ClickerQuestionViewController alloc] init];
-    questionView.questionType = SHOW;
+    questionView.showDetailBt = YES;
     [self.navigationController pushViewController:questionView animated:YES];
 }
 

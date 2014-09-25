@@ -29,11 +29,6 @@
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
-        self.a_option_text = [dictionary objectForKey:@"a_option_text"];
-        self.b_option_text = [dictionary objectForKey:@"b_option_text"];
-        self.c_option_text = [dictionary objectForKey:@"c_option_text"];
-        self.d_option_text = [dictionary objectForKey:@"d_option_text"];
-        self.e_option_text = [dictionary objectForKey:@"e_option_text"];
         self.post = [[dictionary objectForKey:@"post"] integerValue];
     }
     return self;
@@ -57,11 +52,6 @@
     [keys addObject:@"progress_time"];
     [keys addObject:@"show_info_on_select"];
     [keys addObject:@"detail_privacy"];
-    [keys addObject:@"a_option_text"];
-    [keys addObject:@"b_option_text"];
-    [keys addObject:@"c_option_text"];
-    [keys addObject:@"d_option_text"];
-    [keys addObject:@"e_option_text"];
     [keys addObject:@"post"];
     
     NSMutableArray *objects = [NSMutableArray array];
@@ -80,11 +70,6 @@
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.progress_time]];
     [objects addObject:[NSNumber numberWithBool:clicker.show_info_on_select]];
     [objects addObject:clicker.detail_privacy];
-    [objects addObject:clicker.a_option_text];
-    [objects addObject:clicker.b_option_text];
-    [objects addObject:clicker.c_option_text];
-    [objects addObject:clicker.d_option_text];
-    [objects addObject:clicker.e_option_text];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.post]];
     
     NSDictionary *dictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
@@ -279,11 +264,6 @@
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
-        self.a_option_text = [dictionary objectForKey:@"a_option_text"];
-        self.b_option_text = [dictionary objectForKey:@"b_option_text"];
-        self.c_option_text = [dictionary objectForKey:@"c_option_text"];
-        self.d_option_text = [dictionary objectForKey:@"d_option_text"];
-        self.e_option_text = [dictionary objectForKey:@"e_option_text"];
         self.post = [[SimplePost alloc] initWithDictionary:[dictionary objectForKey:@"post"]];
     }
     return self;

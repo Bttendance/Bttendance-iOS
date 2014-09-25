@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Question.h"
 
-typedef NS_ENUM(NSInteger, QuestionType) {
-    SHOW,
-    LOAD
-};
-
 @protocol ClickerQuestionViewControllerDelegate <NSObject>
 
 @required
@@ -26,7 +21,6 @@ typedef NS_ENUM(NSInteger, QuestionType) {
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property(weak, nonatomic) IBOutlet UIButton *detailBt;
 @property(assign) BOOL showDetailBt;
-@property(assign) QuestionType questionType;
 -(IBAction)showDetail:(id)sender;
 
 @end

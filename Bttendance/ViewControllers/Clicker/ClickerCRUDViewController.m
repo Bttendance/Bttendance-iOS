@@ -10,8 +10,6 @@
 #import "UIColor+Bttendance.h"
 #import "NSDate+Bttendance.h"
 #import "PasswordCell.h"
-#import "NumberOptionCell.h"
-#import "NumberPadDoneBtn.h"
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "BTNotification.h"
@@ -33,12 +31,10 @@
 @property(strong, nonatomic) NSString *dOptionText;
 @property(strong, nonatomic) NSString *eOptionText;
 
+@property(assign) BOOL showKeyboard;
 @property (strong, nonatomic) UITextView *textview;
 @property (strong, nonatomic) UILabel *placeholder;
 @property (strong, nonatomic) UILabel *label;
-
-@property (strong, nonatomic) NumberOptionCell *numberOptionCell;
-@property (strong, nonatomic) NumberPadDoneBtn *numberPadDoneBtn;
 
 @property (strong, nonatomic) User *user;
 
@@ -87,7 +83,22 @@
     [self.navigationItem setLeftBarButtonItem:backButtonItem];
     self.navigationItem.leftItemsSupplementBackButton = NO;
     
-    UIBarButtonItem *start = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Start", nil) style:UIBarButtonItemStyleDone target:self action:@selector(start:)];
+    UIBarButtonItem *start;
+    
+    switch (self.clickerType) {
+        case CLICKER_CREATE:
+            start = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Start", nil)
+                                                     style:UIBarButtonItemStyleDone
+                                                    target:self
+                                                    action:@selector(start:)];
+            break;
+        default:
+            start = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
+                                                     style:UIBarButtonItemStyleDone
+                                                    target:self
+                                                    action:@selector(start:)];
+            break;
+    }
     self.navigationItem.rightBarButtonItem = start;
     
     super.tableView.backgroundColor = [UIColor grey:1.0];
@@ -127,54 +138,43 @@
     self.textview.frame = CGRectMake(14, 8, 292, MAX(100, ceil(self.textview.frame.size.height)));
     self.textview.delegate = self;
     
+    if (self.clickerType != QUESTION_EDIT)
+        self.showKeyboard = YES;
+    else
+        self.showKeyboard = NO;
+    
     self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(19, 16, 292, 20)];
     self.placeholder.font = [UIFont systemFontOfSize:14];
     self.placeholder.textColor = [UIColor silver:0.5];
-    switch (self.clickerType) {
-        case CLICKER_CREATE:
-            break;
-        case CLICKER_EDIT:
-        case QUESTION_CREATE:
-        case QUESTION_EDIT:
-        default:
-            break;
-    }
-    self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [NSDate detailedStringFromDate:[NSDate date]]];
+    if (self.clickerType == CLICKER_CREATE)
+        self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [NSDate detailedStringFromDate:[NSDate date]]];
     self.placeholder.numberOfLines = 0;
     [self.placeholder sizeToFit];
-    
-    static NSString *CellIdentifier = @"NumberOptionCell";
-    self.numberOptionCell = [super.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (self.numberOptionCell == nil) {
-        [super.tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
-        self.numberOptionCell = [super.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        self.numberOptionCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    self.numberPadDoneBtn = [[NumberPadDoneBtn alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    self.numberOptionCell.title.inputAccessoryView = self.numberPadDoneBtn;
-    self.numberOptionCell.title.tintColor = [UIColor silver:1.0];
-    self.numberOptionCell.title.delegate = self;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.textview becomeFirstResponder];
-    switch (self.clickerType) {
-        case CLICKER_CREATE:
-            break;
-        case CLICKER_EDIT:
-            [(SLExpandableTableView *)self.tableView expandSection:2 animated:NO];
-            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
-            break;
-        case QUESTION_CREATE:
-            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
-            break;
-        case QUESTION_EDIT:
-        default:
-            [(SLExpandableTableView *)self.tableView expandSection:2 animated:NO];
-            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
-            break;
+    if (self.showKeyboard) {
+        [self.textview becomeFirstResponder];
+        self.showKeyboard = NO;
     }
+    
+//    switch (self.clickerType) {
+//        case CLICKER_CREATE:
+//            break;
+//        case CLICKER_EDIT:
+//            [(SLExpandableTableView *)self.tableView expandSection:2 animated:NO];
+//            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
+//            break;
+//        case QUESTION_CREATE:
+//            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
+//            break;
+//        case QUESTION_EDIT:
+//        default:
+//            [(SLExpandableTableView *)self.tableView expandSection:2 animated:NO];
+//            [(SLExpandableTableView *)self.tableView expandSection:3 animated:NO];
+//            break;
+//    }
 }
 
 #pragma NavigationBarAction
@@ -337,20 +337,13 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        switch (self.choiceCount) {
-            case 2:
-                [cell chooseType2:nil];
-                break;
-            case 3:
-                [cell chooseType3:nil];
-                break;
-            case 4:
-                [cell chooseType4:nil];
-                break;
-            case 5:
-                [cell chooseType5:nil];
-                break;
-        }
+        if (self.clickerType == CLICKER_EDIT)
+            cell.editable = NO;
+        else
+            cell.editable = YES;
+        
+        cell.choice = (int) self.choiceCount;
+        [cell updateChoice];
         
         cell.typeMessage.text = NSLocalizedString(@"Choices", nil);
         cell.delegate = self;
@@ -386,6 +379,8 @@
                 return 1;
 //            return self.choiceCount + 2;
         case 3:
+            if (self.clickerType == CLICKER_EDIT)
+                return 0;
             return 1;
         case 4:
         default:
@@ -612,16 +607,43 @@
         switch (self.clickerType) {
             case CLICKER_CREATE: {
                 ClickerQuestionViewController *questionView = [[ClickerQuestionViewController alloc] initWithNibName:@"ClickerQuestionViewController" bundle:nil];
-                questionView.questionType = LOAD;
+                questionView.showDetailBt = NO;
                 questionView.delegate = self;
                 [self.navigationController pushViewController:questionView animated:YES];
                 break;
             }
-            case QUESTION_EDIT:
+            case QUESTION_EDIT: {
+                NSString *message = NSLocalizedString(@"Do you want to delete current question?", nil);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Delete Question", nil)
+                                                                message:message
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                      otherButtonTitles:NSLocalizedString(@"Delete", nil), nil];
+                [alert show];
                 break;
+            }
             default:
                 break;
         }
+    }
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [UIColor navy:0.7];
+        hud.labelText = NSLocalizedString(@"Loading", nil);
+        hud.detailsLabelText = NSLocalizedString(@"Deleting Question", nil);
+        hud.yOffset = -40.0f;
+        
+        [BTAPIs removeQuestionWithId:[NSString stringWithFormat:@"%ld", (long) self.question.id]
+                             success:^(Question *question) {
+                                 [hud hide:YES];
+                                 [self.navigationController popViewControllerAnimated:YES];
+                             } failure:^(NSError *error) {
+                                 [hud hide:YES];
+                             }];
     }
 }
 
@@ -633,6 +655,7 @@
     self.detailPrivacy = detailPrivacy;
     [(SLExpandableTableView *)super.tableView reloadDataAndResetExpansionStates:NO];
 }
+
 #pragma mark - ClickerQuestionViewControllerDelegate
 - (void)chosenQuestion:(Question *)chosen {
     self.message = chosen.message;

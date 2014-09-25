@@ -498,7 +498,9 @@
 
 #pragma private methods
 - (void)editMessage {
-    ClickerCRUDViewController *editClicker = [[ClickerCRUDViewController alloc] initWithNibName:@"EditClickerViewController" bundle:nil];
+    ClickerCRUDViewController *editClicker = [[ClickerCRUDViewController alloc] initWithStyle:UITableViewStylePlain];
+    editClicker.clickerType = CLICKER_EDIT;
+    editClicker.post = self.post;
     [self.navigationController pushViewController:editClicker animated:YES];
 }
 
