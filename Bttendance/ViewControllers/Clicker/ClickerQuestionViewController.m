@@ -158,13 +158,12 @@
     cell.message.numberOfLines = 0;
     [cell.message sizeToFit];
     
-    cell.choice.text = [NSString stringWithFormat:@"%ld", (long)((Question *)[self.questions objectAtIndex:indexPath.row]).choice_count];
+    cell.choice.text = [NSString stringWithFormat:@"%ld", (long)question.choice_count];
     
     NSInteger height = MAX(160, 100 + cell.message.frame.size.height);
     cell.background_bg.frame = CGRectMake(11, 7, 298, height - 14);
     cell.selected_bg.frame = CGRectMake(11, 7, 298, height - 14);
     cell.choice_bg.frame = CGRectMake(239, 25 + (height - 160)/2, 52, 52);
-    cell.choice_inner_bg.frame = CGRectMake(241, 27 + (height - 160)/2, 48, 48);
     cell.choice.frame = CGRectMake(241, 27 + (height - 160)/2, 48, 48);
     cell.detail.frame = CGRectMake(20, 100 + height - 160, 280, 0);
     [cell.detail sizeToFit];

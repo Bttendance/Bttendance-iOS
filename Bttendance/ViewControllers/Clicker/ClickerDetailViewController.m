@@ -477,7 +477,7 @@
 
 #pragma NSTimer Action
 - (void)clickerTimer {
-    NSInteger leftTime = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+    NSInteger leftTime = MIN(self.post.clicker.progress_time, (ceil)(self.post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
     NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
     NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), leftTime];
     NSString *rawmessage;

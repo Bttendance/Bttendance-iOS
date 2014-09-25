@@ -43,28 +43,10 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" id="gjt-kL-oDG">
+                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="attendancering.png" id="n7b-Xx-Q5s">
                         <rect key="frame" x="239" y="25" width="52" height="52"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.16078431369999999" green="0.6705882353" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="26"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </view>
-                    <view contentMode="scaleToFill" id="erj-oz-4FH">
-                        <rect key="frame" x="241" y="27" width="48" height="48"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="24"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </view>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S4f-xh-eWc">
                         <rect key="frame" x="241" y="27" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,14 +73,16 @@
             <connections>
                 <outlet property="background_bg" destination="kiO-As-l4d" id="1sa-M4-Ihi"/>
                 <outlet property="choice" destination="S4f-xh-eWc" id="PIu-Bz-6m9"/>
-                <outlet property="choice_bg" destination="gjt-kL-oDG" id="OcS-0K-W07"/>
-                <outlet property="choice_inner_bg" destination="erj-oz-4FH" id="js2-gq-6mw"/>
+                <outlet property="choice_bg" destination="n7b-Xx-Q5s" id="YbY-iB-htA"/>
                 <outlet property="detail" destination="iTS-aa-wWd" id="nMo-JE-nIC"/>
                 <outlet property="message" destination="n5t-ys-7h1" id="9Oi-EN-rEX"/>
                 <outlet property="selected_bg" destination="Ug3-Np-kxh" id="AqV-Mk-MOw"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="attendancering.png" width="52" height="52"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

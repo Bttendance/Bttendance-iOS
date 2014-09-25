@@ -11,7 +11,7 @@
 @implementation NSDate (Bttendance)
 
 + (NSDate *)dateFromString:(NSString *)dateString {
-    if (dateString == (NSString *) [NSNull null])
+    if (dateString == nil || dateString == (NSString *) [NSNull null])
         return nil;
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -33,7 +33,7 @@
 }
 
 + (NSString *)stringFromString:(NSString *)dateString {
-    if (dateString == (NSString *) [NSNull null])
+    if (dateString == nil || dateString == (NSString *) [NSNull null])
         return nil;
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -44,7 +44,7 @@
 }
 
 + (NSTimeInterval)intervalFromString:(NSString *)dateString {
-    if (dateString == (NSString *) [NSNull null])
+    if (dateString == nil || dateString == (NSString *) [NSNull null])
         return -1000;
     
     return [[self dateFromString:dateString] timeIntervalSinceNow];

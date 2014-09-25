@@ -1,5 +1,5 @@
 platform :ios, '7.0'
-pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworking', '~> 2.4.0'
 pod 'Nimbus'
 pod 'socket.IO'
 pod 'TTTAttributedLabel'

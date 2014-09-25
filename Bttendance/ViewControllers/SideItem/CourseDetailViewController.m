@@ -815,7 +815,7 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        NSInteger count = 65 + gap;
+        NSInteger count = post.clicker.progress_time + 5 + gap;
         BlinkView *blinkView_a = [[BlinkView alloc] initWithView:cell.blink_a andCount:count];
         [[BTBlink sharedInstance] addBlinkView:blinkView_a];
         BlinkView *blinkView_b = [[BlinkView alloc] initWithView:cell.blink_b andCount:count];
@@ -937,7 +937,13 @@
         NSInteger total_grade = 0;
         if (self.course.students_count != 0)
             total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
-        [cell.background setFrame:CGRectMake(29, 75 - total_grade / 2, 50, total_grade / 2)];
+        
+        NSInteger grade = total_grade;
+        if (grade > 100)
+            grade = 100;
+        if (grade < 0)
+            grade= 0;
+        [cell.background setFrame:CGRectMake(29, 75 - grade / 2, 50, grade / 2)];
         
         if (65.0f + cell.gap > 0.0f && [post.attendance.type isEqualToString:@"auto"]) {
             NSInteger count = 65 + cell.gap;

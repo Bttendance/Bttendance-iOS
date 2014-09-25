@@ -59,13 +59,13 @@
 }
 
 - (void)startTimerAsClicker {
-    NSInteger left = MAX(MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow])), 0);
+    NSInteger left = MAX(MIN(self.post.clicker.progress_time, (ceil)(self.post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow])), 0);
     self.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clickerTimer) userInfo:nil repeats:YES];
 }
 
 - (void)clickerTimer {
-    NSInteger left = MAX(MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow])), 0);
+    NSInteger left = MAX(MIN(self.post.clicker.progress_time, (ceil)(self.post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow])), 0);
     self.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
     if (left == 0) {
         [self.timer invalidate];
