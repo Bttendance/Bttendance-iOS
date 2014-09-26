@@ -221,7 +221,7 @@
     switch (self.clickerType) {
         case CLICKER_CREATE: {
             hud.detailsLabelText = NSLocalizedString(@"Starting Clicker", nil);
-            [BTAPIs startClickerWithCourse:[NSString stringWithFormat:@"%ld", (long) self.post.course.id]
+            [BTAPIs startClickerWithCourse:[NSString stringWithFormat:@"%ld", (long) self.courseID]
                                    message:message
                                choiceCount:[NSString stringWithFormat:@"%ld", (long) self.choiceCount]
                                    andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]

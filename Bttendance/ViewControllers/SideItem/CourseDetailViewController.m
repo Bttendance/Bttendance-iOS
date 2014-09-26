@@ -313,7 +313,7 @@
     user = [BTUserDefault getUser];
     [self.tableview reloadData];
     [self refreshFeed:nil];
-    [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", self.simpleCourse.id] success:nil failure:nil];
+    [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", (long) self.simpleCourse.id] success:nil failure:nil];
 }
 
 - (void)refreshFeed:(id)sender {
@@ -439,9 +439,9 @@
         }
         
         if ([post.type isEqualToString:@"clicker"]
-            && interval > -65.0f
-            && gap > 65.0f + interval) {
-            gap = 65.0f + interval;
+            && interval > -(post.clicker.progress_time + 5)
+            && gap > post.clicker.progress_time + 5 + interval) {
+            gap = post.clicker.progress_time + 5 + interval;
             NSLog(@"gap : %f", gap);
         }
     }
@@ -500,7 +500,7 @@
         
         double gap = [post.createdAt timeIntervalSinceNow];
         
-        if (65.0f + gap > 0.0f && !check && !manager) {
+        if (post.clicker.progress_time + 5 + gap > 0.0f && !check && !manager) {
             
             UIFont *cellfont = [UIFont systemFontOfSize:12];
             NSString *rawmessage = post.message;
@@ -662,7 +662,7 @@
     double gap = [post.createdAt timeIntervalSinceNow];
     
     // Clicker Choice
-    if (65.0f + gap > 0.0f && !check && !manager) {
+    if (post.clicker.progress_time + 5 + gap > 0.0f && !check && !manager) {
         static NSString *CellIdentifier = @"ClickerCell";
         ClickerCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -682,7 +682,10 @@
         NSInteger height = MAX(cell.message.frame.size.height, 15);
         
         cell.message.frame = CGRectMake(20, 46, 280, height);
-        [cell.date setFrame:CGRectMake(97, 133 + height, 200, 21)];
+        if (post.clicker.choice_count == 5)
+            [cell.date setFrame:CGRectMake(97, 133 + height + 48, 200, 21)];
+        else
+            [cell.date setFrame:CGRectMake(97, 133 + height, 200, 21)];
         
         cell.blink_e.hidden = NO;
         cell.bg_e.hidden = NO;
@@ -712,9 +715,7 @@
             cell.ring_c.hidden = YES;
         }
         
-        [cell.date setFrame:CGRectMake(97, 148, 200, 21)];
-        
-        double progress = MIN(52.0f * -gap / 65.0f, 52);
+        double progress = MIN(52.0f * -gap / (post.clicker.progress_time + 5), 52);
         switch (cell.post.clicker.choice_count) {
             case 2: {
                 [cell.blink_a setFrame:CGRectMake(89, 64 + height, 52, 52)];
@@ -727,7 +728,7 @@
                 cell.bg_b.frame = CGRectMake(179, 64 + height + progress, 52, 52 - progress);
                 
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:65.0f + gap];
+                [UIView setAnimationDuration:post.clicker.progress_time + 5 + gap];
                 cell.bg_a.frame = CGRectMake(89, 116 + height, 52, 0);
                 cell.bg_b.frame = CGRectMake(179, 116 + height, 52, 0);
                 [UIView commitAnimations];
@@ -747,7 +748,7 @@
                 cell.bg_c.frame = CGRectMake(209, 64 + height + progress, 52, 52 - progress);
                 
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:65.0f + gap];
+                [UIView setAnimationDuration:post.clicker.progress_time + 5 + gap];
                 cell.bg_a.frame = CGRectMake(59, 116 + height, 52, 0);
                 cell.bg_b.frame = CGRectMake(134, 116 + height, 52, 0);
                 cell.bg_c.frame = CGRectMake(209, 116 + height, 52, 0);
@@ -771,7 +772,7 @@
                 cell.bg_d.frame = CGRectMake(239, 64 + height + progress, 52, 52 - progress);
                 
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:65.0f + gap];
+                [UIView setAnimationDuration:post.clicker.progress_time + 5 + gap];
                 cell.bg_a.frame = CGRectMake(29, 116 + height, 52, 0);
                 cell.bg_b.frame = CGRectMake(99, 116 + height, 52, 0);
                 cell.bg_c.frame = CGRectMake(169, 116 + height, 52, 0);
@@ -800,15 +801,13 @@
                 cell.bg_e.frame = CGRectMake(204, 124 + height + progress, 52, 52 - progress);
                 
                 [UIView beginAnimations:nil context:NULL];
-                [UIView setAnimationDuration:65.0f + gap];
+                [UIView setAnimationDuration:post.clicker.progress_time + 5 + gap];
                 cell.bg_a.frame = CGRectMake(99, 116 + height, 52, 0);
                 cell.bg_b.frame = CGRectMake(169, 116 + height, 52, 0);
                 cell.bg_c.frame = CGRectMake(64, 176 + height, 52, 0);
                 cell.bg_d.frame = CGRectMake(134, 176 + height, 52, 0);
                 cell.bg_e.frame = CGRectMake(204, 176 + height, 52, 0);
                 [UIView commitAnimations];
-                
-                [cell.date setFrame:CGRectMake(97, 208, 200, 21)];
                 break;
             }
         }
@@ -1158,9 +1157,9 @@
 }
 
 #pragma Click Event for Clicker
-- (void)chosen:(NSInteger)choice andPostId:(NSInteger)post_id {
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", post_id]
-                      choice:[NSString stringWithFormat:@"%ld", choice]
+- (void)chosen:(NSInteger)choice andClickerId:(NSInteger)clicker_id {
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", (long) clicker_id]
+                      choice:[NSString stringWithFormat:@"%ld", (long) choice]
                      success:^(Clicker *clicker) {
                      } failure:^(NSError *error) {
                      }];
@@ -1216,6 +1215,7 @@
 #pragma Actions
 - (void)start_clicker {
     ClickerCRUDViewController *clickerView = [[ClickerCRUDViewController alloc] initWithStyle:UITableViewStylePlain];
+    clickerView.courseID = self.simpleCourse.id;
     [self.navigationController pushViewController:clickerView animated:YES];
 }
 

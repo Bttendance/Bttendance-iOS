@@ -11,7 +11,7 @@
 
 @protocol ClickerCellDelegate <NSObject>
 @required
-- (void)chosen:(NSInteger)choice andPostId:(NSInteger)post_id;
+- (void)chosen:(NSInteger)choice andClickerId:(NSInteger)clicker_id;
 @end
 
 @interface ClickerCell : UITableViewCell

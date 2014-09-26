@@ -106,7 +106,7 @@
                 cell.title.text = NSLocalizedString(@"모두 보기", nil);
                 break;
             case 2:
-                cell.title.text = NSLocalizedString(@"교수님만 보기", nil);
+                cell.title.text = NSLocalizedString(@"강의자만 보기", nil);
                 break;
             case 3:
                 cell.title.text = NSLocalizedString(@"아무도 못보게 하기", nil);
@@ -140,7 +140,7 @@
         case 1: //모두 보기
             self.detailPrivacy = @"all";
             break;
-        case 2: //교수님만 보기
+        case 2: //강의자만 보기
             self.detailPrivacy = @"professor";
             break;
         case 3: //아무도 못보게 하기

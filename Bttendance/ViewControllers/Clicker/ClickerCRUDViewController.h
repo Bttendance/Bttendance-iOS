@@ -26,5 +26,6 @@ typedef NS_ENUM(NSInteger, ClickerType) {
 @property (assign) ClickerType clickerType;
 @property (strong) Post *post;
 @property (strong) Question *question;
+@property(assign) NSInteger courseID;
 
 @end
