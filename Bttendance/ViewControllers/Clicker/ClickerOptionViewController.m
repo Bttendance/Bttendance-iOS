@@ -75,7 +75,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 26, 320, 12)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 25, 320, 14)];
         switch (indexPath.row) {
             case 0:
                 label.text = NSLocalizedString(@"누가 어떤 답변을 선택했는지", nil);

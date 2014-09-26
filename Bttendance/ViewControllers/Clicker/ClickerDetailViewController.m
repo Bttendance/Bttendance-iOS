@@ -94,7 +94,6 @@
     self.chart.showLabel = NO;
     self.chart.pieRadius = 97;
     self.chart.userInteractionEnabled = NO;
-    [self.chart setDataSource:post.clicker];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
@@ -266,7 +265,21 @@
             image.layer.cornerRadius = 100;
             image.clipsToBounds = YES;
             [cell addSubview:image];
+            
+            UIView *image2 = [[UIView alloc] initWithFrame:CGRectMake(63, 3, 194, 194)];
+            image2.backgroundColor = [UIColor white:1];
+            image2.layer.cornerRadius = 97;
+            image2.clipsToBounds = YES;
+            [cell addSubview:image2];
+            
             [cell addSubview:self.chart];
+            
+            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth)
+                [self.chart setDataSource:nil];
+            else {
+                [self.chart setDataSource:post.clicker];
+                [self.chart reloadData];
+            }
             
             return cell;
         }
@@ -302,41 +315,66 @@
             UILabel *dLabel = [[UILabel alloc] initWithFrame:CGRectMake(left + 51 * 3 - 5, 44, 46, 14)];
             UILabel *eLabel = [[UILabel alloc] initWithFrame:CGRectMake(left + 51 * 4 - 5, 44, 46, 14)];
             
-            NSString *aTitle = [NSString stringWithFormat:@"%@%%", [post.clicker percent:1]];
+            NSString *aPercent = [post.clicker percent:1];
+            NSString *bPercent = [post.clicker percent:2];
+            NSString *cPercent = [post.clicker percent:3];
+            NSString *dPercent = [post.clicker percent:4];
+            NSString *ePercent = [post.clicker percent:5];
+            
+            NSInteger aCount = post.clicker.a_students.count;
+            NSInteger bCount = post.clicker.b_students.count;
+            NSInteger cCount = post.clicker.c_students.count;
+            NSInteger dCount = post.clicker.d_students.count;
+            NSInteger eCount = post.clicker.e_students.count;
+            
+            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth) {
+                aPercent = @"0";
+                bPercent = @"0";
+                cPercent = @"0";
+                dPercent = @"0";
+                ePercent = @"0";
+                aCount = 0;
+                bCount = 0;
+                cCount = 0;
+                dCount = 0;
+                eCount = 0;
+            }
+            
+            NSString *aTitle = [NSString stringWithFormat:@"%@%%", aPercent];
             NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:aTitle];
-            [aStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[aTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:1]]]];
+            [aStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[aTitle rangeOfString:[NSString stringWithFormat:@"%@", aPercent]]];
             [aStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[aTitle rangeOfString:@"%"]];
             aLabel.textColor = [UIColor navy:1.0];
             aLabel.textAlignment = NSTextAlignmentCenter;
             aLabel.attributedText = aStr;
             
-            NSString *bTitle = [NSString stringWithFormat:@"%@%%", [post.clicker percent:2]];
+            NSString *bTitle = [NSString stringWithFormat:@"%@%%", bPercent];
             NSMutableAttributedString *bStr = [[NSMutableAttributedString alloc] initWithString:bTitle];
-            [bStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[bTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:2]]]];
+            [bStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[bTitle rangeOfString:[NSString stringWithFormat:@"%@", bPercent]]];
             [bStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[bTitle rangeOfString:@"%"]];
             bLabel.textColor = [UIColor navy:1.0];
             bLabel.textAlignment = NSTextAlignmentCenter;
             bLabel.attributedText = bStr;
             
-            NSString *cTitle = [NSString stringWithFormat:@"%@%%", [post.clicker percent:3]];
+            NSString *cTitle = [NSString stringWithFormat:@"%@%%", cPercent];
             NSMutableAttributedString *cStr = [[NSMutableAttributedString alloc] initWithString:cTitle];
-            [cStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[cTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:3]]]];
+            [cStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[cTitle rangeOfString:[NSString stringWithFormat:@"%@", cPercent]]];
             [cStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[cTitle rangeOfString:@"%"]];
             cLabel.textColor = [UIColor navy:1.0];
             cLabel.textAlignment = NSTextAlignmentCenter;
             cLabel.attributedText = cStr;
             
-            NSString *dTitle = [NSString stringWithFormat:@"%@%%", [post.clicker percent:4]];
+            NSString *dTitle = [NSString stringWithFormat:@"%@%%", dPercent];
             NSMutableAttributedString *dStr = [[NSMutableAttributedString alloc] initWithString:dTitle];
-            [dStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[dTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:4]]]];
+            [dStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[dTitle rangeOfString:[NSString stringWithFormat:@"%@", dPercent]]];
             [dStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[dTitle rangeOfString:@"%"]];
             dLabel.textColor = [UIColor navy:1.0];
             dLabel.textAlignment = NSTextAlignmentCenter;
             dLabel.attributedText = dStr;
             
-            NSString *eTitle = [NSString stringWithFormat:@"%@%%", [post.clicker percent:5]];
+            NSString *eTitle = [NSString stringWithFormat:@"%@%%", ePercent];
             NSMutableAttributedString *eStr = [[NSMutableAttributedString alloc] initWithString:eTitle];
-            [eStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[eTitle rangeOfString:[NSString stringWithFormat:@"%@", [post.clicker percent:5]]]];
+            [eStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:16.0] range:[eTitle rangeOfString:[NSString stringWithFormat:@"%@", ePercent]]];
             [eStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11.0] range:[eTitle rangeOfString:@"%"]];
             eLabel.textColor = [UIColor navy:1.0];
             eLabel.textAlignment = NSTextAlignmentCenter;
@@ -353,27 +391,27 @@
             
             aLabel2.textColor = [UIColor silver:1];
             aLabel2.font = [UIFont systemFontOfSize:12];
-            aLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.a_students.count];
+            aLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)aCount];
             aLabel2.textAlignment = NSTextAlignmentCenter;
             
             bLabel2.textColor = [UIColor silver:1];
             bLabel2.font = [UIFont systemFontOfSize:12];
-            bLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.b_students.count];
+            bLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)bCount];
             bLabel2.textAlignment = NSTextAlignmentCenter;
             
             cLabel2.textColor = [UIColor silver:1];
             cLabel2.font = [UIFont systemFontOfSize:12];
-            cLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.c_students.count];
+            cLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)cCount];
             cLabel2.textAlignment = NSTextAlignmentCenter;
             
             dLabel2.textColor = [UIColor silver:1];
             dLabel2.font = [UIFont systemFontOfSize:12];
-            dLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.d_students.count];
+            dLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)dCount];
             dLabel2.textAlignment = NSTextAlignmentCenter;
             
             eLabel2.textColor = [UIColor silver:1];
             eLabel2.font = [UIFont systemFontOfSize:12];
-            eLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)post.clicker.e_students.count];
+            eLabel2.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long)eCount];
             eLabel2.textAlignment = NSTextAlignmentCenter;
             
             switch (post.clicker.choice_count) {
@@ -487,6 +525,11 @@
         [self.timer invalidate];
         self.timer = nil;
         [self.tableview reloadData];
+//        [NSTimer scheduledTimerWithTimeInterval:5
+//                                         target:self
+//                                       selector:@selector(refreshFeed:)
+//                                       userInfo:nil
+//                                        repeats:NO];
     }
 }
 

@@ -20,7 +20,7 @@
 "BTTENDANCE" = "BTTENDANCE";
 "BTTENDANCE 외에는 수업시간에 스마트폰을 사용할 수 없다고 학생들에게 분명히 말씀하시는게 중요합니다." = "It is important to tell the students that during class, smartphones may not be used for anything other than BTTENDANCE.";
 "BTTENDANCE를" = "BTTENDANCE";
-"BTTENDANCE를 사용하기 위해서는\n과목을 개설하시거나(강의자)\n수강하셔야(학생) 합니다." = "You should create a course (professor)\nor attend a course (student)\nbefore using BTTENDANCE.";
+"BTTENDANCE를 사용하기 위해서는\n과목을 개설하시거나(강의자)\n수강하셔야(학생) 합니다." = "You should create a course (Instructor)\nor attend a course (student)\nbefore using BTTENDANCE.";
 "BTTENDANCE에 대해\n더 알고 싶으시다면" = "If you want to know\nmore about BTTENDANCE";
 "BTTENDANCE를 사용하는 이유를 학생들에게 자세히 설명해 주세요." = "Please inform the students in detail why you are using BTTENDANCE.";
 "BTTENDANCE를 잘 사용하는 법" = "Tips for BTTENDANCE";
@@ -94,9 +94,9 @@
 "Phone Number" = "Phone Number";
 "Please choose a school." = "Choose an institution.";
 "Privacy Policy" = "Privacy Policy";
-"PROFESSOR" = "PROFESSOR";
-"Professor" = "Professor";
-"Professor for profile" = "Professor";
+"PROFESSOR" = "INSTRUCTOR";
+"Professor" = "Instructor";
+"Professor for profile" = "Instructor";
 "Profile" = "Profile";
 "Recoverying Password" = "Recoverying Password";
 "Save" = "Save";
@@ -160,7 +160,7 @@
 "읽지 않은 공지 수 %ld" = "%ld unread notices";
 "수업시간 중에는 BTTENDANCE 외에 다른 용도로 스마트폰을 쓰는 걸 자제해주세요 ㅜㅜ" = "Please refrain from using the smartphone for functions other than BTTENDANCE during class!";
 "시작해보세요." = "";
-"알람 설정을 끄면 강의자가 진행하는 액션에 대한 알림을\n받지 못합니다." = "If you turn off the notification, you won't be able to receive professor's action.";
+"알람 설정을 끄면 강의자가 진행하는 액션에 대한 알림을\n받지 못합니다." = "If you turn off the notification, you won't be able to receive instructor's action.";
 "아직 과목을 추가하지 않으셨군요!" = "You have no course yet!";
 "어떻게 사용하실 수 있는지" = "how to use";
 "이용약관" = "Terms of Service";
@@ -209,12 +209,7 @@
 "* %d명의 학생이 공지를 받게 됩니다.\n* 어떤 학생이 읽지 않았는지 확인할 수 있습니다." = "* %d student(s) will receive this notice.\n* You may check how many students read it so far.";
 "Post" = "Post";
 "Posting Notice" = "Posting Notice";
-"* 설문이 시작되면 %d초간 답변을 수집합니다." = "* Responses will be collected for %d seconds.";
-"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다." = "* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다.";
-"* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다." = "* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다.";
-"* 상세 결과는 강의자만 볼 수 있습니다." = "* 상세 결과는 강의자만 볼 수 있습니다.";
-"* 모두 상세 결과를 볼 수 있습니다." = "* 모두 상세 결과를 볼 수 있습니다.";
-"* 아무도 상세 결과를 볼 수 없습니다." = "* 아무도 상세 결과를 볼 수 없습니다.";
+"* 설문이 시작되면 %d분간 답변을 수집합니다." = "* Responses will be collected for %d minute(s).";
 
 "Delete Clicker" = "Delete Clicker";
 "Edit Message" = "Edit Message";
@@ -282,4 +277,35 @@
 "확인순" = "Read";
 "%d Student(s)" = "%d Students Enrolled";
 
+"* 설문이 진행되는 동안 학생들이 결과를 볼 수 있습니다." = "* Students see the result while survey.";
+"* 설문이 끝난 후에야 학생들이 결과를 볼 수 있습니다." = "* Students see the result after survey.";
+"* 강의자만 상세 결과를 볼 수 있습니다." = "* Only instructor can see the result in detail.";
+"* 모두 상세 결과를 볼 수 있습니다." = "* Everyone can see the result in detail.";
+"* 아무도 상세 결과를 볼 수 없습니다." = "* No-one can see the result in detail.";
 
+"출석결과 수정하기" = "Change Attendance Record";
+"설문 옵션" = "Clicker Option";
+"설문 기본 옵션" =  "Default Clicker Option";
+"설문 수집 시간" = "Survey Time";
+
+"설문이 진행중일 때 실시간 결과를 학생들에게" = "Students see the result while survey?";
+"보여주기" = "While Survey";
+"보여주지 않기" = "After Survey";
+
+"누가 어떤 답변을 선택했는지" = "Who is allowed to see the result in detail?";
+"모두 보기" = "Everyone";
+"강의자만 보기" = "Only Instructor";
+"아무도 못보게 하기" = "No-one";
+"1분" = "1 minute";
+"2분" = "2 minutes";
+"3분" = "3 minutes";
+"5분" = "5 minutes";
+
+"설문이 끝날 때까지 설문 결과를 볼 수 없습니다." = "You can not see the result while survey.";
+
+"%d분간" = "%d minute(s)";
+"진행되는 동안" = "while survey";
+"끝난 후에야" = "after survey";
+"강의자만" = "Only instructor";
+"모두" = "Everyone";
+"아무도" = "No-one";

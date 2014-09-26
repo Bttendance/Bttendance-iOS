@@ -478,14 +478,15 @@
         && ![post.type isEqualToString:@"notice"])
         return 102;
     
+    double gap = [post.createdAt timeIntervalSinceNow];
+    Boolean manager = false;
+    NSArray *supervisingCourses = user.supervising_courses;
+    for (int i = 0; i < [supervisingCourses count]; i++) {
+        if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
+            manager = true;
+    }
+    
     if ([post.type isEqualToString:@"clicker"]) {
-        
-        Boolean manager = false;
-        NSArray *supervisingCourses = user.supervising_courses;
-        for (int i = 0; i < [supervisingCourses count]; i++) {
-            if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
-                manager = true;
-        }
         
         Boolean check = false;
         NSMutableArray *checks = [[NSMutableArray alloc] init];
@@ -497,8 +498,6 @@
         for (int i = 0; i < checks.count; i++)
             if (user.id == [checks[i] intValue])
                 check = true;
-        
-        double gap = [post.createdAt timeIntervalSinceNow];
         
         if (post.clicker.progress_time + 5 + gap > 0.0f && !check && !manager) {
             
@@ -516,8 +515,12 @@
     
     UIFont *cellfont = [UIFont systemFontOfSize:12];
     NSString *rawmessage = post.message;
-    if ([post.type isEqualToString:@"clicker"])
-        rawmessage = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
+    if ([post.type isEqualToString:@"clicker"]) {
+        if (!post.clicker.show_info_on_select && post.clicker.progress_time + 5 + gap > 0.0f && !manager)
+            rawmessage = [NSString stringWithFormat:@"%@\n%@", post.message, NSLocalizedString(@"설문이 끝날 때까지 설문 결과를 볼 수 없습니다.", nil)];
+        else
+            rawmessage = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
+    }
     
     if ([post.type isEqualToString:@"attendance"]) {
         if (self.auth) {
@@ -888,14 +891,21 @@
             chart.userInteractionEnabled = NO;
         }
         
-        [chart setDataSource:post.clicker];
+        if (!post.clicker.show_info_on_select && post.clicker.progress_time + 5 + gap > 0.0f && !manager)
+            [chart setDataSource:nil];
+        else
+            [chart setDataSource:post.clicker];
+        
         [chart reloadData];
         [cell.contentView insertSubview:chart aboveSubview:cell.background];
         
         cell.post = post;
         cell.Title.text = NSLocalizedString(@"Clicker", nil);
         cell.Title.textColor = [UIColor silver:1];
-        cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
+        if (!post.clicker.show_info_on_select && post.clicker.progress_time + 5 + gap > 0.0f && !manager)
+            cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, NSLocalizedString(@"설문이 끝날 때까지 설문 결과를 볼 수 없습니다.", nil)];
+        else
+            cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
         cell.Date.text = [NSDate stringFromDate:cell.post.createdAt];
         cell.gap = [cell.post.createdAt timeIntervalSinceNow];
         
