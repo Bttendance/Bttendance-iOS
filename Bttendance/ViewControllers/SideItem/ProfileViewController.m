@@ -367,6 +367,7 @@
 - (void)questionOption {
     ClickerOptionViewController *clickerOption = [[ClickerOptionViewController alloc] init];
     User *user = [BTUserDefault getUser];
+    clickerOption.optionType = DEFAULT;
     clickerOption.progressTime = user.setting.progress_time;
     clickerOption.showInfoOnSelect = user.setting.show_info_on_select;
     clickerOption.detailPrivacy = user.setting.detail_privacy;
@@ -388,7 +389,7 @@
 
 #pragma ClickerOptionViewControllerDelegate
 - (void)chosenOptionTime:(NSInteger)progressTime andOnSelect:(BOOL)showInfoOnSelect andDetail:(NSString *)detailPrivacy {
-    [BTAPIs updateClickerDefaultsWithTime:[NSString stringWithFormat:@"%ld", progressTime]
+    [BTAPIs updateClickerDefaultsWithTime:[NSString stringWithFormat:@"%ld", (long)progressTime]
                                 andSelect:showInfoOnSelect
                                andPrivacy:detailPrivacy
                                   success:nil failure:nil];

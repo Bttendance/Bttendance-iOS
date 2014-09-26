@@ -494,7 +494,7 @@ static UIAlertView *Ooooppss;
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
                              @"progress_time" : progress_time,
-                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
                              @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker/defaults"]
@@ -558,7 +558,7 @@ static UIAlertView *Ooooppss;
                              @"message" : message,
                              @"choice_count" : choice_count,
                              @"progress_time" : progress_time,
-                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
                              @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/questions/create"]
@@ -590,7 +590,7 @@ static UIAlertView *Ooooppss;
                              @"message" : message,
                              @"choice_count" : choice_count,
                              @"progress_time" : progress_time,
-                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
                              @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/questions/edit"]
@@ -1129,7 +1129,7 @@ static UIAlertView *Ooooppss;
                              @"message" : message,
                              @"choice_count" : choice_count,
                              @"progress_time" : progress_time,
-                             @"notice" : (show_info_on_select) ? @"true" : @"false",
+                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
                              @"detail_privacy" : detail_privacy};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/clicker"]

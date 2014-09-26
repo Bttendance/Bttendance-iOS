@@ -72,7 +72,7 @@
         label.textColor = [UIColor white:1.0];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont boldSystemFontOfSize:16];
-        label.text = NSLocalizedString(@"상세보기", nil);
+        label.text = NSLocalizedString(@"출석결과 수정하기", nil);
         [label sizeToFit];
         
         CGFloat width = label.frame.size.width;

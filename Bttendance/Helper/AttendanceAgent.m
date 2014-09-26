@@ -44,6 +44,20 @@
     return self;
 }
 
+- (void)restartMC {
+    NSString *myUUID = [BTUserDefault getUUID];
+    MCPeerID *mMCPeerID = [[MCPeerID alloc] initWithDisplayName:myUUID];
+    mMCBrowser = [[MCNearbyServiceBrowser alloc] initWithPeer:mMCPeerID serviceType:@"Bttendance"];
+    mMCAdvertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:mMCPeerID
+                                                      discoveryInfo:@{@"peerid": [mMCPeerID displayName]}
+                                                        serviceType:@"Bttendance"];
+    
+    mMCBrowser.delegate = self;
+    mMCAdvertiser.delegate = self;
+    [mMCAdvertiser startAdvertisingPeer];
+    [mMCBrowser startBrowsingForPeers];
+}
+
 #pragma Attendance Start Actions
 - (void)startAttendanceWithCourse:(NSString *)courseID
                     andCourseName:(NSString *)courseName
@@ -191,10 +205,7 @@
         for (id ID in attendanceIDs)
             [attdScanningAttendanceIDs addObject:ID];
         [myCmanager scanForPeripheralsWithServices:nil options:nil];
-        [mMCAdvertiser stopAdvertisingPeer];
-        [mMCBrowser stopBrowsingForPeers];
-        [mMCAdvertiser startAdvertisingPeer];
-        [mMCBrowser startBrowsingForPeers];
+        [self restartMC];
     }
 }
 
@@ -206,10 +217,7 @@
         myPmanager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     
     if (alertView.tag == 500) {
-        [mMCAdvertiser stopAdvertisingPeer];
-        [mMCBrowser stopBrowsingForPeers];
-        [mMCAdvertiser startAdvertisingPeer];
-        [mMCBrowser startBrowsingForPeers];
+        [self restartMC];
     }
 }
 
@@ -241,10 +249,7 @@
             break;
         case CBCentralManagerStatePoweredOn:
             [myCmanager scanForPeripheralsWithServices:nil options:nil];
-            [mMCAdvertiser stopAdvertisingPeer];
-            [mMCBrowser stopBrowsingForPeers];
-            [mMCAdvertiser startAdvertisingPeer];
-            [mMCBrowser startBrowsingForPeers];
+            [self restartMC];
             state = @"power-on";
             break;
         case CBCentralManagerStateUnknown:
@@ -272,10 +277,7 @@
             break;
         case CBPeripheralManagerStatePoweredOn:
             [myPmanager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[myservice.UUID]}];
-            [mMCAdvertiser stopAdvertisingPeer];
-            [mMCBrowser stopBrowsingForPeers];
-            [mMCAdvertiser startAdvertisingPeer];
-            [mMCBrowser startBrowsingForPeers];
+            [self restartMC];
             state = @"power-on";
             break;
         case CBPeripheralManagerStateUnknown:

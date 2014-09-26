@@ -24,7 +24,10 @@
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"설문 옵션", nil);
+    if (self.optionType == DEFAULT)
+        titlelabel.text = NSLocalizedString(@"설문 기본 옵션", nil);
+    else
+        titlelabel.text = NSLocalizedString(@"설문 옵션", nil);
     [titlelabel sizeToFit];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -75,13 +78,13 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 26, 320, 12)];
         switch (indexPath.row) {
             case 0:
-                label.text = NSLocalizedString(@"설문 수집 시간", nil);
+                label.text = NSLocalizedString(@"누가 어떤 답변을 선택했는지", nil);
                 break;
             case 4:
                 label.text = NSLocalizedString(@"설문이 진행중일 때 실시간 결과를 학생들에게", nil);
                 break;
             case 7:
-                label.text = NSLocalizedString(@"누가 어떤 답변을 선택했는지", nil);
+                label.text = NSLocalizedString(@"설문 수집 시간", nil);
                 break;
         }
         label.textColor = [UIColor silver:1.0];

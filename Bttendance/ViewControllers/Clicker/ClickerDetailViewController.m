@@ -157,7 +157,7 @@
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
             NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
-            NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
             NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
             NSString *rawmessage;
             if (left >= 0)
@@ -223,7 +223,7 @@
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
             NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
-            NSInteger left = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
             NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
             NSString *rawmessage;
             if (left >= 0) {

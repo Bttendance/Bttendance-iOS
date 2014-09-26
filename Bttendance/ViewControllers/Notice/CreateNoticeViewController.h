@@ -14,5 +14,6 @@
 @property(weak, nonatomic) IBOutlet UITextView *message;
 @property(weak, nonatomic) IBOutlet UILabel *placeholder;
 @property(weak, nonatomic) IBOutlet UILabel *information;
+@property(weak, nonatomic) IBOutlet UIView *alertBg;
 
 @end

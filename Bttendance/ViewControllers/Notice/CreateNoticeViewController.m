@@ -79,7 +79,7 @@
     sender.enabled = NO;
     
     if (self.message.text == nil || self.message.text.length == 0) {
-        self.view.backgroundColor = [UIColor red:0.1];
+        self.alertBg.backgroundColor = [UIColor red:0.1];
         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
         sender.enabled = YES;
         return;
@@ -106,7 +106,7 @@
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholder.hidden = textView.hasText;
     if (textView.text != nil && textView.text.length != 0)
-        self.view.backgroundColor = [UIColor white:1];
+        self.alertBg.backgroundColor = [UIColor white:1];
 }
 
 @end

@@ -253,11 +253,11 @@
     coursedetailheaderview.detail.frame = CGRectMake(20, 103 + courseHeight, 280, detailHeight);
     
     coursedetailheaderview.clickerBg.frame = CGRectMake(10, 131 + courseHeight + detailHeight, 99, 68);
-    coursedetailheaderview.attendanceBg.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.attendanceBg.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 98, 68);
     coursedetailheaderview.noticeBg.frame = CGRectMake(211, 131 + courseHeight + detailHeight, 99, 68);
     
     coursedetailheaderview.clickerBt.frame = CGRectMake(10, 131 + courseHeight + detailHeight, 99, 68);
-    coursedetailheaderview.attendanceBt.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 99, 68);
+    coursedetailheaderview.attendanceBt.frame = CGRectMake(111, 131 + courseHeight + detailHeight, 98, 68);
     coursedetailheaderview.noticeBt.frame = CGRectMake(211, 131 + courseHeight + detailHeight, 99, 68);
     
     coursedetailheaderview.clickerView.frame = CGRectMake(47, 143 + courseHeight + detailHeight, 25, 25);
@@ -508,9 +508,9 @@
             CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){200, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
             
             if (post.clicker.choice_count == 5)
-                return 224 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
+                return 249 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
             else
-                return 179 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
+                return 191 + MAX(ceil(MessageLabelSize.size.height) - 15, 0);
         }
     }
     
@@ -683,9 +683,30 @@
         
         cell.message.frame = CGRectMake(20, 46, 280, height);
         if (post.clicker.choice_count == 5)
-            [cell.date setFrame:CGRectMake(97, 133 + height + 48, 200, 21)];
+            [cell.date setFrame:CGRectMake(97, 166 + height + 48, 200, 21)];
         else
-            [cell.date setFrame:CGRectMake(97, 133 + height, 200, 21)];
+            [cell.date setFrame:CGRectMake(97, 155 + height, 200, 21)];
+        
+        
+        NSString *detailPrivacyMessage;
+        if ([@"professor" isEqualToString:post.clicker.detail_privacy])
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 강의자만 상세 결과를 볼 수 있습니다.", nil)];
+        else if ([@"all" isEqualToString:post.clicker.detail_privacy])
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 모두 상세 결과를 볼 수 있습니다.", nil)];
+        else
+            detailPrivacyMessage = [NSString stringWithFormat:NSLocalizedString(@"* 아무도 상세 결과를 볼 수 없습니다.", nil)];
+        
+        NSMutableAttributedString *attributed = [[NSMutableAttributedString alloc] initWithString:detailPrivacyMessage];
+        [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[detailPrivacyMessage rangeOfString:NSLocalizedString(@"강의자만", nil)]];
+        [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[detailPrivacyMessage rangeOfString:NSLocalizedString(@"모두", nil)]];
+        [attributed addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12.0] range:[detailPrivacyMessage rangeOfString:NSLocalizedString(@"아무도", nil)]];
+        
+        cell.detail.attributedText = attributed;
+        cell.detail.numberOfLines = 0;
+        if (post.clicker.choice_count == 5)
+            [cell.detail setFrame:CGRectMake(20, 145 + height + 48, 280, 14)];
+        else
+            [cell.detail setFrame:CGRectMake(20, 135 + height, 280, 14)];
         
         cell.blink_e.hidden = NO;
         cell.bg_e.hidden = NO;
@@ -834,6 +855,11 @@
         
         cell.delegate = self;
         
+        if (post.clicker.choice_count == 5)
+            [cell.cellBackground setFrame:CGRectMake(11, 7, 298, 234 + height)];
+        else
+            [cell.cellBackground setFrame:CGRectMake(11, 7, 298, 176 + height)];
+        
         return cell;
     } else { // Clicker Normal
         static NSString *CellIdentifier = @"PostCell";
@@ -875,7 +901,7 @@
         
         [cell.timer invalidate];
         cell.timer = nil;
-        if (65.0f + cell.gap > 0.0f)
+        if (post.clicker.progress_time + 5 + cell.gap > 0.0f)
             [cell startTimerAsClicker];
         
         cell.Message.frame = CGRectMake(93, 49, 200, 15);
@@ -1161,6 +1187,7 @@
     [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", (long) clicker_id]
                       choice:[NSString stringWithFormat:@"%ld", (long) choice]
                      success:^(Clicker *clicker) {
+//                         [self refreshFeed:nil];
                      } failure:^(NSError *error) {
                      }];
 }

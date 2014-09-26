@@ -77,7 +77,7 @@
     hud.detailsLabelText = NSLocalizedString(@"Updating Identity", nil);
     hud.yOffset = -40.0f;
     
-    [BTAPIs updateIdentityWithSchool:[NSString stringWithFormat:@"%ld", self.schoolID]
+    [BTAPIs updateIdentityWithSchool:[NSString stringWithFormat:@"%ld", (long)self.schoolID]
                             identity:identity
                              success:^(User *user) {
                                  [hud hide:YES];

@@ -18,10 +18,11 @@
 
 + (ClickerCell *)cellFromNimNamed:(NSString *)nibName;
 
-@property(weak, nonatomic) IBOutlet UIView *background;
+@property(weak, nonatomic) IBOutlet UIView *cellBackground;
 
 @property(weak, nonatomic) IBOutlet UILabel *courseName;
 @property(weak, nonatomic) IBOutlet UILabel *message;
+@property(weak, nonatomic) IBOutlet UILabel *detail;
 @property(weak, nonatomic) IBOutlet UILabel *date;
 
 @property(weak, nonatomic) IBOutlet UIView *bg_a;
