@@ -490,6 +490,8 @@ static UIAlertView *Ooooppss;
                               failure:(void (^)(NSError *error))failure {
     
     NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if (detail_privacy == nil)
+        detail_privacy = @"professor";
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
@@ -552,6 +554,8 @@ static UIAlertView *Ooooppss;
                           failure:(void (^)(NSError *error))failure {
     
     NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if (detail_privacy == nil)
+        detail_privacy = @"professor";
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
@@ -1122,6 +1126,8 @@ static UIAlertView *Ooooppss;
                        failure:(void (^)(NSError *error))failure {
     
     NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if (detail_privacy == nil)
+        detail_privacy = @"professor";
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
