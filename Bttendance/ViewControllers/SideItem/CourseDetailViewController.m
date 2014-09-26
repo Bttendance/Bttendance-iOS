@@ -425,28 +425,31 @@
 
 // Check when to refresh feed
 - (void)refreshCheck {
-    float gap = 65.0f;
+    float gap = 0;
     
     for (Post *post in data) {
         float interval = [post.createdAt timeIntervalSinceNow];
         
         if ([post.type isEqualToString:@"attendance"]
             && [post.attendance.type isEqualToString:@"auto"]
-            && interval > -65.0f
-            && gap > 65.0f + interval) {
-            gap = 65.0f + interval;
-            NSLog(@"gap : %f", gap);
+            && interval > -65.0f) {
+            if (gap > 0)
+                gap = MIN(gap, 65.0f + interval);
+            else
+                gap = 65.0f + interval;
         }
         
         if ([post.type isEqualToString:@"clicker"]
-            && interval > -(post.clicker.progress_time + 5)
-            && gap > post.clicker.progress_time + 5 + interval) {
-            gap = post.clicker.progress_time + 5 + interval;
-            NSLog(@"gap : %f", gap);
+            && interval > -(post.clicker.progress_time + 5)) {
+            if (gap > 0)
+                gap = MIN(gap, post.clicker.progress_time + 5 + interval);
+            else
+                gap = post.clicker.progress_time + 5 + interval;
         }
     }
     
-    if (gap < 65.0f) {
+    if (gap > 0) {
+        NSLog(@"gap : %ld", (long) gap);
         if (refreshTimer != nil)
             [refreshTimer invalidate];
         refreshTimer = [NSTimer scheduledTimerWithTimeInterval:gap
