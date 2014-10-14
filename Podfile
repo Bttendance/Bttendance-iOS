@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 pod 'AFNetworking', '~> 2.4.0'
-pod 'Nimbus'
+pod 'TTTAttributedLabel'
 pod 'socket.IO'
 pod 'TTTAttributedLabel'
 pod 'MBProgressHUD'

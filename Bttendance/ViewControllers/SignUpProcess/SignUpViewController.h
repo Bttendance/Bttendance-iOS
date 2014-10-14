@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NIAttributedLabel.h"
+#import "TTTAttributedLabel.h"
 
-
-@interface SignUpViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, NIAttributedLabelDelegate> {
+@interface SignUpViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, TTTAttributedLabelDelegate> {
     NSIndexPath *fullname_index, *email_index, *password_index;
     NSDictionary *user_info;
 }

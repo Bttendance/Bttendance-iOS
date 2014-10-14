@@ -195,29 +195,36 @@ NSString *signupRequest;
             return cell_new;
         }
         case 4: {
-            NIAttributedLabel *label = [[NIAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
+            TTTAttributedLabel *label = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, 20, 280, 60)];
             label.backgroundColor = [UIColor clearColor];
+            label.textColor = [UIColor silver:1];
+            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
+            label.numberOfLines = 0;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+            label.delegate = self;
+            
             label.text = NSLocalizedString(@"By tapping \"Sign Up\" above, you are agreeing to the Terms of Service and Privacy Policy.", nil);
             
             NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
             if ([locale isEqualToString:@"ko"]) {
-                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
-                         range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
-                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
-                         range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+                [label addLinkToURL:[NSURL URLWithString:@"http://www.bttendance.com/terms"]
+                         withRange:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+                [label addLinkToURL:[NSURL URLWithString:@"http://www.bttendance.com/privacy"]
+                         withRange:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
             } else {
-                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/terms-en"]
-                         range:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
-                [label addLink:[NSURL URLWithString:@"http://www.bttendance.com/privacy-en"]
-                         range:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+                [label addLinkToURL:[NSURL URLWithString:@"http://www.bttendance.com/terms-en"]
+                         withRange:[label.text rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+                [label addLinkToURL:[NSURL URLWithString:@"http://www.bttendance.com/privacy-en"]
+                         withRange:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
             }
-            label.textAlignment = NSTextAlignmentCenter;
-            label.linkColor = [UIColor navy:1];
-            label.linksHaveUnderlines = YES;
-            label.textColor = [UIColor silver:1];
-            label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f];
-            label.numberOfLines = 0;
-            label.delegate = self;
+            
+            NSArray *keys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName, nil];
+            NSArray *objects = [[NSArray alloc] initWithObjects:[UIColor navy:1],[NSNumber numberWithInt:kCTUnderlineStyleSingle], nil];
+            NSDictionary *linkAttributes = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+            label.linkAttributes = linkAttributes;
+            label.activeLinkAttributes = linkAttributes;
+            
             [cell addSubview:label];
             [cell contentView].backgroundColor = [UIColor grey:1];
             [(TextInputCell *) cell textfield].hidden = YES;
@@ -247,8 +254,8 @@ NSString *signupRequest;
     }
 }
 
-- (void)attributedLabel:(NIAttributedLabel *)attributedLabel didSelectTextCheckingResult:(NSTextCheckingResult *)result atPoint:(CGPoint)point {
-    WebViewController *webView = [[WebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@", result.URL]];
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    WebViewController *webView = [[WebViewController alloc] initWithURLString:[url absoluteString]];
     [self.navigationController pushViewController:webView animated:YES];
 }
 
