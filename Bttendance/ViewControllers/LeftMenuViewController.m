@@ -194,7 +194,7 @@
         bttendance.textColor = [UIColor navy:1.0];
         [cell addSubview:bttendance];
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(14, 56.5, 242, 0.7)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(14, 56.3, 242, 0.7)];
         view.backgroundColor = [UIColor navy:1.0];
         [cell addSubview:view];
         

@@ -186,7 +186,10 @@
         NSMutableArray *posts = [NSMutableArray array];
         for (NSDictionary *dic in responseObject) {
             Post *post = [[Post alloc] initWithDictionary:dic];
-            if (post.id == clicker.post.id)
+            if (post.id == clicker.post.id
+                && post.clicker != nil
+                && (post.clicker.updatedAt == nil
+                || [post.clicker.updatedAt compare:clicker.updatedAt] == NSOrderedAscending))
                 [post.clicker copyDataFromClicker:clicker];
             [posts addObject:post];
         }
@@ -218,7 +221,10 @@
         NSMutableArray *posts = [NSMutableArray array];
         for (NSDictionary *dic in responseObject) {
             Post *post = [[Post alloc] initWithDictionary:dic];
-            if (post.id == attendance.post.id)
+            if (post.id == attendance.post.id
+                && post.attendance != nil
+                && (post.attendance.updatedAt == nil
+                    || [post.attendance.updatedAt compare:attendance.updatedAt] == NSOrderedAscending))
                 [post.attendance copyDataFromAttendance:attendance];
             [posts addObject:post];
         }
@@ -250,7 +256,10 @@
         NSMutableArray *posts = [NSMutableArray array];
         for (NSDictionary *dic in responseObject) {
             Post *post = [[Post alloc] initWithDictionary:dic];
-            if (post.id == notice.post.id)
+            if (post.id == notice.post.id
+                && post.notice != nil
+                && (post.notice.updatedAt == nil
+                    || [post.notice.updatedAt compare:notice.updatedAt] == NSOrderedAscending))
                 [post.notice copyDataFromNotice:notice];
             [posts addObject:post];
         }
@@ -426,6 +435,9 @@
                 return lastCourse;
             }
         }
+        
+        [self setLastSeenCourse:0];
+        return 0;
     }
     
     return lastCourse;

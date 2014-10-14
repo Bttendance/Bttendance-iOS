@@ -974,7 +974,7 @@
         NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
         NSInteger total_grade = 0;
         if (self.course.students_count != 0)
-            total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
+            total_grade = (long) round((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
         
         NSInteger grade = total_grade;
         if (grade > 100)

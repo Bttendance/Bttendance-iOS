@@ -283,7 +283,7 @@
 "* 모두 상세 결과를 볼 수 있습니다." = "* Everyone can see the result in detail.";
 "* 아무도 상세 결과를 볼 수 없습니다." = "* No-one can see the result in detail.";
 
-"출석결과 수정하기" = "Change Attendance Record";
+"출석결과 수정하기" = "Update Attendance Record";
 "설문 옵션" = "Clicker Option";
 "설문 기본 옵션" =  "Default Clicker Option";
 "설문 수집 시간" = "Survey Time";

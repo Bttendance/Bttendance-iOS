@@ -14,6 +14,8 @@
 @interface SimpleAttendance : NSObject
 
 @property(assign) NSInteger id;
+@property(strong, nonatomic) NSDate  *createdAt;
+@property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *type;
 @property(strong, nonatomic) NSArray  *checked_students;
 @property(strong, nonatomic) NSArray  *late_students;

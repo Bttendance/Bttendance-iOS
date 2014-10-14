@@ -13,6 +13,7 @@
 #import "BTUserDefault.h"
 #import "BTNotification.h"
 #import "SocketAgent.h"
+#import <AudioToolbox/AudioServices.h>
 
 @interface AttdDetailListViewController ()
 
@@ -194,6 +195,8 @@
         return;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row - 1];
     [self.post.attendance toggleStatus:simpleUser.id];

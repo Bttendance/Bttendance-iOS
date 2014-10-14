@@ -413,7 +413,7 @@
                 [std sizeToFit];
                 
                 UILabel *percent = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) ceil((((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count * 100.0f))];
+                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) round((((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count * 100.0f))];
                 percent.font = [UIFont systemFontOfSize:12];
                 percent.textColor = [UIColor navy:1];
                 [percent sizeToFit];

@@ -26,23 +26,17 @@
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    if (highlighted) {
+    if (highlighted)
         self.selected_bg.hidden = NO;
-        self.choice.backgroundColor = [UIColor cyan:0.1];
-    } else {
+    else
         self.selected_bg.hidden = YES;
-        self.choice.backgroundColor = [UIColor cyan:0.0];
-    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    if (selected) {
+    if (selected)
         self.selected_bg.hidden = NO;
-        self.choice.backgroundColor = [UIColor cyan:0.1];
-    } else {
+    else
         self.selected_bg.hidden = YES;
-        self.choice.backgroundColor = [UIColor cyan:0.0];
-    }
 }
 
 @end

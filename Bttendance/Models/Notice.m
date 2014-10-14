@@ -19,6 +19,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
+        self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.seen_students = [dictionary objectForKey:@"seen_students"];
         self.post = [[dictionary objectForKey:@"post"] integerValue];
     }
@@ -29,12 +31,16 @@
     
     NSMutableArray *keys = [NSMutableArray array];
     [keys addObject:@"id"];
+    [keys addObject:@"createdAt"];
+    [keys addObject:@"updatedAt"];
     if (notice.seen_students != nil)
         [keys addObject:@"seen_students"];
     [keys addObject:@"post"];
     
     NSMutableArray *objects = [NSMutableArray array];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)notice.id]];
+    [objects addObject:[NSDate serializedStringFromDate:notice.createdAt]];
+    [objects addObject:[NSDate serializedStringFromDate:notice.updatedAt]];
     if (notice.seen_students != nil)
         [objects addObject:notice.seen_students];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)notice.post]];

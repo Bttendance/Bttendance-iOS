@@ -15,6 +15,8 @@
 @interface SimpleClicker : NSObject <XYPieChartDataSource>
 
 @property(assign) NSInteger id;
+@property(strong, nonatomic) NSDate  *createdAt;
+@property(strong, nonatomic) NSDate  *updatedAt;
 @property(assign) NSInteger  choice_count;
 @property(strong, nonatomic) NSArray  *a_students;
 @property(strong, nonatomic) NSArray  *b_students;

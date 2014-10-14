@@ -551,7 +551,7 @@
                         }
                         cell.password.textColor = [UIColor silver:1.0];
                         cell.arrow.hidden = NO;
-                        cell.password.text = NSLocalizedString(@"저장한 질문 불러오기", nil);
+                        cell.password.text = NSLocalizedString(@"Load saved question", nil);
                         return cell;
                     }
                     break;

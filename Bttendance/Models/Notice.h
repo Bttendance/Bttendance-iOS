@@ -14,6 +14,8 @@
 @interface SimpleNotice : NSObject
 
 @property(assign) NSInteger id;
+@property(strong, nonatomic) NSDate  *createdAt;
+@property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSArray  *seen_students;
 @property(assign) NSInteger  post;
 

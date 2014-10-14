@@ -19,6 +19,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
+        self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.type = [dictionary objectForKey:@"type"];
         self.checked_students = [dictionary objectForKey:@"checked_students"];
         self.late_students = [dictionary objectForKey:@"late_students"];
@@ -31,6 +33,8 @@
     
     NSMutableArray *keys = [NSMutableArray array];
     [keys addObject:@"id"];
+    [keys addObject:@"createdAt"];
+    [keys addObject:@"updatedAt"];
     if (attendance.type != nil)
         [keys addObject:@"type"];
     if (attendance.checked_students != nil)
@@ -41,6 +45,8 @@
     
     NSMutableArray *objects = [NSMutableArray array];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)attendance.id]];
+    [objects addObject:[NSDate serializedStringFromDate:attendance.createdAt]];
+    [objects addObject:[NSDate serializedStringFromDate:attendance.updatedAt]];
     if (attendance.type != nil)
         [objects addObject:attendance.type];
     if (attendance.checked_students != nil)

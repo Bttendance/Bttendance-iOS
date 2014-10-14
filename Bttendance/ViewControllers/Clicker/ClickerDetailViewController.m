@@ -18,6 +18,7 @@
 #import "ClickerDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SocketAgent.h"
+#import <AudioToolbox/AudioServices.h>
 
 @interface ClickerDetailViewController ()
 
@@ -266,9 +267,9 @@
             image.clipsToBounds = YES;
             [cell addSubview:image];
             
-            UIView *image2 = [[UIView alloc] initWithFrame:CGRectMake(63, 3, 194, 194)];
+            UIView *image2 = [[UIView alloc] initWithFrame:CGRectMake(64, 4, 192, 192)];
             image2.backgroundColor = [UIColor white:1];
-            image2.layer.cornerRadius = 97;
+            image2.layer.cornerRadius = 96;
             image2.clipsToBounds = YES;
             [cell addSubview:image2];
             
@@ -549,6 +550,10 @@
 
 #pragma IBAction
 - (IBAction)showDetail:(id)sender {
+//    if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth) {
+//        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+//        return;
+//    }
     ClickerDetailListViewController *clickerDetailsView = [[ClickerDetailListViewController alloc] initWithNibName:@"ClickerDetailListViewController" bundle:nil];
     clickerDetailsView.post = post;
     [self.navigationController pushViewController:clickerDetailsView animated:YES];

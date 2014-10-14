@@ -20,6 +20,8 @@
 
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
+        self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.choice_count = [[dictionary objectForKey:@"choice_count"] integerValue];
         self.a_students = [dictionary objectForKey:@"a_students"];
         self.b_students = [dictionary objectForKey:@"b_students"];
@@ -38,6 +40,8 @@
     
     NSMutableArray *keys = [NSMutableArray array];
     [keys addObject:@"id"];
+    [keys addObject:@"createdAt"];
+    [keys addObject:@"updatedAt"];
     [keys addObject:@"choice_count"];
     if (clicker.a_students != nil)
         [keys addObject:@"a_students"];
@@ -56,6 +60,8 @@
     
     NSMutableArray *objects = [NSMutableArray array];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.id]];
+    [objects addObject:[NSDate serializedStringFromDate:clicker.createdAt]];
+    [objects addObject:[NSDate serializedStringFromDate:clicker.updatedAt]];
     [objects addObject:[NSString stringWithFormat:@"%ld", (long)clicker.choice_count]];
     if (clicker.a_students != nil)
         [objects addObject:clicker.a_students];
