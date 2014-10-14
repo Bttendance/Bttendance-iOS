@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     //Navigation title
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];

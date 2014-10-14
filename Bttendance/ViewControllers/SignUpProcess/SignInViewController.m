@@ -89,16 +89,19 @@ NSString *signinRequest;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     //set autofocus on Usernamefield
     TextInputCell *cell1 = (TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index];
     [cell1.textfield becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 

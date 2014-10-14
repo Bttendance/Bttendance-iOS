@@ -89,15 +89,18 @@ NSString *signupRequest;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index];
     [cell1.textfield becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 

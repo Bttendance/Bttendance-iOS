@@ -76,16 +76,19 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     //set autofocus on Usernamefield
     TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index];
     [cell.textfield becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 

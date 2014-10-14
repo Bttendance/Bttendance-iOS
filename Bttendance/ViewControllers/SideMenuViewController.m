@@ -97,10 +97,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [[SocketAgent sharedInstance] socketConnect];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (self.popupController != nil) {
         [self presentViewController:self.popupController animated:self.anim completion:nil];
         self.popupController = nil;

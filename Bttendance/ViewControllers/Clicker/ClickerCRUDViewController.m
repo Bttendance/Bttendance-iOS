@@ -154,6 +154,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if (self.showKeyboard) {
         [self.textview becomeFirstResponder];
         self.showKeyboard = NO;

@@ -58,6 +58,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:searchField];
     [cell.textfield becomeFirstResponder];
 }
