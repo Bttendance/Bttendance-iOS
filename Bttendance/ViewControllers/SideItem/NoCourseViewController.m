@@ -105,12 +105,12 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0: { //create course
-            CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
+            CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithStyle:UITableViewStylePlain];
             [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseCreateView] animated:YES completion:nil];
             break;
         }
         case 1: { //attend course
-            CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
+            CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithStyle:UITableViewStylePlain];
             [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseAttendView] animated:YES completion:nil];
             break;
         }

@@ -55,6 +55,10 @@
                                                              action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = close;
     self.navigationItem.leftItemsSupplementBackButton = NO;
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
 - (void)back:(UIBarButtonItem *)sender {
@@ -69,6 +73,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index];
+    [cell.textfield resignFirstResponder];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 

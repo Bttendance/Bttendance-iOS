@@ -12,6 +12,7 @@
 #import "GradeCell.h"
 #import "BTAPIs.h"
 #import "User.h"
+#import "UIColor+Bttendance.h"
 
 @interface GradeViewController ()
 
@@ -55,7 +56,7 @@
             }];
             data = [NSArray arrayWithArray:sorting];
             
-            [self.tableview reloadData];
+            [self.tableView reloadData];
         } failure:^(NSError *error) {
         }];
     } else {
@@ -71,10 +72,14 @@
             }];
             data = [NSArray arrayWithArray:sorting];
             
-            [self.tableview reloadData];
+            [self.tableView reloadData];
         } failure:^(NSError *error) {
         }];
     }
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 
 };
 

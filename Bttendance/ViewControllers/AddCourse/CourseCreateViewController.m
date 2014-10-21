@@ -57,6 +57,10 @@
     self.navigationItem.leftBarButtonItem = close;
     self.navigationItem.leftItemsSupplementBackButton = NO;
     
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
     self.prfName = [BTUserDefault getFullName];
 }
 
@@ -72,6 +76,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index];
+    [cell.textfield resignFirstResponder];
+    TextInputCell *cell2 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:profname_index];
+    [cell2.textfield resignFirstResponder];
+    TextInputCell *cell3 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:school_index];
+    [cell3.textfield resignFirstResponder];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 

@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SchoolChooseViewController.h"
 
-@interface CourseCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, SchoolChooseViewControllerDelegate> {
+@interface CourseCreateViewController : UITableViewController <UITextFieldDelegate, SchoolChooseViewControllerDelegate> {
     NSIndexPath *name_index, *school_index, *profname_index;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) NSInteger schoolId;
 @property(weak, nonatomic) NSString *schoolName;
 @property(weak, nonatomic) NSString *prfName;

@@ -10,6 +10,7 @@
 #import "StudentInfoCell.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "UIColor+Bttendance.h"
 
 @interface StudentListViewController ()
 
@@ -45,7 +46,7 @@
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.course.id]]];
         dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
+            [self.tableView reloadData];
         });
     });
     
@@ -58,9 +59,13 @@
                           }];
                           data = [NSArray arrayWithArray:sorting];
                           
-                          [self.tableview reloadData];
+                          [self.tableView reloadData];
                       } failure:^(NSError *error) {
                       }];
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 };
 
 #pragma UITableViewDataSource

@@ -31,23 +31,6 @@ NSString *signinRequest;
 @implementation SignInViewController
 @synthesize user_info;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        email_index = [NSIndexPath indexPathForRow:0 inSection:0];
-        password_index = [NSIndexPath indexPathForRow:1 inSection:0];
-        
-        UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-        UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        [self.navigationItem setLeftBarButtonItem:backButtonItem];
-        self.navigationItem.leftItemsSupplementBackButton = NO;
-    }
-    return self;
-}
-
 - (void)back:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -71,6 +54,19 @@ NSString *signinRequest;
     [titlelabel sizeToFit];
     
     self.navigationController.navigationBar.translucent = NO;
+    email_index = [NSIndexPath indexPathForRow:0 inSection:0];
+    password_index = [NSIndexPath indexPathForRow:1 inSection:0];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backButtonItem];
+    self.navigationItem.leftItemsSupplementBackButton = NO;
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -91,7 +87,7 @@ NSString *signinRequest;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //set autofocus on Usernamefield
-    TextInputCell *cell1 = (TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index];
+    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -211,13 +207,13 @@ NSString *signinRequest;
 }
 
 - (void)forgot:(id)sender {
-    ForgotPassViewController *forgotView = [[ForgotPassViewController alloc] initWithNibName:@"ForgotPassViewController" bundle:nil];
+    ForgotPassViewController *forgotView = [[ForgotPassViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:forgotView animated:YES];
 }
 
 - (IBAction)signinButton:(id)sender {
-    NSString *email = [((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).textfield text];
-    NSString *password = [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
+    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield text];
     
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
@@ -225,17 +221,17 @@ NSString *signinRequest;
     BOOL pass = YES;
     
     if (email == nil || email.length == 0) {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (password == nil || password.length == 0) {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (!pass) {
@@ -262,13 +258,13 @@ NSString *signinRequest;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:((TextInputCell *) [self.tableview cellForRowAtIndexPath:email_index]).textfield]) {
-        [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield]) {
-        [((TextInputCell *) [self.tableview cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
         [self signinButton:nil];
     }
 

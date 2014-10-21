@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface SettingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@interface SettingViewController : UITableViewController
 
 @end

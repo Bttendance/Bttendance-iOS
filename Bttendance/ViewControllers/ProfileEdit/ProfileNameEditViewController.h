@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileNameEditViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+@interface ProfileNameEditViewController : UITableViewController <UITextFieldDelegate> {
     __weak NSString *fullname;
 }
 
 @property(weak, nonatomic) NSString *fullname;
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *name_field;
 
 - (void)save_fullname;

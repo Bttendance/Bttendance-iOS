@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GradeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface GradeViewController : UITableViewController {
     NSArray *data;
     NSInteger rowcount;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(weak, nonatomic) NSString *cid;
 @property(weak, nonatomic) NSString *type;
 

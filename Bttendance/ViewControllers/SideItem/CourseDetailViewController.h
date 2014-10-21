@@ -13,7 +13,7 @@
 #import "RESideMenu.h"
 #import "ClickerCell.h"
 
-@interface CourseDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate, ClickerCellDelegate> {
+@interface CourseDetailViewController : UITableViewController <UIAlertViewDelegate, UIActionSheetDelegate, ClickerCellDelegate> {
 
     NSMutableArray *data;
 
@@ -25,7 +25,6 @@
     CourseDetailHeaderView *coursedetailheaderview;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) SimpleCourse *simpleCourse;
 
 @end

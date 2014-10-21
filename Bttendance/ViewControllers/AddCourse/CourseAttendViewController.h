@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CourseAttendViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+@interface CourseAttendViewController : UITableViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     NSIndexPath *code_index;
     NSDictionary *user_info;
 }
-
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

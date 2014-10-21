@@ -15,13 +15,12 @@
 - (void)createdSchool:(School *)created;
 @end
 
-@interface SchoolCreateViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface SchoolCreateViewController : UITableViewController <UITextFieldDelegate> {
     NSIndexPath *name_index;
     NSIndexPath *type_index;
     NSIndexPath *info_index;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id<SchoolCreateViewControllerDelegate> delegate;
 
 @end

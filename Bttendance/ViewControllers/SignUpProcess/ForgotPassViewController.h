@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgotPassViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ForgotPassViewController : UITableViewController <UITextFieldDelegate> {
     NSIndexPath *email_index;
 }
-
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

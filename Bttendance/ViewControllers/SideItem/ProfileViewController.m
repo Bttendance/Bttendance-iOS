@@ -55,6 +55,10 @@
     [menuButton setBackgroundImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     UIBarButtonItem *menuButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,7 +68,7 @@
 
 - (void)reloadTableView:(NSNotification *)noti {
     self.user = [BTUserDefault getUser];
-    [self.tableview reloadData];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -347,13 +351,13 @@
 
 #pragma Actions
 - (void)editName {
-    ProfileNameEditViewController *profileNameEditView = [[ProfileNameEditViewController alloc] init];
+    ProfileNameEditViewController *profileNameEditView = [[ProfileNameEditViewController alloc] initWithStyle:UITableViewStyleGrouped];
     profileNameEditView.fullname = self.user.full_name;
     [self.navigationController pushViewController:profileNameEditView animated:YES];
 }
 
 - (void)editEmail {
-    ProfileEmailEditViewController *profileEmailEditView = [[ProfileEmailEditViewController alloc] init];
+    ProfileEmailEditViewController *profileEmailEditView = [[ProfileEmailEditViewController alloc] initWithStyle:UITableViewStyleGrouped];
     profileEmailEditView.email = self.user.email;
     [self.navigationController pushViewController:profileEmailEditView animated:YES];
 }
@@ -376,14 +380,14 @@
 }
 
 - (void)editIdentity:(SimpleIdentification *)identification andSchoolID:(NSInteger)schoolID {
-    ProfileIdentityEditViewController *profileIdentityEditView = [[ProfileIdentityEditViewController alloc] init];
+    ProfileIdentityEditViewController *profileIdentityEditView = [[ProfileIdentityEditViewController alloc] initWithStyle:UITableViewStyleGrouped];
     profileIdentityEditView.identification = identification;
     profileIdentityEditView.schoolID = schoolID;
     [self.navigationController pushViewController:profileIdentityEditView animated:YES];
 }
 
 - (void)updatePass {
-    ProfileUpdatePassViewController *profileUpdatePassView = [[ProfileUpdatePassViewController alloc] init];
+    ProfileUpdatePassViewController *profileUpdatePassView = [[ProfileUpdatePassViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:profileUpdatePassView animated:YES];
 }
 

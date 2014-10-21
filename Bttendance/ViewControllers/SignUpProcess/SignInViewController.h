@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignInViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate> {
-
+@interface SignInViewController : UITableViewController <UITextFieldDelegate> {
     NSIndexPath *email_index, *password_index;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(weak, nonatomic) NSDictionary *user_info;
 
 @end

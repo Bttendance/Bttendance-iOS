@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManagerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
+@interface ManagerViewController : UITableViewController <UITextFieldDelegate, UIAlertViewDelegate> {
     NSString *courseId;
     NSString *courseName;
     NSIndexPath *searchField;
@@ -18,6 +18,5 @@
 
 @property(nonatomic) NSString *courseId;
 @property(nonatomic) NSString *courseName;
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

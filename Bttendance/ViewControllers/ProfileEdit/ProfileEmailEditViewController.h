@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileEmailEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface ProfileEmailEditViewController : UITableViewController <UITextFieldDelegate> {
     __weak NSString *email;
 }
 
 @property(weak, nonatomic) NSString *email;
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *email_field;
 
 - (void)save_email;

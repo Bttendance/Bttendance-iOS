@@ -9,13 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TTTAttributedLabel.h"
 
-@interface SignUpViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, TTTAttributedLabelDelegate> {
+@interface SignUpViewController : UITableViewController <UITextFieldDelegate, TTTAttributedLabelDelegate> {
     NSIndexPath *fullname_index, *email_index, *password_index;
     NSDictionary *user_info;
 }
-
-@property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic) NSInteger schoolId;
-@property(nonatomic) NSString *serial;
 
 @end

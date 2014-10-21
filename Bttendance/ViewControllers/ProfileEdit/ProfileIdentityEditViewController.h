@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Identification.h"
 
-@interface ProfileIdentityEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ProfileIdentityEditViewController : UITableViewController <UITextFieldDelegate>
 
 @property(strong, nonatomic) SimpleIdentification *identification;
 @property(assign) NSInteger schoolID;
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *identity_field;
 
 - (void)save_identity;

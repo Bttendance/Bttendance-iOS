@@ -20,8 +20,6 @@
 #import "GuidePageViewController.h"
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
-#import "GuideCourseCreateViewController.h"
-#import "GuideCourseAttendViewController.h"
 
 @interface SideMenuViewController ()
 
@@ -45,7 +43,7 @@
         navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
     }
     
-    LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] initWithNibName:@"LeftMenuViewController" bundle:nil];
+    LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     self = [self initWithContentViewController:navigationController
                         leftMenuViewController:leftMenuViewController

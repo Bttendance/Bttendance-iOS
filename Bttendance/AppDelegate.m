@@ -11,7 +11,6 @@
 #import "ProfileViewController.h"
 #import "CourseDetailViewController.h"
 #import "SideMenuViewController.h"
-#import "LeftMenuViewController.h"
 #import "CatchPointViewController.h"
 #import "NoCourseViewController.h"
 #import "BTUserDefault.h"

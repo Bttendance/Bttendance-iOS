@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Course.h"
 
-@interface StudentListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface StudentListViewController : UITableViewController {
     NSArray *data;
 }
 
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) Course *course;
 
 @end

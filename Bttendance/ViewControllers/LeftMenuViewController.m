@@ -40,11 +40,13 @@
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.courses = [BTUserDefault getCourses];
         dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
+            [self.tableView reloadData];
         });
     });
     
-    self.tableview.scrollsToTop = NO;
+    self.tableView.scrollsToTop = NO;
+    super.tableView.backgroundColor = [UIColor white:1.0];
+    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshSide:) name:SideRefresh object:nil];
@@ -54,14 +56,14 @@
     [BTAPIs coursesInSuccess:^(NSArray *courses) {
         self.courses = courses;
         self.user = [BTUserDefault getUser];
-        [self.tableview reloadData];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
 }
 
 - (void)reloadTableView:(NSNotification *)noti {
     self.user = [BTUserDefault getUser];
-    [self.tableview reloadData];
+    [self.tableView reloadData];
 }
 
 #pragma mark UITableView Datasource
@@ -247,7 +249,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0) {
-        ProfileViewController *profileView = [[ProfileViewController alloc] initWithCoder:nil];
+        ProfileViewController *profileView = [[ProfileViewController alloc] initWithStyle:UITableViewStylePlain];
         [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:profileView]];
         [self.sideMenuViewController hideMenuViewController];
     }
@@ -279,7 +281,7 @@
                 break;
             }
             case 1: {
-                SettingViewController *settingView = [[SettingViewController alloc] initWithCoder:nil];
+                SettingViewController *settingView = [[SettingViewController alloc] initWithStyle:UITableViewStylePlain];
                 [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:settingView]];
                 [self.sideMenuViewController hideMenuViewController];
                 break;
@@ -310,12 +312,12 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0: { //create course
-            CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
+            CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithStyle:UITableViewStylePlain];
             [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseCreateView] animated:YES completion:nil];
             break;
         }
         case 1: { //attend course
-            CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
+            CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithStyle:UITableViewStylePlain];
             [self presentViewController:[[UINavigationController alloc] initWithRootViewController:courseAttendView] animated:YES completion:nil];
             break;
         }

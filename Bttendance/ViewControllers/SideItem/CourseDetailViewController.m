@@ -78,12 +78,12 @@
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {
-    [self.tableview reloadData];
+    [self.tableView reloadData];
     [self refreshFeed:nil];
 }
 
 - (void)appDidEnterForeground:(NSNotification *)notification {
-    [self.tableview reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -109,7 +109,7 @@
     [self.navigationItem setLeftBarButtonItem:menuButtonItem];
 
     self.view.backgroundColor = [UIColor grey:1];
-    [self tableview].backgroundColor = [UIColor grey:1];
+    self.tableView.backgroundColor = [UIColor grey:1];
 
     user = [BTUserDefault getUser];
     data = [NSMutableArray array];
@@ -121,7 +121,7 @@
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         data = [NSMutableArray arrayWithArray:[BTUserDefault getPostsOfArray:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]]];
         dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
+            [self.tableView reloadData];
         });
     });
     
@@ -166,10 +166,14 @@
     
     [self refreshHeader];
     
-    self.tableview.tableHeaderView = coursedetailheaderview;
+    self.tableView.tableHeaderView = coursedetailheaderview;
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
-    self.tableview.tableFooterView = footer;
+    self.tableView.tableFooterView = footer;
+    
+    self.tableView.backgroundColor = [UIColor grey:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     // NotificationCenter
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenNewPost object:nil];
@@ -311,7 +315,7 @@
     }
     
     user = [BTUserDefault getUser];
-    [self.tableview reloadData];
+    [self.tableView reloadData];
     [self refreshFeed:nil];
     [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", (long) self.simpleCourse.id] success:nil failure:nil];
 }
@@ -321,7 +325,7 @@
                      page:0
                   success:^(NSArray *posts) {
                      data = [NSMutableArray arrayWithArray:posts];
-                     [self.tableview reloadData];
+                     [self.tableView reloadData];
                      [self checkAttendanceScan];
                      [self refreshCheck];
                   } failure:^(NSError *error) {
@@ -337,7 +341,7 @@
 - (void)updateCourse:(NSNotification *)notification {
     self.course = [BTUserDefault getCourse:simpleCourse.id];
     [self refreshHeader];
-    [self.tableview reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)updateClicker:(NSNotification *)notification {
@@ -354,7 +358,7 @@
         }
     }
     if (found)
-        [self.tableview reloadData];
+        [self.tableView reloadData];
 }
 
 - (void)updateAttendance:(NSNotification *)notification {
@@ -371,7 +375,7 @@
         }
     }
     if (found)
-        [self.tableview reloadData];
+        [self.tableView reloadData];
 }
 
 - (void)updateNotice:(NSNotification *)notification {
@@ -388,7 +392,7 @@
         }
     }
     if (found)
-        [self.tableview reloadData];
+        [self.tableView reloadData];
 }
 
 - (void)updatePost:(NSNotification *)notification {
@@ -405,7 +409,7 @@
         }
     }
     if (found)
-        [self.tableview reloadData];
+        [self.tableView reloadData];
 }
 
 // Check if any attendance is on-going
@@ -1170,8 +1174,8 @@
         return;
     }
     
-    if (data.count != 0 && ![[self.tableview cellForRowAtIndexPath:indexPath] isKindOfClass:[ClickerCell class]]) {
-        PostCell *cell = (PostCell *) [self.tableview cellForRowAtIndexPath:indexPath];
+    if (data.count != 0 && ![[self.tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[ClickerCell class]]) {
+        PostCell *cell = (PostCell *) [self.tableView cellForRowAtIndexPath:indexPath];
         
         if ([cell.post.type isEqualToString:@"attendance"]) {
             AttdDetailViewController *attendanceView = [[AttdDetailViewController alloc] initWithNibName:@"AttdDetailViewController" bundle:nil];

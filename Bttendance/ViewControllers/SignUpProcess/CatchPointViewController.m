@@ -73,12 +73,12 @@
 }
 
 - (IBAction)Signup_button:(id)sender {
-    SignUpViewController *signUpController = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle:nil];
+    SignUpViewController *signUpController = [[SignUpViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:signUpController animated:YES];
 }
 
 - (IBAction)Signin_button:(id)sender {
-    SignInViewController *signInController = [[SignInViewController alloc] initWithNibName:@"SignInViewController" bundle:nil];
+    SignInViewController *signInController = [[SignInViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:signInController animated:YES];
 }
 

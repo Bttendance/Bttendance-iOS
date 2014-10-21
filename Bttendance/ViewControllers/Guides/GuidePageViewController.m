@@ -385,14 +385,14 @@
 }
 
 - (void)createCourse:(id)selector {
-    CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithNibName:@"CourseCreateViewController" bundle:nil];
+    CourseCreateViewController *courseCreateView = [[CourseCreateViewController alloc] initWithStyle:UITableViewStylePlain];
     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:[[UINavigationController alloc] initWithRootViewController:courseCreateView], ModalViewController, [NSNumber numberWithBool:YES], ModalViewAnim, nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data];
     [self closeGuide:nil];
 }
 
 - (void)attendCourse:(id)selector {
-    CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithNibName:@"CourseAttendViewController" bundle:nil];
+    CourseAttendViewController *courseAttendView = [[CourseAttendViewController alloc] initWithStyle:UITableViewStylePlain];
     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:[[UINavigationController alloc] initWithRootViewController:courseAttendView], ModalViewController, [NSNumber numberWithBool:YES], ModalViewAnim, nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data];
     [self closeGuide:nil];

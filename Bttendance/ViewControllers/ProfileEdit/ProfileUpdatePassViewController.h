@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileUpdatePassViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface ProfileUpdatePassViewController : UITableViewController <UITextFieldDelegate>
 
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
 @property(strong, nonatomic) IBOutlet UITextField *password_old_field;
 @property(strong, nonatomic) IBOutlet UITextField *password_new_field;
 

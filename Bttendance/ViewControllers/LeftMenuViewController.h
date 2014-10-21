@@ -10,8 +10,6 @@
 #import "RESideMenu.h"
 #import "User.h"
 
-@interface LeftMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-
-@property(weak, nonatomic) IBOutlet UITableView *tableview;
+@interface LeftMenuViewController : UITableViewController <UIActionSheetDelegate>
 
 @end
