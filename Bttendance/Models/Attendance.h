@@ -7,19 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "Post.h"
 
 @class SimplePost;
 
-@interface SimpleAttendance : NSObject
+@interface SimpleAttendance : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *type;
-@property(strong, nonatomic) NSArray  *checked_students;
-@property(strong, nonatomic) NSArray  *late_students;
-@property(assign) NSInteger  post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *type;
+@property NSArray           *checked_students;
+@property NSArray           *late_students;
+@property NSInteger         post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(SimpleAttendance *)attendance;
@@ -30,16 +31,16 @@
 @end
 
 
-@interface Attendance : NSObject
+@interface Attendance : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *type;
-@property(strong, nonatomic) NSArray  *checked_students;
-@property(strong, nonatomic) NSArray  *late_students;
-@property(strong, nonatomic) NSArray  *clusters;
-@property(strong, nonatomic) SimplePost  *post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *type;
+@property NSArray           *checked_students;
+@property NSArray           *late_students;
+@property NSArray           *clusters;
+@property SimplePost        *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

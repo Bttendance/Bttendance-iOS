@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "Post.h"
 
 @class SimplePost;
 
-@interface SimpleNotice : NSObject
+@interface SimpleNotice : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSArray  *seen_students;
-@property(assign) NSInteger  post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSArray           *seen_students;
+@property NSInteger         post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(SimpleNotice *)notice;
@@ -27,13 +28,13 @@
 @end
 
 
-@interface Notice : NSObject
+@interface Notice : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSArray  *seen_students;
-@property(strong, nonatomic) SimplePost  *post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSArray           *seen_students;
+@property SimplePost        *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

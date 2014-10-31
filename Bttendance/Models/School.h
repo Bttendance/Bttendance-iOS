@@ -7,28 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface SimpleSchool : NSObject
+@interface SimpleSchool : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *type;
+@property NSInteger         id;
+@property NSString          *name;
+@property NSString          *type;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface School : NSObject
+@interface School : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *type;
-@property(assign) NSInteger  courses_count;
-@property(assign) NSInteger  professors_count;
-@property(assign) NSInteger  students_count;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *name;
+@property NSString          *type;
+@property NSInteger         courses_count;
+@property NSInteger         professors_count;
+@property NSInteger         students_count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

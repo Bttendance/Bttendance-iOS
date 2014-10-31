@@ -7,29 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
 @class SimpleSchool;
 @class SimpleUser;
 
-@interface SimpleIdentification : NSObject
+@interface SimpleIdentification : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *identity;
-@property(assign) NSInteger  school;
+@property NSInteger         id;
+@property NSString          *identity;
+@property NSInteger         school;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface Identification : NSObject
+@interface Identification : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *identity;
-@property(strong, nonatomic) SimpleUser  *owner;
-@property(strong, nonatomic) SimpleSchool  *school;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *identity;
+@property SimpleUser        *owner;
+@property SimpleSchool      *school;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "School.h"
 
 @class SimpleSchool;
 
-@interface SimpleCourse : NSObject
+@interface SimpleCourse : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *professor_name;
-@property(assign) NSInteger  school;
-@property(assign) BOOL opened;
+@property NSInteger         id;
+@property NSString          *name;
+@property NSString          *professor_name;
+@property NSInteger         school;
+@property BOOL              opened;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(SimpleCourse *)course;
@@ -25,24 +26,24 @@
 @end
 
 
-@interface Course : NSObject
+@interface Course : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *name;
-@property(strong, nonatomic) NSString  *professor_name;
-@property(strong, nonatomic) SimpleSchool  *school;
-@property(strong, nonatomic) NSArray  *managers;
-@property(assign) NSInteger  students_count;
-@property(assign) NSInteger  posts_count;
-@property(strong, nonatomic) NSString  *code;
-@property(assign) BOOL opened;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *name;
+@property NSString          *professor_name;
+@property SimpleSchool      *school;
+@property NSArray           *managers;
+@property NSInteger         students_count;
+@property NSInteger         posts_count;
+@property NSString          *code;
+@property BOOL              opened;
 
 //Added by APIs
-@property(assign) NSInteger attendance_rate;
-@property(assign) NSInteger clicker_rate;
-@property(assign) NSInteger notice_unseen;
+@property NSInteger attendance_rate;
+@property NSInteger clicker_rate;
+@property NSInteger notice_unseen;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

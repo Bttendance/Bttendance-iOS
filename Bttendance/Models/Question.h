@@ -7,34 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
 @class SimpleUser;
 
-@interface SimpleQuestion : NSObject
+@interface SimpleQuestion : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *message;
-@property(assign) NSInteger  choice_count;
-@property(assign) NSInteger progress_time;
-@property(assign) BOOL show_info_on_select;
-@property(strong, nonatomic) NSString *detail_privacy;
+@property NSInteger         id;
+@property NSString          *message;
+@property NSInteger         choice_count;
+@property NSInteger         progress_time;
+@property BOOL              show_info_on_select;
+@property NSString          *detail_privacy;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface Question : NSObject
+@interface Question : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *message;
-@property(assign) NSInteger  choice_count;
-@property(assign) NSInteger progress_time;
-@property(assign) BOOL show_info_on_select;
-@property(strong, nonatomic) NSString *detail_privacy;
-@property(strong, nonatomic) SimpleUser  *owner;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *message;
+@property NSInteger         choice_count;
+@property NSInteger         progress_time;
+@property BOOL              show_info_on_select;
+@property NSString          *detail_privacy;
+@property SimpleUser        *owner;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

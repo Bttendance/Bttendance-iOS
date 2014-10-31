@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "Device.h"
 #import "Setting.h"
 
@@ -14,15 +15,15 @@
 @class SimpleCourse;
 @class SimpleSetting;
 
-@interface SimpleUser : NSObject
+@interface SimpleUser : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *email;
-@property(strong, nonatomic) NSString  *full_name;
+@property NSInteger         id;
+@property NSString          *email;
+@property NSString          *full_name;
 
 //Added by APIs
-@property(strong, nonatomic) NSString  *grade;
-@property(strong, nonatomic) NSString  *student_id;
+@property NSString          *grade;
+@property NSString          *student_id;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(SimpleUser *)user;
@@ -30,23 +31,23 @@
 @end
 
 
-@interface User : NSObject
+@interface User : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *email;
-@property(strong, nonatomic) NSString  *password;
-@property(strong, nonatomic) NSString  *locale;
-@property(strong, nonatomic) NSString  *full_name;
-@property(strong, nonatomic) SimpleDevice  *device;
-@property(strong, nonatomic) SimpleSetting  *setting;
-@property(strong, nonatomic) NSArray  *supervising_courses;
-@property(strong, nonatomic) NSArray  *attending_courses;
-@property(strong, nonatomic) NSArray  *employed_schools;
-@property(strong, nonatomic) NSArray  *enrolled_schools;
-@property(strong, nonatomic) NSArray  *identifications;
-@property(assign) NSInteger  questions_count;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *email;
+@property NSString          *password;
+@property NSString          *locale;
+@property NSString          *full_name;
+@property SimpleDevice      *device;
+@property SimpleSetting     *setting;
+@property NSArray           *supervising_courses;
+@property NSArray           *attending_courses;
+@property NSArray           *employed_schools;
+@property NSArray           *enrolled_schools;
+@property NSArray           *identifications;
+@property NSInteger         questions_count;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

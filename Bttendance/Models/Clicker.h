@@ -7,26 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "Post.h"
 #import "XYPieChart.h"
 
 @class SimplePost;
 
-@interface SimpleClicker : NSObject <XYPieChartDataSource>
+@interface SimpleClicker : RLMObject <XYPieChartDataSource>
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(assign) NSInteger  choice_count;
-@property(strong, nonatomic) NSArray  *a_students;
-@property(strong, nonatomic) NSArray  *b_students;
-@property(strong, nonatomic) NSArray  *c_students;
-@property(strong, nonatomic) NSArray  *d_students;
-@property(strong, nonatomic) NSArray  *e_students;
-@property(assign) NSInteger progress_time;
-@property(assign) BOOL show_info_on_select;
-@property(strong, nonatomic) NSString *detail_privacy;
-@property(assign) NSInteger  post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSInteger         choice_count;
+@property NSArray           *a_students;
+@property NSArray           *b_students;
+@property NSArray           *c_students;
+@property NSArray           *d_students;
+@property NSArray           *e_students;
+@property NSInteger         progress_time;
+@property BOOL              show_info_on_select;
+@property NSString          *detail_privacy;
+@property NSInteger         post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 + (NSDictionary *)toDictionary:(SimpleClicker *)clicker;
@@ -40,21 +41,21 @@
 @end
 
 
-@interface Clicker : NSObject
+@interface Clicker : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(assign) NSInteger  choice_count;
-@property(strong, nonatomic) NSArray  *a_students;
-@property(strong, nonatomic) NSArray  *b_students;
-@property(strong, nonatomic) NSArray  *c_students;
-@property(strong, nonatomic) NSArray  *d_students;
-@property(strong, nonatomic) NSArray  *e_students;
-@property(assign) NSInteger progress_time;
-@property(assign) BOOL show_info_on_select;
-@property(strong, nonatomic) NSString *detail_privacy;
-@property(strong, nonatomic) SimplePost  *post;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSInteger         choice_count;
+@property NSArray           *a_students;
+@property NSArray           *b_students;
+@property NSArray           *c_students;
+@property NSArray           *d_students;
+@property NSArray           *e_students;
+@property NSInteger         progress_time;
+@property BOOL              show_info_on_select;
+@property NSString          *detail_privacy;
+@property SimplePost        *post;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

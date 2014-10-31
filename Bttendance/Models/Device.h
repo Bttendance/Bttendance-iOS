@@ -7,32 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 #import "User.h"
 
 @class SimpleUser;
 
-@interface SimpleDevice : NSObject
+@interface SimpleDevice : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSString  *type;
-@property(strong, nonatomic) NSString  *uuid;
-@property(strong, nonatomic) NSString  *notification_key;
+@property NSInteger         id;
+@property NSString          *type;
+@property NSString          *uuid;
+@property NSString          *notification_key;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 
-@interface Device : NSObject
+@interface Device : RLMObject
 
-@property(assign) NSInteger id;
-@property(strong, nonatomic) NSDate  *createdAt;
-@property(strong, nonatomic) NSDate  *updatedAt;
-@property(strong, nonatomic) NSString  *type;
-@property(strong, nonatomic) NSString  *uuid;
-@property(strong, nonatomic) NSString  *mac_address;
-@property(strong, nonatomic) NSString  *notification_key;
-@property(strong, nonatomic) SimpleUser  *owner;
+@property NSInteger         id;
+@property NSDate            *createdAt;
+@property NSDate            *updatedAt;
+@property NSString          *type;
+@property NSString          *uuid;
+@property NSString          *mac_address;
+@property NSString          *notification_key;
+@property SimpleUser        *owner;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
