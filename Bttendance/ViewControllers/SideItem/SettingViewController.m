@@ -61,7 +61,7 @@
     [BTAPIs autoSignInInSuccess:^(User *user) {
     } failure:^(NSError *error) {
     }];
-}
+}g
 
 - (void)reloadTableView:(NSNotification *)noti {
     self.user = [BTUserDefault getUser];
@@ -73,15 +73,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 3)
+    if (indexPath.row == 4)
         return 86;
     
-    if (indexPath.row == 8)
+    if (indexPath.row == 9)
         return 33;
     
     return 47;
@@ -89,7 +89,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row < 3) {
+    if (indexPath.row < 4) {
         static NSString *CellIdentifier = @"NotificationCell";
         NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -114,11 +114,17 @@
                            forControlEvents:UIControlEventValueChanged];
                 break;
             case 2:
-            default:
                 cell.title.text = NSLocalizedString(@"Notice Notification", nil);
                 cell.noti_switch.on = self.user.setting.notice;
                 [cell.noti_switch addTarget:self
                                      action:@selector(notice:)
+                           forControlEvents:UIControlEventValueChanged];
+                break;
+            default:
+                cell.title.text = NSLocalizedString(@"Curious Notification", nil);
+                cell.noti_switch.on = self.user.setting.curious;
+                [cell.noti_switch addTarget:self
+                                     action:@selector(curious:)
                            forControlEvents:UIControlEventValueChanged];
                 break;
         }
@@ -126,7 +132,7 @@
         return  cell;
     }
     
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 4) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 86)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -146,7 +152,7 @@
         return cell;
     }
     
-    else if (indexPath.row > 3 && indexPath.row < 8) {
+    else if (indexPath.row > 4 && indexPath.row < 9) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -173,7 +179,7 @@
         return cell;
     }
     
-    else if (indexPath.row == 8) {
+    else if (indexPath.row == 9) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -194,16 +200,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (indexPath.row) {
-        case 4:
+        case 5:
             [self term];
             break;
-        case 5:
+        case 6:
             [self policy];
             break;
-        case 6:
+        case 7:
             [self blog];
             break;
-        case 7:
+        case 8:
             [self facebook];
             break;
         default:
@@ -226,6 +232,12 @@
 
 - (void)notice:(id)sender {
     [BTAPIs updateNotiSettingNotice:((UISwitch*)sender).on success:^(User *user) {
+    } failure:^(NSError *error) {
+    }];
+}
+
+- (void)curious:(id)sender {
+    [BTAPIs updateNotiSettingCurious:((UISwitch*)sender).on success:^(User *user) {
     } failure:^(NSError *error) {
     }];
 }

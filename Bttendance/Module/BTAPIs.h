@@ -84,6 +84,10 @@
                         success:(void (^)(User *user))success
                         failure:(void (^)(NSError *error))failure;
 
++ (void)updateNotiSettingCurious:(BOOL)curious
+                        success:(void (^)(User *user))success
+                        failure:(void (^)(NSError *error))failure;
+
 + (void)updateClickerDefaultsWithTime:(NSString *)progress_time
                             andSelect:(BOOL)show_info_on_select
                            andPrivacy:(NSString *)detail_privacy

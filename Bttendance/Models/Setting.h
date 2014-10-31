@@ -17,6 +17,7 @@
 @property(assign) BOOL attendance;
 @property(assign) BOOL clicker;
 @property(assign) BOOL notice;
+@property(assign) BOOL curious;
 @property(assign) NSInteger progress_time;
 @property(assign) BOOL show_info_on_select;
 @property(strong, nonatomic) NSString *detail_privacy;
@@ -34,6 +35,7 @@
 @property(assign) BOOL attendance;
 @property(assign) BOOL clicker;
 @property(assign) BOOL notice;
+@property(assign) BOOL curious;
 @property(assign) NSInteger progress_time;
 @property(assign) BOOL show_info_on_select;
 @property(strong, nonatomic) NSString *detail_privacy;

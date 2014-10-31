@@ -482,6 +482,33 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
++ (void)updateNotiSettingCurious:(BOOL)curious
+                        success:(void (^)(User *user))success
+                        failure:(void (^)(NSError *error))failure {
+    
+    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+                             @"password" : [BTUserDefault getPassword],
+                             @"locale" : locale,
+                             @"curious" : (curious) ? @"true" : @"false"};
+    
+    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/curious"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTUserDefault setUser:responseObject];
+                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                User *user = [[User alloc] initWithDictionary:responseObject];
+                                dispatch_async( dispatch_get_main_queue(), ^{
+                                    success(user);
+                                });
+                            });
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            [self failureHandleWithError:error];
+                            if (failure != nil)
+                                failure(error);
+                        }];
+}
+
 
 + (void)updateClickerDefaultsWithTime:(NSString *)progress_time
                             andSelect:(BOOL)show_info_on_select

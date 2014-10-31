@@ -22,6 +22,7 @@
         self.attendance = [[dictionary objectForKey:@"attendance"] boolValue];
         self.clicker = [[dictionary objectForKey:@"clicker"] boolValue];
         self.notice = [[dictionary objectForKey:@"notice"] boolValue];
+        self.curious = [[dictionary objectForKey:@"curious"] boolValue];
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
@@ -46,6 +47,7 @@
         self.attendance = [[dictionary objectForKey:@"attendance"] boolValue];
         self.clicker = [[dictionary objectForKey:@"clicker"] boolValue];
         self.notice = [[dictionary objectForKey:@"notice"] boolValue];
+        self.curious = [[dictionary objectForKey:@"curious"] boolValue];
         self.progress_time = [[dictionary objectForKey:@"progress_time"] integerValue];
         self.show_info_on_select = [[dictionary objectForKey:@"show_info_on_select"] boolValue];
         self.detail_privacy = [dictionary objectForKey:@"detail_privacy"];
