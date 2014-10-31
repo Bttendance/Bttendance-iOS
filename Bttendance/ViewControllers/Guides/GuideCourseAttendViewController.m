@@ -40,7 +40,7 @@
     self.message2 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
     NSMutableParagraphStyle *paragraphStyle2 = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle2.lineSpacing = 7;
-    NSString *string2 = NSLocalizedString(@"각 피드를 누르면 세부 정보를 볼 수 있습니다.", nil);
+    NSString *string2 = NSLocalizedString(@"Click each post to view its information in detail.", nil);
     NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:string2];
     [str2 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle2} range:[string2 rangeOfString:string2]];
     self.message2.attributedText = str2;
@@ -52,7 +52,7 @@
     self.message3 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
     NSMutableParagraphStyle *paragraphStyle3 = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle3.lineSpacing = 7;
-    NSString *string3 = NSLocalizedString(@"BTTENDANCE의 출석체크 기능은 Bluetooth를 사용하므로, 출석할 때는 꼭 Bluetooth를 켜주세요.", nil);
+    NSString *string3 = NSLocalizedString(@"Attendance on BTTENDANCE will be checked via Bluetooth, so please keep the Bluetooth on while calling attendance.", nil);
     NSMutableAttributedString *str3 = [[NSMutableAttributedString alloc] initWithString:string3];
     [str3 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle3} range:[string3 rangeOfString:string3]];
     self.message3.attributedText = str3;
@@ -157,7 +157,7 @@
             cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 28, 320, 20)];
-            title.text = NSLocalizedString(@"BTTENDANCE를 잘 사용하는 법", nil);
+            title.text = NSLocalizedString(@"Tips for BTTENDANCE", nil);
             title.font = [UIFont boldSystemFontOfSize:18];
             title.textAlignment = NSTextAlignmentCenter;
             title.textColor = [UIColor navy:1.0];

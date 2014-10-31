@@ -12,3 +12,4 @@ pod 'SwipeView'
 pod 'uservoice-iphone-sdk'
 pod 'SLExpandableTableView'
 pod 'XYPieChart'
+pod "Realm"

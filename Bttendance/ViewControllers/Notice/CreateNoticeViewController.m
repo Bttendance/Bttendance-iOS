@@ -71,11 +71,6 @@
     [_message becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)post_Notice:(UIBarButtonItem *)sender  {
     sender.enabled = NO;
     

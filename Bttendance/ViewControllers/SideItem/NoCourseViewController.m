@@ -46,14 +46,14 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7;
     
-    NSString *string1 = NSLocalizedString(@"BTTENDANCE를 사용하기 위해서는\n과목을 개설하시거나(강의자)\n수강하셔야(학생) 합니다.", nil);
+    NSString *string1 = NSLocalizedString(@"You should create a course (Instructor)\nor attend a course (student)\nbefore using BTTENDANCE.", nil);
     NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:string1];
     [str1 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string1 rangeOfString:string1]];
     self.message1.attributedText = str1;
     self.message1.numberOfLines = 0;
     self.message1.textAlignment = NSTextAlignmentCenter;
     
-    NSString *string2 = NSLocalizedString(@"BTTENDANCE에 대해\n더 알고 싶으시다면", nil);
+    NSString *string2 = NSLocalizedString(@"If you want to know\nmore about BTTENDANCE", nil);
     NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:string2];
     [str2 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string2 rangeOfString:string2]];
     self.message2.attributedText = str2;

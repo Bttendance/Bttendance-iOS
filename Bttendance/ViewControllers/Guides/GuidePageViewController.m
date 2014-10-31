@@ -103,7 +103,7 @@
     self.showMoreNotice.layer.masksToBounds = YES;
     
     self.gdLastMsg1.text = NSLocalizedString(@"지금부터", nil);
-    self.gdLastMsg2.text = NSLocalizedString(@"BTTENDANCE를", nil);
+    self.gdLastMsg2.text = NSLocalizedString(@"To Use BTTENDANCE", nil);
     self.gdLastMsg3.text = NSLocalizedString(@"시작해보세요.", nil);
     
     [self.gdLastBt1 setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:1.0]] forState:UIControlStateNormal];
@@ -122,7 +122,7 @@
         [self.gdLastBt1 addTarget:self action:@selector(closeGuide:) forControlEvents:UIControlEventTouchUpInside];
         self.gdLastBt2.hidden = YES;
     } else {
-        [self.gdLastBt1 setTitle:NSLocalizedString(@"강의 개설하기", nil) forState:UIControlStateNormal];
+        [self.gdLastBt1 setTitle:NSLocalizedString(@"Create Course", nil) forState:UIControlStateNormal];
         [self.gdLastBt1 addTarget:self action:@selector(createCourse:) forControlEvents:UIControlEventTouchUpInside];
         [self.gdLastBt2 setTitle:NSLocalizedString(@"수강하기", nil) forState:UIControlStateNormal];
         [self.gdLastBt2 addTarget:self action:@selector(attendCourse:) forControlEvents:UIControlEventTouchUpInside];

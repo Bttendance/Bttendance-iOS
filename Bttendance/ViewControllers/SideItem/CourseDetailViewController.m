@@ -594,7 +594,7 @@
         case 0: { // how to use
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.lineSpacing = 5;
-            NSString *string = NSLocalizedString(@"BTTENDANCE를 잘 사용하는 법을 다시 보려면 여기를 누르세요!", nil);
+            NSString *string = NSLocalizedString(@"Click here to see the Tips for Using BTTENDANCE!", nil);
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
             [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
             cell.Message.attributedText = str;
@@ -607,7 +607,7 @@
         case 1: { // clicker
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.lineSpacing = 5;
-            NSString *string = NSLocalizedString(@"설문하기 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요.", nil);
+            NSString *string = NSLocalizedString(@"Click here to see how to use Clicker.", nil);
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
             [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
             cell.Message.attributedText = str;
@@ -620,7 +620,7 @@
         case 2: { // attendance
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.lineSpacing = 5;
-            NSString *string = NSLocalizedString(@"출석체크 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요.", nil);
+            NSString *string = NSLocalizedString(@"Click here to see how to use Attendance.", nil);
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
             [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
             cell.Message.attributedText = str;
@@ -633,7 +633,7 @@
         default: { //notice
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
             paragraphStyle.lineSpacing = 5;
-            NSString *string = NSLocalizedString(@"공지하기 기능을 어떻게 사용하는지 자세히 알아보려면 여기를 누르세요.", nil);
+            NSString *string = NSLocalizedString(@"Click here to see how to use Notice.", nil);
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:string];
             [str addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle} range:[string rangeOfString:string]];
             cell.Message.attributedText = str;
@@ -1067,7 +1067,7 @@
     if (self.auth) {
         NSInteger seen = post.notice.seen_students.count;
         NSInteger total = self.course.students_count;
-        cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld 읽음)", nil), seen, total];
+        cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld read)", nil), seen, total];
     } else if (![post.notice seen:user.id]) {
         cell.Title.text = NSLocalizedString(@"Unread Notice", nil);
         cell.Title.textColor = [UIColor red:1];

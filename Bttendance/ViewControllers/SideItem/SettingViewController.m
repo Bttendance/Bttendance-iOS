@@ -115,7 +115,7 @@
                 break;
             case 2:
             default:
-                cell.title.text = NSLocalizedString(@"공지 알림", nil);
+                cell.title.text = NSLocalizedString(@"Notice Notification", nil);
                 cell.noti_switch.on = self.user.setting.notice;
                 [cell.noti_switch addTarget:self
                                      action:@selector(notice:)

@@ -120,7 +120,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         UIFont *cellfont = [UIFont systemFontOfSize:12];
-        NSString *rawmessage = NSLocalizedString(@"학생의 이름을 누르면 학생의 출결 상황이 결석 -> 출석 -> 지각 -> 결석 순으로 바뀝니다.", nil);
+        NSString *rawmessage = NSLocalizedString(@"Click on the student’s name to toggle the student’s attendance status in the order of Absent ➜ Present ➜ Tardy ➜ Absent.", nil);
         NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
         CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
         return ceil(MessageLabelSize.size.height) + 14;
@@ -132,7 +132,7 @@
     
     if (indexPath.row == 0) {
         UIFont *cellfont = [UIFont systemFontOfSize:12];
-        NSString *rawmessage = NSLocalizedString(@"학생의 이름을 누르면 학생의 출결 상황이 결석 -> 출석 -> 지각 -> 결석 순으로 바뀝니다.", nil);
+        NSString *rawmessage = NSLocalizedString(@"Click on the student’s name to toggle the student’s attendance status in the order of Absent ➜ Present ➜ Tardy ➜ Absent.", nil);
         NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
         CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){280, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
         UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, ceil(MessageLabelSize.size.height) + 10)];
@@ -165,13 +165,13 @@
         cell.underline.hidden = YES;
         switch ([self.post.attendance stateInt:simpleUser.id]) {
             case 1:
-                cell.detail.text = NSLocalizedString(@"출석", nil);
+                cell.detail.text = NSLocalizedString(@"Present", nil);
                 [cell.icon setImage:[UIImage imageNamed:@"small_attended.png"]];
                 cell.background_bg.backgroundColor = [UIColor navy:0.1];
                 cell.selected_bg.backgroundColor = [UIColor navy:0.15];
                 break;
             case 2:
-                cell.detail.text = NSLocalizedString(@"지각", nil);
+                cell.detail.text = NSLocalizedString(@"Tardy", nil);
                 [cell.icon setImage:[UIImage imageNamed:@"small_late.png"]];
                 cell.background_bg.backgroundColor = [UIColor cyan:0.1];
                 cell.selected_bg.backgroundColor = [UIColor cyan:0.15];

@@ -27,7 +27,7 @@
     self.message1 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle1.lineSpacing = 7;
-    NSString *string1 = NSLocalizedString(@"BTTENDANCE를 사용하는 이유를 학생들에게 자세히 설명해 주세요.", nil);
+    NSString *string1 = NSLocalizedString(@"Please inform the students in detail why you are using BTTENDANCE.", nil);
     NSMutableAttributedString *str1 = [[NSMutableAttributedString alloc] initWithString:string1];
     [str1 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle1} range:[string1 rangeOfString:string1]];
     self.message1.attributedText = str1;
@@ -39,7 +39,7 @@
     self.message2 = [[UILabel alloc]initWithFrame:CGRectMake(82, 12, 212, 60)];
     NSMutableParagraphStyle *paragraphStyle2 = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle2.lineSpacing = 7;
-    NSString *string2 = NSLocalizedString(@"BTTENDANCE 외에는 수업시간에 스마트폰을 사용할 수 없다고 학생들에게 분명히 말씀하시는게 중요합니다.", nil);
+    NSString *string2 = NSLocalizedString(@"It is important to tell the students that during class, smartphones may not be used for anything other than BTTENDANCE.", nil);
     NSMutableAttributedString *str2 = [[NSMutableAttributedString alloc] initWithString:string2];
     [str2 addAttributes:@{NSParagraphStyleAttributeName: paragraphStyle2} range:[string2 rangeOfString:string2]];
     self.message2.attributedText = str2;
@@ -122,7 +122,7 @@
             cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 25.5, 320, 20)];
-            title.text = NSLocalizedString(@"강의가 성공적으로 개설되었습니다!", nil);
+            title.text = NSLocalizedString(@"Your course has been created!", nil);
             title.font = [UIFont boldSystemFontOfSize:18];
             title.textAlignment = NSTextAlignmentCenter;
             title.textColor = [UIColor black:1.0];
@@ -197,7 +197,7 @@
             cell.backgroundColor = [UIColor white:1.0];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 28, 320, 20)];
-            title.text = NSLocalizedString(@"BTTENDANCE를 잘 사용하는 법", nil);
+            title.text = NSLocalizedString(@"Tips for BTTENDANCE", nil);
             title.font = [UIFont boldSystemFontOfSize:18.5];
             title.textAlignment = NSTextAlignmentCenter;
             title.textColor = [UIColor navy:1.0];
