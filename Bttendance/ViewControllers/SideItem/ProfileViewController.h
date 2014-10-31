@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-#import "ClickerOptionViewController.h"
 
-@interface ProfileViewController : UITableViewController <ClickerOptionViewControllerDelegate>
+@interface ProfileViewController : UITableViewController <UIAlertViewDelegate>
 
 @end

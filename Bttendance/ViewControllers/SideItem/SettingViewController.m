@@ -61,7 +61,7 @@
     [BTAPIs autoSignInInSuccess:^(User *user) {
     } failure:^(NSError *error) {
     }];
-}g
+}
 
 - (void)reloadTableView:(NSNotification *)noti {
     self.user = [BTUserDefault getUser];

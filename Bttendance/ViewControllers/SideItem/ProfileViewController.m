@@ -11,10 +11,9 @@
 #import "BTUserDefault.h"
 #import "ProfileNameEditViewController.h"
 #import "ProfileEmailEditViewController.h"
-#import "ClickerQuestionViewController.h"
 #import "ProfileIdentityEditViewController.h"
-#import "CourseDetailViewController.h"
 #import "ProfileUpdatePassViewController.h"
+#import "CatchPointViewController.h"
 #import "ProfileCell.h"
 #import "SchoolInfoCell.h"
 #import "PasswordCell.h"
@@ -76,7 +75,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.user.employed_schools count] + [self.user.enrolled_schools count] + 6;
+    return [self.user.employed_schools count] + [self.user.enrolled_schools count] + 7;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,7 +85,8 @@
     
     if (indexPath.row == 0
         || indexPath.row == 1
-        || indexPath.row == employedSchools + enrolledSchools + 4)
+        || indexPath.row == employedSchools + enrolledSchools + 4
+        || indexPath.row == employedSchools + enrolledSchools + 5)
         return 47;
     
     if (indexPath.row == 2) {
@@ -100,7 +100,7 @@
     if (indexPath.row == employedSchools + enrolledSchools + 3)
         return 55;
     
-    if (indexPath.row == employedSchools + enrolledSchools + 5)
+    if (indexPath.row == employedSchools + enrolledSchools + 6)
         return 33;
     
     if (indexPath.row < employedSchools + enrolledSchools + 3)
@@ -187,7 +187,7 @@
         return cell;
     }
     
-    else if (indexPath.row == employedSchools + enrolledSchools + 4) {
+    else if (indexPath.row < employedSchools + enrolledSchools + 6) {
         static NSString *CellIdentifier = @"PasswordCell";
         PasswordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -196,12 +196,21 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.password.text = NSLocalizedString(@"Update Password", nil);
+        switch (indexPath.row - employedSchools - enrolledSchools) {
+            case 4:
+                cell.password.text = NSLocalizedString(@"Update Password", nil);
+                break;
+            case 5:
+            default:
+                cell.password.text = NSLocalizedString(@"Sign Out", nil);
+                break;
+        }
+        
         cell.password.textColor = [UIColor red:1.0];
         return cell;
     }
     
-    else if (indexPath.row == employedSchools + enrolledSchools + 5) {
+    else if (indexPath.row == employedSchools + enrolledSchools + 6) {
         UITableViewCell *cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 320, 33)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor grey:1.0];
@@ -233,6 +242,9 @@
     if (indexPath.row == employedSchools + enrolledSchools + 4)
         [self updatePass];
     
+    if (indexPath.row == employedSchools + enrolledSchools + 5)
+        [self signOut];
+    
     else if (indexPath.row > employedSchools + 2 && indexPath.row < employedSchools + enrolledSchools + 3) {
         NSInteger index = indexPath.row - employedSchools - 3;
         SimpleSchool *school = self.user.enrolled_schools[index];
@@ -262,23 +274,6 @@
     [self.navigationController pushViewController:profileEmailEditView animated:YES];
 }
 
-- (void)questions {
-    ClickerQuestionViewController *questionView = [[ClickerQuestionViewController alloc] init];
-    questionView.showDetailBt = YES;
-    [self.navigationController pushViewController:questionView animated:YES];
-}
-
-- (void)questionOption {
-    ClickerOptionViewController *clickerOption = [[ClickerOptionViewController alloc] init];
-    User *user = [BTUserDefault getUser];
-    clickerOption.optionType = DEFAULT;
-    clickerOption.progressTime = user.setting.progress_time;
-    clickerOption.showInfoOnSelect = user.setting.show_info_on_select;
-    clickerOption.detailPrivacy = user.setting.detail_privacy;
-    clickerOption.delegate = self;
-    [self.navigationController pushViewController:clickerOption animated:YES];
-}
-
 - (void)editIdentity:(SimpleIdentification *)identification andSchoolID:(NSInteger)schoolID {
     ProfileIdentityEditViewController *profileIdentityEditView = [[ProfileIdentityEditViewController alloc] initWithStyle:UITableViewStyleGrouped];
     profileIdentityEditView.identification = identification;
@@ -291,12 +286,25 @@
     [self.navigationController pushViewController:profileUpdatePassView animated:YES];
 }
 
-#pragma ClickerOptionViewControllerDelegate
-- (void)chosenOptionTime:(NSInteger)progressTime andOnSelect:(BOOL)showInfoOnSelect andDetail:(NSString *)detailPrivacy {
-    [BTAPIs updateClickerDefaultsWithTime:[NSString stringWithFormat:@"%ld", (long)progressTime]
-                                andSelect:showInfoOnSelect
-                               andPrivacy:detailPrivacy
-                                  success:nil failure:nil];
+- (void)signOut {
+    UIAlertView *alert;
+    alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sign Out", nil)
+                                       message:NSLocalizedString(@"Are you sure you want to sign out of Bttendance?", nil)
+                                      delegate:self
+                             cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                             otherButtonTitles:NSLocalizedString(@"Sign Out", nil), nil];
+    [alert show];
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [BTUserDefault clear];
+        CatchPointViewController *catchview = [[CatchPointViewController alloc] initWithNibName:@"CatchPointViewController" bundle:nil];
+        UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:catchview];
+        navcontroller.navigationBarHidden = YES;
+        [self.navigationController setViewControllers:[NSArray arrayWithObject:catchview] animated:NO];
+    }
 }
 
 @end

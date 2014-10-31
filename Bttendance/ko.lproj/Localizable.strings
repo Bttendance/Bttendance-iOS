@@ -1,5 +1,5 @@
-"Bttendance" = "BTTENDANCE";
-"BTTENDANCE" = "BTTENDANCE";
+"Bttendance" = "비텐던스";
+"BTTENDANCE" = "비텐던스";
 
 /* Simple Words */
 "Present" = "출석";
@@ -322,3 +322,6 @@
 "강의자만" = "강의자만";
 "모두" = "모두";
 "아무도" = "아무도";
+
+"Sign Out" = "로그아웃";
+"Are you sure you want to sign out of Bttendance?" = "정말 비텐던스에서 로그아웃 하시겠습니까?";
