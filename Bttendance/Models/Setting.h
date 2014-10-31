@@ -12,7 +12,7 @@
 
 @class SimpleUser;
 
-@interface SimpleSetting : RLMObject
+@interface SimpleSetting : NSObject
 
 @property NSInteger         id;
 @property BOOL              attendance;
@@ -28,7 +28,7 @@
 @end
 
 
-@interface Setting : RLMObject
+@interface Setting : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

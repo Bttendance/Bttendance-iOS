@@ -12,7 +12,7 @@
 
 @class SimplePost;
 
-@interface SimpleNotice : RLMObject
+@interface SimpleNotice : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;
@@ -28,7 +28,7 @@
 @end
 
 
-@interface Notice : RLMObject
+@interface Notice : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

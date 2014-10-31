@@ -10,7 +10,7 @@
 
 @interface Email : NSObject
 
-@property(strong, nonatomic) NSString  *email;
+@property NSString          *email;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

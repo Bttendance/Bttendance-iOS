@@ -12,7 +12,7 @@
 
 @class SimpleSchool;
 
-@interface SimpleCourse : RLMObject
+@interface SimpleCourse : NSObject
 
 @property NSInteger         id;
 @property NSString          *name;
@@ -26,7 +26,7 @@
 @end
 
 
-@interface Course : RLMObject
+@interface Course : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

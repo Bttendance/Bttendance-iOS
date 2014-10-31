@@ -10,9 +10,10 @@
 
 @interface Error : NSObject
 
-@property(strong, nonatomic) NSString  *type; //(log, toast, alert)
-@property(strong, nonatomic) NSString  *title;
-@property(strong, nonatomic) NSString  *message;
+//(log, toast, alert)
+@property NSString          *type;
+@property NSString          *title;
+@property NSString          *message;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

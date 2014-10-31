@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
 
-@interface SimpleSchool : RLMObject
+@interface SimpleSchool : NSObject
 
 @property NSInteger         id;
 @property NSString          *name;
@@ -20,7 +20,7 @@
 @end
 
 
-@interface School : RLMObject
+@interface School : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

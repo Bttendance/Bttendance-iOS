@@ -12,7 +12,7 @@
 @class SimpleSchool;
 @class SimpleUser;
 
-@interface SimpleIdentification : RLMObject
+@interface SimpleIdentification : NSObject
 
 @property NSInteger         id;
 @property NSString          *identity;
@@ -23,7 +23,7 @@
 @end
 
 
-@interface Identification : RLMObject
+@interface Identification : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

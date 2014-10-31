@@ -11,7 +11,7 @@
 
 @class SimpleUser;
 
-@interface SimpleQuestion : RLMObject
+@interface SimpleQuestion : NSObject
 
 @property NSInteger         id;
 @property NSString          *message;
@@ -25,7 +25,7 @@
 @end
 
 
-@interface Question : RLMObject
+@interface Question : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

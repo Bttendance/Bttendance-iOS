@@ -13,7 +13,7 @@
 
 @class SimplePost;
 
-@interface SimpleClicker : RLMObject <XYPieChartDataSource>
+@interface SimpleClicker : NSObject <XYPieChartDataSource>
 
 @property NSInteger         id;
 @property NSDate            *createdAt;
@@ -41,7 +41,7 @@
 @end
 
 
-@interface Clicker : RLMObject
+@interface Clicker : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

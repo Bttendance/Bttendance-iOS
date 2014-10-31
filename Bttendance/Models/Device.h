@@ -12,7 +12,7 @@
 
 @class SimpleUser;
 
-@interface SimpleDevice : RLMObject
+@interface SimpleDevice : NSObject
 
 @property NSInteger         id;
 @property NSString          *type;
@@ -24,7 +24,7 @@
 @end
 
 
-@interface Device : RLMObject
+@interface Device : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

@@ -12,7 +12,7 @@
 
 @class SimplePost;
 
-@interface SimpleAttendance : RLMObject
+@interface SimpleAttendance : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;
@@ -31,7 +31,7 @@
 @end
 
 
-@interface Attendance : RLMObject
+@interface Attendance : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

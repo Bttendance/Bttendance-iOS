@@ -15,7 +15,7 @@
 @class SimpleCourse;
 @class SimpleSetting;
 
-@interface SimpleUser : RLMObject
+@interface SimpleUser : NSObject
 
 @property NSInteger         id;
 @property NSString          *email;
@@ -31,7 +31,7 @@
 @end
 
 
-@interface User : RLMObject
+@interface User : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;

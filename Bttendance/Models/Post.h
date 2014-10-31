@@ -20,7 +20,7 @@
 @class SimpleClicker;
 @class SimpleNotice;
 
-@interface SimplePost : RLMObject
+@interface SimplePost : NSObject
 
 @property NSInteger         id;
 @property NSString          *type;
@@ -32,7 +32,7 @@
 
 @end
 
-@interface Post : RLMObject
+@interface Post : NSObject
 
 @property NSInteger         id;
 @property NSDate            *createdAt;
