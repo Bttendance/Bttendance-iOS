@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *type;
 @property (weak, nonatomic) IBOutlet UIView *line;
 @property (weak, nonatomic) IBOutlet UIView *selected_bg;
+@property (weak, nonatomic) IBOutlet UILabel *lectures;
 
 @end

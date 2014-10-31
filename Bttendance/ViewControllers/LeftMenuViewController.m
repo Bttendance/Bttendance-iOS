@@ -114,6 +114,8 @@
         cell.name.text = self.user.full_name;
         cell.line.frame = CGRectMake(14, 154.3, 242, 0.7);
         
+        cell.lectures.text = NSLocalizedString(@"LECTURES", nil);
+        
         return cell;
     }
     
