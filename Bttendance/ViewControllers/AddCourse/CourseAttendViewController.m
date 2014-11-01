@@ -284,46 +284,46 @@
 
 - (void)attendCourse {
     
-    if (self.attendingCourse == nil)
-        return;
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor navy:0.7];
-    hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
-    hud.yOffset = -40.0f;
-    
-    NSArray *old_courses = [[BTUserDefault getUser] getOpenedCourses];
-    
-    [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.id]
-                 success:^(User *user) {
-                     [hud hide:YES];
-                     
-                     SimpleCourse *createdCourse;
-                     NSArray *new_courses = [[BTUserDefault getUser] getOpenedCourses];
-                     for (SimpleCourse *newCourse in new_courses) {
-                         BOOL isNew = YES;
-                         for (SimpleCourse *oldCourse in old_courses) {
-                             if (newCourse.id == oldCourse.id) {
-                                 isNew = NO;
-                                 break;
-                             }
-                         }
-                         if (isNew)
-                             createdCourse = newCourse;
-                     }
-                     
-                     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:createdCourse, SimpleCourseInfo, nil];
-                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
-                     
-                     GuideCourseAttendViewController *courseAttendView = [[GuideCourseAttendViewController alloc] initWithNibName:@"GuideCourseAttendViewController" bundle:nil];
-                     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:courseAttendView, ModalViewController, nil];
-                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data2];
-                     
-                     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
-                 } failure:^(NSError *error) {
-                     [hud hide:YES];
-                 }];
+//    if (self.attendingCourse == nil)
+//        return;
+//    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.color = [UIColor navy:0.7];
+//    hud.labelText = NSLocalizedString(@"Loading", nil);
+//    hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
+//    hud.yOffset = -40.0f;
+//    
+//    NSArray *old_courses = [[BTUserDefault getUser] getOpenedCourses];
+//    
+//    [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.id]
+//                 success:^(User *user) {
+//                     [hud hide:YES];
+//                     
+//                     SimpleCourse *createdCourse;
+//                     NSArray *new_courses = [[BTUserDefault getUser] getOpenedCourses];
+//                     for (SimpleCourse *newCourse in new_courses) {
+//                         BOOL isNew = YES;
+//                         for (SimpleCourse *oldCourse in old_courses) {
+//                             if (newCourse.id == oldCourse.id) {
+//                                 isNew = NO;
+//                                 break;
+//                             }
+//                         }
+//                         if (isNew)
+//                             createdCourse = newCourse;
+//                     }
+//                     
+//                     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:createdCourse, SimpleCourseInfo, nil];
+//                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+//                     
+//                     GuideCourseAttendViewController *courseAttendView = [[GuideCourseAttendViewController alloc] initWithNibName:@"GuideCourseAttendViewController" bundle:nil];
+//                     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:courseAttendView, ModalViewController, nil];
+//                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data2];
+//                     
+//                     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+//                 } failure:^(NSError *error) {
+//                     [hud hide:YES];
+//                 }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

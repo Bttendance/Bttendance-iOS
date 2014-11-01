@@ -1,5 +1,5 @@
 //
-//  PostSimple.h
+//  SimplePost.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObjectSimple.h"
 
-@interface PostSimple : BTObjectSimple
+@interface SimplePost : BTObjectSimple
 
 @property NSString          *type;
 @property NSString          *message;

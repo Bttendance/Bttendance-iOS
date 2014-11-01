@@ -7,8 +7,7 @@
 //
 
 #import "BTObject.h"
-
-@class SimplePost;
+#import "SimplePost.h"
 
 @interface Attendance : BTObject
 
@@ -17,5 +16,7 @@
 @property NSData            *late_students;
 @property NSData            *clusters;
 @property SimplePost        *post;
+
+- (instancetype)initWithObject:(id)object;
 
 @end

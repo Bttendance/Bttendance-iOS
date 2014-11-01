@@ -7,16 +7,16 @@
 //
 
 #import "BTObject.h"
-#import "UserSimple.h"
-
-@class SchoolSimple;
+#import "RLMArray.h"
+#import "SimpleUser.h"
+#import "SimpleSchool.h"
 
 @interface Course : BTObject
 
 @property NSString              *name;
 @property NSString              *professor_name;
-@property SchoolSimple          *school;
-@property RLMArray<UserSimple>  *managers;
+@property SimpleSchool          *school;
+@property RLMArray<SimpleUser>  *managers;
 @property NSInteger             students_count;
 @property NSInteger             posts_count;
 @property NSString              *code;

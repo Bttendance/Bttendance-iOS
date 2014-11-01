@@ -7,9 +7,8 @@
 //
 
 #import "BTObject.h"
-
-@class SimpleSchool;
-@class SimpleUser;
+#import "SimpleUser.h"
+#import "SimpleSchool.h"
 
 @interface Identification : BTObject
 

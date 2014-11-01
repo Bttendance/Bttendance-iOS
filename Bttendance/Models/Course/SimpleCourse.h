@@ -1,5 +1,5 @@
 //
-//  CourseSimple.h
+//  SimpleCourse.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObjectSimple.h"
 
-@interface CourseSimple : BTObjectSimple
+@interface SimpleCourse : BTObjectSimple
 
 @property NSString          *name;
 @property NSString          *professor_name;
@@ -16,4 +16,4 @@
 @property BOOL              opened;
 
 @end
-RLM_ARRAY_TYPE(CourseSimple)
+RLM_ARRAY_TYPE(SimpleCourse)

@@ -1,13 +1,13 @@
 //
-//  ClickerQuestionSimple.m
-//  Bttendance
+//  SimpleDevice.m
+//  bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "ClickerQuestionSimple.h"
+#import "SimpleDevice.h"
 
-@implementation ClickerQuestionSimple
+@implementation SimpleDevice
 
 @end

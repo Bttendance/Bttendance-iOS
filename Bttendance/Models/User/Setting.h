@@ -7,8 +7,7 @@
 //
 
 #import "BTObject.h"
-
-@class SimpleUser;
+#import "SimpleUser.h"
 
 @interface Setting : BTObject
 

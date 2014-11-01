@@ -7,12 +7,11 @@
 //
 
 #import "BTObject.h"
-
-@class SimpleUser;
-@class SimpleCourse;
-@class SimpleAttendance;
-@class SimpleClicker;
-@class SimpleNotice;
+#import "SimpleUser.h"
+#import "SimpleCourse.h"
+#import "SimpleAttendance.h"
+#import "SimpleClicker.h"
+#import "SimpleNotice.h"
 
 @interface Post : BTObject
 

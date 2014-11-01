@@ -1,14 +1,20 @@
 //
-//  NoticeSimple.m
+//  SimpleNotice.m
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "NoticeSimple.h"
+#import "SimpleNotice.h"
+#import "NSData+Bttendance.h"
 
-@implementation NoticeSimple
+@implementation SimpleNotice
+
+- (instancetype)initWithObject:(id)object {
+    [object setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];
+    return [super initWithObject:object];
+}
 
 - (void)copyDataFromNotice:(id)object {
 //    Notice *notice = (Notice *)object;

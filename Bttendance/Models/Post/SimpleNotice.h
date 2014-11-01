@@ -1,5 +1,5 @@
 //
-//  NoticeSimple.h
+//  SimpleNotice.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,11 +8,12 @@
 
 #import "BTObject.h"
 
-@interface NoticeSimple : BTObject
+@interface SimpleNotice : BTObject
 
 @property NSData            *seen_students;
 @property NSInteger         post;
 
+- (instancetype)initWithObject:(id)object;
 - (void)copyDataFromNotice:(id)object;
 - (BOOL)seen:(NSInteger)userId;
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "SimpleCourse.h"
 
 @interface CourseCell : UITableViewCell {
 }

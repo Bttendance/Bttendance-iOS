@@ -8,13 +8,11 @@
 
 #import "BTObject.h"
 #import "RLMArray.h"
-
-#import "CourseSimple.h"
-#import "SchoolSimple.h"
-#import "IdentificationSimple.h"
-
-@class DeviceSimple;
-@class SettingSimple;
+#import "SimpleDevice.h"
+#import "SimpleSetting.h"
+#import "SimpleCourse.h"
+#import "SimpleSchool.h"
+#import "SimpleIdentification.h"
 
 @interface User : BTObject
 
@@ -22,16 +20,15 @@
 @property NSString                              *password;
 @property NSString                              *locale;
 @property NSString                              *full_name;
-@property DeviceSimple                          *device;
-@property SettingSimple                         *setting;
-@property RLMArray<CourseSimple>                *supervising_courses;
-@property RLMArray<CourseSimple>                *attending_courses;
-@property RLMArray<SchoolSimple>                *employed_schools;
-@property RLMArray<SchoolSimple>                *enrolled_schools;
-@property RLMArray<IdentificationSimple>        *identifications;
+@property SimpleDevice                          *device;
+@property SimpleSetting                         *setting;
+@property RLMArray<SimpleCourse>                *supervising_courses;
+@property RLMArray<SimpleCourse>                *attending_courses;
+@property RLMArray<SimpleSchool>                *employed_schools;
+@property RLMArray<SimpleSchool>                *enrolled_schools;
+@property RLMArray<SimpleIdentification>        *identifications;
 @property NSInteger         questions_count;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 - (BOOL)supervising:(NSInteger)course_id;
 
@@ -43,7 +40,7 @@
 
 - (BOOL)hasOpenedCourse;
 
-- (CourseSimple *)getCourse:(NSInteger)course_id;
+- (SimpleCourse *)getCourse:(NSInteger)course_id;
 
 - (NSArray *)getOpenedCourses;
 

@@ -10,6 +10,7 @@
 #import "Attendance.h"
 #import "Clicker.h"
 #import "Notice.h"
+#import "Post.h"
 
 #define UserJSONKey @"btd_user_json"
 #define CoursesJSONKey @"btd_courses_json"

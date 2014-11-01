@@ -1,5 +1,5 @@
 //
-//  UserSimple.h
+//  SimpleUser.h
 //  bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObjectSimple.h"
 
-@interface UserSimple : BTObjectSimple
+@interface SimpleUser : BTObjectSimple
 
 @property NSString          *email;
 @property NSString          *full_name;
@@ -18,4 +18,4 @@
 @property NSString          *student_id;
 
 @end
-RLM_ARRAY_TYPE(UserSimple)
+RLM_ARRAY_TYPE(SimpleUser)

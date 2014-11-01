@@ -7,8 +7,7 @@
 //
 
 #import "BTObject.h"
-
-@class SimpleUser;
+#import "SimpleUser.h"
 
 @interface Device : BTObject
 

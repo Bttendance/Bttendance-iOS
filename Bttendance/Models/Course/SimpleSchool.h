@@ -1,6 +1,6 @@
 //
-//  DeviceSimple.h
-//  bttendance
+//  SimpleSchool.h
+//  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
@@ -8,10 +8,10 @@
 
 #import "BTObjectSimple.h"
 
-@interface DeviceSimple : BTObjectSimple
+@interface SimpleSchool : BTObjectSimple
 
+@property NSString          *name;
 @property NSString          *type;
-@property NSString          *uuid;
-@property NSString          *notification_key;
 
 @end
+RLM_ARRAY_TYPE(SimpleSchool)

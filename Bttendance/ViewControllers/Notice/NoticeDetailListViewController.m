@@ -48,32 +48,32 @@
     
     data = [NSArray array];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]]];
-        [self right:nil];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
-        });
-    });
+//    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]]];
+//        [self right:nil];
+//        dispatch_async( dispatch_get_main_queue(), ^{
+//            [self.tableview reloadData];
+//        });
+//    });
     
-    [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]
-                      success:^(NSArray *simpleUsers) {
-                          data = simpleUsers;
-                          switch (self.segmentcontrol.selectedSegmentIndex) {
-                              case 0:
-                                  [self left:nil];
-                                  break;
-                              case 1:
-                                  [self center:nil];
-                                  break;
-                              case 2:
-                              default:
-                                  [self right:nil];
-                                  break;
-                          }
-                          [self.tableview reloadData];
-                      } failure:^(NSError *error) {
-                      }];
+//    [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]
+//                      success:^(NSArray *simpleUsers) {
+//                          data = simpleUsers;
+//                          switch (self.segmentcontrol.selectedSegmentIndex) {
+//                              case 0:
+//                                  [self left:nil];
+//                                  break;
+//                              case 1:
+//                                  [self center:nil];
+//                                  break;
+//                              case 2:
+//                              default:
+//                                  [self right:nil];
+//                                  break;
+//                          }
+//                          [self.tableview reloadData];
+//                      } failure:^(NSError *error) {
+//                      }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotice:) name:NoticeUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
@@ -84,12 +84,12 @@
     if ([notification object] == nil)
         return;
     
-    Notice *notice = [notification object];
-    if (self.post.notice.id != notice.id)
-        return;
-    
-    [self.post.notice copyDataFromNotice:notice];
-    [self.tableview reloadData];
+//    Notice *notice = [notification object];
+//    if (self.post.notice.id != notice.id)
+//        return;
+//    
+//    [self.post.notice copyDataFromNotice:notice];
+//    [self.tableview reloadData];
 }
 
 - (void)updatePost:(NSNotification *)notification {

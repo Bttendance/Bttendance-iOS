@@ -1,13 +1,13 @@
 //
-//  IdentificationSimple.m
-//  bttendance
+//  SimplePost.m
+//  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "IdentificationSimple.h"
+#import "SimplePost.h"
 
-@implementation IdentificationSimple
+@implementation SimplePost
 
 @end

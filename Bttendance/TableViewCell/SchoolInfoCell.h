@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "School.h"
-#import "SchoolSimple.h"
+#import "SimpleSchool.h"
 
 @interface SchoolInfoCell : UITableViewCell
 
@@ -20,6 +20,6 @@
 @property(weak, nonatomic) IBOutlet UIView *selected_bg;
 
 @property(retain, nonatomic) School *school;
-@property(retain, nonatomic) SchoolSimple *simpleSchool;
+@property(retain, nonatomic) SimpleSchool *simpleSchool;
 
 @end

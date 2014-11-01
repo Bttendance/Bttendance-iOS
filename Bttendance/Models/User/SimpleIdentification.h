@@ -1,5 +1,5 @@
 //
-//  IdentificationSimple.h
+//  SimpleIdentification.h
 //  bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,10 +8,10 @@
 
 #import "BTObjectSimple.h"
 
-@interface IdentificationSimple : BTObjectSimple
+@interface SimpleIdentification : BTObjectSimple
 
 @property NSString          *identity;
 @property NSInteger         school;
 
 @end
-RLM_ARRAY_TYPE(IdentificationSimple)
+RLM_ARRAY_TYPE(SimpleIdentification)

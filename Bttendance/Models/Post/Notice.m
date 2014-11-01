@@ -7,7 +7,13 @@
 //
 
 #import "Notice.h"
+#import "NSData+Bttendance.h"
 
 @implementation Notice
+
+- (instancetype)initWithObject:(id)object {
+    [object setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];
+    return [super initWithObject:object];
+}
 
 @end

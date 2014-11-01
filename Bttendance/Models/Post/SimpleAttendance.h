@@ -1,5 +1,5 @@
 //
-//  AttendanceSimple.h
+//  SimpleAttendance.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObject.h"
 
-@interface AttendanceSimple : BTObject
+@interface SimpleAttendance : BTObject
 
 @property NSString          *type;
 @property NSData            *checked_students;

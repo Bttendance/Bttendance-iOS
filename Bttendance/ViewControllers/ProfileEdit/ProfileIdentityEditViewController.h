@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Identification.h"
+#import "SimpleIdentification.h"
 
 @interface ProfileIdentityEditViewController : UITableViewController <UITextFieldDelegate>
 

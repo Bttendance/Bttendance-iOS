@@ -1,5 +1,5 @@
 //
-//  ClickerQuestionSimple.h
+//  SimpleClickerQuestion.h
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObjectSimple.h"
 
-@interface ClickerQuestionSimple : BTObjectSimple
+@interface SimpleClickerQuestion : BTObjectSimple
 
 @property NSString          *message;
 @property NSInteger         choice_count;

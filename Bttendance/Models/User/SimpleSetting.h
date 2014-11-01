@@ -1,5 +1,5 @@
 //
-//  SettingSimple.h
+//  SimpleSetting.h
 //  bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
@@ -8,7 +8,7 @@
 
 #import "BTObjectSimple.h"
 
-@interface SettingSimple : BTObjectSimple
+@interface SimpleSetting : BTObjectSimple
 
 @property BOOL              attendance;
 @property BOOL              clicker;

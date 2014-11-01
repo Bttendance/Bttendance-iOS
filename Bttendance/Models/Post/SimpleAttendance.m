@@ -1,18 +1,19 @@
 //
-//  AttendanceSimple.m
+//  SimpleAttendance.m
 //  Bttendance
 //
 //  Created by TheFinestArtist on 2014. 11. 1..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "AttendanceSimple.h"
+#import "SimpleAttendance.h"
+#import "NSData+Bttendance.h"
 
-@implementation AttendanceSimple
+@implementation SimpleAttendance
 
 - (instancetype)initWithObject:(id)object {
-    [object setObject:[NSKeyedArchiver archivedDataWithRootObject:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
-    [object setObject:[NSKeyedArchiver archivedDataWithRootObject:[object objectForKey:@"late_students"]] forKey:@"late_students"];
+    [object setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
+    [object setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
     return [super initWithObject:object];
 }
 
