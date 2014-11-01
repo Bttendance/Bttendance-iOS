@@ -69,7 +69,7 @@
     
     NSMutableArray *courses = [NSMutableArray array];
     for (NSDictionary *dic in json) {
-        Course *course = [[Course alloc] initWithDictionary:dic];
+        Course *course = [[Course alloc] initWithObject:dic];
         [courses addObject:course];
     }
     
@@ -81,7 +81,7 @@
     if (courseString != nil) {
         NSData *data = [courseString dataUsingEncoding:NSUTF8StringEncoding];
         id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        Course *course = [[Course alloc] initWithDictionary:json];
+        Course *course = [[Course alloc] initWithObject:json];
         return course;
     } else {
         NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:CoursesJSONKey];
@@ -92,7 +92,7 @@
         id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         for (NSDictionary *dic in json) {
-            Course *course = [[Course alloc] initWithDictionary:dic];
+            Course *course = [[Course alloc] initWithObject:dic];
             if (course.id == courseId)
                 return course;
         }
@@ -321,7 +321,7 @@
     
     NSMutableArray *schools = [NSMutableArray array];
     for (NSDictionary *dic in json) {
-        School *school = [[School alloc] initWithDictionary:dic];
+        School *school = [[School alloc] initWithObject:dic];
         [schools addObject:school];
     }
     
@@ -349,7 +349,7 @@
     id responseObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSMutableArray *users = [NSMutableArray array];
     for (NSDictionary *dic in responseObject) {
-        SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
+        SimpleUser *user = [[SimpleUser alloc] initWithObject:dic];
         [users addObject:user];
     }
     return users;

@@ -123,9 +123,6 @@
     } else {
         self.message = @"";
         self.choiceCount = 0;
-        self.progressTime = self.user.setting.progress_time;
-        self.showInfoOnSelect = self.user.setting.show_info_on_select;
-        self.detailPrivacy = self.user.setting.detail_privacy;
     }
     
     self.textview = [[UITextView alloc] initWithFrame:CGRectMake(14, 10, 292, 101)];

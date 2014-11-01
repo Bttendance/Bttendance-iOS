@@ -30,6 +30,10 @@
 		D41D685018AA11520058E356 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41D684F18AA11520058E356 /* Crashlytics.framework */; };
 		D41EDC8D1990AD2F004F6E44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */; };
 		D41EDC901990AF47004F6E44 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D41EDC921990AF47004F6E44 /* Localizable.strings */; };
+		D45741A01A050A8F001976B5 /* AttendanceSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D457419F1A050A8F001976B5 /* AttendanceSimple.m */; };
+		D45741A31A050A99001976B5 /* ClickerSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741A21A050A99001976B5 /* ClickerSimple.m */; };
+		D45741A61A050AA3001976B5 /* NoticeSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741A51A050AA3001976B5 /* NoticeSimple.m */; };
+		D45741A91A050AAD001976B5 /* PostSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741A81A050AAD001976B5 /* PostSimple.m */; };
 		D4591AC419C83404007F8E5C /* attendance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591AB919C83404007F8E5C /* attendance_bg@2x.png */; };
 		D4591AC519C83404007F8E5C /* attendanceicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591ABA19C83404007F8E5C /* attendanceicon_gd@2x.png */; };
 		D4591AC619C83404007F8E5C /* notice_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591ABB19C83404007F8E5C /* notice_bg@2x.png */; };
@@ -106,20 +110,6 @@
 		D4591B5919C861FA007F8E5C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5519C861FA007F8E5C /* WebViewController.m */; };
 		D4591B5F19C8634F007F8E5C /* BTAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5C19C8634F007F8E5C /* BTAPIs.m */; };
 		D4591B6019C8634F007F8E5C /* BTUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B5E19C8634F007F8E5C /* BTUserDefault.m */; };
-		D4591B7D19C86376007F8E5C /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6219C86376007F8E5C /* Attendance.m */; };
-		D4591B7E19C86376007F8E5C /* Clicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6419C86376007F8E5C /* Clicker.m */; };
-		D4591B7F19C86376007F8E5C /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6619C86376007F8E5C /* Course.m */; };
-		D4591B8019C86376007F8E5C /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6819C86376007F8E5C /* Device.m */; };
-		D4591B8119C86376007F8E5C /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6A19C86376007F8E5C /* Email.m */; };
-		D4591B8219C86376007F8E5C /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6C19C86376007F8E5C /* Error.m */; };
-		D4591B8319C86376007F8E5C /* Identification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B6E19C86376007F8E5C /* Identification.m */; };
-		D4591B8419C86376007F8E5C /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7019C86376007F8E5C /* Notice.m */; };
-		D4591B8519C86376007F8E5C /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7219C86376007F8E5C /* Post.m */; };
-		D4591B8619C86376007F8E5C /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7419C86376007F8E5C /* PushNoti.m */; };
-		D4591B8719C86376007F8E5C /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7619C86376007F8E5C /* Question.m */; };
-		D4591B8819C86376007F8E5C /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7819C86376007F8E5C /* School.m */; };
-		D4591B8919C86376007F8E5C /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7A19C86376007F8E5C /* Setting.m */; };
-		D4591B8A19C86376007F8E5C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B7C19C86376007F8E5C /* User.m */; };
 		D4591B9919C863FE007F8E5C /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B8C19C863FE007F8E5C /* AFResponseSerializer.m */; };
 		D4591B9A19C863FE007F8E5C /* AttendanceAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B8E19C863FE007F8E5C /* AttendanceAgent.m */; };
 		D4591B9B19C863FE007F8E5C /* BTBlink.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591B9019C863FE007F8E5C /* BTBlink.m */; };
@@ -229,6 +219,29 @@
 		D4591D0E19CA80C2007F8E5C /* ClickerCRUDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4591D0D19CA80C2007F8E5C /* ClickerCRUDViewController.m */; };
 		D4A3A0BF19D5473E00E50395 /* a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A3A0BE19D5473E00E50395 /* a@2x.png */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
+		D4F8C0321A04F5B700A76A42 /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C02D1A04F5B700A76A42 /* Email.m */; };
+		D4F8C0331A04F5B700A76A42 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C02F1A04F5B700A76A42 /* Error.m */; };
+		D4F8C0341A04F5B700A76A42 /* PushNoti.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0311A04F5B700A76A42 /* PushNoti.m */; };
+		D4F8C0371A04FC9A00A76A42 /* BTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0361A04FC9A00A76A42 /* BTObject.m */; };
+		D4F8C03A1A04FCC000A76A42 /* BTObjectSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0391A04FCC000A76A42 /* BTObjectSimple.m */; };
+		D4F8C0611A05001B00A76A42 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0481A05001B00A76A42 /* Course.m */; };
+		D4F8C0621A05001B00A76A42 /* ClickerQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C04A1A05001B00A76A42 /* ClickerQuestion.m */; };
+		D4F8C0631A05001B00A76A42 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C04C1A05001B00A76A42 /* School.m */; };
+		D4F8C0641A05001B00A76A42 /* Attendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C04F1A05001B00A76A42 /* Attendance.m */; };
+		D4F8C0651A05001B00A76A42 /* Clicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0511A05001B00A76A42 /* Clicker.m */; };
+		D4F8C0661A05001B00A76A42 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0531A05001B00A76A42 /* Notice.m */; };
+		D4F8C0671A05001B00A76A42 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0551A05001B00A76A42 /* Post.m */; };
+		D4F8C0681A05001B00A76A42 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0581A05001B00A76A42 /* Device.m */; };
+		D4F8C0691A05001B00A76A42 /* Identification.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C05A1A05001B00A76A42 /* Identification.m */; };
+		D4F8C06A1A05001B00A76A42 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C05C1A05001B00A76A42 /* Setting.m */; };
+		D4F8C06B1A05001B00A76A42 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C05E1A05001B00A76A42 /* User.m */; };
+		D4F8C06C1A05001B00A76A42 /* UserSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0601A05001B00A76A42 /* UserSimple.m */; };
+		D4F8C06F1A05004D00A76A42 /* SettingSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C06E1A05004D00A76A42 /* SettingSimple.m */; };
+		D4F8C0721A05006600A76A42 /* DeviceSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0711A05006600A76A42 /* DeviceSimple.m */; };
+		D4F8C0751A05007800A76A42 /* IdentificationSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0741A05007800A76A42 /* IdentificationSimple.m */; };
+		D4F8C0781A05045E00A76A42 /* CourseSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C0771A05045E00A76A42 /* CourseSimple.m */; };
+		D4F8C07B1A05046D00A76A42 /* SchoolSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C07A1A05046D00A76A42 /* SchoolSimple.m */; };
+		D4F8C07E1A05047C00A76A42 /* ClickerQuestionSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8C07D1A05047C00A76A42 /* ClickerQuestionSimple.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +285,14 @@
 		D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D41EDC911990AF47004F6E44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D41EDC931990AF48004F6E44 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D457419E1A050A8F001976B5 /* AttendanceSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceSimple.h; sourceTree = "<group>"; };
+		D457419F1A050A8F001976B5 /* AttendanceSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceSimple.m; sourceTree = "<group>"; };
+		D45741A11A050A99001976B5 /* ClickerSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerSimple.h; sourceTree = "<group>"; };
+		D45741A21A050A99001976B5 /* ClickerSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerSimple.m; sourceTree = "<group>"; };
+		D45741A41A050AA3001976B5 /* NoticeSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeSimple.h; sourceTree = "<group>"; };
+		D45741A51A050AA3001976B5 /* NoticeSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeSimple.m; sourceTree = "<group>"; };
+		D45741A71A050AAD001976B5 /* PostSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostSimple.h; sourceTree = "<group>"; };
+		D45741A81A050AAD001976B5 /* PostSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostSimple.m; sourceTree = "<group>"; };
 		D4591AB919C83404007F8E5C /* attendance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendance_bg@2x.png"; path = "Image/Guide/attendance_bg@2x.png"; sourceTree = "<group>"; };
 		D4591ABA19C83404007F8E5C /* attendanceicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendanceicon_gd@2x.png"; path = "Image/Guide/attendanceicon_gd@2x.png"; sourceTree = "<group>"; };
 		D4591ABB19C83404007F8E5C /* notice_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notice_bg@2x.png"; path = "Image/Guide/notice_bg@2x.png"; sourceTree = "<group>"; };
@@ -355,34 +376,6 @@
 		D4591B5C19C8634F007F8E5C /* BTAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTAPIs.m; path = Module/BTAPIs.m; sourceTree = "<group>"; };
 		D4591B5D19C8634F007F8E5C /* BTUserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTUserDefault.h; path = Module/BTUserDefault.h; sourceTree = "<group>"; };
 		D4591B5E19C8634F007F8E5C /* BTUserDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTUserDefault.m; path = Module/BTUserDefault.m; sourceTree = "<group>"; };
-		D4591B6119C86376007F8E5C /* Attendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Attendance.h; path = Models/Attendance.h; sourceTree = "<group>"; };
-		D4591B6219C86376007F8E5C /* Attendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Attendance.m; path = Models/Attendance.m; sourceTree = "<group>"; };
-		D4591B6319C86376007F8E5C /* Clicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Clicker.h; path = Models/Clicker.h; sourceTree = "<group>"; };
-		D4591B6419C86376007F8E5C /* Clicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Clicker.m; path = Models/Clicker.m; sourceTree = "<group>"; };
-		D4591B6519C86376007F8E5C /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Course.h; path = Models/Course.h; sourceTree = "<group>"; };
-		D4591B6619C86376007F8E5C /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Course.m; path = Models/Course.m; sourceTree = "<group>"; };
-		D4591B6719C86376007F8E5C /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = Models/Device.h; sourceTree = "<group>"; };
-		D4591B6819C86376007F8E5C /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Device.m; path = Models/Device.m; sourceTree = "<group>"; };
-		D4591B6919C86376007F8E5C /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Email.h; path = Models/Email.h; sourceTree = "<group>"; };
-		D4591B6A19C86376007F8E5C /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Email.m; path = Models/Email.m; sourceTree = "<group>"; };
-		D4591B6B19C86376007F8E5C /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = Models/Error.h; sourceTree = "<group>"; };
-		D4591B6C19C86376007F8E5C /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Error.m; path = Models/Error.m; sourceTree = "<group>"; };
-		D4591B6D19C86376007F8E5C /* Identification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Identification.h; path = Models/Identification.h; sourceTree = "<group>"; };
-		D4591B6E19C86376007F8E5C /* Identification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Identification.m; path = Models/Identification.m; sourceTree = "<group>"; };
-		D4591B6F19C86376007F8E5C /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notice.h; path = Models/Notice.h; sourceTree = "<group>"; };
-		D4591B7019C86376007F8E5C /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notice.m; path = Models/Notice.m; sourceTree = "<group>"; };
-		D4591B7119C86376007F8E5C /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = Models/Post.h; sourceTree = "<group>"; };
-		D4591B7219C86376007F8E5C /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = Models/Post.m; sourceTree = "<group>"; };
-		D4591B7319C86376007F8E5C /* PushNoti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushNoti.h; path = Models/PushNoti.h; sourceTree = "<group>"; };
-		D4591B7419C86376007F8E5C /* PushNoti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushNoti.m; path = Models/PushNoti.m; sourceTree = "<group>"; };
-		D4591B7519C86376007F8E5C /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = Models/Question.h; sourceTree = "<group>"; };
-		D4591B7619C86376007F8E5C /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = Models/Question.m; sourceTree = "<group>"; };
-		D4591B7719C86376007F8E5C /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = School.h; path = Models/School.h; sourceTree = "<group>"; };
-		D4591B7819C86376007F8E5C /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = School.m; path = Models/School.m; sourceTree = "<group>"; };
-		D4591B7919C86376007F8E5C /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = Models/Setting.h; sourceTree = "<group>"; };
-		D4591B7A19C86376007F8E5C /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = Models/Setting.m; sourceTree = "<group>"; };
-		D4591B7B19C86376007F8E5C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
-		D4591B7C19C86376007F8E5C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
 		D4591B8B19C863FE007F8E5C /* AFResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFResponseSerializer.h; path = Helper/AFResponseSerializer.h; sourceTree = "<group>"; };
 		D4591B8C19C863FE007F8E5C /* AFResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFResponseSerializer.m; path = Helper/AFResponseSerializer.m; sourceTree = "<group>"; };
 		D4591B8D19C863FE007F8E5C /* AttendanceAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttendanceAgent.h; path = Helper/AttendanceAgent.h; sourceTree = "<group>"; };
@@ -563,6 +556,52 @@
 		D4A3A0BE19D5473E00E50395 /* a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "a@2x.png"; path = "Image/Icons/a@2x.png"; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D4F8C02C1A04F5B700A76A42 /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
+		D4F8C02D1A04F5B700A76A42 /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
+		D4F8C02E1A04F5B700A76A42 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		D4F8C02F1A04F5B700A76A42 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		D4F8C0301A04F5B700A76A42 /* PushNoti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNoti.h; sourceTree = "<group>"; };
+		D4F8C0311A04F5B700A76A42 /* PushNoti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNoti.m; sourceTree = "<group>"; };
+		D4F8C0351A04FC9A00A76A42 /* BTObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTObject.h; path = Models/BTObject.h; sourceTree = "<group>"; };
+		D4F8C0361A04FC9A00A76A42 /* BTObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTObject.m; path = Models/BTObject.m; sourceTree = "<group>"; };
+		D4F8C0381A04FCC000A76A42 /* BTObjectSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTObjectSimple.h; path = Models/BTObjectSimple.h; sourceTree = "<group>"; };
+		D4F8C0391A04FCC000A76A42 /* BTObjectSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTObjectSimple.m; path = Models/BTObjectSimple.m; sourceTree = "<group>"; };
+		D4F8C0471A05001B00A76A42 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		D4F8C0481A05001B00A76A42 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		D4F8C0491A05001B00A76A42 /* ClickerQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerQuestion.h; sourceTree = "<group>"; };
+		D4F8C04A1A05001B00A76A42 /* ClickerQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerQuestion.m; sourceTree = "<group>"; };
+		D4F8C04B1A05001B00A76A42 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = School.h; sourceTree = "<group>"; };
+		D4F8C04C1A05001B00A76A42 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = School.m; sourceTree = "<group>"; };
+		D4F8C04E1A05001B00A76A42 /* Attendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attendance.h; sourceTree = "<group>"; };
+		D4F8C04F1A05001B00A76A42 /* Attendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attendance.m; sourceTree = "<group>"; };
+		D4F8C0501A05001B00A76A42 /* Clicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clicker.h; sourceTree = "<group>"; };
+		D4F8C0511A05001B00A76A42 /* Clicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clicker.m; sourceTree = "<group>"; };
+		D4F8C0521A05001B00A76A42 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
+		D4F8C0531A05001B00A76A42 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
+		D4F8C0541A05001B00A76A42 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		D4F8C0551A05001B00A76A42 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		D4F8C0571A05001B00A76A42 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		D4F8C0581A05001B00A76A42 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		D4F8C0591A05001B00A76A42 /* Identification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Identification.h; sourceTree = "<group>"; };
+		D4F8C05A1A05001B00A76A42 /* Identification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Identification.m; sourceTree = "<group>"; };
+		D4F8C05B1A05001B00A76A42 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		D4F8C05C1A05001B00A76A42 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		D4F8C05D1A05001B00A76A42 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D4F8C05E1A05001B00A76A42 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D4F8C05F1A05001B00A76A42 /* UserSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSimple.h; sourceTree = "<group>"; };
+		D4F8C0601A05001B00A76A42 /* UserSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSimple.m; sourceTree = "<group>"; };
+		D4F8C06D1A05004D00A76A42 /* SettingSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingSimple.h; sourceTree = "<group>"; };
+		D4F8C06E1A05004D00A76A42 /* SettingSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingSimple.m; sourceTree = "<group>"; };
+		D4F8C0701A05006600A76A42 /* DeviceSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSimple.h; sourceTree = "<group>"; };
+		D4F8C0711A05006600A76A42 /* DeviceSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSimple.m; sourceTree = "<group>"; };
+		D4F8C0731A05007800A76A42 /* IdentificationSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentificationSimple.h; sourceTree = "<group>"; };
+		D4F8C0741A05007800A76A42 /* IdentificationSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentificationSimple.m; sourceTree = "<group>"; };
+		D4F8C0761A05045E00A76A42 /* CourseSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseSimple.h; sourceTree = "<group>"; };
+		D4F8C0771A05045E00A76A42 /* CourseSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseSimple.m; sourceTree = "<group>"; };
+		D4F8C0791A05046D00A76A42 /* SchoolSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolSimple.h; sourceTree = "<group>"; };
+		D4F8C07A1A05046D00A76A42 /* SchoolSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolSimple.m; sourceTree = "<group>"; };
+		D4F8C07C1A05047C00A76A42 /* ClickerQuestionSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerQuestionSimple.h; sourceTree = "<group>"; };
+		D4F8C07D1A05047C00A76A42 /* ClickerQuestionSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerQuestionSimple.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,34 +1052,14 @@
 		D4AE743A18FE246300601FDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D4591B6119C86376007F8E5C /* Attendance.h */,
-				D4591B6219C86376007F8E5C /* Attendance.m */,
-				D4591B6319C86376007F8E5C /* Clicker.h */,
-				D4591B6419C86376007F8E5C /* Clicker.m */,
-				D4591B6519C86376007F8E5C /* Course.h */,
-				D4591B6619C86376007F8E5C /* Course.m */,
-				D4591B6719C86376007F8E5C /* Device.h */,
-				D4591B6819C86376007F8E5C /* Device.m */,
-				D4591B6919C86376007F8E5C /* Email.h */,
-				D4591B6A19C86376007F8E5C /* Email.m */,
-				D4591B6B19C86376007F8E5C /* Error.h */,
-				D4591B6C19C86376007F8E5C /* Error.m */,
-				D4591B6D19C86376007F8E5C /* Identification.h */,
-				D4591B6E19C86376007F8E5C /* Identification.m */,
-				D4591B6F19C86376007F8E5C /* Notice.h */,
-				D4591B7019C86376007F8E5C /* Notice.m */,
-				D4591B7119C86376007F8E5C /* Post.h */,
-				D4591B7219C86376007F8E5C /* Post.m */,
-				D4591B7319C86376007F8E5C /* PushNoti.h */,
-				D4591B7419C86376007F8E5C /* PushNoti.m */,
-				D4591B7519C86376007F8E5C /* Question.h */,
-				D4591B7619C86376007F8E5C /* Question.m */,
-				D4591B7719C86376007F8E5C /* School.h */,
-				D4591B7819C86376007F8E5C /* School.m */,
-				D4591B7919C86376007F8E5C /* Setting.h */,
-				D4591B7A19C86376007F8E5C /* Setting.m */,
-				D4591B7B19C86376007F8E5C /* User.h */,
-				D4591B7C19C86376007F8E5C /* User.m */,
+				D4F8C0461A05001B00A76A42 /* Course */,
+				D4F8C04D1A05001B00A76A42 /* Post */,
+				D4F8C0561A05001B00A76A42 /* User */,
+				D4F8C02B1A04F5B700A76A42 /* Extras */,
+				D4F8C0351A04FC9A00A76A42 /* BTObject.h */,
+				D4F8C0361A04FC9A00A76A42 /* BTObject.m */,
+				D4F8C0381A04FCC000A76A42 /* BTObjectSimple.h */,
+				D4F8C0391A04FCC000A76A42 /* BTObjectSimple.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1127,6 +1146,88 @@
 			name = Notice;
 			sourceTree = "<group>";
 		};
+		D4F8C02B1A04F5B700A76A42 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8C02C1A04F5B700A76A42 /* Email.h */,
+				D4F8C02D1A04F5B700A76A42 /* Email.m */,
+				D4F8C02E1A04F5B700A76A42 /* Error.h */,
+				D4F8C02F1A04F5B700A76A42 /* Error.m */,
+				D4F8C0301A04F5B700A76A42 /* PushNoti.h */,
+				D4F8C0311A04F5B700A76A42 /* PushNoti.m */,
+			);
+			name = Extras;
+			path = Models/Extras;
+			sourceTree = "<group>";
+		};
+		D4F8C0461A05001B00A76A42 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8C0471A05001B00A76A42 /* Course.h */,
+				D4F8C0481A05001B00A76A42 /* Course.m */,
+				D4F8C0761A05045E00A76A42 /* CourseSimple.h */,
+				D4F8C0771A05045E00A76A42 /* CourseSimple.m */,
+				D4F8C04B1A05001B00A76A42 /* School.h */,
+				D4F8C04C1A05001B00A76A42 /* School.m */,
+				D4F8C0791A05046D00A76A42 /* SchoolSimple.h */,
+				D4F8C07A1A05046D00A76A42 /* SchoolSimple.m */,
+				D4F8C0491A05001B00A76A42 /* ClickerQuestion.h */,
+				D4F8C04A1A05001B00A76A42 /* ClickerQuestion.m */,
+				D4F8C07C1A05047C00A76A42 /* ClickerQuestionSimple.h */,
+				D4F8C07D1A05047C00A76A42 /* ClickerQuestionSimple.m */,
+			);
+			name = Course;
+			path = Models/Course;
+			sourceTree = "<group>";
+		};
+		D4F8C04D1A05001B00A76A42 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8C0541A05001B00A76A42 /* Post.h */,
+				D4F8C0551A05001B00A76A42 /* Post.m */,
+				D45741A71A050AAD001976B5 /* PostSimple.h */,
+				D45741A81A050AAD001976B5 /* PostSimple.m */,
+				D4F8C04E1A05001B00A76A42 /* Attendance.h */,
+				D4F8C04F1A05001B00A76A42 /* Attendance.m */,
+				D457419E1A050A8F001976B5 /* AttendanceSimple.h */,
+				D457419F1A050A8F001976B5 /* AttendanceSimple.m */,
+				D4F8C0501A05001B00A76A42 /* Clicker.h */,
+				D4F8C0511A05001B00A76A42 /* Clicker.m */,
+				D45741A11A050A99001976B5 /* ClickerSimple.h */,
+				D45741A21A050A99001976B5 /* ClickerSimple.m */,
+				D4F8C0521A05001B00A76A42 /* Notice.h */,
+				D4F8C0531A05001B00A76A42 /* Notice.m */,
+				D45741A41A050AA3001976B5 /* NoticeSimple.h */,
+				D45741A51A050AA3001976B5 /* NoticeSimple.m */,
+			);
+			name = Post;
+			path = Models/Post;
+			sourceTree = "<group>";
+		};
+		D4F8C0561A05001B00A76A42 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8C0571A05001B00A76A42 /* Device.h */,
+				D4F8C0581A05001B00A76A42 /* Device.m */,
+				D4F8C0701A05006600A76A42 /* DeviceSimple.h */,
+				D4F8C0711A05006600A76A42 /* DeviceSimple.m */,
+				D4F8C0591A05001B00A76A42 /* Identification.h */,
+				D4F8C05A1A05001B00A76A42 /* Identification.m */,
+				D4F8C0731A05007800A76A42 /* IdentificationSimple.h */,
+				D4F8C0741A05007800A76A42 /* IdentificationSimple.m */,
+				D4F8C05B1A05001B00A76A42 /* Setting.h */,
+				D4F8C05C1A05001B00A76A42 /* Setting.m */,
+				D4F8C06D1A05004D00A76A42 /* SettingSimple.h */,
+				D4F8C06E1A05004D00A76A42 /* SettingSimple.m */,
+				D4F8C05D1A05001B00A76A42 /* User.h */,
+				D4F8C05E1A05001B00A76A42 /* User.m */,
+				D4F8C05F1A05001B00A76A42 /* UserSimple.h */,
+				D4F8C0601A05001B00A76A42 /* UserSimple.m */,
+			);
+			name = User;
+			path = Models/User;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1193,7 +1294,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1393,54 +1494,66 @@
 				D4591BE119C86645007F8E5C /* SignInViewController.m in Sources */,
 				D4591B9E19C863FE007F8E5C /* KeychainItemWrapper.m in Sources */,
 				D4591BFA19C8688F007F8E5C /* NoCourseViewController.m in Sources */,
+				D4F8C0641A05001B00A76A42 /* Attendance.m in Sources */,
 				D4591C7919C86907007F8E5C /* StudentInfoCell.m in Sources */,
 				D4591CEE19C869BC007F8E5C /* ManagerViewController.m in Sources */,
 				D4591CD619C869AC007F8E5C /* CourseAttendViewController.m in Sources */,
 				D4591C9E19C86977007F8E5C /* NoticeDetailListViewController.m in Sources */,
+				D4F8C0371A04FC9A00A76A42 /* BTObject.m in Sources */,
 				D4591C9C19C86977007F8E5C /* CreateNoticeViewController.m in Sources */,
-				D4591B8719C86376007F8E5C /* Question.m in Sources */,
+				D4F8C06F1A05004D00A76A42 /* SettingSimple.m in Sources */,
 				D4591CDC19C869AC007F8E5C /* SchoolCreateViewController.m in Sources */,
-				D4591B7D19C86376007F8E5C /* Attendance.m in Sources */,
-				D4591B8419C86376007F8E5C /* Notice.m in Sources */,
 				D4591CEA19C869BC007F8E5C /* CourseSettingViewController.m in Sources */,
 				D4591C1019C868DB007F8E5C /* ProfileUpdatePassViewController.m in Sources */,
 				D4591C0C19C868DB007F8E5C /* ProfileIdentityEditViewController.m in Sources */,
 				2135C3AC182BDD4E002C45DB /* AppDelegate.m in Sources */,
-				D4591B8119C86376007F8E5C /* Email.m in Sources */,
+				D4F8C0671A05001B00A76A42 /* Post.m in Sources */,
 				D4591C6919C86907007F8E5C /* PostCell.m in Sources */,
 				D4591B9B19C863FE007F8E5C /* BTBlink.m in Sources */,
 				2135C3AF182BDD4E002C45DB /* Bttendance.xcdatamodeld in Sources */,
 				D4591CC619C8699A007F8E5C /* AttdDetailViewController.m in Sources */,
-				D4591B8519C86376007F8E5C /* Post.m in Sources */,
 				D4591B4F19C861E6007F8E5C /* NSDictionary+Bttendance.m in Sources */,
 				D4591B5119C861E6007F8E5C /* UIImage+Bttendance.m in Sources */,
 				D4591B5919C861FA007F8E5C /* WebViewController.m in Sources */,
 				D4591BCA19C8663A007F8E5C /* GuideCourseAttendViewController.m in Sources */,
 				D4591B9919C863FE007F8E5C /* AFResponseSerializer.m in Sources */,
 				D4591B9A19C863FE007F8E5C /* AttendanceAgent.m in Sources */,
+				D4F8C0341A04F5B700A76A42 /* PushNoti.m in Sources */,
 				D4591BED19C86683007F8E5C /* SideMenuViewController.m in Sources */,
+				D4F8C0721A05006600A76A42 /* DeviceSimple.m in Sources */,
 				D4591CF919C93506007F8E5C /* ClickerOptionViewController.m in Sources */,
+				D45741A91A050AAD001976B5 /* PostSimple.m in Sources */,
 				D4591B5F19C8634F007F8E5C /* BTAPIs.m in Sources */,
 				D4591C6119C86907007F8E5C /* GradeCell.m in Sources */,
+				D4F8C0751A05007800A76A42 /* IdentificationSimple.m in Sources */,
 				D4591CFD19C946E9007F8E5C /* OptionCell.m in Sources */,
+				D4F8C06B1A05001B00A76A42 /* User.m in Sources */,
+				D4F8C07E1A05047C00A76A42 /* ClickerQuestionSimple.m in Sources */,
+				D4F8C03A1A04FCC000A76A42 /* BTObjectSimple.m in Sources */,
+				D4F8C06A1A05001B00A76A42 /* Setting.m in Sources */,
 				D4591C0E19C868DB007F8E5C /* ProfileNameEditViewController.m in Sources */,
 				D4591C7319C86907007F8E5C /* SideHeaderViewCell.m in Sources */,
 				D4591CF019C869BC007F8E5C /* StudentListViewController.m in Sources */,
+				D4F8C0781A05045E00A76A42 /* CourseSimple.m in Sources */,
 				D4591CB519C86987007F8E5C /* ClickerQuestionViewController.m in Sources */,
 				D4591B5019C861E6007F8E5C /* UIColor+Bttendance.m in Sources */,
 				D4591C8219C8693B007F8E5C /* ProfileViewController.m in Sources */,
+				D4F8C0321A04F5B700A76A42 /* Email.m in Sources */,
 				D4591C5819C86907007F8E5C /* ChooseCountCell.m in Sources */,
-				D4591B8A19C86376007F8E5C /* User.m in Sources */,
 				D4591CC819C8699A007F8E5C /* CreateAttdViewController.m in Sources */,
-				D4591B8919C86376007F8E5C /* Setting.m in Sources */,
 				D4591BE319C86645007F8E5C /* SignUpViewController.m in Sources */,
 				D4591B6019C8634F007F8E5C /* BTUserDefault.m in Sources */,
+				D4F8C0621A05001B00A76A42 /* ClickerQuestion.m in Sources */,
+				D4F8C07B1A05046D00A76A42 /* SchoolSimple.m in Sources */,
 				D4591CA019C86977007F8E5C /* NoticeDetailViewController.m in Sources */,
 				D4591C5F19C86907007F8E5C /* CourseCell.m in Sources */,
+				D45741A61A050AA3001976B5 /* NoticeSimple.m in Sources */,
 				D4591C7D19C86907007F8E5C /* UserInfoCell.m in Sources */,
 				D4591C7519C86907007F8E5C /* SideInfoCell.m in Sources */,
 				D4591C7119C86907007F8E5C /* SideCourseInfoCell.m in Sources */,
 				D4591CDA19C869AC007F8E5C /* SchoolChooseViewController.m in Sources */,
+				D4F8C0661A05001B00A76A42 /* Notice.m in Sources */,
+				D4F8C0331A04F5B700A76A42 /* Error.m in Sources */,
 				D4591C6319C86907007F8E5C /* GuidePostCell.m in Sources */,
 				D4591BF819C8688F007F8E5C /* CourseDetailViewController.m in Sources */,
 				D4591CC419C8699A007F8E5C /* AttdDetailListViewController.m in Sources */,
@@ -1450,38 +1563,39 @@
 				D4591C5D19C86907007F8E5C /* ClickerCell.m in Sources */,
 				D4591C0A19C868DB007F8E5C /* ProfileEmailEditViewController.m in Sources */,
 				D4591B9F19C863FE007F8E5C /* SocketAgent.m in Sources */,
+				D4F8C0631A05001B00A76A42 /* School.m in Sources */,
+				D4F8C0651A05001B00A76A42 /* Clicker.m in Sources */,
+				D4F8C0611A05001B00A76A42 /* Course.m in Sources */,
 				D4591BDF19C86645007F8E5C /* ForgotPassViewController.m in Sources */,
 				D4591BA219C8640D007F8E5C /* NSDate+Bttendance.m in Sources */,
 				D4591D0819C96D02007F8E5C /* NumberPadDoneBtn.m in Sources */,
+				D4F8C06C1A05001B00A76A42 /* UserSimple.m in Sources */,
 				D4591C6D19C86907007F8E5C /* QuestionCell.m in Sources */,
+				D4F8C0691A05001B00A76A42 /* Identification.m in Sources */,
 				D4591CD819C869AC007F8E5C /* CourseCreateViewController.m in Sources */,
 				D4591C6519C86907007F8E5C /* NotificationCell.m in Sources */,
 				D4591C7C19C86907007F8E5C /* TextInputCell.m in Sources */,
 				D4591C5A19C86907007F8E5C /* ChooseSchoolCell.m in Sources */,
-				D4591B8219C86376007F8E5C /* Error.m in Sources */,
 				D4591C1519C868F2007F8E5C /* CourseDetailHeaderView.m in Sources */,
 				D4591CB119C86987007F8E5C /* ClickerDetailListViewController.m in Sources */,
 				D4591CB319C86987007F8E5C /* ClickerDetailViewController.m in Sources */,
-				D4591B8319C86376007F8E5C /* Identification.m in Sources */,
+				D45741A01A050A8F001976B5 /* AttendanceSimple.m in Sources */,
 				D4591C7719C86907007F8E5C /* SignButtonCell.m in Sources */,
+				D45741A31A050A99001976B5 /* ClickerSimple.m in Sources */,
 				D4591C6F19C86907007F8E5C /* SchoolInfoCell.m in Sources */,
-				D4591B7E19C86376007F8E5C /* Clicker.m in Sources */,
-				D4591B8819C86376007F8E5C /* School.m in Sources */,
 				D4591C7B19C86907007F8E5C /* TextCommentCell.m in Sources */,
 				D4591B9D19C863FE007F8E5C /* BTUUID.m in Sources */,
-				D4591B8619C86376007F8E5C /* PushNoti.m in Sources */,
 				D4591BDD19C86645007F8E5C /* CatchPointViewController.m in Sources */,
-				D4591B8019C86376007F8E5C /* Device.m in Sources */,
 				D4591D0E19CA80C2007F8E5C /* ClickerCRUDViewController.m in Sources */,
 				D4591BCE19C8663A007F8E5C /* GuidePageViewController.m in Sources */,
 				D4591C5B19C86907007F8E5C /* ChooseTypeCell.m in Sources */,
 				D4591BCC19C8663A007F8E5C /* GuideCourseCreateViewController.m in Sources */,
 				D4591BFC19C8688F007F8E5C /* SettingViewController.m in Sources */,
 				D4591BEB19C86683007F8E5C /* LeftMenuViewController.m in Sources */,
+				D4F8C0681A05001B00A76A42 /* Device.m in Sources */,
 				D4591B5819C861FA007F8E5C /* BVUnderlineButton.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
 				D4591BD019C8663A007F8E5C /* TutorialViewController.m in Sources */,
-				D4591B7F19C86376007F8E5C /* Course.m in Sources */,
 				D4591B9C19C863FE007F8E5C /* BTNotification.m in Sources */,
 				D4591C5619C86907007F8E5C /* ButtonCell.m in Sources */,
 			);
@@ -1682,7 +1796,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

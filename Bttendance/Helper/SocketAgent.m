@@ -82,13 +82,13 @@
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clicker"]) {
-        Clicker *clicker = [[Clicker alloc] initWithDictionary:[data objectForKey:@"args"][0]];
+        Clicker *clicker = [[Clicker alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:ClickerUpdated object:clicker];
         [BTUserDefault updateClicker:clicker ofCourse:[NSString stringWithFormat:@"%ld", (long)clicker.post.course]];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"attendance"]) {
-        Attendance *attendance = [[Attendance alloc] initWithDictionary:[data objectForKey:@"args"][0]];
+        Attendance *attendance = [[Attendance alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:AttendanceUpdated object:attendance];
         [BTUserDefault updateAttendance:attendance ofCourse:[NSString stringWithFormat:@"%ld", (long)attendance.post.course]];
     }

@@ -323,11 +323,17 @@
             NSString *dPercent = [post.clicker percent:4];
             NSString *ePercent = [post.clicker percent:5];
             
-            NSInteger aCount = post.clicker.a_students.count;
-            NSInteger bCount = post.clicker.b_students.count;
-            NSInteger cCount = post.clicker.c_students.count;
-            NSInteger dCount = post.clicker.d_students.count;
-            NSInteger eCount = post.clicker.e_students.count;
+//            NSInteger aCount = post.clicker.a_students.count;
+//            NSInteger bCount = post.clicker.b_students.count;
+//            NSInteger cCount = post.clicker.c_students.count;
+//            NSInteger dCount = post.clicker.d_students.count;
+//            NSInteger eCount = post.clicker.e_students.count;
+            
+            NSInteger aCount = 0;
+            NSInteger bCount = 0;
+            NSInteger cCount = 0;
+            NSInteger dCount = 0;
+            NSInteger eCount = 0;
             
             if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth) {
                 aPercent = @"0";

@@ -15,7 +15,6 @@
 #import "Clicker.h"
 #import "Notice.h"
 #import "Email.h"
-#import "Question.h"
 
 #ifdef DEBUG
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
@@ -95,29 +94,29 @@
                               failure:(void (^)(NSError *error))failure;
 
 #pragma Questions APIs
-+ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
-                     failure:(void (^)(NSError *error))failure;
-
-+ (void)createQuestionWithMessage:(NSString *)message
-                   andChoiceCount:(NSString *)choice_count
-                          andTime:(NSString *)progress_time
-                        andSelect:(BOOL)show_info_on_select
-                       andPrivacy:(NSString *)detail_privacy
-                          success:(void (^)(Question *question))success
-                          failure:(void (^)(NSError *error))failure;
-
-+ (void)updateQuestion:(NSString *)question_id
-           WithMessage:(NSString *)message
-        andChoiceCount:(NSString *)choice_count
-              andTime:(NSString *)progress_time
-             andSelect:(BOOL)show_info_on_select
-            andPrivacy:(NSString *)detail_privacy
-               success:(void (^)(Question *question))success
-               failure:(void (^)(NSError *error))failure;
-
-+ (void)removeQuestionWithId:(NSString *)question_id
-                     success:(void (^)(Question *question))success
-                     failure:(void (^)(NSError *error))failure;
+//+ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
+//                     failure:(void (^)(NSError *error))failure;
+//
+//+ (void)createQuestionWithMessage:(NSString *)message
+//                   andChoiceCount:(NSString *)choice_count
+//                          andTime:(NSString *)progress_time
+//                        andSelect:(BOOL)show_info_on_select
+//                       andPrivacy:(NSString *)detail_privacy
+//                          success:(void (^)(Question *question))success
+//                          failure:(void (^)(NSError *error))failure;
+//
+//+ (void)updateQuestion:(NSString *)question_id
+//           WithMessage:(NSString *)message
+//        andChoiceCount:(NSString *)choice_count
+//              andTime:(NSString *)progress_time
+//             andSelect:(BOOL)show_info_on_select
+//            andPrivacy:(NSString *)detail_privacy
+//               success:(void (^)(Question *question))success
+//               failure:(void (^)(NSError *error))failure;
+//
+//+ (void)removeQuestionWithId:(NSString *)question_id
+//                     success:(void (^)(Question *question))success
+//                     failure:(void (^)(NSError *error))failure;
 
 #pragma Identifications APIs
 + (void)updateIdentityWithSchool:(NSString *)school_id

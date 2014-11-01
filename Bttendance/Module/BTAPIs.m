@@ -54,7 +54,7 @@ static UIAlertView *Ooooppss;
     //442 : Update Required
     
     NSInteger statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
-    Error *errorJson = [[Error alloc] initWithDictionary:[[error userInfo] objectForKey:AFResponseSerializerKey]];
+    Error *errorJson = [[Error alloc] initWithObject:[[error userInfo] objectForKey:AFResponseSerializerKey]];
     
     if (statusCode == 441) {
         UIAlertView *alert;
@@ -78,28 +78,35 @@ static UIAlertView *Ooooppss;
         
         if (!Ooooppss.visible)
             [Ooooppss show];
-    } else { //(log, toast, alert)
-        if ([errorJson.type isEqualToString:@"log"]) {
-            NSLog(@"Error : %@", errorJson.message);
-        } else if ([errorJson.type isEqualToString:@"toast"]) {
-            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.topController.view animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.color = [UIColor cyan:0.7];
-            hud.detailsLabelText = errorJson.message;
-            hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
-            hud.yOffset = - appDelegate.topController.view.frame.size.height / 2 + 104;
-            hud.margin = 14.0f;
-            [hud hide:YES afterDelay:1.5];
-        } else if ([errorJson.type isEqualToString:@"alert"]) {
-            UIAlertView *alert;
-            alert = [[UIAlertView alloc] initWithTitle:errorJson.title
-                                               message:errorJson.message
-                                              delegate:self
-                                     cancelButtonTitle:nil
-                                     otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
-            alert.tag = statusCode;
-            [alert show];
+    } else {
+        switch ([errorJson getErrorType]) {
+            case ErrorType_Alert: {
+                UIAlertView *alert;
+                alert = [[UIAlertView alloc] initWithTitle:errorJson.title
+                                                   message:errorJson.message
+                                                  delegate:self
+                                         cancelButtonTitle:nil
+                                         otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+                alert.tag = statusCode;
+                [alert show];
+                break;
+            }
+            case ErrorType_Toast: {
+                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appDelegate.topController.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.color = [UIColor cyan:0.7];
+                hud.detailsLabelText = errorJson.message;
+                hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
+                hud.yOffset = - appDelegate.topController.view.frame.size.height / 2 + 104;
+                hud.margin = 14.0f;
+                [hud hide:YES afterDelay:1.5];
+                break;
+            }
+            default:
+            case ErrorType_Log:
+                NSLog(@"Error : %@", errorJson.message);
+                break;
         }
     }
 }
@@ -224,7 +231,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/forgot/password"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Email *email = [[Email alloc] initWithDictionary:responseObject];
+                            Email *email = [[Email alloc] initWithObject:responseObject];
                             success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -355,7 +362,7 @@ static UIAlertView *Ooooppss;
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *courses = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    Course *course = [[Course alloc] initWithDictionary:dic];
+                                    Course *course = [[Course alloc] initWithObject:dic];
                                     [courses addObject:course];
                                 }
                                 dispatch_async( dispatch_get_main_queue(), ^{
@@ -546,117 +553,117 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Questions APIs
-+ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
-                     failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale};
-    
-    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/questions/mine"]
-                        parameters:params
-                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                               [BTUserDefault setQuestions:responseObject];
-                               NSMutableArray *questions = [NSMutableArray array];
-                               for (NSDictionary *dic in responseObject) {
-                                   Question *question = [[Question alloc] initWithDictionary:dic];
-                                   [questions addObject:question];
-                               }
-                               success(questions);
-                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                               [self failureHandleWithError:error];
-                               if (failure != nil)
-                                    failure(error);
-                           }];
-    
-}
-
-+ (void)createQuestionWithMessage:(NSString *)message
-                   andChoiceCount:(NSString *)choice_count
-                          andTime:(NSString *)progress_time
-                        andSelect:(BOOL)show_info_on_select
-                       andPrivacy:(NSString *)detail_privacy
-                          success:(void (^)(Question *question))success
-                          failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if (detail_privacy == nil)
-        detail_privacy = @"professor";
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"message" : message,
-                             @"choice_count" : choice_count,
-                             @"progress_time" : progress_time,
-                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
-                             @"detail_privacy" : detail_privacy};
-    
-    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/questions/create"]
-                      parameters:params
-                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Question *question = [[Question alloc] initWithDictionary:responseObject];
-                             success(question);
-                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                             [self failureHandleWithError:error];
-                             if (failure != nil)
-                                failure(error);
-                         }];
-}
-
-+ (void)updateQuestion:(NSString *)question_id
-           WithMessage:(NSString *)message
-        andChoiceCount:(NSString *)choice_count
-               andTime:(NSString *)progress_time
-             andSelect:(BOOL)show_info_on_select
-            andPrivacy:(NSString *)detail_privacy
-               success:(void (^)(Question *question))success
-               failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"question_id" : question_id,
-                             @"message" : message,
-                             @"choice_count" : choice_count,
-                             @"progress_time" : progress_time,
-                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
-                             @"detail_privacy" : detail_privacy};
-    
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/questions/edit"]
-                      parameters:params
-                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Question *question = [[Question alloc] initWithDictionary:responseObject];
-                             success(question);
-                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                             [self failureHandleWithError:error];
-                             if (failure != nil)
-                                failure(error);
-                         }];
-}
-
-+ (void)removeQuestionWithId:(NSString *)question_id
-                     success:(void (^)(Question *question))success
-                     failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"question_id" : question_id};
-    
-    [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/questions/remove"]
-                     parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Question *question = [[Question alloc] initWithDictionary:responseObject];
-                            success(question);
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            [self failureHandleWithError:error];
-                            if (failure != nil)
-                                failure(error);
-                        }];
-}
+//+ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
+//                     failure:(void (^)(NSError *error))failure {
+//    
+//    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+//    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+//                             @"password" : [BTUserDefault getPassword],
+//                             @"locale" : locale};
+//    
+//    [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/questions/mine"]
+//                        parameters:params
+//                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                               [BTUserDefault setQuestions:responseObject];
+//                               NSMutableArray *questions = [NSMutableArray array];
+//                               for (NSDictionary *dic in responseObject) {
+//                                   Question *question = [[Question alloc] initWithDictionary:dic];
+//                                   [questions addObject:question];
+//                               }
+//                               success(questions);
+//                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                               [self failureHandleWithError:error];
+//                               if (failure != nil)
+//                                    failure(error);
+//                           }];
+//    
+//}
+//
+//+ (void)createQuestionWithMessage:(NSString *)message
+//                   andChoiceCount:(NSString *)choice_count
+//                          andTime:(NSString *)progress_time
+//                        andSelect:(BOOL)show_info_on_select
+//                       andPrivacy:(NSString *)detail_privacy
+//                          success:(void (^)(Question *question))success
+//                          failure:(void (^)(NSError *error))failure {
+//    
+//    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+//    if (detail_privacy == nil)
+//        detail_privacy = @"professor";
+//    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+//                             @"password" : [BTUserDefault getPassword],
+//                             @"locale" : locale,
+//                             @"message" : message,
+//                             @"choice_count" : choice_count,
+//                             @"progress_time" : progress_time,
+//                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
+//                             @"detail_privacy" : detail_privacy};
+//    
+//    [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/questions/create"]
+//                      parameters:params
+//                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                             Question *question = [[Question alloc] initWithDictionary:responseObject];
+//                             success(question);
+//                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                             [self failureHandleWithError:error];
+//                             if (failure != nil)
+//                                failure(error);
+//                         }];
+//}
+//
+//+ (void)updateQuestion:(NSString *)question_id
+//           WithMessage:(NSString *)message
+//        andChoiceCount:(NSString *)choice_count
+//               andTime:(NSString *)progress_time
+//             andSelect:(BOOL)show_info_on_select
+//            andPrivacy:(NSString *)detail_privacy
+//               success:(void (^)(Question *question))success
+//               failure:(void (^)(NSError *error))failure {
+//    
+//    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+//    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+//                             @"password" : [BTUserDefault getPassword],
+//                             @"locale" : locale,
+//                             @"question_id" : question_id,
+//                             @"message" : message,
+//                             @"choice_count" : choice_count,
+//                             @"progress_time" : progress_time,
+//                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
+//                             @"detail_privacy" : detail_privacy};
+//    
+//    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/questions/edit"]
+//                      parameters:params
+//                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                             Question *question = [[Question alloc] initWithDictionary:responseObject];
+//                             success(question);
+//                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                             [self failureHandleWithError:error];
+//                             if (failure != nil)
+//                                failure(error);
+//                         }];
+//}
+//
+//+ (void)removeQuestionWithId:(NSString *)question_id
+//                     success:(void (^)(Question *question))success
+//                     failure:(void (^)(NSError *error))failure {
+//    
+//    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
+//    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
+//                             @"password" : [BTUserDefault getPassword],
+//                             @"locale" : locale,
+//                             @"question_id" : question_id};
+//    
+//    [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/questions/remove"]
+//                     parameters:params
+//                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                            Question *question = [[Question alloc] initWithDictionary:responseObject];
+//                            success(question);
+//                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                            [self failureHandleWithError:error];
+//                            if (failure != nil)
+//                                failure(error);
+//                        }];
+//}
 
 #pragma Identifications APIs
 + (void)updateIdentityWithSchool:(NSString *)school_id
@@ -704,7 +711,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/schools/create"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            School *school = [[School alloc] initWithDictionary:responseObject];
+                            School *school = [[School alloc] initWithObject:responseObject];
                             success(school);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -728,7 +735,7 @@ static UIAlertView *Ooooppss;
                             [BTUserDefault setSchools:responseObject];
                             NSMutableArray *schools = [NSMutableArray array];
                             for (NSDictionary *dic in responseObject) {
-                                School *school = [[School alloc] initWithDictionary:dic];
+                                School *school = [[School alloc] initWithObject:dic];
                                 [schools addObject:school];
                             }
                             success(schools);
@@ -786,7 +793,7 @@ static UIAlertView *Ooooppss;
                             if (success == nil)
                                 return;
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                Course *course = [[Course alloc] initWithDictionary:responseObject];
+                                Course *course = [[Course alloc] initWithObject:responseObject];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(course);
                                 });
@@ -846,7 +853,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/search"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Course *course = [[Course alloc] initWithDictionary:responseObject];
+                            Course *course = [[Course alloc] initWithObject:responseObject];
                             success(course);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -1009,7 +1016,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/add/manager"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Course *course = [[Course alloc] initWithDictionary:responseObject];
+                            Course *course = [[Course alloc] initWithObject:responseObject];
                             success(course);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -1108,7 +1115,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/export/grades"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Email *email = [[Email alloc] initWithDictionary:responseObject];
+                            Email *email = [[Email alloc] initWithObject:responseObject];
                             success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -1286,7 +1293,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/found/device"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
+                            Attendance *attendance = [[Attendance alloc] initWithObject:responseObject];
                             success(attendance);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
@@ -1310,7 +1317,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/toggle/manually"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Attendance *attendance = [[Attendance alloc] initWithDictionary:responseObject];
+                            Attendance *attendance = [[Attendance alloc] initWithObject:responseObject];
                             success(attendance);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
@@ -1335,7 +1342,7 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/clickers/click"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            Clicker *clicker = [[Clicker alloc] initWithDictionary:responseObject];
+                            Clicker *clicker = [[Clicker alloc] initWithObject:responseObject];
                             success(clicker);
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
