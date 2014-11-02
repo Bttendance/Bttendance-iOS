@@ -15,6 +15,7 @@
 #import "BTNotification.h"
 #import "NoticeDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "NSArray+Bttendance.h"
 
 @interface NoticeDetailViewController ()
 
@@ -132,9 +133,9 @@
         case 0: {
             UIFont *cellfont = [UIFont systemFontOfSize:12];
             NSString *date = [NSDate detailedStringFromDate:self.post.createdAt];
-            NSInteger seen = self.post.notice.seen_students.count;
+            NSInteger seen = [NSArray arrayFromData:self.post.notice.seen_students].count;
             NSInteger total = self.course.students_count;
-            NSInteger rate = (int) ceil(((float)self.post.notice.seen_students.count/(float)self.course.students_count) * 100);
+            NSInteger rate = (int) ceil(((float)[NSArray arrayFromData:self.post.notice.seen_students].count/(float)self.course.students_count) * 100);
             NSString *rawmessage;
             if (self.auth)
                 rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld (%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];
@@ -165,9 +166,9 @@
         case 0: {
             UIFont *cellfont = [UIFont systemFontOfSize:12];
             NSString *date = [NSDate detailedStringFromDate:self.post.createdAt];
-            NSInteger seen = self.post.notice.seen_students.count;
+            NSInteger seen = [NSArray arrayFromData:self.post.notice.seen_students].count;
             NSInteger total = self.course.students_count;
-            NSInteger rate = (int) ceil(((float)self.post.notice.seen_students.count/(float)self.course.students_count) * 100);
+            NSInteger rate = (int) ceil(((float)[NSArray arrayFromData:self.post.notice.seen_students].count/(float)self.course.students_count) * 100);
             NSString *rawmessage;
             if (self.auth)
                 rawmessage = [NSString stringWithFormat:NSLocalizedString(@"* %@에 작성된 공지입니다.\n* %ld/%ld (%ld%%)명의 학생이 공지를 읽었습니다.", nil), date, seen, total, rate];

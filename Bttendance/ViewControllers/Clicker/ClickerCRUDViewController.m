@@ -252,37 +252,37 @@
         }
         case QUESTION_CREATE: {
             hud.detailsLabelText = NSLocalizedString(@"Adding Question", nil);
-            [BTAPIs createQuestionWithMessage:message
-                               andChoiceCount:[NSString stringWithFormat:@"%ld", (long) self.choiceCount]
-                                      andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
-                                    andSelect:self.showInfoOnSelect
-                                   andPrivacy:self.detailPrivacy
-                                      success:^(Question *question) {
-                                          [hud hide:YES];
-                                          sender.enabled = YES;
-                                          [self.navigationController popViewControllerAnimated:YES];
-                                      } failure:^(NSError *error) {
-                                          [hud hide:YES];
-                                          sender.enabled = YES;
-                                      }];
+//            [BTAPIs createQuestionWithMessage:message
+//                               andChoiceCount:[NSString stringWithFormat:@"%ld", (long) self.choiceCount]
+//                                      andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
+//                                    andSelect:self.showInfoOnSelect
+//                                   andPrivacy:self.detailPrivacy
+//                                      success:^(Question *question) {
+//                                          [hud hide:YES];
+//                                          sender.enabled = YES;
+//                                          [self.navigationController popViewControllerAnimated:YES];
+//                                      } failure:^(NSError *error) {
+//                                          [hud hide:YES];
+//                                          sender.enabled = YES;
+//                                      }];
             break;
         }
         case QUESTION_EDIT: {
             hud.detailsLabelText = NSLocalizedString(@"Updating Question", nil);
-            [BTAPIs updateQuestion:[NSString stringWithFormat:@"%ld", (long) self.question.id]
-                       WithMessage:message
-                    andChoiceCount:[NSString stringWithFormat:@"%ld", (long) self.choiceCount]
-                           andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
-                         andSelect:self.showInfoOnSelect
-                        andPrivacy:self.detailPrivacy
-                           success:^(Question *question) {
-                               [hud hide:YES];
-                               sender.enabled = YES;
-                               [self.navigationController popViewControllerAnimated:YES];
-                           } failure:^(NSError *error) {
-                               [hud hide:YES];
-                               sender.enabled = YES;
-                           }];
+//            [BTAPIs updateQuestion:[NSString stringWithFormat:@"%ld", (long) self.question.id]
+//                       WithMessage:message
+//                    andChoiceCount:[NSString stringWithFormat:@"%ld", (long) self.choiceCount]
+//                           andTime:[NSString stringWithFormat:@"%ld", (long) self.progressTime]
+//                         andSelect:self.showInfoOnSelect
+//                        andPrivacy:self.detailPrivacy
+//                           success:^(Question *question) {
+//                               [hud hide:YES];
+//                               sender.enabled = YES;
+//                               [self.navigationController popViewControllerAnimated:YES];
+//                           } failure:^(NSError *error) {
+//                               [hud hide:YES];
+//                               sender.enabled = YES;
+//                           }];
             break;
         }
     }
@@ -635,13 +635,13 @@
         hud.detailsLabelText = NSLocalizedString(@"Deleting Question", nil);
         hud.yOffset = -40.0f;
         
-        [BTAPIs removeQuestionWithId:[NSString stringWithFormat:@"%ld", (long) self.question.id]
-                             success:^(Question *question) {
-                                 [hud hide:YES];
-                                 [self.navigationController popViewControllerAnimated:YES];
-                             } failure:^(NSError *error) {
-                                 [hud hide:YES];
-                             }];
+//        [BTAPIs removeQuestionWithId:[NSString stringWithFormat:@"%ld", (long) self.question.id]
+//                             success:^(Question *question) {
+//                                 [hud hide:YES];
+//                                 [self.navigationController popViewControllerAnimated:YES];
+//                             } failure:^(NSError *error) {
+//                                 [hud hide:YES];
+//                             }];
     }
 }
 
@@ -655,7 +655,7 @@
 }
 
 #pragma mark - ClickerQuestionViewControllerDelegate
-- (void)chosenQuestion:(Question *)chosen {
+- (void)chosenQuestion:(ClickerQuestion *)chosen {
     self.message = chosen.message;
     self.textview.text = chosen.message;
     if (chosen.message != nil && chosen.message.length != 0)

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Clicker.h"
+#import "Post.h"
 
 @interface ClickerDetailListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSArray *data;

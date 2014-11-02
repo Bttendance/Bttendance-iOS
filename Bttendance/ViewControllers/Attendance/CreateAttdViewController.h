@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Course.h"
+#import "SimpleCourse.h"
 
 @interface CreateAttdViewController : UIViewController
 

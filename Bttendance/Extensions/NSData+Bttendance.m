@@ -14,8 +14,4 @@
     return [NSKeyedArchiver archivedDataWithRootObject:array];
 }
 
-+ (NSArray *)arrayFromData:(NSData *)data {
-    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-}
-
 @end

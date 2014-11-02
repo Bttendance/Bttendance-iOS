@@ -88,11 +88,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [BTAPIs myQuestionsInSuccess:^(NSArray *questions) {
-        self.questions = questions;
-        [self.tableview reloadData];
-    } failure:^(NSError *error) {
-    }];
+//    [BTAPIs myQuestionsInSuccess:^(NSArray *questions) {
+//        self.questions = questions;
+//        [self.tableview reloadData];
+//    } failure:^(NSError *error) {
+//    }];
 }
 
 #pragma UITableViewDataSource
@@ -109,7 +109,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     UIFont *cellfont = [UIFont boldSystemFontOfSize:13];
-    NSString *rawmessage = ((Question *)[self.questions objectAtIndex:indexPath.row]).message;
+    NSString *rawmessage = ((ClickerQuestion *)[self.questions objectAtIndex:indexPath.row]).message;
     NSAttributedString *message = [[NSAttributedString alloc] initWithString:rawmessage attributes:@{NSFontAttributeName:cellfont}];
     CGRect MessageLabelSize = [message boundingRectWithSize:(CGSize){196, CGFLOAT_MAX} options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
     
@@ -126,7 +126,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    Question *question = [self.questions objectAtIndex:indexPath.row];
+    ClickerQuestion *question = [self.questions objectAtIndex:indexPath.row];
     
     NSString *progressTimeMessage = [NSString stringWithFormat:NSLocalizedString(@"* 설문이 시작되면 %d분간 답변을 수집합니다.", nil), (int)(question.progress_time/60)];
     NSString *showInfoOnSelectMessage, *detailPrivacyMessage;
@@ -180,7 +180,7 @@
         clickerView.question = [self.questions objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:clickerView animated:YES];
     } else {
-        [self.delegate chosenQuestion:(Question *)[self.questions objectAtIndex:indexPath.row]];
+        [self.delegate chosenQuestion:(ClickerQuestion *)[self.questions objectAtIndex:indexPath.row]];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

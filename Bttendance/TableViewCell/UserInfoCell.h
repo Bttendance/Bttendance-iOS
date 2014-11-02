@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
+#import "SimpleUser.h"
 
 @interface UserInfoCell : UITableViewCell
 

@@ -11,10 +11,12 @@
 
 @implementation BTObject
 
-- (instancetype)initWithObject:(id)object {
-    [object setObject:[NSDate dateFromString:[object objectForKey:@"createdAt"]] forKey:@"createdAt"];
-    [object setObject:[NSDate dateFromString:[object objectForKey:@"updatedAt"]] forKey:@"updatedAt"];
-    return [self initWithObject:object];
+- (NSDate *) createdDate {
+    return [NSDate dateFromString:self.createdAt];
+}
+
+- (NSDate *) updatedDate {
+    return [NSDate dateFromString:self.updatedAt];
 }
 
 @end

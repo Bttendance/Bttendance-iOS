@@ -17,6 +17,7 @@
 #import "AttdDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SocketAgent.h"
+#import "NSArray+Bttendance.h"
 
 @interface AttdDetailViewController ()
 
@@ -123,7 +124,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.auth)
         return 7;
-    else if (65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
+    else if (65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
         return 8;
     else
         return 5;
@@ -178,8 +179,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor white:1];
             
-            NSString *date = [NSDate dateStringFromDate:post.createdAt];
-            NSString *time = [NSDate timeStringFromDate:post.createdAt];
+            NSString *date = [NSDate dateStringFromDate:[post createdDate]];
+            NSString *time = [NSDate timeStringFromDate:[post createdDate]];
             
             UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
             dateLabel.text = date;
@@ -197,7 +198,7 @@
             NSString *title2 = NSLocalizedString(@"출석체크 진행중", nil); //auto on-going
             NSString *title3 = NSLocalizedString(@"수동 출석체크", nil); //manual
             
-            int leftTime = MAX(MIN(60, 65.0f + [post.createdAt timeIntervalSinceNow]), 0);
+            int leftTime = MAX(MIN(60, 65.0f + [[post createdDate] timeIntervalSinceNow]), 0);
             NSString *message1 = [NSString stringWithFormat:NSLocalizedString(@"%d초 남았습니다.", nil), leftTime];
             NSString *message2 = NSLocalizedString(@"출석 현황 입니다.", nil);
             NSString *message3 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
@@ -208,14 +209,14 @@
             if (self.auth) {
                 if ([post.attendance.type isEqualToString:@"manual"])
                     titleLabel.text = title3;
-                else if (65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f)
+                else if (65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f)
                     titleLabel.text = title2;
                 else
                     titleLabel.text = title1;
             } else {
                 if ([post.attendance.type isEqualToString:@"manual"])
                     titleLabel.text = title3;
-                else if ([self.post.attendance stateInt:self.user.id] == 0 && 65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f)
+                else if ([self.post.attendance stateInt:self.user.id] == 0 && 65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f)
                     titleLabel.text = title2;
                 else
                     titleLabel.text = title1;
@@ -230,7 +231,7 @@
             messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
             messageLabel.textColor = [UIColor navy:1];
             if (self.auth) {
-                if (65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f
+                if (65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f
                     && [post.attendance.type isEqualToString:@"auto"]) {
                     messageLabel.text = message1;
                     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(attendanceTimer) userInfo:nil repeats:YES];
@@ -238,7 +239,7 @@
                     messageLabel.text = message2;
             } else {
                 if ([self.post.attendance stateInt:self.user.id] == 0
-                    && 65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f
+                    && 65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f
                     && [post.attendance.type isEqualToString:@"auto"]) {
                     messageLabel.text = message1;
                     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(attendanceTimer) userInfo:nil repeats:YES];
@@ -316,7 +317,7 @@
             //Auth
             if (self.auth) {
                 [image3 setImage:[UIImage imageNamed:@"big_check.png"]];
-                NSInteger count = 65 + [post.createdAt timeIntervalSinceNow];
+                NSInteger count = 65 + [[post createdDate] timeIntervalSinceNow];
                 if (count > 0) {
                     BlinkView *blinkView = [[BlinkView alloc] initWithView:image3 andCount:count];
                     [[BTBlink sharedInstance] addBlinkView:blinkView];
@@ -324,7 +325,10 @@
             
                 CGFloat grade = 0;
                 if (self.course.students_count != 0)
-                    grade = ((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count;
+                    grade = ((float)[NSArray arrayFromData:self.post.attendance.checked_students].count
+                             + (float)[NSArray arrayFromData:self.post.attendance.late_students].count)
+                            / (float)self.course.students_count;
+                
                 UIView *top = [[UIView alloc] initWithFrame:CGRectMake(69, 9, 182, 182 * (1-grade))];
                 top.backgroundColor = [UIColor white:1];
                 [cell addSubview:top];
@@ -346,7 +350,7 @@
                 [image3 setImage:[UIImage imageNamed:@"big_late.png"]];
             }
             //Abscent
-            else if ([self.post.attendance stateInt:self.user.id] == 0 && [post.createdAt timeIntervalSinceNow] <= -65.0f) {
+            else if ([self.post.attendance stateInt:self.user.id] == 0 && [[post createdDate] timeIntervalSinceNow] <= -65.0f) {
                 image.backgroundColor = [UIColor silver:1];
                 image2.backgroundColor = [UIColor white:1];
                 [image3 setImage:[UIImage imageNamed:@"big_abscent.png"]];
@@ -354,16 +358,16 @@
             //Attendance on-going
             else {
                 [image3 setImage:[UIImage imageNamed:@"big_check.png"]];
-                NSInteger count = 65 + [post.createdAt timeIntervalSinceNow];
+                NSInteger count = 65 + [[post createdDate] timeIntervalSinceNow];
                 BlinkView *blinkView = [[BlinkView alloc] initWithView:image3 andCount:count];
                 [[BTBlink sharedInstance] addBlinkView:blinkView];
                 
-                CGFloat grade = MIN(60.0f, 65.0f + [post.createdAt timeIntervalSinceNow]) / 60.0f;
+                CGFloat grade = MIN(60.0f, 65.0f + [[post createdDate] timeIntervalSinceNow]) / 60.0f;
                 UIView *top = [[UIView alloc] initWithFrame:CGRectMake(69, 9, 182, 182 * (1-grade))];
                 top.backgroundColor = [UIColor white:1];
                 [cell addSubview:top];
                 
-                [UIView animateWithDuration:65.0f + [post.createdAt timeIntervalSinceNow]
+                [UIView animateWithDuration:65.0f + [[post createdDate] timeIntervalSinceNow]
                                       delay:0.0f
                                     options:UIViewAnimationOptionCurveLinear
                                  animations:^{
@@ -401,7 +405,7 @@
                 cell.backgroundColor = [UIColor white:1];
                 
                 UILabel *attd = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                attd.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long) (self.post.attendance.checked_students.count + self.post.attendance.late_students.count)];
+                attd.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long) ([NSArray arrayFromData:self.post.attendance.checked_students].count + [NSArray arrayFromData:self.post.attendance.late_students].count)];
                 attd.font = [UIFont boldSystemFontOfSize:27];
                 attd.textColor = [UIColor cyan:1];
                 [attd sizeToFit];
@@ -413,7 +417,7 @@
                 [std sizeToFit];
                 
                 UILabel *percent = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) round((((float)self.post.attendance.checked_students.count + (float)self.post.attendance.late_students.count) / (float)self.course.students_count * 100.0f))];
+                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) round((((float)[NSArray arrayFromData:self.post.attendance.checked_students].count + (float)[NSArray arrayFromData:self.post.attendance.late_students].count) / (float)self.course.students_count * 100.0f))];
                 percent.font = [UIFont systemFontOfSize:12];
                 percent.textColor = [UIColor navy:1];
                 [percent sizeToFit];
@@ -469,7 +473,7 @@
 
 #pragma NSTimer Action
 - (void)attendanceTimer {
-    NSInteger leftTime = MIN(60, (ceil)(65.0f + [self.post.createdAt timeIntervalSinceNow]));
+    NSInteger leftTime = MIN(60, (ceil)(65.0f + [[self.post createdDate] timeIntervalSinceNow]));
     messageLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%d초 남았습니다.", nil), leftTime];
     if (leftTime <= 0) {
         [self.timer invalidate];

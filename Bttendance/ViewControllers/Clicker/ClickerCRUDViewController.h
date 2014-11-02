@@ -10,7 +10,7 @@
 #import <SLExpandableTableView.h>
 #import "ChooseCountCell.h"
 #import "Post.h"
-#import "Question.h"
+#import "ClickerQuestion.h"
 #import "ClickerOptionViewController.h"
 #import "ClickerQuestionViewController.h"
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, ClickerType) {
 
 @property (assign) ClickerType clickerType;
 @property (strong) Post *post;
-@property (strong) Question *question;
+@property (strong) ClickerQuestion *question;
 @property(assign) NSInteger courseID;
 
 @end

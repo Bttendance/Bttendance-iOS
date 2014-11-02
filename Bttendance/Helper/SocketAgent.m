@@ -94,13 +94,13 @@
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"notice"]) {
-        Notice *notice = [[Notice alloc] initWithDictionary:[data objectForKey:@"args"][0]];
+        Notice *notice = [[Notice alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:NoticeUpdated object:notice];
         [BTUserDefault updateNotice:notice ofCourse:[NSString stringWithFormat:@"%ld", (long)notice.post.course]];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"post"]) {
-        Post *post = [[Post alloc] initWithDictionary:[data objectForKey:@"args"][0]];
+        Post *post = [[Post alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:PostUpdated object:post];
         [BTUserDefault updatePost:post ofCourse:[NSString stringWithFormat:@"%ld", (long)post.course.id]];
     }

@@ -35,6 +35,7 @@
 		D45741A61A050AA3001976B5 /* SimpleNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741A51A050AA3001976B5 /* SimpleNotice.m */; };
 		D45741A91A050AAD001976B5 /* SimplePost.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741A81A050AAD001976B5 /* SimplePost.m */; };
 		D45741AC1A0517DD001976B5 /* NSData+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741AB1A0517DD001976B5 /* NSData+Bttendance.m */; };
+		D45741AF1A055DC4001976B5 /* NSArray+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D45741AE1A055DC4001976B5 /* NSArray+Bttendance.m */; };
 		D4591AC419C83404007F8E5C /* attendance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591AB919C83404007F8E5C /* attendance_bg@2x.png */; };
 		D4591AC519C83404007F8E5C /* attendanceicon_gd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591ABA19C83404007F8E5C /* attendanceicon_gd@2x.png */; };
 		D4591AC619C83404007F8E5C /* notice_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4591ABB19C83404007F8E5C /* notice_bg@2x.png */; };
@@ -296,6 +297,8 @@
 		D45741A81A050AAD001976B5 /* SimplePost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePost.m; sourceTree = "<group>"; };
 		D45741AA1A0517DD001976B5 /* NSData+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Bttendance.h"; path = "Extensions/NSData+Bttendance.h"; sourceTree = "<group>"; };
 		D45741AB1A0517DD001976B5 /* NSData+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Bttendance.m"; path = "Extensions/NSData+Bttendance.m"; sourceTree = "<group>"; };
+		D45741AD1A055DC4001976B5 /* NSArray+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Bttendance.h"; path = "Extensions/NSArray+Bttendance.h"; sourceTree = "<group>"; };
+		D45741AE1A055DC4001976B5 /* NSArray+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Bttendance.m"; path = "Extensions/NSArray+Bttendance.m"; sourceTree = "<group>"; };
 		D4591AB919C83404007F8E5C /* attendance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendance_bg@2x.png"; path = "Image/Guide/attendance_bg@2x.png"; sourceTree = "<group>"; };
 		D4591ABA19C83404007F8E5C /* attendanceicon_gd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendanceicon_gd@2x.png"; path = "Image/Guide/attendanceicon_gd@2x.png"; sourceTree = "<group>"; };
 		D4591ABB19C83404007F8E5C /* notice_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notice_bg@2x.png"; path = "Image/Guide/notice_bg@2x.png"; sourceTree = "<group>"; };
@@ -1080,6 +1083,8 @@
 				D4591B4E19C861E6007F8E5C /* UIImage+Bttendance.m */,
 				D45741AA1A0517DD001976B5 /* NSData+Bttendance.h */,
 				D45741AB1A0517DD001976B5 /* NSData+Bttendance.m */,
+				D45741AD1A055DC4001976B5 /* NSArray+Bttendance.h */,
+				D45741AE1A055DC4001976B5 /* NSArray+Bttendance.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1604,6 +1609,7 @@
 				D4591BD019C8663A007F8E5C /* TutorialViewController.m in Sources */,
 				D4591B9C19C863FE007F8E5C /* BTNotification.m in Sources */,
 				D4591C5619C86907007F8E5C /* ButtonCell.m in Sources */,
+				D45741AF1A055DC4001976B5 /* NSArray+Bttendance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

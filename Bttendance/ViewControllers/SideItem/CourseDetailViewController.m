@@ -40,6 +40,8 @@
 
 #import "CourseSettingViewController.h"
 
+#import "NSArray+Bttendance.h"
+
 @interface CourseDetailViewController ()
 
 @property (assign) BOOL auth;
@@ -416,7 +418,7 @@
 - (void)checkAttendanceScan {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (Post *post in data) {
-        double gap = [post.createdAt timeIntervalSinceNow];
+        double gap = [[post createdDate] timeIntervalSinceNow];
         if (65.0f + gap > 0.0f && [post.type isEqualToString:@"attendance"] && [post.attendance.type isEqualToString:@"auto"])
             [array addObject:[NSString stringWithFormat:@"%d", (int)post.attendance.id]];
     }
@@ -432,7 +434,7 @@
     float gap = 0;
     
     for (Post *post in data) {
-        float interval = [post.createdAt timeIntervalSinceNow];
+        float interval = [[post createdDate] timeIntervalSinceNow];
         
         if ([post.type isEqualToString:@"attendance"]
             && [post.attendance.type isEqualToString:@"auto"]
@@ -485,9 +487,9 @@
         && ![post.type isEqualToString:@"notice"])
         return 102;
     
-    double gap = [post.createdAt timeIntervalSinceNow];
+    double gap = [[post createdDate] timeIntervalSinceNow];
     Boolean manager = false;
-    NSArray *supervisingCourses = user.supervising_courses;
+    RLMArray *supervisingCourses = user.supervising_courses;
     for (int i = 0; i < [supervisingCourses count]; i++) {
         if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
             manager = true;
@@ -497,11 +499,11 @@
         
         Boolean check = false;
         NSMutableArray *checks = [[NSMutableArray alloc] init];
-        [checks addObjectsFromArray:post.clicker.a_students];
-        [checks addObjectsFromArray:post.clicker.b_students];
-        [checks addObjectsFromArray:post.clicker.c_students];
-        [checks addObjectsFromArray:post.clicker.d_students];
-        [checks addObjectsFromArray:post.clicker.e_students];
+        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.a_students]];
+        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.b_students]];
+        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.c_students]];
+        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.d_students]];
+        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.e_students]];
         for (int i = 0; i < checks.count; i++)
             if (user.id == [checks[i] intValue])
                 check = true;
@@ -531,10 +533,10 @@
     
     if ([post.type isEqualToString:@"attendance"]) {
         if (self.auth) {
-            NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
+            NSInteger total = (long) ([NSArray arrayFromData:post.attendance.checked_students].count + [NSArray arrayFromData:post.attendance.late_students].count);
             NSInteger total_grade = 0;
             if (self.course.students_count != 0)
-                total_grade = (long) ceil((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
+                total_grade = (long) ceil((((float)[NSArray arrayFromData:post.attendance.checked_students].count + (float)[NSArray arrayFromData:post.attendance.late_students].count) / (float)self.course.students_count * 100.0f));
             rawmessage = [NSString stringWithFormat:NSLocalizedString(@"%ld/%ld (%ld%%) students has been attended.", nil), (long)total, (long)self.course.students_count, (long)total_grade];
         } else {
             NSString *message1 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
@@ -543,7 +545,7 @@
             NSString *message4 = NSLocalizedString(@"Attendance Check is Ongoing", nil);
             
             if ([post.attendance stateInt:user.id] == 0) {
-                if (65.0f + [post.createdAt timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
+                if (65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
                     rawmessage = message4;
                 else
                     rawmessage = message2;
@@ -652,7 +654,7 @@
 - (UITableViewCell *)clickerCellWith:(UITableView *)tableView with:(Post *)post {
     
     Boolean manager = false;
-    NSArray *supervisingCourses = user.supervising_courses;
+    RLMArray *supervisingCourses = user.supervising_courses;
     for (int i = 0; i < [supervisingCourses count]; i++) {
         if (post.course.id == ((SimpleCourse *)[supervisingCourses objectAtIndex:i]).id)
             manager = true;
@@ -660,16 +662,16 @@
     
     Boolean check = false;
     NSMutableArray *checks = [[NSMutableArray alloc] init];
-    [checks addObjectsFromArray:post.clicker.a_students];
-    [checks addObjectsFromArray:post.clicker.b_students];
-    [checks addObjectsFromArray:post.clicker.c_students];
-    [checks addObjectsFromArray:post.clicker.d_students];
-    [checks addObjectsFromArray:post.clicker.e_students];
+    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.a_students]];
+    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.b_students]];
+    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.c_students]];
+    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.d_students]];
+    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.e_students]];
     for (int i = 0; i < checks.count; i++)
         if (user.id == [checks[i] intValue])
             check = true;
     
-    double gap = [post.createdAt timeIntervalSinceNow];
+    double gap = [[post createdDate] timeIntervalSinceNow];
     
     // Clicker Choice
     if (post.clicker.progress_time + 5 + gap > 0.0f && !check && !manager) {
@@ -684,7 +686,7 @@
         cell.post = post;
         [cell startTimerAsClicker];
         cell.message.text = cell.post.message;
-        cell.date.text = [NSDate stringFromDate:cell.post.createdAt];
+        cell.date.text = [NSDate stringFromDate:[cell.post createdDate]];
         
         cell.message.lineBreakMode = NSLineBreakByWordWrapping;
         cell.message.numberOfLines = 0;
@@ -913,8 +915,8 @@
             cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, NSLocalizedString(@"설문이 끝날 때까지 설문 결과를 볼 수 없습니다.", nil)];
         else
             cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
-        cell.Date.text = [NSDate stringFromDate:cell.post.createdAt];
-        cell.gap = [cell.post.createdAt timeIntervalSinceNow];
+        cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
+        cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
         
         [cell.timer invalidate];
         cell.timer = nil;
@@ -960,8 +962,8 @@
     cell.post = post;
     cell.Title.text = NSLocalizedString(@"Attendance Check", nil);
     cell.Title.textColor = [UIColor silver:1];
-    cell.Date.text = [NSDate stringFromDate:cell.post.createdAt];
-    cell.gap = [cell.post.createdAt timeIntervalSinceNow];
+    cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
+    cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
     
     [cell.timer invalidate];
     cell.timer = nil;
@@ -975,10 +977,10 @@
     [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha.png"]];
     
     if (self.auth) {
-        NSInteger total = (long) (post.attendance.checked_students.count + post.attendance.late_students.count);
+        NSInteger total = (long) ([NSArray arrayFromData:post.attendance.checked_students].count + [NSArray arrayFromData:post.attendance.late_students].count);
         NSInteger total_grade = 0;
         if (self.course.students_count != 0)
-            total_grade = (long) round((((float)post.attendance.checked_students.count + (float)post.attendance.late_students.count) / (float)self.course.students_count * 100.0f));
+            total_grade = (long) round((((float)[NSArray arrayFromData:post.attendance.checked_students].count + (float)[NSArray arrayFromData:post.attendance.late_students].count) / (float)self.course.students_count * 100.0f));
         
         NSInteger grade = total_grade;
         if (grade > 100)
@@ -1065,7 +1067,7 @@
     cell.Title.textColor = [UIColor silver:1];
     
     if (self.auth) {
-        NSInteger seen = post.notice.seen_students.count;
+        NSInteger seen = [NSArray arrayFromData:post.notice.seen_students].count;
         NSInteger total = self.course.students_count;
         cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld read)", nil), seen, total];
     } else if (![post.notice seen:user.id]) {
@@ -1074,8 +1076,8 @@
     }
     
     cell.Message.text = cell.post.message;
-    cell.Date.text = [NSDate stringFromDate:cell.post.createdAt];
-    cell.gap = [cell.post.createdAt timeIntervalSinceNow];
+    cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
+    cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
     
     [cell.timer invalidate];
     cell.timer = nil;

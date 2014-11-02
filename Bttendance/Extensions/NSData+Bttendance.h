@@ -12,6 +12,4 @@
 
 + (NSData *)dataFromArray:(NSMutableArray *)array;
 
-+ (NSArray *)arrayFromData:(NSData *)data;
-
 @end

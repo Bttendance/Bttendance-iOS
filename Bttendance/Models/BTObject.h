@@ -10,9 +10,10 @@
 
 @interface BTObject : BTObjectSimple
 
-@property NSDate *createdAt;
-@property NSDate *updatedAt;
+@property NSString *createdAt;
+@property NSString *updatedAt;
 
-- (instancetype)initWithObject:(id)object;
+- (NSDate *) createdDate;
+- (NSDate *) updatedDate;
 
 @end
