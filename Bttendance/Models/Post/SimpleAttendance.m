@@ -12,9 +12,10 @@
 @implementation SimpleAttendance
 
 - (instancetype)initWithObject:(id)object {
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
-    return [super initWithObject:object];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
+    return [super initWithObject:dictionary];
 }
 
 - (void)copyDataFromAttendance:(id)object {

@@ -22,7 +22,6 @@
 @property NSString          *detail_privacy;
 @property NSInteger         post;
 
-- (instancetype)initWithObject:(id)object;
 - (void)copyDataFromClicker:(id)object;
 - (NSString *)detailText;
 - (NSString *)participation;

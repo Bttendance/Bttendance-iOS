@@ -157,8 +157,8 @@
         }
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
-            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
-            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
+            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [post createdDateWholeFormat]];
+            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post createdDateTimeInterval]));
             NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
             NSString *rawmessage;
             if (left >= 0)
@@ -223,8 +223,8 @@
         }
         case 2: {
             UIFont *cellfont = [UIFont boldSystemFontOfSize:12];
-            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
-            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
+            NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [post createdDateWholeFormat]];
+            NSInteger left = MIN(post.clicker.progress_time, (ceil)(post.clicker.progress_time + 5 + [self.post createdDateTimeInterval]));
             NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), left];
             NSString *rawmessage;
             if (left >= 0) {
@@ -276,7 +276,7 @@
             
             [cell addSubview:self.chart];
             
-            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth)
+            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post createdDateTimeInterval] > 0.0f && !self.auth)
                 [self.chart setDataSource:nil];
             else {
                 [self.chart setDataSource:post.clicker];
@@ -335,7 +335,7 @@
             NSInteger dCount = 0;
             NSInteger eCount = 0;
             
-            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth) {
+            if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post createdDateTimeInterval] > 0.0f && !self.auth) {
                 aPercent = @"0";
                 bPercent = @"0";
                 cPercent = @"0";
@@ -523,8 +523,8 @@
 
 #pragma NSTimer Action
 - (void)clickerTimer {
-    NSInteger leftTime = MIN(self.post.clicker.progress_time, (ceil)(self.post.clicker.progress_time + 5 + [self.post.createdAt timeIntervalSinceNow]));
-    NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [NSDate detailedStringFromDate:post.createdAt]];
+    NSInteger leftTime = MIN(self.post.clicker.progress_time, (ceil)(self.post.clicker.progress_time + 5 + [self.post createdDateTimeInterval]));
+    NSString *rawmessage1 = [NSString stringWithFormat:NSLocalizedString(@"%1$@/%2$ld명 참여, %3$@", nil), [post.clicker participation], self.course.students_count, [post createdDateWholeFormat]];
     NSString *rawmessage2 = [NSString stringWithFormat:NSLocalizedString(@"Clicker Ongoing (%ld sec left)", nil), leftTime];
     NSString *rawmessage;
     rawmessage = [NSString stringWithFormat:@"%@\n%@", rawmessage1, rawmessage2];
@@ -557,7 +557,7 @@
 
 #pragma IBAction
 - (IBAction)showDetail:(id)sender {
-//    if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post.createdAt timeIntervalSinceNow] > 0.0f && !self.auth) {
+//    if (!self.post.clicker.show_info_on_select && self.post.clicker.progress_time + 5 + [post createdTimeInterval] > 0.0f && !self.auth) {
 //        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 //        return;
 //    }

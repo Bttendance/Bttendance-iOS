@@ -132,7 +132,7 @@
     switch (indexPath.row) {
         case 0: {
             UIFont *cellfont = [UIFont systemFontOfSize:12];
-            NSString *date = [NSDate detailedStringFromDate:self.post.createdAt];
+            NSString *date = [self.post createdDateWholeFormat];
             NSInteger seen = [NSArray arrayFromData:self.post.notice.seen_students].count;
             NSInteger total = self.course.students_count;
             NSInteger rate = (int) ceil(((float)[NSArray arrayFromData:self.post.notice.seen_students].count/(float)self.course.students_count) * 100);
@@ -165,7 +165,7 @@
     switch (indexPath.row) {
         case 0: {
             UIFont *cellfont = [UIFont systemFontOfSize:12];
-            NSString *date = [NSDate detailedStringFromDate:self.post.createdAt];
+            NSString *date = [self.post createdDateWholeFormat];
             NSInteger seen = [NSArray arrayFromData:self.post.notice.seen_students].count;
             NSInteger total = self.course.students_count;
             NSInteger rate = (int) ceil(((float)[NSArray arrayFromData:self.post.notice.seen_students].count/(float)self.course.students_count) * 100);

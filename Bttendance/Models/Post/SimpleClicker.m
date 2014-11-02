@@ -13,12 +13,13 @@
 @implementation SimpleClicker
 
 - (instancetype)initWithObject:(id)object {
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"a_students"]] forKey:@"a_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"b_students"]] forKey:@"b_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"c_students"]] forKey:@"c_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"d_students"]] forKey:@"d_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"e_students"]] forKey:@"e_students"];
-    return [super initWithObject:object];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"a_students"]] forKey:@"a_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"b_students"]] forKey:@"b_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"c_students"]] forKey:@"c_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"d_students"]] forKey:@"d_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"e_students"]] forKey:@"e_students"];
+    return [super initWithObject:dictionary];
 }
 
 - (void)copyDataFromClicker:(id)object {

@@ -10,86 +10,24 @@
 
 @implementation NSDate (Bttendance)
 
-+ (NSDate *)dateFromString:(NSString *)dateString {
-    if (dateString == nil || dateString == (NSString *) [NSNull null])
++ (NSDate *)dateFromServerString:(NSString *)string {
+    if (string == nil || string == (NSString *) [NSNull null])
         return nil;
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     [dateformatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    [dateformatter setDateFormat:DATE_FORMAT_SERVER];
     
-    return [dateformatter dateFromString:dateString];
+    return [dateformatter dateFromString:string];
 }
 
-+ (NSString *)serializedStringFromDate:(NSDate *)date {
-    if (date == nil)
-        return nil;
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    [dateformatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    
-    return [dateformatter stringFromDate:date];
-}
-
-+ (NSString *)stringFromString:(NSString *)dateString {
-    if (dateString == nil || dateString == (NSString *) [NSNull null])
-        return nil;
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateformatter setDateFormat:@"yy/MM/dd HH:mm"];
-    
-    return [dateformatter stringFromDate:[self dateFromString:dateString]];
-}
-
-+ (NSTimeInterval)intervalFromString:(NSString *)dateString {
-    if (dateString == nil || dateString == (NSString *) [NSNull null])
-        return -1000;
-    
-    return [[self dateFromString:dateString] timeIntervalSinceNow];
-}
-
-+ (NSString *)stringFromDate:(NSDate *)date {
++ (NSString *)stringWithDate:(NSDate *) date withFormat:(NSString *)format {
     if (date == nil)
         return nil;
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateformatter setDateFormat:@"yy/MM/dd HH:mm"];
-    
-    return [dateformatter stringFromDate:date];
-}
-
-+ (NSString *)detailedStringFromDate:(NSDate *)date {
-    if (date == nil)
-        return nil;
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateformatter setDateFormat:@"yyyy/MM/dd HH:mm"];
-    
-    return [dateformatter stringFromDate:date];
-}
-
-+ (NSString *)dateStringFromDate:(NSDate *)date {
-    if (date == nil)
-        return nil;
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateformatter setDateFormat:@"yyyy/MM/dd"];
-    
-    return [dateformatter stringFromDate:date];
-}
-
-+ (NSString *)timeStringFromDate:(NSDate *)date {
-    if (date == nil)
-        return nil;
-    
-    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
-    [dateformatter setTimeZone:[NSTimeZone localTimeZone]];
-    [dateformatter setDateFormat:@"HH:mm"];
+    [dateformatter setDateFormat:format];
     
     return [dateformatter stringFromDate:date];
 }

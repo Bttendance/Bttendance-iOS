@@ -7,6 +7,8 @@
 //
 
 #import "BTObjectSimple.h"
+#import "NSDictionary+Bttendance.h"
+#import "SimpleUser.h"
 
 @implementation BTObjectSimple
 

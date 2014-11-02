@@ -23,4 +23,11 @@
 @property SimpleClicker     *clicker;
 @property SimpleNotice      *notice;
 
+- (NSTimeInterval) createdDateTimeInterval;
+
+- (NSString *) createdDatePostFormat;
+- (NSString *) createdDateWholeFormat;
+- (NSString *) createdDateDateFormat;
+- (NSString *) createdDateTimeFormat;
+
 @end

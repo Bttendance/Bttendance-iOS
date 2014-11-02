@@ -8,22 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#define DATE_FORMAT_SERVER @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+#define DATE_FORMAT_POST @"yy/MM/dd HH:mm"
+#define DATE_FORMAT_WHOLE @"yyyy/MM/dd HH:mm"
+#define DATE_FORMAT_DATE @"yyyy/MM/dd"
+#define DATE_FORMAT_TIME @"HH:mm"
+
 @interface NSDate (Bttendance)
 
-+ (NSDate *)dateFromString:(NSString *)dateString;
++ (NSDate *)dateFromServerString:(NSString *)string;
 
-+ (NSString *)serializedStringFromDate:(NSDate *)date;
-
-+ (NSString *)stringFromString:(NSString *)dateString;
-
-+ (NSTimeInterval)intervalFromString:(NSString *)dateString;
-
-+ (NSString *)stringFromDate:(NSDate *)date;
-
-+ (NSString *)detailedStringFromDate:(NSDate *)date;
-
-+ (NSString *)dateStringFromDate:(NSDate *)date;
-
-+ (NSString *)timeStringFromDate:(NSDate *)date;
++ (NSString *)stringWithDate:(NSDate *) date withFormat:(NSString *)format;
 
 @end

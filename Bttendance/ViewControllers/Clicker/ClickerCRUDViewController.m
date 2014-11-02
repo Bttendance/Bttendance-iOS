@@ -144,7 +144,7 @@
     self.placeholder.font = [UIFont systemFontOfSize:14];
     self.placeholder.textColor = [UIColor silver:0.5];
     if (self.clickerType == CLICKER_CREATE)
-        self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [NSDate detailedStringFromDate:[NSDate date]]];
+        self.placeholder.text = [NSString stringWithFormat:NSLocalizedString(@"%@에 진행된 설문입니다.", nil), [NSDate stringWithDate:[NSDate date] withFormat:DATE_FORMAT_WHOLE]];
     self.placeholder.numberOfLines = 0;
     [self.placeholder sizeToFit];
 }

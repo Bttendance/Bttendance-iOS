@@ -418,7 +418,7 @@
 - (void)checkAttendanceScan {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (Post *post in data) {
-        double gap = [[post createdDate] timeIntervalSinceNow];
+        double gap = [post createdDateTimeInterval];
         if (65.0f + gap > 0.0f && [post.type isEqualToString:@"attendance"] && [post.attendance.type isEqualToString:@"auto"])
             [array addObject:[NSString stringWithFormat:@"%d", (int)post.attendance.id]];
     }
@@ -434,7 +434,7 @@
     float gap = 0;
     
     for (Post *post in data) {
-        float interval = [[post createdDate] timeIntervalSinceNow];
+        float interval = [post createdDateTimeInterval];
         
         if ([post.type isEqualToString:@"attendance"]
             && [post.attendance.type isEqualToString:@"auto"]
@@ -487,7 +487,7 @@
         && ![post.type isEqualToString:@"notice"])
         return 102;
     
-    double gap = [[post createdDate] timeIntervalSinceNow];
+    double gap = [post createdDateTimeInterval];
     Boolean manager = false;
     RLMArray *supervisingCourses = user.supervising_courses;
     for (int i = 0; i < [supervisingCourses count]; i++) {
@@ -545,7 +545,7 @@
             NSString *message4 = NSLocalizedString(@"Attendance Check is Ongoing", nil);
             
             if ([post.attendance stateInt:user.id] == 0) {
-                if (65.0f + [[post createdDate] timeIntervalSinceNow] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
+                if (65.0f + [post createdDateTimeInterval] > 0.0f && [post.attendance.type isEqualToString:@"auto"])
                     rawmessage = message4;
                 else
                     rawmessage = message2;
@@ -671,7 +671,7 @@
         if (user.id == [checks[i] intValue])
             check = true;
     
-    double gap = [[post createdDate] timeIntervalSinceNow];
+    double gap = [post createdDateTimeInterval];
     
     // Clicker Choice
     if (post.clicker.progress_time + 5 + gap > 0.0f && !check && !manager) {
@@ -686,7 +686,7 @@
         cell.post = post;
         [cell startTimerAsClicker];
         cell.message.text = cell.post.message;
-        cell.date.text = [NSDate stringFromDate:[cell.post createdDate]];
+        cell.date.text = [post createdDatePostFormat];
         
         cell.message.lineBreakMode = NSLineBreakByWordWrapping;
         cell.message.numberOfLines = 0;
@@ -915,8 +915,8 @@
             cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, NSLocalizedString(@"설문이 끝날 때까지 설문 결과를 볼 수 없습니다.", nil)];
         else
             cell.Message.text = [NSString stringWithFormat:@"%@\n%@", post.message, [post.clicker detailText]];
-        cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
-        cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
+        cell.Date.text = [cell.post createdDatePostFormat];
+        cell.gap = [cell.post createdDateTimeInterval];
         
         [cell.timer invalidate];
         cell.timer = nil;
@@ -962,8 +962,8 @@
     cell.post = post;
     cell.Title.text = NSLocalizedString(@"Attendance Check", nil);
     cell.Title.textColor = [UIColor silver:1];
-    cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
-    cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
+    cell.Date.text = [cell.post createdDatePostFormat];
+    cell.gap = [cell.post createdDateTimeInterval];
     
     [cell.timer invalidate];
     cell.timer = nil;
@@ -1076,8 +1076,8 @@
     }
     
     cell.Message.text = cell.post.message;
-    cell.Date.text = [NSDate stringFromDate:[cell.post createdDate]];
-    cell.gap = [[cell.post createdDate] timeIntervalSinceNow];
+    cell.Date.text = [cell.post createdDatePostFormat];
+    cell.gap = [cell.post createdDateTimeInterval];
     
     [cell.timer invalidate];
     cell.timer = nil;

@@ -12,10 +12,11 @@
 @implementation Attendance
 
 - (instancetype)initWithObject:(id)object {
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"clusters"]] forKey:@"clusters"];
-    return [self initWithObject:object];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"clusters"]] forKey:@"clusters"];
+    return [super initWithObject:dictionary];
 }
 
 @end

@@ -10,4 +10,10 @@
 
 @implementation SimpleUser
 
++ (NSDictionary *)defaultPropertyValues {
+    NSString *json = @"{\"grade\": \"\", \"student_id\": \"\"}";
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    return jsonDict;
+}
+
 @end

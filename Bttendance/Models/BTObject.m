@@ -12,11 +12,11 @@
 @implementation BTObject
 
 - (NSDate *) createdDate {
-    return [NSDate dateFromString:self.createdAt];
+    return [NSDate dateFromServerString:self.createdAt];
 }
 
 - (NSDate *) updatedDate {
-    return [NSDate dateFromString:self.updatedAt];
+    return [NSDate dateFromServerString:self.updatedAt];
 }
 
 @end

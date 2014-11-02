@@ -77,10 +77,6 @@
     NSLog(@"didReceiveEvent : %@", data);
     NSLog(@"name : %@", [[packet dataAsJSON] objectForKey:@"name"]);
     
-    if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"onConnect"]) {
-        socketID = [[data objectForKey:@"args"][0] objectForKey:@"socketID"];
-    }
-    
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clicker"]) {
         Clicker *clicker = [[Clicker alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:ClickerUpdated object:clicker];

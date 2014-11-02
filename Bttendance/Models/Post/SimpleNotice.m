@@ -12,8 +12,9 @@
 @implementation SimpleNotice
 
 - (instancetype)initWithObject:(id)object {
-    [object setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];
-    return [super initWithObject:object];
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];
+    return [super initWithObject:dictionary];
 }
 
 - (void)copyDataFromNotice:(id)object {
