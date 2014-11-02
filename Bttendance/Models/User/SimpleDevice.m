@@ -10,4 +10,13 @@
 
 @implementation SimpleDevice
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"type" : @"",
+                                         @"uuid" : @"",
+                                         @"notification_key" : @""}];
+    return jsonDict;
+}
+
 @end

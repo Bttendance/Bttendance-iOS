@@ -10,4 +10,11 @@
 
 @implementation Identification
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"identity" : @""}];
+    return jsonDict;
+}
+
 @end

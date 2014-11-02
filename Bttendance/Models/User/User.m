@@ -12,6 +12,18 @@
 
 @implementation User
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"email" : @"",
+                                         @"password" : @"",
+                                         @"locale" : @"",
+                                         @"full_name" : @"",
+                                         @"questions_count" : @0}];
+    return jsonDict;
+}
+
+#pragma Public Method
 - (BOOL)supervising:(NSInteger)course_id {
     for (SimpleCourse *course in self.supervising_courses)
         if (course.id == course_id)

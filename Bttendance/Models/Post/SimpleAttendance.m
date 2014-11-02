@@ -13,6 +13,7 @@
 
 @implementation SimpleAttendance
 
+#pragma Override RLMObject Method
 - (instancetype)initWithObject:(id)object {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
@@ -20,6 +21,7 @@
     return [super initWithObject:dictionary];
 }
 
+#pragma Public Method
 - (void)copyDataFromAttendance:(id)object {
     Attendance *attendance = (Attendance *)object;
     self.checked_students = attendance.checked_students;

@@ -10,9 +10,13 @@
 
 @implementation SimpleUser
 
+#pragma Override RLMObject Method
 + (NSDictionary *)defaultPropertyValues {
-    NSString *json = @"{\"grade\": \"\", \"student_id\": \"\"}";
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"email" : @"",
+                                         @"full_name" : @"",
+                                         @"grade" : @"",
+                                         @"student_id" : @""}];
     return jsonDict;
 }
 

@@ -11,6 +11,15 @@
 
 @implementation BTObject
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"createdAt" : @"",
+                                         @"updatedAt" : @""}];
+    return jsonDict;
+}
+
+#pragma Public Method
 - (NSDate *) createdDate {
     return [NSDate dateFromServerString:self.createdAt];
 }

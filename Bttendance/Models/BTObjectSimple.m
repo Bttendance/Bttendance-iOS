@@ -12,8 +12,14 @@
 
 @implementation BTObjectSimple
 
+#pragma Override RLMObject Method
 + (NSString *)primaryKey {
     return @"id";
+}
+
++ (NSDictionary *)defaultPropertyValues {
+    NSDictionary *jsonDict = @{@"id" : @0};
+    return jsonDict;
 }
 
 @end
