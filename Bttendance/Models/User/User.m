@@ -73,11 +73,11 @@
     NSMutableArray *openedCourses = [NSMutableArray array];
     
     for (SimpleCourse* course in self.supervising_courses)
-        if (!course.opened)
+        if (course.opened)
             [openedCourses addObject:course];
     
     for (SimpleCourse* course in self.attending_courses)
-        if (!course.opened)
+        if (course.opened)
             [openedCourses addObject:course];
     
     return openedCourses;
@@ -87,11 +87,11 @@
     NSMutableArray *closedCourses = [NSMutableArray array];
     
     for (SimpleCourse* course in self.supervising_courses)
-        if (course.opened)
+        if (!course.opened)
             [closedCourses addObject:course];
     
     for (SimpleCourse* course in self.attending_courses)
-        if (course.opened)
+        if (!course.opened)
             [closedCourses addObject:course];
     
     return closedCourses;
