@@ -7,7 +7,9 @@
 //
 
 #import "SimpleNotice.h"
+#import "Notice.h"
 #import "NSData+Bttendance.h"
+#import "NSArray+Bttendance.h"
 
 @implementation SimpleNotice
 
@@ -18,16 +20,28 @@
 }
 
 - (void)copyDataFromNotice:(id)object {
-//    Notice *notice = (Notice *)object;
-//    self.seen_students = notice.seen_students;
+    Notice *notice = (Notice *)object;
+    self.seen_students = notice.seen_students;
 }
 
 - (BOOL)seen:(NSInteger)userId {
-//    for (int i = 0; i < self.seen_students.count; i++)
-//        if([self.seen_students[i] integerValue] == userId)
-//            return YES;
-    
+    for (int i = 0; i < [self seenStudentsCount]; i++)
+        if([[self seenStudents][i] integerValue] == userId)
+            return YES;
     return NO;
+}
+
+#pragma NSArray Converting
+- (NSArray *)seenStudents {
+    return [NSArray arrayFromData:self.seen_students];
+}
+
+- (NSInteger)seenStudentsCount {
+    NSArray *students = [self seenStudents];
+    if (students == nil)
+        return 0;
+    
+    return students.count;
 }
 
 @end

@@ -14,6 +14,4 @@
 @property NSData            *seen_students;
 @property SimplePost        *post;
 
-- (instancetype)initWithObject:(id)object;
-
 @end

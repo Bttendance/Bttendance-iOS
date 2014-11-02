@@ -11,6 +11,9 @@
 @implementation NSArray (Bttendance)
 
 + (NSArray *)arrayFromData:(NSData *)data {
+    if (data == nil)
+        return nil;
+    
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 

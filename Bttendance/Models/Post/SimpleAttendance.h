@@ -15,9 +15,14 @@
 @property NSData            *late_students;
 @property NSInteger         post;
 
-- (instancetype)initWithObject:(id)object;
 - (void)copyDataFromAttendance:(id)object;
 - (NSInteger)stateInt:(NSInteger)userId;
 - (void)toggleStatus:(NSInteger)userId;
+
+- (NSArray *)checkedStudents;
+- (NSArray *)lateStudents;
+
+- (NSInteger)checkedStudentsCount;
+- (NSInteger)lateStudentsCount;
 
 @end

@@ -22,6 +22,4 @@
 @property NSString          *detail_privacy;
 @property SimplePost        *post;
 
-- (instancetype)initWithObject:(id)object;
-
 @end

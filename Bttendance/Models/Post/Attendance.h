@@ -17,6 +17,4 @@
 @property NSData            *clusters;
 @property SimplePost        *post;
 
-- (instancetype)initWithObject:(id)object;
-
 @end

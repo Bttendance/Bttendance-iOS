@@ -13,8 +13,10 @@
 @property NSData            *seen_students;
 @property NSInteger         post;
 
-- (instancetype)initWithObject:(id)object;
 - (void)copyDataFromNotice:(id)object;
 - (BOOL)seen:(NSInteger)userId;
+
+- (NSArray *)seenStudents;
+- (NSInteger)seenStudentsCount;
 
 @end

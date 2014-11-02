@@ -12,4 +12,8 @@
 
 @implementation BTObjectSimple
 
++ (NSString *)primaryKey {
+    return @"id";
+}
+
 @end

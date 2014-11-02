@@ -7,7 +7,9 @@
 //
 
 #import "SimpleAttendance.h"
+#import "Attendance.h"
 #import "NSData+Bttendance.h"
+#import "NSArray+Bttendance.h"
 
 @implementation SimpleAttendance
 
@@ -19,55 +21,80 @@
 }
 
 - (void)copyDataFromAttendance:(id)object {
-//    Attendance *attendance = (Attendance *)object;
-//    self.checked_students = attendance.checked_students;
-//    self.late_students = attendance.late_students;
+    Attendance *attendance = (Attendance *)object;
+    self.checked_students = attendance.checked_students;
+    self.late_students = attendance.late_students;
 }
 
 - (NSInteger)stateInt:(NSInteger)userId {
-    //    for (int i = 0; i < self.checked_students.count; i++)
-    //        if([self.checked_students[i] integerValue] == userId)
-    //            return 1;
-    //
-    //    for (int i = 0; i < self.late_students.count; i++)
-    //        if([self.late_students[i] integerValue] == userId)
-    //            return 2;
+    for (int i = 0; i < [self checkedStudentsCount]; i++)
+        if([[self checkedStudents][i] integerValue] == userId)
+            return 1;
+
+    for (int i = 0; i < [self lateStudentsCount]; i++)
+        if([[self lateStudents][i] integerValue] == userId)
+            return 2;
     
     return 0;
 }
 
 - (void)toggleStatus:(NSInteger)userId {
     
-//    NSMutableArray *checked = [NSMutableArray array];
-//    NSMutableArray *lated = [NSMutableArray array];
-//    
-//    BOOL check = NO;
-//    BOOL late = NO;
-//    
-//    for (int i = 0; i < self.checked_students.count; i++) {
-//        if([self.checked_students[i] integerValue] == userId) {
-//            check = YES;
-//        } else {
-//            [checked addObject:self.checked_students[i]];
-//        }
-//    }
-//    
-//    for (int i = 0; i < self.late_students.count; i++) {
-//        if([self.late_students[i] integerValue] == userId) {
-//            late = YES;
-//        } else {
-//            [lated addObject:self.late_students[i]];
-//        }
-//    }
-//    
-//    if (check) {
-//        [lated addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
-//    } else if (!late) {
-//        [checked addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
-//    }
-//    
-//    self.checked_students = [NSKeyedArchiver archivedDataWithRootObject:checked];
-//    self.late_students = [NSKeyedArchiver archivedDataWithRootObject:lated];
+    NSMutableArray *checked = [NSMutableArray array];
+    NSMutableArray *lated = [NSMutableArray array];
+    
+    BOOL check = NO;
+    BOOL late = NO;
+    
+    for (int i = 0; i < [self checkedStudentsCount]; i++) {
+        if([[self checkedStudents][i] integerValue] == userId) {
+            check = YES;
+        } else {
+            [checked addObject:[self checkedStudents][i]];
+        }
+    }
+    
+    for (int i = 0; i < [self lateStudentsCount]; i++) {
+        if([[self lateStudents][i] integerValue] == userId) {
+            late = YES;
+        } else {
+            [lated addObject:[self lateStudents][i]];
+        }
+    }
+    
+    if (check) {
+        [lated addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
+    } else if (!late) {
+        [checked addObject:[NSString stringWithFormat:@"%ld", (long)userId]];
+    }
+    
+    self.checked_students = [NSKeyedArchiver archivedDataWithRootObject:checked];
+    self.late_students = [NSKeyedArchiver archivedDataWithRootObject:lated];
+}
+
+#pragma NSArray Converting
+- (NSArray *)checkedStudents {
+    return [NSArray arrayFromData:self.checked_students];
+}
+
+- (NSArray *)lateStudents {
+    return [NSArray arrayFromData:self.late_students];
+}
+
+- (NSInteger)checkedStudentsCount {
+    NSArray *students = [self checkedStudents];
+    if (students == nil)
+        return 0;
+    
+    return students.count;
+}
+
+- (NSInteger)lateStudentsCount {
+    NSArray *students = [self lateStudents];
+    if (students == nil)
+        return 0;
+    
+    return students.count;
 }
 
 @end

@@ -29,4 +29,16 @@
 - (NSString *)choice:(NSInteger)userId;
 - (NSInteger)choiceInt:(NSInteger)userId;
 
+- (NSArray *)aStudents;
+- (NSArray *)bStudents;
+- (NSArray *)cStudents;
+- (NSArray *)dStudents;
+- (NSArray *)eStudents;
+
+- (NSInteger)aStudentsCount;
+- (NSInteger)bStudentsCount;
+- (NSInteger)cStudentsCount;
+- (NSInteger)dStudentsCount;
+- (NSInteger)eStudentsCount;
+
 @end
