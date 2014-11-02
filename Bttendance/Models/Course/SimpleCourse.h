@@ -13,6 +13,7 @@
 @property NSString          *name;
 @property NSString          *professor_name;
 @property NSInteger         school;
+@property NSString          *code;
 @property BOOL              opened;
 
 @end

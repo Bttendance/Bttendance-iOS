@@ -11,9 +11,6 @@
 
 @interface ClickerQuestion : BTObject
 
-@property NSInteger         id;
-@property NSDate            *createdAt;
-@property NSDate            *updatedAt;
 @property NSString          *message;
 @property NSInteger         choice_count;
 @property NSInteger         progress_time;

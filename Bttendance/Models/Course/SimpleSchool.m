@@ -10,4 +10,12 @@
 
 @implementation SimpleSchool
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"name" : @"",
+                                         @"type" : @""}];
+    return jsonDict;
+}
+
 @end

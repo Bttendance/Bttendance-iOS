@@ -71,13 +71,6 @@
         application.applicationIconBadgeNumber = 0;
     }
     
-    NSDictionary *jsonDict = @{@"full_name" : @"1234",
-                               @"grade" : @"hmm",
-                               @"student_id" : @"working"};
-    SimpleNotice *simpleUser = [[SimpleNotice alloc] initWithObject:jsonDict];
-    NSInteger ID = simpleUser.id;
-    NSString* primary = [SimpleUser primaryKey];
-    
     return YES;
 }
 
