@@ -11,6 +11,15 @@
 
 @implementation Post
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"type" : @"",
+                                         @"message" : @""}];
+    return jsonDict;
+}
+
+#pragma Public Method
 - (NSTimeInterval) createdDateTimeInterval {
     return [[NSDate dateFromServerString:self.createdAt] timeIntervalSinceNow];
 }

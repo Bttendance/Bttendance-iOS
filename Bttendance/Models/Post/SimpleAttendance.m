@@ -21,6 +21,13 @@
     return [super initWithObject:dictionary];
 }
 
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"type" : @"",
+                                         @"post" : @0}];
+    return jsonDict;
+}
+
 #pragma Public Method
 - (void)copyDataFromAttendance:(id)object {
     Attendance *attendance = (Attendance *)object;

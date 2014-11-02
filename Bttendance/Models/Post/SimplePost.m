@@ -10,4 +10,14 @@
 
 @implementation SimplePost
 
+#pragma Override RLMObject Method
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"type" : @"",
+                                         @"message" : @"",
+                                         @"author" : @0,
+                                         @"course" : @0}];
+    return jsonDict;
+}
+
 @end

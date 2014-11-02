@@ -14,6 +14,7 @@
 
 @implementation SimpleClicker
 
+#pragma Override RLMObject Method
 - (instancetype)initWithObject:(id)object {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"a_students"]] forKey:@"a_students"];
@@ -24,6 +25,17 @@
     return [super initWithObject:dictionary];
 }
 
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"choice_count" : @0,
+                                         @"progress_time" : @0,
+                                         @"show_info_on_select" : @YES,
+                                         @"detail_privacy" : @"",
+                                         @"post" : @0}];
+    return jsonDict;
+}
+
+#pragma Public Method
 - (void)copyDataFromClicker:(id)object {
     Clicker *clicker = (Clicker *)object;
     self.choice_count = clicker.choice_count;

@@ -11,12 +11,19 @@
 
 @implementation Attendance
 
+#pragma Override RLMObject Method
 - (instancetype)initWithObject:(id)object {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"checked_students"]] forKey:@"checked_students"];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"late_students"]] forKey:@"late_students"];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"clusters"]] forKey:@"clusters"];
     return [super initWithObject:dictionary];
+}
+
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"type" : @""}];
+    return jsonDict;
 }
 
 @end

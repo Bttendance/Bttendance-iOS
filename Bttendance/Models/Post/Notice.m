@@ -11,6 +11,7 @@
 
 @implementation Notice
 
+#pragma Override RLMObject Method
 - (instancetype)initWithObject:(id)object {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
     [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];

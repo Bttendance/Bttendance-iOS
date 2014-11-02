@@ -21,4 +21,13 @@
     return [super initWithObject:dictionary];
 }
 
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"choice_count" : @0,
+                                         @"progress_time" : @0,
+                                         @"show_info_on_select" : @YES,
+                                         @"detail_privacy" : @""}];
+    return jsonDict;
+}
+
 @end
