@@ -16,7 +16,6 @@
 #import "AttdDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "SocketAgent.h"
-#import "NSArray+Bttendance.h"
 
 @interface AttdDetailViewController ()
 
@@ -324,9 +323,7 @@
             
                 CGFloat grade = 0;
                 if (self.course.students_count != 0)
-                    grade = ((float)[NSArray arrayFromData:self.post.attendance.checked_students].count
-                             + (float)[NSArray arrayFromData:self.post.attendance.late_students].count)
-                            / (float)self.course.students_count;
+                    grade = (float)[self.post.attendance totalStudentsCount] / (float)self.course.students_count;
                 
                 UIView *top = [[UIView alloc] initWithFrame:CGRectMake(69, 9, 182, 182 * (1-grade))];
                 top.backgroundColor = [UIColor white:1];
@@ -404,7 +401,7 @@
                 cell.backgroundColor = [UIColor white:1];
                 
                 UILabel *attd = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                attd.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long) ([NSArray arrayFromData:self.post.attendance.checked_students].count + [NSArray arrayFromData:self.post.attendance.late_students].count)];
+                attd.text = [NSString stringWithFormat:NSLocalizedString(@"%ld명", nil), (long) ([self.post.attendance totalStudentsCount])];
                 attd.font = [UIFont boldSystemFontOfSize:27];
                 attd.textColor = [UIColor cyan:1];
                 [attd sizeToFit];
@@ -416,7 +413,7 @@
                 [std sizeToFit];
                 
                 UILabel *percent = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) round((((float)[NSArray arrayFromData:self.post.attendance.checked_students].count + (float)[NSArray arrayFromData:self.post.attendance.late_students].count) / (float)self.course.students_count * 100.0f))];
+                percent.text = [NSString stringWithFormat:NSLocalizedString(@"출석(%ld%%)", nil), (long) round(((float)[self.post.attendance totalStudentsCount] / (float)self.course.students_count * 100.0f))];
                 percent.font = [UIFont systemFontOfSize:12];
                 percent.textColor = [UIColor navy:1];
                 [percent sizeToFit];

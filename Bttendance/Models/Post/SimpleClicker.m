@@ -205,6 +205,16 @@
     return [NSArray arrayFromData:self.e_students];
 }
 
+- (NSArray *)totalStudents {
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObjectsFromArray:[self aStudents]];
+    [array addObjectsFromArray:[self bStudents]];
+    [array addObjectsFromArray:[self cStudents]];
+    [array addObjectsFromArray:[self dStudents]];
+    [array addObjectsFromArray:[self eStudents]];
+    return [NSArray arrayWithArray:array];
+}
+
 - (NSInteger)aStudentsCount {
     NSArray *students = [self aStudents];
     if (students == nil)
@@ -245,7 +255,6 @@
     return students.count;
 }
 
-#pragma Private Methods
 - (NSInteger)totalStudentsCount {
     return [self aStudentsCount] + [self bStudentsCount] + [self cStudentsCount] + [self dStudentsCount] + [self eStudentsCount];
 }

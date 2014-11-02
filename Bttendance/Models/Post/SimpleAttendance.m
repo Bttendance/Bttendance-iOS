@@ -97,4 +97,8 @@
     return students.count;
 }
 
+- (NSInteger)totalStudentsCount {
+    return [self checkedStudentsCount] + [self lateStudentsCount];
+}
+
 @end

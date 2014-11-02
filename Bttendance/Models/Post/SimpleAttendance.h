@@ -25,4 +25,6 @@
 - (NSInteger)checkedStudentsCount;
 - (NSInteger)lateStudentsCount;
 
+- (NSInteger)totalStudentsCount;
+
 @end

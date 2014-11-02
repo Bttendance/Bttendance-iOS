@@ -35,10 +35,14 @@
 - (NSArray *)dStudents;
 - (NSArray *)eStudents;
 
+- (NSArray *)totalStudents;
+
 - (NSInteger)aStudentsCount;
 - (NSInteger)bStudentsCount;
 - (NSInteger)cStudentsCount;
 - (NSInteger)dStudentsCount;
 - (NSInteger)eStudentsCount;
+
+- (NSInteger)totalStudentsCount;
 
 @end

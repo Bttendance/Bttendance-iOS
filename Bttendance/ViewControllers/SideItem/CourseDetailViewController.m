@@ -40,8 +40,6 @@
 
 #import "CourseSettingViewController.h"
 
-#import "NSArray+Bttendance.h"
-
 @interface CourseDetailViewController ()
 
 @property (assign) BOOL auth;
@@ -498,12 +496,7 @@
     if ([post.type isEqualToString:@"clicker"]) {
         
         Boolean check = false;
-        NSMutableArray *checks = [[NSMutableArray alloc] init];
-        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.a_students]];
-        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.b_students]];
-        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.c_students]];
-        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.d_students]];
-        [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.e_students]];
+        NSArray *checks = [post.clicker totalStudents];
         for (int i = 0; i < checks.count; i++)
             if (user.id == [checks[i] intValue])
                 check = true;
@@ -533,10 +526,10 @@
     
     if ([post.type isEqualToString:@"attendance"]) {
         if (self.auth) {
-            NSInteger total = (long) ([NSArray arrayFromData:post.attendance.checked_students].count + [NSArray arrayFromData:post.attendance.late_students].count);
+            NSInteger total = (long)[post.attendance totalStudentsCount];
             NSInteger total_grade = 0;
             if (self.course.students_count != 0)
-                total_grade = (long) ceil((((float)[NSArray arrayFromData:post.attendance.checked_students].count + (float)[NSArray arrayFromData:post.attendance.late_students].count) / (float)self.course.students_count * 100.0f));
+                total_grade = (long) ceil(((float)[post.attendance totalStudentsCount] / (float)self.course.students_count * 100.0f));
             rawmessage = [NSString stringWithFormat:NSLocalizedString(@"%ld/%ld (%ld%%) students has been attended.", nil), (long)total, (long)self.course.students_count, (long)total_grade];
         } else {
             NSString *message1 = NSLocalizedString(@"출석이 확인되었습니다.", nil);
@@ -661,12 +654,7 @@
     }
     
     Boolean check = false;
-    NSMutableArray *checks = [[NSMutableArray alloc] init];
-    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.a_students]];
-    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.b_students]];
-    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.c_students]];
-    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.d_students]];
-    [checks addObjectsFromArray:[NSArray arrayFromData:post.clicker.e_students]];
+    NSArray *checks = [post.clicker totalStudents];
     for (int i = 0; i < checks.count; i++)
         if (user.id == [checks[i] intValue])
             check = true;
@@ -977,10 +965,10 @@
     [cell.check_overlay setImage:[UIImage imageNamed:@"attendanceringnonalpha.png"]];
     
     if (self.auth) {
-        NSInteger total = (long) ([NSArray arrayFromData:post.attendance.checked_students].count + [NSArray arrayFromData:post.attendance.late_students].count);
+        NSInteger total = (long) [post.attendance totalStudentsCount];
         NSInteger total_grade = 0;
         if (self.course.students_count != 0)
-            total_grade = (long) round((((float)[NSArray arrayFromData:post.attendance.checked_students].count + (float)[NSArray arrayFromData:post.attendance.late_students].count) / (float)self.course.students_count * 100.0f));
+            total_grade = (long) round(((float)[post.attendance totalStudentsCount] / (float)self.course.students_count * 100.0f));
         
         NSInteger grade = total_grade;
         if (grade > 100)
@@ -1067,7 +1055,7 @@
     cell.Title.textColor = [UIColor silver:1];
     
     if (self.auth) {
-        NSInteger seen = [NSArray arrayFromData:post.notice.seen_students].count;
+        NSInteger seen = [post.notice seenStudentsCount];
         NSInteger total = self.course.students_count;
         cell.Title.text = [NSString stringWithFormat:NSLocalizedString(@"Notice (%ld/%ld read)", nil), seen, total];
     } else if (![post.notice seen:user.id]) {
