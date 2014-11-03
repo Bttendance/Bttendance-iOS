@@ -17,9 +17,8 @@
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
     [jsonDict addEntriesFromDictionary:@{@"email" : @"",
                                          @"password" : @"",
-                                         @"locale" : @"",
                                          @"full_name" : @"",
-                                         @"questions_count" : @0}];
+                                         @"locale" : @""}];
     return jsonDict;
 }
 

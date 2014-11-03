@@ -8,15 +8,50 @@
 
 #import "Post.h"
 #import "NSDate+Bttendance.h"
+#import "NSData+Bttendance.h"
+#import "NSArray+Bttendance.h"
 
 @implementation Post
 
 #pragma Override RLMObject Method
+- (instancetype)initWithObject:(id)object {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionaryWithDictionary:object];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"seen_managers"]] forKey:@"seen_managers"];
+    [dictionary setObject:[NSData dataFromArray:[object objectForKey:@"seen_students"]] forKey:@"seen_students"];
+    return [super initWithObject:dictionary];
+}
+
 + (NSDictionary *)defaultPropertyValues {
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
     [jsonDict addEntriesFromDictionary:@{@"type" : @"",
-                                         @"message" : @""}];
+                                         @"message" : @"",
+                                         @"comments_count" : @0}];
     return jsonDict;
+}
+
+#pragma NSArray Converting
+- (NSArray *)seenManagers {
+    return [NSArray arrayFromData:self.seen_managers];
+}
+
+- (NSArray *)seenStudents {
+    return [NSArray arrayFromData:self.seen_students];
+}
+
+- (NSInteger)seenManagersCount {
+    NSArray *students = [self seenManagers];
+    if (students == nil)
+        return 0;
+    
+    return students.count;
+}
+
+- (NSInteger)seenStudentsCount {
+    NSArray *students = [self seenStudents];
+    if (students == nil)
+        return 0;
+    
+    return students.count;
 }
 
 #pragma Public Method

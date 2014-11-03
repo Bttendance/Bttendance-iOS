@@ -18,8 +18,8 @@
 
 @property NSString                              *email;
 @property NSString                              *password;
-@property NSString                              *locale;
 @property NSString                              *full_name;
+@property NSString                              *locale;
 @property SimpleDevice                          *device;
 @property SimpleSetting                         *setting;
 @property RLMArray<SimpleCourse>                *supervising_courses;
@@ -27,7 +27,6 @@
 @property RLMArray<SimpleSchool>                *employed_schools;
 @property RLMArray<SimpleSchool>                *enrolled_schools;
 @property RLMArray<SimpleIdentification>        *identifications;
-@property NSInteger         questions_count;
 
 
 - (BOOL)supervising:(NSInteger)course_id;

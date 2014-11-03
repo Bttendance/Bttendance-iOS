@@ -1,20 +1,19 @@
 //
-//  SimpleUser.m
+//  Comment.m
 //  bttendance
 //
-//  Created by TheFinestArtist on 2014. 11. 1..
+//  Created by TheFinestArtist on 2014. 11. 3..
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import "SimpleUser.h"
+#import "Comment.h"
 
-@implementation SimpleUser
+@implementation Comment
 
 #pragma Override RLMObject Method
 + (NSDictionary *)defaultPropertyValues {
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
-    [jsonDict addEntriesFromDictionary:@{@"email" : @"",
-                                         @"full_name" : @""}];
+    [jsonDict addEntriesFromDictionary:@{@"message" : @""}];
     return jsonDict;
 }
 

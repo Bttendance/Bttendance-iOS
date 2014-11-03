@@ -244,6 +244,16 @@
 		D4AD08061A075770003AEE16 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08051A075770003AEE16 /* BVUnderlineButton.m */; };
 		D4AD08091A0758A6003AEE16 /* BTTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08081A0758A6003AEE16 /* BTTable.m */; };
 		D4AD080C1A0758B6003AEE16 /* BTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD080B1A0758B6003AEE16 /* BTDatabase.m */; };
+		D4AD08141A0767C7003AEE16 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08131A0767C7003AEE16 /* AttendanceRecord.m */; };
+		D4AD08171A0767D1003AEE16 /* ClickerRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08161A0767D1003AEE16 /* ClickerRecord.m */; };
+		D4AD081A1A0769F8003AEE16 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08191A0769F8003AEE16 /* Schedule.m */; };
+		D4AD081D1A076A06003AEE16 /* SimpleSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD081C1A076A06003AEE16 /* SimpleSchedule.m */; };
+		D4AD08201A076D29003AEE16 /* Curious.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD081F1A076D29003AEE16 /* Curious.m */; };
+		D4AD08231A076D36003AEE16 /* SimpleCurious.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08221A076D36003AEE16 /* SimpleCurious.m */; };
+		D4AD08261A077735003AEE16 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08251A077735003AEE16 /* Comment.m */; };
+		D4AD08291A077741003AEE16 /* SimpleComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08281A077741003AEE16 /* SimpleComment.m */; };
+		D4AD082C1A077AD9003AEE16 /* SimpleAttendanceAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD082B1A077AD9003AEE16 /* SimpleAttendanceAlarm.m */; };
+		D4AD082F1A077AE9003AEE16 /* AttendanceAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -609,7 +619,26 @@
 		D4AD08081A0758A6003AEE16 /* BTTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTable.m; sourceTree = "<group>"; };
 		D4AD080A1A0758B6003AEE16 /* BTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDatabase.h; sourceTree = "<group>"; };
 		D4AD080B1A0758B6003AEE16 /* BTDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDatabase.m; sourceTree = "<group>"; };
-		D4AD08101A075BA5003AEE16 /* BTModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTModel.h; sourceTree = "<group>"; };
+		D4AD08121A0767C7003AEE16 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
+		D4AD08131A0767C7003AEE16 /* AttendanceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceRecord.m; sourceTree = "<group>"; };
+		D4AD08151A0767D1003AEE16 /* ClickerRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickerRecord.h; sourceTree = "<group>"; };
+		D4AD08161A0767D1003AEE16 /* ClickerRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickerRecord.m; sourceTree = "<group>"; };
+		D4AD08181A0769F8003AEE16 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
+		D4AD08191A0769F8003AEE16 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		D4AD081B1A076A06003AEE16 /* SimpleSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleSchedule.h; sourceTree = "<group>"; };
+		D4AD081C1A076A06003AEE16 /* SimpleSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleSchedule.m; sourceTree = "<group>"; };
+		D4AD081E1A076D29003AEE16 /* Curious.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curious.h; sourceTree = "<group>"; };
+		D4AD081F1A076D29003AEE16 /* Curious.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Curious.m; sourceTree = "<group>"; };
+		D4AD08211A076D36003AEE16 /* SimpleCurious.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCurious.h; sourceTree = "<group>"; };
+		D4AD08221A076D36003AEE16 /* SimpleCurious.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCurious.m; sourceTree = "<group>"; };
+		D4AD08241A077735003AEE16 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		D4AD08251A077735003AEE16 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		D4AD08271A077741003AEE16 /* SimpleComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleComment.h; sourceTree = "<group>"; };
+		D4AD08281A077741003AEE16 /* SimpleComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleComment.m; sourceTree = "<group>"; };
+		D4AD082A1A077AD9003AEE16 /* SimpleAttendanceAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAttendanceAlarm.h; sourceTree = "<group>"; };
+		D4AD082B1A077AD9003AEE16 /* SimpleAttendanceAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAttendanceAlarm.m; sourceTree = "<group>"; };
+		D4AD082D1A077AE9003AEE16 /* AttendanceAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceAlarm.h; sourceTree = "<group>"; };
+		D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceAlarm.m; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -844,7 +873,6 @@
 		D4AD06471A075611003AEE16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D4AD08101A075BA5003AEE16 /* BTModel.h */,
 				D4AD06481A075611003AEE16 /* BTObject.h */,
 				D4AD06491A075611003AEE16 /* BTObject.m */,
 				D4AD064A1A075611003AEE16 /* BTSimpleObject.h */,
@@ -852,6 +880,7 @@
 				D4AD064C1A075611003AEE16 /* Course */,
 				D4AD06591A075611003AEE16 /* Extras */,
 				D4AD06601A075611003AEE16 /* Post */,
+				D4AD08111A076787003AEE16 /* Record */,
 				D4AD06711A075611003AEE16 /* User */,
 			);
 			path = Model;
@@ -860,16 +889,24 @@
 		D4AD064C1A075611003AEE16 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				D4AD082D1A077AE9003AEE16 /* AttendanceAlarm.h */,
+				D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */,
+				D4AD082A1A077AD9003AEE16 /* SimpleAttendanceAlarm.h */,
+				D4AD082B1A077AD9003AEE16 /* SimpleAttendanceAlarm.m */,
 				D4AD064D1A075611003AEE16 /* ClickerQuestion.h */,
 				D4AD064E1A075611003AEE16 /* ClickerQuestion.m */,
-				D4AD064F1A075611003AEE16 /* Course.h */,
-				D4AD06501A075611003AEE16 /* Course.m */,
-				D4AD06511A075611003AEE16 /* School.h */,
-				D4AD06521A075611003AEE16 /* School.m */,
 				D4AD06531A075611003AEE16 /* SimpleClickerQuestion.h */,
 				D4AD06541A075611003AEE16 /* SimpleClickerQuestion.m */,
+				D4AD064F1A075611003AEE16 /* Course.h */,
+				D4AD06501A075611003AEE16 /* Course.m */,
 				D4AD06551A075611003AEE16 /* SimpleCourse.h */,
 				D4AD06561A075611003AEE16 /* SimpleCourse.m */,
+				D4AD08181A0769F8003AEE16 /* Schedule.h */,
+				D4AD08191A0769F8003AEE16 /* Schedule.m */,
+				D4AD081B1A076A06003AEE16 /* SimpleSchedule.h */,
+				D4AD081C1A076A06003AEE16 /* SimpleSchedule.m */,
+				D4AD06511A075611003AEE16 /* School.h */,
+				D4AD06521A075611003AEE16 /* School.m */,
 				D4AD06571A075611003AEE16 /* SimpleSchool.h */,
 				D4AD06581A075611003AEE16 /* SimpleSchool.m */,
 			);
@@ -894,20 +931,28 @@
 			children = (
 				D4AD06611A075611003AEE16 /* Attendance.h */,
 				D4AD06621A075611003AEE16 /* Attendance.m */,
-				D4AD06631A075611003AEE16 /* Clicker.h */,
-				D4AD06641A075611003AEE16 /* Clicker.m */,
-				D4AD06651A075611003AEE16 /* Notice.h */,
-				D4AD06661A075611003AEE16 /* Notice.m */,
-				D4AD06671A075611003AEE16 /* Post.h */,
-				D4AD06681A075611003AEE16 /* Post.m */,
 				D4AD06691A075611003AEE16 /* SimpleAttendance.h */,
 				D4AD066A1A075611003AEE16 /* SimpleAttendance.m */,
+				D4AD06631A075611003AEE16 /* Clicker.h */,
+				D4AD06641A075611003AEE16 /* Clicker.m */,
 				D4AD066B1A075611003AEE16 /* SimpleClicker.h */,
 				D4AD066C1A075611003AEE16 /* SimpleClicker.m */,
+				D4AD081E1A076D29003AEE16 /* Curious.h */,
+				D4AD081F1A076D29003AEE16 /* Curious.m */,
+				D4AD08211A076D36003AEE16 /* SimpleCurious.h */,
+				D4AD08221A076D36003AEE16 /* SimpleCurious.m */,
+				D4AD06651A075611003AEE16 /* Notice.h */,
+				D4AD06661A075611003AEE16 /* Notice.m */,
 				D4AD066D1A075611003AEE16 /* SimpleNotice.h */,
 				D4AD066E1A075611003AEE16 /* SimpleNotice.m */,
+				D4AD06671A075611003AEE16 /* Post.h */,
+				D4AD06681A075611003AEE16 /* Post.m */,
 				D4AD066F1A075611003AEE16 /* SimplePost.h */,
 				D4AD06701A075611003AEE16 /* SimplePost.m */,
+				D4AD08241A077735003AEE16 /* Comment.h */,
+				D4AD08251A077735003AEE16 /* Comment.m */,
+				D4AD08271A077741003AEE16 /* SimpleComment.h */,
+				D4AD08281A077741003AEE16 /* SimpleComment.m */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -917,20 +962,20 @@
 			children = (
 				D4AD06721A075611003AEE16 /* Device.h */,
 				D4AD06731A075611003AEE16 /* Device.m */,
-				D4AD06741A075611003AEE16 /* Identification.h */,
-				D4AD06751A075611003AEE16 /* Identification.m */,
-				D4AD06761A075611003AEE16 /* Setting.h */,
-				D4AD06771A075611003AEE16 /* Setting.m */,
 				D4AD06781A075611003AEE16 /* SimpleDevice.h */,
 				D4AD06791A075611003AEE16 /* SimpleDevice.m */,
+				D4AD06741A075611003AEE16 /* Identification.h */,
+				D4AD06751A075611003AEE16 /* Identification.m */,
 				D4AD067A1A075611003AEE16 /* SimpleIdentification.h */,
 				D4AD067B1A075611003AEE16 /* SimpleIdentification.m */,
+				D4AD06761A075611003AEE16 /* Setting.h */,
+				D4AD06771A075611003AEE16 /* Setting.m */,
 				D4AD067C1A075611003AEE16 /* SimpleSetting.h */,
 				D4AD067D1A075611003AEE16 /* SimpleSetting.m */,
-				D4AD067E1A075611003AEE16 /* SimpleUser.h */,
-				D4AD067F1A075611003AEE16 /* SimpleUser.m */,
 				D4AD06801A075611003AEE16 /* User.h */,
 				D4AD06811A075611003AEE16 /* User.m */,
+				D4AD067E1A075611003AEE16 /* SimpleUser.h */,
+				D4AD067F1A075611003AEE16 /* SimpleUser.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1281,6 +1326,17 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		D4AD08111A076787003AEE16 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				D4AD08121A0767C7003AEE16 /* AttendanceRecord.h */,
+				D4AD08131A0767C7003AEE16 /* AttendanceRecord.m */,
+				D4AD08151A0767D1003AEE16 /* ClickerRecord.h */,
+				D4AD08161A0767D1003AEE16 /* ClickerRecord.m */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1546,6 +1602,7 @@
 			files = (
 				D4AD076A1A075611003AEE16 /* Setting.m in Sources */,
 				D4AD075E1A075611003AEE16 /* Error.m in Sources */,
+				D4AD08141A0767C7003AEE16 /* AttendanceRecord.m in Sources */,
 				D4AD07541A075611003AEE16 /* BTUserDefault.m in Sources */,
 				D4AD07CE1A075611003AEE16 /* NoticeDetailViewController.m in Sources */,
 				D4AD07F91A07563C003AEE16 /* NSArray+Bttendance.m in Sources */,
@@ -1560,6 +1617,7 @@
 				D4AD07B71A075611003AEE16 /* ClickerDetailViewController.m in Sources */,
 				D4AD07851A075611003AEE16 /* ClickerCell.m in Sources */,
 				D4AD08091A0758A6003AEE16 /* BTTable.m in Sources */,
+				D4AD081A1A0769F8003AEE16 /* Schedule.m in Sources */,
 				D4AD07CA1A075611003AEE16 /* CreateNoticeViewController.m in Sources */,
 				D4AD07681A075611003AEE16 /* Device.m in Sources */,
 				D4AD07FA1A07563C003AEE16 /* NSData+Bttendance.m in Sources */,
@@ -1576,12 +1634,14 @@
 				D4AD07DE1A075611003AEE16 /* WebViewController.m in Sources */,
 				D4AD08061A075770003AEE16 /* BVUnderlineButton.m in Sources */,
 				D4AD07B91A075611003AEE16 /* ClickerOptionViewController.m in Sources */,
+				D4AD08261A077735003AEE16 /* Comment.m in Sources */,
 				D4AD07FD1A07563C003AEE16 /* UIColor+Bttendance.m in Sources */,
 				D4AD07661A075611003AEE16 /* SimpleNotice.m in Sources */,
 				D4AD07C21A075611003AEE16 /* GuideCourseCreateViewController.m in Sources */,
 				D4AD08001A07563C003AEE16 /* BTBlink.m in Sources */,
 				D4AD07CC1A075611003AEE16 /* NoticeDetailListViewController.m in Sources */,
 				D4AD07D01A075611003AEE16 /* ProfileEmailEditViewController.m in Sources */,
+				D4AD082C1A077AD9003AEE16 /* SimpleAttendanceAlarm.m in Sources */,
 				D4AD07571A075611003AEE16 /* ClickerQuestion.m in Sources */,
 				D4AD07C91A075611003AEE16 /* StudentListViewController.m in Sources */,
 				D4AD07691A075611003AEE16 /* Identification.m in Sources */,
@@ -1590,6 +1650,7 @@
 				D4AD07DA1A075611003AEE16 /* ForgotPassViewController.m in Sources */,
 				D4AD076F1A075611003AEE16 /* User.m in Sources */,
 				D4AD07911A075611003AEE16 /* PasswordCell.m in Sources */,
+				D4AD08291A077741003AEE16 /* SimpleComment.m in Sources */,
 				D4AD07D61A075611003AEE16 /* LeftMenuViewController.m in Sources */,
 				D4AD08031A07563C003AEE16 /* KeychainItemWrapper.m in Sources */,
 				D4AD07611A075611003AEE16 /* Clicker.m in Sources */,
@@ -1613,6 +1674,7 @@
 				D4AD07701A075611003AEE16 /* AttendanceAgent.m in Sources */,
 				D4AD07551A075611003AEE16 /* BTObject.m in Sources */,
 				D4AD07FC1A07563C003AEE16 /* NSDictionary+Bttendance.m in Sources */,
+				D4AD08171A0767D1003AEE16 /* ClickerRecord.m in Sources */,
 				D4AD076B1A075611003AEE16 /* SimpleDevice.m in Sources */,
 				D4AD07C41A075611003AEE16 /* GuidePageViewController.m in Sources */,
 				D4AD077E1A075611003AEE16 /* ButtonCell.m in Sources */,
@@ -1639,6 +1701,7 @@
 				D4AD078F1A075611003AEE16 /* OptionCell.m in Sources */,
 				2135C3A8182BDD4E002C45DB /* main.m in Sources */,
 				D4AD07B51A075611003AEE16 /* ClickerDetailListViewController.m in Sources */,
+				D4AD081D1A076A06003AEE16 /* SimpleSchedule.m in Sources */,
 				D4AD07D51A075611003AEE16 /* SettingViewController.m in Sources */,
 				D4AD07FE1A07563C003AEE16 /* UIImage+Bttendance.m in Sources */,
 				D4AD07711A075611003AEE16 /* BTAPIs.m in Sources */,
@@ -1646,9 +1709,12 @@
 				D4AD076D1A075611003AEE16 /* SimpleSetting.m in Sources */,
 				D4AD07601A075611003AEE16 /* Attendance.m in Sources */,
 				D4AD07BE1A075611003AEE16 /* NoCourseViewController.m in Sources */,
+				D4AD08231A076D36003AEE16 /* SimpleCurious.m in Sources */,
 				D4AD079D1A075611003AEE16 /* SideHeaderViewCell.m in Sources */,
 				D4AD07951A075611003AEE16 /* ProfileCell.m in Sources */,
+				D4AD082F1A077AE9003AEE16 /* AttendanceAlarm.m in Sources */,
 				D4AD07591A075611003AEE16 /* School.m in Sources */,
+				D4AD08201A076D29003AEE16 /* Curious.m in Sources */,
 				D4AD07931A075611003AEE16 /* PostCell.m in Sources */,
 				D4AD07DF1A075611003AEE16 /* CourseDetailHeaderView.m in Sources */,
 				D4AD07C81A075611003AEE16 /* ManagerViewController.m in Sources */,

@@ -10,6 +10,7 @@
 
 @interface SimpleClickerQuestion : BTSimpleObject
 
+@property NSInteger         author;
 @property NSString          *message;
 @property NSInteger         choice_count;
 @property NSInteger         progress_time;

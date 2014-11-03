@@ -8,14 +8,16 @@
 
 #import "BTObject.h"
 #import "SimpleUser.h"
+#import "SimpleCourse.h"
 
 @interface ClickerQuestion : BTObject
 
+@property SimpleUser        *author;
 @property NSString          *message;
 @property NSInteger         choice_count;
 @property NSInteger         progress_time;
 @property BOOL              show_info_on_select;
 @property NSString          *detail_privacy;
-@property SimpleUser        *owner;
+@property SimpleCourse      *course;
 
 @end

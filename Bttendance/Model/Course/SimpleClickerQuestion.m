@@ -13,7 +13,8 @@
 #pragma Override RLMObject Method
 + (NSDictionary *)defaultPropertyValues {
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
-    [jsonDict addEntriesFromDictionary:@{@"message" : @"",
+    [jsonDict addEntriesFromDictionary:@{@"author" : @0,
+                                         @"message" : @"",
                                          @"choice_count" : @0,
                                          @"progress_time" : @0,
                                          @"show_info_on_select" : @YES,

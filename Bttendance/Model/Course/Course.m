@@ -18,7 +18,15 @@
                                          @"students_count" : @0,
                                          @"posts_count" : @0,
                                          @"code" : @"",
-                                         @"opened" : @YES}];
+                                         @"opened" : @YES,
+                                         @"questions_count" : @0,
+                                         @"information" : @"",
+                                         @"beginDate" : @"",
+                                         @"endDate" : @"",
+                                         @"alarms_count" : @0,
+                                         @"attendance_rate" : @0,
+                                         @"clicker_rate" : @0,
+                                         @"notice_rate" : @0}];
     return jsonDict;
 }
 

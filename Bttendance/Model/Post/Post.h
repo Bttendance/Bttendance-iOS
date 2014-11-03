@@ -12,6 +12,7 @@
 #import "SimpleAttendance.h"
 #import "SimpleClicker.h"
 #import "SimpleNotice.h"
+#import "SimpleCurious.h"
 
 @interface Post : BTObject
 
@@ -22,6 +23,18 @@
 @property SimpleAttendance  *attendance;
 @property SimpleClicker     *clicker;
 @property SimpleNotice      *notice;
+@property SimpleCurious     *curious;
+@property NSData            *seen_managers;
+@property NSData            *seen_students;
+@property NSInteger         comments_count;
+
+
+
+- (NSArray *)seenManagers;
+- (NSArray *)seenStudents;
+
+- (NSInteger)seenManagersCount;
+- (NSInteger)seenStudentsCount;
 
 - (NSTimeInterval) createdDateTimeInterval;
 

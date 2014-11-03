@@ -11,12 +11,12 @@
 
 @interface Clicker : BTObject
 
-@property NSInteger         choice_count;
 @property NSData            *a_students;
 @property NSData            *b_students;
 @property NSData            *c_students;
 @property NSData            *d_students;
 @property NSData            *e_students;
+@property NSInteger         choice_count;
 @property NSInteger         progress_time;
 @property BOOL              show_info_on_select;
 @property NSString          *detail_privacy;
