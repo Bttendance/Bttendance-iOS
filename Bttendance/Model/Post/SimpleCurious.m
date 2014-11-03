@@ -7,6 +7,7 @@
 //
 
 #import "SimpleCurious.h"
+#import "Curious.h"
 #import "NSData+Bttendance.h"
 #import "NSArray+Bttendance.h"
 
@@ -24,6 +25,13 @@
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
     [jsonDict addEntriesFromDictionary:@{@"post" : @0}];
     return jsonDict;
+}
+
+#pragma Public Method
+- (void)copyDataFromCurious:(id)object {
+    Curious *curious = (Curious *)object;
+    self.liked_users = curious.liked_users;
+    self.followers = curious.followers;
 }
 
 #pragma NSArray Converting

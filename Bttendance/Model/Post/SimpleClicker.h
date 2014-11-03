@@ -23,6 +23,7 @@
 @property NSInteger         post;
 
 - (void)copyDataFromClicker:(id)object;
+
 - (NSString *)detailText;
 - (NSString *)participation;
 - (NSString *)percent:(NSInteger)choice;

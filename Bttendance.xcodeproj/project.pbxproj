@@ -254,6 +254,7 @@
 		D4AD08291A077741003AEE16 /* SimpleComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08281A077741003AEE16 /* SimpleComment.m */; };
 		D4AD082C1A077AD9003AEE16 /* SimpleAttendanceAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD082B1A077AD9003AEE16 /* SimpleAttendanceAlarm.m */; };
 		D4AD082F1A077AE9003AEE16 /* AttendanceAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */; };
+		D4AD08321A07F513003AEE16 /* StudentRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08311A07F513003AEE16 /* StudentRecord.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -639,6 +640,8 @@
 		D4AD082B1A077AD9003AEE16 /* SimpleAttendanceAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAttendanceAlarm.m; sourceTree = "<group>"; };
 		D4AD082D1A077AE9003AEE16 /* AttendanceAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceAlarm.h; sourceTree = "<group>"; };
 		D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendanceAlarm.m; sourceTree = "<group>"; };
+		D4AD08301A07F513003AEE16 /* StudentRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentRecord.h; sourceTree = "<group>"; };
+		D4AD08311A07F513003AEE16 /* StudentRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentRecord.m; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -1333,6 +1336,8 @@
 				D4AD08131A0767C7003AEE16 /* AttendanceRecord.m */,
 				D4AD08151A0767D1003AEE16 /* ClickerRecord.h */,
 				D4AD08161A0767D1003AEE16 /* ClickerRecord.m */,
+				D4AD08301A07F513003AEE16 /* StudentRecord.h */,
+				D4AD08311A07F513003AEE16 /* StudentRecord.m */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -1655,6 +1660,7 @@
 				D4AD08031A07563C003AEE16 /* KeychainItemWrapper.m in Sources */,
 				D4AD07611A075611003AEE16 /* Clicker.m in Sources */,
 				D4AD07AD1A075611003AEE16 /* SchoolCreateViewController.m in Sources */,
+				D4AD08321A07F513003AEE16 /* StudentRecord.m in Sources */,
 				D4AD07B01A075611003AEE16 /* AttdDetailViewController.m in Sources */,
 				D4AD07A31A075611003AEE16 /* StudentInfoCell.m in Sources */,
 				D4AD07631A075611003AEE16 /* Post.m in Sources */,

@@ -14,6 +14,7 @@
 @property NSInteger         post;
 
 - (void)copyDataFromNotice:(id)object;
+
 - (BOOL)seen:(NSInteger)userId;
 
 - (NSArray *)seenStudents;

@@ -10,6 +10,4 @@
 
 @interface NSDictionary (Bttendance)
 
-- (NSDictionary *) dictionaryByReplacingNullsWithStrings;
-
 @end

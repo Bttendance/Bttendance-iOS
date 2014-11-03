@@ -14,6 +14,8 @@
 @property NSData            *followers;
 @property NSInteger         post;
 
+- (void)copyDataFromCurious:(id)object;
+
 - (NSArray *)likedUsers;
 - (NSArray *)followingUsers;
 

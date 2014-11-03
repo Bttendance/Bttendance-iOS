@@ -38,7 +38,6 @@
 #pragma Public Method
 - (void)copyDataFromClicker:(id)object {
     Clicker *clicker = (Clicker *)object;
-    self.choice_count = clicker.choice_count;
     self.a_students = clicker.a_students;
     self.b_students = clicker.b_students;
     self.c_students = clicker.c_students;

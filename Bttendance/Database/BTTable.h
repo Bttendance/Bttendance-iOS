@@ -20,6 +20,7 @@
 #import "SimpleUser.h"
 #import "AttendanceRecord.h"
 #import "ClickerRecord.h"
+#import "StudentRecord.h"
 
 @interface BTTable : NSObject
 
@@ -29,7 +30,7 @@
 @property(nonatomic, retain) NSMutableDictionary *schools;
 @property(nonatomic, retain) NSMutableDictionary *courses;
 
-// (key : courseID, value : NSDictionary)
+// (key : courseID, value : NSMutableDictionary)
 @property(nonatomic, retain) NSMutableDictionary *postsOfCourse;
 @property(nonatomic, retain) NSMutableDictionary *questionsOfCourse;
 @property(nonatomic, retain) NSMutableDictionary *alarmsOfCourse;
@@ -41,74 +42,64 @@
 + (BTTable *)sharedInstance;
 
 #pragma User Table
-+ (void)getUserWithSuccess:(void (^)(User *user))success
-                   failure:(void (^)(NSError *error))failure;
++ (void)getUserWithData:(void (^)(User *user))data;
 + (void)updateUser:(User *)user;
 
 #pragma Schools Table (Sort : courses_count)
-+ (void)getSchoolsWithSuccess:(void (^)(NSArray *schools))success
-                      failure:(void (^)(NSError *error))failure;
++ (void)getSchoolsWithData:(void (^)(NSArray *schools))data;
 + (void)updateSchools:(NSArray *)schools;
 + (void)updateSchool:(School *)school;
 
-#pragma Courses Table (Sort : createdAt)
-+ (void)getCoursesWithSuccess:(void (^)(NSArray *courses))success
-                      failure:(void (^)(NSError *error))failure;
+#pragma Courses Table (Sort : id)
++ (void)getCoursesWithData:(void (^)(NSArray *courses))data;
 + (void)updateCourses:(NSArray *)courses;
 
 + (void)getCourseWithID:(NSInteger)courseID
-            withSuccess:(void (^)(Course *course))success
-                failure:(void (^)(NSError *error))failure;
+            withData:(void (^)(Course *course))data;
 + (void)updateCourse:(Course *)course;
 
-#pragma Posts Table (Sort : createdAt)
+#pragma Posts Table (Sort : id)
 + (void)getPostsWithCourseID:(NSInteger)courseID
                     WithType:(NSString *)type
-                 withSuccess:(void (^)(NSArray *posts))success
-                     failure:(void (^)(NSError *error))failure;
+                 withData:(void (^)(NSArray *posts))data;
 + (void)updatePosts:(NSArray *)posts ofCourseID:(NSInteger)courseID;
-+ (void)deletePost:(Post *)post;
 + (void)updatePost:(Post *)post;
++ (void)deletePost:(Post *)post;
 
 + (void)updateClicker:(Clicker *)clicker;
 + (void)updateAttendance:(Attendance *)attendance;
 + (void)updateNotice:(Notice *)notice;
 + (void)updateCurious:(Curious *)curious;
 
-#pragma Questions Table (Sort : createdAt)
+#pragma Questions Table (Sort : id)
 + (void)getQuestionsWithCourseID:(NSInteger)courseID
-                     withSuccess:(void (^)(NSArray *questions))success
-                         failure:(void (^)(NSError *error))failure;
-+ (void)updateQuestions:(NSArray *)questions;
+                     withData:(void (^)(NSArray *questions))data;
++ (void)updateQuestions:(NSArray *)questions ofCourseID:(NSInteger)courseID;
 
 + (void)updateQuestion:(ClickerQuestion *)question;
 + (void)deleteQuestion:(ClickerQuestion *)question;
 
-#pragma Alarms Table (Sort : createdAt)
+#pragma Alarms Table (Sort : id)
 + (void)getAlarmsWithCourseID:(NSInteger)courseID
-                     withSuccess:(void (^)(NSArray *alarms))success
-                         failure:(void (^)(NSError *error))failure;
-+ (void)updateAlarms:(NSArray *)alarms;
+                     withData:(void (^)(NSArray *alarms))data;
++ (void)updateAlarms:(NSArray *)alarms ofCourseID:(NSInteger)courseID;
 
 + (void)updateAlarm:(AttendanceAlarm *)alarm;
 + (void)deleteAlarm:(AttendanceAlarm *)alarm;
 
 #pragma Students Table (Sort : full_name)
 + (void)getStudentsWithCourseID:(NSInteger)courseID
-                    withSuccess:(void (^)(NSArray *students))success
-                        failure:(void (^)(NSError *error))failure;
-+ (void)updateStudents:(NSArray *)students;
+                    withData:(void (^)(NSArray *students))data;
++ (void)updateStudents:(NSArray *)students ofCourseID:(NSInteger)courseID;
 
 #pragma Attendance Records Table (Sort : full_name)
 + (void)getAttendanceRecordsWithCourseID:(NSInteger)courseID
-                             withSuccess:(void (^)(NSArray *attendanceRecords))success
-                                 failure:(void (^)(NSError *error))failure;
-+ (void)updateAttendanceRecords:(NSArray *)attendanceRecords;
+                             withData:(void (^)(NSArray *attendanceRecords))data;
++ (void)updateAttendanceRecords:(NSArray *)attendanceRecords ofCourseID:(NSInteger)courseID;
 
 #pragma Clicker Records Table (Sort : full_name)
 + (void)getClickerRecordsWithCourseID:(NSInteger)courseID
-                          withSuccess:(void (^)(NSArray *clickerRecords))success
-                              failure:(void (^)(NSError *error))failure;
-+ (void)updateClickerRecords:(NSArray *)clickerRecords;
+                          withData:(void (^)(NSArray *clickerRecords))data;
++ (void)updateClickerRecords:(NSArray *)clickerRecords ofCourseID:(NSInteger)courseID;
 
 @end
