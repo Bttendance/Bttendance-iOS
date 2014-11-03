@@ -22,6 +22,7 @@
 #import "BTNotification.h"
 #import "AttendanceAgent.h"
 #import "SocketAgent.h"
+#import <Realm/Realm.h>
 
 @implementation AppDelegate
 
@@ -70,6 +71,67 @@
         [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
         application.applicationIconBadgeNumber = 0;
     }
+    
+    NSLog(@"TIME");
+    RLMRealm *realm = [RLMRealm inMemoryRealmWithIdentifier:@"BTTENDANCE"];
+    RLMNotificationToken *token = [realm addNotificationBlock:^(NSString *notification, RLMRealm *realm) {
+        NSLog(@"Notification : %@", notification);
+        NSLog(@"Realm : %@", realm);
+    }];
+    
+    
+//    [realm beginWriteTransaction];
+//    User *useruser = [[User alloc] initWithObject:@{@"id" : @0,
+//                                                    @"email" : @"contact@thefinestartist.com",
+//                                                    @"password" : @"pass",
+//                                                    @"locale" : @"en",
+//                                                    @"full_name" : @"Tae Hwan Kim",
+//                                                    @"questions_count" : @0}];
+//    
+//    SimpleCourse *coursecourse = [[SimpleCourse alloc] initWithObject:@{@"id" : @0,
+//                                                                        @"name" : @"Typography"}];
+//    [useruser.supervising_courses addObject:coursecourse];
+//    [useruser.attending_courses addObject:coursecourse];
+//    
+//    User *useruser1 = [User createOrUpdateInDefaultRealmWithObject:@{@"id" : @1,
+//                                                    @"email" : @"contact@thefinestartist.com",
+//                                                    @"password" : @"pass",
+//                                                    @"locale" : @"en",
+//                                                    @"full_name" : @"Tae Hwan Kim",
+//                                                    @"questions_count" : @0}];
+//    
+////    SimpleCourse *coursecourse1 = [[SimpleCourse alloc] initWithObject:@{@"id" : @1,
+////                                                                        @"name" : @"Typography"}];
+////    [useruser1.supervising_courses addObject:coursecourse1];
+////    [useruser1.attending_courses addObject:coursecourse1];
+////    [realm addOrUpdateObject:useruser1];
+//    NSLog(@"TIME");
+//    [realm commitWriteTransaction];
+    
+//    for (NSInteger idx1 = 0; idx1 < 50; idx1++) {
+//        [realm beginWriteTransaction];
+//        for (NSInteger idx2 = 0; idx2 < 1000; idx2++) {
+//            User *user = [[User alloc] initWithObject:@{@"id" : [NSNumber numberWithLong:idx1 * 1000 + idx2],
+//                                                        @"email" : @"contact@thefinestartist.com",
+//                                                        @"password" : @"pass",
+//                                                        @"locale" : @"en",
+//                                                        @"full_name" : @"Tae Hwan Kim",
+//                                                        @"questions_count" : @0}];
+//            
+//            SimpleCourse *course = [[SimpleCourse alloc] initWithObject:@{@"id" : [NSNumber numberWithLong:idx1 * 1000 + idx2],
+//                                                                          @"name" : @"Typography"}];
+//            [user.supervising_courses addObject:course];
+//            [user.attending_courses addObject:course];
+//            [realm addOrUpdateObject:user];
+//        }
+//        NSLog(@"TIME");
+//        [realm commitWriteTransaction];
+//    }
+    NSLog(@"TIME");
+    RLMResults *rlmResults = [User allObjects];
+    NSLog(@"TIME");
+    NSLog(@"User : %ld", [rlmResults count]);
+    NSLog(@"User : %@", [((User *)[rlmResults firstObject]).supervising_courses firstObject]);
     
     return YES;
 }
