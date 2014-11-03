@@ -12,9 +12,9 @@
 @interface Error : RLMObject
 
 typedef NS_ENUM(NSInteger, ErrorType) {
-    ErrorType_Log,
+    ErrorType_Alert,
     ErrorType_Toast,
-    ErrorType_Alert
+    ErrorType_Log
 };
 
 @property NSString          *type;

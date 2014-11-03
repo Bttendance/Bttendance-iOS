@@ -10,4 +10,16 @@
 
 @implementation BTTable
 
++ (BTTable *)sharedInstance {
+    static BTTable *table;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        table = [[BTTable alloc]init];
+    });
+    
+    return table;
+    
+}
+
 @end

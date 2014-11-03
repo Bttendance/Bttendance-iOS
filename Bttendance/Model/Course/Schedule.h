@@ -11,6 +11,14 @@
 #import "SimpleCourse.h"
 #import "SimpleAttendanceAlarm.h"
 
+#define SCHEDULE_WEEKDAY_SUN @"Sun"
+#define SCHEDULE_WEEKDAY_MON @"Mon"
+#define SCHEDULE_WEEKDAY_TUE @"Tue"
+#define SCHEDULE_WEEKDAY_WED @"Wed"
+#define SCHEDULE_WEEKDAY_THU @"Thu"
+#define SCHEDULE_WEEKDAY_FRI @"Fri"
+#define SCHEDULE_WEEKDAY_SAT @"Sat"
+
 @interface Schedule : BTObject
 
 @property SimpleCourse                      *course;

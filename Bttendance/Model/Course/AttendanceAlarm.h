@@ -11,6 +11,9 @@
 #import "SimpleCourse.h"
 #import "SimpleSchedule.h"
 
+#define ATTENDANCE_ALARM_TYPE_SCHEDULE @"schedule"
+#define ATTENDANCE_ALARM_TYPE_MANUAL @"manual"
+
 @interface AttendanceAlarm : BTObject
 
 @property NSString          *type;

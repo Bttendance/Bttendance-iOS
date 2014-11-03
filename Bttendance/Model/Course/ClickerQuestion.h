@@ -10,6 +10,10 @@
 #import "SimpleUser.h"
 #import "SimpleCourse.h"
 
+#define CLICKER_QUESTION_DETAIL_PRIVACY_ALL @"all"
+#define CLICKER_QUESTION_DETAIL_PRIVACY_NONE @"none"
+#define CLICKER_QUESTION_DETAIL_PRIVACY_PROFESSOR @"professor"
+
 @interface ClickerQuestion : BTObject
 
 @property SimpleUser        *author;

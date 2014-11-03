@@ -8,48 +8,107 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "School.h"
 #import "Course.h"
 #import "Post.h"
 #import "Clicker.h"
 #import "Attendance.h"
 #import "Notice.h"
+#import "Curious.h"
+#import "ClickerQuestion.h"
+#import "AttendanceAlarm.h"
+#import "SimpleUser.h"
+#import "AttendanceRecord.h"
+#import "ClickerRecord.h"
 
 @interface BTTable : NSObject
 
-+ (User *)getUser;
+@property(nonatomic, retain) User *user;
 
-+ (void)setUser:(id)responseObject;
+// (key : id,       value : object)
+@property(nonatomic, retain) NSMutableDictionary *schools;
+@property(nonatomic, retain) NSMutableDictionary *courses;
 
-+ (NSArray *)getCourses;
+// (key : courseID, value : NSDictionary)
+@property(nonatomic, retain) NSMutableDictionary *postsOfCourse;
+@property(nonatomic, retain) NSMutableDictionary *questionsOfCourse;
+@property(nonatomic, retain) NSMutableDictionary *alarmsOfCourse;
+@property(nonatomic, retain) NSMutableDictionary *studentsOfCourse;
+@property(nonatomic, retain) NSMutableDictionary *attendanceRecordsOfCourse;
+@property(nonatomic, retain) NSMutableDictionary *clickerRecordsOfCourse;
 
-+ (Course *)getCourse:(NSInteger)courseId;
+#pragma SharedInstance
++ (BTTable *)sharedInstance;
 
-+ (void)setCourse:(id)responseObject ofCourse:(NSString *)courseId;
+#pragma User Table
++ (void)getUserWithSuccess:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure;
++ (void)updateUser:(User *)user;
 
-+ (void)setCourses:(id)responseObject;
+#pragma Schools Table (Sort : courses_count)
++ (void)getSchoolsWithSuccess:(void (^)(NSArray *schools))success
+                      failure:(void (^)(NSError *error))failure;
++ (void)updateSchools:(NSArray *)schools;
++ (void)updateSchool:(School *)school;
 
-+ (NSArray *)getPostsOfArray:(NSString *)courseId;
+#pragma Courses Table (Sort : createdAt)
++ (void)getCoursesWithSuccess:(void (^)(NSArray *courses))success
+                      failure:(void (^)(NSError *error))failure;
++ (void)updateCourses:(NSArray *)courses;
 
-+ (void)setPostsArray:(id)responseObject ofCourse:(NSString *)courseId;
++ (void)getCourseWithID:(NSInteger)courseID
+            withSuccess:(void (^)(Course *course))success
+                failure:(void (^)(NSError *error))failure;
++ (void)updateCourse:(Course *)course;
 
-+ (void)updateClicker:(Clicker *)clicker ofCourse:(NSString *)courseId;
+#pragma Posts Table (Sort : createdAt)
++ (void)getPostsWithCourseID:(NSInteger)courseID
+                    WithType:(NSString *)type
+                 withSuccess:(void (^)(NSArray *posts))success
+                     failure:(void (^)(NSError *error))failure;
++ (void)updatePosts:(NSArray *)posts ofCourseID:(NSInteger)courseID;
++ (void)deletePost:(Post *)post;
++ (void)updatePost:(Post *)post;
 
-+ (void)updateAttendance:(Attendance *)attendance ofCourse:(NSString *)courseId;
++ (void)updateClicker:(Clicker *)clicker;
++ (void)updateAttendance:(Attendance *)attendance;
++ (void)updateNotice:(Notice *)notice;
++ (void)updateCurious:(Curious *)curious;
 
-+ (void)updateNotice:(Notice *)notice ofCourse:(NSString *)courseId;
+#pragma Questions Table (Sort : createdAt)
++ (void)getQuestionsWithCourseID:(NSInteger)courseID
+                     withSuccess:(void (^)(NSArray *questions))success
+                         failure:(void (^)(NSError *error))failure;
++ (void)updateQuestions:(NSArray *)questions;
 
-+ (void)updatePost:(Post *)newPost ofCourse:(NSString *)courseId;
++ (void)updateQuestion:(ClickerQuestion *)question;
++ (void)deleteQuestion:(ClickerQuestion *)question;
 
-+ (NSArray *)getSchools;
+#pragma Alarms Table (Sort : createdAt)
++ (void)getAlarmsWithCourseID:(NSInteger)courseID
+                     withSuccess:(void (^)(NSArray *alarms))success
+                         failure:(void (^)(NSError *error))failure;
++ (void)updateAlarms:(NSArray *)alarms;
 
-+ (void)setSchools:(id)responseObject;
++ (void)updateAlarm:(AttendanceAlarm *)alarm;
++ (void)deleteAlarm:(AttendanceAlarm *)alarm;
 
-+ (NSArray *)getStudentsOfArray:(NSString *)courseId;
+#pragma Students Table (Sort : full_name)
++ (void)getStudentsWithCourseID:(NSInteger)courseID
+                    withSuccess:(void (^)(NSArray *students))success
+                        failure:(void (^)(NSError *error))failure;
++ (void)updateStudents:(NSArray *)students;
 
-+ (void)setStudentsArray:(id)responseObject ofCourse:(NSString *)courseId;
+#pragma Attendance Records Table (Sort : full_name)
++ (void)getAttendanceRecordsWithCourseID:(NSInteger)courseID
+                             withSuccess:(void (^)(NSArray *attendanceRecords))success
+                                 failure:(void (^)(NSError *error))failure;
++ (void)updateAttendanceRecords:(NSArray *)attendanceRecords;
 
-+ (NSArray *)getQuestions;
-
-+ (void)setQuestions:(id)responseObject;
+#pragma Clicker Records Table (Sort : full_name)
++ (void)getClickerRecordsWithCourseID:(NSInteger)courseID
+                          withSuccess:(void (^)(NSArray *clickerRecords))success
+                              failure:(void (^)(NSError *error))failure;
++ (void)updateClickerRecords:(NSArray *)clickerRecords;
 
 @end

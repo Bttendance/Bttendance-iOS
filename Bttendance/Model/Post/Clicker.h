@@ -9,6 +9,10 @@
 #import "BTObject.h"
 #import "SimplePost.h"
 
+#define CLICKER_DETAIL_PRIVACY_ALL @"all"
+#define CLICKER_DETAIL_PRIVACY_NONE @"none"
+#define CLICKER_DETAIL_PRIVACY_PROFESSOR @"professor"
+
 @interface Clicker : BTObject
 
 @property NSData            *a_students;

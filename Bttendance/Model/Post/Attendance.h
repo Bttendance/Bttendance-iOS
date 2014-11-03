@@ -9,6 +9,9 @@
 #import "BTObject.h"
 #import "SimplePost.h"
 
+#define ATTENDANCE_TYPE_AUTO @"auto"
+#define ATTENDANCE_TYPE_ALARM @"alarm"
+
 @interface Attendance : BTObject
 
 @property NSString          *type;

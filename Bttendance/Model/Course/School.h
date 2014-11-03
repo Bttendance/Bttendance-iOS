@@ -8,6 +8,11 @@
 
 #import "BTObject.h"
 
+#define SCHOOL_TYPE_UNIVERSITY @"university"
+#define SCHOOL_TYPE_SCHOOL @"school"
+#define SCHOOL_TYPE_INSTITUTE @"institute"
+#define SCHOOL_TYPE_ETC @"etc"
+
 @interface School : BTObject
 
 @property NSString          *name;

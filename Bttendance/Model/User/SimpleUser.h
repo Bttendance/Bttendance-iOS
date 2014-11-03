@@ -13,5 +13,8 @@
 @property NSString          *email;
 @property NSString          *full_name;
 
+//Added by APIs
+@property NSString          *student_id;
+
 @end
 RLM_ARRAY_TYPE(SimpleUser)

@@ -14,6 +14,11 @@
 #import "SimpleNotice.h"
 #import "SimpleCurious.h"
 
+#define POST_TYPE_ATTENDANCE @"attendance"
+#define POST_TYPE_NOTICE @"notice"
+#define POST_TYPE_CLICKER @"clicker"
+#define POST_TYPE_CURIOUS @"curious"
+
 @interface Post : BTObject
 
 @property NSString          *type;

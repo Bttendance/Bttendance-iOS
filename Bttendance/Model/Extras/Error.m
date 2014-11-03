@@ -21,9 +21,9 @@
 #pragma Public Methods
 - (ErrorType)getErrorType {
     if ([self.type isEqualToString:@"alert"])
-        return ErrorType_Log;
+        return ErrorType_Alert;
     else if ([self.type isEqualToString:@"toast"])
-        return ErrorType_Log;
+        return ErrorType_Toast;
     else
         return ErrorType_Log;
 }

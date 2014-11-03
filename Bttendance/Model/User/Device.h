@@ -9,6 +9,10 @@
 #import "BTObject.h"
 #import "SimpleUser.h"
 
+#define DEVICE_TYPE_IPHONE @"iphone"
+#define DEVICE_TYPE_ANDROID @"android"
+#define DEVICE_TYPE_XIAOMI @"xiaomi"
+
 @interface Device : BTObject
 
 @property NSString          *type;
