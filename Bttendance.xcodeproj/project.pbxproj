@@ -242,7 +242,6 @@
 		D4AD08021A07563C003AEE16 /* BTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07F61A07563C003AEE16 /* BTUUID.m */; };
 		D4AD08031A07563C003AEE16 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07F81A07563C003AEE16 /* KeychainItemWrapper.m */; };
 		D4AD08061A075770003AEE16 /* BVUnderlineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08051A075770003AEE16 /* BVUnderlineButton.m */; };
-		D4AD08091A0758A6003AEE16 /* BTTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08081A0758A6003AEE16 /* BTTable.m */; };
 		D4AD080C1A0758B6003AEE16 /* BTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD080B1A0758B6003AEE16 /* BTDatabase.m */; };
 		D4AD08141A0767C7003AEE16 /* AttendanceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08131A0767C7003AEE16 /* AttendanceRecord.m */; };
 		D4AD08171A0767D1003AEE16 /* ClickerRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08161A0767D1003AEE16 /* ClickerRecord.m */; };
@@ -616,8 +615,6 @@
 		D4AD07F81A07563C003AEE16 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		D4AD08041A075770003AEE16 /* BVUnderlineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVUnderlineButton.h; sourceTree = "<group>"; };
 		D4AD08051A075770003AEE16 /* BVUnderlineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVUnderlineButton.m; sourceTree = "<group>"; };
-		D4AD08071A0758A6003AEE16 /* BTTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTable.h; sourceTree = "<group>"; };
-		D4AD08081A0758A6003AEE16 /* BTTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTable.m; sourceTree = "<group>"; };
 		D4AD080A1A0758B6003AEE16 /* BTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDatabase.h; sourceTree = "<group>"; };
 		D4AD080B1A0758B6003AEE16 /* BTDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDatabase.m; sourceTree = "<group>"; };
 		D4AD08121A0767C7003AEE16 /* AttendanceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceRecord.h; sourceTree = "<group>"; };
@@ -865,8 +862,6 @@
 			children = (
 				D4AD080A1A0758B6003AEE16 /* BTDatabase.h */,
 				D4AD080B1A0758B6003AEE16 /* BTDatabase.m */,
-				D4AD08071A0758A6003AEE16 /* BTTable.h */,
-				D4AD08081A0758A6003AEE16 /* BTTable.m */,
 				D4AD06451A075611003AEE16 /* BTUserDefault.h */,
 				D4AD06461A075611003AEE16 /* BTUserDefault.m */,
 			);
@@ -1621,7 +1616,6 @@
 				D4AD075D1A075611003AEE16 /* Email.m in Sources */,
 				D4AD07B71A075611003AEE16 /* ClickerDetailViewController.m in Sources */,
 				D4AD07851A075611003AEE16 /* ClickerCell.m in Sources */,
-				D4AD08091A0758A6003AEE16 /* BTTable.m in Sources */,
 				D4AD081A1A0769F8003AEE16 /* Schedule.m in Sources */,
 				D4AD07CA1A075611003AEE16 /* CreateNoticeViewController.m in Sources */,
 				D4AD07681A075611003AEE16 /* Device.m in Sources */,
