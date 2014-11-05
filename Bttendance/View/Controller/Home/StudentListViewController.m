@@ -11,6 +11,7 @@
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
 #import "UIColor+Bttendance.h"
+#import "BTDatabase.h"
 
 @interface StudentListViewController ()
 
@@ -42,20 +43,17 @@
     [titlelabel sizeToFit];
     
     data = [NSArray array];
-    
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.course.id]]];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+    [BTDatabase getStudentsWithCourseID:self.course.id withData:^(NSArray *students) {
+        data = students;
+        [self.tableView reloadData];
+    }];
     
     [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.course.id]
                       success:^(NSArray *simpleUsers) {
                           data = simpleUsers;
                           
                           NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                              return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+                              return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
                           }];
                           data = [NSArray arrayWithArray:sorting];
                           
@@ -90,7 +88,7 @@
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = simpleUser.full_name;
-    cell.idnumber.text = simpleUser.student_id;
+    cell.idnumber.text = simpleUser.studentID;
     cell.detail.hidden = YES;
     cell.icon.hidden = YES;
     

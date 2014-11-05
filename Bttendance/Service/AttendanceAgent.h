@@ -26,7 +26,7 @@
 
 + (AttendanceAgent *)sharedInstance;
 
-- (void)startAttendanceWithCourse:(NSString *)course_id
+- (void)startAttendanceWithCourse:(NSString *)courseID
                     andCourseName:(NSString *)courseName
                           andType:(NSString *)type
                           success:(void (^)(Post *post))success

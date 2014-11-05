@@ -21,6 +21,7 @@
 #import "BTNotification.h"
 #import "BTAPIs.h"
 #import "UserVoice.h"
+#import "BTDatabase.h"
 
 @interface LeftMenuViewController ()
 
@@ -35,14 +36,12 @@
 {
     [super viewDidLoad];
     
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.courses = [BTUserDefault getCourses];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+    [BTDatabase getCoursesWithData:^(NSArray *courses) {
+        self.courses = courses;
+        [self.tableView reloadData];
+    }];
     
     self.tableView.scrollsToTop = NO;
     super.tableView.backgroundColor = [UIColor white:1.0];
@@ -55,14 +54,14 @@
 - (void)refreshSide:(NSNotification *)noti {
     [BTAPIs coursesInSuccess:^(NSArray *courses) {
         self.courses = courses;
-        self.user = [BTUserDefault getUser];
+        self.user = [BTDatabase getUser];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
 }
 
 - (void)reloadTableView:(NSNotification *)noti {
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     [self.tableView reloadData];
 }
 
@@ -156,7 +155,7 @@
                 if (course.id == openedCourse.id) {
                     attendance_rate = [NSString stringWithFormat:@"%ld", (long)course.attendance_rate];
                     clicker_rate = [NSString stringWithFormat:@"%ld", (long)course.clicker_rate];
-                    notice_unseen = course.notice_unseen;
+                    notice_unseen = 0;
                     students_count = course.students_count;
                 }
             }

@@ -16,6 +16,8 @@
 #import "UIColor+Bttendance.h"
 #import "BTAPIs.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "BTDatabase.h"
+#import "Email.h"
 
 @interface CourseSettingViewController ()
 
@@ -28,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.course = [BTUserDefault getCourse:self.simpleCourse.id];
+    self.course = [BTDatabase getCourseWithID:self.simpleCourse.id];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];

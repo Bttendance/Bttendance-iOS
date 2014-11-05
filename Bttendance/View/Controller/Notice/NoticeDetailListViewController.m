@@ -126,7 +126,7 @@
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = simpleUser.full_name;
-    cell.idnumber.text = simpleUser.student_id;
+    cell.idnumber.text = simpleUser.studentID;
     if([self.post.notice seen:simpleUser.id]) {
         cell.detail.text = NSLocalizedString(@"읽음", nil);
         [cell.icon setImage:[UIImage imageNamed:@"eye.png"]];
@@ -154,7 +154,7 @@
     self.segmentcontrol.selectedSegmentIndex = 1;
     
     NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+        return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
     }];
     data = [NSArray arrayWithArray:sorting];
     

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CourseAttendViewController : UITableViewController <UITextFieldDelegate, UIAlertViewDelegate> {
-    NSIndexPath *code_index;
-    NSDictionary *user_info;
+    NSIndexPath *codeIndex;
+    NSDictionary *userInfo;
 }
 
 @end

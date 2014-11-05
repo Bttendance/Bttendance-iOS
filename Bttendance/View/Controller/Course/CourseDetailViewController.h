@@ -17,7 +17,7 @@
 
     NSMutableArray *data;
 
-    NSString *my_id;
+    NSString *myID;
     
     User *user;
     NSTimer *refreshTimer;

@@ -14,6 +14,7 @@
 #import "UIImage+Bttendance.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import "BTNotification.h"
 
 #import "Post.h"
@@ -111,19 +112,17 @@
     self.view.backgroundColor = [UIColor grey:1];
     self.tableView.backgroundColor = [UIColor grey:1];
 
-    user = [BTUserDefault getUser];
+    user = [BTDatabase getUser];
     data = [NSMutableArray array];
     self.auth = [user supervising:simpleCourse.id];
     if (self.simpleCourse.opened)
         [BTUserDefault setLastSeenCourse:simpleCourse.id];
-    self.course = [BTUserDefault getCourse:simpleCourse.id];
+    self.course = [BTDatabase getCourseWithID:simpleCourse.id];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [NSMutableArray arrayWithArray:[BTUserDefault getPostsOfArray:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]]];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+    [BTDatabase getPostsWithCourseID:simpleCourse.id withType:POST_TYPE_ATTENDANCE withData:^(NSArray *posts) {
+        data = [NSMutableArray arrayWithArray:posts];
+        [self.tableView reloadData];
+    }];
     
     if (!simpleCourse.opened) {
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -178,7 +177,7 @@
     // NotificationCenter
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPost:) name:OpenNewPost object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed:) name:FeedRefresh object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCourse:) name:CoursesUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCourse:) name:CourseUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateClicker:) name:ClickerUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAttendance:) name:AttendanceUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotice:) name:NoticeUpdated object:nil];
@@ -314,7 +313,7 @@
         self.openingPost = nil;
     }
     
-    user = [BTUserDefault getUser];
+    user = [BTDatabase getUser];
     [self.tableView reloadData];
     [self refreshFeed:nil];
     [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", (long) self.simpleCourse.id] success:nil failure:nil];
@@ -339,7 +338,7 @@
 }
 
 - (void)updateCourse:(NSNotification *)notification {
-    self.course = [BTUserDefault getCourse:simpleCourse.id];
+    self.course = [BTDatabase getCourseWithID:simpleCourse.id];
     [self refreshHeader];
     [self.tableView reloadData];
 }
@@ -1190,8 +1189,8 @@
 }
 
 #pragma Click Event for Clicker
-- (void)chosen:(NSInteger)choice andClickerId:(NSInteger)clicker_id {
-    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", (long) clicker_id]
+- (void)chosen:(NSInteger)choice andClickerId:(NSInteger)clickerID {
+    [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", (long) clickerID]
                       choice:[NSString stringWithFormat:@"%ld", (long) choice]
                      success:^(Clicker *clicker) {
 //                         [self refreshFeed:nil];
@@ -1299,7 +1298,7 @@
 -(NSString *)schoolName {
     NSString *schoolName;
     if (schoolName == nil) {
-        user = [BTUserDefault getUser];
+        user = [BTDatabase getUser];
         for (int i = 0; i < [user.enrolled_schools count]; i++)
             if (((SimpleSchool *)user.enrolled_schools[i]).id == simpleCourse.school)
                 schoolName = ((SimpleSchool *)user.enrolled_schools[i]).name;
@@ -1312,7 +1311,7 @@
 
 -(NSString *)classcode {
     if (self.course == nil)
-        self.course = [BTUserDefault getCourse:self.simpleCourse.id];
+        self.course = [BTDatabase getCourseWithID:self.simpleCourse.id];
     
     NSString *code = self.course.code;
     if (code == nil)

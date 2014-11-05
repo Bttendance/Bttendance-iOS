@@ -10,11 +10,13 @@
 #import "SchoolChooseViewController.h"
 
 @interface CourseCreateViewController : UITableViewController <UITextFieldDelegate, SchoolChooseViewControllerDelegate> {
-    NSIndexPath *name_index, *school_index, *profname_index;
+    NSIndexPath *nameIndex;
+    NSIndexPath *schoolIndex;
+    NSIndexPath *profnameIndex;
 }
 
-@property(nonatomic) NSInteger schoolId;
-@property(weak, nonatomic) NSString *schoolName;
-@property(weak, nonatomic) NSString *prfName;
+@property(assign) NSInteger schoolId;
+@property(nonatomic, retain) NSString *schoolName;
+@property(nonatomic, retain) NSString *prfName;
 
 @end

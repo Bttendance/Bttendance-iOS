@@ -7,13 +7,9 @@
 //
 
 #import "AttdDetailListViewController.h"
-#import "BTAPIs.h"
-#import "UIColor+Bttendance.h"
+#import "UIViewController+Bttendance.h"
 #import "StudentInfoCell.h"
-#import "BTUserDefault.h"
-#import "BTNotification.h"
 #import "SocketAgent.h"
-#import <AudioToolbox/AudioServices.h>
 
 @interface AttdDetailListViewController ()
 
@@ -21,28 +17,10 @@
 
 @implementation AttdDetailListViewController
 
-- (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backButtonItem];
-    self.navigationItem.leftItemsSupplementBackButton = NO;
-    
-    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Attendance Check", nil);
-    [titlelabel sizeToFit];
+    [self setNavTitle:NSLocalizedString(@"Attendance Check", nil) withSubTitle:nil];
+    [self setLeftMenu:LeftMenuType_Back];
     
     [self.segmentcontrol setTitle:NSLocalizedString(@"이름순", nil) forSegmentAtIndex:0];
     [self.segmentcontrol setTitle:NSLocalizedString(@"학번순", nil) forSegmentAtIndex:1];
@@ -50,8 +28,8 @@
     
     data = [NSArray array];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]]];
+    [BTDatabase getStudentsWithCourseID:self.post.course.id withData:^(NSArray *students) {
+        data = students;
         if (self.start)
             [self center: nil];
         else
@@ -59,7 +37,7 @@
         dispatch_async( dispatch_get_main_queue(), ^{
             [self.tableview reloadData];
         });
-    });
+    }];
     
     [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]
                       success:^(NSArray *simpleUsers) {
@@ -161,7 +139,7 @@
         SimpleUser *simpleUser = [data objectAtIndex:indexPath.row - 1];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.name.text = simpleUser.full_name;
-        cell.idnumber.text = simpleUser.student_id;
+        cell.idnumber.text = simpleUser.studentID;
         cell.underline.hidden = YES;
         switch ([self.post.attendance stateInt:simpleUser.id]) {
             case 1:
@@ -225,7 +203,7 @@
     self.segmentcontrol.selectedSegmentIndex = 1;
     
     NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+        return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
     }];
     data = [NSArray arrayWithArray:sorting];
     

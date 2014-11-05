@@ -10,6 +10,23 @@
 #import "BTUserDefault.h"
 #import <Realm/Realm.h>
 
+#import "User.h"
+#import "School.h"
+#import "Course.h"
+#import "Post.h"
+#import "Clicker.h"
+#import "Attendance.h"
+#import "Notice.h"
+#import "Curious.h"
+#import "ClickerQuestion.h"
+#import "AttendanceAlarm.h"
+#import "SimpleUser.h"
+#import "AttendanceRecord.h"
+#import "ClickerRecord.h"
+#import "StudentRecord.h"
+
+#import "BTNotification.h"
+
 @implementation BTDatabase
 
 #pragma SharedInstance
@@ -44,21 +61,25 @@
     }
 }
 
-+ (void)getUserWithData:(void (^)(User *user))data {
++ (User *)getUser {
+    BTDatabase *table = [self sharedInstance];
+    [self initializeUser];
+    return table.user;
+}
+
++ (void)updateUser:(id)responseObject withData:(void (^)(User *user))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        User *user = [[User alloc] initWithObject:responseObject];
         BTDatabase *table = [self sharedInstance];
-        [self initializeUser];
+        table.user = user;
         
         dispatch_async( dispatch_get_main_queue(), ^{
             data(table.user);
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
         });
-    });
-}
-
-+ (void)updateUser:(User *)user {
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
-        table.user = user;
+        
+        [BTUserDefault setUser:user];
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -82,39 +103,56 @@
 
 + (void)getSchoolsWithData:(void (^)(NSArray *schools))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeSchools];
         
+        BTDatabase *table = [self sharedInstance];
         dispatch_async( dispatch_get_main_queue(), ^{
             data([table.schools allValues]);
         });
     });
 }
 
-+ (void)updateSchools:(NSArray *)schools {
++ (void)updateSchool:(id)responseObject withData:(void (^)(School *school))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeSchools];
         
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        for (School *school in schools) {
-            [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
-            [realm addOrUpdateObject:school];
-        }
-        [realm commitWriteTransaction];
-    });
-}
-
-+ (void)updateSchool:(School *)school {
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BTDatabase *table = [self sharedInstance];
-        [self initializeSchools];
+        School *school = [[School alloc] initWithObject:responseObject];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(school);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
         [realm addOrUpdateObject:school];
+        [realm commitWriteTransaction];
+    });
+}
+
++ (void)updateSchools:(id)responseObject withData:(void (^)(NSArray *schools))data {
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableArray *schools = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            School *school = [[School alloc] initWithObject:dic];
+            [schools addObject:school];
+        }
+        
+        [self initializeSchools];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (School *school in schools)
+            [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data([table.schools allValues]);
+        });
+        
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        for (School *school in schools)
+            [realm addOrUpdateObject:school];
         [realm commitWriteTransaction];
     });
 }
@@ -132,52 +170,66 @@
     }
 }
 
++ (Course *)getCourseWithID:(NSInteger)courseID {
+    BTDatabase *table = [self sharedInstance];
+    [self initializeCourses];
+    return [table.courses objectForKey:[NSNumber numberWithInteger:courseID]];
+}
+
 + (void)getCoursesWithData:(void (^)(NSArray *courses))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeCourses];
         
+        BTDatabase *table = [self sharedInstance];
         dispatch_async( dispatch_get_main_queue(), ^{
             data([table.courses allValues]);
         });
     });
 }
 
-+ (void)getCourseWithID:(NSInteger)courseID
-               withData:(void (^)(Course *course))data {
++ (void)updateCourse:(id)responseObject withData:(void (^)(Course *course))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeCourses];
         
+        BTDatabase *table = [self sharedInstance];
+        Course *course = [[Course alloc] initWithObject:responseObject];
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([table.courses objectForKey:[NSNumber numberWithInteger:courseID]]);
+            data(course);
+            [[NSNotificationCenter defaultCenter] postNotificationName:CourseUpdated object:nil];
         });
-    });
-}
-
-+ (void)updateCourses:(NSArray *)courses {
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
-        [self initializeCourses];
-        
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        for (Course *course in courses) {
-            [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
-            [realm addOrUpdateObject:course];
-        }
-        [realm commitWriteTransaction];
-    });
-}
-+ (void)updateCourse:(Course *)course {
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
-        [self initializeCourses];
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
         [realm addOrUpdateObject:course];
+        [realm commitWriteTransaction];
+    });
+}
+
++ (void)updateCourses:(id)responseObject withData:(void (^)(NSArray *courses))data {
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableArray *courses = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Course *course = [[Course alloc] initWithObject:dic];
+            [courses addObject:course];
+        }
+        
+        [self initializeCourses];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (Course *course in courses)
+            [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data([table.courses allValues]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:CourseUpdated object:nil];
+        });
+        
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        for (Course *course in courses)
+            [realm addOrUpdateObject:course];
         [realm commitWriteTransaction];
     });
 }
@@ -198,49 +250,74 @@
 }
 
 + (void)getPostsWithCourseID:(NSInteger)courseID
-                    WithType:(NSString *)type
+                    withType:(NSString *)type
                     withData:(void (^)(NSArray *posts))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializePostsWithCourseID:courseID];
         
-        NSMutableArray *posts = [NSMutableArray array];
+        BTDatabase *table = [self sharedInstance];
+        NSMutableArray *typedPosts = [NSMutableArray array];
         for (Post *post in [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues])
             if ([type isEqualToString:post.type])
-                [posts addObject:post];
+                [typedPosts addObject:post];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(posts);
+            data(typedPosts);
         });
     });
 }
 
-+ (void)updatePosts:(NSArray *)posts ofCourseID:(NSInteger)courseID {
++ (void)updatePosts:(id)responseObject
+         ofCourseID:(NSInteger)courseID
+           withType:(NSString *)type
+           withData:(void (^)(NSArray *posts))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *posts = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            Post *post = [[Post alloc] initWithObject:dic];
+            [posts addObject:post];
+        }
+        
         [self initializePostsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (Post *post in posts)
+            [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:post
+                                                                                         forKey:[NSNumber numberWithInteger:post.id]];
+        
+        NSMutableArray *typedPosts = [NSMutableArray array];
+        for (Post *post in [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues])
+            if ([type isEqualToString:post.type])
+                [typedPosts addObject:post];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(typedPosts);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (Post *post in posts) {
-            [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:post
-                                                                                         forKey:[NSNumber numberWithInteger:post.id]];
+        for (Post *post in posts)
             [realm addOrUpdateObject:post];
-        }
         [realm commitWriteTransaction];
     });
 }
 
-+ (void)updatePost:(Post *)post {
-    if (post.course == nil || post.course.id == 0)
-        return;
-    
++ (void)updatePost:(id)responseObject withData:(void (^)(Post *post))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        Post *post = [[Post alloc] initWithObject:responseObject];
+        if (post.course == nil || post.course.id == 0)
+            return;
+        
         [self initializePostsWithCourseID:post.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:post.id]] setObject:post
                                                                                     forKey:[NSNumber numberWithInteger:post.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(post);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -249,15 +326,20 @@
     });
 }
 
-+ (void)deletePost:(Post *)post {
-    if (post.course == nil || post.course.id == 0)
-        return;
-    
++ (void)deletePost:(id)responseObject withData:(void (^)(Post *post))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        Post *post = [[Post alloc] initWithObject:responseObject];
+        if (post.course == nil || post.course.id == 0)
+            return;
+        
         [self initializePostsWithCourseID:post.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:post.course.id]] removeObjectForKey:[NSNumber numberWithInteger:post.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(post);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -267,13 +349,13 @@
 }
 
 + (void)updateClicker:(Clicker *)clicker {
-    if (clicker.post == nil || clicker.post.course == 0)
-        return;
-    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        if (clicker.post == nil || clicker.post.course == 0)
+            return;
+        
         [self initializePostsWithCourseID:clicker.post.course];
         
+        BTDatabase *table = [self sharedInstance];
         Post *post = [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:clicker.post.course]]
                       objectForKey:[NSNumber numberWithInteger:clicker.post.id]];
         
@@ -293,13 +375,13 @@
 }
 
 + (void)updateAttendance:(Attendance *)attendance {
-    if (attendance.post == nil || attendance.post.course == 0)
-        return;
-    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        if (attendance.post == nil || attendance.post.course == 0)
+            return;
+        
         [self initializePostsWithCourseID:attendance.post.course];
         
+        BTDatabase *table = [self sharedInstance];
         Post *post = [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:attendance.post.course]]
                       objectForKey:[NSNumber numberWithInteger:attendance.post.id]];
         
@@ -318,13 +400,13 @@
 }
 
 + (void)updateNotice:(Notice *)notice {
-    if (notice.post == nil || notice.post.course == 0)
-        return;
-    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        if (notice.post == nil || notice.post.course == 0)
+            return;
+        
         [self initializePostsWithCourseID:notice.post.course];
         
+        BTDatabase *table = [self sharedInstance];
         Post *post = [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:notice.post.course]]
                       objectForKey:[NSNumber numberWithInteger:notice.post.id]];
         
@@ -343,13 +425,13 @@
 }
 
 + (void)updateCurious:(Curious *)curious {
-    if (curious.post == nil || curious.post.course == 0)
-        return;
-    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        if (curious.post == nil || curious.post.course == 0)
+            return;
+        
         [self initializePostsWithCourseID:curious.post.course];
         
+        BTDatabase *table = [self sharedInstance];
         Post *post = [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:curious.post.course]]
                       objectForKey:[NSNumber numberWithInteger:curious.post.id]];
         
@@ -385,41 +467,60 @@
 + (void)getQuestionsWithCourseID:(NSInteger)courseID
                         withData:(void (^)(NSArray *questions))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeQuestionsWithCourseID:courseID];
         
+        BTDatabase *table = [self sharedInstance];
         dispatch_async( dispatch_get_main_queue(), ^{
             data([[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
 
-+ (void)updateQuestions:(NSArray *)questions ofCourseID:(NSInteger)courseID {
++ (void)updateQuestions:(id)responseObject
+             ofCourseID:(NSInteger)courseID
+               withData:(void (^)(NSArray *questions))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *questions = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            ClickerQuestion *question = [[ClickerQuestion alloc] initWithObject:dic];
+            [questions addObject:question];
+        }
+        
         [self initializeQuestionsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (ClickerQuestion *question in questions)
+            [[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:question
+                                                                                             forKey:[NSNumber numberWithInteger:question.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(questions);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (ClickerQuestion *question in questions) {
-            [[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:question
-                                                                                             forKey:[NSNumber numberWithInteger:question.id]];
+        for (ClickerQuestion *question in questions)
             [realm addOrUpdateObject:question];
-        }
         [realm commitWriteTransaction];
     });
 }
 
-+ (void)updateQuestion:(ClickerQuestion *)question {
-    if (question.course == nil || question.course.id == 0)
-        return;
-    
++ (void)updateQuestion:(id)responseObject withData:(void (^)(ClickerQuestion *question))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        ClickerQuestion *question = [[ClickerQuestion alloc] initWithObject:responseObject];
+        if (question.course == nil || question.course.id == 0)
+            return;
+        
         [self initializeQuestionsWithCourseID:question.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:question.id]] setObject:question
                                                                                             forKey:[NSNumber numberWithInteger:question.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(question);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -428,15 +529,20 @@
     });
 }
 
-+ (void)deleteQuestion:(ClickerQuestion *)question {
-    if (question.course == nil || question.course.id == 0)
-        return;
-    
++ (void)deleteQuestion:(id)responseObject withData:(void (^)(ClickerQuestion *question))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        ClickerQuestion *question = [[ClickerQuestion alloc] initWithObject:responseObject];
+        if (question.course == nil || question.course.id == 0)
+            return;
+        
         [self initializeQuestionsWithCourseID:question.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:question.course.id]] removeObjectForKey:[NSNumber numberWithInteger:question.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(question);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -472,32 +578,51 @@
     });
 }
 
-+ (void)updateAlarms:(NSArray *)alarms ofCourseID:(NSInteger)courseID {
++ (void)updateAlarms:(id)responseObject
+          ofCourseID:(NSInteger)courseID
+            withData:(void (^)(NSArray *alarms))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *alarms = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            AttendanceAlarm *alarm = [[AttendanceAlarm alloc] initWithObject:dic];
+            [alarms addObject:alarm];
+        }
+        
         [self initializeAlarmsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (AttendanceAlarm *alarm in alarms)
+            [[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:alarm
+                                                                                          forKey:[NSNumber numberWithInteger:alarm.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(alarms);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (AttendanceAlarm *alarm in alarms) {
-            [[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:alarm
-                                                                                          forKey:[NSNumber numberWithInteger:alarm.id]];
+        for (AttendanceAlarm *alarm in alarms)
             [realm addOrUpdateObject:alarm];
-        }
         [realm commitWriteTransaction];
     });
 }
 
-+ (void)updateAlarm:(AttendanceAlarm *)alarm {
++ (void)updateAlarm:(id)responseObject withData:(void (^)(AttendanceAlarm *alarm))data {
+    AttendanceAlarm *alarm = [[AttendanceAlarm alloc] initWithObject:responseObject];
     if (alarm.course == nil || alarm.course.id == 0)
         return;
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeAlarmsWithCourseID:alarm.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:alarm.id]] setObject:alarm
                                                                                       forKey:[NSNumber numberWithInteger:alarm.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(alarm);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -506,15 +631,20 @@
     });
 }
 
-+ (void)deleteAlarm:(AttendanceAlarm *)alarm {
++ (void)deleteAlarm:(id)responseObject withData:(void (^)(AttendanceAlarm *alarm))data {
+    AttendanceAlarm *alarm = [[AttendanceAlarm alloc] initWithObject:responseObject];
     if (alarm.course == nil || alarm.course.id == 0)
         return;
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
         [self initializeAlarmsWithCourseID:alarm.course.id];
         
+        BTDatabase *table = [self sharedInstance];
         [[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:alarm.course.id]] removeObjectForKey:[NSNumber numberWithInteger:alarm.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(alarm);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
@@ -529,7 +659,7 @@
     
     if ([table.studentsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] == nil) {
         NSMutableDictionary *students = [NSMutableDictionary dictionary];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"course_id = %ld", courseID];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"courseID = %ld", courseID];
         RLMResults *results = [[StudentRecord objectsWithPredicate:pred] sortedResultsUsingProperty:@"id"
                                                                                           ascending:NO];
         for (StudentRecord *student in results)
@@ -537,7 +667,6 @@
         [table.studentsOfCourse setObject:students forKey:[NSNumber numberWithInteger:courseID]];
     }
 }
-
 + (void)getStudentsWithCourseID:(NSInteger)courseID
                        withData:(void (^)(NSArray *students))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -550,18 +679,32 @@
     });
 }
 
-+ (void)updateStudents:(NSArray *)students ofCourseID:(NSInteger)courseID {
++ (void)updateStudents:(id)responseObject
+            ofCourseID:(NSInteger)courseID
+              withData:(void (^)(NSArray *students))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *students = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            SimpleUser *student = [[SimpleUser alloc] initWithObject:dic];
+            [students addObject:student];
+        }
+        
         [self initializeStudentsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (StudentRecord *student in students)
+            [[table.studentsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:student
+                                                                                            forKey:[NSNumber numberWithInteger:student.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(students);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (StudentRecord *student in students) {
-            [[table.studentsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:student
-                                                                                            forKey:[NSNumber numberWithInteger:student.id]];
+        for (StudentRecord *student in students)
             [realm addOrUpdateObject:student];
-        }
         [realm commitWriteTransaction];
     });
 }
@@ -572,7 +715,7 @@
     
     if ([table.attendanceRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] == nil) {
         NSMutableDictionary *attendanceRecords = [NSMutableDictionary dictionary];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"course_id = %ld", courseID];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"courseID = %ld", courseID];
         RLMResults *results = [[AttendanceRecord objectsWithPredicate:pred] sortedResultsUsingProperty:@"id"
                                                                                              ascending:NO];
         for (AttendanceRecord *attendanceRecord in results)
@@ -593,18 +736,32 @@
     });
 }
 
-+ (void)updateAttendanceRecords:(NSArray *)attendanceRecords ofCourseID:(NSInteger)courseID {
++ (void)updateAttendanceRecords:(id)responseObject
+                     ofCourseID:(NSInteger)courseID
+                       withData:(void (^)(NSArray *attendanceRecords))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *attendanceRecords = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            AttendanceRecord *attendanceRecord = [[AttendanceRecord alloc] initWithObject:dic];
+            [attendanceRecords addObject:attendanceRecord];
+        }
+        
         [self initializeAttendanceRecordsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (AttendanceRecord *attendanceRecord in attendanceRecords)
+            [[table.attendanceRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:attendanceRecord
+                                                                                                     forKey:[NSNumber numberWithInteger:attendanceRecord.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(attendanceRecords);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (AttendanceRecord *attendanceRecord in attendanceRecords) {
-            [[table.attendanceRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:attendanceRecord
-                                                                                                     forKey:[NSNumber numberWithInteger:attendanceRecord.id]];
+        for (AttendanceRecord *attendanceRecord in attendanceRecords)
             [realm addOrUpdateObject:attendanceRecord];
-        }
         [realm commitWriteTransaction];
     });
 }
@@ -615,7 +772,7 @@
     
     if ([table.clickerRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] == nil) {
         NSMutableDictionary *clickerRecords = [NSMutableDictionary dictionary];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"course_id = %ld", courseID];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"courseID = %ld", courseID];
         RLMResults *results = [[ClickerRecord objectsWithPredicate:pred] sortedResultsUsingProperty:@"id"
                                                                                           ascending:NO];
         for (ClickerRecord *clickerRecord in results)
@@ -636,18 +793,32 @@
     });
 }
 
-+ (void)updateClickerRecords:(NSArray *)clickerRecords ofCourseID:(NSInteger)courseID {
++ (void)updateClickerRecords:(id)responseObject
+                  ofCourseID:(NSInteger)courseID
+                    withData:(void (^)(NSArray *clickerRecords))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BTDatabase *table = [self sharedInstance];
+        
+        NSMutableArray *clickerRecords = [NSMutableArray array];
+        for (NSDictionary *dic in responseObject) {
+            ClickerRecord *clickerRecord = [[ClickerRecord alloc] initWithObject:dic];
+            [clickerRecords addObject:clickerRecord];
+        }
+        
         [self initializeClickerRecordsWithCourseID:courseID];
+        
+        BTDatabase *table = [self sharedInstance];
+        for (ClickerRecord *clickerRecord in clickerRecords)
+            [[table.clickerRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:clickerRecord
+                                                                                                  forKey:[NSNumber numberWithInteger:clickerRecord.id]];
+        
+        dispatch_async( dispatch_get_main_queue(), ^{
+            data(clickerRecords);
+        });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        for (ClickerRecord *clickerRecord in clickerRecords) {
-            [[table.clickerRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] setObject:clickerRecord
-                                                                                                  forKey:[NSNumber numberWithInteger:clickerRecord.id]];
+        for (ClickerRecord *clickerRecord in clickerRecords)
             [realm addOrUpdateObject:clickerRecord];
-        }
         [realm commitWriteTransaction];
     });
 }

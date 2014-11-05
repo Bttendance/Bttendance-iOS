@@ -14,6 +14,7 @@
 #import "UIImage+Bttendance.h"
 #import "BTNotification.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import "Course.h"
 
 @interface GuidePageViewController ()
@@ -115,7 +116,7 @@
     [self.gdLastBt2 setBackgroundImage:[UIImage imageWithColor:[UIColor silver:0.1]] forState:UIControlStateSelected];
     
     // If user already has a opened course
-    BOOL hasOpenedCourse = [[BTUserDefault getUser] hasOpenedCourse];
+    BOOL hasOpenedCourse = [[BTDatabase getUser] hasOpenedCourse];
     if (hasOpenedCourse) {
         self.gdLastBt1.frame = CGRectMake(90, 420, 140, 48);
         [self.gdLastBt1 setTitle:NSLocalizedString(@"계속하기", nil) forState:UIControlStateNormal];

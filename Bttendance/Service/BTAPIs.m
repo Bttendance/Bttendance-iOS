@@ -12,15 +12,27 @@
 #import "AFNetworkActivityLogger.h"
 #import "AFResponseSerializer.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import "BTUUID.h"
-#import "User.h"
-#import "Course.h"
-#import "School.h"
-#import "Post.h"
-#import "Attendance.h"
-#import "Clicker.h"
+
 #import "Error.h"
 #import "Email.h"
+
+#import "User.h"
+#import "School.h"
+#import "Course.h"
+#import "Post.h"
+#import "Clicker.h"
+#import "Attendance.h"
+#import "Notice.h"
+#import "Curious.h"
+#import "ClickerQuestion.h"
+#import "AttendanceAlarm.h"
+#import "SimpleUser.h"
+#import "AttendanceRecord.h"
+#import "ClickerRecord.h"
+#import "StudentRecord.h"
+
 #import "CatchPointViewController.h"
 #import "AppDelegate.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -146,13 +158,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/users/signup"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             [BTUserDefault setUser:responseObject];
-                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                 User *user = [[User alloc] initWithObject:responseObject];
-                                 dispatch_async( dispatch_get_main_queue(), ^{
-                                     success(user);
-                                 });
-                             });
+                             [BTDatabase updateUser:responseObject
+                                           withData:^(User *user) {
+                                               if (success != nil)
+                                                   success(user);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -175,14 +185,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/auto/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [self coursesInSuccess:nil failure:nil];
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -206,13 +213,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/signin"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -232,7 +237,8 @@ static UIAlertView *Ooooppss;
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             Email *email = [[Email alloc] initWithObject:responseObject];
-                            success(email);
+                            if (success != nil)
+                                success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -255,13 +261,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/password"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -282,13 +286,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/full_name"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -309,13 +311,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/users/update/email"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -323,7 +323,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)searchUser:(NSString *)search_id
++ (void)searchUser:(NSString *)searchID
            success:(void (^)(User *user))success
            failure:(void (^)(NSError *error))failure {
     
@@ -331,13 +331,14 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"search_id" : search_id};
+                             @"searchID" : searchID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/search"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             User *user = [[User alloc] initWithObject:responseObject];
-                            success(user);
+                            if (success != nil)
+                                success(user);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -356,21 +357,10 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/users/courses"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setCourses:responseObject];
-                            if (success == nil)
-                                return;
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                NSMutableArray *courses = [NSMutableArray array];
-                                for (NSDictionary *dic in responseObject) {
-                                    Course *course = [[Course alloc] initWithObject:dic];
-                                    [courses addObject:course];
-                                }
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    if (success != nil) {
-                                        success(courses);
-                                    }
-                                });
-                            });
+                            [BTDatabase updateCourses:responseObject withData:^(NSArray *courses) {
+                                if (success != nil)
+                                    success(courses);
+                            }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -393,13 +383,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/devices/update/notification_key"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -421,13 +409,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/attendance"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -448,13 +434,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -475,13 +459,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/notice"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -502,49 +484,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/curious"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
-                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            [self failureHandleWithError:error];
-                            if (failure != nil)
-                                failure(error);
-                        }];
-}
-
-
-+ (void)updateClickerDefaultsWithTime:(NSString *)progress_time
-                            andSelect:(BOOL)show_info_on_select
-                           andPrivacy:(NSString *)detail_privacy
-                              success:(void (^)(User *user))success
-                              failure:(void (^)(NSError *error))failure {
-    
-    NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if (detail_privacy == nil)
-        detail_privacy = @"professor";
-    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
-                             @"password" : [BTUserDefault getPassword],
-                             @"locale" : locale,
-                             @"progress_time" : progress_time,
-                             @"show_info_on_select" : (show_info_on_select) ? @"true" : @"false",
-                             @"detail_privacy" : detail_privacy};
-    
-    [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/settings/update/clicker/defaults"]
-                     parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            if (success == nil)
-                                return;
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -611,7 +555,7 @@ static UIAlertView *Ooooppss;
 //                         }];
 //}
 //
-//+ (void)updateQuestion:(NSString *)question_id
+//+ (void)updateQuestion:(NSString *)questionID
 //           WithMessage:(NSString *)message
 //        andChoiceCount:(NSString *)choice_count
 //               andTime:(NSString *)progress_time
@@ -624,7 +568,7 @@ static UIAlertView *Ooooppss;
 //    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
 //                             @"password" : [BTUserDefault getPassword],
 //                             @"locale" : locale,
-//                             @"question_id" : question_id,
+//                             @"questionID" : questionID,
 //                             @"message" : message,
 //                             @"choice_count" : choice_count,
 //                             @"progress_time" : progress_time,
@@ -643,7 +587,7 @@ static UIAlertView *Ooooppss;
 //                         }];
 //}
 //
-//+ (void)removeQuestionWithId:(NSString *)question_id
+//+ (void)removeQuestionWithId:(NSString *)questionID
 //                     success:(void (^)(Question *question))success
 //                     failure:(void (^)(NSError *error))failure {
 //    
@@ -651,7 +595,7 @@ static UIAlertView *Ooooppss;
 //    NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
 //                             @"password" : [BTUserDefault getPassword],
 //                             @"locale" : locale,
-//                             @"question_id" : question_id};
+//                             @"questionID" : questionID};
 //    
 //    [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/questions/remove"]
 //                     parameters:params
@@ -666,7 +610,7 @@ static UIAlertView *Ooooppss;
 //}
 
 #pragma Identifications APIs
-+ (void)updateIdentityWithSchool:(NSString *)school_id
++ (void)updateIdentityWithSchool:(NSString *)schoolID
                         identity:(NSString *)identity
                          success:(void (^)(User *user))success
                          failure:(void (^)(NSError *error))failure {
@@ -675,19 +619,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"school_id" : school_id,
+                             @"schoolID" : schoolID,
                              @"identity" : identity};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/identifications/update/identity"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -711,8 +653,10 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/schools/create"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            School *school = [[School alloc] initWithObject:responseObject];
-                            success(school);
+                            [BTDatabase updateSchool:responseObject withData:^(School *school) {
+                                if (success != nil)
+                                    success(school);
+                            }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -732,13 +676,10 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/schools/all"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setSchools:responseObject];
-                            NSMutableArray *schools = [NSMutableArray array];
-                            for (NSDictionary *dic in responseObject) {
-                                School *school = [[School alloc] initWithObject:dic];
-                                [schools addObject:school];
-                            }
-                            success(schools);
+                            [BTDatabase updateSchools:responseObject withData:^(NSArray *schools) {
+                                if (success != nil)
+                                    success(schools);
+                            }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -746,7 +687,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)enrollSchool:(NSString *)school_id
++ (void)enrollSchool:(NSString *)schoolID
             identity:(NSString *)identity
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure {
@@ -755,19 +696,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"school_id" : school_id,
+                             @"schoolID" : schoolID,
                              @"identity" : identity};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/schools/enroll"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -776,28 +715,24 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Courses APIs
-+ (void)courseInfo:(NSString *)course_id
++ (void)courseInfo:(NSString *)courseID
            success:(void (^)(Course *course))success
            failure:(void (^)(NSError *error))failure {
     
     NSString * locale = [[NSLocale preferredLanguages] objectAtIndex:0];
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
-                             @"course_id" : course_id,
+                             @"courseID" : courseID,
                              @"locale" : locale};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/info"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setCourse:responseObject ofCourse:course_id];
-                            if (success == nil)
-                                return;
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                Course *course = [[Course alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(course);
-                                });
-                            });
+                            [BTDatabase updateCourse:responseObject
+                                            withData:^(Course *course) {
+                                                if (success == nil)
+                                                    return;
+                                            }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -806,7 +741,7 @@ static UIAlertView *Ooooppss;
 }
 
 + (void)createCourseInstantWithName:(NSString *)name
-                             school:(NSString *)school_id
+                             school:(NSString *)schoolID
                       professorName:(NSString *)professor_name
                             success:(void (^)(User *user))success
                             failure:(void (^)(NSError *error))failure {
@@ -816,21 +751,20 @@ static UIAlertView *Ooooppss;
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
                              @"name" : name,
-                             @"school_id" : school_id,
+                             @"schoolID" : schoolID,
                              @"professor_name" : professor_name};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/courses/create/instant"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              [self coursesInSuccess:nil failure:nil];
-                             [BTUserDefault setUser:responseObject];
                              [[SocketAgent sharedInstance] socketConnectToServer];
-                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                 User *user = [[User alloc] initWithObject:responseObject];
-                                 dispatch_async( dispatch_get_main_queue(), ^{
-                                     success(user);
-                                 });
-                             });
+                             
+                             [BTDatabase updateUser:responseObject
+                                           withData:^(User *user) {
+                                               if (success != nil)
+                                                   success(user);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -839,7 +773,7 @@ static UIAlertView *Ooooppss;
 }
 
 + (void)searchCourseWithCode:(NSString *)course_code
-                        orId:(NSString *)course_id
+                        orId:(NSString *)courseID
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure {
     
@@ -848,7 +782,7 @@ static UIAlertView *Ooooppss;
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
                              @"course_code" : course_code,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/search"]
                      parameters:params
@@ -863,7 +797,7 @@ static UIAlertView *Ooooppss;
     
 }
 
-+ (void)attendCourse:(NSString *)course_id
++ (void)attendCourse:(NSString *)courseID
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure {
     
@@ -871,20 +805,19 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/attend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [self coursesInSuccess:nil failure:nil];
-                            [BTUserDefault setUser:responseObject];
                             [[SocketAgent sharedInstance] socketConnectToServer];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -892,7 +825,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)dettendCourse:(NSString *)course_id
++ (void)dettendCourse:(NSString *)courseID
               success:(void (^)(User *user))success
               failure:(void (^)(NSError *error))failure {
     
@@ -900,20 +833,19 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/dettend"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             [self coursesInSuccess:nil failure:nil];
-                            [BTUserDefault setUser:responseObject];
                             [[SocketAgent sharedInstance] socketConnectToServer];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                User *user = [[User alloc] initWithObject:responseObject];
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(user);
-                                });
-                            });
+                            
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -922,8 +854,8 @@ static UIAlertView *Ooooppss;
     
 }
 
-+ (void)feedForCourse:(NSString *)course_id
-                 page:(NSInteger)page
++ (void)feedForCourse:(NSString *)courseID
+             withType:(NSString *)type
               success:(void (^)(NSArray *posts))success
               failure:(void (^)(NSError *error))failure {
     
@@ -931,23 +863,18 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id,
-                             @"page" : [NSString stringWithFormat: @"%d", (int)page]};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/feed"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setPostsArray:responseObject ofCourse:course_id];
-                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                NSMutableArray *posts = [NSMutableArray array];
-                                for (NSDictionary *dic in responseObject) {
-                                    Post *post = [[Post alloc] initWithObject:dic];
-                                    [posts addObject:post];
-                                }
-                                dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(posts);
-                                });
-                            });
+                            [BTDatabase updatePosts:responseObject
+                                         ofCourseID:[courseID integerValue]
+                                           withType:type
+                                           withData:^(NSArray *posts) {
+                                               if (success != nil)
+                                                   success(posts);
+                                           }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -955,7 +882,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)openCourse:(NSString *)course_id
++ (void)openCourse:(NSString *)courseID
            success:(void (^)(User *user))success
            failure:(void (^)(NSError *error))failure {
     
@@ -963,14 +890,16 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/open"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            User *user = [[User alloc] initWithObject:responseObject];
-                            success(user);
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -978,7 +907,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)closeCourse:(NSString *)course_id
++ (void)closeCourse:(NSString *)courseID
             success:(void (^)(User *user))success
             failure:(void (^)(NSError *error))failure {
     
@@ -986,14 +915,16 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/close"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setUser:responseObject];
-                            User *user = [[User alloc] initWithObject:responseObject];
-                            success(user);
+                            [BTDatabase updateUser:responseObject
+                                          withData:^(User *user) {
+                                              if (success != nil)
+                                                  success(user);
+                                          }];
                         } failure:^(AFHTTPRequestOperation *opration, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -1001,7 +932,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)addManagerWithCourse:(NSString *)course_id
++ (void)addManagerWithCourse:(NSString *)courseID
                      manager:(NSString *)manager
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure {
@@ -1010,14 +941,15 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id,
+                             @"courseID" : courseID,
                              @"manager" : manager};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/add/manager"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             Course *course = [[Course alloc] initWithObject:responseObject];
-                            success(course);
+                            if (success != nil)
+                                success(course);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -1025,7 +957,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)studentsForCourse:(NSString *)course_id
++ (void)studentsForCourse:(NSString *)courseID
                   success:(void (^)(NSArray *simpleUsers))success
                   failure:(void (^)(NSError *error))failure {
     
@@ -1033,18 +965,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/students"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                            [BTUserDefault setStudentsArray:responseObject ofCourse:course_id];
-                            NSMutableArray *simpleUsers = [NSMutableArray array];
-                            for (NSDictionary *dic in responseObject) {
-                                SimpleUser *simpleUser = [[SimpleUser alloc] initWithObject:dic];
-                                [simpleUsers addObject:simpleUser];
-                            }
-                            success(simpleUsers);
+                            [BTDatabase updateStudents:responseObject
+                                            ofCourseID:[courseID integerValue]
+                                              withData:^(NSArray *students) {
+                                                  if (success != nil)
+                                                      success(students);
+                                              }];
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -1052,7 +983,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)attendanceGradesWithCourse:(NSString *)course_id
++ (void)attendanceGradesWithCourse:(NSString *)courseID
                            success:(void (^)(NSArray *simpleUsers))success
                            failure:(void (^)(NSError *error))failure {
     
@@ -1060,24 +991,24 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/attendance/grades"]
                      parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         NSMutableArray *simpleUsers = [NSMutableArray array];
-                         for (NSDictionary *dic in responseObject) {
-                             SimpleUser *simpleUser = [[SimpleUser alloc] initWithObject:dic];
-                             [simpleUsers addObject:simpleUser];
-                         }
-                         success(simpleUsers);
+                         [BTDatabase updateAttendanceRecords:responseObject
+                                                  ofCourseID:[courseID integerValue]
+                                                    withData:^(NSArray *students) {
+                                                        if (success != nil)
+                                                            success(students);
+                                                    }];
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          [self failureHandleWithError:error];
                          if (failure != nil)
-                            failure(error);
+                             failure(error);
                      }];
 }
 
-+ (void)clickerGradesWithCourse:(NSString *)course_id
++ (void)clickerGradesWithCourse:(NSString *)courseID
                         success:(void (^)(NSArray *simpleUsers))success
                         failure:(void (^)(NSError *error))failure {
     
@@ -1085,24 +1016,24 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/courses/clicker/grades"]
                      parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         NSMutableArray *simpleUsers = [NSMutableArray array];
-                         for (NSDictionary *dic in responseObject) {
-                             SimpleUser *simpleUser = [[SimpleUser alloc] initWithObject:dic];
-                             [simpleUsers addObject:simpleUser];
-                         }
-                         success(simpleUsers);
+                         [BTDatabase updateClickerRecords:responseObject
+                                               ofCourseID:[courseID integerValue]
+                                                 withData:^(NSArray *students) {
+                                                     if (success != nil)
+                                                         success(students);
+                                                 }];
                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                          [self failureHandleWithError:error];
                          if (failure != nil)
-                            failure(error);
+                             failure(error);
                      }];
 }
 
-+ (void)exportGradesWithCourse:(NSString *)course_id
++ (void)exportGradesWithCourse:(NSString *)courseID
                        success:(void (^)(Email *email))success
                        failure:(void (^)(NSError *error))failure {
     
@@ -1110,13 +1041,14 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id};
+                             @"courseID" : courseID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/courses/export/grades"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             Email *email = [[Email alloc] initWithObject:responseObject];
-                            success(email);
+                            if (success != nil)
+                                success(email);
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             [self failureHandleWithError:error];
                             if (failure != nil)
@@ -1125,7 +1057,7 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Posts APIs
-+ (void)startAttendanceWithCourse:(NSString *)course_id
++ (void)startAttendanceWithCourse:(NSString *)courseID
                           andType:(NSString *)type
                           success:(void (^)(Post *post))success
                           failure:(void (^)(NSError *error))failure {
@@ -1134,14 +1066,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id,
+                             @"courseID" : courseID,
                              @"type" : type};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/attendance"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Post *post = [[Post alloc] initWithObject:responseObject];
-                             success(post);
+                             [BTDatabase updatePost:responseObject
+                                           withData:^(Post *post) {
+                                               if (success != nil)
+                                                   success(post);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -1150,7 +1085,7 @@ static UIAlertView *Ooooppss;
     
 }
 
-+ (void)startClickerWithCourse:(NSString *)course_id
++ (void)startClickerWithCourse:(NSString *)courseID
                        message:(NSString *)message
                    choiceCount:(NSString *)choice_count
                        andTime:(NSString *)progress_time
@@ -1165,7 +1100,7 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id,
+                             @"courseID" : courseID,
                              @"message" : message,
                              @"choice_count" : choice_count,
                              @"progress_time" : progress_time,
@@ -1175,8 +1110,11 @@ static UIAlertView *Ooooppss;
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/start/clicker"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Post *post = [[Post alloc] initWithObject:responseObject];
-                             success(post);
+                             [BTDatabase updatePost:responseObject
+                                           withData:^(Post *post) {
+                                               if (success != nil)
+                                                   success(post);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -1184,7 +1122,7 @@ static UIAlertView *Ooooppss;
                          }];    
 }
 
-+ (void)createNoticeWithCourse:(NSString *)course_id
++ (void)createNoticeWithCourse:(NSString *)courseID
                       message:(NSString *)message
                       success:(void (^)(Post *post))success
                       failure:(void (^)(NSError *error))failure {
@@ -1193,14 +1131,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"course_id" : course_id,
+                             @"courseID" : courseID,
                              @"message" : message};
     
     [[self sharedAFManager] POST:[BTURL stringByAppendingString:@"/posts/create/notice"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Post *post = [[Post alloc] initWithObject:responseObject];
-                             success(post);
+                             [BTDatabase updatePost:responseObject
+                                           withData:^(Post *post) {
+                                               if (success != nil)
+                                                   success(post);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -1208,7 +1149,7 @@ static UIAlertView *Ooooppss;
                          }];
 }
 
-+ (void)updateMessageOfPost:(NSString *)post_id
++ (void)updateMessageOfPost:(NSString *)postID
                 withMessage:(NSString *)message
                     success:(void (^)(Post *post))success
                     failure:(void (^)(NSError *error))failure {
@@ -1217,14 +1158,17 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"post_id" : post_id,
+                             @"postID" : postID,
                              @"message" : message};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/posts/update/message"]
                       parameters:params
-                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Post *post = [[Post alloc] initWithObject:responseObject];
-                             success(post);
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [BTDatabase updatePost:responseObject
+                                          withData:^(Post *post) {
+                                              if (success != nil)
+                                                  success(post);
+                                          }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -1232,7 +1176,7 @@ static UIAlertView *Ooooppss;
                          }];
 }
 
-+ (void)removePost:(NSString *)post_id
++ (void)removePost:(NSString *)postID
            success:(void (^)(Post *post))success
            failure:(void (^)(NSError *error))failure {
     
@@ -1240,13 +1184,16 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"post_id" : post_id};
+                             @"postID" : postID};
     
     [[self sharedAFManager] DELETE:[BTURL stringByAppendingString:@"/posts/remove"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                             Post *post = [[Post alloc] initWithObject:responseObject];
-                             success(post);
+                             [BTDatabase deletePost:responseObject
+                                           withData:^(Post *post) {
+                                               if (success != nil)
+                                                   success(post);
+                                           }];
                          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                              [self failureHandleWithError:error];
                              if (failure != nil)
@@ -1255,7 +1202,7 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Attendances APIs
-+ (void)fromCoursesWithCourses:(NSArray *)course_ids
++ (void)fromCoursesWithCourses:(NSArray *)courseIDs
                        success:(void (^)(NSArray *attendanceIDs))success
                        failure:(void (^)(NSError *error))failure {
     
@@ -1264,8 +1211,8 @@ static UIAlertView *Ooooppss;
     [params setObject:[BTUserDefault getEmail] forKey:@"email"];
     [params setObject:[BTUserDefault getPassword] forKey:@"password"];
     [params setObject:locale forKey:@"locale"];
-    for (int i = 0; i < course_ids.count; i++)
-        [params setObject:[NSString stringWithFormat:@"%@", course_ids[i]] forKey:@"course_ids"];
+    for (int i = 0; i < courseIDs.count; i++)
+        [params setObject:[NSString stringWithFormat:@"%@", courseIDs[i]] forKey:@"courseIDs"];
     
     [[self sharedAFManager] GET:[BTURL stringByAppendingString:@"/attendances/from/courses"]
                      parameters:params
@@ -1278,7 +1225,7 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)foundDeviceWithAttendance:(NSString *)attendance_id
++ (void)foundDeviceWithAttendance:(NSString *)attendanceID
                              uuid:(NSString *)uuid
                           success:(void (^)(Attendance *attendance))success
                           failure:(void (^)(NSError *error))failure {
@@ -1287,7 +1234,7 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"attendance_id" : attendance_id,
+                             @"attendanceID" : attendanceID,
                              @"uuid" : uuid};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/found/device"]
@@ -1302,8 +1249,8 @@ static UIAlertView *Ooooppss;
                         }];
 }
 
-+ (void)toggleManuallyWithAttendance:(NSString *)attendance_id
-                                user:(NSString *)user_id
++ (void)toggleManuallyWithAttendance:(NSString *)attendanceID
+                                user:(NSString *)userID
                              success:(void (^)(Attendance *attendance))success
                              failure:(void (^)(NSError *error))failure {
     
@@ -1311,8 +1258,8 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"attendance_id" : attendance_id,
-                             @"user_id" : user_id};
+                             @"attendanceID" : attendanceID,
+                             @"userID" : userID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/attendances/toggle/manually"]
                      parameters:params
@@ -1327,7 +1274,7 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Clickers APIs
-+ (void)clickWithClicker:(NSString *)clicker_id
++ (void)clickWithClicker:(NSString *)clickerID
                   choice:(NSString *)choice_number
                  success:(void (^)(Clicker *clicker))success
                  failure:(void (^)(NSError *error))failure {
@@ -1336,7 +1283,7 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"clicker_id" : clicker_id,
+                             @"clickerID" : clickerID,
                              @"choice_number" : choice_number};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/clickers/click"]
@@ -1352,7 +1299,7 @@ static UIAlertView *Ooooppss;
 }
 
 #pragma Notices APIs
-+ (void)seenWithNotice:(NSString *)notice_id
++ (void)seenWithNotice:(NSString *)noticeID
                success:(void (^)(Notice *notice))success
                failure:(void (^)(NSError *error))failure {
     
@@ -1360,7 +1307,7 @@ static UIAlertView *Ooooppss;
     NSDictionary *params = @{@"email" : [BTUserDefault getEmail],
                              @"password" : [BTUserDefault getPassword],
                              @"locale" : locale,
-                             @"notice_id" : notice_id};
+                             @"noticeID" : noticeID};
     
     [[self sharedAFManager] PUT:[BTURL stringByAppendingString:@"/notices/seen"]
                      parameters:params

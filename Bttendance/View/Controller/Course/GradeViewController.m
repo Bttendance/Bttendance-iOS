@@ -52,7 +52,7 @@
             rowcount = data.count;
             
             NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+                return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
             }];
             data = [NSArray arrayWithArray:sorting];
             
@@ -68,7 +68,7 @@
             rowcount = data.count;
             
             NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+                return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
             }];
             data = [NSArray arrayWithArray:sorting];
             
@@ -104,10 +104,12 @@
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = simpleUser.full_name;
-    cell.idnumber.text = simpleUser.student_id;
-    NSArray *stringcomp = [simpleUser.grade componentsSeparatedByString:@"/"];
-    cell.att.text = [stringcomp objectAtIndex:0];
-    cell.tot.text = [stringcomp objectAtIndex:1];
+    cell.idnumber.text = simpleUser.studentID;
+//    NSArray *stringcomp = [simpleUser.grade componentsSeparatedByString:@"/"];
+//    cell.att.text = [stringcomp objectAtIndex:0];
+//    cell.tot.text = [stringcomp objectAtIndex:1];
+    cell.att.text = 0;
+    cell.tot.text = 0;
 
     return cell;
 }

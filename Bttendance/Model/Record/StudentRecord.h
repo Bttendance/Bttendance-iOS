@@ -14,8 +14,8 @@
 @property NSString          *full_name;
 
 //Added by APIs
-@property NSString          *student_id;
-@property NSInteger         course_id;
+@property NSString          *studentID;
+@property NSInteger         courseID;
 
 @end
 RLM_ARRAY_TYPE(StudentRecord)

@@ -7,17 +7,11 @@
 //
 
 #import "SchoolCreateViewController.h"
-#import <AFNetworking.h>
+#import "UITableViewController+Bttendance.h"
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
 #import "ChooseTypeCell.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
-#import "BTUserDefault.h"
 #import "CourseCreateViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <AudioToolbox/AudioServices.h>
 
 @interface SchoolCreateViewController ()
 
@@ -27,45 +21,21 @@
 
 @implementation SchoolCreateViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavTitle:NSLocalizedString(@"Create School", @"") withSubTitle:nil];
+    [self setLeftMenu:LeftMenuType_Back];
+    [self initTableView];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    nameIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    typeIndex = [NSIndexPath indexPathForRow:1 inSection:0];
+    infoIndex = [NSIndexPath indexPathForRow:2 inSection:0];
     
-    name_index = [NSIndexPath indexPathForRow:0 inSection:0];
-    type_index = [NSIndexPath indexPathForRow:1 inSection:0];
-    info_index = [NSIndexPath indexPathForRow:2 inSection:0];
-    
-    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Create School", @"");
-    [titlelabel sizeToFit];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backButtonItem];
-    self.navigationItem.leftItemsSupplementBackButton = NO;
-    
-    self.tableView.backgroundColor = [UIColor grey:1.0];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-}
-
-- (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex];
     [cell.textfield becomeFirstResponder];
 }
 
@@ -200,14 +170,14 @@
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
     
-    NSString *name = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield text];
-    NSString *type = ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:type_index]).type;
+    NSString *name = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).textfield text];
+    NSString *type = ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:typeIndex]).type;
     
     BOOL pass = YES;
     
     if (name == nil || name.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [UIColor red:0.1];
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield setValue:[UIColor red:0.5]
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).contentView.backgroundColor = [UIColor red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).textfield setValue:[UIColor red:0.5]
                                                                                        forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
@@ -216,15 +186,15 @@
     NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
     
     if(![nameTest evaluateWithObject:name]){
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).contentView.backgroundColor = [UIColor red:0.1];
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield.text = @"";
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:name_index]).textfield setValue:[UIColor red:0.5]
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).textfield.text = @"";
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:nameIndex]).textfield setValue:[UIColor red:0.5]
                                                                                        forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
         
     if (type == nil || type.length == 0) {
-        ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:type_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((ChooseTypeCell *) [self.tableView cellForRowAtIndexPath:typeIndex]).contentView.backgroundColor = [UIColor red:0.1];
         self.info.textColor = [UIColor red:1.0];
         pass = NO;
     }

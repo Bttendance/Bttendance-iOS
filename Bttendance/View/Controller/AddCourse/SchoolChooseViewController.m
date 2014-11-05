@@ -7,11 +7,7 @@
 //
 
 #import "SchoolChooseViewController.h"
-#import <AFNetworking/AFNetworking.h>
-#import "BTUserDefault.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
+#import "UIViewController+Bttendance.h"
 #import "CourseCreateViewController.h"
 
 @interface SchoolChooseViewController ()
@@ -22,13 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backButtonItem];
-    self.navigationItem.leftItemsSupplementBackButton = NO;
+    [self setLeftMenu:LeftMenuType_Back];
     
     rowcount0 = 0;
     rowcount1 = 0;
@@ -43,16 +33,9 @@
     [self.createSchoolBt setBackgroundImage:[UIImage imageWithColor:[UIColor cyan:0.85]] forState:UIControlStateSelected];
     [self.createSchoolBt setTitle:NSLocalizedString(@"찾고있는 학교나 단체가 목록에 없나요?", nil) forState:UIControlStateNormal];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *schools = [BTUserDefault getSchools];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self reloadTable:schools];
-        });
-    });
-}
-
-- (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [BTDatabase getSchoolsWithData:^(NSArray *schools) {
+        [self reloadTable:schools];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -113,16 +96,16 @@
     }];
     sortedSchools = [NSMutableArray arrayWithArray:sorting];
     
-    NSArray *userschoollist = [[BTUserDefault getUser] getAllSchools];
+    NSArray *userschoollist = [[BTDatabase getUser] getAllSchools];
     data0 = [[NSMutableArray alloc] init];
     data1 = [[NSMutableArray alloc] init];
     if (userschoollist.count != 0) {
         for (int i = 0; i < sortedSchools.count; i++) {
             Boolean joined = false;
             for (int j = 0; j < userschoollist.count; j++) {
-                NSInteger school_id = ((School *)[sortedSchools objectAtIndex:i]).id;
-                NSInteger userschool_id = ((SimpleSchool *)[userschoollist objectAtIndex:j]).id;
-                if (school_id == userschool_id) {
+                NSInteger schoolID = ((School *)[sortedSchools objectAtIndex:i]).id;
+                NSInteger userschoolID = ((SimpleSchool *)[userschoollist objectAtIndex:j]).id;
+                if (schoolID == userschoolID) {
                     joined = true;
                     break;
                 }

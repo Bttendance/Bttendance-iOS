@@ -6,14 +6,11 @@
 //  Copyright (c) 2014년 Bttendance. All rights reserved.
 //
 
-#import <AFNetworking.h>
 #import "ForgotPassViewController.h"
+#import "UIViewController+Bttendance.h"
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "Email.h"
 
 @interface ForgotPassViewController ()
 

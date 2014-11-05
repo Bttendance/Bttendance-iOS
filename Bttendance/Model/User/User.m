@@ -23,23 +23,23 @@
 }
 
 #pragma Public Method
-- (BOOL)supervising:(NSInteger)course_id {
+- (BOOL)supervising:(NSInteger)courseID {
     for (SimpleCourse *course in self.supervising_courses)
-        if (course.id == course_id)
+        if (course.id == courseID)
             return YES;
     return NO;
 }
 
-- (BOOL)attending:(NSInteger)course_id {
+- (BOOL)attending:(NSInteger)courseID {
     for (SimpleCourse *course in self.attending_courses)
-        if (course.id == course_id)
+        if (course.id == courseID)
             return YES;
     return NO;
 }
 
-- (BOOL)enrolled:(NSInteger)school_id {
+- (BOOL)enrolled:(NSInteger)schoolID {
     for (SimpleSchool *school in self.enrolled_schools)
-        if (school.id == school_id)
+        if (school.id == schoolID)
             return YES;
     return NO;
 }
@@ -67,14 +67,14 @@
     return hasOpenCourse;
 }
 
-- (SimpleCourse *)getCourse:(NSInteger)course_id {
+- (SimpleCourse *)getCourse:(NSInteger)courseID {
     
     for (SimpleCourse *course in self.supervising_courses)
-        if (course.id == course_id)
+        if (course.id == courseID)
             return course;
     
     for (SimpleCourse *course in self.attending_courses)
-        if (course.id == course_id)
+        if (course.id == courseID)
             return course;
     
     return nil;

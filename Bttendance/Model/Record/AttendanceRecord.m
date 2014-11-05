@@ -16,8 +16,8 @@
     [jsonDict addEntriesFromDictionary:@{@"email" : @"",
                                          @"full_name" : @"",
                                          @"grade" : @"",
-                                         @"student_id" : @"",
-                                         @"course_id" : @0}];
+                                         @"studentID" : @"",
+                                         @"courseID" : @0}];
     return jsonDict;
 }
 

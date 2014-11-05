@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
-#import "School.h"
-#import "Course.h"
-#import "Post.h"
-#import "Attendance.h"
-#import "Clicker.h"
-#import "Notice.h"
-#import "Email.h"
+
+@class User;
+@class School;
+@class Course;
+@class Post;
+@class Attendance;
+@class Clicker;
+@class Notice;
+@class Email;
 
 #ifdef DEBUG
     #define BTURL @"http://bttendance-dev.herokuapp.com/api"
@@ -58,7 +59,7 @@
             success:(void (^)(User *user))success
             failure:(void (^)(NSError *error))failure;
 
-+ (void)searchUser:(NSString *)search_id
++ (void)searchUser:(NSString *)searchID
            success:(void (^)(User *user))success
            failure:(void (^)(NSError *error))failure;
 
@@ -87,12 +88,6 @@
                         success:(void (^)(User *user))success
                         failure:(void (^)(NSError *error))failure;
 
-+ (void)updateClickerDefaultsWithTime:(NSString *)progress_time
-                            andSelect:(BOOL)show_info_on_select
-                           andPrivacy:(NSString *)detail_privacy
-                              success:(void (^)(User *user))success
-                              failure:(void (^)(NSError *error))failure;
-
 #pragma Questions APIs
 //+ (void)myQuestionsInSuccess:(void (^)(NSArray *questions))success
 //                     failure:(void (^)(NSError *error))failure;
@@ -105,7 +100,7 @@
 //                          success:(void (^)(Question *question))success
 //                          failure:(void (^)(NSError *error))failure;
 //
-//+ (void)updateQuestion:(NSString *)question_id
+//+ (void)updateQuestion:(NSString *)questionID
 //           WithMessage:(NSString *)message
 //        andChoiceCount:(NSString *)choice_count
 //              andTime:(NSString *)progress_time
@@ -114,12 +109,12 @@
 //               success:(void (^)(Question *question))success
 //               failure:(void (^)(NSError *error))failure;
 //
-//+ (void)removeQuestionWithId:(NSString *)question_id
+//+ (void)removeQuestionWithId:(NSString *)questionID
 //                     success:(void (^)(Question *question))success
 //                     failure:(void (^)(NSError *error))failure;
 
 #pragma Identifications APIs
-+ (void)updateIdentityWithSchool:(NSString *)school_id
++ (void)updateIdentityWithSchool:(NSString *)schoolID
                         identity:(NSString *)identity
                          success:(void (^)(User *user))success
                          failure:(void (^)(NSError *error))failure;
@@ -133,76 +128,76 @@
 + (void)allSchoolsAtSuccess:(void (^)(NSArray *schools))success
                     failure:(void (^)(NSError *error))failure;
 
-+ (void)enrollSchool:(NSString *)school_id
++ (void)enrollSchool:(NSString *)schoolID
             identity:(NSString *)identity
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure;
 
 #pragma Courses APIs
-+ (void)courseInfo:(NSString *)course_id
++ (void)courseInfo:(NSString *)courseID
            success:(void (^)(Course *course))success
            failure:(void (^)(NSError *error))failure;
 
 + (void)createCourseInstantWithName:(NSString *)name
-                             school:(NSString *)school_id
+                             school:(NSString *)schoolID
                       professorName:(NSString *)professor_name
                             success:(void (^)(User *user))success
                             failure:(void (^)(NSError *error))failure;
 
 + (void)searchCourseWithCode:(NSString *)course_code
-                        orId:(NSString *)course_id
+                        orId:(NSString *)courseID
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure;
 
-+ (void)attendCourse:(NSString *)course_id
++ (void)attendCourse:(NSString *)courseID
              success:(void (^)(User *user))success
              failure:(void (^)(NSError *error))failure;
 
-+ (void)dettendCourse:(NSString *)course_id
++ (void)dettendCourse:(NSString *)courseID
               success:(void (^)(User *user))success
               failure:(void (^)(NSError *error))failure;
 
-+ (void)feedForCourse:(NSString *)course_id
-                 page:(NSInteger)page
++ (void)feedForCourse:(NSString *)courseID
+             withType:(NSString *)type
               success:(void (^)(NSArray *posts))success
               failure:(void (^)(NSError *error))failure;
 
-+ (void)openCourse:(NSString *)course_id
++ (void)openCourse:(NSString *)courseID
            success:(void (^)(User *user))success
            failure:(void (^)(NSError *error))failure;
 
-+ (void)closeCourse:(NSString *)course_id
++ (void)closeCourse:(NSString *)courseID
             success:(void (^)(User *user))success
             failure:(void (^)(NSError *error))failure;
 
-+ (void)addManagerWithCourse:(NSString *)course_id
++ (void)addManagerWithCourse:(NSString *)courseID
                      manager:(NSString *)manager
                      success:(void (^)(Course *course))success
                      failure:(void (^)(NSError *error))failure;
 
-+ (void)studentsForCourse:(NSString *)course_id
++ (void)studentsForCourse:(NSString *)courseID
                   success:(void (^)(NSArray *simpleUsers))success
                   failure:(void (^)(NSError *error))failure;
 
-+ (void)attendanceGradesWithCourse:(NSString *)course_id
++ (void)attendanceGradesWithCourse:(NSString *)courseID
                            success:(void (^)(NSArray *simpleUsers))success
                            failure:(void (^)(NSError *error))failure;
 
-+ (void)clickerGradesWithCourse:(NSString *)course_id
++ (void)clickerGradesWithCourse:(NSString *)courseID
                         success:(void (^)(NSArray *simpleUsers))success
                         failure:(void (^)(NSError *error))failure;
 
-+ (void)exportGradesWithCourse:(NSString *)course_id
++ (void)exportGradesWithCourse:(NSString *)courseID
                        success:(void (^)(Email *email))success
                        failure:(void (^)(NSError *error))failure;
 
 #pragma Posts APIs
-+ (void)startAttendanceWithCourse:(NSString *)course_id
++ (void)startAttendanceWithCourse:(NSString *)courseID
                           andType:(NSString *)type
                           success:(void (^)(Post *post))success
                           failure:(void (^)(NSError *error))failure;
 
-+ (void)startClickerWithCourse:(NSString *)course_id
++ (void)startClickerWithCourse:(NSString *)courseID
                        message:(NSString *)message
                    choiceCount:(NSString *)choice_count
                        andTime:(NSString *)progress_time
@@ -211,43 +206,43 @@
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure;
 
-+ (void)createNoticeWithCourse:(NSString *)course_id
++ (void)createNoticeWithCourse:(NSString *)courseID
                        message:(NSString *)message
                        success:(void (^)(Post *post))success
                        failure:(void (^)(NSError *error))failure;
 
-+ (void)updateMessageOfPost:(NSString *)post_id
++ (void)updateMessageOfPost:(NSString *)postID
                 withMessage:(NSString *)message
                     success:(void (^)(Post *post))success
                     failure:(void (^)(NSError *error))failure;
 
-+ (void)removePost:(NSString *)post_id
++ (void)removePost:(NSString *)postID
            success:(void (^)(Post *post))success
            failure:(void (^)(NSError *error))failure;
 
 #pragma Attendances APIs
-+ (void)fromCoursesWithCourses:(NSArray *)course_ids
++ (void)fromCoursesWithCourses:(NSArray *)courseIDs
                        success:(void (^)(NSArray *attendanceIDs))success
                        failure:(void (^)(NSError *error))failure;
 
-+ (void)foundDeviceWithAttendance:(NSString *)attendance_id
++ (void)foundDeviceWithAttendance:(NSString *)attendanceID
                              uuid:(NSString *)uuid
                           success:(void (^)(Attendance *attendance))success
                           failure:(void (^)(NSError *error))failure;
 
-+ (void)toggleManuallyWithAttendance:(NSString *)attendance_id
-                                user:(NSString *)user_id
++ (void)toggleManuallyWithAttendance:(NSString *)attendanceID
+                                user:(NSString *)userID
                              success:(void (^)(Attendance *attendance))success
                              failure:(void (^)(NSError *error))failure;
 
 #pragma Clickers APIs
-+ (void)clickWithClicker:(NSString *)clicker_id
++ (void)clickWithClicker:(NSString *)clickerID
                   choice:(NSString *)choice_number
                  success:(void (^)(Clicker *clicker))success
                  failure:(void (^)(NSError *error))failure;
 
 #pragma Notices APIs
-+ (void)seenWithNotice:(NSString *)notice_id
++ (void)seenWithNotice:(NSString *)noticeID
                success:(void (^)(Notice *notice))success
                failure:(void (^)(NSError *error))failure;
 

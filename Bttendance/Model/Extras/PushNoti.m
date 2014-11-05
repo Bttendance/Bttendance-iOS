@@ -13,7 +13,7 @@
 #pragma Override RLMObject Method
 + (NSDictionary *)defaultPropertyValues {
     NSDictionary *jsonDict = @{@"type" : @"",
-                               @"course_id" : @"",
+                               @"courseID" : @"",
                                @"title" : @"",
                                @"message" : @""};
     return jsonDict;

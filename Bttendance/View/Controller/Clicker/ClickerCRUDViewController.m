@@ -11,6 +11,7 @@
 #import "NSDate+Bttendance.h"
 #import "PasswordCell.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import "BTAPIs.h"
 #import "BTNotification.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -106,7 +107,7 @@
     super.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     super.tableView.allowsMultipleSelection = YES;
     
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     
     if (self.post != nil) {
         self.message = self.post.message;

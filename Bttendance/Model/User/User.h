@@ -29,17 +29,17 @@
 @property RLMArray<SimpleIdentification>        *identifications;
 
 
-- (BOOL)supervising:(NSInteger)course_id;
+- (BOOL)supervising:(NSInteger)courseID;
 
-- (BOOL)attending:(NSInteger)course_id;
+- (BOOL)attending:(NSInteger)courseID;
 
-- (BOOL)enrolled:(NSInteger)school_id;
+- (BOOL)enrolled:(NSInteger)schoolID;
 
 - (NSArray *)getAllSchools;
 
 - (BOOL)hasOpenedCourse;
 
-- (SimpleCourse *)getCourse:(NSInteger)course_id;
+- (SimpleCourse *)getCourse:(NSInteger)courseID;
 
 - (NSArray *)getOpenedCourses;
 

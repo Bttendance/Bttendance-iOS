@@ -233,7 +233,6 @@
 		D4AD07F91A07563C003AEE16 /* NSArray+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07E31A07563C003AEE16 /* NSArray+Bttendance.m */; };
 		D4AD07FA1A07563C003AEE16 /* NSData+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07E51A07563C003AEE16 /* NSData+Bttendance.m */; };
 		D4AD07FB1A07563C003AEE16 /* NSDate+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07E71A07563C003AEE16 /* NSDate+Bttendance.m */; };
-		D4AD07FC1A07563C003AEE16 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07E91A07563C003AEE16 /* NSDictionary+Bttendance.m */; };
 		D4AD07FD1A07563C003AEE16 /* UIColor+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07EB1A07563C003AEE16 /* UIColor+Bttendance.m */; };
 		D4AD07FE1A07563C003AEE16 /* UIImage+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07ED1A07563C003AEE16 /* UIImage+Bttendance.m */; };
 		D4AD07FF1A07563C003AEE16 /* AFResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD07F01A07563C003AEE16 /* AFResponseSerializer.m */; };
@@ -255,6 +254,8 @@
 		D4AD082F1A077AE9003AEE16 /* AttendanceAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD082E1A077AE9003AEE16 /* AttendanceAlarm.m */; };
 		D4AD08321A07F513003AEE16 /* StudentRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AD08311A07F513003AEE16 /* StudentRecord.m */; };
 		D4B4BFDC18F63C3C002DE88C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */; };
+		D4F0CBB31A08F539002CB6F6 /* UIViewController+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBB21A08F539002CB6F6 /* UIViewController+Bttendance.m */; };
+		D4F0CBB91A0902E9002CB6F6 /* UITableViewController+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBB81A0902E9002CB6F6 /* UITableViewController+Bttendance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -597,8 +598,6 @@
 		D4AD07E51A07563C003AEE16 /* NSData+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Bttendance.m"; sourceTree = "<group>"; };
 		D4AD07E61A07563C003AEE16 /* NSDate+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Bttendance.h"; sourceTree = "<group>"; };
 		D4AD07E71A07563C003AEE16 /* NSDate+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Bttendance.m"; sourceTree = "<group>"; };
-		D4AD07E81A07563C003AEE16 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
-		D4AD07E91A07563C003AEE16 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
 		D4AD07EA1A07563C003AEE16 /* UIColor+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Bttendance.h"; sourceTree = "<group>"; };
 		D4AD07EB1A07563C003AEE16 /* UIColor+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Bttendance.m"; sourceTree = "<group>"; };
 		D4AD07EC1A07563C003AEE16 /* UIImage+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bttendance.h"; sourceTree = "<group>"; };
@@ -641,6 +640,10 @@
 		D4AD08311A07F513003AEE16 /* StudentRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentRecord.m; sourceTree = "<group>"; };
 		D4B4BFDB18F63C3C002DE88C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4B5067218B4D74C0075E2F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D4F0CBB11A08F539002CB6F6 /* UIViewController+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Bttendance.h"; sourceTree = "<group>"; };
+		D4F0CBB21A08F539002CB6F6 /* UIViewController+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Bttendance.m"; sourceTree = "<group>"; };
+		D4F0CBB71A0902E9002CB6F6 /* UITableViewController+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+Bttendance.h"; sourceTree = "<group>"; };
+		D4F0CBB81A0902E9002CB6F6 /* UITableViewController+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+Bttendance.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1297,12 +1300,14 @@
 				D4AD07E51A07563C003AEE16 /* NSData+Bttendance.m */,
 				D4AD07E61A07563C003AEE16 /* NSDate+Bttendance.h */,
 				D4AD07E71A07563C003AEE16 /* NSDate+Bttendance.m */,
-				D4AD07E81A07563C003AEE16 /* NSDictionary+Bttendance.h */,
-				D4AD07E91A07563C003AEE16 /* NSDictionary+Bttendance.m */,
 				D4AD07EA1A07563C003AEE16 /* UIColor+Bttendance.h */,
 				D4AD07EB1A07563C003AEE16 /* UIColor+Bttendance.m */,
 				D4AD07EC1A07563C003AEE16 /* UIImage+Bttendance.h */,
 				D4AD07ED1A07563C003AEE16 /* UIImage+Bttendance.m */,
+				D4F0CBB11A08F539002CB6F6 /* UIViewController+Bttendance.h */,
+				D4F0CBB21A08F539002CB6F6 /* UIViewController+Bttendance.m */,
+				D4F0CBB71A0902E9002CB6F6 /* UITableViewController+Bttendance.h */,
+				D4F0CBB81A0902E9002CB6F6 /* UITableViewController+Bttendance.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1403,7 +1408,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1619,6 +1624,7 @@
 				D4AD081A1A0769F8003AEE16 /* Schedule.m in Sources */,
 				D4AD07CA1A075611003AEE16 /* CreateNoticeViewController.m in Sources */,
 				D4AD07681A075611003AEE16 /* Device.m in Sources */,
+				D4F0CBB31A08F539002CB6F6 /* UIViewController+Bttendance.m in Sources */,
 				D4AD07FA1A07563C003AEE16 /* NSData+Bttendance.m in Sources */,
 				D4AD07D21A075611003AEE16 /* ProfileNameEditViewController.m in Sources */,
 				D4AD07891A075611003AEE16 /* GradeCell.m in Sources */,
@@ -1673,10 +1679,10 @@
 				D4AD07991A075611003AEE16 /* SchoolInfoCell.m in Sources */,
 				D4AD07701A075611003AEE16 /* AttendanceAgent.m in Sources */,
 				D4AD07551A075611003AEE16 /* BTObject.m in Sources */,
-				D4AD07FC1A07563C003AEE16 /* NSDictionary+Bttendance.m in Sources */,
 				D4AD08171A0767D1003AEE16 /* ClickerRecord.m in Sources */,
 				D4AD076B1A075611003AEE16 /* SimpleDevice.m in Sources */,
 				D4AD07C41A075611003AEE16 /* GuidePageViewController.m in Sources */,
+				D4F0CBB91A0902E9002CB6F6 /* UITableViewController+Bttendance.m in Sources */,
 				D4AD077E1A075611003AEE16 /* ButtonCell.m in Sources */,
 				D4AD07801A075611003AEE16 /* ChooseCountCell.m in Sources */,
 				D4AD07581A075611003AEE16 /* Course.m in Sources */,
@@ -1918,7 +1924,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

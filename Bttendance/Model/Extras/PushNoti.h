@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, PushNotiType) {
 };
 
 @property NSString          *type;
-@property NSString          *course_id;
+@property NSString          *courseID;
 @property NSString          *title;
 @property NSString          *message;
 

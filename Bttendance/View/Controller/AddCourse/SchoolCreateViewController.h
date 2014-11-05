@@ -16,9 +16,9 @@
 @end
 
 @interface SchoolCreateViewController : UITableViewController <UITextFieldDelegate> {
-    NSIndexPath *name_index;
-    NSIndexPath *type_index;
-    NSIndexPath *info_index;
+    NSIndexPath *nameIndex;
+    NSIndexPath *typeIndex;
+    NSIndexPath *infoIndex;
 }
 
 @property (nonatomic, weak) id<SchoolCreateViewControllerDelegate> delegate;

@@ -7,11 +7,8 @@
 //
 
 #import "CreateAttdViewController.h"
-#import "UIColor+Bttendance.h"
+#import "UIViewController+Bttendance.h"
 #import "AttendanceAgent.h"
-#import "BTNotification.h"
-#import <AudioToolbox/AudioServices.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface CreateAttdViewController ()
 

@@ -10,6 +10,11 @@
 #import "SocketIOPacket.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
+#import "Attendance.h"
+#import "Clicker.h"
+#import "Notice.h"
+#import "Curious.h"
 #import "BTNotification.h"
 
 @implementation SocketAgent
@@ -80,25 +85,31 @@
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"clicker"]) {
         Clicker *clicker = [[Clicker alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:ClickerUpdated object:clicker];
-        [BTUserDefault updateClicker:clicker ofCourse:[NSString stringWithFormat:@"%ld", (long)clicker.post.course]];
+        [BTDatabase updateClicker:clicker];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"attendance"]) {
         Attendance *attendance = [[Attendance alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:AttendanceUpdated object:attendance];
-        [BTUserDefault updateAttendance:attendance ofCourse:[NSString stringWithFormat:@"%ld", (long)attendance.post.course]];
+        [BTDatabase updateAttendance:attendance];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"notice"]) {
         Notice *notice = [[Notice alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:NoticeUpdated object:notice];
-        [BTUserDefault updateNotice:notice ofCourse:[NSString stringWithFormat:@"%ld", (long)notice.post.course]];
+        [BTDatabase updateNotice:notice];
+    }
+    
+    if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"curious"]) {
+        Curious *curious = [[Curious alloc] initWithObject:[data objectForKey:@"args"][0]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CuriousUpdated object:curious];
+        [BTDatabase updateCurious:curious];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"post"]) {
         Post *post = [[Post alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:PostUpdated object:post];
-        [BTUserDefault updatePost:post ofCourse:[NSString stringWithFormat:@"%ld", (long)post.course.id]];
+        [BTDatabase updatePost:post];
     }
 }
 

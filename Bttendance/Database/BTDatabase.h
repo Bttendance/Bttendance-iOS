@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
-#import "School.h"
-#import "Course.h"
-#import "Post.h"
-#import "Clicker.h"
-#import "Attendance.h"
-#import "Notice.h"
-#import "Curious.h"
-#import "ClickerQuestion.h"
-#import "AttendanceAlarm.h"
-#import "SimpleUser.h"
-#import "AttendanceRecord.h"
-#import "ClickerRecord.h"
-#import "StudentRecord.h"
+
+@class User;
+@class School;
+@class Course;
+@class Post;
+@class Clicker;
+@class Attendance;
+@class Notice;
+@class Curious;
+@class ClickerQuestion;
+@class AttendanceAlarm;
+@class SimpleUser;
+@class AttendanceRecord;
+@class ClickerRecord;
+@class StudentRecord;
 
 @interface BTDatabase : NSObject
 
@@ -42,29 +43,31 @@
 + (BTDatabase *)sharedInstance;
 
 #pragma User Table
-+ (void)getUserWithData:(void (^)(User *user))data;
-+ (void)updateUser:(User *)user;
++ (User *)getUser;
++ (void)updateUser:(id)responseObject withData:(void (^)(User *user))data;
 
 #pragma Schools Table (Sort : courses_count)
 + (void)getSchoolsWithData:(void (^)(NSArray *schools))data;
-+ (void)updateSchools:(NSArray *)schools;
-+ (void)updateSchool:(School *)school;
++ (void)updateSchool:(id)responseObject withData:(void (^)(School *school))data;
++ (void)updateSchools:(id)responseObject withData:(void (^)(NSArray *schools))data;
 
 #pragma Courses Table (Sort : id)
++ (Course *)getCourseWithID:(NSInteger)courseID;
 + (void)getCoursesWithData:(void (^)(NSArray *courses))data;
-+ (void)updateCourses:(NSArray *)courses;
-
-+ (void)getCourseWithID:(NSInteger)courseID
-               withData:(void (^)(Course *course))data;
-+ (void)updateCourse:(Course *)course;
++ (void)updateCourse:(id)responseObject withData:(void (^)(Course *course))data;
++ (void)updateCourses:(id)responseObject withData:(void (^)(NSArray *courses))data;
 
 #pragma Posts Table (Sort : id)
 + (void)getPostsWithCourseID:(NSInteger)courseID
-                    WithType:(NSString *)type
+                    withType:(NSString *)type
                     withData:(void (^)(NSArray *posts))data;
-+ (void)updatePosts:(NSArray *)posts ofCourseID:(NSInteger)courseID;
-+ (void)updatePost:(Post *)post;
-+ (void)deletePost:(Post *)post;
++ (void)updatePosts:(id)responseObject
+         ofCourseID:(NSInteger)courseID
+           withType:(NSString *)type
+           withData:(void (^)(NSArray *posts))data;
+
++ (void)updatePost:(id)responseObject withData:(void (^)(Post *post))data;
++ (void)deletePost:(id)responseObject withData:(void (^)(Post *post))data;
 
 + (void)updateClicker:(Clicker *)clicker;
 + (void)updateAttendance:(Attendance *)attendance;
@@ -74,32 +77,42 @@
 #pragma Questions Table (Sort : id)
 + (void)getQuestionsWithCourseID:(NSInteger)courseID
                         withData:(void (^)(NSArray *questions))data;
-+ (void)updateQuestions:(NSArray *)questions ofCourseID:(NSInteger)courseID;
++ (void)updateQuestions:(id)responseObject
+             ofCourseID:(NSInteger)courseID
+               withData:(void (^)(NSArray *questions))data;
 
-+ (void)updateQuestion:(ClickerQuestion *)question;
-+ (void)deleteQuestion:(ClickerQuestion *)question;
++ (void)updateQuestion:(id)responseObject withData:(void (^)(ClickerQuestion *question))data;
++ (void)deleteQuestion:(id)responseObject withData:(void (^)(ClickerQuestion *question))data;
 
 #pragma Alarms Table (Sort : id)
 + (void)getAlarmsWithCourseID:(NSInteger)courseID
                      withData:(void (^)(NSArray *alarms))data;
-+ (void)updateAlarms:(NSArray *)alarms ofCourseID:(NSInteger)courseID;
++ (void)updateAlarms:(id)responseObject
+          ofCourseID:(NSInteger)courseID
+            withData:(void (^)(NSArray *alarms))data;
 
-+ (void)updateAlarm:(AttendanceAlarm *)alarm;
-+ (void)deleteAlarm:(AttendanceAlarm *)alarm;
++ (void)updateAlarm:(id)responseObject withData:(void (^)(AttendanceAlarm *alarm))data;
++ (void)deleteAlarm:(id)responseObject withData:(void (^)(AttendanceAlarm *alarm))data;
 
 #pragma Students Table (Sort : full_name)
 + (void)getStudentsWithCourseID:(NSInteger)courseID
                        withData:(void (^)(NSArray *students))data;
-+ (void)updateStudents:(NSArray *)students ofCourseID:(NSInteger)courseID;
++ (void)updateStudents:(id)responseObject
+            ofCourseID:(NSInteger)courseID
+              withData:(void (^)(NSArray *students))data;
 
 #pragma Attendance Records Table (Sort : full_name)
 + (void)getAttendanceRecordsWithCourseID:(NSInteger)courseID
                                 withData:(void (^)(NSArray *attendanceRecords))data;
-+ (void)updateAttendanceRecords:(NSArray *)attendanceRecords ofCourseID:(NSInteger)courseID;
++ (void)updateAttendanceRecords:(id)responseObject
+                     ofCourseID:(NSInteger)courseID
+                       withData:(void (^)(NSArray *attendanceRecords))data;
 
 #pragma Clicker Records Table (Sort : full_name)
 + (void)getClickerRecordsWithCourseID:(NSInteger)courseID
                              withData:(void (^)(NSArray *clickerRecords))data;
-+ (void)updateClickerRecords:(NSArray *)clickerRecords ofCourseID:(NSInteger)courseID;
++ (void)updateClickerRecords:(id)responseObject
+                  ofCourseID:(NSInteger)courseID
+                    withData:(void (^)(NSArray *clickerRecords))data;
 
 @end

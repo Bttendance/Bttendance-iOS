@@ -12,6 +12,7 @@
 #import "BTUserDefault.h"
 #import "BTAPIs.h"
 #import "QuestionCell.h"
+#import "BTDatabase.h"
 #import "ClickerCRUDViewController.h"
 
 @interface ClickerQuestionViewController ()
@@ -46,13 +47,6 @@
     [titlelabel sizeToFit];
     
     self.questions = [NSArray array];
-    
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.questions = [BTUserDefault getQuestions];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
-        });
-    });
     
     self.tableview.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 4)];

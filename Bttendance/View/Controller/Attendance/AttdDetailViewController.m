@@ -7,14 +7,9 @@
 //
 
 #import "AttdDetailViewController.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
-#import "BTUserDefault.h"
-#import "BTNotification.h"
+#import "UIViewController+Bttendance.h"
 #import "BTBlink.h"
 #import "AttdDetailListViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "SocketAgent.h"
 
 @interface AttdDetailViewController ()
@@ -30,26 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavTitle:NSLocalizedString(@"Attendance Check", nil) withSubTitle:nil];
+    [self setLeftMenu:LeftMenuType_Back];
     
-    //Navigation title
-    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Attendance Check", nil);
-    [titlelabel sizeToFit];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backButtonItem];
-    self.navigationItem.leftItemsSupplementBackButton = NO;
-    
-    self.user = [BTUserDefault getUser];
-    self.course = [BTUserDefault getCourse:post.course.id];
+    self.user = [BTDatabase getUser];
+    self.course = [BTDatabase getCourseWithID:post.course.id];
     self.auth = [self.user supervising:post.course.id];
     
     self.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20);

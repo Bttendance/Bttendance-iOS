@@ -11,6 +11,7 @@
 #import "User.h"
 #import "BTAPIs.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import <AFNetworking/AFNetworking.h>
 #import "BTNotification.h"
 #import <MBProgressHUD/MBProgressHUD.h>
@@ -29,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:UserUpdated object:nil];
     
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -57,14 +58,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     [BTAPIs autoSignInInSuccess:^(User *user) {
     } failure:^(NSError *error) {
     }];
 }
 
 - (void)reloadTableView:(NSNotification *)noti {
-    self.user = [BTUserDefault getUser];
+    self.user = [BTDatabase getUser];
     [self.tableView reloadData];
 }
 

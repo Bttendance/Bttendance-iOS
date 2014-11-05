@@ -11,6 +11,7 @@
 #import "UIColor+Bttendance.h"
 #import "StudentInfoCell.h"
 #import "BTUserDefault.h"
+#import "BTDatabase.h"
 #import "BTNotification.h"
 #import "SocketAgent.h"
 
@@ -49,13 +50,11 @@
     
     data = [NSArray array];
     
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        data = [NSMutableArray arrayWithArray:[BTUserDefault getStudentsOfArray:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]]];
+    [BTDatabase getStudentsWithCourseID:self.post.course.id withData:^(NSArray *students) {
+        data = students;
         [self right:nil];
-        dispatch_async( dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
-        });
-    });
+        [self.tableview reloadData];
+    }];
         
     [BTAPIs studentsForCourse:[NSString stringWithFormat:@"%ld", (long)self.post.course.id]
                             success:^(NSArray *simpleUsers) {
@@ -129,7 +128,7 @@
     SimpleUser *simpleUser = [data objectAtIndex:indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = simpleUser.full_name;
-    cell.idnumber.text = simpleUser.student_id;
+    cell.idnumber.text = simpleUser.studentID;
     cell.detail.text = @"";
     switch ([self.post.clicker choiceInt:simpleUser.id]) {
         case 1:
@@ -171,7 +170,7 @@
     self.segmentcontrol.selectedSegmentIndex = 1;
     
     NSArray *sorting = [data sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        return [((SimpleUser *)a).student_id compare:((SimpleUser *)b).student_id options:NSNumericSearch];
+        return [((SimpleUser *)a).studentID compare:((SimpleUser *)b).studentID options:NSNumericSearch];
     }];
     data = [NSArray arrayWithArray:sorting];
     

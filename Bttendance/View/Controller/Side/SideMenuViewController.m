@@ -20,6 +20,7 @@
 #import "GuidePageViewController.h"
 #import "CourseCreateViewController.h"
 #import "CourseAttendViewController.h"
+#import "BTDatabase.h"
 
 @interface SideMenuViewController ()
 
@@ -34,12 +35,12 @@
     
     UINavigationController *navigationController;
     
-    if ([BTUserDefault getLastSeenCourse] == 0 || [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]] == nil) {
+    if ([BTUserDefault getLastSeenCourse] == 0 || [[BTDatabase getUser] getCourse:[BTUserDefault getLastSeenCourse]] == nil) {
         NoCourseViewController *noCourse = [[NoCourseViewController alloc] initWithNibName:@"NoCourseViewController" bundle:nil];
         navigationController = [[UINavigationController alloc] initWithRootViewController:noCourse];
     } else {
         CourseDetailViewController *courseDetail = [[CourseDetailViewController alloc] initWithCoder:nil];
-        courseDetail.simpleCourse = [[BTUserDefault getUser] getCourse:[BTUserDefault getLastSeenCourse]];
+        courseDetail.simpleCourse = [[BTDatabase getUser] getCourse:[BTUserDefault getLastSeenCourse]];
         navigationController = [[UINavigationController alloc] initWithRootViewController:courseDetail];
     }
     

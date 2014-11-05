@@ -7,17 +7,11 @@
 //
 
 #import "CourseAttendViewController.h"
-#import <AFNetworking.h>
+#import "UITableViewController+Bttendance.h"
 #import "TextInputCell.h"
 #import "SignButtonCell.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
-#import "BTUserDefault.h"
-#import "BTNotification.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <AudioToolbox/AudioServices.h>
 #import "GuideCourseAttendViewController.h"
+#import "BTDatabase.h"
 
 @interface CourseAttendViewController ()
 
@@ -29,51 +23,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavTitle:NSLocalizedString(@"Attend Course", @"") withSubTitle:nil];
+    [self setLeftMenu:LeftMenuType_Close];
+    [self initTableView];
     
-    //status bar
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    //Navigation title
-    //set title
-    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Attend Course", @"");
-    [titlelabel sizeToFit];
-    
-    //Navigation showing
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    code_index = [NSIndexPath indexPathForRow:0 inSection:0];
-    
-    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil)
-                                                              style:UIBarButtonItemStyleDone
-                                                             target:self
-                                                             action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem = close;
-    self.navigationItem.leftItemsSupplementBackButton = NO;
-    
-    self.tableView.backgroundColor = [UIColor grey:1.0];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-}
-
-- (void)back:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    codeIndex = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex];
     [cell.textfield becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index];
+    TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex];
     [cell.textfield resignFirstResponder];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -163,14 +128,14 @@
 
 - (void)attendButton:(id)sender {
     
-    NSString *code = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield text];
+    NSString *code = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).textfield text];
     
     BOOL pass = YES;
     
     if (code == nil || code.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [UIColor red:0.1];
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[UIColor red:0.5]
-                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).contentView.backgroundColor = [UIColor red:0.1];
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).textfield setValue:[UIColor red:0.5]
+                                                                                      forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
     
@@ -178,10 +143,10 @@
     NSPredicate *nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
     
     if(![nameTest evaluateWithObject:code]){
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).contentView.backgroundColor = [UIColor red:0.1];
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield.text = @"";
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index]).textfield setValue:[UIColor red:0.5]
-                                                                                       forKeyPath:@"_placeholderLabel.textColor"];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).textfield.text = @"";
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex]).textfield setValue:[UIColor red:0.5]
+                                                                                      forKeyPath:@"_placeholderLabel.textColor"];
         pass = NO;
     }
     
@@ -200,7 +165,7 @@
         [hud hide:YES];
         
         self.attendingCourse = course;
-        if ([[BTUserDefault getUser] enrolled:course.school.id]) {
+        if ([[BTDatabase getUser] enrolled:course.school.id]) {
             [self attendCourse];
         } else {
             
@@ -222,7 +187,7 @@
             }
             
             //iOS8 Bug
-            TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:code_index];
+            TextInputCell *cell = (TextInputCell *) [self.tableView cellForRowAtIndexPath:codeIndex];
             [cell.textfield resignFirstResponder];
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
@@ -284,46 +249,46 @@
 
 - (void)attendCourse {
     
-//    if (self.attendingCourse == nil)
-//        return;
-//    
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.color = [UIColor navy:0.7];
-//    hud.labelText = NSLocalizedString(@"Loading", nil);
-//    hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
-//    hud.yOffset = -40.0f;
-//    
-//    NSArray *old_courses = [[BTUserDefault getUser] getOpenedCourses];
-//    
-//    [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.id]
-//                 success:^(User *user) {
-//                     [hud hide:YES];
-//                     
-//                     SimpleCourse *createdCourse;
-//                     NSArray *new_courses = [[BTUserDefault getUser] getOpenedCourses];
-//                     for (SimpleCourse *newCourse in new_courses) {
-//                         BOOL isNew = YES;
-//                         for (SimpleCourse *oldCourse in old_courses) {
-//                             if (newCourse.id == oldCourse.id) {
-//                                 isNew = NO;
-//                                 break;
-//                             }
-//                         }
-//                         if (isNew)
-//                             createdCourse = newCourse;
-//                     }
-//                     
-//                     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:createdCourse, SimpleCourseInfo, nil];
-//                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
-//                     
-//                     GuideCourseAttendViewController *courseAttendView = [[GuideCourseAttendViewController alloc] initWithNibName:@"GuideCourseAttendViewController" bundle:nil];
-//                     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:courseAttendView, ModalViewController, nil];
-//                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data2];
-//                     
-//                     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
-//                 } failure:^(NSError *error) {
-//                     [hud hide:YES];
-//                 }];
+    if (self.attendingCourse == nil)
+        return;
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [UIColor navy:0.7];
+    hud.labelText = NSLocalizedString(@"Loading", nil);
+    hud.detailsLabelText = NSLocalizedString(@"Attending Course", nil);
+    hud.yOffset = -40.0f;
+
+    NSArray *old_courses = [[BTDatabase getUser] getOpenedCourses];
+
+    [BTAPIs attendCourse:[NSString stringWithFormat:@"%ld", (long)self.attendingCourse.id]
+                 success:^(User *user) {
+                     [hud hide:YES];
+
+                     SimpleCourse *createdCourse;
+                     NSArray *new_courses = [[BTDatabase getUser] getOpenedCourses];
+                     for (SimpleCourse *newCourse in new_courses) {
+                         BOOL isNew = YES;
+                         for (SimpleCourse *oldCourse in old_courses) {
+                             if (newCourse.id == oldCourse.id) {
+                                 isNew = NO;
+                                 break;
+                             }
+                         }
+                         if (isNew)
+                             createdCourse = newCourse;
+                     }
+
+                     NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:createdCourse, SimpleCourseInfo, nil];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenCourse object:nil userInfo:data];
+
+                     GuideCourseAttendViewController *courseAttendView = [[GuideCourseAttendViewController alloc] initWithNibName:@"GuideCourseAttendViewController" bundle:nil];
+                     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:courseAttendView, ModalViewController, nil];
+                     [[NSNotificationCenter defaultCenter] postNotificationName:OpenModalView object:nil userInfo:data2];
+
+                     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+                 } failure:^(NSError *error) {
+                     [hud hide:YES];
+                 }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

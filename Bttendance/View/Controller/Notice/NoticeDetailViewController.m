@@ -15,6 +15,7 @@
 #import "BTNotification.h"
 #import "NoticeDetailListViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "BTDatabase.h"
 
 @interface NoticeDetailViewController ()
 
@@ -47,8 +48,8 @@
     [self.navigationItem setLeftBarButtonItem:backButtonItem];
     self.navigationItem.leftItemsSupplementBackButton = NO;
     
-    self.user = [BTUserDefault getUser];
-    self.course = [BTUserDefault getCourse:post.course.id];
+    self.user = [BTDatabase getUser];
+    self.course = [BTDatabase getCourseWithID:post.course.id];
     self.auth = [self.user supervising:post.course.id];
     
     self.view.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height + 20);

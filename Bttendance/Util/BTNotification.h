@@ -10,7 +10,7 @@
 
 // For User update
 #define UserUpdated @"user_updated"
-#define CoursesUpdated @"courses_updated"
+#define CourseUpdated @"course_updated"
 
 // For refresh
 #define FeedRefresh @"feed_refresh"
@@ -31,6 +31,7 @@
 #define AttendanceUpdated @"attendance_updated"
 #define ClickerUpdated @"clicker_updated"
 #define NoticeUpdated @"notice_updated"
+#define CuriousUpdated @"curious_updated"
 #define PostUpdated @"post_updated"
 
 @interface BTNotification : NSObject
