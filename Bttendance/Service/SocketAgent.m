@@ -109,7 +109,7 @@
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"post"]) {
         Post *post = [[Post alloc] initWithObject:[data objectForKey:@"args"][0]];
         [[NSNotificationCenter defaultCenter] postNotificationName:PostUpdated object:post];
-        [BTDatabase updatePost:post];
+        [BTDatabase updatePost:post withData:nil];
     }
 }
 

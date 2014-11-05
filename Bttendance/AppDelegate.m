@@ -30,11 +30,12 @@
     [Crashlytics startWithAPIKey:@"933280081941175a775ecfe701fefa562b7f8a01"];
     
     //StatusBar
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     
     //UINavigationBar
     [[UINavigationBar appearance] setBarTintColor:[UIColor navy:1.0]];
+    [[UINavigationBar appearance] setTranslucent:NO];
     
     //UIBarButton
     NSDictionary* barButtonItemAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],

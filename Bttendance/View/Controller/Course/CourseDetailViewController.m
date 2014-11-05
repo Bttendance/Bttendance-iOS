@@ -321,7 +321,7 @@
 
 - (void)refreshFeed:(id)sender {
     [BTAPIs feedForCourse:[NSString stringWithFormat:@"%ld", (long)simpleCourse.id]
-                     page:0
+                     withType:POST_TYPE_ATTENDANCE
                   success:^(NSArray *posts) {
                      data = [NSMutableArray arrayWithArray:posts];
                      [self.tableView reloadData];

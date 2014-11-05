@@ -6,62 +6,29 @@
 //  Copyright (c) 2013년 Bttendance. All rights reserved.
 //
 
-#import <AFNetworking.h>
 #import "SignUpViewController.h"
+#import "UITableViewController+Bttendance.h"
 #import "SideMenuViewController.h"
 #import "TextInputCell.h"
 #import "TextCommentCell.h"
 #import "SignButtonCell.h"
-#import "UIColor+Bttendance.h"
-#import "UIImage+Bttendance.h"
-#import "BTAPIs.h"
 #import "WebViewController.h"
-#import "BTUserDefault.h"
 #import "BTUUID.h"
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <AudioToolbox/AudioServices.h>
 
 @interface SignUpViewController ()
 @end
 
 @implementation SignUpViewController
 
-- (void)back:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    //status bar
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-    //Navigation title
-    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titlelabel.backgroundColor = [UIColor clearColor];
-    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
-    titlelabel.textAlignment = NSTextAlignmentCenter;
-    titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
-    titlelabel.text = NSLocalizedString(@"Sign Up", @"");
-    [titlelabel sizeToFit];
-    
-    self.navigationController.navigationBar.translucent = NO;
+    [self setNavTitle:NSLocalizedString(@"Sign Up", @"") withSubTitle:nil];
+    [self setLeftMenu:LeftMenuType_Back];
+    [self initTableView];
     
     fullname_index = [NSIndexPath indexPathForRow:0 inSection:0];
     email_index = [NSIndexPath indexPathForRow:1 inSection:0];
     password_index = [NSIndexPath indexPathForRow:2 inSection:0];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backButtonItem];
-    self.navigationItem.leftItemsSupplementBackButton = NO;
-    
-    self.tableView.backgroundColor = [UIColor grey:1.0];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];

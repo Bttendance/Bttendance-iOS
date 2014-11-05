@@ -22,13 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //navigation bar color
-    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (version >= 7) {
-        self.navigationController.navigationBar.translucent = NO;
-        self.navigationController.navigationBar.barTintColor = [UIColor navy:1];
-    }
-    
     //gradient layer
     CAGradientLayer *layer = [CAGradientLayer layer];
     layer.frame = self.gradient.bounds;

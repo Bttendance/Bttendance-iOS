@@ -7,11 +7,15 @@
 //
 
 #import "BTSimpleObject.h"
-#import "SimpleUser.h"
+#import "NSDictionary+Bttendance.h"
 
 @implementation BTSimpleObject
 
 #pragma Override RLMObject Method
+- (instancetype)initWithObject:(id)object {
+    return [super initWithObject:[object dictionaryByRemovingNulls]];
+}
+
 + (NSString *)primaryKey {
     return @"id";
 }

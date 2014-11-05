@@ -10,6 +10,9 @@
 
 @interface SimpleCurious : BTObject
 
+
+@property NSString          *title;
+@property NSString          *message;
 @property NSData            *liked_users;
 @property NSData            *followers;
 @property NSInteger         post;

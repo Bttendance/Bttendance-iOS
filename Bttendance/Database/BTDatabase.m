@@ -75,7 +75,8 @@
         table.user = user;
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(table.user);
+            if (data != nil)
+                data(table.user);
             [[NSNotificationCenter defaultCenter] postNotificationName:UserUpdated object:nil];
         });
         
@@ -118,13 +119,15 @@
         
         BTDatabase *table = [self sharedInstance];
         School *school = [[School alloc] initWithObject:responseObject];
+        [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
+        
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(school);
+            if (data != nil)
+                data(school);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
         [realm addOrUpdateObject:school];
         [realm commitWriteTransaction];
     });
@@ -146,7 +149,8 @@
             [table.schools setObject:school forKey:[NSNumber numberWithInteger:school.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([table.schools allValues]);
+            if (data != nil)
+                data([table.schools allValues]);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -182,7 +186,8 @@
         
         BTDatabase *table = [self sharedInstance];
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([table.courses allValues]);
+            if (data != nil)
+                data([table.courses allValues]);
         });
     });
 }
@@ -193,14 +198,16 @@
         
         BTDatabase *table = [self sharedInstance];
         Course *course = [[Course alloc] initWithObject:responseObject];
+        [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
+        
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(course);
+            if (data != nil)
+                data(course);
             [[NSNotificationCenter defaultCenter] postNotificationName:CourseUpdated object:nil];
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
         [realm addOrUpdateObject:course];
         [realm commitWriteTransaction];
     });
@@ -222,7 +229,8 @@
             [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([table.courses allValues]);
+            if (data != nil)
+                data([table.courses allValues]);
             [[NSNotificationCenter defaultCenter] postNotificationName:CourseUpdated object:nil];
         });
         
@@ -262,7 +270,8 @@
                 [typedPosts addObject:post];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(typedPosts);
+            if (data != nil)
+                data(typedPosts);
         });
     });
 }
@@ -292,7 +301,8 @@
                 [typedPosts addObject:post];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(typedPosts);
+            if (data != nil)
+                data(typedPosts);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -316,7 +326,8 @@
                                                                                     forKey:[NSNumber numberWithInteger:post.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(post);
+            if (data != nil)
+                data(post);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -338,7 +349,8 @@
         [[table.postsOfCourse objectForKey:[NSNumber numberWithInteger:post.course.id]] removeObjectForKey:[NSNumber numberWithInteger:post.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(post);
+            if (data != nil)
+                data(post);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -471,7 +483,8 @@
         
         BTDatabase *table = [self sharedInstance];
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
+            if (data != nil)
+                data([[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
@@ -495,7 +508,8 @@
                                                                                              forKey:[NSNumber numberWithInteger:question.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(questions);
+            if (data != nil)
+                data(questions);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -519,7 +533,8 @@
                                                                                             forKey:[NSNumber numberWithInteger:question.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(question);
+            if (data != nil)
+                data(question);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -541,7 +556,8 @@
         [[table.questionsOfCourse objectForKey:[NSNumber numberWithInteger:question.course.id]] removeObjectForKey:[NSNumber numberWithInteger:question.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(question);
+            if (data != nil)
+                data(question);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -573,7 +589,8 @@
         [self initializeAlarmsWithCourseID:courseID];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
+            if (data != nil)
+                data([[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
@@ -597,7 +614,8 @@
                                                                                           forKey:[NSNumber numberWithInteger:alarm.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(alarms);
+            if (data != nil)
+                data(alarms);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -621,7 +639,8 @@
                                                                                       forKey:[NSNumber numberWithInteger:alarm.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(alarm);
+            if (data != nil)
+                data(alarm);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -643,7 +662,8 @@
         [[table.alarmsOfCourse objectForKey:[NSNumber numberWithInteger:alarm.course.id]] removeObjectForKey:[NSNumber numberWithInteger:alarm.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(alarm);
+            if (data != nil)
+                data(alarm);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -674,7 +694,8 @@
         [self initializeStudentsWithCourseID:courseID];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([[table.studentsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
+            if (data != nil)
+                data([[table.studentsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
@@ -698,7 +719,8 @@
                                                                                             forKey:[NSNumber numberWithInteger:student.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(students);
+            if (data != nil)
+                data(students);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -731,7 +753,8 @@
         [self initializeAttendanceRecordsWithCourseID:courseID];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([[table.attendanceRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
+            if (data != nil)
+                data([[table.attendanceRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
@@ -755,7 +778,8 @@
                                                                                                      forKey:[NSNumber numberWithInteger:attendanceRecord.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(attendanceRecords);
+            if (data != nil)
+                data(attendanceRecords);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -788,7 +812,8 @@
         [self initializeClickerRecordsWithCourseID:courseID];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data([[table.clickerRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
+            if (data != nil)
+                data([[table.clickerRecordsOfCourse objectForKey:[NSNumber numberWithInteger:courseID]] allValues]);
         });
     });
 }
@@ -812,7 +837,8 @@
                                                                                                   forKey:[NSNumber numberWithInteger:clickerRecord.id]];
         
         dispatch_async( dispatch_get_main_queue(), ^{
-            data(clickerRecords);
+            if (data != nil)
+                data(clickerRecords);
         });
         
         RLMRealm *realm = [RLMRealm defaultRealm];

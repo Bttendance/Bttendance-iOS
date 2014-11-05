@@ -23,7 +23,9 @@
 
 + (NSDictionary *)defaultPropertyValues {
     NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
-    [jsonDict addEntriesFromDictionary:@{@"post" : @0}];
+    [jsonDict addEntriesFromDictionary:@{@"post" : @0,
+                                         @"title" : @"",
+                                         @"message" : @""}];
     return jsonDict;
 }
 

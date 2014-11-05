@@ -21,7 +21,7 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.textColor = [UIColor white:1.0];
-        titleLabel.text = self.title;
+        titleLabel.text = title;
         [titleLabel sizeToFit];
         
         self.navigationItem.titleView = titleLabel;
@@ -31,7 +31,7 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:15.0];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.textColor = [UIColor white:1.0];
-        titleLabel.text = self.title;
+        titleLabel.text = title;
         [titleLabel sizeToFit];
         
         UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -39,7 +39,7 @@
         subTitleLabel.font = [UIFont boldSystemFontOfSize:14.0];
         subTitleLabel.textAlignment = NSTextAlignmentCenter;
         subTitleLabel.textColor = [UIColor white:1.0];
-        subTitleLabel.text = self.title;
+        subTitleLabel.text = subTitle;
         [subTitleLabel sizeToFit];
         
         UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];

@@ -11,7 +11,7 @@
 @implementation NSDate (Bttendance)
 
 + (NSDate *)dateFromServerString:(NSString *)string {
-    if (string == nil || string == (NSString *) [NSNull null])
+    if (string == nil || string == (NSString *) [NSNull null] || string.length == 0)
         return nil;
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];

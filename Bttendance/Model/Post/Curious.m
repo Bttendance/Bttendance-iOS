@@ -19,4 +19,11 @@
     return [super initWithObject:dictionary];
 }
 
++ (NSDictionary *)defaultPropertyValues {
+    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:[super defaultPropertyValues]];
+    [jsonDict addEntriesFromDictionary:@{@"title" : @"",
+                                         @"message" : @""}];
+    return jsonDict;
+}
+
 @end
