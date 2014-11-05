@@ -10,8 +10,6 @@
 #import "TTTAttributedLabel.h"
 
 @interface SignUpViewController : UITableViewController <UITextFieldDelegate, TTTAttributedLabelDelegate> {
-    NSIndexPath *fullname_index, *email_index, *password_index;
-    NSDictionary *user_info;
+    NSIndexPath *fullNameIndex, *emailIndex, *passwordIndex;
 }
-
 @end

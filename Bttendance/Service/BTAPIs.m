@@ -49,7 +49,7 @@ static UIAlertView *Ooooppss;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		manager = [AFHTTPRequestOperationManager manager];
-		manager.responseSerializer = [AFJSONResponseSerializer serializer];
+		manager.responseSerializer = [AFResponseSerializer serializer];
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 #ifdef DEBUG
         [[AFNetworkActivityLogger sharedLogger] startLogging];

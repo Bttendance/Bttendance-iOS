@@ -257,6 +257,7 @@
 		D4F0CBB31A08F539002CB6F6 /* UIViewController+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBB21A08F539002CB6F6 /* UIViewController+Bttendance.m */; };
 		D4F0CBB91A0902E9002CB6F6 /* UITableViewController+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBB81A0902E9002CB6F6 /* UITableViewController+Bttendance.m */; };
 		D4F0CBBC1A09E111002CB6F6 /* NSDictionary+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBBB1A09E111002CB6F6 /* NSDictionary+Bttendance.m */; };
+		D4F0CBBF1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0CBBE1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -647,6 +648,8 @@
 		D4F0CBB81A0902E9002CB6F6 /* UITableViewController+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+Bttendance.m"; sourceTree = "<group>"; };
 		D4F0CBBA1A09E111002CB6F6 /* NSDictionary+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Bttendance.h"; sourceTree = "<group>"; };
 		D4F0CBBB1A09E111002CB6F6 /* NSDictionary+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Bttendance.m"; sourceTree = "<group>"; };
+		D4F0CBBD1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Bttendance.h"; sourceTree = "<group>"; };
+		D4F0CBBE1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Bttendance.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1297,6 +1300,8 @@
 		D4AD07E11A07563C003AEE16 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D4F0CBBD1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.h */,
+				D4F0CBBE1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.m */,
 				D4AD07E21A07563C003AEE16 /* NSArray+Bttendance.h */,
 				D4AD07E31A07563C003AEE16 /* NSArray+Bttendance.m */,
 				D4AD07E41A07563C003AEE16 /* NSData+Bttendance.h */,
@@ -1655,6 +1660,7 @@
 				D4AD07571A075611003AEE16 /* ClickerQuestion.m in Sources */,
 				D4AD07C91A075611003AEE16 /* StudentListViewController.m in Sources */,
 				D4F0CBBC1A09E111002CB6F6 /* NSDictionary+Bttendance.m in Sources */,
+				D4F0CBBF1A0A05CD002CB6F6 /* MBProgressHUD+Bttendance.m in Sources */,
 				D4AD07691A075611003AEE16 /* Identification.m in Sources */,
 				D4AD07671A075611003AEE16 /* SimplePost.m in Sources */,
 				D4AD07A91A075611003AEE16 /* CourseAttendViewController.m in Sources */,

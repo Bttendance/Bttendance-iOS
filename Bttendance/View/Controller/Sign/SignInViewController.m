@@ -17,7 +17,6 @@
 
 NSString *signinRequest;
 
-
 @interface SignInViewController ()
 
 @end
@@ -31,8 +30,8 @@ NSString *signinRequest;
     [self setLeftMenu:LeftMenuType_Back];
     [self initTableView];
     
-    email_index = [NSIndexPath indexPathForRow:0 inSection:0];
-    password_index = [NSIndexPath indexPathForRow:1 inSection:0];
+    emaiIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    passwordIndex = [NSIndexPath indexPathForRow:1 inSection:0];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -53,7 +52,7 @@ NSString *signinRequest;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //set autofocus on Usernamefield
-    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index];
+    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:emaiIndex];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -178,8 +177,8 @@ NSString *signinRequest;
 }
 
 - (IBAction)signinButton:(id)sender {
-    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
-    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:emaiIndex]).textfield text];
+    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield text];
     
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
@@ -187,17 +186,17 @@ NSString *signinRequest;
     BOOL pass = YES;
     
     if (email == nil || email.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:emaiIndex]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:emaiIndex]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (password == nil || password.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (!pass) {
@@ -206,31 +205,26 @@ NSString *signinRequest;
         return;
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor navy:0.7];
-    hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"Loging In Bttendance", nil);
-    hud.yOffset = -40.0f;
-    
+    [MBProgressHUD showWithMessage:NSLocalizedString(@"Loging In Bttendance", nil) toView:self.view];
     [BTAPIs signInWithEmail:email password:password success:^(User *user) {
-        [hud hide:YES];
+        [MBProgressHUD hideForView:self.view];
         SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
     } failure:^(NSError *error) {
-        [hud hide:YES];
+        [MBProgressHUD hideForView:self.view];
         button.enabled = YES;
     }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:emaiIndex]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield resignFirstResponder];
         [self signinButton:nil];
     }
 

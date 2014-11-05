@@ -25,19 +25,19 @@
 
 @interface BTDatabase : NSObject
 
-@property(nonatomic, retain) User *user;
+@property(atomic, retain) User *user;
 
 // (key : id,       value : object)
-@property(nonatomic, retain) NSMutableDictionary *schools;
-@property(nonatomic, retain) NSMutableDictionary *courses;
+@property(atomic, retain) NSMutableDictionary *schools;
+@property(atomic, retain) NSMutableDictionary *courses;
 
 // (key : courseID, value : NSMutableDictionary)
-@property(nonatomic, retain) NSMutableDictionary *postsOfCourse;
-@property(nonatomic, retain) NSMutableDictionary *questionsOfCourse;
-@property(nonatomic, retain) NSMutableDictionary *alarmsOfCourse;
-@property(nonatomic, retain) NSMutableDictionary *studentsOfCourse;
-@property(nonatomic, retain) NSMutableDictionary *attendanceRecordsOfCourse;
-@property(nonatomic, retain) NSMutableDictionary *clickerRecordsOfCourse;
+@property(atomic, retain) NSMutableDictionary *postsOfCourse;
+@property(atomic, retain) NSMutableDictionary *questionsOfCourse;
+@property(atomic, retain) NSMutableDictionary *alarmsOfCourse;
+@property(atomic, retain) NSMutableDictionary *studentsOfCourse;
+@property(atomic, retain) NSMutableDictionary *attendanceRecordsOfCourse;
+@property(atomic, retain) NSMutableDictionary *clickerRecordsOfCourse;
 
 #pragma SharedInstance
 + (BTDatabase *)sharedInstance;

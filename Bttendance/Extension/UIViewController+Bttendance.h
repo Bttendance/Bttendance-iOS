@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioServices.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "UIColor+Bttendance.h"
 #import "UIImage+Bttendance.h"
+#import "MBProgressHUD+Bttendance.h"
 #import "BTAPIs.h"
 #import "BTDatabase.h"
 #import "BTUserDefault.h"

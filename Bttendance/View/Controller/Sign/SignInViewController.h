@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SignInViewController : UITableViewController <UITextFieldDelegate> {
-    NSIndexPath *email_index, *password_index;
+    NSIndexPath *emaiIndex, *passwordIndex;
 }
 
 @property(weak, nonatomic) NSDictionary *user_info;

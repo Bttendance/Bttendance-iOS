@@ -16,6 +16,7 @@
 #import "BTUUID.h"
 
 @interface SignUpViewController ()
+
 @end
 
 @implementation SignUpViewController
@@ -26,9 +27,9 @@
     [self setLeftMenu:LeftMenuType_Back];
     [self initTableView];
     
-    fullname_index = [NSIndexPath indexPathForRow:0 inSection:0];
-    email_index = [NSIndexPath indexPathForRow:1 inSection:0];
-    password_index = [NSIndexPath indexPathForRow:2 inSection:0];
+    fullNameIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    emailIndex = [NSIndexPath indexPathForRow:1 inSection:0];
+    passwordIndex = [NSIndexPath indexPathForRow:2 inSection:0];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -48,7 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index];
+    TextInputCell *cell1 = (TextInputCell *) [self.tableView cellForRowAtIndexPath:fullNameIndex];
     [cell1.textfield becomeFirstResponder];
 }
 
@@ -177,11 +178,21 @@
                          withRange:[label.text rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
             }
             
-            NSArray *keys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName,(id)NSForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName, nil];
-            NSArray *objects = [[NSArray alloc] initWithObjects:[UIColor navy:1.0],[UIColor navy:1.0],[NSNumber numberWithInt:kCTUnderlineStyleSingle], nil];
+            NSArray *keys = [[NSArray alloc] initWithObjects:(id)NSForegroundColorAttributeName, (id)kCTForegroundColorAttributeName,(id)NSForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName, nil];
+            NSArray *objects = [[NSArray alloc] initWithObjects:[UIColor navy:1.0],[UIColor navy:1.0],[UIColor navy:1.0],[NSNumber numberWithInt:kCTUnderlineStyleSingle], nil];
             NSDictionary *linkAttributes = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
             label.linkAttributes = linkAttributes;
             label.activeLinkAttributes = linkAttributes;
+            
+            NSString *title = label.text;
+            NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:title];
+            [aStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0f] range:[title rangeOfString:title]];
+            [aStr addAttribute:NSForegroundColorAttributeName value:[UIColor silver:1.0] range:[title rangeOfString:title]];
+            [aStr addAttribute:NSForegroundColorAttributeName value:[UIColor navy:1.0] range:[title rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+            [aStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:kCTUnderlineStyleSingle] range:[title rangeOfString:NSLocalizedString(@"Terms of Service", nil)]];
+            [aStr addAttribute:NSForegroundColorAttributeName value:[UIColor navy:1.0] range:[title rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+            [aStr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:kCTUnderlineStyleSingle] range:[title rangeOfString:NSLocalizedString(@"Privacy Policy", nil)]];
+            label.attributedText = aStr;
             
             [cell addSubview:label];
             [cell contentView].backgroundColor = [UIColor grey:1];
@@ -218,9 +229,9 @@
 }
 
 - (void)SignUnButton:(id)sender {
-    NSString *fullname = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield text];
-    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield text];
-    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield text];
+    NSString *fullname = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullNameIndex]).textfield text];
+    NSString *email = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:emailIndex]).textfield text];
+    NSString *password = [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield text];
 
     UIButton *button = (UIButton *) sender;
     button.enabled = NO;
@@ -228,24 +239,24 @@
     BOOL pass = YES;
     
     if (fullname == nil || fullname.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullNameIndex]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullNameIndex]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (email == nil || email.length == 0) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:emailIndex]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:emailIndex]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (password == nil || password.length < 6) {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor red:0.1];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).contentView.backgroundColor = [UIColor red:0.1];
         pass = NO;
     } else {
-        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).contentView.backgroundColor = [UIColor clearColor];
+        ((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).contentView.backgroundColor = [UIColor clearColor];
     }
     
     if (!pass) {
@@ -254,19 +265,14 @@
         return;
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor navy:0.7];
-    hud.labelText = NSLocalizedString(@"Loading", nil);
-    hud.detailsLabelText = NSLocalizedString(@"Signing Up Bttendance", nil);
-    hud.yOffset = -40.0f;
-    
+    [MBProgressHUD showWithMessage:NSLocalizedString(@"Signing Up Bttendance", nil) toView:self.view];
     [BTAPIs signUpWithFullName:fullname email:email password:password success:^(User *user) {
-        [hud hide:YES];
+        [MBProgressHUD hideForView:self.view];
         SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initByItSelf];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController setViewControllers:[NSArray arrayWithObject:sideMenu] animated:NO];
     } failure:^(NSError *error) {
-        [hud hide:YES];
+        [MBProgressHUD hideForView:self.view];
         button.enabled = YES;
     }];
 }
@@ -274,18 +280,18 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullname_index]).textfield]) {
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:fullNameIndex]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:emailIndex]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:email_index]).textfield]) {
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield becomeFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:emailIndex]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield becomeFirstResponder];
         return YES;
     }
 
-    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield]) {
-        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:password_index]).textfield resignFirstResponder];
+    if ([textField isEqual:((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield]) {
+        [((TextInputCell *) [self.tableView cellForRowAtIndexPath:passwordIndex]).textfield resignFirstResponder];
         [self SignUnButton:nil];
     }
 
