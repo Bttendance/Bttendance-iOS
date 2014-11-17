@@ -12,6 +12,8 @@
 #import "Notice.h"
 #import "Post.h"
 
+#define MigratedKey @"btd_migrated"
+
 #define UserJSONKey @"btd_user_json"
 #define EmailKey @"btd_email"
 #define PasswordKey @"btd_password"

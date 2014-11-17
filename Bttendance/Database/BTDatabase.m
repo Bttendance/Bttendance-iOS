@@ -50,6 +50,8 @@
 
 #pragma User Table
 + (void)initializeUser {
+    
+    NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
     BTDatabase *table = [self sharedInstance];
     
     if (table.user == nil) {
@@ -68,11 +70,14 @@
 }
 
 + (void)updateUser:(id)responseObject withData:(void (^)(User *user))data {
+    
+    NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
+    
+    User *user = [[User alloc] initWithObject:responseObject];
+    BTDatabase *table = [self sharedInstance];
+    table.user = user;
+    
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        User *user = [[User alloc] initWithObject:responseObject];
-        BTDatabase *table = [self sharedInstance];
-        table.user = user;
         
         dispatch_async( dispatch_get_main_queue(), ^{
             if (data != nil)
@@ -163,6 +168,8 @@
 
 #pragma Courses Table (Sort : id)
 + (void)initializeCourses {
+    
+    NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
     BTDatabase *table = [self sharedInstance];
     
     if (table.courses == nil) {
@@ -175,6 +182,8 @@
 }
 
 + (Course *)getCourseWithID:(NSInteger)courseID {
+    
+    NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
     BTDatabase *table = [self sharedInstance];
     [self initializeCourses];
     return [table.courses objectForKey:[NSNumber numberWithInteger:courseID]];
@@ -196,6 +205,8 @@
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self initializeCourses];
         
+        
+        NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
         BTDatabase *table = [self sharedInstance];
         Course *course = [[Course alloc] initWithObject:responseObject];
         [table.courses setObject:course forKey:[NSNumber numberWithInteger:course.id]];
@@ -216,6 +227,8 @@
 + (void)updateCourses:(id)responseObject withData:(void (^)(NSArray *courses))data {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        
+        NSLog(@"BTDatabase : %@ : %@", NSStringFromSelector(_cmd), [NSThread currentThread]);
         NSMutableArray *courses = [NSMutableArray array];
         for (NSDictionary *dic in responseObject) {
             Course *course = [[Course alloc] initWithObject:dic];

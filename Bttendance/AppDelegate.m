@@ -22,6 +22,9 @@
 #import "SideMenuViewController.h"
 #import "CatchPointViewController.h"
 
+#import "Attendance.h"
+#import "Post.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -67,6 +70,19 @@
         [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
         application.applicationIconBadgeNumber = 0;
     }
+    
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
+    NSDictionary *dictionary = @{@"type":@"attendance"};
+    for (int i = 0; i < 100; i ++)
+        [Post alloc];
+//        [[Post alloc] initWithObject:dictionary];
+    NSLog(@"%f", [[NSDate date] timeIntervalSince1970]);
     
     return YES;
 }

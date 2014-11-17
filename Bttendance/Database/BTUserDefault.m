@@ -12,6 +12,13 @@
 @implementation BTUserDefault
 
 + (void)migrate {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:MigratedKey])
+        return;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:MigratedKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSString *jsonString = [[NSUserDefaults standardUserDefaults] stringForKey:UserJSONKey];
     if (jsonString == nil)
         return;
@@ -22,8 +29,6 @@
     if (user == nil || user.email == nil || user.password == nil)
         return;
     
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:user.email forKey:EmailKey];
     [defaults setObject:user.password forKey:PasswordKey];
     [defaults setObject:user.device.uuid forKey:UUIDKey];
