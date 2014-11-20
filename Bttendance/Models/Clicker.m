@@ -165,7 +165,7 @@
         if([self.e_students[i] integerValue] == userId)
             return 5;
     
-    return 6;
+    return 0;
 }
 
 - (NSString *)percent:(NSInteger)choice {

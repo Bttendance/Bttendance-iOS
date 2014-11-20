@@ -285,7 +285,8 @@
 		21C1B77E18794102009CC932 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		21C48E401841F53800C8D772 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3FFE56A63304447F9FD8FB81 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CC1263958E74E31B808FFC6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		5F7F9C1FA8FCEE264D30C056 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		968549CB855907BD4AD90195 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D41D684F18AA11520058E356 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D41EDC8C1990AD2F004F6E44 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D41EDC911990AF47004F6E44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -663,7 +664,7 @@
 				2135C3A1182BDD4E002C45DB /* Bttendance */,
 				2135C398182BDD4E002C45DB /* Frameworks */,
 				2135C397182BDD4E002C45DB /* Products */,
-				6CC1263958E74E31B808FFC6 /* Pods.xcconfig */,
+				D2959F826B2D542D2B1E32FD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -848,6 +849,15 @@
 				D4591AB719C829F2007F8E5C /* Guide */,
 			);
 			name = Image;
+			sourceTree = "<group>";
+		};
+		D2959F826B2D542D2B1E32FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F7F9C1FA8FCEE264D30C056 /* Pods.debug.xcconfig */,
+				968549CB855907BD4AD90195 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D41DF93C18ACCCA30019C3AB /* HeaderView */ = {
@@ -1240,7 +1250,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */;
+			buildConfigurationList = 2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1418,7 +1428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D41D684E18AA11290058E356 /* ShellScript */ = {
@@ -1657,7 +1667,7 @@
 		};
 		2135C3C9182BDD4E002C45DB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CC1263958E74E31B808FFC6 /* Pods.xcconfig */;
+			baseConfigurationReference = 5F7F9C1FA8FCEE264D30C056 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1682,7 +1692,7 @@
 		};
 		2135C3CA182BDD4E002C45DB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CC1263958E74E31B808FFC6 /* Pods.xcconfig */;
+			baseConfigurationReference = 968549CB855907BD4AD90195 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1748,7 +1758,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "Bttendance" */ = {
+		2135C391182BDD4E002C45DB /* Build configuration list for PBXProject "bttendance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2135C3C6182BDD4E002C45DB /* Debug */,

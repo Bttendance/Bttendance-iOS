@@ -30,6 +30,7 @@
 #import "CreateAttdViewController.h"
 #import "CreateNoticeViewController.h"
 
+#import "UIScrollView+SVPullToRefresh.h"
 #import "AttendanceAgent.h"
 #import "BTBlink.h"
 
@@ -77,17 +78,26 @@
     }
 }
 
-- (void)appDidBecomeActive:(NSNotification *)notification {
-    [self.tableview reloadData];
-    [self refreshFeed:nil];
-}
-
 - (void)appDidEnterForeground:(NSNotification *)notification {
-    [self.tableview reloadData];
+    [self.tableview triggerPullToRefresh];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableview addPullToRefreshWithActionHandler:^{
+        [self refreshCourse];
+        [self refreshFeed:nil];
+        double delayInSeconds = 7.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self.tableview.pullToRefreshView stopAnimating];
+        });
+    }];
+    
+    self.tableview.pullToRefreshView.arrowColor = [UIColor navy:1.0];
+    self.tableview.pullToRefreshView.textColor = [UIColor navy:1.0];
+    [self.tableview.pullToRefreshView setTitle:NSLocalizedString(@"Loading", nil) forState:SVPullToRefreshStateAll];
 
     NSString *title = simpleCourse.name;
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -179,7 +189,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAttendance:) name:AttendanceUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNotice:) name:NoticeUpdated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePost:) name:PostUpdated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
@@ -312,8 +321,16 @@
     
     user = [BTUserDefault getUser];
     [self.tableview reloadData];
-    [self refreshFeed:nil];
-    [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", (long) self.simpleCourse.id] success:nil failure:nil];
+    [self.tableview triggerPullToRefresh];
+}
+
+- (void)refreshCourse {
+    [BTAPIs courseInfo:[NSString stringWithFormat:@"%ld", (long) self.simpleCourse.id] success:^(Course *course) {
+        [self.tableview reloadData];
+        [self.tableview.pullToRefreshView stopAnimating];
+    } failure:^(NSError *error) {
+        [self.tableview.pullToRefreshView stopAnimating];
+    }];
 }
 
 - (void)refreshFeed:(id)sender {
@@ -323,8 +340,10 @@
                      data = [NSMutableArray arrayWithArray:posts];
                      [self.tableview reloadData];
                      [self checkAttendanceScan];
-                     [self refreshCheck];
+                      [self refreshCheck];
+                      [self.tableview.pullToRefreshView stopAnimating];
                   } failure:^(NSError *error) {
+                      [self.tableview.pullToRefreshView stopAnimating];
                   }];
 }
 
@@ -345,16 +364,21 @@
         return;
     
     Clicker *clicker = [notification object];
-    Boolean found = NO;
+    NSInteger index = -1;
     for (int i = 0; i < data.count; i++) {
         Post *post = data[i];
         if ([post.type isEqualToString:@"clicker"] && clicker.id == post.clicker.id) {
             [post.clicker copyDataFromClicker:clicker];
-            found = YES;
+            index = i;
         }
     }
-    if (found)
-        [self.tableview reloadData];
+    
+    if (index >= 0) {
+        [self.tableview beginUpdates];
+        [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableview endUpdates];
+    }
 }
 
 - (void)updateAttendance:(NSNotification *)notification {
@@ -362,16 +386,21 @@
         return;
     
     Attendance *attendance = [notification object];
-    Boolean found = NO;
+    NSInteger index = -1;
     for (int i = 0; i < data.count; i++) {
         Post *post = data[i];
         if ([post.type isEqualToString:@"attendance"] && attendance.id == post.attendance.id) {
             [post.attendance copyDataFromAttendance:attendance];
-            found = YES;
+            index = i;
         }
     }
-    if (found)
-        [self.tableview reloadData];
+    
+    if (index >= 0) {
+        [self.tableview beginUpdates];
+        [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableview endUpdates];
+    }
 }
 
 - (void)updateNotice:(NSNotification *)notification {
@@ -379,16 +408,21 @@
         return;
     
     Notice *notice = [notification object];
-    Boolean found = NO;
+    NSInteger index = -1;
     for (int i = 0; i < data.count; i++) {
         Post *post = data[i];
         if ([post.type isEqualToString:@"notice"] && notice.id == post.notice.id) {
             [post.notice copyDataFromNotice:notice];
-            found = YES;
+            index = i;
         }
     }
-    if (found)
-        [self.tableview reloadData];
+    
+    if (index >= 0) {
+        [self.tableview beginUpdates];
+        [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableview endUpdates];
+    }
 }
 
 - (void)updatePost:(NSNotification *)notification {
@@ -396,16 +430,21 @@
         return;
     
     Post *newPost = [notification object];
-    Boolean found = NO;
+    NSInteger index = -1;
     for (int i = 0; i < data.count; i++) {
         Post *post = data[i];
         if (post.id == newPost.id) {
             [data replaceObjectAtIndex:i withObject:newPost];
-            found = YES;
+            index = i;
         }
     }
-    if (found)
-        [self.tableview reloadData];
+    
+    if (index >= 0) {
+        [self.tableview beginUpdates];
+        [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableview endUpdates];
+    }
 }
 
 // Check if any attendance is on-going
@@ -1200,7 +1239,8 @@
     [BTAPIs clickWithClicker:[NSString stringWithFormat:@"%ld", (long) clicker_id]
                       choice:[NSString stringWithFormat:@"%ld", (long) choice]
                      success:^(Clicker *clicker) {
-//                         [self refreshFeed:nil];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:ClickerUpdated object:clicker];
+                         [BTUserDefault updateClicker:clicker ofCourse:[NSString stringWithFormat:@"%ld", (long)clicker.post.course]];
                      } failure:^(NSError *error) {
                      }];
 }
